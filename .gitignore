@@ -53,3 +53,5 @@ docs/paraderos_ATU/
 pipeline/input/wikipedia.html
 pipeline/output/bibliografia_rutas.csv
 pipeline/output/comparacion_rutas.csv
+config/no_display_id_skips.json
+pipeline/output/unmatched_routes.json
