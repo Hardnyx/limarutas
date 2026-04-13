@@ -115,7 +115,7 @@
     "expreso_san_isidro": {
       "mode": "only",
       "only": [
-        "52587", "52610"
+        "ESI-1", "ESI-2"
       ]
     }
   }

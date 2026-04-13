@@ -18,12 +18,6 @@
       "color": "#888888",
       "name": "02 · La Capilla → Acho"
     },
-    "2-ida": {
-      "folder": "data/processed/transporte/route_52610",
-      "trip": 1,
-      "color": "#888888",
-      "name": "2 · Guardia Civil → Guardia Civil"
-    },
     "02-vuelta": {
       "folder": "data/processed/transporte/route_58270",
       "trip": 2,
@@ -22824,11 +22818,11 @@
       "color": "#888888",
       "name": "189 · Estados Unidos → Santa Rosa"
     },
-    "1_52587-ida": {
+    "ESI-1-ida": {
       "folder": "data/processed/transporte/route_52587",
       "trip": 1,
       "color": "#888888",
-      "name": "1 · CEV Polar → CEV Polar"
+      "name": "ESI-1 · CEV Polar → CEV Polar"
     },
     "1_89999-ida": {
       "folder": "data/processed/transporte/route_89999",
@@ -24587,6 +24581,12 @@
       "trip": 2,
       "color": "#888888",
       "name": "TVE45b · Calle 32 → 10 (Canto Grande)"
+    },
+    "ESI-2-ida": {
+      "folder": "data/processed/transporte/route_52610",
+      "trip": 1,
+      "color": "#888888",
+      "name": "ESI-2 · Guardia Civil → Guardia Civil"
     }
   }
 }
