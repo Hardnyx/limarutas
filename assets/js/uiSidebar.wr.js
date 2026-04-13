@@ -577,8 +577,9 @@ function makeWrItem(rt, metaByCodigo, routesById, extremes, systemId='wr'){
         setWikiroutesVisible(vta, false);
       }
     } else {
-      if (chk.checked) setWikiroutesVisible(rt.id, true, { fit:true });
-      else             setWikiroutesVisible(rt.id, false);
+      const singleId = (rt.pair && rt.pair.ida) ? rt.pair.ida : rt.id;
+      if (chk.checked) setWikiroutesVisible(singleId, true, { fit:true });
+      else             setWikiroutesVisible(singleId, false);
     }
 
     syncTriFromLeaf(systemId);

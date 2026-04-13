@@ -346,12 +346,13 @@ function buildWrUiAndDefsFromWrMap(wrMap){
       const only = g.ida || g.vuelta;
       if (only) {
         routesUi.push({
-          id: only,
+          id: g.base,
           display_id: routesObj[only].display_id || null,
           label: routesObj[only].label || null,
           subtitle: routesObj[only].subtitle || null,
           name: routesObj[only].name || `Ruta ${only}`,
-          color: routesObj[only].color || '#00008C'
+          color: routesObj[only].color || '#00008C',
+          pair: { ida: only, vuelta: null }
         });
       }
     }

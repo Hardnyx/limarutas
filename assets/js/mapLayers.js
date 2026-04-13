@@ -711,13 +711,27 @@ function resolveWrPair(id){
     }
   }
 
+  // Si el id no tiene sufijo ida/vuelta, buscar si existe -ida o -vuelta directamente
+  if (base === s) {
+    const idaKey    = `${s}-ida`;
+    const vueltaKey = `${s}-vuelta`;
+    if (wrHasDefOrLayer(idaKey) || wrHasDefOrLayer(vueltaKey)) {
+      return {
+        parentId: s,
+        ida:    wrHasDefOrLayer(idaKey)    ? idaKey    : null,
+        vuelta: wrHasDefOrLayer(vueltaKey) ? vueltaKey : null,
+        sel:    'ida',
+        leaf:   null
+      };
+    }
+  }
+
   // Fallback por convención si el id parece subcapa
   if (base !== s) {
-    const ida = `${base}-ida`;
+    const ida    = `${base}-ida`;
     const vuelta = `${base}-vuelta`;
-    const sel = /-vuelta$/i.test(s) ? 'vuelta' : 'ida';
+    const sel    = /-vuelta$/i.test(s) ? 'vuelta' : 'ida';
 
-    // Solo considerar "par" si existe al menos una de las dos capas (def o capa ya construida)
     if (wrHasDefOrLayer(ida) || wrHasDefOrLayer(vuelta)) {
       return { parentId: base, ida, vuelta, sel, leaf: null };
     }
