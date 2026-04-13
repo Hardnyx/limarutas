@@ -1,250 +1,250 @@
 codigo_antiguo,codigo_nuevo,distrito_origen,distrito_destino,empresa_operadora,empresa_abrev,alias,color_hex
-1117,1001,Santiago de Surco,San Isidro,Desconocido,,Desconocido,#FFFFFF
-1118,1002,La Punta,La Victoria,Desconocido,,Desconocido,#004F08
-IO33B,1003,Puente Piedra,Rímac,Rosa de las Américas,ETROASAC,La 9,#FFFFFF
-1212,1004,Comas,San Martín de Porres,Doce de Junio,ETDOJUSA,Ninguno,#FF6417
+1117,1001,Santiago de Surco,San Isidro,Desconocido,,Desconocido,#5A6470
+1118,1002,La Punta,La Victoria,Desconocido,,Desconocido,#00B212
+IO33B,1003,Puente Piedra,Rímac,Rosa de las Américas,ETROASAC,La 9,#5A6470
+1212,1004,Comas,San Martín de Porres,Doce de Junio,ETDOJUSA,Ninguno,#FE6317
 1217,1005,Carabayllo,La Victoria,Santa Cruz,,La 13,#FF0000
 1403,1006,Carabayllo,Ate,Impulsa Progreso,,La C,#0CB7F2
-1502,1007,Puente Piedra,Lima,Amancaes,ETAMSA,La 87B,#FFCD82
-1503,1008,Carabayllo,Magdalena del Mar,Express del Perú,GEP,La 03,#210BA3
-1504,1009,Carabayllo,San Miguel,Comercializadora e Importadora Unidos Punchauca,ETCIPSA,La 06,#762CB9
-1505,1010,Puente Piedra,Magdalena del Mar,Mariscal Ramón Castilla,ETMRCSA,La 46B,#143AB8
-1506,1011,Carabayllo,Pueblo Libre,Translima,,La 47,#007DC4
-1508,1012,Carabayllo,San Miguel,Unión Nacional,ESTUNSAC,La B,#FF0F0F
-1518,1013,Carabayllo,Jesús María,Translima,,La 18,#017BA1
+1502,1007,Puente Piedra,Lima,Amancaes,ETAMSA,La 87B,#FFA928
+1503,1008,Carabayllo,Magdalena del Mar,Express del Perú,GEP,La 03,#210BA7
+1504,1009,Carabayllo,San Miguel,Comercializadora e Importadora Unidos Punchauca,ETCIPSA,La 06,#762BB9
+1505,1010,Puente Piedra,Magdalena del Mar,Mariscal Ramón Castilla,ETMRCSA,La 46B,#1439B8
+1506,1011,Carabayllo,Pueblo Libre,Translima,,La 47,#007CC4
+1508,1012,Carabayllo,San Miguel,Unión Nacional,ESTUNSAC,La B,#FE0F0F
+1518,1013,Carabayllo,Jesús María,Translima,,La 18,#0187B1
 1602,1014,Comas,San Luis,Catorce de Diciembre,,Ninguno,#26913B
-1604,1015,Carabayllo,Lince,Miguel Grau,ETMIGRASA,La MG,#121213
+1604,1015,Carabayllo,Lince,Miguel Grau,ETMIGRASA,La MG,#4A5560
 1607,1016,Ancón,La Victoria,La Buena Estrella,,Ninguno,#0000B3
 1608,1017,Ancón,La Victoria,Novobus,,Ninguno,#0000BF
-1610,1018,Carabayllo,La Victoria,Once de Noviembre,EMPTONSA,Ninguno,#56CCA1
-1611,1019,Puente Piedra,Magdalena del Mar,Palmari,,La P,#D10F0F
-1612,1020,Puente Piedra,Miraflores,Santa Luzmila,ETSLUSA,La C,#264720
-1615,1021,Carabayllo,Lince,CKF,,La F,#D10F0F
-1617,1022,Carabayllo,Miraflores,Norcom Corporation,,Ninguno,#D10F0F
+1610,1018,Carabayllo,La Victoria,Once de Noviembre,EMPTONSA,Ninguno,#55CCA0
+1611,1019,Puente Piedra,Magdalena del Mar,Palmari,,La P,#D00F0F
+1612,1020,Puente Piedra,Miraflores,Santa Luzmila,ETSLUSA,La C,#417B37
+1615,1021,Carabayllo,Lince,CKF,,La F,#D00F0F
+1617,1022,Carabayllo,Miraflores,Norcom Corporation,,Ninguno,#D00F0F
 1618,1023,Carabayllo,Lince,Nueva América,TRANSNASA,La B,#FA8E00
 2204,1024,San Martín de Porres,San Martín de Porres,Nor Lima,ETNOLSA,La U - La A - La B - La C,#00BBFF
-2209,1025,San Martín de Porres,Rímac,Unidos de Pasajeros,ETUPSA,La 73B,#006614
-2212,1026,San Martín de Porres,Rímac,Especial Solidaridad,EMTESSA,La S2,#0F8A01
-2412,1027,Rímac,Ate,Comité Cien,,La 60C,#0C0E52
+2209,1025,San Martín de Porres,Rímac,Unidos de Pasajeros,ETUPSA,La 73B,#00B223
+2212,1026,San Martín de Porres,Rímac,Especial Solidaridad,EMTESSA,La S2,#13B101
+2412,1027,Rímac,Ate,Comité Cien,,La 60C,#161A9B
 2502,1028,San Martín de Porres,Lima,Pacific International,ETRASERPISA,La B,#FFAA00
-2510,1029,Independencia,San Miguel,Alipio Ponce Vásquez,ETALPOVASA,Ninguno,#036900
-2511,1030,San Martín de Porres,San Martín de Porres,Corazón de Jesús de San Diego,,Ninguno,#002BD9
+2510,1029,Independencia,San Miguel,Alipio Ponce Vásquez,ETALPOVASA,Ninguno,#05B200
+2511,1030,San Martín de Porres,San Martín de Porres,Corazón de Jesús de San Diego,,Ninguno,#002AD9
 2513,1031,San Martín de Porres,Jesús María,Translima,,La 29,#00FFEE
-2603,1032,San Martín de Porres,La Victoria,San Juan de La Cruz,,La A,#F70707
-2604,1033,San Martín de Porres,La Victoria,Luxe,,La C,#0B148F
-2607,1034,Rímac,La Victoria,Independiente de Transportes,EITSA,La 36,#218F00
-2608,1035,Rímac,La Victoria,Especiales La Bala,,Ninguno,#0B208C
-2609,1036,Rímac,La Victoria,El Bajopontino,,Ninguno,#FFB34F
+2603,1032,San Martín de Porres,La Victoria,San Juan de La Cruz,,La A,#F70606
+2604,1033,San Martín de Porres,La Victoria,Luxe,,La C,#0C17A5
+2607,1034,Rímac,La Victoria,Independiente de Transportes,EITSA,La 36,#29B200
+2608,1035,Rímac,La Victoria,Especiales La Bala,,Ninguno,#0D25A5
+2609,1036,Rímac,La Victoria,El Bajopontino,,Ninguno,#FFA228
 2611,1037,San Martín de Porres,La Victoria,Lima Chorrillos,TRANSLICSA,La B,#F20C0C
-2613,1038,San Martín de Porres,Lince,El Porvenir,ETEPSA,La 28 - La 504,#1E8000
-2901,1039,Independencia,Callao,117,ETSEDISA,La 117,#43B587
-3204,1040,San Juan de Lurigancho,Rímac,San Ignacio,ETSISA,La SC - La San Ignacio,#0044FF
-3403/TVE27,1041,San Juan de Lurigancho,Chaclacayo,Santa Rosa de Jicamarca,ETSRJSA,Ninguno,#E81D1D
-3405,1042,San Juan de Lurigancho,Ate,Las Águilas 75,ETLA75SA,La 75A,#FF0F0F
-3408,1043,San Juan de Lurigancho,La Molina,Cuarenta Integrada,ETRANCISA,La 40,#4F200C
-3509,1044,San Juan de Lurigancho,Jesús María,104,,La 104,#FF3F0F
-3511,1045,San Juan de Lurigancho,Magdalena del Mar,Unidos,ETUSA,La 52C,#90333B
-3603,1046,San Juan de Lurigancho,Lince,Transport Sabino,TRANSSABISAC,Ninguno,#17A108
-3604,1047,San Juan de Lurigancho,Miraflores,Santo Cristo de Pachacamilla,ETRASCPSA,La 10A,#7C47A1
-3607,1048,San Juan de Lurigancho,Lince,12 de Enero,ETDESA,Ninguno,#DB1212
-3611/TVE60,1049,San Juan de Lurigancho,La Victoria,Caminos del Inca,ETCISA,Ninguno,#258009
+2613,1038,San Martín de Porres,Lince,El Porvenir,ETEPSA,La 28 - La 504,#29B200
+2901,1039,Independencia,Callao,117,ETSEDISA,La 117,#42B587
+3204,1040,San Juan de Lurigancho,Rímac,San Ignacio,ETSISA,La SC - La San Ignacio,#0043FF
+3403/TVE27,1041,San Juan de Lurigancho,Chaclacayo,Santa Rosa de Jicamarca,ETSRJSA,Ninguno,#E71D1D
+3405,1042,San Juan de Lurigancho,Ate,Las Águilas 75,ETLA75SA,La 75A,#FE0F0F
+3408,1043,San Juan de Lurigancho,La Molina,Cuarenta Integrada,ETRANCISA,La 40,#9A3E17
+3509,1044,San Juan de Lurigancho,Jesús María,104,,La 104,#FE3F0F
+3511,1045,San Juan de Lurigancho,Magdalena del Mar,Unidos,ETUSA,La 52C,#90323B
+3603,1046,San Juan de Lurigancho,Lince,Transport Sabino,TRANSSABISAC,Ninguno,#18AA08
+3604,1047,San Juan de Lurigancho,Miraflores,Santo Cristo de Pachacamilla,ETRASCPSA,La 10A,#7B47A0
+3607,1048,San Juan de Lurigancho,Lince,12 de Enero,ETDESA,Ninguno,#DB1111
+3611/TVE60,1049,San Juan de Lurigancho,La Victoria,Caminos del Inca,ETCISA,Ninguno,#30A60B
 3613,1050,San Juan de Lurigancho,Lince,El Lobito,,La R-I,#FFCC00
-3614/TVE68,1051,San Juan de Lurigancho,San Isidro,Unidos,ETUSA,La 52J,#90333B
-3701,1052,San Juan de Lurigancho,San Juan de Miraflores,HA de Servicios Múltiples de Propietarios Unidos Huáscar,ETHASEMPUHUASA,La HA,#1510B0
+3614/TVE68,1051,San Juan de Lurigancho,San Isidro,Unidos,ETUSA,La 52J,#90323B
+3701,1052,San Juan de Lurigancho,San Juan de Miraflores,HA de Servicios Múltiples de Propietarios Unidos Huáscar,ETHASEMPUHUASA,La HA,#140FB0
 3702,1053,San Juan de Lurigancho,Chorrillos,Sur Lima,,La H,#003CE0
 3705,1054,San Juan de Lurigancho,Chorrillos,Urbano Línea 4,ETUL4SA,La E,#E3B03F
-3707,1055,San Juan de Lurigancho,Chorrillos,Lima Urban Company,,La 31,#FF0303
+3707,1055,San Juan de Lurigancho,Chorrillos,Lima Urban Company,,La 31,#FF0202
 3805,1056,San Juan de Lurigancho,Villa El Salvador,Arco Iris,ETSAISA,La P,#B80000
-3806,1057,San Juan de Lurigancho,Villa María del Triunfo,Santa Catalina,ESTSACASA,La 23C,#0C5700
-3807/TVE21,1058,San Juan de Lurigancho,Lurín,Huáscar,,La R28,#D8D821
-3809,1059,San Juan de Lurigancho,Villa María del Triunfo,Santa Catalina,ESTSACASA,La 23B,#0C5700
-3810,1060,San Juan de Lurigancho,Villa María del Triunfo,Ocho,ETSOSA,La 8,#DE1212
-3813,1061,San Juan de Lurigancho,Villa El Salvador,Preferencial M1,ETSPM1SA,La M1,#C5FF22
-3814,1062,San Juan de Lurigancho,Villa El Salvador,Los Cuatro Suyos,ETCSSA,La M1,#FFF70A
-3815,1063,San Juan de Lurigancho,Pachacámac,Los Magníficos,ETYSERMULMASA,La M,#FFB60A
+3806,1057,San Juan de Lurigancho,Villa María del Triunfo,Santa Catalina,ESTSACASA,La 23C,#18B200
+3807/TVE21,1058,San Juan de Lurigancho,Lurín,Huáscar,,La R28,#D7D820
+3809,1059,San Juan de Lurigancho,Villa María del Triunfo,Santa Catalina,ESTSACASA,La 23B,#18B200
+3810,1060,San Juan de Lurigancho,Villa María del Triunfo,Ocho,ETSOSA,La 8,#DE1111
+3813,1061,San Juan de Lurigancho,Villa El Salvador,Preferencial M1,ETSPM1SA,La M1,#C5FF21
+3814,1062,San Juan de Lurigancho,Villa El Salvador,Los Cuatro Suyos,ETCSSA,La M1,#FEF70A
+3815,1063,San Juan de Lurigancho,Pachacámac,Los Magníficos,ETYSERMULMASA,La M,#FEB60A
 4304,1064,Lurigancho/Chosica,San Juan de Lurigancho,Santa Rosa de Jicamarca,ETSRJSA,La 49,#DB0000
-4405,1065,Ate,Ate,Nuevo Horizonte,ETNHOSA,La 91,#00126E
-4502,1066,Huaycán,Lima,Huaycán,ETRANTURHSA,La HCT - El Huaycanero,#D5BC8B
-4503,1067,Santa Anita,Lima,Peralitos,,Ninguno,#FF0F0F
-4504,1068,Huaycán,Lima,Nuevo Perú,,La HGK - El Huaycanero,#05016B
-4507,1069,Ricardo Palma,Lima,Nueva Era Señor de Muruhuay,ETSNESMSA,El Chosicano,#1F26FF
-4510,1070,Ate,Jesús María,Bronco,ETBRONSA,Ninguno,#9C1414
+4405,1065,Ate,Ate,Nuevo Horizonte,ETNHOSA,La 91,#001DB2
+4502,1066,Huaycán,Lima,Huaycán,ETRANTURHSA,La HCT - El Huaycanero,#C6A461
+4503,1067,Santa Anita,Lima,Peralitos,,Ninguno,#FE0F0F
+4504,1068,Huaycán,Lima,Nuevo Perú,,La HGK - El Huaycanero,#0801B0
+4507,1069,Ricardo Palma,Lima,Nueva Era Señor de Muruhuay,ETSNESMSA,El Chosicano,#1F25FF
+4510,1070,Ate,Jesús María,Bronco,ETBRONSA,Ninguno,#9E1414
 4511,1071,Ate,Lima,Virgen de Copacabana,MIVICOSAC,La IC,#0758B5
-4607,1072,Ate,La Victoria,Unidos San Martín de Porres,ETUSMPSA,Ninguno,#0013BA
-4609,1073,Ate,San Isidro,Nuestra Señora del Sagrado Corazón,ETNUSSACSA,La B,#151F5C
-4610,1074,Ate,San Isidro,Miraflores Monterrico,ETMIMSA,La B - La 112,#1E2C82
-4611,1075,Lurigancho/Chosica,La Victoria,San Juan Bautista,ETSSJBSA,La 51,#00008A
-4612,1076,Huaycán,La Victoria,Comercialización 14 de Mayo,,Ninguno,#00990A
-4613,1077,Huaycán,La Victoria,Perla de Los Andes,TRASMPERSAC,Ninguno,#006B0B
-4614,1078,Ate,La Victoria,Sesentitrés,,La 63,#75574D
-4618,1079,Ate,La Victoria,Unidos San Martín de Porres,ETUSMPSA,Ninguno,#0013BA
-4619,1080,Huaycán,La Victoria,Huaycán,ETRANTURHSA,La HCT - El Huaycanero,#1BBFA4
+4607,1072,Ate,La Victoria,Unidos San Martín de Porres,ETUSMPSA,Ninguno,#0012BA
+4609,1073,Ate,San Isidro,Nuestra Señora del Sagrado Corazón,ETNUSSACSA,La B,#213091
+4610,1074,Ate,San Isidro,Miraflores Monterrico,ETMIMSA,La B - La 112,#213191
+4611,1075,Lurigancho/Chosica,La Victoria,San Juan Bautista,ETSSJBSA,La 51,#0000B2
+4612,1076,Huaycán,La Victoria,Comercialización 14 de Mayo,,Ninguno,#00B20B
+4613,1077,Huaycán,La Victoria,Perla de Los Andes,TRASMPERSAC,Ninguno,#00B212
+4614,1078,Ate,La Victoria,Sesentitrés,,La 63,#74574D
+4618,1079,Ate,La Victoria,Unidos San Martín de Porres,ETUSMPSA,Ninguno,#0012BA
+4619,1080,Huaycán,La Victoria,Huaycán,ETRANTURHSA,La HCT - El Huaycanero,#1BBEA4
 4620,1081,Huaycán,La Victoria,Urbano Huaycán,,Ninguno,#D61406
-4622,1082,Ate,Miraflores,Angamos,,Ninguno,#FFEF08
-4623,1083,Huaycán,La Victoria,Sin Fronteras,,Ninguno,#FFA229
-4703,1084,Ate,Chorrillos,Consorcio Santo Cristo,,La 91,#070A66
-5401,1085,Lima,Santa Eulalia,Turismo Carretera Central,EMTRACACE,El Chosicano,#25A605
-6901,1086,San Borja,Callao,Magdalena-San Miguel,ETRAMSMSA,Ninguno,#B8B097
-7501,1087,Chorrillos,Jesús María,Unidos,ETUSA,La 52T,#90333B
-7505,1088,Chorrillos,Lima,Renacimiento,SGTRENSA,Ninguno,#7CFF0A
-7601,1089,San Juan de Miraflores,Lince,ATCRSA,ATCRSA,La 24,#E80202
-7606,1090,Chorrillos,San Isidro,Unidos Chama,,La C,#E00202
-7607,1091,San Juan de Miraflores,La Victoria,160,,La 160,#1465A3
-7610,1092,Chorrillos,La Victoria,San Genaro,ETSEMUSAGESA,Ninguna,#C4100A
-7612,1093,San Juan de Miraflores,San Isidro,Sur Primero de Junio,ETPRIJUSAC,La I,#0F0F0F
-7613,1094,San Juan de Miraflores,Miraflores,Unidos Doce de Noviembre,ETUSA,La C,#0016A3
+4622,1082,Ate,Miraflores,Angamos,,Ninguno,#FFEF07
+4623,1083,Huaycán,La Victoria,Sin Fronteras,,Ninguno,#FFA128
+4703,1084,Ate,Chorrillos,Consorcio Santo Cristo,,La 91,#0B10A7
+5401,1085,Lima,Santa Eulalia,Turismo Carretera Central,EMTRACACE,El Chosicano,#26AD05
+6901,1086,San Borja,Callao,Magdalena-San Miguel,ETRAMSMSA,Ninguno,#A89E7F
+7501,1087,Chorrillos,Jesús María,Unidos,ETUSA,La 52T,#90323B
+7505,1088,Chorrillos,Lima,Renacimiento,SGTRENSA,Ninguno,#7CFE0A
+7601,1089,San Juan de Miraflores,Lince,ATCRSA,ATCRSA,La 24,#E80101
+7606,1090,Chorrillos,San Isidro,Unidos Chama,,La C,#E00101
+7607,1091,San Juan de Miraflores,La Victoria,160,,La 160,#1364A3
+7610,1092,Chorrillos,La Victoria,San Genaro,ETSEMUSAGESA,Ninguna,#C41009
+7612,1093,San Juan de Miraflores,San Isidro,Sur Primero de Junio,ETPRIJUSAC,La I,#4A5560
+7613,1094,San Juan de Miraflores,Miraflores,Unidos Doce de Noviembre,ETUSA,La C,#0018B2
 7614,1095,Chorrillos,Miraflores,Servicios Turismo e Inversiones Norteamérica,,La 57,#0DBD7C
-8302/CH24,1096,Villa El Salvador,San Juan de Lurigancho,Luis Banchero Rossi,LUBARSA,La B - La Banchero,#FFFF1C
-8306,1097,Villa El Salvador,San Juan de Lurigancho,Santo Cristo de Pachacamilla,ETRASCPSA,La 10E,#7C47A1
+8302/CH24,1096,Villa El Salvador,San Juan de Lurigancho,Luis Banchero Rossi,LUBARSA,La B - La Banchero,#FEFF1C
+8306,1097,Villa El Salvador,San Juan de Lurigancho,Santo Cristo de Pachacamilla,ETRASCPSA,La 10E,#7B47A0
 8308,1098,Lurín,San Juan de Lurigancho,Urbano Línea 4,ETUL4SA,La 08 - La L,#E3B03F
-8403,1099,Villa María del Triunfo,Jesús Maria,Luis Banchero Rossi,LUBARSA,La 9 - La Banchero,#F4F78F
+8403,1099,Villa María del Triunfo,Jesús Maria,Luis Banchero Rossi,LUBARSA,La 9 - La Banchero,#EBF037
 8404,1100,Villa María del Triunfo,Huaycán,Urbano Línea 4,ETUL4SA,La P,#E3B03F
-8513,1107,Villa El Salvador,Lima,Montenegro,ETMOSAC,La C,#59D3FF
-8520,1108,Villa el Salvador,Lima,Santa Catalina,ESTSACASA,La 23A,#0C5700
-8523,1109,Villa María del Triunfo,Miraflores,Esfuerzos Unidos,ETEUSA,La 25,#276913
+8513,1107,Villa El Salvador,Lima,Montenegro,ETMOSAC,La C,#28C6FF
+8520,1108,Villa el Salvador,Lima,Santa Catalina,ESTSACASA,La 23A,#18B200
+8523,1109,Villa María del Triunfo,Miraflores,Esfuerzos Unidos,ETEUSA,La 25,#38971B
 8524,1110,Pachacámac,Lima,Unidos Chama,,La G,#FF0000
-8525,1111,Villa María del Triunfo,Lima,Unidos de Pasajeros,ETUPSA,La 73A,#ACCB56
-8602,1112,Pachacámac,La Victoria,Red Lima Móvil,,Ninguno,#21CBD1
+8525,1111,Villa María del Triunfo,Lima,Unidos de Pasajeros,ETUPSA,La 73A,#ABCA56
+8602,1112,Pachacámac,La Victoria,Red Lima Móvil,,Ninguno,#20CAD1
 8604,1113,Villa María del Triunfo,Miraflores,Translima,,Ninguno,#009FE3
-8605,1114,Villa El Salvador,San Isidro,Los Ángeles del Perú,ETRAPERSAC,La D2,#0008FF
-8611,1115,Lurín,Miraflores,Express Pachacámac,ETEPSA,La A,#0006B8
-8612,1116,Pachacámac,Miraflores,Edilberto Ramos,ETERSAC,La A,#FFFF00
-8614,1117,Villa María del Triunfo,Miraflores,Tablada 2000,ETTADOSA,Ninguna,#FFCB3D
-8616,1118,Villa María del Triunfo,Miraflores,Urano Tours,,La U,#FF1414
-8617,1119,Villa El Salvador,Miraflores,ATCRSA,ATCRSA,La D,#E80202
+8605,1114,Villa El Salvador,San Isidro,Los Ángeles del Perú,ETRAPERSAC,La D2,#0007FF
+8611,1115,Lurín,Miraflores,Express Pachacámac,ETEPSA,La A,#0005B8
+8612,1116,Pachacámac,Miraflores,Edilberto Ramos,ETERSAC,La A,#FEFF00
+8614,1117,Villa María del Triunfo,Miraflores,Tablada 2000,ETTADOSA,Ninguna,#FFC528
+8616,1118,Villa María del Triunfo,Miraflores,Urano Tours,,La U,#FE1414
+8617,1119,Villa El Salvador,Miraflores,ATCRSA,ATCRSA,La D,#E80101
 8618,1120,Pachacámac,La Victoria,Real Star del Perú,,La 190,#D6B618
-8619,1121,Villa El Salvador,La Victoria,Consorcio Línea 3,,La A,#27C716
-8621,1122,Villa El Salvador,La Victoria,Lapso,,La 6,#FFFF00
-8626,1123,Pachacámac,Miraflores,Unidos Chama,,La A,#DF3322
-8703,1124,Villa María del Triunfo,Surquillo,Expreso Tablada Y Asociados,,Ninguno,#FFB12B
-8704,1125,Villa María del Triunfo,Surquillo,Purca Gabriel Cora Cora,,Ninguno,#0DE7FF
-8711,1126,Lurín,Surquillo,Villa Alejandro,,Ninguno,#398F00
-8714,1127,Lurín,Surquillo,Esmirla Zevallos,,Ninguno,#FF0505
-8729,1128,Pachacámac,Santiago de Surco,Carrocerías Rivera,,La G - La 65,#68BCEB
-8803,1129,Pachacámac,Pachacámac,San Juan de Dios,ETSAJUDSA,La A - La B,#05096E
+8619,1121,Villa El Salvador,La Victoria,Consorcio Línea 3,,La A,#26C716
+8621,1122,Villa El Salvador,La Victoria,Lapso,,La 6,#FEFF00
+8626,1123,Pachacámac,Miraflores,Unidos Chama,,La A,#DF3221
+8703,1124,Villa María del Triunfo,Surquillo,Expreso Tablada Y Asociados,,Ninguno,#FFB028
+8704,1125,Villa María del Triunfo,Surquillo,Purca Gabriel Cora Cora,,Ninguno,#0DE7FE
+8711,1126,Lurín,Surquillo,Villa Alejandro,,Ninguno,#47B200
+8714,1127,Lurín,Surquillo,Esmirla Zevallos,,Ninguno,#FF0404
+8729,1128,Pachacámac,Santiago de Surco,Carrocerías Rivera,,La G - La 65,#41ABE5
+8803,1129,Pachacámac,Pachacámac,San Juan de Dios,ETSAJUDSA,La A - La B,#070DAA
 9503,1130,Carmen de la Legua,Lima,Once de Noviembre,EMPTONSA,Ninguno,#20BA2F
-9601,1131,Ventanilla,La Victoria,Virgen de La Puerta,VIPUSA,La D,#0ABF16
-9605,1132,Callao,La Victoria,Múltiples Satélite,ETRASEMUSSA,El Urbanito,#004F08
+9601,1131,Ventanilla,La Victoria,Virgen de La Puerta,VIPUSA,La D,#09BF16
+9605,1132,Callao,La Victoria,Múltiples Satélite,ETRASEMUSSA,El Urbanito,#00B212
 CR04,1133,La Punta,Lima,Señor del Mar,ETSMARSA,Ninguno,#8D17E8
-CR07,1134,Callao,La Perla,La Estrella,ETSESAC,La A,#3189CC
-CR09,1135,Callao,Lima,Mariscal Ramón Castilla,,La 105,#BDBDBD
-CR10,1136,Callao,Lima,Consorcio Nueva Unión,,La 120,#8C6043
-CR12,1137,Carabayllo,La Victoria,San Antonio,,Ninguno,#DF2222
-CR17,1138,Carabayllo,San Miguel,Chimpum Callao,,Ninguno,#F7FF0F
-CR27,1139,Comas,Pueblo Libre,Consorcio Grupo Uvita,,Ninguno,#391170
-CR30,1140,Callao,Lima,Milagroso Inmaculado Señor Cautivo de Ayabaca,ETMISCASA,Ninguno,#A322BD
+CR07,1134,Callao,La Perla,La Estrella,ETSESAC,La A,#3088CC
+CR09,1135,Callao,Lima,Mariscal Ramón Castilla,,La 105,#939393
+CR10,1136,Callao,Lima,Consorcio Nueva Unión,,La 120,#8C6042
+CR12,1137,Carabayllo,La Victoria,San Antonio,,Ninguno,#DF2121
+CR17,1138,Carabayllo,San Miguel,Chimpum Callao,,Ninguno,#F6FE0F
+CR27,1139,Comas,Pueblo Libre,Consorcio Grupo Uvita,,Ninguno,#4E179A
+CR30,1140,Callao,Lima,Milagroso Inmaculado Señor Cautivo de Ayabaca,ETMISCASA,Ninguno,#A321BD
 CR31,1141,Callao,Santiago de Surco,Fondo Colectivo de Ayuda Mutua,ETFOCAMSA,Ninguno,#BA0707
-CR32,1142,Ventanilla,Lima,Proyecto 7,,Ninguno,#F5D50A
-CR38,1143,Callao,Santiago de Surco,Gruplan,,La 524,#FFE642
-CR40,1144,Callao,Lima,Conexos Néstor Gambetta,,Ninguna,#38B6FF
-CR43,1145,Carabayllo,La Victoria,Callao,TRANSCALLAO,Ninguno,#D6CBC1
-CR45,1146,La Punta,Lima,San Benito de Palermo,ETSABEPSA,Ninguno,#EDB313
-CR46,1147,La Punta,Lima,Generales Colonial,,Ninguno,#FF00A2
-CR47,1148,Callao,Lima,Waylluy,,Ninguno,#941212
-CR48,1149,Callao,Lima,Waylluy,,Ninguno,#035220
-CR52,1150,Callao,Lima,102,,Ninguno,#EFFF12
-CR56,1151,Ventanilla,Lima,Mi Perú Ventanilla,EPTEVESA,Ninguno,#AD3A10
-CR61,1152,Ventanilla,Lima,Lima Ventanilla Turismo,LIVENTUR,Ninguno,#136919
-CR62,1153,Carabayllo,Carabayllo,San Ignacio de Loyola,ETRASILSA,Ninguno,#400707
-CR69,1154,Carabayllo,Pueblo Libre,Consorcio Briza,,Ninguno,#100C8F
-CR78,1155,Callao,Lima,Holrex,,Ninguno,#FF860D
+CR32,1142,Ventanilla,Lima,Proyecto 7,,Ninguno,#F5D509
+CR38,1143,Callao,Santiago de Surco,Gruplan,,La 524,#FFE228
+CR40,1144,Callao,Lima,Conexos Néstor Gambetta,,Ninguna,#28B0FF
+CR43,1145,Carabayllo,La Victoria,Callao,TRANSCALLAO,Ninguno,#A9927E
+CR45,1146,La Punta,Lima,San Benito de Palermo,ETSABEPSA,Ninguno,#EDB312
+CR46,1147,La Punta,Lima,Generales Colonial,,Ninguno,#FF00A1
+CR47,1148,Callao,Lima,Waylluy,,Ninguno,#9F1313
+CR48,1149,Callao,Lima,Waylluy,,Ninguno,#06AC43
+CR52,1150,Callao,Lima,102,,Ninguno,#EEFE12
+CR56,1151,Ventanilla,Lima,Mi Perú Ventanilla,EPTEVESA,Ninguno,#AD3910
+CR61,1152,Ventanilla,Lima,Lima Ventanilla Turismo,LIVENTUR,Ninguno,#1B9723
+CR62,1153,Carabayllo,Carabayllo,San Ignacio de Loyola,ETRASILSA,Ninguno,#A01111
+CR69,1154,Carabayllo,Pueblo Libre,Consorcio Briza,,Ninguno,#120DA4
+CR78,1155,Callao,Lima,Holrex,,Ninguno,#FE850D
 ICR02B,1156,Callao,Lima,Nuevo Reynoso,ETYSNURSA,Ninguno,#00EEFF
-IM19,1157,Ventanilla,Lima,Sol y Mar,,Ninguno,#255710
-IM20,1158,Ventanilla,Lima,SIT,SIT,Ninguno,#FFFFF1
-IM21,1159,Callao,Jesús María,Translima,,La 21,#0099FF
-IM34B,1160,Ventanilla,Ate,Chimpum Callao,,La OP,#FF872B
-IM40,1161,Callao,Ate,Víctor Raúl Haya de La Torre,ETVRHTSA,La 89,#37880B
-IM47,1162,Callao,San Miguel,Consorcio Briza,,Ninguno,#8C0B01
-IO14,1163,Mi Perú,Santiago de Surco,Avagon,,La SV,#37FFD7
-IO19,1164,Callao,Independencia,Corazón de Jesús,CTCJ,Ninguno,#000880
-IO38B,1165,Los Olivos,Callao,Consorcio Briza,,Ninguno,#0011FF
-IO44B,1166,Carabayllo,San Miguel,Vía Bus,ETVIBUSAC,Ninguno,#032DFF
-IO45,1167,Carabayllo,Callao,Consorcio Briza,,Ninguno,#634941
-IO47,1168,Ventanilla,Lince,La Nueva Estrella,,Ninguno,#FFA305
+IM19,1157,Ventanilla,Lima,Sol y Mar,,Ninguno,#40961B
+IM20,1158,Ventanilla,Lima,SIT,SIT,Ninguno,#FEFF28
+IM21,1159,Callao,Jesús María,Translima,,La 21,#0098FF
+IM34B,1160,Ventanilla,Ate,Chimpum Callao,,La OP,#FF8528
+IM40,1161,Callao,Ate,Víctor Raúl Haya de La Torre,ETVRHTSA,La 89,#42A50D
+IM47,1162,Callao,San Miguel,Consorcio Briza,,Ninguno,#B10D01
+IO14,1163,Mi Perú,Santiago de Surco,Avagon,,La SV,#28FFD4
+IO19,1164,Callao,Independencia,Corazón de Jesús,CTCJ,Ninguno,#000BB2
+IO38B,1165,Los Olivos,Callao,Consorcio Briza,,Ninguno,#0010FF
+IO44B,1166,Carabayllo,San Miguel,Vía Bus,ETVIBUSAC,Ninguno,#022DFF
+IO45,1167,Carabayllo,Callao,Consorcio Briza,,Ninguno,#6B4F46
+IO47,1168,Ventanilla,Lince,La Nueva Estrella,,Ninguno,#FFA304
 IO75B,1169,Mi Perú,Lima,Cielo Mar y Tierra,ETCIMATISA,Ninguno,#808080
 OM09,1170,Callao,Lima,Perla Argentina,PASA,La 93,#18D6C9
 OM16,1171,Santa Rosa,La Victoria,Álamo Express,ETALEXSA,La DC - La SB,#00B8FF
-OM23,1172,San Martín de Porres,Rímac,Niño Jesús,ETUNIJESA,Ninguno,#078ED1
+OM23,1172,San Martín de Porres,Rímac,Niño Jesús,ETUNIJESA,Ninguno,#078DD1
 OM32,1173,San Martín de Porres,Santiago de Surco,Consorcio Movil Express,,La 9V,#0CBE00
 OM33,1174,San Martín de Porres,San Martín de Porres,Los Ángeles del Perú,CILAP,La D1,#FF0000
-1308,1175,Puente Piedra,San Juan de Lurigancho,Pegasso Express,,La P,#02A9FD
+1308,1175,Puente Piedra,San Juan de Lurigancho,Pegasso Express,,La P,#01A9FD
 1404,1176,Comas,Ate,Virgen de La Puerta,EVIPUSA,La 6M - La Collique,#FF9E00
-1411,1177,Carabayllo,Ate,Cruz del Centro,,La 02,#002FC9
-1412,1178,Carabayllo,Ate,La Encantada,,La E,#02A9FD
-1701,1179,Ancón,Santiago de Surco,Turismo e Inversiones Señor de La Soledad,SESOSA,El Anconero,#BABABA
+1411,1177,Carabayllo,Ate,Cruz del Centro,,La 02,#002EC9
+1412,1178,Carabayllo,Ate,La Encantada,,La E,#01A9FD
+1701,1179,Ancón,Santiago de Surco,Turismo e Inversiones Señor de La Soledad,SESOSA,El Anconero,#939393
 1702,1180,Carabayllo,San Juan de Miraflores,Nueva América,TRANSNASA,La A,#FA8E00
-1703,1181,Puente Piedra,Chorrillos,Perú,,La 70,#247506
-1704,1182,Carabayllo,San Juan de Miraflores,Vencedores C&P Inversiones,,La V,#3B68FF
-1706,1183,Carabayllo,Santiago de Surco,Urano Tours,,La A,#A6411A
+1703,1181,Puente Piedra,Chorrillos,Perú,,La 70,#34A908
+1704,1182,Carabayllo,San Juan de Miraflores,Vencedores C&P Inversiones,,La V,#2859FF
+1706,1183,Carabayllo,Santiago de Surco,Urano Tours,,La A,#A64119
 1801,1184,Santa Rosa,Pachacámac,Edilberto Ramos,ETERSAC,La B39 - La C,#00B8FF
 1802,1185,Puente Piedra,Villa El Salvador,Urbano Los Chinos,ETUCHISA,La A - El Chino,#00B8FF
-2303,1187,San Martín de Porres,San Juan de Lurigancho,Señor Nazareno,,Ninguno,#FFA305
-2404,1189,San Martín de Porres,La Molina,El Inti,ETINSA,La 35B,#239911
-2405,1190,San Martín de Porres,Santa Anita,Inversiones El Rápido,ESTIRSA,Ninguno,#0839FF
-2406,1191,San Martín de Porres,Ate,Los Excelentes Unidos,,La 35A,#085E02
+2303,1187,San Martín de Porres,San Juan de Lurigancho,Señor Nazareno,,Ninguno,#FFA304
+2404,1189,San Martín de Porres,La Molina,El Inti,ETINSA,La 35B,#24A011
+2405,1190,San Martín de Porres,Santa Anita,Inversiones El Rápido,ESTIRSA,Ninguno,#0738FF
+2406,1191,San Martín de Porres,Ate,Los Excelentes Unidos,,La 35A,#0EAE03
 2407,1192,Independencia,Ate,El Sol de Santa Clara,ETISSA,Ninguno,#FFEE00
 2408,1193,Independencia,Ate,Virgen de la Concepción,ETVIRCOSA,La 148,#A31E0F
-2409,1194,San Martín de Porres,Ate,Virgen de Fátima,EVIFASA,La B,#A5C5EB
+2409,1194,San Martín de Porres,Ate,Virgen de Fátima,EVIFASA,La B,#4F8ED8
 2411,1195,San Martín de Porres,Lurigancho/Chosica,El Rápido,,La 42 - El Rápido,#D90000
-2414,1196,Los Olivos,Santa Anita,Cruz del Centro,,La A,#0006CC
-2701,1197,San Martín de Porres,Santiago de Surco,Diecisiete de Junio,ETRADIJUSA,La 44A,#EB1515
-2703,1199,San Martín de Porres,Chorrillos,36 San Martín de Porres,ET36SMPSA,La 36,#F5CC6C
-2803,1200,Lince,Villa María del Triunfo,Ingaruca,TRAINSAC,La 9A,#169E11
-3203,1203,San Juan de Lurigancho,San Martín de Porres,San Germán,TISGSA,La C - La 128 - La San Germán,#FF00C3
-3205,1204,San Juan de Lurigancho,San Martín de Porres,Huancayo City,ETHUCSA 2H,La 2H,#F0F3AF
-3502,1205,El Agustino,San Miguel,Vargasant,,La E,#FFFF39
+2414,1196,Los Olivos,Santa Anita,Cruz del Centro,,La A,#0005CC
+2701,1197,San Martín de Porres,Santiago de Surco,Diecisiete de Junio,ETRADIJUSA,La 44A,#EA1515
+2703,1199,San Martín de Porres,Chorrillos,36 San Martín de Porres,ET36SMPSA,La 36,#F1B936
+2803,1200,Lince,Villa María del Triunfo,Ingaruca,TRAINSAC,La 9A,#16A111
+3203,1203,San Juan de Lurigancho,San Martín de Porres,San Germán,TISGSA,La C - La 128 - La San Germán,#FF00C2
+3205,1204,San Juan de Lurigancho,San Martín de Porres,Huancayo City,ETHUCSA 2H,La 2H,#DCE344
+3502,1205,El Agustino,San Miguel,Vargasant,,La E,#FEFF28
 3507,1207,San Juan de Lurigancho,San Miguel,La Huayrona,,La C1,#FF9900
-4102,1210,Santa Anita,Carabayllo,San Felipe Express,,Ninguno,#0E07D9
-4210,1214,Ate,San Martín de Porres,Virgen de La Asunción,ETVASA,La 32A,#45FFA2
-4506,1218,Ricardo Palma,San Miguel,Lima Chosica,ETYSLCHSA,El Chosicano,#D61A1A
-4512,1219,Lurigancho/Chosica,San Miguel,Vargasant,,La B,#FFF945
+4102,1210,Santa Anita,Carabayllo,San Felipe Express,,Ninguno,#0D07D9
+4210,1214,Ate,San Martín de Porres,Virgen de La Asunción,ETVASA,La 32A,#28FF93
+4506,1218,Ricardo Palma,San Miguel,Lima Chosica,ETYSLCHSA,El Chosicano,#D61919
+4512,1219,Lurigancho/Chosica,San Miguel,Vargasant,,La B,#FFF828
 4513,1220,Lurigancho/Chosica,Lima,Peralitos,,Ninguno,#FF1919
 4516,1221,Ate,San Miguel,Los Expertos y Somos Más,,La 20,#B80422
-4901,1222,Lurigancho/Chosica,Callao,San Cristóbal Palcamayo,,La 19 - La N,#AD9600
+4901,1222,Lurigancho/Chosica,Callao,San Cristóbal Palcamayo,,La 19 - La N,#B29A00
 4902,1223,Ate,Callao,Pesqueros,,La 129B,#21917F
 4904,1224,Ate,Callao,Gocarive 19,,La 19,#FFD500
 4905,1225,Ate,Callao,Álamo Express,ETALEXSA,La C - La 01,#00B8FF
-4908,1226,Ate,Callao,El Carmen de la Punta,ETCAPSA,La 71B,#7D0202
+4908,1226,Ate,Callao,El Carmen de la Punta,ETCAPSA,La 71B,#AF0202
 4911,1227,Ate,Callao,Almirante Miguel Grau,ETSAMIGSA,Ninguno,#30A130
-4913,1228,Huaycán,La Perla,Santa Rosa de Lima,ETSRLSA,La H - La Z,#4FA500
-5303,1229,San Miguel,El Agustino,Próceres,,La M,#FFFF00
+4913,1228,Huaycán,La Perla,Santa Rosa de Lima,ETSRLSA,La H - La Z,#55B200
+5303,1229,San Miguel,El Agustino,Próceres,,La M,#FEFF00
 7101,1230,Chorrillos,Carabayllo,Fénix 2000,,La 03,#FFD600
-7103,1231,Chorrillos,Carabayllo,Desconocido,,La 35,#0011FF
-7202,1232,San Juan de Miraflores,San Martín de Porres,San Juan de La Cruz,,La A,#F70707
-7204,1233,San Juan de Miraflores,San Martín de Porres,San Pedro de Pamplona,,La P1,#FF640A
+7103,1231,Chorrillos,Carabayllo,Desconocido,,La 35,#0010FF
+7202,1232,San Juan de Miraflores,San Martín de Porres,San Juan de La Cruz,,La A,#F70606
+7204,1233,San Juan de Miraflores,San Martín de Porres,San Pedro de Pamplona,,La P1,#FE640A
 7504,1234,San Juan de Miraflores,La Perla,La Unidad de Villa,,La W,#00DB34
-8102,1235,Pachacámac,Carabayllo,Salamanca Parral,ETSPSA,La S,#2C6632
+8102,1235,Pachacámac,Carabayllo,Salamanca Parral,ETSPSA,La S,#357C3D
 8104,1236,Villa El Salvador,Carabayllo,Express del Perú,GEP,La 40,#E30000
-8105,1237,Villa El Salvador,Carabayllo,El Rápido,,La 5,#D10F0F
-8107,1238,Villa El Salvador,Carabayllo,San Felipe Express,,La C,#091080
+8105,1237,Villa El Salvador,Carabayllo,El Rápido,,La 5,#D00F0F
+8107,1238,Villa El Salvador,Carabayllo,San Felipe Express,,La C,#0B14A6
 8108,1239,Villa El Salvador,Puente Piedra,El Cóndor,,La C,#00B8FF
-8109,1240,Pachacámac,Ancón,Virgen de la Puerta,VIPUSA,La A,#39913C
+8109,1240,Pachacámac,Ancón,Virgen de la Puerta,VIPUSA,La A,#38913C
 8110,1241,Lurín,Carabayllo,Roluesa,,La C,#00B8FF
-8111,1242,Pachacámac,Ancón,Nuevo Perú,,La C,#0BB8FF
+8111,1242,Pachacámac,Ancón,Nuevo Perú,,La C,#0BB7FE
 8112,1243,Villa El Salvador,Carabayllo,Norcom Corporation,,La C,#D90000
-8201,1244,Pachacámac,San Martín de Porres,Unidos de Pasajeros,ETUPSA,La 73-1,#ACCB56
+8201,1244,Pachacámac,San Martín de Porres,Unidos de Pasajeros,ETUPSA,La 73-1,#ABCA56
 8205,1245,Villa María del Triunfo,San Martín de Porres,San Judas Tadeo,,Ninguno,#A89574
 8209,1246,Villa María Del Triunfo,San Martin de Porres,Simón Bolívar,ETSIBOSA,La C,#00B8FF
-8211,1247,Villa María del Triunfo,San Martín de Porres,Sur Express,,La G,#00EABB
+8211,1247,Villa María del Triunfo,San Martín de Porres,Sur Express,,La G,#00EABA
 8212,1248,Pachacámac,San Martin de Porres,Real Star del Perú,,La A - La C,#00B8FF
 8214,1249,Villa María del Triunfo,San Martin de Porres,Salvador,ETSSSAC,La 15C,#FF8F1F
-8501,1250,Villa El Salvador,San Miguel,Lapso,,La L,#FFFF00
-8504,1251,San Bartolo,San Miguel,San José,ETSAJOSA,La B - El Chocolate,#3D2D1D
-8507,1252,Villa María del Triunfo,San Miguel,San Judas Tadeo,,Ninguno,#FFEFC7
-8510,1253,San Bartolo,San Miguel,Guadulfo Silva Carbajal,ETGUSICSA,La A - La San Bartolo,#660000
-8511,1254,Pucusana,San Miguel,Guadulfo Silva Carbajal,ETGUSICSA,La B,#660000
-8515,1255,Villa María del Triunfo,Lima,Capitales Peruanos,ETCAPESA,Ninguno,#27C716
-9303,1256,Callao,San Juan de Lurigancho,Milenium,,La Z1,#610000
-9305,1257,Ventanilla,El Agustino,Servicio Urbano 26 de Mayo,,Ninguno,#FFFEED
+8501,1250,Villa El Salvador,San Miguel,Lapso,,La L,#FEFF00
+8504,1251,San Bartolo,San Miguel,San José,ETSAJOSA,La B - El Chocolate,#785939
+8507,1252,Villa María del Triunfo,San Miguel,San Judas Tadeo,,Ninguno,#FFC128
+8510,1253,San Bartolo,San Miguel,Guadulfo Silva Carbajal,ETGUSICSA,La A - La San Bartolo,#B20000
+8511,1254,Pucusana,San Miguel,Guadulfo Silva Carbajal,ETGUSICSA,La B,#B20000
+8515,1255,Villa María del Triunfo,Lima,Capitales Peruanos,ETCAPESA,Ninguno,#26C716
+9303,1256,Callao,San Juan de Lurigancho,Milenium,,La Z1,#B20000
+9305,1257,Ventanilla,El Agustino,Servicio Urbano 26 de Mayo,,Ninguno,#FFF328
 9306,1258,Callao,San Juan de Lurigancho,Las Flores,,La 57,#FF6F00
 9307,1259,Ventanilla,San Juan de Lurigancho,La Nueva Estrella,,La S2C,#0600C9
-9401,1260,Ventanilla,Huaycán,Inversiones y Representaciones Polo,IRPSAC,El Lorito,#4FA500
-9405,1261,Callao,Ate,Federico Villareal,ETFVSA,La Covida,#FF540A
+9401,1260,Ventanilla,Huaycán,Inversiones y Representaciones Polo,IRPSAC,El Lorito,#55B200
+9405,1261,Callao,Ate,Federico Villareal,ETFVSA,La Covida,#FE540A
 9801,1262,Ventanilla,Villa El Salvador,41,,La 41,#F5A200
-9802,1263,Callao,Villa María del Triunfo,Los Milagros del Señor de Pachacamilla,ETMISPSA,La P,#841FD1
-CR02,1264,Callao,Santiago de Surco,Miraflores Monterrico,ETMIMSA,Ninguno,#1932B0
+9802,1263,Callao,Villa María del Triunfo,Los Milagros del Señor de Pachacamilla,ETMISPSA,La P,#831FD1
+CR02,1264,Callao,Santiago de Surco,Miraflores Monterrico,ETMIMSA,Ninguno,#1831B0
 CR14,1265,Callao,Santiago de Surco,Hogar Tours,,La S,#D43434
 CR19,1266,Ventanilla,Santiago de Surco,Lima Express,,La JV,#00FF99
-CR24,1267,Ventanilla,Ate,Servicio y Comercialización Expreso Santa Anita,,La V,#000E8C
-CR25,1268,Callao,Ate,El Álamo de Santa Rosa,,Ninguno,#39601B
+CR24,1267,Ventanilla,Ate,Servicio y Comercialización Expreso Santa Anita,,La V,#0011B2
+CR25,1268,Callao,Ate,El Álamo de Santa Rosa,,Ninguno,#528B27
 CR37,1269,San Martin de Porres,Ate,Los Excelentes Unidos,ETSMEUSA,La X37,#FF0000

@@ -1,586 +1,586 @@
 codigo_antiguo,codigo_nuevo,distrito_origen,distrito_destino,empresa_operadora,empresa_abrev,alias,color_hex,estado
-1101,,Carabayllo,Carabayllo,Norcom Corporation,,La 7,#FBF905,Inactiva
-1102,,Carabayllo,Carabayllo,Juan Pablo,EMJUPASA,La J,#E60026,Activa
-1103,,Carabayllo,Carabayllo,Huandoy,,La 27,#EE1313,Activa
+1101,,Carabayllo,Carabayllo,Norcom Corporation,,La 7,#FBF904,Inactiva
+1102,,Carabayllo,Carabayllo,Juan Pablo,EMJUPASA,La J,#E60025,Activa
+1103,,Carabayllo,Carabayllo,Huandoy,,La 27,#ED1313,Activa
 1104,,Puente Piedra,Comas,22 de Octubre de Laderas de Chillón,,Desconocido,#3DA060,Activa
 1105,,Puente Piedra,Canta,Turismo Santa Rosita de Quives,,Desconocido,#FFC900,Activa
-1106,,Ancón,Carabayllo,Manuel Prado,,El Ancorero - El Trapichero,#F5710C,Activa
-1186,,Puente Piedra,Carabayllo,Transmilenio Puente Piedra,ETTRANSPPISA,La CH - La Z,#503737,Activa
-1187,,Ancón,Ancón,Multiservicios Villas de Ancón,,Desconocido,#F7F7F7,Inactiva
-1188,,Puente Piedra,Carabayllo,Todo Lo Puedo En Cristo,,La Z1,#FFFF00,Activa
-1189,,Puente Piedra,Comas,Innova Express,,Desconocido,#B866FF,Inactiva
-1198,,Carabayllo,Puente Piedra,Lomas de Zapallal,LODEZA,La Z,#305229,Activa
-1201,,Puente Piedra,San Miguel,Rápido Inversiones,RAPISA,La T,#D10F0F,Activa
+1106,,Ancón,Carabayllo,Manuel Prado,,El Ancorero - El Trapichero,#F5700B,Activa
+1186,,Puente Piedra,Carabayllo,Transmilenio Puente Piedra,ETTRANSPPISA,La CH - La Z,#694848,Activa
+1187,,Ancón,Ancón,Multiservicios Villas de Ancón,,Desconocido,#5A6470,Inactiva
+1188,,Puente Piedra,Carabayllo,Todo Lo Puedo En Cristo,,La Z1,#FEFF00,Activa
+1189,,Puente Piedra,Comas,Innova Express,,Desconocido,#9B28FF,Inactiva
+1198,,Carabayllo,Puente Piedra,Lomas de Zapallal,LODEZA,La Z,#45763B,Activa
+1201,,Puente Piedra,San Miguel,Rápido Inversiones,RAPISA,La T,#D00F0F,Activa
 1202,,Puente Piedra,San Martín de Porres,El Retablo,,Desconocido,#6D378B,Inactiva
-1203,,Carabayllo,Rímac,Virgen de Fátima,EVIFASA,La E,#F5F5F5,Inactiva
+1203,,Carabayllo,Rímac,Virgen de Fátima,EVIFASA,La E,#5A6470,Inactiva
 1204,,Carabayllo,San Martín de Porres,Sindicato de Transportes Sara Sara,,La 90,#F2EB0F,Inactiva
-1205,,Puente Piedra,Rímac,Santa Luzmila,ETSLUSA,La C,#226644,Inactiva
-1206,,Puente Piedra,San Martín de Porres,Ensenada Chillón,ETECHSA,Desconocido,#3079FA,Activa
-1207,,Puente Piedra,Independencia,Doce de Noviembre,TRADNOVISAC,Desconocido,#128205,Inactiva
-1208,,Puente Piedra,San Martín de Porres,26 Jilgueros de Los Andes,,La 26,#DE1610,Activa
-1209,,Puente Piedra,Rímac,Servicios Urbanos,TRANSUR,La 7,#FFE600,Inactiva
-1211/TVE16/TVE52,,Carabayllo,San Juan de Lurigancho,Electri Motors Perú,,El Mandarino,#FF843D,Activa
-1212,,Comas,Rímac,Doce de Junio,ETDOJUSA,Desconocido,#FF6417,Inactiva
-1213,,Puente Piedra,Rímac,Turismo e Inversiones Señor de La Soledad,SESOSA,La C,#38B6F1,Activa
+1205,,Puente Piedra,Rímac,Santa Luzmila,ETSLUSA,La C,#2C8559,Inactiva
+1206,,Puente Piedra,San Martín de Porres,Ensenada Chillón,ETECHSA,Desconocido,#2D77F9,Activa
+1207,,Puente Piedra,Independencia,Doce de Noviembre,TRADNOVISAC,Desconocido,#17AB06,Inactiva
+1208,,Puente Piedra,San Martín de Porres,26 Jilgueros de Los Andes,,La 26,#DE1510,Activa
+1209,,Puente Piedra,Rímac,Servicios Urbanos,TRANSUR,La 7,#FFE500,Inactiva
+1211/TVE16/TVE52,,Carabayllo,San Juan de Lurigancho,Electri Motors Perú,,El Mandarino,#FF7728,Activa
+1212,,Comas,Rímac,Doce de Junio,ETDOJUSA,Desconocido,#FE6317,Inactiva
+1213,,Puente Piedra,Rímac,Turismo e Inversiones Señor de La Soledad,SESOSA,La C,#36B5F0,Activa
 1214,,Carabayllo,Rímac,Puente Piedra,,La J,#50914C,Inactiva
-1215,,Carabayllo,Rímac,Nueva América,TRANSNASA,La B,#B5B5B5,Inactiva
-1216,,Carabayllo,Rímac,Especial Solidaridad,EMTESSA,La S3,#009150,Inactiva
+1215,,Carabayllo,Rímac,Nueva América,TRANSNASA,La B,#939393,Inactiva
+1216,,Carabayllo,Rímac,Especial Solidaridad,EMTESSA,La S3,#00B262,Inactiva
 1217,,Carabayllo,Rímac,Santa Cruz,,La 13,#FF0000,Activa
-1301,,Comas,San Juan de Lurigancho,Doce de Junio,ETDOJUSA,Desconocido,#FF984A,Inactiva
-1302,,Carabayllo,El Agustino,Puente Piedra,,La J,#247D30,Inactiva
+1301,,Comas,San Juan de Lurigancho,Doce de Junio,ETDOJUSA,Desconocido,#FF8528,Inactiva
+1302,,Carabayllo,El Agustino,Puente Piedra,,La J,#278A35,Inactiva
 1303,,Carabayllo,San Juan de Lurigancho,Santa Cruz,,La 13,#FF1F1F,Inactiva
-1304,,Carabayllo,San Juan de Lurigancho,Especial Solidaridad,EMTESSA,La S3,#009150,Inactiva
-1305,,Carabayllo,San Juan de Lurigancho,Consorcio Gómez,,Desconocido,#1E17EB,Inactiva
-1306,,Carabayllo,El Agustino,Puente Piedra,,La J,#6AD068,Inactiva
-1307,,¿?,¿?,Desconocido,,Desconocido,#FFFFFF,
-1308,,Puente Piedra,San Juan de Lurigancho,Pegasso Express,,La P,#02A9FD,Activa
+1304,,Carabayllo,San Juan de Lurigancho,Especial Solidaridad,EMTESSA,La S3,#00B262,Inactiva
+1305,,Carabayllo,San Juan de Lurigancho,Consorcio Gómez,,Desconocido,#1E17EA,Inactiva
+1306,,Carabayllo,El Agustino,Puente Piedra,,La J,#5DCC5B,Inactiva
+1307,,¿?,¿?,Desconocido,,Desconocido,#5A6470,
+1308,,Puente Piedra,San Juan de Lurigancho,Pegasso Express,,La P,#01A9FD,Activa
 1401,,Puente Piedra,Ate,Santa Rosa de Lima,ETSRLSA,La 9Z,#1FA61F,Inactiva
 1402,,Puente Piedra,Lurigancho/Chosica,Pegasso Express,,Desconocido,#0000FF,Inactiva
 1403,,Carabayllo,Ate,Impulsa Progreso,,La C,#0CB7F2,Activa
 1404,,Comas,Ate,Virgen de La Puerta,EVIPUSA,La 6M - La Collique,#FF9E00,Activa
-1405,,Carabayllo,San Juan de Miraflores,Nor Lima,ETNOLSA,La N,#F22711,Inactiva
-1406,,San Martín de Porres,Ate,Roluesa,,Desconocido,#783737,Inactiva
-1407,,Carabayllo,Lurigancho/Chosica,Internacional Pamela,ETRINPASA,La V1,#FFAD42,Inactiva
-1408,,Carabayllo,Santa Anita,Generales Alfa,,La 02,#002FC9,Inactiva
-1409,,Carabayllo,La Molina,Salamanca Parral,ETSPSA,Desconocido,#203D26,Inactiva
+1405,,Carabayllo,San Juan de Miraflores,Nor Lima,ETNOLSA,La N,#F22710,Inactiva
+1406,,San Martín de Porres,Ate,Roluesa,,Desconocido,#7A3838,Inactiva
+1407,,Carabayllo,Lurigancho/Chosica,Internacional Pamela,ETRINPASA,La V1,#FFA228,Inactiva
+1408,,Carabayllo,Santa Anita,Generales Alfa,,La 02,#002EC9,Inactiva
+1409,,Carabayllo,La Molina,Salamanca Parral,ETSPSA,Desconocido,#3D7548,Inactiva
 1410,,Carabayllo,La Molina,Castro Fuentes,KEVJIDSA,Desconocido,#2E39C9,Inactiva
-1411,,Carabayllo,Ate,Cruz del Centro,,La 02,#002FC9,Activa
-1412,,Carabayllo,Ate,La Encantada,,La E,#02A9FD,Activa
-1501,,Puente Piedra,San Miguel,San Felipe,ETISSFESA,Desconocido,#FF1212,Activa
-1502,,Puente Piedra,Lima,Amancaes,ETAMSA,La 87B,#FFCD82,Activa
-1503,,Carabayllo,Magdalena del Mar,Express del Perú,GEP,La 03,#210BA3,Activa
-1504,,Carabayllo,Pueblo Libre,Comercializadora e Importadora Unidos Punchauca,ETCIPSA,La 06,#762CB9,Activa
-1505,,Puente Piedra,Magdalena del Mar,Mariscal Ramón Castilla,ETMRCSA,La 46B,#143AB8,Activa
-1506,,Carabayllo,Pueblo Libre,Translima,,La 47,#007DC4,Activa
-1507,,Ancón,Lima,El Anconero,EMTEANSAC,El Anconero,#FFFF00,Inactiva
-1508,,Carabayllo,San Miguel,Unión Nacional,ESTUNSAC,La B,#FF0F0F,Activa
-1509,,Carabayllo,Magdalena del Mar,Multiservicios Nueva Imagen,ETYMUNISA,La B,#FF0F0F,Inactiva
-1510,,Carabayllo,Jesús María,Translima,,Desconocido,#7CBEF7,Inactiva
-1511,,Puente Piedra,San Miguel,Consorcio Vía,,La O,#1E7376,Activa
+1411,,Carabayllo,Ate,Cruz del Centro,,La 02,#002EC9,Activa
+1412,,Carabayllo,Ate,La Encantada,,La E,#01A9FD,Activa
+1501,,Puente Piedra,San Miguel,San Felipe,ETISSFESA,Desconocido,#FE1212,Activa
+1502,,Puente Piedra,Lima,Amancaes,ETAMSA,La 87B,#FFA928,Activa
+1503,,Carabayllo,Magdalena del Mar,Express del Perú,GEP,La 03,#210BA7,Activa
+1504,,Carabayllo,Pueblo Libre,Comercializadora e Importadora Unidos Punchauca,ETCIPSA,La 06,#762BB9,Activa
+1505,,Puente Piedra,Magdalena del Mar,Mariscal Ramón Castilla,ETMRCSA,La 46B,#1439B8,Activa
+1506,,Carabayllo,Pueblo Libre,Translima,,La 47,#007CC4,Activa
+1507,,Ancón,Lima,El Anconero,EMTEANSAC,El Anconero,#FEFF00,Inactiva
+1508,,Carabayllo,San Miguel,Unión Nacional,ESTUNSAC,La B,#FE0F0F,Activa
+1509,,Carabayllo,Magdalena del Mar,Multiservicios Nueva Imagen,ETYMUNISA,La B,#FE0F0F,Inactiva
+1510,,Carabayllo,Jesús María,Translima,,Desconocido,#359AF2,Inactiva
+1511,,Puente Piedra,San Miguel,Consorcio Vía,,La O,#248A8E,Activa
 1512,,Carabayllo,San Miguel,Castro Fuentes,KEVJIDSA,Desconocido,#2E39C9,Inactiva
-1513,,Carabayllo,Magdalena del Mar,Nor Lima,ETNOLSA,La N - La F,#F22711,Activa
+1513,,Carabayllo,Magdalena del Mar,Nor Lima,ETNOLSA,La N - La F,#F22710,Activa
 1514,,Carabayllo,San Miguel,J.C. Bus,,La JC,#F21000,Activa
-1515,,Carabayllo,Magdalena del Mar,Palmari,,La P1,#A62999,Inactiva
-1516,,Puente Piedra,Jesús María,José Leal Cocharcas,ETJLCSA,La 41 - La Cocharcas,#140099,Inactiva
-1517,,Ancón,Jesús María,Turismo e Inversiones Señor de La Soledad,SESOSA,Desconocido,#BABABA,Inactiva
-1518,,Carabayllo,Jesús María,Translima,,La 18,#017BA1,Activa
-1519,,Carabayllo,San Miguel,Nueva América,TRANSNASA,La B,#E1963C,Inactiva
-1601,,Comas,San Luis,Túpac Amaru,ETSETASAC,Desconocido,#D1CCC0,Inactiva
+1515,,Carabayllo,Magdalena del Mar,Palmari,,La P1,#A62898,Inactiva
+1516,,Puente Piedra,Jesús María,José Leal Cocharcas,ETJLCSA,La 41 - La Cocharcas,#1700B2,Inactiva
+1517,,Ancón,Jesús María,Turismo e Inversiones Señor de La Soledad,SESOSA,Desconocido,#939393,Inactiva
+1518,,Carabayllo,Jesús María,Translima,,La 18,#0187B1,Activa
+1519,,Carabayllo,San Miguel,Nueva América,TRANSNASA,La B,#E0953C,Inactiva
+1601,,Comas,San Luis,Túpac Amaru,ETSETASAC,Desconocido,#A49A83,Inactiva
 1602,,Comas,San Luis,Catorce de Diciembre,,Desconocido,#26913B,Activa
-1603,,Puente Piedra,San Luis,Turismo e Inversiones Señor de La Soledad,SESOSA,Desconocido,#BABABA,Inactiva
-1604,,Carabayllo,Lince,Miguel Grau,ETMIGRASA,La MG,#121213,Activa
-1605,,Ancón,Jesús María,Turismo e Inversiones Señor de La Soledad,SESOSA,Desconocido,#BDBDBD,Inactiva
-1606,,Ancón,San Luis,Virgen de La Puerta,VIPUSA,La C,#25612B,Inactiva
+1603,,Puente Piedra,San Luis,Turismo e Inversiones Señor de La Soledad,SESOSA,Desconocido,#939393,Inactiva
+1604,,Carabayllo,Lince,Miguel Grau,ETMIGRASA,La MG,#4A5560,Activa
+1605,,Ancón,Jesús María,Turismo e Inversiones Señor de La Soledad,SESOSA,Desconocido,#939393,Inactiva
+1606,,Ancón,San Luis,Virgen de La Puerta,VIPUSA,La C,#318139,Inactiva
 1607,,Ancón,La Victoria,La Buena Estrella,,Desconocido,#0000B3,Activa
 1608,,Ancón,La Victoria,Novobus,,Desconocido,#0000BF,Activa
-1609,,Carabayllo,Miraflores,Urano Tours,,La A,#E08207,Inactiva
-1610,,Carabayllo,San Luis,Once de Noviembre,EMPTONSA,Desconocido,#56CCA1,Activa
-1611,,Puente Piedra,Lince,Palmari,,La P,#D10F0F,Activa
-1612,,Puente Piedra,Miraflores,Santa Luzmila,ETSLUSA,La C,#264720,Activa
-1614,,Puente Piedra,Lince,José Leal Cocharcas,ETJLCSA,La 41 - La Cocharcas,#140099,Inactiva
-1615,,Carabayllo,Lince,CKF,,La F,#D10F0F,Activa
-1616,,Ancón,San Luis,Virgen de La Puerta,VIPUSA,La B,#157D2A,Inactiva
-1617,,Carabayllo,Miraflores,Norcom Corporation,,Desconocido,#D10F0F,Inactiva
+1609,,Carabayllo,Miraflores,Urano Tours,,La A,#E08107,Inactiva
+1610,,Carabayllo,San Luis,Once de Noviembre,EMPTONSA,Desconocido,#55CCA0,Activa
+1611,,Puente Piedra,Lince,Palmari,,La P,#D00F0F,Activa
+1612,,Puente Piedra,Miraflores,Santa Luzmila,ETSLUSA,La C,#417B37,Activa
+1614,,Puente Piedra,Lince,José Leal Cocharcas,ETJLCSA,La 41 - La Cocharcas,#1700B2,Inactiva
+1615,,Carabayllo,Lince,CKF,,La F,#D00F0F,Activa
+1616,,Ancón,San Luis,Virgen de La Puerta,VIPUSA,La B,#199833,Inactiva
+1617,,Carabayllo,Miraflores,Norcom Corporation,,Desconocido,#D00F0F,Inactiva
 1618,,Carabayllo,Lince,Nueva América,TRANSNASA,La B,#FA8E00,Activa
-1701,,Ancón,Santiago de Surco,Turismo e Inversiones Señor de La Soledad,SESOSA,Desconocido,#BABABA,Activa
+1701,,Ancón,Santiago de Surco,Turismo e Inversiones Señor de La Soledad,SESOSA,Desconocido,#939393,Activa
 1702,,Carabayllo,San Juan de Miraflores,Nueva América,TRANSNASA,La A,#FA8E00,Activa
-1703,,Puente Piedra,Chorrillos,Perú,,La 70,#247506,Activa
-1704,,Carabayllo,San Juan de Miraflores,Vencedores C&P Inversiones,,La V,#3B68FF,Activa
+1703,,Puente Piedra,Chorrillos,Perú,,La 70,#34A908,Activa
+1704,,Carabayllo,San Juan de Miraflores,Vencedores C&P Inversiones,,La V,#2859FF,Activa
 1705,,Carabayllo,Santiago de Surco,Sinchi Roca,ETSIRSA,La SR,#FFA500,Activa
-1706,,Carabayllo,Santiago de Surco,Urano Tours,,La A,#A6411A,Activa
-1707,,Ancón,San Juan de Miraflores,Virgen de La Puerta,VIPUSA,La C,#079607,Activa
+1706,,Carabayllo,Santiago de Surco,Urano Tours,,La A,#A64119,Activa
+1707,,Ancón,San Juan de Miraflores,Virgen de La Puerta,VIPUSA,La C,#07AA07,Activa
 1801,,Santa Rosa,Pachacámac,Edilberto Ramos,ETERSAC,La B39 - La C,#00B8FF,Activa
 1802,,Puente Piedra,Villa El Salvador,Urbano Los Chinos,ETUCHISA,La A - El Chino,#00B8FF,Activa
-1803,,Carabayllo,Villa El Salvador,La Encantada,,La C,#5EA9FF,Inactiva
-1804,,Ancón,Pachacámac,Virgen de La Puerta,VIPUSA,La A - el Anconero,#27781A,Inactiva
-1901,,Puente Piedra,La Perla,Consorcio Vía,,La O,#1E7376,Activa
-2101,,Independencia,Puente Piedra,Urbano Víctor Raúl Haya de La Torre,EMTURSASRL,Desconocido,#128216,Inactiva
-2201,,Independencia,Independencia,Alimentadora El Volante y San Albino,ETAVASA,Desconocido,#E5ED00,Inactiva
-2202,,Independencia,Independencia,San Juan de Dios El Ermitaño,ETSJDESA,Desconocido,#1425B8,Inactiva
-2203,,San Martín de Porres,San Martín de Porres,Belaúnde Oeste,ETBOSA,Desconocido,#FFF70A,Activa
+1803,,Carabayllo,Villa El Salvador,La Encantada,,La C,#288CFF,Inactiva
+1804,,Ancón,Pachacámac,Virgen de La Puerta,VIPUSA,La A - el Anconero,#2F921F,Inactiva
+1901,,Puente Piedra,La Perla,Consorcio Vía,,La O,#248A8E,Activa
+2101,,Independencia,Puente Piedra,Urbano Víctor Raúl Haya de La Torre,EMTURSASRL,Desconocido,#159C1A,Inactiva
+2201,,Independencia,Independencia,Alimentadora El Volante y San Albino,ETAVASA,Desconocido,#E4ED00,Inactiva
+2202,,Independencia,Independencia,San Juan de Dios El Ermitaño,ETSJDESA,Desconocido,#1424B8,Inactiva
+2203,,San Martín de Porres,San Martín de Porres,Belaúnde Oeste,ETBOSA,Desconocido,#FEF70A,Activa
 2204,,San Martín de Porres,San Martín de Porres,Nor Lima,ETNOLSA,La U - La A - La B - La C,#00BBFF,Activa
-2205,,Los Olivos,San Martín de Porres,Los Alizos,,Desconocido,#FF40E5,Inactiva
-2206,,San Martín de Porres,San Martín de Porres,29 de Junio,ETSJUSA,Desconocido,#FF9924,Inactiva
-2207,,San Martín de Porres,San Martín de Porres,Señor de La Justicia,ETSEJUSA,Desconocido,#002D87,Inactiva
-2208,,San Martín de Porres,San Martín de Porres,Unidos Para Triunfar,ETSUTRISA,Desconocido,#FF1E05,Activa
-2209,,San Martín de Porres,Rímac,Unidos de Pasajeros,ETUPSA,La 73B,#006614,Activa
-2210,,San Martín de Porres,Rímac,Virgen de Fátima,EVIFASA,La A,#A5C5EB,Inactiva
+2205,,Los Olivos,San Martín de Porres,Los Alizos,,Desconocido,#FF28E1,Inactiva
+2206,,San Martín de Porres,San Martín de Porres,29 de Junio,ETSJUSA,Desconocido,#FF9923,Inactiva
+2207,,San Martín de Porres,San Martín de Porres,Señor de La Justicia,ETSEJUSA,Desconocido,#003BB2,Inactiva
+2208,,San Martín de Porres,San Martín de Porres,Unidos Para Triunfar,ETSUTRISA,Desconocido,#FF1D04,Activa
+2209,,San Martín de Porres,Rímac,Unidos de Pasajeros,ETUPSA,La 73B,#00B223,Activa
+2210,,San Martín de Porres,Rímac,Virgen de Fátima,EVIFASA,La A,#4F8ED8,Inactiva
 2211,,San Martín de Porres,Rímac,Diecisiete de Junio,ETRADIJUSA,La 44B,#FF0800,Inactiva
-2212,,San Martín de Porres,Rímac,Especial Solidaridad,EMTESSA,La S2,#0F8A01,Inactiva
-2301,,San Martín de Porres,San Juan de Lurigancho,45,,La 45B,#CFA71B,Inactiva
-2302,,San Martín de Porres,San Juan de Lurigancho,Virgen de Fátima,EVIFASA,La A,#A5C5EB,Inactiva
-2303,,San Martín de Porres,San Juan de Lurigancho,Señor Nazareno,,Desconocido,#FFA305,Activa
-2304,,Rímac,San Juan de Lurigancho,San Ignacio,ETSISA,La SC - La San Ignacio,#0044FF,Inactiva
-2305,,San Martín de Porres,San Juan de Lurigancho,Virgen de Fátima,EVIFASA,La A,#A5C5EB,Activa
-2401,,Rímac,Ate,Urano Tours,,Desconocido,#EB1212,Inactiva
-2402,,Rímac,Ate,Luis Banchero Rossi,LUBARSA,La 22 - La Banchero,#0006BD,Inactiva
+2212,,San Martín de Porres,Rímac,Especial Solidaridad,EMTESSA,La S2,#13B101,Inactiva
+2301,,San Martín de Porres,San Juan de Lurigancho,45,,La 45B,#CEA61B,Inactiva
+2302,,San Martín de Porres,San Juan de Lurigancho,Virgen de Fátima,EVIFASA,La A,#4F8ED8,Inactiva
+2303,,San Martín de Porres,San Juan de Lurigancho,Señor Nazareno,,Desconocido,#FFA304,Activa
+2304,,Rímac,San Juan de Lurigancho,San Ignacio,ETSISA,La SC - La San Ignacio,#0043FF,Inactiva
+2305,,San Martín de Porres,San Juan de Lurigancho,Virgen de Fátima,EVIFASA,La A,#4F8ED8,Activa
+2401,,Rímac,Ate,Urano Tours,,Desconocido,#EA1212,Inactiva
+2402,,Rímac,Ate,Luis Banchero Rossi,LUBARSA,La 22 - La Banchero,#0005BD,Inactiva
 2403,,San Martín de Porres,Ate,Diecisiete de Junio,ETRADIJUSA,La 44B,#FF0800,Inactiva
-2404,,San Martín de Porres,La Molina,El Inti,ETINSA,La 35B,#239911,Activa
-2405,,San Martín de Porres,Santa Anita,Inversiones El Rápido,ESTIRSA,Desconocido,#0839FF,Inactiva
-2406,,San Martín de Porres,Ate,Los Excelentes Unidos,,La 35A,#085E02,Activa
+2404,,San Martín de Porres,La Molina,El Inti,ETINSA,La 35B,#24A011,Activa
+2405,,San Martín de Porres,Santa Anita,Inversiones El Rápido,ESTIRSA,Desconocido,#0738FF,Inactiva
+2406,,San Martín de Porres,Ate,Los Excelentes Unidos,,La 35A,#0EAE03,Activa
 2407,,Independencia,Ate,El Sol de Santa Clara,ETISSA,Desconocido,#FFEE00,Activa
 2408,,Independencia,Ate,Virgen de la Concepción,ETVIRCOSA,La 148,#A31E0F,Activa
-2409,,San Martín de Porres,Ate,Virgen de Fátima,EVIFASA,La B,#A5C5EB,Activa
-2410,,San Martín de Porres,Ate,Federico Villareal,ETFVSA,La A - La Covida,#FF540A,Inactiva
+2409,,San Martín de Porres,Ate,Virgen de Fátima,EVIFASA,La B,#4F8ED8,Activa
+2410,,San Martín de Porres,Ate,Federico Villareal,ETFVSA,La A - La Covida,#FE540A,Inactiva
 2411,,San Martín de Porres,Lurigancho/Chosica,El Rápido,,La 42 - El Rápido,#D90000,Activa
-2412,,Rímac,Ate,Comité Cien,,La 100,#0C0E52,Activa
-2413,,San Martín de Porres,Ate,Roluesa,,Desconocido,#783737,Inactiva
-2414,,Los Olivos,Santa Anita,Cruz del Centro,,La A,#0006CC,Inactiva
-2501,,San Martín de Porres,Lima,Urano Tours,,Desconocido,#FF4108,Inactiva
+2412,,Rímac,Ate,Comité Cien,,La 100,#161A9B,Activa
+2413,,San Martín de Porres,Ate,Roluesa,,Desconocido,#7A3838,Inactiva
+2414,,Los Olivos,Santa Anita,Cruz del Centro,,La A,#0005CC,Inactiva
+2501,,San Martín de Porres,Lima,Urano Tours,,Desconocido,#FF4007,Inactiva
 2502,,San Martín de Porres,Lima,Pacific International,ETRASERPISA,La B,#FFAA00,Inactiva
-2503,,San Martín de Porres,Lima,Urbano Rápido Villa María,ETURVIMSAC,La B,#298C2F,Inactiva
-2504,,San Martín de Porres,Lima,29 de Junio,ETSJUSA,La B,#FF8CFF,Inactiva
-2505,,San Martín de Porres,Lima,Armonía 5,ETSACSA,La B,#FF2424,Inactiva
-2506,,Los Olivos,Santa Anita,Los Olivos,ETO,La ETO,#008C12,Inactiva
-2507,,San Martín de Porres,Lima,El Porvenir,ETEPSA,La 28 - La 504,#1E8000,Inactiva
+2503,,San Martín de Porres,Lima,Urbano Rápido Villa María,ETURVIMSAC,La B,#288C2F,Inactiva
+2504,,San Martín de Porres,Lima,29 de Junio,ETSJUSA,La B,#FF28FE,Inactiva
+2505,,San Martín de Porres,Lima,Armonía 5,ETSACSA,La B,#FF2323,Inactiva
+2506,,Los Olivos,Santa Anita,Los Olivos,ETO,La ETO,#00B216,Inactiva
+2507,,San Martín de Porres,Lima,El Porvenir,ETEPSA,La 28 - La 504,#29B200,Inactiva
 2508,,San Martín de Porres,Jesús María,Translima,,La 29,#00FFEE,Inactiva
 2509,,San Martín de Porres,Lima,Urbano Rápido Villa María,ETURVIMSAC,La B,#FFF700,Inactiva
-2510,,Independencia,San Miguel,Alipio Ponce Vásquez,ETALPOVASA,Desconocido,#036900,Activa
-2511,,San Martín de Porres,San Martín de Porres,Corazón de Jesús de San Diego,,Desconocido,#002BD9,Activa
-2512,,?,?,?,,Desconocido,#FFFFFF,
+2510,,Independencia,San Miguel,Alipio Ponce Vásquez,ETALPOVASA,Desconocido,#05B200,Activa
+2511,,San Martín de Porres,San Martín de Porres,Corazón de Jesús de San Diego,,Desconocido,#002AD9,Activa
+2512,,?,?,?,,Desconocido,#5A6470,
 2513,,San Martín de Porres,Jesús María,Translima,,La 29,#00FFEE,Activa
-2601,,Independencia,San Luis,42M,,La 42,#FF2626,Inactiva
-2602,,San Martín de Porres,La Victoria,1.º de Julio,,Desconocido,#FFBA61,Inactiva
-2603,,San Martín de Porres,La Victoria,San Juan de La Cruz,,La A,#F70707,Activa
-2604,,San Martín de Porres,La Victoria,Luxe,,La C,#0B148F,Activa
-2605,,Los Olivos,La Victoria,Veinte de Marzo,ETSEVEMSA,La 84,#21FFA6,Inactiva
-2606,,San Martín de Porres,San Luis,El Progreso,ESTEPSAC,La D,#0BA6DB,Inactiva
-2607,,Rímac,La Victoria,Independiente de Transportes,EITSA,La 36,#218F00,Activa
-2608,,Rímac,La Victoria,Especiales La Bala,,Desconocido,#0B208C,Activa
-2609,,Rímac,La Victoria,El Bajopontino,,Desconocido,#FFB34F,Activa
-2610,,Independencia,La Victoria,Leoncio Prado,,Desconocido,#FF2626,Inactiva
+2601,,Independencia,San Luis,42M,,La 42,#FF2525,Inactiva
+2602,,San Martín de Porres,La Victoria,1.º de Julio,,Desconocido,#FFA128,Inactiva
+2603,,San Martín de Porres,La Victoria,San Juan de La Cruz,,La A,#F70606,Activa
+2604,,San Martín de Porres,La Victoria,Luxe,,La C,#0C17A5,Activa
+2605,,Los Olivos,La Victoria,Veinte de Marzo,ETSEVEMSA,La 84,#20FFA5,Inactiva
+2606,,San Martín de Porres,San Luis,El Progreso,ESTEPSAC,La D,#0AA5DB,Inactiva
+2607,,Rímac,La Victoria,Independiente de Transportes,EITSA,La 36,#29B200,Activa
+2608,,Rímac,La Victoria,Especiales La Bala,,Desconocido,#0D25A5,Activa
+2609,,Rímac,La Victoria,El Bajopontino,,Desconocido,#FFA228,Activa
+2610,,Independencia,La Victoria,Leoncio Prado,,Desconocido,#FF2525,Inactiva
 2611,,San Martín de Porres,La Victoria,Lima Chorrillos,TRANSLICSA,La B,#F20C0C,Activa
 2612,,San Martín de Porres,La Victoria,Translima,,La 29,#00FFEE,Inactiva
-2613,,San Martín de Porres,Lince,El Porvenir,ETEPSA,La 28 - La 504,#1E8000,Activa
-2701,,San Martín de Porres,Santiago de Surco,Diecisiete de Junio,ETRADIJUSA,La 44A,#EB1515,Activa
-2702,,San Martín de Porres,Chorrillos,Rumi,RUMISA,La 49,#FF2424,Activa
-2703,,San Martín de Porres,Chorrillos,36 San Martín de Porres,ET36SMPSA,La 36,#F5CC6C,Activa
-2704,,San Martín de Porres,Santiago de Surco,Comité Cien,,La 60A,#0C0E52,Inactiva
+2613,,San Martín de Porres,Lince,El Porvenir,ETEPSA,La 28 - La 504,#29B200,Activa
+2701,,San Martín de Porres,Santiago de Surco,Diecisiete de Junio,ETRADIJUSA,La 44A,#EA1515,Activa
+2702,,San Martín de Porres,Chorrillos,Rumi,RUMISA,La 49,#FF2323,Activa
+2703,,San Martín de Porres,Chorrillos,36 San Martín de Porres,ET36SMPSA,La 36,#F1B936,Activa
+2704,,San Martín de Porres,Santiago de Surco,Comité Cien,,La 60A,#161A9B,Inactiva
 2801,,San Martín de Porres,Villa María del Triunfo,Generales La Ardilla,ETRAGELAR,La 76,#EDD500,Inactiva
 2802,,San Martín de Porres,Villa El Salvador,Mariscal Ramón Castilla,ETMRCSA,La 46A,#232F94,Inactiva
-2803,,Independencia,Villa María del Triunfo,Ingaruca,TRAINSAC,La 9A,#169E11,Activa
-2804,,San Martín de Porres,Villa El Salvador,Línea Peruana de Transportes,LIPETSA,El △ - El Triángulo,#B81B1B,Activa
-2805,,San Martín de Porres,Villa El Salvador,Sol de Oro,ETSOSAC,La A,#5BD4C8,Activa
-2901,,Independencia,Callao,117,ETSEDISA,La 117,#43B587,Inactiva
-3101,,San Juan de Lurigancho,Carabayllo,Nueva América,TRANSNASA,La B,#B5B5B5,Inactiva
-3201,,San Juan de Lurigancho,San Martín de Porres,Especial Solidaridad,EMTESSA,La S2,#0F8A01,Inactiva
-3202,,San Juan de Lurigancho,San Martín de Porres,Huancayo City,ETHUCSA 2H,La 2H,#F0F3AF,Inactiva
-3203/TVE53,,San Juan de Lurigancho,San Martín de Porres,San Germán,TISGSA,La C - La 128 - La San Germán,#FF00C3,Activa
-3204/TVE31,,San Juan de Lurigancho,Rímac,San Ignacio,ETSISA,La SC - La San Ignacio,#0044FF,Activa
-3205,,San Juan de Lurigancho,San Martín de Porres,Huancayo City,ETHUCSA 2H,La 2H,#F0F3AF,Activa
-3206,,San Juan de Lurigancho,San Martín de Porres,San Ildefonso,,La 7,#FFFF00,Inactiva
-3301,,San Juan de Lurigancho,San Juan de Lurigancho,San Germán,,La San Germán,#FF8533,Inactiva
-3302,,San Juan de Lurigancho,El Agustino,Progreso,ETPSA,La 38,#570B0B,Inactiva
-3401,,San Juan de Lurigancho,Ate,Yagasol,,Desconocido,#FF1008,Inactiva
-3402,,San Juan de Lurigancho,Ate,Unidos,ETUSA,La 52C,#90333B,Inactiva
-3403/TVE27,,San Juan de Lurigancho,Lurigancho/Chosica,Santa Rosa de Jicamarca,ETSRJSA,La 41,#E81D1D,Activa
+2803,,Independencia,Villa María del Triunfo,Ingaruca,TRAINSAC,La 9A,#16A111,Activa
+2804,,San Martín de Porres,Villa El Salvador,Línea Peruana de Transportes,LIPETSA,El △ - El Triángulo,#B81A1A,Activa
+2805,,San Martín de Porres,Villa El Salvador,Sol de Oro,ETSOSAC,La A,#55D2C6,Activa
+2901,,Independencia,Callao,117,ETSEDISA,La 117,#42B587,Inactiva
+3101,,San Juan de Lurigancho,Carabayllo,Nueva América,TRANSNASA,La B,#939393,Inactiva
+3201,,San Juan de Lurigancho,San Martín de Porres,Especial Solidaridad,EMTESSA,La S2,#13B101,Inactiva
+3202,,San Juan de Lurigancho,San Martín de Porres,Huancayo City,ETHUCSA 2H,La 2H,#DCE344,Inactiva
+3203/TVE53,,San Juan de Lurigancho,San Martín de Porres,San Germán,TISGSA,La C - La 128 - La San Germán,#FF00C2,Activa
+3204/TVE31,,San Juan de Lurigancho,Rímac,San Ignacio,ETSISA,La SC - La San Ignacio,#0043FF,Activa
+3205,,San Juan de Lurigancho,San Martín de Porres,Huancayo City,ETHUCSA 2H,La 2H,#DCE344,Activa
+3206,,San Juan de Lurigancho,San Martín de Porres,San Ildefonso,,La 7,#FEFF00,Inactiva
+3301,,San Juan de Lurigancho,San Juan de Lurigancho,San Germán,,La San Germán,#FF7E28,Inactiva
+3302,,San Juan de Lurigancho,El Agustino,Progreso,ETPSA,La 38,#9E1414,Inactiva
+3401,,San Juan de Lurigancho,Ate,Yagasol,,Desconocido,#FF0F07,Inactiva
+3402,,San Juan de Lurigancho,Ate,Unidos,ETUSA,La 52C,#90323B,Inactiva
+3403/TVE27,,San Juan de Lurigancho,Lurigancho/Chosica,Santa Rosa de Jicamarca,ETSRJSA,La 41,#E71D1D,Activa
 3404,,San Juan de Lurigancho,Lurigancho/Chosica,Santa Rosa de Jicamarca,ETSRJSA,La C,#DB0000,Activa
-3405,,San Juan de Lurigancho,Ate,Las Águilas 75,ETLA75SA,La 75A,#FF0F0F,Activa
+3405,,San Juan de Lurigancho,Ate,Las Águilas 75,ETLA75SA,La 75A,#FE0F0F,Activa
 3406,,San Juan de Lurigancho,Ate,Virgen de Copacabana,MIVICOSAC,La IC,#0758B5,Inactiva
-3407,,San Juan de Lurigancho,La Molina,Los Magníficos,,La M,#FFB60A,Inactiva
-3408,,San Juan de Lurigancho,La Molina,Cuarenta Integrada,ETRANCISA,La 40,#4F200C,Activa
+3407,,San Juan de Lurigancho,La Molina,Los Magníficos,,La M,#FEB60A,Inactiva
+3408,,San Juan de Lurigancho,La Molina,Cuarenta Integrada,ETRANCISA,La 40,#9A3E17,Activa
 3409/TVE23,,San Juan de Lurigancho,La Molina,Turismo Cinco Estrellas,ETRACESA,La C,#FFBB1C,Inactiva
-3410,,San Juan de Lurigancho,La Molina,Negociaciones Santa Anita,,Desconocido,#FFB012,Inactiva
-3411/TVE22,,San Juan de Lurigancho,Huaycán,Urbano Línea 4,ETUL4SA,La C - La 24C,#E6C240,Inactiva
-3501,,San Juan de Lurigancho,Lima,San Ildefonso,,La 7,#FFFF00,Inactiva
-3502,,El Agustino,San Miguel,Vargasant,,La E,#00754E,Activa
-3503/TVE32,,San Juan de Lurigancho,San Miguel,Próceres,,Desconocido,#FFFF00,Inactiva
-3504,,San Juan de Lurigancho,San Miguel,104,,La 104B,#FF3F0F,Inactiva
-3505,,San Juan de Lurigancho,San Miguel,El Carmen,ETECSA,La 80,#F2E202,Activa
+3410,,San Juan de Lurigancho,La Molina,Negociaciones Santa Anita,,Desconocido,#FEB012,Inactiva
+3411/TVE22,,San Juan de Lurigancho,Huaycán,Urbano Línea 4,ETUL4SA,La C - La 24C,#E5C140,Inactiva
+3501,,San Juan de Lurigancho,Lima,San Ildefonso,,La 7,#FEFF00,Inactiva
+3502,,El Agustino,San Miguel,Vargasant,,La E,#00B277,Activa
+3503/TVE32,,San Juan de Lurigancho,San Miguel,Próceres,,Desconocido,#FEFF00,Inactiva
+3504,,San Juan de Lurigancho,San Miguel,104,,La 104B,#FE3F0F,Inactiva
+3505,,San Juan de Lurigancho,San Miguel,El Carmen,ETECSA,La 80,#F2E201,Activa
 3506,,San Juan de Lurigancho,Lima,Peralitos,,Desconocido,#FF1919,Inactiva
 3507,,San Juan de Lurigancho,San Miguel,La Huayrona,,La C1,#FF9900,Activa
 3508,,San Juan de Lurigancho,San Miguel,Nueva América,TRANSNASA,La D,#888888,Inactiva
-3509,,San Juan de Lurigancho,San Miguel,104,,La 104,#FF3F0F,Activa
-3510,,San Juan de Lurigancho,Pueblo Libre,San Miguel-Rímac,,La 87,#FF2929,Inactiva
-3511,,San Juan de Lurigancho,Magdalena del Mar,Unidos,ETUSA,La 52C,#90333B,Activa
-3512,,San Juan de Lurigancho,Lima,San Juan Bosco,ETSSJBSA,La 70,#714400,Inactiva
-3513,,San Juan de Lurigancho,Lima,Huancayo City,ETHUCSA,La 2H,#F0F3AF,Inactiva
-3514,,San Juan de Lurigancho,San Miguel,Las Águilas 75,ETLA75SA,La 75B,#FF0F0F,Inactiva
-3515,,San Juan de Lurigancho,Lima,Ingaruca,TRAINSAC,La 9A,#FF1212,Inactiva
-3516,,San Juan de Lurigancho,San Miguel,San Ildefonso,,La 7,#FFFF00,Activa
-3517,,San Juan de Lurigancho,Pueblo Libre,Chabaquito,,La 48,#E8CC15,Activa
-3601,,San Juan de Lurigancho,Miraflores,Especial Solidaridad,EMTESSA,La SB,#318528,Inactiva
-3602,,San Juan de Lurigancho,La Victoria,Nueva Sociedad,ETINSSA,La C,#FFFF00,Inactiva
-3603,,San Juan de Lurigancho,Lince,Transport Sabino,TRANSSABISAC,Desconocido,#17A108,Activa
-3604/TVE30,,San Juan de Lurigancho,Miraflores,Servicio de Transportes 25 de Setiembre,,La 66,#FFB012,Activa
-3605,,San Juan de Lurigancho,La Victoria,Rápido Prialé Prialé,ETRAPSA,La A1 - La C,#0561FF,Inactiva
+3509,,San Juan de Lurigancho,San Miguel,104,,La 104,#FE3F0F,Activa
+3510,,San Juan de Lurigancho,Pueblo Libre,San Miguel-Rímac,,La 87,#FF2828,Inactiva
+3511,,San Juan de Lurigancho,Magdalena del Mar,Unidos,ETUSA,La 52C,#90323B,Activa
+3512,,San Juan de Lurigancho,Lima,San Juan Bosco,ETSSJBSA,La 70,#B26B00,Inactiva
+3513,,San Juan de Lurigancho,Lima,Huancayo City,ETHUCSA,La 2H,#DCE344,Inactiva
+3514,,San Juan de Lurigancho,San Miguel,Las Águilas 75,ETLA75SA,La 75B,#FE0F0F,Inactiva
+3515,,San Juan de Lurigancho,Lima,Ingaruca,TRAINSAC,La 9A,#FE1212,Inactiva
+3516,,San Juan de Lurigancho,San Miguel,San Ildefonso,,La 7,#FEFF00,Activa
+3517,,San Juan de Lurigancho,Pueblo Libre,Chabaquito,,La 48,#E8CC14,Activa
+3601,,San Juan de Lurigancho,Miraflores,Especial Solidaridad,EMTESSA,La SB,#328929,Inactiva
+3602,,San Juan de Lurigancho,La Victoria,Nueva Sociedad,ETINSSA,La C,#FEFF00,Inactiva
+3603,,San Juan de Lurigancho,Lince,Transport Sabino,TRANSSABISAC,Desconocido,#18AA08,Activa
+3604/TVE30,,San Juan de Lurigancho,Miraflores,Servicio de Transportes 25 de Setiembre,,La 66,#FEB012,Activa
+3605,,San Juan de Lurigancho,La Victoria,Rápido Prialé Prialé,ETRAPSA,La A1 - La C,#0461FF,Inactiva
 3606,,San Juan de Lurigancho,La Victoria,Floreciente,ETFLOSAC,Desconocido,#FFCC00,Inactiva
-3607,,San Juan de Lurigancho,Lince,12 de Enero,ETDESA,Desconocido,#DB1212,Activa
+3607,,San Juan de Lurigancho,Lince,12 de Enero,ETDESA,Desconocido,#DB1111,Activa
 3608,,San Juan de Lurigancho,La Victoria,Alas Peruanas,,Desconocido,#595959,Inactiva
-3609,,San Juan de Lurigancho,San Luis,Manos de Dios,ETMADISA,La HP,#20C5F7,Inactiva
-3610,,San Juan de Lurigancho,La Victoria,Vara,,La A1,#2B0404,Activa
-3611/TVE60,,San Juan de Lurigancho,La Victoria,Caminos del Inca,ETCISA,Desconocido,#258009,Activa
-3612,,San Juan de Lurigancho,San Isidro,Chabaquito,,La 48,#E8CC15,Inactiva
+3609,,San Juan de Lurigancho,San Luis,Manos de Dios,ETMADISA,La HP,#20C4F7,Inactiva
+3610,,San Juan de Lurigancho,La Victoria,Vara,,La A1,#A30F0F,Activa
+3611/TVE60,,San Juan de Lurigancho,La Victoria,Caminos del Inca,ETCISA,Desconocido,#30A60B,Activa
+3612,,San Juan de Lurigancho,San Isidro,Chabaquito,,La 48,#E8CC14,Inactiva
 3613,,San Juan de Lurigancho,Lince,El Lobito,,La R-I,#FFCC00,Activa
-3614/TVE68,,San Juan de Lurigancho,San Isidro,Unidos,ETUSA,La 52J,#90333B,Activa
-3701,,San Juan de Lurigancho,San Juan de Miraflores,HA de Servicios Múltiples de Propietarios Unidos Huáscar,ETHASEMPUHUASA,La HA,#1510B0,Activa
+3614/TVE68,,San Juan de Lurigancho,San Isidro,Unidos,ETUSA,La 52J,#90323B,Activa
+3701,,San Juan de Lurigancho,San Juan de Miraflores,HA de Servicios Múltiples de Propietarios Unidos Huáscar,ETHASEMPUHUASA,La HA,#140FB0,Activa
 3702,,San Juan de Lurigancho,Chorrillos,Sur Lima,,La H,#003CE0,Activa
-3703,,San Juan de Lurigancho,Santiago de Surco,Luis Banchero Rossi,LUBARSA,La 9 - La Banchero,#F4F78F,Inactiva
+3703,,San Juan de Lurigancho,Santiago de Surco,Luis Banchero Rossi,LUBARSA,La 9 - La Banchero,#EBF037,Inactiva
 3704,,San Juan de Lurigancho,Chorrillos,Urbano Línea 4,ETUL4SA,La E,#E3B03F,Inactiva
 3705,,San Juan de Lurigancho,Chorrillos,Urbano Línea 4,ETUL4SA,La E,#E3B03F,Activa
 3706,,San Juan de Lurigancho,Barranco,El Lobito,,Desconocido,#FFCC00,Inactiva
-3707,,San Juan de Lurigancho,Chorrillos,Lima Urban Company,,La 31,#FF0303,Activa
-3801,,San Juan de Lurigancho,Villa El Salvador,Huáscar,,La A,#D91212,Inactiva
+3707,,San Juan de Lurigancho,Chorrillos,Lima Urban Company,,La 31,#FF0202,Activa
+3801,,San Juan de Lurigancho,Villa El Salvador,Huáscar,,La A,#D91111,Inactiva
 3802,,San Juan de Lurigancho,Pachacámac,Negociaciones Santa Anita,,Desconocido,#FF9900,Activa
-3803/TVE38,,San Juan de Lurigancho,Pachacámac,Negociaciones Santa Anita,,La C,#FFB012,Activa
+3803/TVE38,,San Juan de Lurigancho,Pachacámac,Negociaciones Santa Anita,,La C,#FEB012,Activa
 3804/TVE23,,San Juan de Lurigancho,Pachacámac,Turismo Cinco Estrellas,ETRACESA,La C,#FFBB1C,Activa
 3805,,San Juan de Lurigancho,Villa El Salvador,Arco Iris,ETSAISA,La P,#B80000,Activa
-3806,,San Juan de Lurigancho,Villa María del Triunfo,Santa Catalina,ESTSACASA,La 23C,#0C5700,Activa
-3807/TVE21,,San Juan de Lurigancho,Lurín,Huáscar,,La R28,#D8D821,Activa
-3808/TVE24,,San Juan de Lurigancho,Villa El Salvador,Santa Catalina,ESTSACASA,La 23A,#0C5700,Inactiva
-3809,,San Juan de Lurigancho,Villa María del Triunfo,Santa Catalina,ESTSACASA,La 23B,#0C5700,Activa
-3810,,San Juan de Lurigancho,Villa María del Triunfo,Ocho,ETSOSA,La 8,#DE1212,Activa
-3811,,San Juan de Lurigancho,Villa El Salvador,Montenegro,ETMOSAC,Desconocido,#13BF2A,Inactiva
-3812,,San Juan de Lurigancho,Villa El Salvador,Servicio Rápido Ramiro Prialé Prialé,ETRAPSA,La HV - La A1,#0561FF,Inactiva
-3813,,San Juan de Lurigancho,Villa El Salvador,Preferencial M1,ETSPM1SA,La M1,#C5FF22,Activa
-3814/TVE37,,San Juan de Lurigancho,Villa El Salvador,Los Cuatro Suyos,ETCSSA,La M1,#FFF70A,Activa
-3815,,San Juan de Lurigancho,Pachacámac,Los Magníficos,ETYSERMULMASA,La M,#FFB60A,Inactiva
-3816,,San Juan de Lurigancho,Villa María del Triunfo,Especial Solidaridad,EMTESSA,La S1,#318528,Activa
-3817,,San Juan de Lurigancho,Villa María del Triunfo,Luis Banchero Rossi,LUBARSA,La 9 - La Banchero,#F4F78F,Inactiva
-3901/TVE68,,San Juan de Lurigancho,La Perla,Unidos,ETUSA,La 52C,#90333B,Inactiva
+3806,,San Juan de Lurigancho,Villa María del Triunfo,Santa Catalina,ESTSACASA,La 23C,#18B200,Activa
+3807/TVE21,,San Juan de Lurigancho,Lurín,Huáscar,,La R28,#D7D820,Activa
+3808/TVE24,,San Juan de Lurigancho,Villa El Salvador,Santa Catalina,ESTSACASA,La 23A,#18B200,Inactiva
+3809,,San Juan de Lurigancho,Villa María del Triunfo,Santa Catalina,ESTSACASA,La 23B,#18B200,Activa
+3810,,San Juan de Lurigancho,Villa María del Triunfo,Ocho,ETSOSA,La 8,#DE1111,Activa
+3811,,San Juan de Lurigancho,Villa El Salvador,Montenegro,ETMOSAC,Desconocido,#12BF29,Inactiva
+3812,,San Juan de Lurigancho,Villa El Salvador,Servicio Rápido Ramiro Prialé Prialé,ETRAPSA,La HV - La A1,#0461FF,Inactiva
+3813,,San Juan de Lurigancho,Villa El Salvador,Preferencial M1,ETSPM1SA,La M1,#C5FF21,Activa
+3814/TVE37,,San Juan de Lurigancho,Villa El Salvador,Los Cuatro Suyos,ETCSSA,La M1,#FEF70A,Activa
+3815,,San Juan de Lurigancho,Pachacámac,Los Magníficos,ETYSERMULMASA,La M,#FEB60A,Inactiva
+3816,,San Juan de Lurigancho,Villa María del Triunfo,Especial Solidaridad,EMTESSA,La S1,#328929,Activa
+3817,,San Juan de Lurigancho,Villa María del Triunfo,Luis Banchero Rossi,LUBARSA,La 9 - La Banchero,#EBF037,Inactiva
+3901/TVE68,,San Juan de Lurigancho,La Perla,Unidos,ETUSA,La 52C,#90323B,Inactiva
 3902,,San Juan de Lurigancho,Ventanilla,La Nueva Estrella,,La S2C,#0600C9,Inactiva
-3903,,San Juan de Lurigancho,Callao,San Miguel-Rímac,,La 87,#FF2929,Inactiva
-3904,,San Juan de Lurigancho,Callao,Caña Brava,,La 48,#E8CC15,Inactiva
-3905,,San Juan de Lurigancho,La Perla,San Juan Bosco,,La 70,#714400,Inactiva
-3906,,San Juan de Lurigancho,La Perla,Colonial,ETCOLSA,La 94,#0011FF,Activa
-3907,,San Juan de Lurigancho,Callao,Nuevo San Juan,,La ZA,#FF1303,Activa
+3903,,San Juan de Lurigancho,Callao,San Miguel-Rímac,,La 87,#FF2828,Inactiva
+3904,,San Juan de Lurigancho,Callao,Caña Brava,,La 48,#E8CC14,Inactiva
+3905,,San Juan de Lurigancho,La Perla,San Juan Bosco,,La 70,#B26B00,Inactiva
+3906,,San Juan de Lurigancho,La Perla,Colonial,ETCOLSA,La 94,#0010FF,Activa
+3907,,San Juan de Lurigancho,Callao,Nuevo San Juan,,La ZA,#FF1202,Activa
 4101,,Ate,Puente Piedra,Halley,ETHALLSA,Desconocido,#005EFF,Inactiva
-4102,,Santa Anita,Carabayllo,San Felipe Express,,Desconocido,#0E07D9,Inactiva
-4103,,Ate,Puente Piedra,Consorcio Vía,,La O - La Daewoo,#1E7376,Inactiva
-4104,,Ate,Carabayllo,J.C. Bus,,La JC,#0C74C4,Inactiva
+4102,,Santa Anita,Carabayllo,San Felipe Express,,Desconocido,#0D07D9,Inactiva
+4103,,Ate,Puente Piedra,Consorcio Vía,,La O - La Daewoo,#248A8E,Inactiva
+4104,,Ate,Carabayllo,J.C. Bus,,La JC,#0B73C4,Inactiva
 4105,,La Molina,Carabayllo,Castro Fuentes,KEVJIDSA,Desconocido,#2E39C9,Inactiva
-4201,,La Molina,San Martín de Porres,Jorge Panduro,ETRANSPASA,Desconocido,#FFE600,Inactiva
-4202,,Santa Anita,San Martín de Porres,Los Olivos,ETO,La ETO,#008C12,Inactiva
-4203,,Huaycán,Rímac,Múltiples Camira,,Desconocido,#FFA229,Inactiva
-4204,,Ate,San Martín de Porres,Sol de Oro,ETSOSAC,La 47,#5C2500,Activa
-4205,,Ate,San Martín de Porres,Vishenzo Investment Company 505,,La 505,#0B004F,Activa
-4206,,Ate,San Martín de Porres,Expresso Doce,,La 505,#007000,Activa
-4207,,Ate,San Martín de Porres,El Sol de Santa Clara,ETISSA,Desconocido,#FFE330,Inactiva
-4208,,Santa Anita,Los Olivos,Los Alizos,,Desconocido,#C52B9A,Inactiva
-4209,,Lurigancho/Chosica,San Martín de Porres,Federico Villareal,ETFVSA,La B - La Covida,#FF6105,Inactiva
-4210,,Ate,San Martín de Porres,Virgen de La Asunción,ETVASA,La 32A,#45FFA2,Activa
-4211,,Lurigancho/Chosica,Rímac,102,,Desconocido,#FCDD12,Activa
-4212,,Ate,San Martín de Porres,Los Alizos,,Desconocido,#FFFFFF,
+4201,,La Molina,San Martín de Porres,Jorge Panduro,ETRANSPASA,Desconocido,#FFE500,Inactiva
+4202,,Santa Anita,San Martín de Porres,Los Olivos,ETO,La ETO,#00B216,Inactiva
+4203,,Huaycán,Rímac,Múltiples Camira,,Desconocido,#FFA128,Inactiva
+4204,,Ate,San Martín de Porres,Sol de Oro,ETSOSAC,La 47,#B24700,Activa
+4205,,Ate,San Martín de Porres,Vishenzo Investment Company 505,,La 505,#1800B2,Activa
+4206,,Ate,San Martín de Porres,Expresso Doce,,La 505,#00B200,Activa
+4207,,Ate,San Martín de Porres,El Sol de Santa Clara,ETISSA,Desconocido,#FFE228,Inactiva
+4208,,Santa Anita,Los Olivos,Los Alizos,,Desconocido,#C42B99,Inactiva
+4209,,Lurigancho/Chosica,San Martín de Porres,Federico Villareal,ETFVSA,La B - La Covida,#FF6004,Inactiva
+4210,,Ate,San Martín de Porres,Virgen de La Asunción,ETVASA,La 32A,#28FF93,Activa
+4211,,Lurigancho/Chosica,Rímac,102,,Desconocido,#FBDC12,Activa
+4212,,Ate,San Martín de Porres,Los Alizos,,Desconocido,#5A6470,
 4301,,Lurigancho/Chosica,San Juan de Lurigancho,Turismo Huánuco,,La C,#E3B03F,Inactiva
-4302,,Ate,San Juan de Lurigancho,Jerrbus,ETJSAC,Desconocido,#E61212,Activa
-4303,,Ate,San Juan de Lurigancho,Enpresa Becami,,Desconocido,#E61212,Activa
+4302,,Ate,San Juan de Lurigancho,Jerrbus,ETJSAC,Desconocido,#E61111,Activa
+4303,,Ate,San Juan de Lurigancho,Enpresa Becami,,Desconocido,#E61111,Activa
 4304,,Lurigancho/Chosica,San Juan de Lurigancho,Santa Rosa de Jicamarca,ETSRJSA,La 49,#DB0000,Activa
 4305/TVE22,,Lurigancho/Chosica,San Juan de Lurigancho,Urbano Línea 4,ETUL4SA,La C,#E3C03F,Inactiva
-4306,,Ate,San Juan de Lurigancho,Urano Tours,,Desconocido,#EB1212,Activa
-4307,,Lurigancho/Chosica,San Juan de Lurigancho,Urano Tours,,Desconocido,#EB1212,Activa
-4308,,Ate,San Juan de Lurigancho,Varant,,Desconocido,#FF1008,Activa
+4306,,Ate,San Juan de Lurigancho,Urano Tours,,Desconocido,#EA1212,Activa
+4307,,Lurigancho/Chosica,San Juan de Lurigancho,Urano Tours,,Desconocido,#EA1212,Activa
+4308,,Ate,San Juan de Lurigancho,Varant,,Desconocido,#FF0F07,Activa
 4401,,Lurigancho/Chosica,Santa Anita,Nuevo Amanecer,,La B1,#0000D9,Activa
-4402,,Ate,Lurigancho/Chosica,Importaciones y Servicios H-2,,Desconocido,#0DFFCF,Activa
-4403,,Cieneguilla,Ate,Unión Dorado's,,Desconocido,#C4BE00,Inactiva
-4404,,Santa Anita,La Molina,Cuarenta Integrada,ETRANCISA,Desconocido,#4F200C,Inactiva
-4405,,Ate,Ate,Nuevo Horizonte,ETNHOSA,La 91,#00126E,Activa
-4406/CH30,,Huaycán,Lurigancho/Chosica,El Triunfo 119,,La 119,#1900FF,Activa
-4407,,Santa Anita,La Molina,Cruz de Nazareno,,Desconocido,#88FF12,Activa
-4408,,La Molina,Chaclacayo,Premier El Nazareno,,La N,#5DC9B4,Activa
+4402,,Ate,Lurigancho/Chosica,Importaciones y Servicios H-2,,Desconocido,#0DFECE,Activa
+4403,,Cieneguilla,Ate,Unión Dorado's,,Desconocido,#C4BD00,Inactiva
+4404,,Santa Anita,La Molina,Cuarenta Integrada,ETRANCISA,Desconocido,#9A3E17,Inactiva
+4405,,Ate,Ate,Nuevo Horizonte,ETNHOSA,La 91,#001DB2,Activa
+4406/CH30,,Huaycán,Lurigancho/Chosica,El Triunfo 119,,La 119,#1800FF,Activa
+4407,,Santa Anita,La Molina,Cruz de Nazareno,,Desconocido,#88FE12,Activa
+4408,,La Molina,Chaclacayo,Premier El Nazareno,,La N,#5CC9B4,Activa
 4409/TVE54,,Lurigancho/Chosica,La Molina,Turismo y Servicios Constructores,ETRANSCO,La A1,#5F2B87,Activa
-4410/TVE52,,Lurigancho/Chosica,Ate,Levaro,,La A1,#046B00,Inactiva
-4412,,Ate,Cieneguilla,Rápido Musa,ETRAMUSA,La A,#47703A,Inactiva
-4413,,Cieneguilla,Ate,Urbano El Molinero Express,ETRUMESA,Desconocido,#0B6CA3,Activa
-4414,,Ate,La Molina,Rápido Musa,ETRAMUSA,La C,#49733B,Inactiva
-4415,,Ate,Ate,Rurales,ATCRSA,La C,#E80202,Activa
-4416,,Ate,Cieneguilla,Rápido Musa,ETRAMUSA,La G,#436937,Activa
-4417,,Lurigancho/Chosica,Ate,Inversiones Empresariales Nuevo Amanecer,,La B1,#EBEB00,Activa
-4418,,Lurigancho/Chosica,Ate,Inversiones Rimarz,,La A1,#FF0548,Activa
-4419,,Lurigancho/Chosica,Ate,Múltiples San Pablo,,La A1,#FF0055,Activa
+4410/TVE52,,Lurigancho/Chosica,Ate,Levaro,,La A1,#06B200,Inactiva
+4412,,Ate,Cieneguilla,Rápido Musa,ETRAMUSA,La A,#4A753C,Inactiva
+4413,,Cieneguilla,Ate,Urbano El Molinero Express,ETRUMESA,Desconocido,#0B6EA7,Activa
+4414,,Ate,La Molina,Rápido Musa,ETRAMUSA,La C,#4A753C,Inactiva
+4415,,Ate,Ate,Rurales,ATCRSA,La C,#E80101,Activa
+4416,,Ate,Cieneguilla,Rápido Musa,ETRAMUSA,La G,#4A753D,Activa
+4417,,Lurigancho/Chosica,Ate,Inversiones Empresariales Nuevo Amanecer,,La B1,#EAEB00,Activa
+4418,,Lurigancho/Chosica,Ate,Inversiones Rimarz,,La A1,#FF0447,Activa
+4419,,Lurigancho/Chosica,Ate,Múltiples San Pablo,,La A1,#FF0054,Activa
 4420,,Lurigancho/Chosica,Santa Anita,Transporte Universal y Múltiples Inversiones,TUMISA,La C,#00B8FF,Activa
-4481,,Lurigancho/Chosica,Chaclacayo,Ñaña,,Desconocido,#FFE605,Activa
-4482,,Ate,Huaycán,Servicios Múltiples e Inversiones Nievería,,Desconocido,#A6FFA6,Activa
+4481,,Lurigancho/Chosica,Chaclacayo,Ñaña,,Desconocido,#FFE504,Activa
+4482,,Ate,Huaycán,Servicios Múltiples e Inversiones Nievería,,Desconocido,#28FF28,Activa
 4483,,Lurigancho/Chosica,Ate,Urano Tours,,Desconocido,#FF0000,Activa
-4485,,Huaycán,Huaycán,27 de Enero,,La HZ,#2073C7,Activa
-4497,,Ate,Lurigancho/Chosica,Rutas En Zonas No Atendidas,REZNA,Desconocido,#EDEDED,Inactiva
+4485,,Huaycán,Huaycán,27 de Enero,,La HZ,#2072C7,Activa
+4497,,Ate,Lurigancho/Chosica,Rutas En Zonas No Atendidas,REZNA,Desconocido,#5A6470,Inactiva
 4501/CCH04,,Ricardo Palma,San Miguel,78,,La 78 - El Chosicano,#C30000,Activa
-4502,,Huaycán,Lima,Huaycán,ETRANTURHSA,La HCT - El Huaycanero,#D5BC8B,Activa
-4503,,Santa Anita,Lima,Peralitos,,Desconocido,#FF0F0F,Activa
-4504,,Huaycán,Lima,Nuevo Perú,,La HGK - El Huaycanero,#05016B,Activa
-4505/CCH02,,Ricardo Palma,San Miguel,Representaciones Sarita Colonia y Villa Sol,ETRESCOVISSA,El Chosicano,#017305,Activa
-4506/129P,,Ricardo Palma,San Miguel,Lima Chosica,ETYSLCHSA,El Chosicano,#D61A1A,Activa
-4507/CH17A,,Ricardo Palma,Lima,Nueva Era Señor de Muruhuay,ETSNESMSA,El Chosicano,#1F26FF,Activa
+4502,,Huaycán,Lima,Huaycán,ETRANTURHSA,La HCT - El Huaycanero,#C6A461,Activa
+4503,,Santa Anita,Lima,Peralitos,,Desconocido,#FE0F0F,Activa
+4504,,Huaycán,Lima,Nuevo Perú,,La HGK - El Huaycanero,#0801B0,Activa
+4505/CCH02,,Ricardo Palma,San Miguel,Representaciones Sarita Colonia y Villa Sol,ETRESCOVISSA,El Chosicano,#01B007,Activa
+4506/129P,,Ricardo Palma,San Miguel,Lima Chosica,ETYSLCHSA,El Chosicano,#D61919,Activa
+4507/CH17A,,Ricardo Palma,Lima,Nueva Era Señor de Muruhuay,ETSNESMSA,El Chosicano,#1F25FF,Activa
 4508/CCH05,,Lurigancho/Chosica,Lima,78,,La 78 - El Chosicano,#C30000,Inactiva
-4509,,Ate,Jesús María,Comité Cien,,La 60C,#0C0E52,Inactiva
-4510,,Ate,Jesús María,Bronco,ETBRONSA,Desconocido,#9C1414,Activa
+4509,,Ate,Jesús María,Comité Cien,,La 60C,#161A9B,Inactiva
+4510,,Ate,Jesús María,Bronco,ETBRONSA,Desconocido,#9E1414,Activa
 4511,,Ate,Lima,Virgen de Copacabana,MIVICOSAC,La IC,#0758B5,Inactiva
-4512,,Lurigancho/Chosica,San Miguel,Vargasant,,La B,#FFF945,Activa
+4512,,Lurigancho/Chosica,San Miguel,Vargasant,,La B,#FFF828,Activa
 4513,,Lurigancho/Chosica,Lima,Peralitos,,Desconocido,#FF1919,Activa
-4514,,Huaycán,Lima,Las Águilas 75,ETLA75SA,La 75A,#FF0F0F,Inactiva
-4515,,Huaycán,La Perla,Santa Rosa de Lima,ETSRLSA,La H - La Z,#4FA500,Activa
+4514,,Huaycán,Lima,Las Águilas 75,ETLA75SA,La 75A,#FE0F0F,Inactiva
+4515,,Huaycán,La Perla,Santa Rosa de Lima,ETSRLSA,La H - La Z,#55B200,Activa
 4516,,Ate,San Miguel,Los Expertos y Somos Más,,La 20,#B80422,Activa
-4601,,Lurigancho/Chosica,La Victoria,Inversiones Múltiples Chacarilla Tours,ETIMCTSAC,La B,#06EF56,Activa
-4602,,Lurigancho/Chosica,La Victoria,El Tumi,TRANSTUSA,La A1,#FF03F7,Inactiva
-4603,,Lurigancho/Chosica,La Victoria,Yagasol,,La B1,#EBEB00,Inactiva
-4604,,Huaycán,La Victoria,Turismo Santa Anita,EMTTURSASRL,Desconocido,#0808FF,Activa
-4605,,Lurigancho/Chosica,San Luis,Múltiples San Pablo,,La A1,#FF0055,Inactiva
-4606,,Ate,Lince,ATCRSA,ATCRSA,La C,#E80202,Inactiva
-4607,,Ate,La Victoria,Unidos San Martín de Porres,ETUSMPSA,Desconocido,#0013BA,Activa
+4601,,Lurigancho/Chosica,La Victoria,Inversiones Múltiples Chacarilla Tours,ETIMCTSAC,La B,#06EF55,Activa
+4602,,Lurigancho/Chosica,La Victoria,El Tumi,TRANSTUSA,La A1,#FF02F6,Inactiva
+4603,,Lurigancho/Chosica,La Victoria,Yagasol,,La B1,#EAEB00,Inactiva
+4604,,Huaycán,La Victoria,Turismo Santa Anita,EMTTURSASRL,Desconocido,#0707FF,Activa
+4605,,Lurigancho/Chosica,San Luis,Múltiples San Pablo,,La A1,#FF0054,Inactiva
+4606,,Ate,Lince,ATCRSA,ATCRSA,La C,#E80101,Inactiva
+4607,,Ate,La Victoria,Unidos San Martín de Porres,ETUSMPSA,Desconocido,#0012BA,Activa
 4608,,Ate,La Victoria,Sol de Amauta,,Desconocido,#FFF700,Activa
-4609,,Ate,San Isidro,Nuestra Señora del Sagrado Corazón,ETNUSSACSA,La B,#151F5C,Activa
-4610,,Ate,San Isidro,Miraflores Monterrico,ETMIMSA,La B - La 112,#1E2C82,Activa
-4611,,Lurigancho/Chosica,La Victoria,San Juan Bautista,ETSSJBSA,La 51,#00008A,Activa
-4612,,Huaycán,La Victoria,Comercialización 14 de Mayo,,Desconocido,#00990A,Activa
-4613,,Huaycán,La Victoria,Perla de Los Andes,TRASMPERSAC,Desconocido,#006B0B,Activa
-4614,,Ate,La Victoria,Sesentitrés,,La 63,#75574D,Activa
-4615,,Lurigancho/Chosica,La Victoria,Inversiones Rimarz,,La A1,#FF0548,Inactiva
-4616,,Ate,San Luis,Tumi sigloXXIS.A.,,Desconocido,#FFC70F,Activa
-4617,,Ate,San Luis,Romyjoiv,,Desconocido,#FFB70F,Activa
-4618,,Ate,La Victoria,Unidos San Martín de Porres,ETUSMPSA,Desconocido,#0013BA,Activa
-4619,,Huaycán,La Victoria,Huaycán,ETRANTURHSA,La HCT - El Huaycanero,#1BBFA4,Activa
+4609,,Ate,San Isidro,Nuestra Señora del Sagrado Corazón,ETNUSSACSA,La B,#213091,Activa
+4610,,Ate,San Isidro,Miraflores Monterrico,ETMIMSA,La B - La 112,#213191,Activa
+4611,,Lurigancho/Chosica,La Victoria,San Juan Bautista,ETSSJBSA,La 51,#0000B2,Activa
+4612,,Huaycán,La Victoria,Comercialización 14 de Mayo,,Desconocido,#00B20B,Activa
+4613,,Huaycán,La Victoria,Perla de Los Andes,TRASMPERSAC,Desconocido,#00B212,Activa
+4614,,Ate,La Victoria,Sesentitrés,,La 63,#74574D,Activa
+4615,,Lurigancho/Chosica,La Victoria,Inversiones Rimarz,,La A1,#FF0447,Inactiva
+4616,,Ate,San Luis,Tumi sigloXXIS.A.,,Desconocido,#FEC60F,Activa
+4617,,Ate,San Luis,Romyjoiv,,Desconocido,#FEB60F,Activa
+4618,,Ate,La Victoria,Unidos San Martín de Porres,ETUSMPSA,Desconocido,#0012BA,Activa
+4619,,Huaycán,La Victoria,Huaycán,ETRANTURHSA,La HCT - El Huaycanero,#1BBEA4,Activa
 4620,,Huaycán,La Victoria,Urbano Huaycán,,Desconocido,#D61406,Activa
-4621,,Ate,La Molina,Rápido Musa,ETRAMUSA,La C,#47703A,Inactiva
-4622,,Ate,Miraflores,Angamos,,Desconocido,#FFEF08,Activa
-4623,,Huaycán,La Victoria,Sin Fronteras,,Desconocido,#FFA229,Activa
-4624/TVE52,,Lurigancho/Chosica,La Victoria,Levaro,,La A1,#046B00,Activa
-4701,,Ate,Miraflores,Angamos,,Desconocido,#FFEF08,Inactiva
+4621,,Ate,La Molina,Rápido Musa,ETRAMUSA,La C,#4A753C,Inactiva
+4622,,Ate,Miraflores,Angamos,,Desconocido,#FFEF07,Activa
+4623,,Huaycán,La Victoria,Sin Fronteras,,Desconocido,#FFA128,Activa
+4624/TVE52,,Lurigancho/Chosica,La Victoria,Levaro,,La A1,#06B200,Activa
+4701,,Ate,Miraflores,Angamos,,Desconocido,#FFEF07,Inactiva
 4702,,Ate,San Juan de Miraflores,Service Canadá,,La CH,#FF5E00,Inactiva
-4703,,Ate,Chorrillos,Consorcio Santo Cristo,,La 91,#070A66,Activa
-4801,,Ate,Pachacámac,Carrocerías Rivera,,La G - La 65,#68BCEB,Inactiva
-4884,,La Molina,Pachacámac,Galindo Hermanos,,Desconocido,#B6FF57,Activa
-4901,,Lurigancho/Chosica,Callao,San Cristóbal Palcamayo,,La 19 - La N,#AD9600,Activa
+4703,,Ate,Chorrillos,Consorcio Santo Cristo,,La 91,#0B10A7,Activa
+4801,,Ate,Pachacámac,Carrocerías Rivera,,La G - La 65,#41ABE5,Inactiva
+4884,,La Molina,Pachacámac,Galindo Hermanos,,Desconocido,#A1FF28,Activa
+4901,,Lurigancho/Chosica,Callao,San Cristóbal Palcamayo,,La 19 - La N,#B29A00,Activa
 4902,,Ate,Callao,Pesqueros,,La 129B,#21917F,Activa
-4903,,Cieneguilla,Callao,Urbano El Molinero Express,ETRUMESA,Desconocido,#0B6CA3,Inactiva
+4903,,Cieneguilla,Callao,Urbano El Molinero Express,ETRUMESA,Desconocido,#0B6EA7,Inactiva
 4904,,Ate,Callao,Gocarive 19,,La 19,#FFD500,Activa
 4905,,Ate,Callao,Álamo Express,ETALEXSA,La C - La 01,#00B8FF,Activa
-4906,,Santa Anita,La Punta,Especial Solidaridad,EMTESSA,La S4,#0F8A01,Inactiva
-4907,,Lurigancho/Chosica,Callao,Urano Tours,,Desconocido,#EB1212,Inactiva
-4908,,Ate,Callao,El Carmen de la Punta,ETCAPSA,La 71B,#7D0202,Activa
-4909,,Ate,Callao,Rápido Musa,ETRAMUSA,La G,#49733B,Inactiva
-4910,,Cieneguilla,Callao,Rápido Musa,ETRAMUSA,La A,#47703A,Inactiva
+4906,,Santa Anita,La Punta,Especial Solidaridad,EMTESSA,La S4,#13B101,Inactiva
+4907,,Lurigancho/Chosica,Callao,Urano Tours,,Desconocido,#EA1212,Inactiva
+4908,,Ate,Callao,El Carmen de la Punta,ETCAPSA,La 71B,#AF0202,Activa
+4909,,Ate,Callao,Rápido Musa,ETRAMUSA,La G,#4A753C,Inactiva
+4910,,Cieneguilla,Callao,Rápido Musa,ETRAMUSA,La A,#4A753C,Inactiva
 4911,,Ate,Callao,Almirante Miguel Grau,ETSAMIGSA,Desconocido,#30A130,Activa
-4912,,Lurigancho/Chosica,Callao,Federico Villareal,ETFVSA,La B - El Covichino,#FF6105,Inactiva
-4913,,Huaycán,La Perla,Santa Rosa de Lima,ETSRLSA,La H - La Z,#4FA500,Activa
-5101,,Jesús María,Puente Piedra,José Leal Cocharcas,ETJLCSA,La 41 - La Cocharcas,#140099,Inactiva
-5201,,San Miguel,Independencia,Urbano Víctor Raúl Haya de La Torre,EMTURSASRL,Desconocido,#1AAB23,Inactiva
+4912,,Lurigancho/Chosica,Callao,Federico Villareal,ETFVSA,La B - El Covichino,#FF6004,Inactiva
+4913,,Huaycán,La Perla,Santa Rosa de Lima,ETSRLSA,La H - La Z,#55B200,Activa
+5101,,Jesús María,Puente Piedra,José Leal Cocharcas,ETJLCSA,La 41 - La Cocharcas,#1700B2,Inactiva
+5201,,San Miguel,Independencia,Urbano Víctor Raúl Haya de La Torre,EMTURSASRL,Desconocido,#19AB23,Inactiva
 5202,,San Miguel,Rímac,Nueva América,TRANSNASA,La D,#888888,Inactiva
-5301,,San Miguel,San Juan de Lurigancho,El Amauta,ETEASA,La Z,#FF9022,Activa
-5302,,San Miguel,San Juan de Lurigancho,Las Águilas 75,ETLA75SA,La 75B,#FF0F0F,Inactiva
-5303,,San Miguel,El Agustino,Próceres,,La M,#FFFF00,Activa
-5401/CCH01,,Lima,Santa Eulalia,Turismo Carretera Central,EMTRACACE,El Chosicano,#25A605,Activa
-5601,,Lima,La Victoria,Múltiples Satélite,ETRASEMUSSA,El Urbanito,#004F08,Inactiva
+5301,,San Miguel,San Juan de Lurigancho,El Amauta,ETEASA,La Z,#FF9021,Activa
+5302,,San Miguel,San Juan de Lurigancho,Las Águilas 75,ETLA75SA,La 75B,#FE0F0F,Inactiva
+5303,,San Miguel,El Agustino,Próceres,,La M,#FEFF00,Activa
+5401/CCH01,,Lima,Santa Eulalia,Turismo Carretera Central,EMTRACACE,El Chosicano,#26AD05,Activa
+5601,,Lima,La Victoria,Múltiples Satélite,ETRASEMUSSA,El Urbanito,#00B212,Inactiva
 5701,,Lima,Chorrillos,Servicios Turismo e Inversiones Norteamérica,,La 57,#0DBD7C,Inactiva
-6201,,La Victoria,San Martín de Porres,Lima Chorrillos,TRANSLICSA,La A,#6CE37F,Inactiva
-6301,,Miraflores,San Juan de Lurigancho,Ikarus,,La 10,#F6FF00,Inactiva
-6701,,Miraflores,Chorrillos,ATCRSA,ATCRSA,La 34,#E80202,Inactiva
-6801,,Miraflores,Villa El Salvador,ATCRSA,ATCRSA,La D,#E80202,Inactiva
-6802,,La Victoria,Pachacámac,Santísimo Salvador,,Desconocido,#0F7AB8,Inactiva
-6901,,San Borja,Callao,Magdalena-San Miguel,ETRAMSMSA,Desconocido,#B8B097,Inactiva
+6201,,La Victoria,San Martín de Porres,Lima Chorrillos,TRANSLICSA,La A,#4BDC62,Inactiva
+6301,,Miraflores,San Juan de Lurigancho,Ikarus,,La 10,#F5FF00,Inactiva
+6701,,Miraflores,Chorrillos,ATCRSA,ATCRSA,La 34,#E80101,Inactiva
+6801,,Miraflores,Villa El Salvador,ATCRSA,ATCRSA,La D,#E80101,Inactiva
+6802,,La Victoria,Pachacámac,Santísimo Salvador,,Desconocido,#0F79B8,Inactiva
+6901,,San Borja,Callao,Magdalena-San Miguel,ETRAMSMSA,Desconocido,#A89E7F,Inactiva
 7101,,Chorrillos,Carabayllo,Fénix 2000,,La 03,#FFD600,Activa
-7102,,Chorrillos,Carabayllo,Señor de Los Milagros,ETSEMILSA,La 39,#FF1A12,Inactiva
-7103,,Chorrillos,Carabayllo,Desconocido,,La 35,#0011FF,Activa
+7102,,Chorrillos,Carabayllo,Señor de Los Milagros,ETSEMILSA,La 39,#FE1A12,Inactiva
+7103,,Chorrillos,Carabayllo,Desconocido,,La 35,#0010FF,Activa
 7104,,Santiago de Surco,Carabayllo,Sinchi Roca,ETSIRSA,La SR,#FFA500,Inactiva
-7201,,Chorrillos,San Martín de Porres,Villa Marina,ETVIMSA,La 3B,#5EC4AD,Inactiva
-7202,,San Juan de Miraflores,San Martín de Porres,San Juan de La Cruz,,La A,#F70707,Inactiva
+7201,,Chorrillos,San Martín de Porres,Villa Marina,ETVIMSA,La 3B,#5EC3AC,Inactiva
+7202,,San Juan de Miraflores,San Martín de Porres,San Juan de La Cruz,,La A,#F70606,Inactiva
 7203,,San Juan de Miraflores,Independencia,Norcom Corporation,,La R1,#FFDD00,Inactiva
-7204,,San Juan de Miraflores,San Martín de Porres,San Pedro de Pamplona,,La P1,#FF640A,Activa
+7204,,San Juan de Miraflores,San Martín de Porres,San Pedro de Pamplona,,La P1,#FE640A,Activa
 7205,,San Juan de Miraflores,San Martín de Porres,El Porvenir,,La C,#F5A300,Inactiva
 7301,,Chorrillos,San Juan de Lurigancho,Urbano Línea 4,ETUL4SA,La 08,#FFCD00,Inactiva
-7302,,Chorrillos,San Juan de Lurigancho,San Pedro,,La 31,#FF0303,Inactiva
-7401,,San Juan de Miraflores,Ate,Primero de Noviembre,,Desconocido,#FF0505,Inactiva
-7402,,Chorrillos,Santa Anita,San Genaro,ETSEMUSAGESA,Desconocido,#C4100A,Inactiva
+7302,,Chorrillos,San Juan de Lurigancho,San Pedro,,La 31,#FF0202,Inactiva
+7401,,San Juan de Miraflores,Ate,Primero de Noviembre,,Desconocido,#FF0404,Inactiva
+7402,,Chorrillos,Santa Anita,San Genaro,ETSEMUSAGESA,Desconocido,#C41009,Inactiva
 7403,,Chorrillos,Cieneguilla,Servicio de Transportistas José Olaya,ESTJOSA,Desconocido,#00AAFF,Activa
-7501,,Chorrillos,Jesús María,Unidos,ETUSA,Desconocido,#90333B,Activa
-7502,,San Juan de Miraflores,Lima,Múltiples Star,,Desconocido,#FFDFBF,Inactiva
+7501,,Chorrillos,Jesús María,Unidos,ETUSA,Desconocido,#90323B,Activa
+7502,,San Juan de Miraflores,Lima,Múltiples Star,,Desconocido,#FF9328,Inactiva
 7503,,Chorrillos,Lima,Unidos Chama,,Desconocido,#FF0000,Inactiva
 7504,,San Juan de Miraflores,San Miguel,La Unidad de Villa,,Desconocido,#00DB34,Activa
-7505,,Chorrillos,Lima,Renacimiento,SGTRENSA,Desconocido,#7CFF0A,Activa
-7506,,San Juan de Miraflores,Magdalena del Mar,Unidos Doce de Noviembre,ETUSA,Desconocido,#0016A3,Inactiva
-7601,,San Juan de Miraflores,Lince,ATCRSA,ATCRSA,Desconocido,#E80202,Activa
-7602,,San Juan de Miraflores,Miraflores,Unidos Doce de Noviembre,ETUSA,Desconocido,#0016A3,Inactiva
-7603,,Santiago de Surco,San Isidro,Miraflores Monterrico,ETMIMSA,Desconocido,#1E2C82,Inactiva
+7505,,Chorrillos,Lima,Renacimiento,SGTRENSA,Desconocido,#7CFE0A,Activa
+7506,,San Juan de Miraflores,Magdalena del Mar,Unidos Doce de Noviembre,ETUSA,Desconocido,#0018B2,Inactiva
+7601,,San Juan de Miraflores,Lince,ATCRSA,ATCRSA,Desconocido,#E80101,Activa
+7602,,San Juan de Miraflores,Miraflores,Unidos Doce de Noviembre,ETUSA,Desconocido,#0018B2,Inactiva
+7603,,Santiago de Surco,San Isidro,Miraflores Monterrico,ETMIMSA,Desconocido,#213191,Inactiva
 7604,,Chorrillos,Miraflores,Servicio de Transportistas José Olaya,ESTJOSA,Desconocido,#00AAFF,Inactiva
-7605,,Chorrillos,La Victoria,San Genaro,ETSEMUSAGESA,Desconocido,#C4100A,Inactiva
-7606,,Chorrillos,San Isidro,Unidos Chama,,Desconocido,#E00202,Activa
-7607,,San Juan de Miraflores,La Victoria,160,,Desconocido,#1465A3,Activa
-7608,,San Juan de Miraflores,La Victoria,Roosevelt,,Desconocido,#27C716,Inactiva
-7609,,San Juan de Miraflores,La Victoria,Especiales Santa María,,Desconocido,#1FA112,Inactiva
-7610,,Chorrillos,La Victoria,San Genaro,ETSEMUSAGESA,Desconocido,#C4100A,Activa
-7611,,San Juan de Miraflores,La Victoria,Primero de Noviembre,,Desconocido,#FF0505,Inactiva
-7612,,San Juan de Miraflores,San Isidro,Sur Primero de Junio,ETPRIJUSAC,Desconocido,#0F0F0F,Activa
-7613,,San Juan de Miraflores,Miraflores,Unidos Doce de Noviembre,ETUSA,Desconocido,#0016A3,Activa
+7605,,Chorrillos,La Victoria,San Genaro,ETSEMUSAGESA,Desconocido,#C41009,Inactiva
+7606,,Chorrillos,San Isidro,Unidos Chama,,Desconocido,#E00101,Activa
+7607,,San Juan de Miraflores,La Victoria,160,,Desconocido,#1364A3,Activa
+7608,,San Juan de Miraflores,La Victoria,Roosevelt,,Desconocido,#26C716,Inactiva
+7609,,San Juan de Miraflores,La Victoria,Especiales Santa María,,Desconocido,#1EA111,Inactiva
+7610,,Chorrillos,La Victoria,San Genaro,ETSEMUSAGESA,Desconocido,#C41009,Activa
+7611,,San Juan de Miraflores,La Victoria,Primero de Noviembre,,Desconocido,#FF0404,Inactiva
+7612,,San Juan de Miraflores,San Isidro,Sur Primero de Junio,ETPRIJUSAC,Desconocido,#4A5560,Activa
+7613,,San Juan de Miraflores,Miraflores,Unidos Doce de Noviembre,ETUSA,Desconocido,#0018B2,Activa
 7614,,Chorrillos,Miraflores,Servicios Turismo e Inversiones Norteamérica,,Desconocido,#0DBD7C,Activa
-7701,,Chorrillos,Chorrillos,Translima,,Desconocido,#157A82,Activa
-7702,,Chorrillos,San Juan de Miraflores,Turismo San Juanito,,Desconocido,#E61C1C,Activa
-7703,,San Juan de Miraflores,Chorrillos,Preferencial San Juanito,,Desconocido,#E61C1C,Activa
-7704,,San Juan de Miraflores,Surquillo,Sur Primero de Junio,ETPRIJUSAC,Desconocido,#3C3431,Inactiva
-7705,,San Juan de Miraflores,Chorrillos,Tablada,EMTRATASA,Desconocido,#FF00FF,Activa
-7706,,Chorrillos,San Juan de Miraflores,Unidos Doce de Noviembre,ETUSA,Desconocido,#0006B0,Activa
-7707,,Chorrillos,San Juan de Miraflores,Comercializadora e Importadora Mártir Olaya,ETCIMOSA,Desconocido,#006911,Activa
-7708,,Chorrillos,San Juan de Miraflores,San Genaro,ETSEMUSAGESA,Desconocido,#570707,Activa
+7701,,Chorrillos,Chorrillos,Translima,,Desconocido,#189099,Activa
+7702,,Chorrillos,San Juan de Miraflores,Turismo San Juanito,,Desconocido,#E61B1B,Activa
+7703,,San Juan de Miraflores,Chorrillos,Preferencial San Juanito,,Desconocido,#E61B1B,Activa
+7704,,San Juan de Miraflores,Surquillo,Sur Primero de Junio,ETPRIJUSAC,Desconocido,#625550,Inactiva
+7705,,San Juan de Miraflores,Chorrillos,Tablada,EMTRATASA,Desconocido,#FF00FE,Activa
+7706,,Chorrillos,San Juan de Miraflores,Unidos Doce de Noviembre,ETUSA,Desconocido,#0006B2,Activa
+7707,,Chorrillos,San Juan de Miraflores,Comercializadora e Importadora Mártir Olaya,ETCIMOSA,Desconocido,#00B21C,Activa
+7708,,Chorrillos,San Juan de Miraflores,San Genaro,ETSEMUSAGESA,Desconocido,#A50D0D,Activa
 7709,,Villa María del Triunfo,Chorrillos,La Unidad de Villa,,Desconocido,#00C92F,Activa
-7710,,¿?,¿?,Desconocido,,Desconocido,#FFFFFF,
+7710,,¿?,¿?,Desconocido,,Desconocido,#5A6470,
 7711,,San Juan de Miraflores,Chorrillos,Service Canadá,,Desconocido,#FF6600,Inactiva
-7795,,San Juan de Miraflores,San Juan de Miraflores,Transporte Inversiones Multiplicando Esperanzas,,Desconocido,#FFF1FF,Inactiva
-7799,,Chorrillos,Chorrillos,San Genaro,ETSEMUSAGESA,Desconocido,#094213,Activa
+7795,,San Juan de Miraflores,San Juan de Miraflores,Transporte Inversiones Multiplicando Esperanzas,,Desconocido,#FF28FE,Inactiva
+7799,,Chorrillos,Chorrillos,San Genaro,ETSEMUSAGESA,Desconocido,#159D2D,Activa
 7801,,San Juan de Miraflores,Villa el Salvador,San Juan,,Desconocido,#EB0505,Activa
 7802,,San Juan de Miraflores,Villa María del Triunfo,San Pedro de Pamplona,,Desconocido,#EE0000,Activa
 7803,,San Juan de Miraflores,Villa María del Triunfo,San Juan,,Desconocido,#E30E0E,Activa
-7804,,San Juan de Miraflores,Villa María del Triunfo,Virtual Express,,Desconocido,#FFD608,Activa
+7804,,San Juan de Miraflores,Villa María del Triunfo,Virtual Express,,Desconocido,#FFD607,Activa
 7805,,Chorrillos,Villa María del Triunfo,Turismo San Juanito,,Desconocido,#FF1F1F,Activa
 7806,,Chorrillos,Villa María del Triunfo,La Unidad de Villa,,Desconocido,#68E000,Inactiva
-7807,,San Juan de Miraflores,Villa el Salvador,Imagen de Jesús,ETIMAJESA,Desconocido,#FF3030,Activa
-7808,,Chorrillos,Villa María del Triunfo,Urbano Limatambo,ETULSAC,Desconocido,#19821C,Inactiva
-7809,,Chorrillos,Villa María del Triunfo,Generales Peruanos,TRAGEPSA,Desconocido,#E01919,Inactiva
-7810,,San Juan de Miraflores,San Juan de Miraflores,Líder Pamplona Alta,,Desconocido,#0C38EB,Inactiva
-7811,,San Juan de Miraflores,Villa El Salvador,Líder Pamplona Alta,,Desconocido,#0A30C9,Activa
-7896,,San Juan de Miraflores,Villa María del Triunfo,Torres del Mirador,,Desconocido,#FFFFF1,Inactiva
-8101,,Pachacámac,Carabayllo,Palmari,,Desconocido,#A62999,Inactiva
-8102,,Pachacámac,Carabayllo,Salamanca Parral,ETSPSA,Desconocido,#2C6632,Activa
+7807,,San Juan de Miraflores,Villa el Salvador,Imagen de Jesús,ETIMAJESA,Desconocido,#FF2828,Activa
+7808,,Chorrillos,Villa María del Triunfo,Urbano Limatambo,ETULSAC,Desconocido,#1C9520,Inactiva
+7809,,Chorrillos,Villa María del Triunfo,Generales Peruanos,TRAGEPSA,Desconocido,#E01818,Inactiva
+7810,,San Juan de Miraflores,San Juan de Miraflores,Líder Pamplona Alta,,Desconocido,#0C37EA,Inactiva
+7811,,San Juan de Miraflores,Villa El Salvador,Líder Pamplona Alta,,Desconocido,#0A30C8,Activa
+7896,,San Juan de Miraflores,Villa María del Triunfo,Torres del Mirador,,Desconocido,#FEFF28,Inactiva
+8101,,Pachacámac,Carabayllo,Palmari,,Desconocido,#A62898,Inactiva
+8102,,Pachacámac,Carabayllo,Salamanca Parral,ETSPSA,Desconocido,#357C3D,Activa
 8103,,Villa El Salvador,Puente Piedra,Urbano Los Chinos,ETUCHISA,Desconocido,#00B8FF,Inactiva
 8104,,Villa El Salvador,Carabayllo,Express del Perú,GEP,Desconocido,#E30000,Activa
-8105,,Villa El Salvador,Carabayllo,El Rápido,,Desconocido,#D10F0F,Activa
+8105,,Villa El Salvador,Carabayllo,El Rápido,,Desconocido,#D00F0F,Activa
 8106,,Pachacámac,Puente Piedra,Nuevo Perú,,Desconocido,#00B8FF,Inactiva
-8107,,Villa El Salvador,Carabayllo,San Felipe Express,,Desconocido,#091080,Activa
+8107,,Villa El Salvador,Carabayllo,San Felipe Express,,Desconocido,#0B14A6,Activa
 8108,,Villa El Salvador,Puente Piedra,El Cóndor,,Desconocido,#00B8FF,Activa
-8109,,Pachacámac,Ancón,Virgen de la Puerta,VIPUSA,Desconocido,#39913C,Activa
+8109,,Pachacámac,Ancón,Virgen de la Puerta,VIPUSA,Desconocido,#38913C,Activa
 8110,,Lurín,Carabayllo,Roluesa,,Desconocido,#00B8FF,Activa
-8111,,Pachacámac,Ancón,Nuevo Perú,,Desconocido,#0BB8FF,Activa
+8111,,Pachacámac,Ancón,Nuevo Perú,,Desconocido,#0BB7FE,Activa
 8112,,Villa El Salvador,Carabayllo,Norcom Corporation,,Desconocido,#D90000,Activa
-8201,,Pachacámac,San Martín de Porres,Unidos de Pasajeros,ETUPSA,Desconocido,#ACCB56,Activa
-8202,,Lurín,Independencia,Servicio Rápido Ramiro Prialé Prialé,ETRAPSA,Desconocido,#0561FF,Inactiva
-8203,,Pachacámac,Los Olivos,Roluesa,,Desconocido,#13EDED,Inactiva
-8204,,Villa María del Triunfo,San Martín de Porres,Sur Express,,Desconocido,#FFE710,Inactiva
+8201,,Pachacámac,San Martín de Porres,Unidos de Pasajeros,ETUPSA,Desconocido,#ABCA56,Activa
+8202,,Lurín,Independencia,Servicio Rápido Ramiro Prialé Prialé,ETRAPSA,Desconocido,#0461FF,Inactiva
+8203,,Pachacámac,Los Olivos,Roluesa,,Desconocido,#12ECED,Inactiva
+8204,,Villa María del Triunfo,San Martín de Porres,Sur Express,,Desconocido,#FEE710,Inactiva
 8205,,Villa María del Triunfo,San Martín de Porres,San Judas Tadeo,,Desconocido,#A89574,Inactiva
-8206,,Villa María Del Triunfo,San Martin de Porres,Urbano El Paraíso,ETUPSA,Desconocido,#E3C634,Inactiva
-8207,,Villa El Salvador,Rímac,Real de Villa,ETSEMURVSA,Desconocido,#FFF825,Inactiva
-8208,,Pachacámac,San Martin de Porres,Real Star del Perú,,Desconocido,#D2B18B,Inactiva
+8206,,Villa María Del Triunfo,San Martin de Porres,Urbano El Paraíso,ETUPSA,Desconocido,#E3C633,Inactiva
+8207,,Villa El Salvador,Rímac,Real de Villa,ETSEMURVSA,Desconocido,#FFF824,Inactiva
+8208,,Pachacámac,San Martin de Porres,Real Star del Perú,,Desconocido,#C39764,Inactiva
 8209,,Villa María Del Triunfo,San Martin de Porres,Simón Bolívar,ETSIBOSA,Desconocido,#00B8FF,Activa
-8210,,Pachacámac,Ancón,Virgen de la Puerta,VIPUSA,Desconocido,#39913C,Inactiva
-8211,,Villa María del Triunfo,San Martín de Porres,Sur Express,,Desconocido,#00EABB,Activa
+8210,,Pachacámac,Ancón,Virgen de la Puerta,VIPUSA,Desconocido,#38913C,Inactiva
+8211,,Villa María del Triunfo,San Martín de Porres,Sur Express,,Desconocido,#00EABA,Activa
 8212,,Pachacámac,San Martin de Porres,Real Star del Perú,,Desconocido,#00B8FF,Activa
-8213,,Villa María del Triunfo,San Martin de Porres,Esfuerzos Unidos,ETEUSA,Desconocido,#276913,Inactiva
+8213,,Villa María del Triunfo,San Martin de Porres,Esfuerzos Unidos,ETEUSA,Desconocido,#38971B,Inactiva
 8214,,Villa María del Triunfo,San Martin de Porres,Salvador,ETSSSAC,Desconocido,#FF8F1F,Activa
-8215,,Pachacámac,San Martin de Porres,Unidos Chama,,Desconocido,#DF3322,Inactiva
-8301/TVE25,,Villa María del Triunfo,San Juan de Lurigancho,Unidos Chama,,Desconocido,#DF3322,Inactiva
-8302/CH24,,Villa El Salvador,San Juan de Lurigancho,Luis Banchero Rossi,LUBARSA,Desconocido,#FFFF1C,Activa
+8215,,Pachacámac,San Martin de Porres,Unidos Chama,,Desconocido,#DF3221,Inactiva
+8301/TVE25,,Villa María del Triunfo,San Juan de Lurigancho,Unidos Chama,,Desconocido,#DF3221,Inactiva
+8302/CH24,,Villa El Salvador,San Juan de Lurigancho,Luis Banchero Rossi,LUBARSA,Desconocido,#FEFF1C,Activa
 8303,,Villa María del Triunfo,San Juan de Lurigancho,Los Laureles de Lurín,ETMULLSA,Desconocido,#0CB7F2,Inactiva
-8304,,Villa María del Triunfo,San Martín de Porres,Esfuerzos Unidos,ETEUSA,Desconocido,#276913,Inactiva
+8304,,Villa María del Triunfo,San Martín de Porres,Esfuerzos Unidos,ETEUSA,Desconocido,#38971B,Inactiva
 8305,,Villa María del Triunfo,San Martín de Porres,Salvador,ETSSSAC,Desconocido,#FF8F1F,Inactiva
-8306,,Villa El Salvador,San Juan de Lurigancho,Santo Cristo de Pachacamilla,ETRASCPSA,Desconocido,#7C47A1,Activa
-8307,,Villa María Del Triunfo,San Juan de Lurigancho,Urbano el Paraiso,ETUPSA,Desconocido,#E3C634,Inactiva
+8306,,Villa El Salvador,San Juan de Lurigancho,Santo Cristo de Pachacamilla,ETRASCPSA,Desconocido,#7B47A0,Activa
+8307,,Villa María Del Triunfo,San Juan de Lurigancho,Urbano el Paraiso,ETUPSA,Desconocido,#E3C633,Inactiva
 8308,,Lurín,San Juan de Lurigancho,Urbano Línea 4,ETUL4SA,Desconocido,#E3B03F,Activa
 8401,,Lurín,Cieneguilla,18 de Enero,ETSDESA,Desconocido,#FFA200,Activa
-8402,,Pachacámac,Ate,Los Laureles de Manchay,,Desconocido,#05C5FF,Activa
-8403,,Villa María del Triunfo,Ate,Luis Banchero Rossi,LUBARSA,Desconocido,#F4F78F,Activa
+8402,,Pachacámac,Ate,Los Laureles de Manchay,,Desconocido,#04C4FF,Activa
+8403,,Villa María del Triunfo,Ate,Luis Banchero Rossi,LUBARSA,Desconocido,#EBF037,Activa
 8404,,Villa María del Triunfo,Huaycán,Urbano Línea 4,ETUL4SA,Desconocido,#E3B03F,Activa
-8405,,Villa El Salvador,Huaycán,Santa Catalina,ESTSACASA,Desconocido,#0C5700,Inactiva
+8405,,Villa El Salvador,Huaycán,Santa Catalina,ESTSACASA,Desconocido,#18B200,Inactiva
 8406,,Lurín,Lurigancho/Chosica,Urbano Línea 4,ETUL4SA,Desconocido,#E3B03F,Activa
-8501,,Villa El Salvador,San Miguel,Rápido Universal,TRUSAC,Desconocido,#FFD817,Inactiva
-8502,,Villa María del Triunfo,Lima,San Juan 108,ETCOSA,Desconocido,#0C00B3,Activa
-8503,,Villa María del Triunfo,Lima,Red Lima Móvil,,Desconocido,#179AFF,Activa
-8504,,San Bartolo,San Miguel,San José,ETSAJOSA,Desconocido,#3D2D1D,Activa
-8505,,Pachacámac,Breña,Guadulfo Silva Carvajal,ETGUSICSA,Desconocido,#731515,Activa
-8506,,Pachacámac,Lima,San Judas Tadeo,,Desconocido,#E6DBB8,Activa
-8507,,Villa María del Triunfo,San Miguel,San Judas Tadeo,,Desconocido,#FFEFC7,Activa
-8508,,Pucusana,Lima,Royal Express,,Desconocido,#FBFBFB,Activa
+8501,,Villa El Salvador,San Miguel,Rápido Universal,TRUSAC,Desconocido,#FED817,Inactiva
+8502,,Villa María del Triunfo,Lima,San Juan 108,ETCOSA,Desconocido,#0B00B3,Activa
+8503,,Villa María del Triunfo,Lima,Red Lima Móvil,,Desconocido,#1799FE,Activa
+8504,,San Bartolo,San Miguel,San José,ETSAJOSA,Desconocido,#785939,Activa
+8505,,Pachacámac,Breña,Guadulfo Silva Carvajal,ETGUSICSA,Desconocido,#961B1B,Activa
+8506,,Pachacámac,Lima,San Judas Tadeo,,Desconocido,#C7AE60,Activa
+8507,,Villa María del Triunfo,San Miguel,San Judas Tadeo,,Desconocido,#FFC128,Activa
+8508,,Pucusana,Lima,Royal Express,,Desconocido,#5A6470,Activa
 8509,,Villa El Salvador,Los Olivos,Salvador,ETSSSAC,Desconocido,#00EEFF,Inactiva
-8510,,San Bartolo,San Miguel,Guadulfo Silva Carbajal,ETGUSICSA,Desconocido,#660000,Activa
-8511,,Pucusana,San Miguel,Guadulfo Silva Carbajal,ETGUSICSA,Desconocido,#660000,Activa
-8512,,Chorrillos,Lima,Renacimiento,SGTRENSA,Desconocido,#68D608,Inactiva
-8513,,Villa El Salvador,Lima,Montenegro,ETMOSAC,Desconocido,#59D3FF,Activa
-8514,,Villa María del Triunfo,Jesús María,Unidos de Pasajeros,ETUPSA,Desconocido,#ACCB56,Inactiva
-8515,,Villa María del Triunfo,Lima,Capitales Peruanos,ETCAPESA,Desconocido,#27C716,Inactiva
+8510,,San Bartolo,San Miguel,Guadulfo Silva Carbajal,ETGUSICSA,Desconocido,#B20000,Activa
+8511,,Pucusana,San Miguel,Guadulfo Silva Carbajal,ETGUSICSA,Desconocido,#B20000,Activa
+8512,,Chorrillos,Lima,Renacimiento,SGTRENSA,Desconocido,#67D508,Inactiva
+8513,,Villa El Salvador,Lima,Montenegro,ETMOSAC,Desconocido,#28C6FF,Activa
+8514,,Villa María del Triunfo,Jesús María,Unidos de Pasajeros,ETUPSA,Desconocido,#ABCA56,Inactiva
+8515,,Villa María del Triunfo,Lima,Capitales Peruanos,ETCAPESA,Desconocido,#26C716,Inactiva
 8516,,Lurín,Lima,Urbano Línea 4,ETUL4SA,Desconocido,#E3B03F,Inactiva
-8517,,Pachacámac,Lima,Unidos Chama,,Desconocido,#DF3322,Inactiva
-8518,,Villa El Salvador,San Miguel,Las Águilas 75,ETLA75SA,Desconocido,#FF0F0F,Inactiva
-8519,,Villa María del Triunfo,Lima,Santa Catalina,ESTSACASA,Desconocido,#0C5700,Inactiva
-8520,,Villa el Salvador,Lima,Santa Catalina,ESTSACASA,Desconocido,#0C5700,Activa
-8521,,Villa El Salvador,San Miguel,Huáscar,,Desconocido,#D91212,Activa
-8522,,Villa María del Triunfo,Jesús María,Especial Solidaridad,EMTESSA,Desconocido,#297013,Inactiva
-8523,,Villa María del Triunfo,Lima,Esfuerzos Unidos,ETEUSA,Desconocido,#276913,Activa
+8517,,Pachacámac,Lima,Unidos Chama,,Desconocido,#DF3221,Inactiva
+8518,,Villa El Salvador,San Miguel,Las Águilas 75,ETLA75SA,Desconocido,#FE0F0F,Inactiva
+8519,,Villa María del Triunfo,Lima,Santa Catalina,ESTSACASA,Desconocido,#18B200,Inactiva
+8520,,Villa el Salvador,Lima,Santa Catalina,ESTSACASA,Desconocido,#18B200,Activa
+8521,,Villa El Salvador,San Miguel,Huáscar,,Desconocido,#D91111,Activa
+8522,,Villa María del Triunfo,Jesús María,Especial Solidaridad,EMTESSA,Desconocido,#379819,Inactiva
+8523,,Villa María del Triunfo,Lima,Esfuerzos Unidos,ETEUSA,Desconocido,#38971B,Activa
 8524,,Pachacámac,Lima,Unidos Chama,,Desconocido,#FF0000,Activa
-8525,,Villa María del Triunfo,Lima,Unidos de Pasajeros,ETUPSA,Desconocido,#ACCB56,Activa
-8601,,Villa María del Triunfo,Miraflores,Especial Solidaridad,EMTESSA,Desconocido,#297013,Inactiva
-8602,,Pachacámac,La Victoria,Red Lima Móvil,,Desconocido,#21CBD1,Activa
-8603,,Pachacámac,La Victoria,Turismo Santa Rosa de Manchay,ETTSROMSA,Desconocido,#929C98,Inactiva
+8525,,Villa María del Triunfo,Lima,Unidos de Pasajeros,ETUPSA,Desconocido,#ABCA56,Activa
+8601,,Villa María del Triunfo,Miraflores,Especial Solidaridad,EMTESSA,Desconocido,#379819,Inactiva
+8602,,Pachacámac,La Victoria,Red Lima Móvil,,Desconocido,#20CAD1,Activa
+8603,,Pachacámac,La Victoria,Turismo Santa Rosa de Manchay,ETTSROMSA,Desconocido,#8E9994,Inactiva
 8604,,Villa María del Triunfo,Miraflores,Translima,,Desconocido,#009FE3,Activa
-8605,,Villa El Salvador,San Isidro,Los Ángeles del Perú,ETRAPERSAC,Desconocido,#0008FF,Activa
-8606,,Villa María del Triunfo,Lince,Unidos de Pasajeros,ETUPSA,Desconocido,#ACCB56,Inactiva
-8607,,Villa María del Triunfo,Lince,El Paraíso,,Desconocido,#FFFAFA,Inactiva
-8608,,Villa María del Triunfo,Lince,Especiales 10 de Enero,,Desconocido,#FFFCFC,Inactiva
+8605,,Villa El Salvador,San Isidro,Los Ángeles del Perú,ETRAPERSAC,Desconocido,#0007FF,Activa
+8606,,Villa María del Triunfo,Lince,Unidos de Pasajeros,ETUPSA,Desconocido,#ABCA56,Inactiva
+8607,,Villa María del Triunfo,Lince,El Paraíso,,Desconocido,#FF2828,Inactiva
+8608,,Villa María del Triunfo,Lince,Especiales 10 de Enero,,Desconocido,#FF2828,Inactiva
 8609,,Villa María del Triunfo,Lince,Especiales Carmelitas 2001,,Desconocido,#FFF700,Inactiva
 8610,,Villa El Salvador,Miraflores,Múltiples Real de Villa,ETSEMURVSAC,Desconocido,#D6CF00,Inactiva
-8611,,Lurín,Miraflores,Express Pachacámac,ETEPSA,Desconocido,#0006B8,Activa
-8612,,Pachacámac,Miraflores,Edilberto Ramos,ETERSAC,Desconocido,#FFFF00,Activa
+8611,,Lurín,Miraflores,Express Pachacámac,ETEPSA,Desconocido,#0005B8,Activa
+8612,,Pachacámac,Miraflores,Edilberto Ramos,ETERSAC,Desconocido,#FEFF00,Activa
 8613,,Punta Negra,Chorrillos,Turismo El Márquez,,Desconocido,#0014C7,Activa
-8614,,Villa María del Triunfo,Miraflores,Tablada 2000,ETTADOSA,Desconocido,#FFCB3D,Activa
-8615,,Pachacámac,La Victoria,Nuevo Perú,,Desconocido,#0D72B5,Activa
-8616,,Villa María del Triunfo,Miraflores,Urano Tours,,Desconocido,#FF1414,Activa
-8617,,Villa El Salvador,Miraflores,ATCRSA,ATCRSA,Desconocido,#E80202,Activa
+8614,,Villa María del Triunfo,Miraflores,Tablada 2000,ETTADOSA,Desconocido,#FFC528,Activa
+8615,,Pachacámac,La Victoria,Nuevo Perú,,Desconocido,#0D71B5,Activa
+8616,,Villa María del Triunfo,Miraflores,Urano Tours,,Desconocido,#FE1414,Activa
+8617,,Villa El Salvador,Miraflores,ATCRSA,ATCRSA,Desconocido,#E80101,Activa
 8618,,Pachacámac,La Victoria,Real Star del Perú,,Desconocido,#D6B618,Inactiva
-8619,,Villa El Salvador,La Victoria,Consorcio Línea 3,,Desconocido,#27C716,Activa
+8619,,Villa El Salvador,La Victoria,Consorcio Línea 3,,Desconocido,#26C716,Activa
 8620,,Villa María del Triunfo,Lince,Unidos Chama,,Desconocido,#FF0000,Inactiva
-8621,,Villa El Salvador,La Victoria,Lapso,,Desconocido,#FFFF00,Activa
-8622,,Villa El Salvador,La Victoria,Huáscar,,Desconocido,#D91212,Inactiva
+8621,,Villa El Salvador,La Victoria,Lapso,,Desconocido,#FEFF00,Activa
+8622,,Villa El Salvador,La Victoria,Huáscar,,Desconocido,#D91111,Inactiva
 8623,,Villa El Salvador,La Victoria,Arco Iris,ETSAISA,Desconocido,#B80000,Inactiva
-8624,,Villa María del Triunfo,La Victoria,Luis Banchero Rossi,LUBARSA,Desconocido,#F4F78F,Inactiva
-8625,,Villa María del Triunfo,Lince,Unidos de Pasajeros,ETUPSA,Desconocido,#ACCB56,Inactiva
-8626,,Pachacámac,Miraflores,Unidos Chama,,Desconocido,#DF3322,Activa
+8624,,Villa María del Triunfo,La Victoria,Luis Banchero Rossi,LUBARSA,Desconocido,#EBF037,Inactiva
+8625,,Villa María del Triunfo,Lince,Unidos de Pasajeros,ETUPSA,Desconocido,#ABCA56,Inactiva
+8626,,Pachacámac,Miraflores,Unidos Chama,,Desconocido,#DF3221,Activa
 8627,,Lurín,San Isidro,Urbano Línea 4,ETUL4SA,Desconocido,#E3B03F,Inactiva
-8701,,Pachacámac,San Juan de Miraflores,Transporte e Inversiones Roshedi,,Desconocido,#281CD6,Activa
-8702,,Punta Hermosa,San Juan de Miraflores,Virgencita de Pachacamac,VIPASA,Desconocido,#FFD324,Activa
-8703,,Villa María del Triunfo,Surquillo,Expreso Tablada Y Asociados,,Desconocido,#FFB12B,Activa
-8704,,Villa María del Triunfo,Surquillo,Purca Gabriel Cora Cora,,Desconocido,#0DE7FF,Activa
+8701,,Pachacámac,San Juan de Miraflores,Transporte e Inversiones Roshedi,,Desconocido,#271BD6,Activa
+8702,,Punta Hermosa,San Juan de Miraflores,Virgencita de Pachacamac,VIPASA,Desconocido,#FFD323,Activa
+8703,,Villa María del Triunfo,Surquillo,Expreso Tablada Y Asociados,,Desconocido,#FFB028,Activa
+8704,,Villa María del Triunfo,Surquillo,Purca Gabriel Cora Cora,,Desconocido,#0DE7FE,Activa
 8705,,Villa El Salvador,San Juan de Miraflores,13 de Junio,,Desconocido,#FFF700,Inactiva
 8706,,Villa María del Triunfo,Chorrillos,Turismo San Juanito,,Desconocido,#FF0000,Activa
-8707,,Villa María del Triunfo,Chorrillos,Preferencial San Juanito,,Desconocido,#FF4912,Activa
+8707,,Villa María del Triunfo,Chorrillos,Preferencial San Juanito,,Desconocido,#FE4912,Activa
 8708,,Villa María del Triunfo,Chorrillos,Unión San Juanito,,Desconocido,#FF1919,Activa
 8709,,Villa María del Triunfo,San Juan de Miraflores,Esfuerzos Unidos,ETEUSA,Desconocido,#21AD06,Activa
-8710,,Villa María del Triunfo,Surquillo,Urbano Limatambo,ETULSAC,Desconocido,#19821C,Inactiva
-8711,,Lurín,Surquillo,Villa Alejandro,,Desconocido,#398F00,Activa
+8710,,Villa María del Triunfo,Surquillo,Urbano Limatambo,ETULSAC,Desconocido,#1C9520,Inactiva
+8711,,Lurín,Surquillo,Villa Alejandro,,Desconocido,#47B200,Activa
 8712,,Villa María del Triunfo,Chorrillos,La Unidad de Villa,,Desconocido,#00DE34,Activa
-8713,,Villa El Salvador,Santiago de Surco,Veintiséis de Marzo,,Desconocido,#0D00C2,Inactiva
-8714,,Lurín,Surquillo,Esmirla Zevallos,,Desconocido,#FF0505,Activa
-8715,,Lurín,Surquillo,Milagrosa Virgen del Carmen de Lurín,,Desconocido,#FFD89E,Activa
-8716,,Villa María del Triunfo,Chorrillos,José Gálvez,ETJGSA,Desconocido,#FFFF12,Activa
-8717,,Pachacámac,Chorrillos,Kid Galahad,,Desconocido,#215741,Activa
+8713,,Villa El Salvador,Santiago de Surco,Veintiséis de Marzo,,Desconocido,#0C00C2,Inactiva
+8714,,Lurín,Surquillo,Esmirla Zevallos,,Desconocido,#FF0404,Activa
+8715,,Lurín,Surquillo,Milagrosa Virgen del Carmen de Lurín,,Desconocido,#FFA828,Activa
+8716,,Villa María del Triunfo,Chorrillos,José Gálvez,ETJGSA,Desconocido,#FEFE12,Activa
+8717,,Pachacámac,Chorrillos,Kid Galahad,,Desconocido,#318160,Activa
 8718,,Pachacámac,San Juan de Miraflores,Novoa,,Desconocido,#F700FF,Activa
 8719,,Villa El Salvador,San Juan de Miraflores,Múltiples Real de Villa,ETSEMURVSAC,Desconocido,#D6CF00,Inactiva
-8720,,Lurín,San Juan de Miraflores,Talia,EMTRATASAC,Desconocido,#FF8CF7,Activa
+8720,,Lurín,San Juan de Miraflores,Talia,EMTRATASAC,Desconocido,#FF28F0,Activa
 8721,,Pachacámac,Chorrillos,La Unidad de Villa,,Desconocido,#FFF700,Inactiva
-8722,,Villa María del Triunfo,Chorrillos,José Gálvez,ETJGSA,Desconocido,#FFFF12,Activa
-8723,,Villa El Salvador,San Juan de Miraflores,Trabajadores Coraje,,Desconocido,#FF5500,Activa
+8722,,Villa María del Triunfo,Chorrillos,José Gálvez,ETJGSA,Desconocido,#FEFE12,Activa
+8723,,Villa El Salvador,San Juan de Miraflores,Trabajadores Coraje,,Desconocido,#FF5400,Activa
 8724,,Villa María del Triunfo,Chorrillos,La Unidad de Villa,,Desconocido,#00DE34,Activa
 8725,,Villa El Salvador,San Juan de Miraflores,Múltiples Real de Villa,ETSEMURVSAC,Desconocido,#D6CF00,Inactiva
-8726,,Villa María del Triunfo,Chorrillos,Urbano Mariátegui,ETUMSA,Desconocido,#0007D1,Activa
-8727,,Villa María del Triunfo,Chorrillos,Corazón Valiente,ETRACOVASA,Desconocido,#BED223,Activa
-8728,,Villa María del Triunfo,Chorrillos,Generales Peruanos,TRAGEPSA,Desconocido,#E81A1A,Activa
-8729,,Pachacámac,Santiago de Surco,Carrocerías Rivera,,Desconocido,#68BCEB,Activa
-8801,,San Bartolo,Lurín,San Pedro de Lurín,EMTRANSAPEL,Desconocido,#001CCF,Activa
-8802,,San Bartolo,Villa El Salvador,Santa Cruz de Punta Hermosa,ETRANSERVI,Desconocido,#7A523D,Activa
-8803,,Pachacámac,Pachacámac,San Juan de Dios,ETSAJUDSA,Desconocido,#05096E,Activa
-8804,,Villa María del Triunfo,Pachacámac,Inversiones Multiplicando Esperanzas,TRANSPIMESAC,Desconocido,#BDBD92,Activa
-8890,,Villa María del Triunfo,Pachacámac,Las Nuevas Esperanzas,TINESA,Desconocido,#C98B44,Activa
-8891,,Pachacámac,Lurín,Consorcio Villa Express,,Desconocido,#2A7035,Inactiva
-8892,,Villa María del Triunfo,Villa El Salvador,Tablada,EMTRATASA,Desconocido,#FF00B3,Activa
-8893,,Villa María del Triunfo,Villa María del Triunfo,Rutas En Zonas No Atendidas,REZNA,Desconocido,#FFFFF1,Inactiva
-8894,,Villa El Salvador,Villa El Salvador,Rutas En Zonas No Atendidas,REZNA,Desconocido,#FFF1FF,Inactiva
-8901,,Pachacámac,Callao,Nuevo Perú,,Desconocido,#FF0505,Inactiva
-8902,,Pachacámac,La Punta,Los Laureles de Manchay,,Desconocido,#05C5FF,Inactiva
-8903,,Pachacámac,La Punta,Castro Fuentes,KEJVIDSA,Desconocido,#060B85,Inactiva
-9301,,Callao,San Juan de Lurigancho,Progreso,ETPSA,Desconocido,#570B0B,Inactiva
-9302,,Callao,San Juan de Lurigancho,Nuevo San Juan,,Desconocido,#FF1303,Inactiva
-9303,,Callao,San Juan de Lurigancho,Milenium,,Desconocido,#610000,Activa
-9304,,Callao,San Juan de Lurigancho,Huáscar 87,,Desconocido,#E60026,Inactiva
-9305,,Ventanilla,El Agustino,Servicio Urbano 26 de Mayo,,Desconocido,#FFFEED,Activa
+8726,,Villa María del Triunfo,Chorrillos,Urbano Mariátegui,ETUMSA,Desconocido,#0006D1,Activa
+8727,,Villa María del Triunfo,Chorrillos,Corazón Valiente,ETRACOVASA,Desconocido,#BED222,Activa
+8728,,Villa María del Triunfo,Chorrillos,Generales Peruanos,TRAGEPSA,Desconocido,#E71A1A,Activa
+8729,,Pachacámac,Santiago de Surco,Carrocerías Rivera,,Desconocido,#41ABE5,Activa
+8801,,San Bartolo,Lurín,San Pedro de Lurín,EMTRANSAPEL,Desconocido,#001BCF,Activa
+8802,,San Bartolo,Villa El Salvador,Santa Cruz de Punta Hermosa,ETRANSERVI,Desconocido,#7A513C,Activa
+8803,,Pachacámac,Pachacámac,San Juan de Dios,ETSAJUDSA,Desconocido,#070DAA,Activa
+8804,,Villa María del Triunfo,Pachacámac,Inversiones Multiplicando Esperanzas,TRANSPIMESAC,Desconocido,#AEAE79,Activa
+8890,,Villa María del Triunfo,Pachacámac,Las Nuevas Esperanzas,TINESA,Desconocido,#C88B44,Activa
+8891,,Pachacámac,Lurín,Consorcio Villa Express,,Desconocido,#30813D,Inactiva
+8892,,Villa María del Triunfo,Villa El Salvador,Tablada,EMTRATASA,Desconocido,#FF00B2,Activa
+8893,,Villa María del Triunfo,Villa María del Triunfo,Rutas En Zonas No Atendidas,REZNA,Desconocido,#FEFF28,Inactiva
+8894,,Villa El Salvador,Villa El Salvador,Rutas En Zonas No Atendidas,REZNA,Desconocido,#FF28FE,Inactiva
+8901,,Pachacámac,Callao,Nuevo Perú,,Desconocido,#FF0404,Inactiva
+8902,,Pachacámac,La Punta,Los Laureles de Manchay,,Desconocido,#04C4FF,Inactiva
+8903,,Pachacámac,La Punta,Castro Fuentes,KEJVIDSA,Desconocido,#070EAA,Inactiva
+9301,,Callao,San Juan de Lurigancho,Progreso,ETPSA,Desconocido,#9E1414,Inactiva
+9302,,Callao,San Juan de Lurigancho,Nuevo San Juan,,Desconocido,#FF1202,Inactiva
+9303,,Callao,San Juan de Lurigancho,Milenium,,Desconocido,#B20000,Activa
+9304,,Callao,San Juan de Lurigancho,Huáscar 87,,Desconocido,#E60025,Inactiva
+9305,,Ventanilla,El Agustino,Servicio Urbano 26 de Mayo,,Desconocido,#FFF328,Activa
 9306/TVE26,,Callao,San Juan de Lurigancho,Las Flores,,Desconocido,#FF6F00,Activa
 9307,,Ventanilla,San Juan de Lurigancho,La Nueva Estrella,,Desconocido,#0600C9,Activa
-9401,,Ventanilla,Huaycán,Inversiones y Representaciones Polo,IRPSAC,Desconocido,#4FA500,Activa
-9402,,Mi Perú,Lurigancho/Chosica,Sol y Mar,,Desconocido,#059400,Inactiva
-9403,,Callao,Lurigancho/Chosica,102,,Desconocido,#D3FF21,Inactiva
-9404,,Mi Perú,Lurigancho/Chosica,Sol y Mar,,Desconocido,#059600,Inactiva
-9405,,Callao,Ate,Federico Villareal,ETFVSA,Desconocido,#FF540A,Activa
+9401,,Ventanilla,Huaycán,Inversiones y Representaciones Polo,IRPSAC,Desconocido,#55B200,Activa
+9402,,Mi Perú,Lurigancho/Chosica,Sol y Mar,,Desconocido,#06B200,Inactiva
+9403,,Callao,Lurigancho/Chosica,102,,Desconocido,#D2FF20,Inactiva
+9404,,Mi Perú,Lurigancho/Chosica,Sol y Mar,,Desconocido,#05B200,Inactiva
+9405,,Callao,Ate,Federico Villareal,ETFVSA,Desconocido,#FE540A,Activa
 9501,,Callao,Lima,Once de Noviembre,EMPTONSA,Desconocido,#20BA2F,Inactiva
 9502,,Bellavista,Lima,Pacific International,ETRASERPISA,Desconocido,#F20C0C,Inactiva
 9503,,Carmen de la Legua,Lima,Once de Noviembre,EMPTONSA,Desconocido,#20BA2F,Activa
-9504,,Callao,Lima,San Miguel N°2,,Desconocido,#0022FF,Inactiva
-9505,,Mi Perú,San Miguel,Sol y Mar,,Desconocido,#059400,Inactiva
-9601,,Ventanilla,La Victoria,Virgen de La Puerta,VIPUSA,Desconocido,#0ABF16,Activa
-9602,,Ventanilla,Lince,Virgen de La Puerta,VIPUSA,Desconocido,#0CA106,Activa
-9604,,Callao,La Victoria,Huáscar 87,,Desconocido,#E60026,Inactiva
-9605,,Callao,La Victoria,Múltiples Satélite,ETRASEMUSSA,Desconocido,#004F08,Activa
+9504,,Callao,Lima,San Miguel N°2,,Desconocido,#0021FF,Inactiva
+9505,,Mi Perú,San Miguel,Sol y Mar,,Desconocido,#06B200,Inactiva
+9601,,Ventanilla,La Victoria,Virgen de La Puerta,VIPUSA,Desconocido,#09BF16,Activa
+9602,,Ventanilla,Lince,Virgen de La Puerta,VIPUSA,Desconocido,#0CAC06,Activa
+9604,,Callao,La Victoria,Huáscar 87,,Desconocido,#E60025,Inactiva
+9605,,Callao,La Victoria,Múltiples Satélite,ETRASEMUSSA,Desconocido,#00B212,Activa
 9801,,Ventanilla,Villa El Salvador,41,,Desconocido,#F5A200,Activa
-9802,,Callao,Villa María del Triunfo,Los Milagros del Señor de Pachacamilla,ETMISPSA,Desconocido,#841FD1,Activa
+9802,,Callao,Villa María del Triunfo,Los Milagros del Señor de Pachacamilla,ETMISPSA,Desconocido,#831FD1,Activa
 9803,,Callao,Villa María del Triunfo,Unidos Chama,,Desconocido,#FF0000,Inactiva
-9901,,Callao,Callao,Sociedad de Transportistas Independientes,SOTISA,Desconocido,#FF38FF,Inactiva
+9901,,Callao,Callao,Sociedad de Transportistas Independientes,SOTISA,Desconocido,#FF28FE,Inactiva

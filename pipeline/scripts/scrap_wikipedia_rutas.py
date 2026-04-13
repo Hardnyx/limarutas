@@ -150,15 +150,48 @@ def limpiar_empresa(texto_raw):
     return (texto if texto else 'Desconocido'), abrev
 
 
-# ── Utilidades ────────────────────────────────────────────────────────────────
+# ── Normalización de color ────────────────────────────────────────────────────
+
+import colorsys as _colorsys
+
+
+def normalizar_color(hex_color, l_min=0.35, l_max=0.58):
+    """
+    Ajusta la luminosidad al rango [l_min, l_max] preservando matiz y saturacion.
+    Garantiza visibilidad tanto en mapa claro como oscuro.
+    Colores near-white sin matiz (S<5%, L>75%) → gris neutro.
+    Colores near-black sin matiz (S<5%, L<25%) → gris oscuro medio.
+    """
+    if not hex_color:
+        return '#5A6470'
+    h6 = hex_color.lstrip('#')
+    if len(h6) == 3:
+        h6 = ''.join(c*2 for c in h6)
+    if hex_color.upper() == '#FFFFFF' or not h6:
+        return '#5A6470'
+    try:
+        r, g, b = int(h6[0:2], 16)/255, int(h6[2:4], 16)/255, int(h6[4:6], 16)/255
+        h, l, s = _colorsys.rgb_to_hls(r, g, b)
+        if s < 0.05 and l > 0.75:
+            return '#5A6470'
+        if s < 0.05 and l < 0.25:
+            return '#4A5560'
+        l_new = max(l_min, min(l_max, l))
+        rn, gn, bn = _colorsys.hls_to_rgb(h, l_new, s)
+        return '#{:02X}{:02X}{:02X}'.format(int(rn*255), int(gn*255), int(bn*255))
+    except Exception:
+        return '#5A6470'
+
+
+# ── Extracción de color ───────────────────────────────────────────────────────
 
 def extraer_color(td):
     span = td.find('span', style=True)
     if span:
         m = re.search(r'background\s*:\s*(#[0-9A-Fa-f]{3,6})', span.get('style', ''))
         if m:
-            return m.group(1).upper()
-    return '#FFFFFF'
+            return normalizar_color(m.group(1).upper())
+    return '#5A6470'
 
 
 def normalizar_estado(texto):

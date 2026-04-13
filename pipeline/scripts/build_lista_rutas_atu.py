@@ -613,7 +613,32 @@ PRR_EMPRESAS_NORM = {
 }
 
 
-# ── Leer PDF del zip ──────────────────────────────────────────────────────────
+# Banco de colores placeholder para rutas sin color oficial.
+# Tonos steel-blue/slate muted, L=35-52%: visibles en mapa claro y oscuro.
+# Se asignan por codigo_nuevo % N para consistencia entre corridas.
+COLORES_PLACEHOLDER = [
+    '#3D6B7A',
+    '#4A7A8A',
+    '#527585',
+    '#5C8FA0',
+    '#4F7F90',
+    '#6595A5',
+    '#3A6878',
+    '#608090',
+    '#456878',
+    '#5A8595',
+]
+
+
+def color_placeholder(codigo_nuevo):
+    try:
+        idx = int(codigo_nuevo) % len(COLORES_PLACEHOLDER)
+        return COLORES_PLACEHOLDER[idx]
+    except (ValueError, TypeError):
+        return COLORES_PLACEHOLDER[0]
+
+
+
 
 def leer_pdf(filepath):
     """Extrae cod_antiguo, cod_nuevo, origen, destino desde un PDF suelto."""
@@ -638,7 +663,7 @@ def leer_pdf(filepath):
             'empresa_operadora': 'Desconocido',
             'empresa_abrev':     '',
             'alias':             'Desconocido',
-            'color_hex':         '#FFFFFF',
+            'color_hex':         color_placeholder(cod_nuevo),
             'fuente':            'atu_zip_error',
         }
 
@@ -653,7 +678,7 @@ def leer_pdf(filepath):
         'empresa_operadora': PRR_EMPRESAS_NORM.get(cod_nuevo, 'Desconocido'),
         'empresa_abrev':     '',
         'alias':             'Desconocido',
-        'color_hex':         '#FFFFFF',
+        'color_hex':         color_placeholder(cod_nuevo),
         'fuente':            'atu_pdf',
     }
 
@@ -701,9 +726,9 @@ def main():
     # 4. Aplicar overrides manuales conocidos
     overrides = {
         '1001': {'empresa_operadora': 'Tablada 2000', 'empresa_abrev': 'ETTADOSA',
-                 'alias': 'La Tablada'},
+                 'alias': 'La Tablada', 'color_hex': '#2E7D32'},  # verde bosque
         '1002': {'empresa_operadora': 'Urano Tours', 'empresa_abrev': '',
-                 'alias': 'La U'},
+                 'alias': 'La U', 'color_hex': '#66BB6A'},  # verde claro
     }
     for cod, vals in overrides.items():
         if cod in maestro:
