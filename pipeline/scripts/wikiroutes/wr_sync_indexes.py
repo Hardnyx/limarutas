@@ -277,6 +277,16 @@ def main() -> None:
     wr_map: Dict = {"routes": {}}
     wr_overrides: Dict = {}
 
+    # Cargar overrides existentes siempre para respetar ediciones manuales
+    existing_overrides: Dict = {}
+    if WR_OVERRIDES_JSON.exists():
+        try:
+            existing_overrides = read_json(WR_OVERRIDES_JSON)
+            if not isinstance(existing_overrides, dict):
+                existing_overrides = {}
+        except Exception:
+            existing_overrides = {}
+
     if args.mode == "merge":
         if WR_MAP_JSON.exists():
             wr_map = read_json(WR_MAP_JSON)
@@ -330,6 +340,13 @@ def main() -> None:
 
         display_id = extract_display_id(title)
         display_id_source = "title"
+
+        # Respetar override manual si existe para esta carpeta o route_id
+        _ovr = existing_overrides.get(folder.name) or (existing_overrides.get(route_id) if route_id else None)
+        if _ovr and _ovr.get("display_id"):
+            display_id = _ovr["display_id"]
+            display_id_source = "override"
+
         if not display_id:
             # Fallback: nunca descartamos por esto. Usamos route_id para que "exista" en wr_map.
             display_id = route_id or folder.name

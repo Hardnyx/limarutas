@@ -5897,12 +5897,11 @@
   "route_52587": {
     "display_id": "ESI-1",
     "color": "#888888",
-    "name": "ESI-1 · Villa El Salvador → Bayóvar"
+    "name": "ESI-1 · CEV Polar → CEV Polar"
   },
   "52587": {
     "display_id": "ESI-1",
-    "color": "#888888",
-    "name": ""
+    "color": "#888888"
   },
   "route_52609": {
     "display_id": "516",
@@ -5920,8 +5919,7 @@
   },
   "52610": {
     "display_id": "ESI-2",
-    "color": "#888888",
-    "name": ""
+    "color": "#888888"
   },
   "route_52727": {
     "display_id": "52727",
@@ -10309,7 +10307,7 @@
   "route_72032": {
     "display_id": "2",
     "color": "#888888",
-    "name": "2 · Guardia Civil → Guardia Civil"
+    "name": "2 · Mercado Santa Anita → Evitamiento"
   },
   "72032": {
     "display_id": "2",
@@ -16051,7 +16049,7 @@
   "route_90310": {
     "display_id": "2",
     "color": "#888888",
-    "name": "2 · Guardia Civil → Guardia Civil"
+    "name": "2 · Mercado Santa Anita → Evitamiento"
   },
   "90310": {
     "display_id": "2",

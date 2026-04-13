@@ -18,6 +18,12 @@
       "color": "#888888",
       "name": "02 · La Capilla → Acho"
     },
+    "2-ida": {
+      "folder": "data/processed/transporte/route_72032",
+      "trip": 1,
+      "color": "#888888",
+      "name": "2 · Mercado Santa Anita → Evitamiento"
+    },
     "02-vuelta": {
       "folder": "data/processed/transporte/route_58270",
       "trip": 2,
@@ -22818,12 +22824,6 @@
       "color": "#888888",
       "name": "189 · Estados Unidos → Santa Rosa"
     },
-    "ESI-1-ida": {
-      "folder": "data/processed/transporte/route_52587",
-      "trip": 1,
-      "color": "#888888",
-      "name": "ESI-1 · CEV Polar → CEV Polar"
-    },
     "1_89999-ida": {
       "folder": "data/processed/transporte/route_89999",
       "trip": 1,
@@ -22883,12 +22883,6 @@
       "trip": 2,
       "color": "#888888",
       "name": "257 · Lola Pardo → Nicolás de Piérola"
-    },
-    "2_72032-ida": {
-      "folder": "data/processed/transporte/route_72032",
-      "trip": 1,
-      "color": "#888888",
-      "name": "2 · Mercado Santa Anita → Evitamiento"
     },
     "2_90310-ida": {
       "folder": "data/processed/transporte/route_90310",
@@ -23549,6 +23543,18 @@
       "trip": 2,
       "color": "#888888",
       "name": "EO96c · Huánuco → AA.HH Cristo Rey Sector 1"
+    },
+    "ESI-1-ida": {
+      "folder": "data/processed/transporte/route_52587",
+      "trip": 1,
+      "color": "#888888",
+      "name": "ESI-1 · CEV Polar → CEV Polar"
+    },
+    "ESI-2-ida": {
+      "folder": "data/processed/transporte/route_52610",
+      "trip": 1,
+      "color": "#888888",
+      "name": "ESI-2 · Guardia Civil → Guardia Civil"
     },
     "ICR02b-ida": {
       "folder": "data/processed/transporte/route_71838",
@@ -24581,12 +24587,6 @@
       "trip": 2,
       "color": "#888888",
       "name": "TVE45b · Calle 32 → 10 (Canto Grande)"
-    },
-    "ESI-2-ida": {
-      "folder": "data/processed/transporte/route_52610",
-      "trip": 1,
-      "color": "#888888",
-      "name": "ESI-2 · Guardia Civil → Guardia Civil"
     }
   }
 }
