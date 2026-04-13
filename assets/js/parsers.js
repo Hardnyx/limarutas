@@ -32,6 +32,7 @@ export function filterByCatalogFor(systemId, services, catalog){
 
   if (systemId === 'alim') {
     const al = catalog?.metropolitano?.alimentadores || {};
+    if (al.mode === 'all') return S;
     const only = Array.isArray(al.only) ? new Set(al.only.map(upper)) : null;
     const exc  = Array.isArray(al.exclude) ? new Set(al.exclude.map(upper)) : new Set();
     return S.filter(s => {
@@ -44,6 +45,7 @@ export function filterByCatalogFor(systemId, services, catalog){
 
   if (systemId === 'corr') {
     const corr = catalog?.corredores || {};
+    if (corr.mode === 'all') return S;
     const only = Array.isArray(corr.only) ? new Set(corr.only.map(upper)) : null;
     const exc  = Array.isArray(corr.exclude) ? new Set(corr.exclude.map(upper)) : new Set();
     return S.filter(s => {
@@ -56,6 +58,7 @@ export function filterByCatalogFor(systemId, services, catalog){
 
   if (systemId === 'metro') {
     const m = catalog?.metro || {};
+    if (m.mode === 'all') return S;
     const only = Array.isArray(m.only) ? new Set(m.only.map(upper)) : null;
     const exc  = Array.isArray(m.exclude) ? new Set(m.exclude.map(upper)) : new Set();
     return S.filter(s => {
@@ -69,6 +72,8 @@ export function filterByCatalogFor(systemId, services, catalog){
   if (systemId === 'wr') {
     // Usar catálogo.transporte con clave = código moderno (base)
     const tr = catalog?.transporte || {};
+    // mode "all": sin filtro. mode "atu": igual que "only" hasta migración del CSV.
+    if (tr.mode === 'all') return services;
     const only = Array.isArray(tr.only) ? new Set(tr.only.map(upper)) : null;
     const exc  = Array.isArray(tr.exclude) ? new Set(tr.exclude.map(upper)) : new Set();
 

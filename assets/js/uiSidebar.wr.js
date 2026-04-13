@@ -104,6 +104,9 @@ function wrFilterRoutesByGroup(groupName, routes){
 
   if (!cfg) return routes || [];
 
+  // mode "all": sin filtro. mode "atu": igual que "only" hasta migración del CSV.
+  if (cfg.mode === 'all') return routes || [];
+
   const only = Array.isArray(cfg.only) ? new Set(cfg.only.map(upper)) : null;
   const exc  = Array.isArray(cfg.exclude) ? new Set(cfg.exclude.map(upper)) : new Set();
 
