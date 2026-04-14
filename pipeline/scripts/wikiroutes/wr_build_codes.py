@@ -492,6 +492,21 @@ def main() -> None:
 
         rows.append(row)
 
+    seen_por_nuevo = {
+        r["cand_codigo_nuevo"]
+        for r in rows
+        if r["cand_match_type"] == "codigo_nuevo" and r["cand_codigo_nuevo"]
+    }
+    rows_dedup = [
+        r for r in rows
+        if not (
+            r["cand_match_type"] == "codigo_antiguo"
+            and r["cand_codigo_nuevo"] in seen_por_nuevo
+        )
+    ]
+    duplicados_eliminados = len(rows) - len(rows_dedup)
+    rows = rows_dedup
+
     fieldnames = list(rows[0].keys()) if rows else []
     write_csv(OUT_CSV, rows, fieldnames)
 
@@ -501,8 +516,8 @@ def main() -> None:
     print(f"  match por codigo_nuevo:   {matched_nuevo}")
     print(f"  match por codigo_antiguo: {matched_antiguo}")
     print(f"  sin match lista_rutas:    {no_match}")
+    print(f"  duplicados eliminados:    {duplicados_eliminados}")
     print(f"CSV escrito en: {OUT_CSV}")
-
 
 if __name__ == "__main__":
     main()

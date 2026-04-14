@@ -56,7 +56,6 @@ function loadWrListaMeta(){
           alias: idxAlias >= 0 ? (cols[idxAlias] || '').trim() : ''
         };
       }
-      console.log('[lista_rutas] total keys:', Object.keys(metaByCodigo).length, '| últimas:', Object.keys(metaByCodigo).slice(-3));
       return metaByCodigo;
     })
     .catch(err => {
@@ -538,7 +537,6 @@ function makeWrItem(rt, metaByCodigo, routesById, extremes, systemId='wr'){
 
   const key = wrCanonicalCode(rt.id);
   body.__wrMeta  = metaByCodigo ? (metaByCodigo[key] || null) : null;
-  if (String(rt.id).startsWith('ESI')) console.log('[ESI debug]', JSON.stringify(rt.id), JSON.stringify(key), 'keys en meta:', Object.keys(metaByCodigo).filter(k => k.startsWith('ESI')));
   body.__wrRoute = rt;
 
   const computeStops = (prefId, routeObj, dirKey) => {
