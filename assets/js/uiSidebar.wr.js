@@ -214,17 +214,25 @@ function wrBuildTituloPrincipal(meta, rt){
     ? String(meta.empresa_operadora).trim()
     : '';
   const empresa = rawEmpresa && !wrIsPlaceholder(rawEmpresa) ? rawEmpresa : '';
-  const siglas = wrFindSiglasEmpresa(rawEmpresa);
 
-  if (alias){
-    return siglas ? `${alias} - ${siglas}` : alias;
-  }
+  // Si hay empresa y alias: "Empresa · Alias"
+  if (empresa && alias){
+    const combined = `${empresa} · ${alias}`;
+    if (combined.length <= 35) return combined;
+    if (rt && rt.id){
+      const m = String(rt.id).match(/[-_](\d+)$/);
+      if (m) return `${empresa} · Ruta ${m[1]}`;
+    }
+    return empresa;
+  };
 
-  if (siglas) return siglas;
+  // Si solo alias
+  if (alias) return alias;
+
+  // Si solo empresa
   if (empresa) return wrBuildEmpresaDisplay(empresa);
 
   if (rt && rt.label) return rt.label;
-
   if (rt && rt.id != null) return String(rt.id).toUpperCase();
   return '';
 }
@@ -237,7 +245,7 @@ function wrParseBaseStops(source){
     if (!raw) return { from:'', to:'', label:'' };
 
     let s = raw;
-    s = s.replace(/^\s*\d+\s*·\s*/,'');
+    s = s.replace(/^\s*[^\s·]+\s*·\s*/,'');
     s = s.replace(/\s*\((ida|vuelta)\)\s*$/i,'');
 
     let parts = s.split('→');
@@ -299,7 +307,7 @@ function wrParseBaseStops(source){
   if (!rawName.trim()) return { from:'', to:'', label:'' };
 
   let s = rawName;
-  s = s.replace(/^\s*\d+\s*·\s*/,'');
+  s = s.replace(/^\s*[^\s·]+\s*·\s*/,'');
   s = s.replace(/\s*\((ida|vuelta)\)\s*$/i,'');
 
   let parts = s.split('→');
@@ -374,12 +382,17 @@ function applyWrTextsToWrItem(item, direccion){
     titleEl.textContent = wrBuildTituloPrincipal(meta, rt);
   }
 
-  if (distEl){
+if (distEl){
     let ori = meta && meta.distrito_origen ? meta.distrito_origen : '';
     let des = meta && meta.distrito_destino ? meta.distrito_destino : '';
     if (direccion === 'vuelta') [ori, des] = [des, ori];
     distEl.textContent = (ori || des) ? `${ori} \u2192 ${des}` : '';
     if (!distEl.textContent && rt && rt.subtitle) distEl.textContent = rt.subtitle;
+    // Si no hay distrito pero sí alias, bajar el alias al subtítulo dist
+    if (!distEl.textContent){
+      const rawAlias = meta && meta.alias ? String(meta.alias).trim() : '';
+      if (rawAlias && !wrIsPlaceholder(rawAlias)) distEl.textContent = rawAlias;
+    }
   }
 
   if (routeEl){
@@ -394,7 +407,7 @@ function applyWrTextsToWrItem(item, direccion){
     const rawName = (direccion === 'vuelta' && rt && rt.nameVuelta) ? rt.nameVuelta : (rt && rt.name);
     if (rawName){
       let base = String(rawName).trim();
-      base = base.replace(/^\s*\d+\s*·\s*/, '');
+      base = base.replace(/^\s*[^\s·]+\s*·\s*/, '');
       base = base.replace(/\s*\((ida|vuelta)\)\s*$/i, '');
       base = base.replace(/wikiroutes\s*\d*/ig, '').trim();
       const arrow = base.match(/^(.+?)\s*→\s*(.+)$/);

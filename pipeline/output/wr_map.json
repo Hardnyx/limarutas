@@ -22924,25 +22924,25 @@
       "folder": "data/processed/transporte/route_153145",
       "trip": 1,
       "color": "#0657AC",
-      "name": "AD-N · Unger → Nuevo Aeropuerto"
+      "name": "AD-N · Av. Naranjal → Nuevo Aeropuerto"
     },
     "AD-N-vuelta": {
       "folder": "data/processed/transporte/route_153145",
       "trip": 2,
       "color": "#0657AC",
-      "name": "AD-N · Nuevo Aeropuerto → Unger"
+      "name": "AD-N · Nuevo Aeropuerto → Av. Naranjal"
     },
     "AD-S-ida": {
       "folder": "data/processed/transporte/route_153460",
       "trip": 1,
       "color": "#F22536",
-      "name": "AD-S · La Doce (Mercado) → Nuevo Aeropuerto"
+      "name": "AD-S · Av. Brasil → Nuevo Aeropuerto"
     },
     "AD-S-vuelta": {
       "folder": "data/processed/transporte/route_153460",
       "trip": 2,
       "color": "#F22536",
-      "name": "AD-S · Nuevo Aeropuerto → La Doce (Mercado)"
+      "name": "AD-S · Nuevo Aeropuerto → Av. Brasil"
     },
     "C0003a-ida": {
       "folder": "data/processed/transporte/route_83131",
@@ -23548,13 +23548,13 @@
       "folder": "data/processed/transporte/route_52587",
       "trip": 1,
       "color": "#00B296",
-      "name": "ESI-1 · CEV Polar → CEV Polar"
+      "name": "ESI-1 · Óvalo Gutiérrez, Salaverry, Parque SMP"
     },
     "ESI-2-ida": {
       "folder": "data/processed/transporte/route_52610",
       "trip": 1,
       "color": "#00B369",
-      "name": "ESI-2 · Guardia Civil → Guardia Civil"
+      "name": "ESI-2 · Municipalidad, Calle Barcelona, Plaza Grau"
     },
     "ICR02b-ida": {
       "folder": "data/processed/transporte/route_71838",

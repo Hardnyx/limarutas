@@ -459,8 +459,8 @@ IO89,1482,San Martin De Porres,Chorrillos,MULTIPLES AQUARIUS EXPRESS,,Desconocid
 3816,1490,San Juan De Lurigancho,Villa Maria Del Triunfo,ESPECIAL SOLIDARIDAD,,Desconocido,#3D6B7A,atu_pdf
 CR20,1491,Callao,Villa Maria Del Triunfo,CONSORCIO GRUPO SALAMANCA,,Desconocido,#4A7A8A,atu_pdf
 8509,1492,Villa El Salvador,Los Olivos,SALVADOR,,Desconocido,#527585,atu_pdf
-,153145,,,AeroDirecto,AD,Norte,#0657AC,manual
-,153460,,,AeroDirecto,AD,Sur,#F22536,manual
-,153593,,,AeroDirecto,AD,Centro,#3B82C4,manual
+,AD-C,,,AeroDirecto,AD,Centro,#3B82C4,manual
+,AD-N,,,AeroDirecto,AD,Norte,#0657AC,manual
+,AD-S,,,AeroDirecto,AD,Sur,#F22536,manual
 ,ESI-1,,,Expreso San Isidro,ESI,Periferia San Isidro,#00B296,manual
 ,ESI-2,,,Expreso San Isidro,ESI,Norte Centro Financiero,#00B369,manual
