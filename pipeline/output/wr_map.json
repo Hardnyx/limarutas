@@ -11361,37 +11361,37 @@
     "153145-ida": {
       "folder": "data/processed/transporte/route_153145",
       "trip": 1,
-      "color": "#888888",
+      "color": "#0657AC",
       "name": "153145 · Unger → Nuevo Aeropuerto"
     },
     "153145-vuelta": {
       "folder": "data/processed/transporte/route_153145",
       "trip": 2,
-      "color": "#888888",
+      "color": "#0657AC",
       "name": "153145 · Nuevo Aeropuerto → Unger"
     },
     "153460-ida": {
       "folder": "data/processed/transporte/route_153460",
       "trip": 1,
-      "color": "#888888",
+      "color": "#F22536",
       "name": "153460 · La Doce (Mercado) → Nuevo Aeropuerto"
     },
     "153460-vuelta": {
       "folder": "data/processed/transporte/route_153460",
       "trip": 2,
-      "color": "#888888",
+      "color": "#F22536",
       "name": "153460 · Nuevo Aeropuerto → La Doce (Mercado)"
     },
     "153593-ida": {
       "folder": "data/processed/transporte/route_153593",
       "trip": 1,
-      "color": "#888888",
+      "color": "#3B82C4",
       "name": "153593 · Plaza San Martín → Nuevo Aeropuerto"
     },
     "153593-vuelta": {
       "folder": "data/processed/transporte/route_153593",
       "trip": 2,
-      "color": "#888888",
+      "color": "#3B82C4",
       "name": "153593 · Nuevo Aeropuerto → Plaza San Martín"
     },
     "153624-ida": {
@@ -23547,13 +23547,13 @@
     "ESI-1-ida": {
       "folder": "data/processed/transporte/route_52587",
       "trip": 1,
-      "color": "#888888",
+      "color": "#00B296",
       "name": "ESI-1 · CEV Polar → CEV Polar"
     },
     "ESI-2-ida": {
       "folder": "data/processed/transporte/route_52610",
       "trip": 1,
-      "color": "#888888",
+      "color": "#00B369",
       "name": "ESI-2 · Guardia Civil → Guardia Civil"
     },
     "ICR02b-ida": {

@@ -725,17 +725,36 @@ def main():
 
     # 4. Aplicar overrides manuales conocidos
     overrides = {
-        '1001': {'empresa_operadora': 'Tablada 2000', 'empresa_abrev': 'ETTADOSA',
-                 'alias': 'La Tablada', 'color_hex': '#2E7D32'},  # verde bosque
-        '1002': {'empresa_operadora': 'Urano Tours', 'empresa_abrev': '',
-                 'alias': 'La U', 'color_hex': '#66BB6A'},  # verde claro
+        '1001':   {'empresa_operadora': 'Tablada 2000', 'empresa_abrev': 'ETTADOSA',
+                   'alias': 'La Tablada', 'color_hex': '#2E7D32'},
+        '1002':   {'empresa_operadora': 'Urano Tours', 'empresa_abrev': '',
+                   'alias': 'La U', 'color_hex': '#66BB6A'},
+        '153145': {'empresa_operadora': 'AeroDirecto', 'empresa_abrev': 'AD',
+                   'alias': 'Norte', 'color_hex': '#0657AC', 'fuente': 'manual'},
+        '153460': {'empresa_operadora': 'AeroDirecto', 'empresa_abrev': 'AD',
+                   'alias': 'Sur', 'color_hex': '#F22536', 'fuente': 'manual'},
+        '153593': {'empresa_operadora': 'AeroDirecto', 'empresa_abrev': 'AD',
+                   'alias': 'Centro', 'color_hex': '#3B82C4', 'fuente': 'manual'},
+        'ESI-1':  {'empresa_operadora': 'Expreso San Isidro', 'empresa_abrev': 'ESI',
+                   'alias': 'Periferia San Isidro', 'color_hex': '#00B296', 'fuente': 'manual'},
+        'ESI-2':  {'empresa_operadora': 'Expreso San Isidro', 'empresa_abrev': 'ESI',
+                   'alias': 'Norte Centro Financiero', 'color_hex': '#00B369', 'fuente': 'manual'},
     }
     for cod, vals in overrides.items():
-        if cod in maestro:
-            maestro[cod].update(vals)
+        if cod not in maestro:
+            maestro[cod] = {'codigo_antiguo': '', 'codigo_nuevo': cod,
+                            'distrito_origen': '', 'distrito_destino': '',
+                            'empresa_operadora': 'Desconocido', 'empresa_abrev': '',
+                            'alias': 'Desconocido', 'color_hex': '#888888', 'fuente': 'manual'}
+        maestro[cod].update(vals)
 
     # 5. Ordenar y escribir
-    filas = sorted(maestro.values(), key=lambda r: int(r['codigo_nuevo']))
+    def sort_key(r):
+        try:
+            return (0, int(r['codigo_nuevo']), '')
+        except (ValueError, TypeError):
+            return (1, 0, r['codigo_nuevo'])
+    filas = sorted(maestro.values(), key=sort_key)
 
     campos = ['codigo_antiguo', 'codigo_nuevo', 'distrito_origen', 'distrito_destino',
               'empresa_operadora', 'empresa_abrev', 'alias', 'color_hex', 'fuente']
