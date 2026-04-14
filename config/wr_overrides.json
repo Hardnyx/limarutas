@@ -1854,13 +1854,13 @@
     "color": "#888888"
   },
   "route_153145": {
-    "display_id": "153145",
-    "color": "#888888",
-    "name": "153145 · Unger → Nuevo Aeropuerto"
+    "display_id": "AD-N",
+    "color": "#0657AC",
+    "name": "AD-N · Unger → Nuevo Aeropuerto"
   },
   "153145": {
-    "display_id": "153145",
-    "color": "#888888"
+    "display_id": "AD-N",
+    "color": "#0657AC"
   },
   "route_153146": {
     "display_id": "1343",
@@ -2205,13 +2205,13 @@
     "color": "#00DB34"
   },
   "route_153460": {
-    "display_id": "153460",
-    "color": "#888888",
-    "name": "153460 · La Doce (Mercado) → Nuevo Aeropuerto"
+    "display_id": "AD-S",
+    "color": "#F22536",
+    "name": "AD-S · La Doce (Mercado) → Nuevo Aeropuerto"
   },
   "153460": {
-    "display_id": "153460",
-    "color": "#888888"
+    "display_id": "AD-S",
+    "color": "#F22536"
   },
   "route_153462": {
     "display_id": "1294",
@@ -2466,13 +2466,13 @@
     "color": "#4F7F90"
   },
   "route_153593": {
-    "display_id": "153593",
-    "color": "#888888",
-    "name": "153593 · Plaza San Martín → Nuevo Aeropuerto"
+    "display_id": "AD-C",
+    "color": "#3B82C4",
+    "name": "AD-C · Plaza San Martín → Nuevo Aeropuerto"
   },
   "153593": {
-    "display_id": "153593",
-    "color": "#888888"
+    "display_id": "AD-C",
+    "color": "#3B82C4"
   },
   "route_153599": {
     "display_id": "1228",
@@ -5896,12 +5896,12 @@
   },
   "route_52587": {
     "display_id": "ESI-1",
-    "color": "#888888",
+    "color": "#00B296",
     "name": "ESI-1 · CEV Polar → CEV Polar"
   },
   "52587": {
     "display_id": "ESI-1",
-    "color": "#888888"
+    "color": "#00B296"
   },
   "route_52609": {
     "display_id": "516",
@@ -5914,12 +5914,12 @@
   },
   "route_52610": {
     "display_id": "ESI-2",
-    "color": "#888888",
+    "color": "#00B369",
     "name": "ESI-2 · Guardia Civil → Guardia Civil"
   },
   "52610": {
     "display_id": "ESI-2",
-    "color": "#888888"
+    "color": "#00B369"
   },
   "route_52727": {
     "display_id": "52727",

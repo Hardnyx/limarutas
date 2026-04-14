@@ -343,6 +343,7 @@ def main() -> None:
 
         # Respetar override manual si existe para esta carpeta o route_id
         _ovr = existing_overrides.get(folder.name) or (existing_overrides.get(route_id) if route_id else None)
+        lookup_id = display_id or route_id
         if _ovr and _ovr.get("display_id"):
             display_id = _ovr["display_id"]
             display_id_source = "override"
@@ -367,11 +368,11 @@ def main() -> None:
             })
 
         # Primero intentamos matchear display_id como codigo_nuevo
-        lr = lista.get(display_id)
+        lr = lista.get(lookup_id) or lista.get(display_id)
 
         # Si no hay match directo por codigo_nuevo, probar como codigo_antiguo (solo numérico)
         if lr is None:
-            normalized = (display_id or "").strip()
+            normalized = (lookup_id or "").strip()
             if normalized.isdigit():
                 lr_alt = lista_by_codigo_antiguo.get(normalized)
                 if lr_alt is not None:

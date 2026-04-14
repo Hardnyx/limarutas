@@ -108,7 +108,7 @@
   "aerodirecto": {
     "mode": "only",
     "only": [
-      "153593", "153460", "153145"
+      "AD-N", "AD-S", "AD-C"
     ]
   },
   "otros": {
