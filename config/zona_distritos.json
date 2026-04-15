@@ -1,0 +1,41 @@
+{
+  "_nota": "Sistema de zonas territoriales inferido empiricamente del patron de codigos de 4 digitos del transporte urbano de Lima (pre-PRR 2025). El primer digito codifica la zona de origen y el segundo la zona de destino. No existe documentacion oficial que lo confirme; fue verificado cruzando los endpoints reales de Wikiroutes con el CSV maestro de rutas.",
+  "zonas": {
+    "1": {
+      "nombre": "Norte extremo",
+      "distritos": ["Carabayllo", "Puente Piedra", "Comas", "Ancón", "Santa Rosa"]
+    },
+    "2": {
+      "nombre": "Norte medio",
+      "distritos": ["San Martín de Porres", "Rímac", "Independencia", "Los Olivos"]
+    },
+    "3": {
+      "nombre": "Noreste",
+      "distritos": ["San Juan de Lurigancho", "El Agustino"]
+    },
+    "4": {
+      "nombre": "Este",
+      "distritos": ["Ate", "Santa Anita", "Lurigancho (Chosica)", "La Molina", "Cieneguilla", "Chaclacayo"]
+    },
+    "5": {
+      "nombre": "Centro y Centro-Suroeste",
+      "distritos": ["Lima (Cercado)", "Breña", "Jesús María", "San Miguel", "Magdalena del Mar", "Pueblo Libre"]
+    },
+    "6": {
+      "nombre": "Centro financiero y Este medio",
+      "distritos": ["La Victoria", "Miraflores", "Lince", "San Isidro", "San Borja", "San Luis"]
+    },
+    "7": {
+      "nombre": "Sur",
+      "distritos": ["Chorrillos", "San Juan de Miraflores", "Surquillo", "Santiago de Surco", "Barranco"]
+    },
+    "8": {
+      "nombre": "Sur extremo",
+      "distritos": ["Villa El Salvador", "Villa María del Triunfo", "Pachacámac", "Lurín", "San Bartolo", "Punta Hermosa", "Punta Negra"]
+    },
+    "9": {
+      "nombre": "Callao y Ventanilla",
+      "distritos": ["Callao (Cercado)", "Ventanilla", "Carmen de la Legua-Reynoso", "La Perla", "La Punta", "Bellavista", "Mi Perú"]
+    }
+  }
+}
