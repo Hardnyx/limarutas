@@ -97,6 +97,8 @@ function wrFilterRoutesByGroup(groupName, routes){
     cfg = catalog.aerodirecto || null;
   } else if (groupName === 'expreso_san_isidro'){
     cfg = (catalog.otros && catalog.otros.expreso_san_isidro) || null;
+  } else if (groupName === 'semiformal'){
+    cfg = catalog.semiformal || null;
   } else {
     return routes || [];
   }
@@ -138,7 +140,6 @@ function wrFilterRoutesByGroup(groupName, routes){
     return true;
   });
 }
-
 /* =========================
    Texto: título, empresa, extremos
    ========================= */
@@ -643,4 +644,9 @@ export async function fillAeroList(){
 export async function fillOtrosList(){
   const wr = state.systems.wr;
   await fillWrGroup(wr.ui.listOtros, 'expreso_san_isidro', 'wrOtros');
+}
+
+export async function fillSemiformalList(){
+  const wr = state.systems.wr;
+  await fillWrGroup(wr.ui.listSemi, 'semiformal', 'wrSemi');
 }

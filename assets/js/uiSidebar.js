@@ -3,7 +3,7 @@
 
 export { fillMetList, fillAlimList, fillMetroList } from './uiSidebar.systems.js';
 export { fillCorrList } from './uiSidebar.corr.js';
-export { fillWrList, fillAeroList, fillOtrosList } from './uiSidebar.wr.js';
+export { fillWrList, fillAeroList, fillOtrosList, fillSemiformalList } from './uiSidebar.wr.js';
 
 export {
   bulk,
@@ -17,5 +17,6 @@ export {
   onLevel1ChangeMetro,
   onLevel1ChangeWr,
   onLevel1ChangeWrAero,
-  onLevel1ChangeWrOtros
+  onLevel1ChangeWrOtros,
+  onLevel1ChangeWrSemi
 } from './uiSidebar.hierarchy.js';

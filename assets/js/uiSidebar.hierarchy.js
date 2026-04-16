@@ -55,6 +55,10 @@ export function routeCheckboxesOf(systemId, groupChk=null){
     return $$('#p-wr-esi .item input[type=checkbox]');
   }
 
+  if (systemId==='wrSemi'){
+    return $$('#p-wr-semi .item input[type=checkbox]');
+  }
+
   return [];
 }
 
@@ -93,7 +97,7 @@ export function setLeafChecked(systemId, leafChk, checked, {silentFit=false}={})
   }
 
   // Wikiroutes: soporta ítems con ida/vuelta o simples
-  if (systemId === 'wr' || systemId === 'wrAero' || systemId === 'wrOtros') {
+  if (systemId === 'wr' || systemId === 'wrAero' || systemId === 'wrOtros' || systemId === 'wrSemi') {
     const ida = leafChk.dataset.ida;
     const vta = leafChk.dataset.vuelta;
 
@@ -220,6 +224,14 @@ export function onLevel1ChangeWrOtros(){
   syncAllTri();
 }
 
+export function onLevel1ChangeWrSemi(){
+  const ui = state.systems.wr.ui;
+  if (!ui.chkSemi) return;
+  const v = ui.chkSemi.checked;
+  bulk(()=> setLevel2Checked('wrSemi', ui.chkSemi, v, {silentFit:true}));
+  syncAllTri();
+}
+
 /* =========================
    Sync tri-state
    ========================= */
@@ -339,10 +351,22 @@ export function syncTriFromLeaf(systemId){
     }
     return;
   }
+
+  if (systemId === 'wrSemi'){
+    const top = state.systems.wr.ui.chkSemi;
+    if (!top) return;
+    const leaves = routeCheckboxesOf('wrSemi');
+    const total = leaves.length;
+    const checked = leaves.filter(c => c.checked).length;
+    top.indeterminate = checked > 0 && checked < total;
+    top.checked = total > 0 && checked === total;
+    return;
+  }
+
 }
 
 export function syncAllTri(){
-  ['met','alim','corr','metro','wr','wrAero','wrOtros'].forEach(syncTriFromLeaf);
+  ['met','alim','corr','metro','wr','wrAero','wrOtros','wrSemi'].forEach(syncTriFromLeaf);
 }
 
 /* =========================
@@ -368,6 +392,10 @@ export function wireHierarchy(){
   }
   if (state.systems.wr.ui.chkOtros){
     state.systems.wr.ui.chkOtros.addEventListener('change', onLevel1ChangeWrOtros);
+  }
+
+  if (state.systems.wr.ui.chkSemi){
+    state.systems.wr.ui.chkSemi.addEventListener('change', onLevel1ChangeWrSemi);
   }
 
   if (state.systems.wr.ui.chkEsi){

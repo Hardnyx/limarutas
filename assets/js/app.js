@@ -21,6 +21,7 @@ import {
   fillMetroList,
   fillWrList,
   fillAeroList,
+  fillSemiformalList,
   fillOtrosList,
   wireHierarchy,
   setLevel2Checked,
@@ -30,6 +31,7 @@ import {
   onLevel1ChangeWr,
   onLevel1ChangeWrAero,
   onLevel1ChangeWrOtros,
+  onLevel1ChangeWrSemi,
   syncAllTri
 } from './uiSidebar.js';
 import { wirePanelTogglesOnce } from './panels.js';
@@ -456,6 +458,7 @@ async function init(){
   setListPlaceholder($('#p-metro'), 'Cargando Metro...');
   setListPlaceholder($('#p-wr'), 'Cargando Transporte público...');
 
+  setListPlaceholder(pickFirst('#p-wr-semi-body', '#p-wr-semi'), 'Cargando Transporte semiformal...');
   setListPlaceholder(pickFirst('#p-wr-aero-body', '#p-wr-aero'), 'Cargando AeroDirecto...');
   setListPlaceholder($('#p-wr-esi'), 'Cargando Otros...');
 
@@ -495,6 +498,7 @@ async function init(){
   const topO = document.getElementById('chk-wr-otros');
   if (topO) { topO.checked = false; topO.indeterminate = false; }
 
+  $$('#p-wr-semi .item input[type="checkbox"]').forEach(chk => { chk.checked = false; });
   $$('#p-wr .item input[type="checkbox"]').forEach(chk => { chk.checked = false; });
   $$('#p-wr-aero .item input[type="checkbox"]').forEach(chk => { chk.checked = false; });
   $$('#p-wr-otros .item input[type="checkbox"]').forEach(chk => { chk.checked = false; });
@@ -535,16 +539,19 @@ async function buildUI(){
   state.systems.wr.ui.list      = $('#p-wr');
   state.systems.wr.ui.chkAll    = $('#chk-wr');
 
+  state.systems.wr.ui.listSemi  = pickFirst('#p-wr-semi-body', '#p-wr-semi');
   state.systems.wr.ui.listAero  = pickFirst('#p-wr-aero-body', '#p-wr-aero');
   state.systems.wr.ui.chkAero   = $('#chk-wr-aero');
 
   state.systems.wr.ui.listOtros = $('#p-wr-esi');
   state.systems.wr.ui.chkOtros  = $('#chk-wr-otros');
   state.systems.wr.ui.chkEsi    = $('#chk-wr-esi');
+  state.systems.wr.ui.chkSemi  = $('#chk-wr-semi');
 
   fillMetList();
   fillAlimList();
   fillCorrList();
+  if (state.systems.wr.ui.listSemi) await fillSemiformalList();
   fillMetroList();
 
   await fillWrList();
@@ -620,6 +627,12 @@ async function buildUI(){
           state.systems.wr.ui.chkOtros.checked = false;
           onLevel1ChangeWrOtros();
         }
+
+        if (state.systems.wr.ui.chkSemi){
+          state.systems.wr.ui.chkSemi.checked = false;
+          onLevel1ChangeWrSemi();
+        }
+
       });
       syncAllTri();
     });
