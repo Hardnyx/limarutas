@@ -22,6 +22,7 @@ import {
   fillWrList,
   fillAeroList,
   fillSemiformalList,
+  wireWrColorFilter,
   fillOtrosList,
   wireHierarchy,
   setLevel2Checked,
@@ -559,6 +560,7 @@ async function buildUI(){
   if (state.systems.wr.ui.listOtros) await fillOtrosList();
 
   wireHierarchy();
+  wireWrColorFilter();
 
   const btnLight = $('#btnLight');
   const btnDark  = $('#btnDark');

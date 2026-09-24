@@ -3,7 +3,7 @@
 
 export { fillMetList, fillAlimList, fillMetroList } from './uiSidebar.systems.js';
 export { fillCorrList } from './uiSidebar.corr.js';
-export { fillWrList, fillAeroList, fillOtrosList, fillSemiformalList } from './uiSidebar.wr.js';
+export { fillWrList, fillAeroList, fillOtrosList, fillSemiformalList, wireWrColorFilter } from './uiSidebar.wr.js';
 
 export {
   bulk,

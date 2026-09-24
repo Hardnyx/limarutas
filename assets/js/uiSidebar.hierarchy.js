@@ -51,19 +51,19 @@ export function routeCheckboxesOf(systemId, groupChk=null){
   }
 
   if (systemId==='wr'){
-    return $$('#p-wr .item input[type=checkbox]');
+    return $$('#p-wr .item:not(.is-color-filtered) input[type=checkbox]');
   }
 
   if (systemId==='wrAero'){
-    return $$('#p-wr-aero .item input[type=checkbox]');
+    return $$('#p-wr-aero .item:not(.is-color-filtered) input[type=checkbox]');
   }
 
   if (systemId==='wrOtros'){
-    return $$('#p-wr-esi .item input[type=checkbox]');
+    return $$('#p-wr-esi .item:not(.is-color-filtered) input[type=checkbox]');
   }
 
   if (systemId==='wrSemi'){
-    return $$('#p-wr-semi .item input[type=checkbox]');
+    return $$('#p-wr-semi .item:not(.is-color-filtered) input[type=checkbox]');
   }
 
   return [];
