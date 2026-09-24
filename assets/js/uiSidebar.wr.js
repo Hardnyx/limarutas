@@ -21,44 +21,41 @@ function wrIsDefaultColor(color){
   return !c || WR_DEFAULT_COLORS.has(c);
 }
 
-const WR_LISTS = [
-  ['wr',      '#p-wr'],
-  ['wrSemi',  '#p-wr-semi'],
-  ['wrAero',  '#p-wr-aero'],
-  ['wrOtros', '#p-wr-esi']
-];
-
-// mode: 'all' | 'real' | 'default'. Las rutas ocultas se desmarcan.
+// mode: 'all' | 'real' | 'default'. Solo Transporte público; las rutas
+// ocultas se desmarcan y las casillas de grupo ignoran las ocultas.
 export function applyWrColorFilter(mode){
-  let real = 0;
-  let def = 0;
+  const counts = { all: 0, real: 0, default: 0 };
   bulk(() => {
-    for (const [systemId, sel] of WR_LISTS){
-      $$(`${sel} .item`).forEach(item => {
-        const kind = item.dataset.colorKind;
-        if (kind === 'real') real++;
-        else if (kind === 'default') def++;
+    $$('#p-wr .item').forEach(item => {
+      const kind = item.dataset.colorKind;
+      counts.all++;
+      if (kind in counts) counts[kind]++;
 
-        const hide = mode !== 'all' && kind !== mode;
-        item.classList.toggle('is-color-filtered', hide);
-        if (hide){
-          const chk = item.querySelector('.item-head input[type=checkbox]');
-          if (chk && chk.checked) setLeafChecked(systemId, chk, false);
-        }
-      });
-    }
+      const hide = mode !== 'all' && kind !== mode;
+      item.classList.toggle('is-color-filtered', hide);
+      if (hide){
+        const chk = item.querySelector('.item-head input[type=checkbox]');
+        if (chk && chk.checked) setLeafChecked('wr', chk, false);
+      }
+    });
   });
   syncAllTri();
 
-  const counts = $('#wrColorCounts');
-  if (counts) counts.textContent = `${real} con color asignado · ${def} con color por defecto`;
+  $$('#wrColorFilter [data-count]').forEach(span => {
+    span.textContent = `(${counts[span.dataset.count]})`;
+  });
+  $$('#wrColorFilter .segbtn-mini').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.mode === mode);
+  });
 }
 
 export function wireWrColorFilter(){
-  const sel = $('#selWrColor');
-  if (!sel) return;
-  sel.value = 'all';
-  sel.addEventListener('change', () => applyWrColorFilter(sel.value));
+  const box = $('#wrColorFilter');
+  if (!box) return;
+  box.addEventListener('click', (e) => {
+    const btn = e.target.closest('.segbtn-mini[data-mode]');
+    if (btn) applyWrColorFilter(btn.dataset.mode);
+  });
   applyWrColorFilter('all');
 }
 
@@ -587,7 +584,7 @@ function makeWrItem(rt, metaByCodigo, routesById, extremes, systemId='wr'){
         'data-system': systemId
       };
 
-  const chk  = el('input', Object.assign({ type:'checkbox', checked:false }, dataAttrs));
+  const chk  = el('input', Object.assign({ type:'checkbox' }, dataAttrs));
   const head = el('div',{ class:'item-head' }, left, chk);
 
   const body = hasBothDirs

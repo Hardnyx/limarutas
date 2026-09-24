@@ -2,6 +2,7 @@
 import { state } from './config.js';
 import { $, $$ } from './utils.js';
 import { onToggleService, setWikiroutesVisible, beginFitBatch, endFitBatch } from './mapLayers.js';
+import { refreshRecents } from './recents.js';
 
 /* =========================
    Utilidad de "operaciones en lote"
@@ -15,6 +16,7 @@ export function bulk(fn){
   try { fn(); } finally {
     if (--bulkDepth === 0) state.bulk = false;
     void endFitBatch();
+    if (bulkDepth === 0) refreshRecents();
   }
 }
 
@@ -55,15 +57,15 @@ export function routeCheckboxesOf(systemId, groupChk=null){
   }
 
   if (systemId==='wrAero'){
-    return $$('#p-wr-aero .item:not(.is-color-filtered) input[type=checkbox]');
+    return $$('#p-wr-aero .item input[type=checkbox]');
   }
 
   if (systemId==='wrOtros'){
-    return $$('#p-wr-esi .item:not(.is-color-filtered) input[type=checkbox]');
+    return $$('#p-wr-esi .item input[type=checkbox]');
   }
 
   if (systemId==='wrSemi'){
-    return $$('#p-wr-semi .item:not(.is-color-filtered) input[type=checkbox]');
+    return $$('#p-wr-semi .item input[type=checkbox]');
   }
 
   return [];

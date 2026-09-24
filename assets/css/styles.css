@@ -516,25 +516,132 @@ body {
   color: var(--text-muted);
 }
 
-/* Depuración: filtro por color de ruta */
+/* Depuración: filtro por color de ruta (Transporte público) */
 .item.is-color-filtered {
   display: none;
 }
 
-.select {
-  width: 100%;
-  margin-top: 6px;
-  padding: 6px 8px;
-  border: 1px solid var(--border-soft);
-  border-radius: 8px;
-  background: var(--bg-panel-soft);
-  color: var(--text-main);
-  font: inherit;
-  font-size: 12px;
+.wr-debug {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 6px 7px;
+  margin-bottom: 4px;
+  border-radius: 10px;
+  border: 1px dashed rgba(250, 204, 21, 0.45);
+  background: rgba(250, 204, 21, 0.06);
 }
 
-#wrColorCounts {
-  margin-top: 6px;
-  font-size: 11px;
+.wr-debug-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #facc15;
+}
+
+.wr-debug-seg {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.wr-debug-seg .segbtn-mini span {
+  opacity: 0.75;
+}
+
+/* Rutas recientes */
+.recent-panel[hidden] {
+  display: none;
+}
+
+.recent-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  font-size: 13px;
+  color: var(--text-main);
+}
+
+.recent-head .title {
+  flex: 1;
+  font-weight: 600;
+}
+
+.recent-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 4px 4px 6px;
+  border-top: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+.recent-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 4px 4px 7px;
+  border-radius: 10px;
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+.recent-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+  cursor: pointer;
+}
+
+.recent-row .tag,
+.recent-row img {
+  flex: none;
+}
+
+.recent-row img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+
+.recent-text {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.recent-name {
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.recent-sub {
+  font-size: 10px;
   color: var(--text-muted);
+}
+
+.recent-remove {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.recent-remove:hover,
+.recent-remove:focus-visible {
+  color: var(--text-main);
+  background: rgba(148, 163, 184, 0.15);
 }
