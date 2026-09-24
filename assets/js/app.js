@@ -39,6 +39,7 @@ import {
 import { wirePanelTogglesOnce } from './panels.js';
 import { setupSearch } from './search.js';
 import { wireRecents } from './recents.js';
+import { wireHoverDebug } from './hoverDebug.js'; // DEPURACIÓN AD HOC (temporal)
 
 /* ===========================
    Helpers UI de carga
@@ -659,6 +660,7 @@ async function buildUI(){
 
   setupSearch();
   wireRecents();
+  wireHoverDebug(); // DEPURACIÓN AD HOC (temporal)
 }
 
 // Lanzar
