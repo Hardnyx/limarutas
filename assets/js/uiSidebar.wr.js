@@ -1,8 +1,66 @@
 // uiSidebar.wr.js
 import { state } from './config.js';
-import { el, splitCsvLine } from './utils.js';
+import { $, $$, el, splitCsvLine } from './utils.js';
 import { setWikiroutesVisible } from './mapLayers.js';
-import { syncTriFromLeaf } from './uiSidebar.hierarchy.js';
+import { syncTriFromLeaf, syncAllTri, bulk, setLeafChecked } from './uiSidebar.hierarchy.js';
+
+/* =========================
+   Depuración: rutas con color por defecto
+   ========================= */
+
+// COLORES_PLACEHOLDER de build_lista_rutas_atu.py (azul metálico),
+// el gris de wr_sync_indexes.py y el fallback de app.js
+const WR_DEFAULT_COLORS = new Set([
+  '#3D6B7A', '#4A7A8A', '#527585', '#5C8FA0', '#4F7F90',
+  '#6595A5', '#3A6878', '#608090', '#456878', '#5A8595',
+  '#888888', '#00008C'
+]);
+
+function wrIsDefaultColor(color){
+  const c = String(color || '').trim().toUpperCase();
+  return !c || WR_DEFAULT_COLORS.has(c);
+}
+
+const WR_LISTS = [
+  ['wr',      '#p-wr'],
+  ['wrSemi',  '#p-wr-semi'],
+  ['wrAero',  '#p-wr-aero'],
+  ['wrOtros', '#p-wr-esi']
+];
+
+// mode: 'all' | 'real' | 'default'. Las rutas ocultas se desmarcan.
+export function applyWrColorFilter(mode){
+  let real = 0;
+  let def = 0;
+  bulk(() => {
+    for (const [systemId, sel] of WR_LISTS){
+      $$(`${sel} .item`).forEach(item => {
+        const kind = item.dataset.colorKind;
+        if (kind === 'real') real++;
+        else if (kind === 'default') def++;
+
+        const hide = mode !== 'all' && kind !== mode;
+        item.classList.toggle('is-color-filtered', hide);
+        if (hide){
+          const chk = item.querySelector('.item-head input[type=checkbox]');
+          if (chk && chk.checked) setLeafChecked(systemId, chk, false);
+        }
+      });
+    }
+  });
+  syncAllTri();
+
+  const counts = $('#wrColorCounts');
+  if (counts) counts.textContent = `${real} con color asignado · ${def} con color por defecto`;
+}
+
+export function wireWrColorFilter(){
+  const sel = $('#selWrColor');
+  if (!sel) return;
+  sel.value = 'all';
+  sel.addEventListener('change', () => applyWrColorFilter(sel.value));
+  applyWrColorFilter('all');
+}
 
 /* =========================
    Wikiroutes: carga de metadata y extremos
@@ -535,6 +593,7 @@ function makeWrItem(rt, metaByCodigo, routesById, extremes, systemId='wr'){
   const body = hasBothDirs
     ? el('div',{ class:'item' }, head, makeWrDirPairControls(chk))
     : el('div',{ class:'item' }, head);
+  body.dataset.colorKind = wrIsDefaultColor(rt.color) ? 'default' : 'real';
 
   const key = wrCanonicalCode(rt.id);
   body.__wrMeta  = metaByCodigo ? (metaByCodigo[key] || null) : null;

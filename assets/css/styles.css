@@ -515,3 +515,26 @@ body {
   font-size: 11px;
   color: var(--text-muted);
 }
+
+/* Depuración: filtro por color de ruta */
+.item.is-color-filtered {
+  display: none;
+}
+
+.select {
+  width: 100%;
+  margin-top: 6px;
+  padding: 6px 8px;
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+  background: var(--bg-panel-soft);
+  color: var(--text-main);
+  font: inherit;
+  font-size: 12px;
+}
+
+#wrColorCounts {
+  margin-top: 6px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
