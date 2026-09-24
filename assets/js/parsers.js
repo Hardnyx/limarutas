@@ -724,6 +724,16 @@ export async function buildWikiroutesLayer(id, folderPath, opts = {}) {
     const lineLyr = L.geoJSON(lineFC, { style });
     lineLyr.addTo(group);
 
+    // Hover: resaltar la ruta y mostrar qué ruta es
+    if (opts.tooltip) {
+      lineLyr.bindTooltip(opts.tooltip, { sticky: true, direction: 'top', offset: [0, -8], className: 'route-tip' });
+      lineLyr.on('mouseover', e => {
+        e.layer.setStyle({ weight: 8, opacity: 1 });
+        e.layer.bringToFront();
+      });
+      lineLyr.on('mouseout', e => lineLyr.resetStyle(e.layer));
+    }
+
     try {
       const b = lineLyr.getBounds?.();
       if (b) bounds = bounds ? bounds.extend(b) : b;
@@ -741,7 +751,8 @@ export async function buildWikiroutesLayer(id, folderPath, opts = {}) {
     };
 
     const stopLyr = L.geoJSON(pts, {
-      pointToLayer: (_feat, latlng) => L.circleMarker(latlng, stopStyle)
+      // Sin eventos: no tapan el hover de la línea ni cuestan en el hit-test
+      pointToLayer: (_feat, latlng) => L.circleMarker(latlng, { ...stopStyle, interactive: false })
     });
     stopLyr.addTo(stopsGroup);
 

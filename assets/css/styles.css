@@ -645,3 +645,46 @@ body {
   color: var(--text-main);
   background: rgba(148, 163, 184, 0.15);
 }
+
+/* Tooltip de ruta al pasar el mouse */
+.leaflet-tooltip.route-tip {
+  width: max-content;
+  max-width: 300px;
+  white-space: normal;
+  padding: 6px 8px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: 10px;
+  background: rgba(11, 16, 32, 0.95);
+  color: var(--text-main);
+  box-shadow: var(--shadow-soft);
+}
+
+.leaflet-tooltip.route-tip::before {
+  display: none;
+}
+
+.route-tip-body {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.route-tip-tag {
+  flex: none;
+  height: 22px;
+  font-size: 12px;
+}
+
+.route-tip-text {
+  min-width: 0;
+}
+
+.route-tip-title {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.route-tip-sub {
+  font-size: 11px;
+  color: var(--text-muted);
+}
