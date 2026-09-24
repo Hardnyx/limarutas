@@ -1,5 +1,5 @@
 // mapLayers.js
-import { state, getDirFor } from './config.js';
+import { state, getDirFor, CARTO_API_KEY } from './config.js';
 import { $$, uniqueOrder } from './utils.js';
 import { buildWikiroutesLayer } from './parsers.js';
 
@@ -193,6 +193,11 @@ function getStopPane(systemId, svc){
   return PANES.stop;
 }
 
+// Sin key (desarrollo local) CARTO sirve los tiles con marca de agua
+const CARTO_KEY_QS = CARTO_API_KEY && !CARTO_API_KEY.startsWith('__')
+  ? `?key=${encodeURIComponent(CARTO_API_KEY)}`
+  : '';
+
 export function initMap(){
   const map = L.map('map', {
     minZoom: MIN_ZOOM,
@@ -201,12 +206,12 @@ export function initMap(){
   });
 
   const light = L.tileLayer(
-    'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+    `https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png${CARTO_KEY_QS}`,
     { attribution: '&copy; OpenStreetMap & CARTO', maxZoom: MAX_ZOOM }
   ).addTo(map);
 
   const dark = L.tileLayer(
-    'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+    `https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png${CARTO_KEY_QS}`,
     { attribution: '&copy; OpenStreetMap & CARTO', maxZoom: MAX_ZOOM }
   );
 
