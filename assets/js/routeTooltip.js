@@ -15,7 +15,6 @@ function findRouteItem(subId){
 }
 
 export function wrRouteTooltip(subId){
-  const isVuelta = /-vuelta$/i.test(String(subId));
   const item = findRouteItem(subId);
 
   const tagSrc = item?.querySelector('.item-head .left .tag');
@@ -25,18 +24,17 @@ export function wrRouteTooltip(subId){
 
   const title = item?.querySelector('.item-head .name')?.textContent?.trim() || '';
 
-  // El ítem muestra el sentido que está en el mapa: se usa su misma línea
+  // Una sola línea: distritos (dicen más que el nombre de un paradero);
+  // si no hay, los paraderos extremos del sentido que está en el mapa
   const subs = item ? item.querySelectorAll('.item-head .sub') : [];
+  const dist = item?.querySelector('.wr-subtitle-dist')?.textContent?.trim();
   const route = (item?.querySelector('.wr-subtitle-route')?.textContent
     || subs[subs.length - 1]?.textContent || '').trim();
+  const sub = (dist && dist !== title) ? dist : route;
 
   const text = el('div', { class: 'route-tip-text' });
   if (title) text.appendChild(el('div', { class: 'route-tip-title' }, title));
-  const dir = item?.querySelector('.dir-mini') ? (isVuelta ? 'Vuelta' : 'Ida') : '';
-  const sub = [dir, route].filter(Boolean).join(' · ');
   if (sub) text.appendChild(el('div', { class: 'route-tip-sub' }, sub));
-  const dist = item?.querySelector('.wr-subtitle-dist')?.textContent?.trim();
-  if (dist && dist !== title) text.appendChild(el('div', { class: 'route-tip-sub' }, dist));
 
   return el('div', { class: 'route-tip-body' }, tag, text);
 }
