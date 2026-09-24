@@ -671,36 +671,27 @@ export async function buildWikiroutesLayer(id, folderPath, opts = {}) {
   const tryJSON = async (relPath) =>
     fetchJSON(`${folderPath}/${relPath}`).catch(() => null);
 
-  // 1) Trazado
-  let lineRaw = null;
+  // Trazado y paraderos en paralelo; en cada uno, el primer archivo que exista
+  const firstJSON = async (paths) => {
+    for (const rel of paths){
+      const data = await tryJSON(rel);
+      if (data) return data;
+    }
+    return null;
+  };
 
-  if (trip) {
-    // Preferir archivos específicos por viaje, si existen
-    lineRaw = await tryJSON(`route_track_trip${trip}.geojson`);
-  }
-
-  if (!lineRaw) {
-    // Fallback a trazado general
-    lineRaw = await tryJSON('route_track.geojson');
-  }
-  if (!lineRaw) {
-    lineRaw = await tryJSON('line_approx.geojson');
-  }
-
-  // 2) Paraderos
-  let ptsRaw = null;
-
-  if (trip) {
-    // Preferir archivos de paraderos por viaje
-    ptsRaw = await tryJSON(`stops_trip${trip}.geojson`);
-  }
-
-  if (!ptsRaw) {
-    ptsRaw = await tryJSON('stops.geojson');
-  }
-  if (!ptsRaw) {
-    ptsRaw = await tryJSON('stops_from_map.geojson');
-  }
+  const [lineRaw, ptsRaw] = await Promise.all([
+    firstJSON([
+      ...(trip ? [`route_track_trip${trip}.geojson`] : []),
+      'route_track.geojson',
+      'line_approx.geojson'
+    ]),
+    firstJSON([
+      ...(trip ? [`stops_trip${trip}.geojson`] : []),
+      'stops.geojson',
+      'stops_from_map.geojson'
+    ])
+  ]);
 
   if (!lineRaw && !ptsRaw) {
     throw new Error('No se encontraron archivos de trazado ni de paraderos en la carpeta Wikiroutes');
