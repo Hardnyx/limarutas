@@ -1,4 +1,8 @@
 // config.js
+// API key de CARTO Basemaps. El placeholder lo reemplaza el workflow de
+// GitHub Pages con el secreto CARTO_API_KEY; no escribir la key aquí.
+export const CARTO_API_KEY = '__CARTO_API_KEY__';
+
 export const PATHS = {
   data:  'data',
   met:   'data/processed/metropolitano',
