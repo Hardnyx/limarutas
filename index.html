@@ -42,6 +42,15 @@
         </div>
 
         <div id="panels">
+          <!-- Rutas recientes (marcadas una a una o desde el buscador) -->
+          <section class="panel recent-panel" id="p-recent" hidden>
+            <div class="recent-head">
+              <span class="title">Rutas recientes</span>
+              <button type="button" id="btnClearRecents" class="btn small btn-ghost">Limpiar</button>
+            </div>
+            <div id="p-recent-list" class="recent-list"></div>
+          </section>
+
           <!-- Metropolitano -->
           <section class="panel">
             <button class="panel-head" data-target="p-met" aria-expanded="false">
@@ -129,12 +138,23 @@
 
           <!-- Transporte público (Wikiroutes) -->
           <section class="panel">
-            <button class="panel-head" data-target="p-wr" aria-expanded="false">
+            <button class="panel-head" data-target="p-wr-body" aria-expanded="false">
               <span class="chev">▸</span>
               <span class="title">Transporte público</span>
               <input type="checkbox" id="chk-wr" class="right" />
             </button>
-            <div id="p-wr" class="panel-body list" aria-label="Transporte público"></div>
+            <div id="p-wr-body" class="panel-body list">
+              <!-- Depuración: separar rutas con color definido de las que usan el color metálico -->
+              <div class="wr-debug" id="wrColorFilter" role="group" aria-label="Depuración: color de rutas">
+                <div class="wr-debug-label">Depuración · color</div>
+                <div class="wr-debug-seg">
+                  <button type="button" class="segbtn-mini active" data-mode="all">Todas <span data-count="all"></span></button>
+                  <button type="button" class="segbtn-mini" data-mode="real">Color definido <span data-count="real"></span></button>
+                  <button type="button" class="segbtn-mini" data-mode="default">Metálico <span data-count="default"></span></button>
+                </div>
+              </div>
+              <div id="p-wr" aria-label="Transporte público"></div>
+            </div>
           </section>
 
           <!-- AeroDirecto (Wikiroutes) -->
@@ -190,7 +210,7 @@
 
               <div class="group">
                 <label class="label">
-                  <input type="checkbox" id="chkStops" checked />
+                  <input type="checkbox" id="chkStops" />
                   Mostrar paradas
                 </label>
               </div>
@@ -200,16 +220,6 @@
                   <input type="checkbox" id="chkAutoFit" checked />
                   Auto-centrar al seleccionar
                 </label>
-              </div>
-
-              <div class="group">
-                <label class="label" for="selWrColor">Depuración: color de rutas</label>
-                <select id="selWrColor" class="select">
-                  <option value="all">Todas</option>
-                  <option value="real">Solo con color asignado</option>
-                  <option value="default">Solo con color por defecto</option>
-                </select>
-                <div id="wrColorCounts" class="muted"></div>
               </div>
 
               <div class="group">

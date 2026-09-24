@@ -44,7 +44,7 @@ export const state = {
 
   // Opciones
   dir: 'ambas',
-  showStops: true,
+  showStops: false,
   autoFit: true,
 
   // Catálogo
