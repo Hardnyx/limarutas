@@ -1,14 +1,21 @@
 // uiSidebar.hierarchy.js
 import { state } from './config.js';
 import { $, $$ } from './utils.js';
-import { onToggleService, setWikiroutesVisible } from './mapLayers.js';
+import { onToggleService, setWikiroutesVisible, beginFitBatch, endFitBatch } from './mapLayers.js';
 
 /* =========================
    Utilidad de "operaciones en lote"
    ========================= */
+// Encuadra al final el conjunto de rutas que se hayan mostrado en el lote
+let bulkDepth = 0;
 export function bulk(fn){
+  bulkDepth++;
   state.bulk = true;
-  try { fn(); } finally { state.bulk = false; }
+  beginFitBatch();
+  try { fn(); } finally {
+    if (--bulkDepth === 0) state.bulk = false;
+    void endFitBatch();
+  }
 }
 
 /* =========================
@@ -145,9 +152,13 @@ export function setLevel2Checked(systemId, groupChk, checked, {silentFit=false}=
    ========================= */
 function onLevel1ChangeMet(){
   const v = state.systems.met.ui.chkAll.checked;
+  const alim = state.systems.alim.ui;
   bulk(()=>{
     setLevel2Checked('met', state.systems.met.ui.chkReg, v, {silentFit:true});
     setLevel2Checked('met', state.systems.met.ui.chkExp, v, {silentFit:true});
+    if (alim.chkAll){ alim.chkAll.checked = v; alim.chkAll.indeterminate = false; }
+    setLevel2Checked('alim', alim.chkN, v, {silentFit:true});
+    setLevel2Checked('alim', alim.chkS, v, {silentFit:true});
   });
   syncAllTri();
 }
@@ -246,18 +257,23 @@ function syncTriOfGroup(systemId, groupChk){
   groupChk.checked = total > 0 && checked === total;
 }
 
+// Metropolitano (nivel 1) = Regulares + Expresos + Alimentadores
+function syncMetTop(){
+  const b = [state.systems.met.ui.chkReg, state.systems.met.ui.chkExp, state.systems.alim.ui.chkAll];
+  const allChecked = b.every(x => x && x.checked);
+  const anyChecked = b.some(x => x && (x.checked || x.indeterminate));
+
+  const top = state.systems.met.ui.chkAll;
+  top.indeterminate = anyChecked && !allChecked;
+  top.checked = allChecked;
+}
+
 export function syncTriFromLeaf(systemId){
   if (systemId === 'met'){
     syncTriOfGroup('met', state.systems.met.ui.chkReg);
     syncTriOfGroup('met', state.systems.met.ui.chkExp);
 
-    const b = [state.systems.met.ui.chkReg, state.systems.met.ui.chkExp];
-    const allChecked = b.every(x => x && x.checked);
-    const anyChecked = b.some(x => x && (x.checked || x.indeterminate));
-
-    const top = state.systems.met.ui.chkAll;
-    top.indeterminate = anyChecked && !allChecked;
-    top.checked = allChecked;
+    syncMetTop();
     return;
   }
 
@@ -272,6 +288,7 @@ export function syncTriFromLeaf(systemId){
     const top = state.systems.alim.ui.chkAll;
     top.indeterminate = anyChecked && !allChecked;
     top.checked = allChecked;
+    syncMetTop();
     return;
   }
 
