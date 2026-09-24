@@ -2,6 +2,7 @@
 import { state, getDirFor, CARTO_API_KEY } from './config.js';
 import { $$, uniqueOrder } from './utils.js';
 import { buildWikiroutesLayer } from './parsers.js';
+import { wrRouteTooltip } from './routeTooltip.js';
 
 const MIN_ZOOM = 10;
 const MAX_ZOOM = 19;
@@ -675,7 +676,11 @@ async function ensureWrLayer(id){
       await withWrBuildSlot(() => {
         // Si se desmarcó mientras esperaba turno, no descargar nada
         if (wr._wanted?.get(id) === false) return null;
-        return buildWikiroutesLayer(String(id), def.folder, { color: colorToUse, trip: def.trip });
+        return buildWikiroutesLayer(String(id), def.folder, {
+          color: colorToUse,
+          trip: def.trip,
+          tooltip: () => wrRouteTooltip(id)
+        });
       });
 
       // Post-fix: si el layer quedó en SVG y algo pisó el stroke, forzar.
