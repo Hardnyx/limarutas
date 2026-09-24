@@ -200,6 +200,8 @@ const CARTO_KEY_QS = CARTO_API_KEY && !CARTO_API_KEY.startsWith('__')
 
 export function initMap(){
   const map = L.map('map', {
+    // Canvas en vez de SVG: miles de trazos y paraderos sin un nodo DOM cada uno
+    preferCanvas: true,
     minZoom: MIN_ZOOM,
     maxZoom: MAX_ZOOM,
     zoomControl: false
@@ -235,6 +237,10 @@ export function initMap(){
 
   // Crear panes para ordenar el dibujo
   ensureCustomPanes();
+
+  map.on('zoomend', () => {
+    if (wrStopsAllowed() !== wrStopsAllowedLast) syncAllWrStopsVisibility();
+  });
 }
 
 function getStopLatLng(sys, id){
@@ -572,6 +578,33 @@ export function onToggleService(systemId, id, checked, opts={}){
    Wikiroutes con viajes (lazy)
    =========================== */
 
+// Con muchas rutas a la vez, miles de paraderos saturan el render y no se
+// distinguen: se muestran solo de cerca o con pocas rutas visibles.
+const WR_STOPS_MIN_ZOOM = 14;
+const WR_STOPS_MAX_ROUTES = 15;
+let wrStopsAllowedLast = null;
+
+function wrVisibleSet(){
+  const wr = state.systems.wr;
+  if (!wr._visible) wr._visible = new Set();
+  return wr._visible;
+}
+
+function wrStopsAllowed(){
+  return state.map.getZoom() >= WR_STOPS_MIN_ZOOM || wrVisibleSet().size <= WR_STOPS_MAX_ROUTES;
+}
+
+function syncAllWrStopsVisibility(){
+  wrStopsAllowedLast = wrStopsAllowed();
+  wrVisibleSet().forEach(id => syncOneWrStopsVisibility(id));
+}
+
+// Tras mostrar/ocultar una ruta: si cambió el permiso, resincroniza todas
+function refreshWrStops(id){
+  if (wrStopsAllowed() !== wrStopsAllowedLast) syncAllWrStopsVisibility();
+  else syncOneWrStopsVisibility(id);
+}
+
 // Paradas WR on/off según visibilidad de cada subcapa
 function syncOneWrStopsVisibility(id){
   const wr = state.systems.wr;
@@ -580,7 +613,7 @@ function syncOneWrStopsVisibility(id){
   if (!stopSub) return;
 
   const routeVisible = g && state.map.hasLayer(g);
-  const shouldShowStops = routeVisible && state.showStops;
+  const shouldShowStops = routeVisible && state.showStops && wrStopsAllowed();
 
   if (shouldShowStops) {
     if (!state.map.hasLayer(stopSub)) stopSub.addTo(state.map);
@@ -626,6 +659,25 @@ function corrColorForWrId(id){
   return corrColorForId(base);
 }
 
+// Límite de capas WR cargándose a la vez: con cientos de rutas marcadas,
+// lanzar todas las peticiones juntas hace que el servidor corte algunas.
+const WR_MAX_CONCURRENT_BUILDS = 12;
+let wrActiveBuilds = 0;
+const wrBuildQueue = [];
+
+async function withWrBuildSlot(fn){
+  if (wrActiveBuilds >= WR_MAX_CONCURRENT_BUILDS){
+    await new Promise(res => wrBuildQueue.push(res));
+  }
+  wrActiveBuilds++;
+  try { return await fn(); }
+  finally {
+    wrActiveBuilds--;
+    const next = wrBuildQueue.shift();
+    if (next) next();
+  }
+}
+
 async function ensureWrLayer(id){
   const wr = state.systems.wr;
 
@@ -643,7 +695,11 @@ async function ensureWrLayer(id){
       const autoColor = isCorrLikeWrId(id) ? corrColorForWrId(id) : null;
       const colorToUse = autoColor && autoColor !== CORR_FALLBACK ? autoColor : def.color;
 
-      await buildWikiroutesLayer(String(id), def.folder, { color: colorToUse, trip: def.trip });
+      await withWrBuildSlot(() => {
+        // Si se desmarcó mientras esperaba turno, no descargar nada
+        if (wr._wanted?.get(id) === false) return null;
+        return buildWikiroutesLayer(String(id), def.folder, { color: colorToUse, trip: def.trip });
+      });
 
       // Post-fix: si el layer quedó en SVG y algo pisó el stroke, forzar.
       const g = wr.layers?.get(id);
@@ -696,6 +752,8 @@ function hideWrSub(id){
 
   const stopSub = wr.stopLayers?.get(id);
   if (stopSub && state.map.hasLayer(stopSub)) state.map.removeLayer(stopSub);
+
+  if (wrVisibleSet().delete(id)) refreshWrStops(id);
 }
 
 async function showWrSubAsync(id, fit){
@@ -714,7 +772,8 @@ async function showWrSubAsync(id, fit){
   if (!g) return;
 
   if (!state.map.hasLayer(g)) g.addTo(state.map);
-  syncOneWrStopsVisibility(id);
+  wrVisibleSet().add(id);
+  refreshWrStops(id);
 
   if (fit && wr.bounds?.get(id) && state.autoFit) fitTo(wr.bounds.get(id).pad(0.04));
 }
@@ -891,7 +950,7 @@ export function reRenderVisibleSystem(sysId){
 
   $$(sel).forEach(chk=>{
     if (sysId==='wr'){
-      setWikiroutesVisible(chk.dataset.id, chk.checked, { fit:true });
+      setWikiroutesVisible(chk.dataset.id, chk.checked);
     } else {
       if (chk.checked) onToggleService(sysId, chk.dataset.id, true, {silentFit:true});
       else hideService(sysId, chk.dataset.id);
