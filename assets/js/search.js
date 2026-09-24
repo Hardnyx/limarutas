@@ -1,6 +1,6 @@
 // search.js
 import { PATHS, state } from './config.js';
-import { $, el } from './utils.js';
+import { $, el, splitCsvLine } from './utils.js';
 
 function norm(text){
   return String(text || '')
@@ -13,6 +13,13 @@ function extractSiglas(empresa){
   if (!empresa) return '';
   const m = String(empresa).match(/\(([^()]+)\)\s*\)?$/);
   return m ? m[1].trim() : '';
+}
+
+const ALIAS_PLACEHOLDERS = new Set(['ninguno', 'ninguna', 'desconocido', 'desconocida', '?', '¿?', '-', 'sin nombre']);
+
+function cleanAlias(text){
+  const s = String(text || '').trim();
+  return ALIAS_PLACEHOLDERS.has(s.toLowerCase()) ? '' : s;
 }
 
 let listaPromise = null;
@@ -33,9 +40,9 @@ async function loadListaRutas(){
   }
 
   listaPromise = (async () => {
-    const direct = await tryFetch('pipeline/input/lista_rutas.csv');
+    const direct = await tryFetch('pipeline/output/lista_rutas_maestro.csv');
     if (direct && direct.length) return direct;
-    const alt = await tryFetch(`${PATHS.data}/pipeline/input/lista_rutas.csv`);
+    const alt = await tryFetch(`${PATHS.data}/pipeline/output/lista_rutas_maestro.csv`);
     if (alt && alt.length) return alt;
     return [];
   })();
@@ -46,12 +53,12 @@ async function loadListaRutas(){
 function parseListaCsv(text){
   const lines = text.split(/[\r\n]+/).filter(l => l.trim() && !l.trim().startsWith('#'));
   if (!lines.length) return [];
-  const header = lines[0].split(',').map(h => h.trim());
+  const header = splitCsvLine(lines[0]).map(h => h.trim());
   const out = [];
   for (let i = 1; i < lines.length; i++){
     const row = lines[i];
     if (!row.trim()) continue;
-    const cols = row.split(',');
+    const cols = splitCsvLine(row);
     const obj = {};
     header.forEach((h, idx) => { obj[h] = (cols[idx] || '').trim(); });
     out.push(obj);
@@ -67,6 +74,7 @@ function typeLabel(doc){
     case 'corr':    return 'Corredores';
     case 'wrAero':  return 'AeroDirecto';
     case 'wrOtros': return 'Expreso San Isidro';
+    case 'wrSemi':  return 'Transporte semiformal';
     case 'wr':      return 'Transporte público';
     default:        return '';
   }
@@ -80,7 +88,8 @@ const TYPE_PRIORITY = {
   corr:    3,
   wrAero:  4,
   wrOtros: 5,
-  wr:      6
+  wr:      6,
+  wrSemi:  7
 };
 
 /* =========================
@@ -264,9 +273,9 @@ async function buildSearchIndex(){
 
     const codigoNuevo   = (row && row.codigo_nuevo)   || base;
     const codigoAntiguo = (row && row.codigo_antiguo) || '';
-    const alias         = (row && row.alias)          || '';
+    const alias         = cleanAlias(row && row.alias);
     const empresa       = (row && row.empresa_operadora) || '';
-    const siglas        = extractSiglas(empresa);
+    const siglas        = (row && row.empresa_abrev) || extractSiglas(empresa);
     const empresaCorta  = siglas || empresa;
 
     let label;
@@ -280,12 +289,18 @@ async function buildSearchIndex(){
       rt.name || '', 'transporte', 'wikiroutes'
     ].join(' '));
 
+    // Las rutas semiformales viven en su propio panel (data-system="wrSemi")
+    const semiChk = document.querySelector(
+      `#p-wr-semi .item input[type="checkbox"][data-id="${CSS.escape(idStr)}"]`
+    );
+    const system = semiChk ? 'wrSemi' : 'wr';
+
     docs.push({
-      key: `wr:${codigoNuevo}`,
-      system: 'wr',
+      key: `${system}:${codigoNuevo}`,
+      system,
       id: rt.id,
       label,
-      type: 'wr',
+      type: system,
       tokens,
       color: rt.color || null,
       display_id: rt.display_id || null,
@@ -387,7 +402,7 @@ function selectDoc(doc){
   let selector = `#sidebar input[type="checkbox"][data-system="${system}"][data-id="${CSS.escape(id)}"]`;
   let chk = document.querySelector(selector);
 
-  if (!chk && (system === 'wr' || system === 'wrAero' || system === 'wrOtros')){
+  if (!chk && (system === 'wr' || system === 'wrAero' || system === 'wrOtros' || system === 'wrSemi')){
     const base = id.split('-')[0];
     selector = `#sidebar input[type="checkbox"][data-system="${system}"][data-id="${CSS.escape(base)}"]`;
     chk = document.querySelector(selector);
@@ -407,6 +422,7 @@ function selectDoc(doc){
 export function setupSearch(){
   const input = $('#searchInput');
   const resultsBox = $('#searchSuggest');
+  const btnClear = $('#btnClearSearch');
 
   if (!input || !resultsBox){
     console.warn('[search] No se encontró #searchInput o #searchSuggest en el DOM.');
@@ -468,6 +484,16 @@ export function setupSearch(){
     selectedIndex = -1;
     if (doc) selectDoc(doc);
   });
+
+  if (btnClear){
+    btnClear.addEventListener('click', () => {
+      input.value = '';
+      currentDocs = [];
+      selectedIndex = -1;
+      clearResults(resultsBox);
+      input.focus();
+    });
+  }
 
   document.addEventListener('click', e => {
     if (e.target === input) return;

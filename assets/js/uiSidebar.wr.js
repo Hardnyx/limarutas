@@ -1,6 +1,6 @@
 // uiSidebar.wr.js
 import { state } from './config.js';
-import { el } from './utils.js';
+import { el, splitCsvLine } from './utils.js';
 import { setWikiroutesVisible } from './mapLayers.js';
 import { syncTriFromLeaf } from './uiSidebar.hierarchy.js';
 
@@ -32,7 +32,7 @@ function loadWrListaMeta(){
       const metaByCodigo = {};
       if (!lines.length) return metaByCodigo;
 
-      const header = lines[0].split(',');
+      const header = splitCsvLine(lines[0]);
       const idxCodigo  = header.findIndex(h => h.trim() === 'codigo_nuevo');
       const idxOri     = header.findIndex(h => h.trim() === 'distrito_origen');
       const idxDes     = header.findIndex(h => h.trim() === 'distrito_destino');
@@ -43,7 +43,7 @@ function loadWrListaMeta(){
         const raw = lines[i].trim();
         if (!raw) continue;
 
-        const cols = raw.split(',');
+        const cols = splitCsvLine(raw);
         const codigo = (idxCodigo >= 0 && cols[idxCodigo]) ? cols[idxCodigo].trim() : '';
         if (!codigo) continue;
 
@@ -59,7 +59,7 @@ function loadWrListaMeta(){
       return metaByCodigo;
     })
     .catch(err => {
-      console.error('No se pudo cargar config/lista_rutas.csv', err);
+      console.error('No se pudo cargar pipeline/output/lista_rutas_maestro.csv', err);
       return {};
     });
 
@@ -75,7 +75,7 @@ function loadWrExtremes(){
       return r.json();
     })
     .catch(err => {
-      console.error('No se pudo cargar config/wr_extremes.json', err);
+      console.error('No se pudo cargar pipeline/output/wr_extremes.json', err);
       return {};
     });
 
