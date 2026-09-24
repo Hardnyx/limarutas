@@ -642,8 +642,17 @@ async function ensureWrLayer(id){
   return wr.layers?.has(id);
 }
 
+// Visibilidad deseada por subcapa: evita que una capa que termina de cargar
+// después de desmarcarse se agregue igual al mapa.
+function setWrWanted(id, visible){
+  const wr = state.systems.wr;
+  if (!wr._wanted) wr._wanted = new Map();
+  wr._wanted.set(id, visible);
+}
+
 function hideWrSub(id){
   const wr = state.systems.wr;
+  setWrWanted(id, false);
   const g = wr.layers?.get(id);
   if (g && state.map.hasLayer(g)) state.map.removeLayer(g);
 
@@ -658,8 +667,10 @@ async function showWrSubAsync(id, fit){
   const other = wrCounterpartId(id);
   if (other) hideWrSub(other);
 
+  setWrWanted(id, true);
   const ok = await ensureWrLayer(id);
   if (!ok) return;
+  if (wr._wanted.get(id) !== true) return;
 
   const g = wr.layers?.get(id);
   if (!g) return;

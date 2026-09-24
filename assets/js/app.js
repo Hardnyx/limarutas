@@ -109,7 +109,7 @@ function disableSidebarChecks(disabled){
     'chk-met','chk-met-reg','chk-met-exp',
     'chk-met-alim','chk-met-alim-n','chk-met-alim-s',
     'chk-corr','chk-metro','chk-wr',
-    'chk-wr-aero','chk-wr-otros'
+    'chk-wr-aero','chk-wr-semi','chk-wr-otros','chk-wr-esi'
   ];
   ids.forEach(id => {
     const elm = document.getElementById(id);
