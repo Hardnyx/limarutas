@@ -1,8 +1,8 @@
 // uiSidebar.systems.js
 import { PATHS, COLOR_AN, COLOR_AS, state, getDirFor, setDirFor } from './config.js';
 import { $, el } from './utils.js';
-import { onToggleService } from './mapLayers.js';
 import { setLeafChecked, syncTriFromLeaf } from './uiSidebar.hierarchy.js';
+import { toggleLeaf, refreshLeafDirection } from './leafToggle.js';
 
 const labelForSvc = (s) =>
   s.kind === 'regular' ? 'Ruta' : (s.kind === 'expreso' ? 'Expreso' : 'Servicio');
@@ -39,7 +39,7 @@ function miniDir(systemId, svc){
         setLeafChecked(systemId, chk, true, {silentFit:true});
         syncTriFromLeaf(systemId);
       } else {
-        onToggleService(systemId, svc.id, true, {silentFit:true});
+        refreshLeafDirection(chk);
       }
     }
   });
@@ -73,7 +73,7 @@ function makeServiceItemMet(svc){
 
   chk.addEventListener('change', () => {
     if (!state.bulk) {
-      onToggleService('met', svc.id, chk.checked);
+      toggleLeaf(chk, chk.checked, { fit: true });
       syncTriFromLeaf('met');
     }
   });
@@ -102,7 +102,7 @@ function makeServiceItemAlim(svc){
 
   chk.addEventListener('change', () => {
     if (!state.bulk) {
-      onToggleService('alim', svc.id, chk.checked);
+      toggleLeaf(chk, chk.checked, { fit: true });
       syncTriFromLeaf('alim');
     }
   });
@@ -145,7 +145,7 @@ function makeServiceItemMetro(svc){
 
   chk.addEventListener('change', () => {
     if (!state.bulk) {
-      onToggleService('metro', svc.id, chk.checked);
+      toggleLeaf(chk, chk.checked, { fit: true });
       syncTriFromLeaf('metro');
     }
   });

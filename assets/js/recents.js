@@ -2,21 +2,12 @@
 // Panel "Rutas recientes": las últimas rutas que el usuario marcó una a una
 // (en la lista o desde el buscador), para volver a marcarlas o desmarcarlas
 // rápido. Las casillas de grupo no agregan rutas aquí.
+import { SYSTEM_LABELS } from './config.js';
 import { $, el } from './utils.js';
 
 const MAX_RECENTS = 8;
 const STORAGE_KEY = 'limarutas.recents';
 
-const SYSTEM_LABELS = {
-  met: 'Metropolitano',
-  alim: 'Alimentador',
-  corr: 'Corredor',
-  metro: 'Metro',
-  wr: 'Transporte público',
-  wrSemi: 'Transporte semiformal',
-  wrAero: 'AeroDirecto',
-  wrOtros: 'Expreso San Isidro'
-};
 
 let recents = [];          // [{ system, id }], la más reciente primero
 let reordering = true;     // false mientras se marca desde el propio panel

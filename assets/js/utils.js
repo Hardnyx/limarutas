@@ -67,3 +67,17 @@ export function splitCsvLine(line){
   out.push(cur);
   return out;
 }
+
+// Filas de un CSV como objetos {columna: valor}; ignora líneas vacías y
+// comentarios (#)
+export function parseCsvRows(text){
+  const lines = String(text || '').split(/\r?\n/).filter(l => l.trim() && !l.trim().startsWith('#'));
+  if (!lines.length) return [];
+  const header = splitCsvLine(lines[0]).map(h => h.trim());
+  return lines.slice(1).map(line => {
+    const cols = splitCsvLine(line);
+    const row = {};
+    header.forEach((h, i) => { row[h] = (cols[i] || '').trim(); });
+    return row;
+  });
+}
