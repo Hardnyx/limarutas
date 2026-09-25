@@ -39,6 +39,7 @@ import {
 import { wirePanelTogglesOnce } from './panels.js';
 import { setupSearch } from './search.js';
 import { wireRecents } from './recents.js';
+import { wireStopHover } from './stopHover.js';
 import { wireRouteInspector } from './routeInspector.js';
 
 /* ===========================
@@ -661,6 +662,7 @@ async function buildUI(){
   setupSearch();
   wireRecents();
   wireRouteInspector();
+  wireStopHover();
 }
 
 // Lanzar

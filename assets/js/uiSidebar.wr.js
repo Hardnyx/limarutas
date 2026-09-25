@@ -504,15 +504,16 @@ function makeWrDirPairControls(chk){
     const item = wrap.closest('.item');
     if (item) applyWrTextsToWrItem(item, sel);
 
+    // Cambiar de sentido no mueve la vista: se sigue mirando la misma zona
     if (chk.checked){
       const ida = chk.dataset.ida;
       const vta = chk.dataset.vuelta;
 
       if (sel === 'ida'){
-        setWikiroutesVisible(ida, true, { fit:true });
+        setWikiroutesVisible(ida, true);
         setWikiroutesVisible(vta, false);
       } else {
-        setWikiroutesVisible(vta, true, { fit:true });
+        setWikiroutesVisible(vta, true);
         setWikiroutesVisible(ida, false);
       }
     }

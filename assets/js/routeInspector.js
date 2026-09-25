@@ -12,8 +12,11 @@ import { state } from './config.js';
 import { $, el } from './utils.js';
 import { addRecent } from './recents.js';
 import { bulk, setLeafChecked, syncAllTri } from './uiSidebar.hierarchy.js';
+import { isOverStop } from './stopHover.js';
 
 const TOLERANCE_PX = 6;
+// El hover abre el panel solo con rutas superpuestas; con una sola no aporta
+const HOVER_MIN_ROUTES = 2;
 
 // Listas del sidebar con rutas de Wikiroutes, en orden de preferencia
 const WR_SYSTEMS = ['wr', 'corr', 'wrAero', 'wrOtros', 'wrSemi'];
@@ -415,10 +418,13 @@ export function wireRouteInspector(){
   map.on('mousemove', (e) => {
     if (pinned || overPanel || stopMode) return;
     clearTimeout(timer);
+    // Sobre un paradero manda su nombre: el panel se queda como está
+    if (isOverStop()) return;
     const p = e.layerPoint;
     timer = setTimeout(() => {
+      if (isOverStop()) return;
       const found = findUnderPoint(p);
-      if (found.length) render(found);
+      if (found.length >= HOVER_MIN_ROUTES) render(found);
       else if (!panel.hidden) hide();
     }, HOVER_DELAY_MS);
   });

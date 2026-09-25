@@ -22,8 +22,13 @@ Formato de salida (compacto, se carga en el navegador al buscar):
   "stops":  [[nombre, lat, lon, [i_ruta, ...]], ...]
 }
 
+Con --write-stops además reescribe cada stops_trip<N>.geojson emparejado:
+quita los marcadores del inicio que no son paraderos y agrega a cada punto
+sus propiedades {name, stop_id, seq}. Las coordenadas se redondean a 7
+decimales (~1 cm).
+
 Uso:
-    python pipeline/scripts/wikiroutes/wr_build_stops_index.py [--git-rev 1c1e782e^]
+    python pipeline/scripts/wikiroutes/wr_build_stops_index.py [--git-rev 1c1e782e^] [--write-stops]
 """
 
 from __future__ import annotations
@@ -93,6 +98,18 @@ def load_points(route_dir: Path, trip: int):
             if (f.get('geometry') or {}).get('type') == 'Point']
 
 
+def write_stops(route_dir: Path, trip: int, items, coords):
+    features = [{
+        'type': 'Feature',
+        'geometry': {'type': 'Point', 'coordinates': [round(lon, 7), round(lat, 7)]},
+        'properties': {'name': name, 'stop_id': sid, 'seq': i}
+    } for i, ((sid, name), (lon, lat)) in enumerate(zip(items, coords), 1)]
+    path = route_dir / f'stops_trip{trip}.geojson'
+    path.write_text(json.dumps({'type': 'FeatureCollection', 'features': features},
+                               ensure_ascii=False, separators=(',', ':')),
+                    encoding='utf-8')
+
+
 def dist_m(a, b):
     lat = math.radians((a[0] + b[0]) / 2)
     dx = (a[1] - b[1]) * 111_320 * math.cos(lat)
@@ -104,7 +121,10 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--git-rev', default=DEFAULT_GIT_REV,
                     help='commit del que leer route.html si no está en disco ("" para no usar git)')
+    ap.add_argument('--write-stops', action='store_true',
+                    help='anotar stops_trip<N>.geojson con nombre, id y orden')
     args = ap.parse_args()
+    n_written = n_dropped = 0
 
     # id de paradero -> nombre, ubicación y rutas
     stop_name: dict[str, str] = {}
@@ -140,8 +160,14 @@ def main():
                 mismatches.append((wr_id, trip, len(items), None if pts is None else len(pts)))
                 continue
             n_located += 1
-            for (sid, _), (lon, lat) in zip(items, pts[len(pts) - len(items):]):
+            kept = pts[len(pts) - len(items):]
+            for (sid, _), (lon, lat) in zip(items, kept):
                 stop_pos.setdefault(sid, (lat, lon))
+
+            if args.write_stops:
+                n_dropped += len(pts) - len(items)
+                write_stops(route_dir, trip, items, kept)
+                n_written += 1
 
     # Juntar paraderos con el mismo nombre y cercanos (lados de la pista)
     by_name: dict[str, list[str]] = defaultdict(list)
@@ -189,6 +215,8 @@ def main():
     print(f'Sentidos: {n_dirs} | con ubicación emparejada: {n_located} | sin emparejar: {len(mismatches)}')
     for wr_id, trip, n_names, n_pts in mismatches[:15]:
         print(f'  route_{wr_id} sentido {trip}: {n_names} nombres, {n_pts} puntos')
+    if args.write_stops:
+        print(f'stops_trip<N>.geojson anotados: {n_written} | marcadores quitados (no eran paraderos): {n_dropped}')
     print(f'Paraderos (ids Wikiroutes): {len(stop_name)} | lugares tras juntar por nombre: {len(places)}')
     print(f'Escrito: {OUT_PATH.relative_to(ROOT)} ({OUT_PATH.stat().st_size / 1024:.0f} KB)')
     print()
