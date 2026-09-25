@@ -1,6 +1,7 @@
 // search.js
 import { PATHS, state } from './config.js';
 import { $, el, splitCsvLine } from './utils.js';
+import { entriesForFolders, showStopRoutes } from './routeInspector.js';
 
 function norm(text){
   return String(text || '')
@@ -98,6 +99,13 @@ const TYPE_PRIORITY = {
 
 function makeIcon(doc){
   const wrap = el('div', { class: 's-ico' });
+
+  if (doc.type === 'stop'){
+    wrap.classList.add('s-ico-stop');
+    wrap.innerHTML = '<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">'
+      + '<path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>';
+    return wrap;
+  }
 
   if (doc.type === 'metro' || doc.type === 'met'){
     const folder = doc.type === 'metro' ? 'metro' : 'metropolitano';
@@ -294,6 +302,10 @@ async function buildSearchIndex(){
       `#p-wr-semi .item input[type="checkbox"][data-id="${CSS.escape(idStr)}"]`
     );
     const system = semiChk ? 'wrSemi' : 'wr';
+    // Sin casilla en ninguna lista (rutas fuera del catálogo): no se puede elegir
+    if (!semiChk && !document.querySelector(
+      `#panels .item input[type="checkbox"][data-system="wr"][data-id="${CSS.escape(idStr)}"]`
+    )) continue;
 
     docs.push({
       key: `${system}:${codigoNuevo}`,
@@ -310,6 +322,96 @@ async function buildSearchIndex(){
 
   state._searchIndex = docs;
   return docs;
+}
+
+/* =========================
+   Paraderos (wr_stops_index.json)
+   ========================= */
+
+const STOP_MIN_CHARS = 3;
+const MAX_STOPS = 3;
+const MAX_STOP_ROUTES = 20;
+
+let stopsIndexPromise = null;
+
+// Se carga recién al buscar algo que pueda ser un paradero
+function loadStopsIndex(){
+  if (stopsIndexPromise) return stopsIndexPromise;
+  stopsIndexPromise = fetch('pipeline/output/wr_stops_index.json')
+    .then(r => {
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      return r.json();
+    })
+    .then(({ routes, stops }) => stops.map(([name, lat, lon, idx]) => ({
+      name,
+      key: norm(name).replace(/[^a-z0-9]+/g, ' ').trim(),
+      lat,
+      lon,
+      folderIds: idx.map(i => routes[i])
+    })))
+    .catch(err => {
+      console.warn('[search] Sin índice de paraderos:', err.message);
+      return [];
+    });
+  return stopsIndexPromise;
+}
+
+function findStops(stops, query){
+  const q = norm(query).replace(/[^a-z0-9]+/g, ' ').trim();
+  if (q.length < STOP_MIN_CHARS) return [];
+  const words = q.split(' ');
+  const hits = [];
+  for (const st of stops){
+    if (!words.every(w => st.key.includes(w))) continue;
+    const rank = st.key === q ? 0
+      : st.key.startsWith(q) ? 1
+      : (` ${st.key}`).includes(` ${q}`) ? 2 : 3;
+    hits.push({ st, rank });
+  }
+  hits.sort((a, b) => a.rank - b.rank || b.st.folderIds.length - a.st.folderIds.length);
+  // Paraderos cuyas rutas no están en ninguna lista del sidebar no sirven
+  const out = [];
+  for (const { st, rank } of hits){
+    if (!entriesForFolders(st.folderIds).length) continue;
+    // Coincidencia clara: el nombre completo, o su inicio con 5+ letras
+    st.strong = rank === 0 || (rank === 1 && q.length >= 5);
+    out.push(st);
+    if (out.length >= MAX_STOPS) break;
+  }
+  return out;
+}
+
+function stopDoc(st){
+  // Rutas elegibles en el sidebar (sin duplicados de Wikiroutes)
+  const n = entriesForFolders(st.folderIds).length;
+  return {
+    key: `stop:${st.key}:${st.lat},${st.lon}`,
+    system: 'stop',
+    id: st.key,
+    type: 'stop',
+    label: st.name,
+    sub: `Paradero · ${n} ${n === 1 ? 'ruta' : 'rutas'}`,
+    stop: st
+  };
+}
+
+// Rutas que paran en el paradero, como resultados normales del buscador
+// Transporte público primero; semiformal al final
+const STOP_ROUTE_ORDER = { wr: 0, corr: 1, wrAero: 2, wrOtros: 3, wrSemi: 4 };
+
+function stopRouteDocs(st){
+  const entries = entriesForFolders(st.folderIds).sort((a, b) =>
+    (STOP_ROUTE_ORDER[a.leaf.dataset.system] ?? 9) - (STOP_ROUTE_ORDER[b.leaf.dataset.system] ?? 9));
+  return entries.slice(0, MAX_STOP_ROUTES).map(e => ({
+    key: `${e.leaf.dataset.system}:${e.leaf.dataset.id}`,
+    system: e.leaf.dataset.system,
+    id: e.leaf.dataset.id,
+    type: e.leaf.dataset.system,
+    label: e.title || e.code,
+    sub: `Para en ${st.name}`,
+    color: e.color,
+    display_id: e.code
+  }));
 }
 
 /* =========================
@@ -377,7 +479,7 @@ function renderResults(resultsBox, docs, selectedIndex){
     const labelEl = el('div', { class: 's-label' });
     labelEl.textContent = doc.label;
     const subEl = el('div', { class: 's-sub' });
-    subEl.textContent = typeLabel(doc);
+    subEl.textContent = doc.sub || typeLabel(doc);
     textBlock.appendChild(labelEl);
     textBlock.appendChild(subEl);
 
@@ -396,6 +498,10 @@ function renderResults(resultsBox, docs, selectedIndex){
 
 function selectDoc(doc){
   if (!doc) return;
+  if (doc.type === 'stop'){
+    showStopRoutes(doc.stop);
+    return;
+  }
   const system = doc.system;
   const id = String(doc.id);
 
@@ -433,11 +539,16 @@ export function setupSearch(){
     console.warn('[search] Error al construir índice inicial:', err);
   });
 
+  // Precarga del índice de paraderos cuando el navegador esté libre
+  (window.requestIdleCallback || (fn => setTimeout(fn, 1500)))(() => { loadStopsIndex(); });
+
   let currentDocs = [];
   let selectedIndex = -1;
+  let querySeq = 0;
 
   input.addEventListener('input', async () => {
     const q = input.value;
+    const seq = ++querySeq;
     if (!q.trim()){
       currentDocs = [];
       selectedIndex = -1;
@@ -445,7 +556,23 @@ export function setupSearch(){
       return;
     }
     const index = await buildSearchIndex();
-    const hits = rankDocs(index, q).slice(0, 25);
+    const routeHits = rankDocs(index, q);
+
+    // Paraderos que coinciden y, debajo, las rutas que paran en el primero
+    const stops = q.trim().length >= STOP_MIN_CHARS ? findStops(await loadStopsIndex(), q) : [];
+    if (seq !== querySeq) return;   // llegó otra búsqueda mientras cargaba
+
+    let hits = routeHits.slice(0, 25);
+    if (stops.length && stops[0].strong){
+      // Coincide con un paradero: primero él y las rutas que paran ahí
+      const viaStop = stopRouteDocs(stops[0]);
+      const seen = new Set(viaStop.map(d => `${d.system}:${d.id}`));
+      const others = routeHits.filter(d => !seen.has(`${d.system}:${d.id}`)).slice(0, 8);
+      hits = [stopDoc(stops[0]), ...viaStop, ...stops.slice(1).map(stopDoc), ...others];
+    } else if (stops.length){
+      // Búsqueda ambigua: rutas primero, paraderos al final
+      hits = [...routeHits.slice(0, 15), ...stops.map(stopDoc)];
+    }
     currentDocs = hits;
     selectedIndex = hits.length ? 0 : -1;
     renderResults(resultsBox, hits, selectedIndex);
