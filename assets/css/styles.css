@@ -646,107 +646,192 @@ body {
   background: rgba(148, 163, 184, 0.15);
 }
 
-/* Tooltip de ruta al pasar el mouse */
-.leaflet-tooltip.route-tip {
-  width: max-content;
-  max-width: 300px;
-  white-space: normal;
-  padding: 6px 8px;
-  border: 1px solid rgba(148, 163, 184, 0.35);
-  border-radius: 10px;
-  background: rgba(11, 16, 32, 0.95);
-  color: var(--text-main);
-  box-shadow: var(--shadow-soft);
-}
-
-.leaflet-tooltip.route-tip::before {
-  display: none;
-}
-
-.route-tip-body {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-}
-
-.route-tip-tag {
-  flex: none;
-  height: 22px;
-  font-size: 12px;
-}
-
-.route-tip-text {
-  min-width: 0;
-}
-
-.route-tip-title {
-  font-size: 12px;
-  font-weight: 600;
-}
-
-.route-tip-sub {
-  font-size: 11px;
-  color: var(--text-muted);
-}
-
-/* Depuración: rutas bajo el cursor (AD HOC, temporal: hoverDebug.js) */
-.hover-debug {
+/* Rutas en este punto (routeInspector.js) */
+.route-inspector {
   position: fixed;
   top: 84px;
   right: 16px;
   z-index: 1000;
   width: 320px;
   max-width: calc(100vw - 32px);
-  max-height: 50vh;
+  max-height: 60vh;
   display: flex;
   flex-direction: column;
-  border: 1px dashed rgba(250, 204, 21, 0.55);
-  border-radius: 12px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: var(--radius-md);
   background: rgba(11, 16, 32, 0.95);
+  backdrop-filter: blur(var(--blur));
   color: var(--text-main);
   box-shadow: var(--shadow-soft);
 }
 
-.hover-debug[hidden] {
+.route-inspector[hidden] {
   display: none;
 }
 
-.hover-debug-head {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 6px 6px 10px;
-  border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+.route-inspector.pinned {
+  border-color: var(--accent-strong);
 }
 
-.hover-debug-count {
+.ri-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 6px 6px 12px;
+}
+
+.ri-title {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.ri-count {
   flex: 1;
   font-size: 11px;
   color: var(--text-muted);
 }
 
-.hover-debug-list {
-  overflow-y: auto;
-  padding: 6px;
+.ri-btn {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.ri-btn:hover,
+.ri-btn:focus-visible {
+  color: var(--text-main);
+  background: rgba(148, 163, 184, 0.15);
+}
+
+.ri-body {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  min-height: 0;
+  border-top: 1px solid rgba(148, 163, 184, 0.25);
 }
 
-.hover-debug-row {
-  padding: 4px 6px;
-  border-radius: 8px;
-  background: rgba(15, 23, 42, 0.95);
-  border: 1px solid rgba(148, 163, 184, 0.2);
+.route-inspector.collapsed .ri-body {
+  display: none;
 }
 
-.hover-debug.pinned {
-  border-style: solid;
-}
-
-.hover-debug-hint {
-  padding: 4px 10px;
+.ri-hint {
+  padding: 5px 12px 0;
   font-size: 10px;
   color: var(--text-muted);
-  border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+}
+
+.ri-hint:empty {
+  display: none;
+}
+
+.ri-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 8px 10px;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.tag.ri-chip {
+  min-width: 0;
+  height: 20px;
+  padding: 0 7px;
+  font-size: 11px;
+  box-shadow: none;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #fff;
+  cursor: pointer;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.tag.ri-chip.active,
+.tag.ri-chip:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 1px;
+}
+
+.ri-detail {
+  flex: none;
+  padding: 8px 12px 10px;
+  border-top: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.ri-placeholder {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.ri-placeholder:empty {
+  display: none;
+}
+
+.ri-detail-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.ri-detail-tag {
+  flex: none;
+  height: 22px;
+  font-size: 12px;
+  color: #fff;
+}
+
+.ri-detail-text {
+  min-width: 0;
+}
+
+.ri-detail-title {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.ri-detail-sub,
+.ri-detail-sys {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.ri-detail-sys {
+  opacity: 0.8;
+}
+
+.ri-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.ri-actions .btn[disabled] {
+  opacity: 0.6;
+  cursor: default;
+}
+
+/* Celular: hoja inferior en vez de panel lateral */
+@media (max-width: 700px) {
+  .route-inspector {
+    top: auto;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    width: auto;
+    max-width: none;
+    max-height: 45vh;
+  }
+}
+
+.tag.ri-chip.on-light,
+.tag.ri-detail-tag.on-light {
+  color: #0b1020;
+  text-shadow: none;
 }

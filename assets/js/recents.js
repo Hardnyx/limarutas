@@ -112,7 +112,7 @@ export function refreshRecents(){
   });
 }
 
-function addRecent(leaf){
+export function addRecent(leaf){
   const system = leaf.dataset.system;
   const id = leaf.dataset.id;
   if (!system || !id) return;
