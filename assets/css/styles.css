@@ -835,3 +835,10 @@ body {
   color: #0b1020;
   text-shadow: none;
 }
+
+/* Buscador: resultado de paradero */
+.s-ico.s-ico-stop {
+  background: #f59e0b;
+  color: #0b1020;
+  border-radius: 999px;
+}

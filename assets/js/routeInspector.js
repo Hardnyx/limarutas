@@ -6,11 +6,17 @@
 // - Mouse: se actualiza cuando el cursor se detiene (~150 ms).
 // - Clic en el mapa: fija el panel en ese punto (o lo cierra si no hay rutas).
 //   En pantallas táctiles es la única forma de abrirlo.
+// - showStopRoutes(): abre el panel con las rutas que paran en un paradero
+//   (desde el buscador), aunque no estén dibujadas.
 import { state } from './config.js';
 import { $, el } from './utils.js';
 import { addRecent } from './recents.js';
+import { bulk, setLeafChecked, syncAllTri } from './uiSidebar.hierarchy.js';
 
 const TOLERANCE_PX = 6;
+
+// Listas del sidebar con rutas de Wikiroutes, en orden de preferencia
+const WR_SYSTEMS = ['wr', 'corr', 'wrAero', 'wrOtros', 'wrSemi'];
 const HOVER_DELAY_MS = 150;
 
 const SYSTEM_LABELS = {
@@ -49,15 +55,33 @@ function hits(poly, p){
   return false;
 }
 
-function leafFor(selector){
-  return document.querySelector(`#panels .item .item-head ${selector}`);
+// Índice de las casillas del sidebar (se arma una vez: la lista no cambia)
+let leafIndex = null;
+function leaves(){
+  if (!leafIndex){
+    leafIndex = new Map();
+    document.querySelectorAll('#panels .item .item-head input[type="checkbox"][data-system]').forEach(chk => {
+      const { system, id, ida, vuelta } = chk.dataset;
+      if (ida && !leafIndex.has(`pair:${ida}`)) leafIndex.set(`pair:${ida}`, chk);
+      if (vuelta && !leafIndex.has(`pair:${vuelta}`)) leafIndex.set(`pair:${vuelta}`, chk);
+      if (id && !leafIndex.has(`${system}:${id}`)) leafIndex.set(`${system}:${id}`, chk);
+    });
+  }
+  return leafIndex;
 }
 
 // Ítem del sidebar de una subcapa WR ("1002-ida", "AD-N-vuelta", ...)
 function wrLeafFor(subId){
+  const idx = leaves();
+  const byPair = idx.get(`pair:${subId}`);
+  if (byPair) return byPair;
+  // Por código solo dentro de listas de Wikiroutes: "6" no es el Expreso 6
   const base = String(subId).replace(/-(ida|vuelta)$/i, '');
-  const q = (attr, v) => `input[type="checkbox"][${attr}="${CSS.escape(v)}"]`;
-  return leafFor(q('data-ida', subId)) || leafFor(q('data-vuelta', subId)) || leafFor(q('data-id', base));
+  for (const sys of WR_SYSTEMS){
+    const leaf = idx.get(`${sys}:${base}`);
+    if (leaf) return leaf;
+  }
+  return null;
 }
 
 function wrEntry(subId, polys){
@@ -86,7 +110,7 @@ function wrEntry(subId, polys){
 
 function serviceEntry(sysId, id, polys){
   const svc = state.systems[sysId]?.services?.find(s => String(s.id) === String(id));
-  const leaf = leafFor(`input[type="checkbox"][data-system="${sysId}"][data-id="${CSS.escape(String(id))}"]`);
+  const leaf = leaves().get(`${sysId}:${id}`) || null;
   const code = String(id).toUpperCase();
   return {
     key: `${sysId}:${id}`,
@@ -98,6 +122,50 @@ function serviceEntry(sysId, id, polys){
     leaf,
     polys
   };
+}
+
+// Subcapas WR (rid "1240-ida", ...) por carpeta de Wikiroutes ("155549")
+let ridsByFolder = null;
+function ridsForFolder(folderId){
+  if (!ridsByFolder){
+    ridsByFolder = new Map();
+    state.systems.wr.routeDefs?.forEach((def, rid) => {
+      const m = String(def.folder || '').match(/route_(\d+)$/);
+      if (!m) return;
+      if (!ridsByFolder.has(m[1])) ridsByFolder.set(m[1], []);
+      ridsByFolder.get(m[1]).push(rid);
+    });
+  }
+  return ridsByFolder.get(String(folderId)) || [];
+}
+
+// Una entrada por ítem del sidebar (ida y vuelta comparten ítem)
+export function entriesForFolders(folderIds){
+  const key = folderIds.join(',');
+  const cached = entriesCache.get(key);
+  if (cached) return cached.map(e => ({ ...e, polys: currentPolys(e.rid) }));
+  const out = buildEntriesForFolders(folderIds);
+  entriesCache.set(key, out);
+  return out;
+}
+
+const entriesCache = new Map();
+
+function currentPolys(rid){
+  const group = state.systems.wr.layers?.get(rid);
+  return group ? polylinesOf(group) : [];
+}
+
+function buildEntriesForFolders(folderIds){
+  const byLeaf = new Map();
+  for (const fid of folderIds){
+    for (const rid of ridsForFolder(fid)){
+      const leaf = wrLeafFor(rid);
+      if (!leaf || byLeaf.has(leaf)) continue;
+      byLeaf.set(leaf, { ...wrEntry(rid, currentPolys(rid)), rid });
+    }
+  }
+  return [...byLeaf.values()].sort((a, b) => a.code.localeCompare(b.code, 'es', { numeric: true }));
 }
 
 function findUnderPoint(layerPoint){
@@ -168,6 +236,13 @@ function highlight(entries, active){
    Panel
    ========================= */
 
+let api = null;
+
+// Abre el panel con las rutas de un paradero: { name, lat, lon, folderIds }
+export function showStopRoutes(stop){
+  api?.showStop(stop);
+}
+
 export function wireRouteInspector(){
   const map = state.map;
   if (!map) return;
@@ -179,9 +254,9 @@ export function wireRouteInspector(){
   const chips = el('div', { class: 'ri-chips', role: 'list' });
   const detail = el('div', { class: 'ri-detail', 'aria-live': 'polite' });
   const body = el('div', { class: 'ri-body' }, hint, chips, detail);
+  const title = el('span', { class: 'ri-title' }, 'Rutas en este punto');
   const panel = el('aside', { class: 'route-inspector', 'aria-label': 'Rutas en este punto', hidden: '' },
-    el('div', { class: 'ri-head' },
-      el('span', { class: 'ri-title' }, 'Rutas en este punto'), count, btnCollapse, btnClose),
+    el('div', { class: 'ri-head' }, title, count, btnCollapse, btnClose),
     body);
   document.body.appendChild(panel);
 
@@ -194,10 +269,29 @@ export function wireRouteInspector(){
   let overPanel = false;
   let timer = null;
   let lastKey = '';
+  let stopMode = null;      // { name, marker } cuando se abrió desde un paradero
 
   const hoverCapable = window.matchMedia?.('(hover: hover)').matches ?? true;
 
   function setHint(){
+    hint.innerHTML = '';
+    if (stopMode){
+      const hidden = entries.filter(e => e.leaf && !e.leaf.checked);
+      if (hidden.length){
+        const btnAll = el('button', { type: 'button', class: 'btn small' },
+          `Mostrar ${hidden.length === entries.length ? 'las' : 'las otras'} ${hidden.length} rutas`);
+        btnAll.addEventListener('click', () => {
+          bulk(() => hidden.forEach(e => setLeafChecked(e.leaf.dataset.system, e.leaf, true, { silentFit: true })));
+          syncAllTri();
+          setHint();
+        });
+        hint.appendChild(btnAll);
+      } else {
+        hint.textContent = 'Todas las rutas de este paradero están en el mapa';
+      }
+      panel.classList.add('pinned');
+      return;
+    }
     hint.textContent = pinned
       ? (hoverCapable ? 'Fijado · clic en otro punto del mapa para cambiar' : 'Toca otro punto del mapa para cambiar')
       : (hoverCapable ? 'Clic en el mapa para fijar' : '');
@@ -229,6 +323,16 @@ export function wireRouteInspector(){
         btnRecent.textContent = 'En recientes ✓';
         btnRecent.disabled = true;
       });
+      if (stopMode){
+        const btnShow = el('button', { type: 'button', class: 'btn small' },
+          entry.leaf.checked ? 'Ocultar' : 'Mostrar');
+        btnShow.addEventListener('click', () => {
+          entry.leaf.click();
+          btnShow.textContent = entry.leaf.checked ? 'Ocultar' : 'Mostrar';
+          setHint();
+        });
+        actions.append(btnShow);
+      }
       const btnOnly = el('button', { type: 'button', class: 'btn small btn-ghost' }, 'Ver solo esta');
       btnOnly.addEventListener('click', () => {
         const leaf = entry.leaf;
@@ -278,9 +382,17 @@ export function wireRouteInspector(){
     panel.hidden = false;
   }
 
+  function leaveStopMode(){
+    if (!stopMode) return;
+    stopMode.marker?.remove();
+    stopMode = null;
+    title.textContent = 'Rutas en este punto';
+  }
+
   function hide(){
     clearTimeout(timer);
     clearHighlight();
+    leaveStopMode();
     panel.hidden = true;
     pinned = false;
     lastKey = '';
@@ -301,7 +413,7 @@ export function wireRouteInspector(){
   });
 
   map.on('mousemove', (e) => {
-    if (pinned || overPanel) return;
+    if (pinned || overPanel || stopMode) return;
     clearTimeout(timer);
     const p = e.layerPoint;
     timer = setTimeout(() => {
@@ -318,6 +430,7 @@ export function wireRouteInspector(){
     clearTimeout(timer);
     const found = findUnderPoint(e.layerPoint);
     if (!found.length){ hide(); return; }
+    leaveStopMode();
     lastKey = '';
     render(found);
     pinned = true;
@@ -325,5 +438,28 @@ export function wireRouteInspector(){
   });
 
   // Al mover o hacer zoom cambian las líneas bajo el punto: se suelta
-  map.on('zoomstart', () => { if (!pinned) hide(); else clearHighlight(); });
+  map.on('zoomstart', () => { if (!pinned && !stopMode) hide(); else clearHighlight(); });
+
+  api = {
+    showStop({ name, lat, lon, folderIds }){
+      clearTimeout(timer);
+      leaveStopMode();
+      const found = entriesForFolders(folderIds);
+      if (!found.length) return;
+
+      let marker = null;
+      if (lat != null && lon != null){
+        marker = L.circleMarker([lat, lon], {
+          radius: 9, color: '#fff', weight: 3, fillColor: '#f59e0b', fillOpacity: 1, interactive: false
+        }).addTo(map);
+        map.setView([lat, lon], Math.max(map.getZoom(), 16));
+      }
+      stopMode = { name, marker };
+      title.textContent = `Paradero ${name}`;
+      lastKey = '';
+      render(found);
+      pinned = true;
+      setHint();
+    }
+  };
 }
