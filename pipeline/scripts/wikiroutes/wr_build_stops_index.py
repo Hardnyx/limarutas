@@ -16,10 +16,14 @@ Paraderos con el mismo nombre a menos de MERGE_M metros se juntan en uno
 (por ejemplo, los dos lados de la pista); si están más lejos, son lugares
 distintos (hay "Santa Rosa" en varios distritos).
 
+Cada lugar lleva su distrito (distritos.py, límites del IGN) y el paradero
+vecino más frecuente en los recorridos, para distinguir lugares con el mismo
+nombre ("Separadora Industrial" en Ate y en Villa El Salvador).
+
 Formato de salida (compacto, se carga en el navegador al buscar):
 {
   "routes": ["155549", ...],                   # id Wikiroutes = carpeta route_<id>
-  "stops":  [[nombre, lat, lon, [i_ruta, ...]], ...]
+  "stops":  [[nombre, lat, lon, [i_ruta, ...], distrito, vecino], ...]
 }
 
 Con --write-stops además reescribe cada stops_trip<N>.geojson emparejado:
@@ -42,6 +46,8 @@ import unicodedata
 from collections import defaultdict
 from html import unescape
 from pathlib import Path
+
+from distritos import Distritos
 
 ROOT = Path(__file__).resolve().parents[3]
 DATA_DIR = ROOT / 'data' / 'processed' / 'transporte'
@@ -130,6 +136,8 @@ def main():
     stop_name: dict[str, str] = {}
     stop_pos: dict[str, tuple[float, float]] = {}
     stop_routes: dict[str, set[str]] = defaultdict(set)
+    # paradero anterior/siguiente en cada recorrido (para desambiguar)
+    stop_neighbors: dict[str, dict[str, int]] = defaultdict(lambda: defaultdict(int))
 
     n_routes = n_no_html = n_no_list = 0
     n_dirs = n_located = 0
@@ -151,9 +159,12 @@ def main():
 
         for trip, items in enumerate(blocks, 1):
             n_dirs += 1
-            for sid, name in items:
+            for i, (sid, name) in enumerate(items):
                 stop_name.setdefault(sid, name)
                 stop_routes[sid].add(wr_id)
+                for j in (i - 1, i + 1):
+                    if 0 <= j < len(items):
+                        stop_neighbors[sid][items[j][1]] += 1
 
             pts = load_points(route_dir, trip)
             if pts is None or len(pts) < len(items):
@@ -177,6 +188,7 @@ def main():
     route_ids = sorted({r for rs in stop_routes.values() for r in rs}, key=int)
     route_idx = {r: i for i, r in enumerate(route_ids)}
 
+    distritos = Distritos()
     places = []
     for key, sids in by_name.items():
         if not key:
@@ -190,20 +202,26 @@ def main():
             elif clusters:
                 target = clusters[0]   # sin ubicación: se asume el mismo lugar
             if target is None:
-                target = {'pos': pos, 'names': defaultdict(int), 'routes': set()}
+                target = {'pos': pos, 'names': defaultdict(int), 'routes': set(), 'neighbors': defaultdict(int)}
                 clusters.append(target)
             if target['pos'] is None and pos:
                 target['pos'] = pos
             target['names'][stop_name[sid]] += 1
             target['routes'] |= stop_routes[sid]
+            for nb, c in stop_neighbors[sid].items():
+                if norm(nb) != key:
+                    target['neighbors'][nb] += c
         for c in clusters:
             name = max(c['names'], key=c['names'].get)
             lat, lon = c['pos'] if c['pos'] else (None, None)
+            neighbor = max(c['neighbors'], key=c['neighbors'].get) if c['neighbors'] else ''
             places.append([
                 name,
                 round(lat, 6) if lat is not None else None,
                 round(lon, 6) if lon is not None else None,
-                sorted(route_idx[r] for r in c['routes'])
+                sorted(route_idx[r] for r in c['routes']),
+                distritos.at(lat, lon) if lat is not None else '',
+                neighbor
             ])
 
     places.sort(key=lambda p: (-len(p[3]), norm(p[0])))
@@ -218,6 +236,8 @@ def main():
     if args.write_stops:
         print(f'stops_trip<N>.geojson anotados: {n_written} | marcadores quitados (no eran paraderos): {n_dropped}')
     print(f'Paraderos (ids Wikiroutes): {len(stop_name)} | lugares tras juntar por nombre: {len(places)}')
+    sin_distrito = sum(1 for pl in places if not pl[4])
+    print(f'Lugares sin distrito (fuera de Lima y Callao): {sin_distrito}')
     print(f'Escrito: {OUT_PATH.relative_to(ROOT)} ({OUT_PATH.stat().st_size / 1024:.0f} KB)')
     print()
     print('Paraderos con más rutas:')
