@@ -26,14 +26,7 @@ import {
   wireWrColorFilter,
   fillOtrosList,
   wireHierarchy,
-  setLevel2Checked,
-  bulk,
-  onLevel1ChangeCorr,
-  onLevel1ChangeMetro,
-  onLevel1ChangeWr,
-  onLevel1ChangeWrAero,
-  onLevel1ChangeWrOtros,
-  onLevel1ChangeWrSemi,
+  clearAllRoutes,
   syncAllTri
 } from './uiSidebar.js';
 import { wirePanelTogglesOnce } from './panels.js';
@@ -112,16 +105,10 @@ function setListPlaceholder(elm, text){
   elm.innerHTML = `<div style="opacity:0.75; font-size: 12px; padding: 8px 6px;">${text}</div>`;
 }
 
+// Casillas de grupo deshabilitadas mientras cargan los datos
 function disableSidebarChecks(disabled){
-  const ids = [
-    'chk-met','chk-met-reg','chk-met-exp',
-    'chk-met-alim','chk-met-alim-n','chk-met-alim-s',
-    'chk-corr','chk-metro','chk-wr',
-    'chk-wr-aero','chk-wr-semi','chk-wr-otros','chk-wr-esi'
-  ];
-  ids.forEach(id => {
-    const elm = document.getElementById(id);
-    if (elm) elm.disabled = !!disabled;
+  $$('#panels .panel-head > input[type="checkbox"]').forEach(elm => {
+    elm.disabled = !!disabled;
   });
 }
 
@@ -488,29 +475,6 @@ async function init(){
 
   await buildUI();
 
-  const wr = state.systems.wr;
-  if (wr && wr.layers) {
-    wr.layers.forEach((layer, id) => {
-      if (state.map.hasLayer(layer)) state.map.removeLayer(layer);
-      const stopSub = wr.stopLayers?.get(id);
-      if (stopSub && state.map.hasLayer(stopSub)) state.map.removeLayer(stopSub);
-    });
-  }
-
-  const topWr = document.getElementById('chk-wr');
-  if (topWr) { topWr.checked = false; topWr.indeterminate = false; }
-
-  const topA = document.getElementById('chk-wr-aero');
-  if (topA) { topA.checked = false; topA.indeterminate = false; }
-
-  const topO = document.getElementById('chk-wr-otros');
-  if (topO) { topO.checked = false; topO.indeterminate = false; }
-
-  $$('#p-wr-semi .item input[type="checkbox"]').forEach(chk => { chk.checked = false; });
-  $$('#p-wr .item input[type="checkbox"]').forEach(chk => { chk.checked = false; });
-  $$('#p-wr-aero .item input[type="checkbox"]').forEach(chk => { chk.checked = false; });
-  $$('#p-wr-otros .item input[type="checkbox"]').forEach(chk => { chk.checked = false; });
-
   syncAllTri();
   disableSidebarChecks(false);
   setSidebarLoading(false);
@@ -611,51 +575,7 @@ async function buildUI(){
   }
 
   const btnClearAll = $('#btnClearAll');
-  if (btnClearAll){
-    btnClearAll.addEventListener('click', () => {
-      bulk(() => {
-        setLevel2Checked('met',  state.systems.met.ui.chkReg, false, { silentFit: true });
-        setLevel2Checked('met',  state.systems.met.ui.chkExp, false, { silentFit: true });
-        state.systems.met.ui.chkAll && (state.systems.met.ui.chkAll.checked = false);
-
-        setLevel2Checked('alim', state.systems.alim.ui.chkN,  false, { silentFit: true });
-        setLevel2Checked('alim', state.systems.alim.ui.chkS,  false, { silentFit: true });
-        state.systems.alim.ui.chkAll && (state.systems.alim.ui.chkAll.checked = false);
-
-        if (state.systems.corr.ui.chkAll){
-          state.systems.corr.ui.chkAll.checked = false;
-          onLevel1ChangeCorr();
-        }
-
-        if (state.systems.metro.ui.chkAll){
-          state.systems.metro.ui.chkAll.checked = false;
-          onLevel1ChangeMetro();
-        }
-
-        if (state.systems.wr.ui.chkAll){
-          state.systems.wr.ui.chkAll.checked = false;
-          onLevel1ChangeWr();
-        }
-
-        if (state.systems.wr.ui.chkAero){
-          state.systems.wr.ui.chkAero.checked = false;
-          onLevel1ChangeWrAero();
-        }
-
-        if (state.systems.wr.ui.chkOtros){
-          state.systems.wr.ui.chkOtros.checked = false;
-          onLevel1ChangeWrOtros();
-        }
-
-        if (state.systems.wr.ui.chkSemi){
-          state.systems.wr.ui.chkSemi.checked = false;
-          onLevel1ChangeWrSemi();
-        }
-
-      });
-      syncAllTri();
-    });
-  }
+  if (btnClearAll) btnClearAll.addEventListener('click', clearAllRoutes);
 
   wirePanelTogglesOnce();
 

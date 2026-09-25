@@ -1,7 +1,10 @@
 // search.js
-import { PATHS, state } from './config.js';
-import { $, el, splitCsvLine } from './utils.js';
-import { entriesForFolders, showStopRoutes } from './routeInspector.js';
+import { state } from './config.js';
+import { $, el } from './utils.js';
+import { loadMaestroRows } from './wrData.js';
+import { wrIsPlaceholder } from './wrTexts.js';
+import { entriesForFolders } from './routeEntries.js';
+import { showStopRoutes } from './routeInspector.js';
 
 function norm(text){
   return String(text || '')
@@ -16,55 +19,10 @@ function extractSiglas(empresa){
   return m ? m[1].trim() : '';
 }
 
-const ALIAS_PLACEHOLDERS = new Set(['ninguno', 'ninguna', 'desconocido', 'desconocida', '?', '¿?', '-', 'sin nombre']);
-
+// Alias como "Ninguno" o "Desconocido" no sirven para buscar ni mostrar
 function cleanAlias(text){
   const s = String(text || '').trim();
-  return ALIAS_PLACEHOLDERS.has(s.toLowerCase()) ? '' : s;
-}
-
-let listaPromise = null;
-
-async function loadListaRutas(){
-  if (listaPromise) return listaPromise;
-
-  async function tryFetch(url){
-    try {
-      const resp = await fetch(url);
-      if (!resp.ok) return null;
-      const txt = await resp.text();
-      return parseListaCsv(txt);
-    } catch (e) {
-      console.warn('[search] No se pudo leer', url, e.message);
-      return null;
-    }
-  }
-
-  listaPromise = (async () => {
-    const direct = await tryFetch('pipeline/output/lista_rutas_maestro.csv');
-    if (direct && direct.length) return direct;
-    const alt = await tryFetch(`${PATHS.data}/pipeline/output/lista_rutas_maestro.csv`);
-    if (alt && alt.length) return alt;
-    return [];
-  })();
-
-  return listaPromise;
-}
-
-function parseListaCsv(text){
-  const lines = text.split(/[\r\n]+/).filter(l => l.trim() && !l.trim().startsWith('#'));
-  if (!lines.length) return [];
-  const header = splitCsvLine(lines[0]).map(h => h.trim());
-  const out = [];
-  for (let i = 1; i < lines.length; i++){
-    const row = lines[i];
-    if (!row.trim()) continue;
-    const cols = splitCsvLine(row);
-    const obj = {};
-    header.forEach((h, idx) => { obj[h] = (cols[idx] || '').trim(); });
-    out.push(obj);
-  }
-  return out;
+  return wrIsPlaceholder(s) ? '' : s;
 }
 
 function typeLabel(doc){
@@ -265,7 +223,7 @@ async function buildSearchIndex(){
     return !catalogAero.has(idStr) && !catalogEsi.has(idStr);
   });
 
-  const lista = await loadListaRutas();
+  const lista = await loadMaestroRows();
   const byNuevo = new Map();
   for (const row of lista){
     const nuevo = (row.codigo_nuevo || '').trim();

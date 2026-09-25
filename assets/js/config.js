@@ -37,6 +37,18 @@ export const COLOR_CORR = {
   '5': '#00843d'  // Verde
 };
 
+// Nombre de cada sistema (data-system de las casillas) para mostrar
+export const SYSTEM_LABELS = {
+  wr: 'Transporte público',
+  wrSemi: 'Transporte semiformal',
+  wrAero: 'AeroDirecto',
+  wrOtros: 'Expreso San Isidro',
+  corr: 'Corredor',
+  met: 'Metropolitano',
+  alim: 'Alimentador',
+  metro: 'Metro'
+};
+
 export const state = {
   map: null,
   baseLayers: { light: null, dark: null },

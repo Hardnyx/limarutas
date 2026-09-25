@@ -1,8 +1,8 @@
 // uiSidebar.corr.js
 import { PATHS, state } from './config.js';
 import { $, el } from './utils.js';
-import { onToggleService, setWikiroutesVisible } from './mapLayers.js';
-import { syncTriFromLeaf, syncAllTri, onLevel2ChangeCorr, onLevel3ChangeCorr } from './uiSidebar.hierarchy.js';
+import { syncTriFromLeaf, syncAllTri } from './uiSidebar.hierarchy.js';
+import { toggleLeaf, refreshLeafDirection } from './leafToggle.js';
 
 /* =========================
    Corredores
@@ -427,26 +427,6 @@ function applyCorrTextsToItem(item, direccion){
   }
 }
 
-function toggleCorrPair(chk, checked, {silentFit=false}={}){
-  const ida = chk.dataset.ida;
-  const vta = chk.dataset.vuelta;
-  if (!ida || !vta) return;
-
-  const sel = chk.dataset.sel || 'ida';
-  if (checked){
-    if (sel === 'ida'){
-      setWikiroutesVisible(ida, true,  {fit:!silentFit});
-      setWikiroutesVisible(vta, false);
-    } else {
-      setWikiroutesVisible(vta, true,  {fit:!silentFit});
-      setWikiroutesVisible(ida, false);
-    }
-  } else {
-    setWikiroutesVisible(ida, false);
-    setWikiroutesVisible(vta, false);
-  }
-}
-
 function makeCorrDirPairControls(chk){
   const wrap = el('div',{class:'dir-mini'});
   const mk = (val,label) =>
@@ -472,15 +452,7 @@ function makeCorrDirPairControls(chk){
     }
 
     // Cambiar de sentido no mueve la vista
-    if (chk.checked){
-      if (sel==='ida'){
-        setWikiroutesVisible(chk.dataset.ida, true);
-        setWikiroutesVisible(chk.dataset.vuelta, false);
-      } else {
-        setWikiroutesVisible(chk.dataset.vuelta, true);
-        setWikiroutesVisible(chk.dataset.ida, false);
-      }
-    }
+    refreshLeafDirection(chk);
   });
 
   return wrap;
@@ -540,17 +512,7 @@ function makeServiceItemCorr(svc){
   applyCorrTextsToItem(body, initialDir);
 
   chk.addEventListener('change', () => {
-    if (hasBothDirs){
-      toggleCorrPair(chk, chk.checked, {silentFit:false});
-    } else {
-      const id = chk.dataset.id;
-      if (id && /^\d+$/.test(String(id))){
-        if (chk.checked) setWikiroutesVisible(id, true, {fit:true});
-        else setWikiroutesVisible(id, false);
-      } else {
-        onToggleService('corr', svc.id, chk.checked);
-      }
-    }
+    toggleLeaf(chk, chk.checked, { fit: true });
     syncTriFromLeaf('corr');
   });
 
@@ -577,8 +539,6 @@ function buildCorrGroupSection(container, key, label){
 
   const entry = { chk, body, tabs: new Map() };
   state.systems.corr.ui.groups.set(key, entry);
-
-  chk.addEventListener('change',()=> onLevel2ChangeCorr(chk));
 }
 
 function buildCorrTabSection(parentBody, groupKey, tabKey, label){
@@ -597,8 +557,6 @@ function buildCorrTabSection(parentBody, groupKey, tabKey, label){
   parentBody.appendChild(section);
 
   const chk = head.querySelector('input[type="checkbox"]');
-  chk.addEventListener('change',()=> onLevel3ChangeCorr(chk));
-
   return { chk, body };
 }
 
