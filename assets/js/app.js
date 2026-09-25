@@ -11,8 +11,6 @@ import {
 import {
   initMap,
   reRenderVisibleSystem,
-  reRenderVisible,
-  countVisibleWrRoutes,
   setBase
 } from './mapLayers.js';
 import {
@@ -33,14 +31,12 @@ import { wirePanelTogglesOnce } from './panels.js';
 import { setupSearch } from './search.js';
 import { wireRecents } from './recents.js';
 import { wireStopHover } from './stopHover.js';
+import { confirmShowStops, setShowStops } from './stopsGuard.js';
 import { wireRouteInspector } from './routeInspector.js';
 
 /* ===========================
    Helpers UI de carga
    =========================== */
-
-// A partir de cuántas rutas visibles se pide confirmar antes de mostrar paraderos
-const STOPS_CONFIRM_ROUTES = 30;
 
 function setStatus(text){
   const statusEl = $('#status');
@@ -552,17 +548,11 @@ async function buildUI(){
     chkStops.checked = state.showStops;
     chkStops.addEventListener('change', () => {
       // Con muchas rutas son miles de paraderos: pedir confirmación
-      if (chkStops.checked){
-        const n = countVisibleWrRoutes();
-        if (n > STOPS_CONFIRM_ROUTES && !window.confirm(
-          `Hay ${n} rutas visibles. Mostrar todos sus paraderos puede volver lento el mapa.\n\n¿Mostrarlos de todos modos?`
-        )){
-          chkStops.checked = false;
-          return;
-        }
+      if (chkStops.checked && !confirmShowStops()){
+        chkStops.checked = false;
+        return;
       }
-      state.showStops = chkStops.checked;
-      reRenderVisible();
+      setShowStops(chkStops.checked);
     });
   }
 

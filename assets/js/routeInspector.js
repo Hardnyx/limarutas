@@ -13,6 +13,7 @@ import { $, el } from './utils.js';
 import { addRecent } from './recents.js';
 import { bulk, setLeafChecked, syncAllTri } from './uiSidebar.hierarchy.js';
 import { isOverStop } from './stopHover.js';
+import { confirmManyRoutes } from './stopsGuard.js';
 import { findUnderPoint, entriesForFolders } from './routeEntries.js';
 
 // El hover abre el panel solo con rutas superpuestas; con una sola no aporta
@@ -70,7 +71,7 @@ function highlight(entries, active){
 
 let api = null;
 
-// Abre el panel con las rutas de un paradero: { name, lat, lon, folderIds }
+// Abre el panel con las rutas de un paradero: { name, lat, lon, folderIds, district }
 export function showStopRoutes(stop){
   api?.showStop(stop);
 }
@@ -113,6 +114,7 @@ export function wireRouteInspector(){
         const btnAll = el('button', { type: 'button', class: 'btn small' },
           `Mostrar ${hidden.length === entries.length ? 'las' : 'las otras'} ${hidden.length} rutas`);
         btnAll.addEventListener('click', () => {
+          confirmManyRoutes(hidden.length);
           bulk(() => hidden.forEach(e => setLeafChecked(e.leaf.dataset.system, e.leaf, true, { silentFit: true })));
           syncAllTri();
           setHint();
@@ -276,7 +278,7 @@ export function wireRouteInspector(){
   map.on('zoomstart', () => { if (!pinned && !stopMode) hide(); else clearHighlight(); });
 
   api = {
-    showStop({ name, lat, lon, folderIds }){
+    showStop({ name, lat, lon, folderIds, district }){
       clearTimeout(timer);
       leaveStopMode();
       const found = entriesForFolders(folderIds);
@@ -290,7 +292,7 @@ export function wireRouteInspector(){
         map.setView([lat, lon], Math.max(map.getZoom(), 16));
       }
       stopMode = { name, marker };
-      title.textContent = `Paradero ${name}`;
+      title.textContent = district ? `Paradero ${name} · ${district}` : `Paradero ${name}`;
       lastKey = '';
       render(found);
       pinned = true;

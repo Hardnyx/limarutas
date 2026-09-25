@@ -288,6 +288,9 @@ async function buildSearchIndex(){
 
 const STOP_MIN_CHARS = 3;
 const MAX_STOPS = 3;
+// Un mismo nombre puede estar en varios lugares (hay "Separadora Industrial"
+// en Santa Anita, Ate, La Molina, Villa El Salvador...): se listan todos
+const MAX_SAME_NAME = 10;
 const MAX_STOP_ROUTES = 20;
 
 let stopsIndexPromise = null;
@@ -300,12 +303,14 @@ function loadStopsIndex(){
       if (!r.ok) throw new Error(`HTTP ${r.status}`);
       return r.json();
     })
-    .then(({ routes, stops }) => stops.map(([name, lat, lon, idx]) => ({
+    .then(({ routes, stops }) => stops.map(([name, lat, lon, idx, district, neighbor]) => ({
       name,
       key: norm(name).replace(/[^a-z0-9]+/g, ' ').trim(),
       lat,
       lon,
-      folderIds: idx.map(i => routes[i])
+      folderIds: idx.map(i => routes[i]),
+      district: district || '',
+      neighbor: neighbor || ''
     })))
     .catch(err => {
       console.warn('[search] Sin índice de paraderos:', err.message);
@@ -334,23 +339,46 @@ function findStops(stops, query){
     // Coincidencia clara: el nombre completo, o su inicio con 5+ letras
     st.strong = rank === 0 || (rank === 1 && q.length >= 5);
     out.push(st);
-    if (out.length >= MAX_STOPS) break;
+    // Si el mejor nombre se repite en varios lugares, se muestran todos
+    const sameName = out.filter(x => x.key === out[0].key).length;
+    if (out.length >= MAX_STOPS && (sameName < out.length || sameName >= MAX_SAME_NAME)) break;
   }
   return out;
 }
 
-function stopDoc(st){
+// Lugares con el mismo nombre que el mejor resultado
+function sameNameStops(stops){
+  return stops.filter(st => st.key === stops[0].key);
+}
+
+// withNeighbor: agrega "cerca de …" cuando hay varios con el mismo nombre
+// en el mismo distrito
+function stopDoc(st, { withNeighbor = false } = {}){
   // Rutas elegibles en el sidebar (sin duplicados de Wikiroutes)
   const n = entriesForFolders(st.folderIds).length;
+  const parts = ['Paradero'];
+  if (st.district) parts.push(st.district);
+  if (withNeighbor && st.neighbor) parts.push(`cerca de ${st.neighbor}`);
+  parts.push(`${n} ${n === 1 ? 'ruta' : 'rutas'}`);
   return {
     key: `stop:${st.key}:${st.lat},${st.lon}`,
     system: 'stop',
     id: st.key,
     type: 'stop',
     label: st.name,
-    sub: `Paradero · ${n} ${n === 1 ? 'ruta' : 'rutas'}`,
+    sub: parts.join(' · '),
     stop: st
   };
+}
+
+// Documentos de varios lugares con el mismo nombre, desambiguados
+function sameNameDocs(stops){
+  const perDistrict = {};
+  stops.forEach(st => { perDistrict[st.district] = (perDistrict[st.district] || 0) + 1; });
+  return stops
+    .map(st => ({ st, n: entriesForFolders(st.folderIds).length }))
+    .sort((a, b) => b.n - a.n)
+    .map(({ st }) => stopDoc(st, { withNeighbor: perDistrict[st.district] > 1 }));
 }
 
 // Rutas que paran en el paradero, como resultados normales del buscador
@@ -521,15 +549,20 @@ export function setupSearch(){
     if (seq !== querySeq) return;   // llegó otra búsqueda mientras cargaba
 
     let hits = routeHits.slice(0, 25);
-    if (stops.length && stops[0].strong){
+    const same = stops.length ? sameNameStops(stops) : [];
+    if (same.length > 1 && stops[0].strong){
+      // Nombre ambiguo: cada lugar con su distrito, sin asumir cuál es
+      const others = routeHits.slice(0, 8);
+      hits = [...sameNameDocs(same.slice(0, MAX_SAME_NAME)), ...others];
+    } else if (stops.length && stops[0].strong){
       // Coincide con un paradero: primero él y las rutas que paran ahí
       const viaStop = stopRouteDocs(stops[0]);
       const seen = new Set(viaStop.map(d => `${d.system}:${d.id}`));
       const others = routeHits.filter(d => !seen.has(`${d.system}:${d.id}`)).slice(0, 8);
-      hits = [stopDoc(stops[0]), ...viaStop, ...stops.slice(1).map(stopDoc), ...others];
+      hits = [stopDoc(stops[0]), ...viaStop, ...stops.slice(1).map(st => stopDoc(st)), ...others];
     } else if (stops.length){
       // Búsqueda ambigua: rutas primero, paraderos al final
-      hits = [...routeHits.slice(0, 15), ...stops.map(stopDoc)];
+      hits = [...routeHits.slice(0, 15), ...stops.map(st => stopDoc(st))];
     }
     currentDocs = hits;
     selectedIndex = hits.length ? 0 : -1;

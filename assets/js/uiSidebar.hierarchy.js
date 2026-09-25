@@ -11,6 +11,7 @@ import { $$ } from './utils.js';
 import { beginFitBatch, endFitBatch } from './mapLayers.js';
 import { toggleLeaf } from './leafToggle.js';
 import { refreshRecents } from './recents.js';
+import { confirmManyRoutes } from './stopsGuard.js';
 
 const GROUP_SEL = '#panels .panel-head > input[type="checkbox"]';
 const LEAF_SEL  = '.item .item-head input[type="checkbox"]';
@@ -97,6 +98,7 @@ export function clearAllRoutes(){
 
 function onGroupChange(groupChk){
   const v = groupChk.checked;
+  if (v) confirmManyRoutes(leavesOfGroup(groupChk).filter(l => !l.checked).length);
   bulk(() => setGroupChecked(groupChk, v));
   syncAllTri();
 }
