@@ -48,9 +48,56 @@ function load(){
   }
 }
 
+// Copia del bloque de texto del ítem original (título y subtítulos del
+// sentido que está seleccionado)
+function cloneLeft(item, entry){
+  const left = item?.querySelector('.item-head .left');
+  if (left) return left.cloneNode(true);
+  return el('div', { class: 'left' }, el('span', { class: 'tag' }, entry.id));
+}
+
+// Botones de sentido (Ida/Vuelta, N/S...) que accionan los del ítem original
+function makeDirControls(item, row){
+  const src = item?.querySelector('.dir-mini');
+  if (!src) return null;
+  const wrap = el('div', { class: 'dir-mini' });
+  src.querySelectorAll('.segbtn-mini').forEach(orig => {
+    const btn = el('button', {
+      type: 'button',
+      class: orig.className,
+      'data-dir': orig.dataset.dir || '',
+      title: orig.title || orig.textContent
+    }, orig.textContent);
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      orig.click();
+      syncRow(row);
+    });
+    wrap.appendChild(btn);
+  });
+  return wrap;
+}
+
+// Refleja en la fila el estado actual del ítem original
+function syncRow(row){
+  const leaf = row.__leaf;
+  const item = leaf?.closest('.item');
+  if (!leaf || !item) return;
+
+  const chk = row.querySelector('.recent-row input[type="checkbox"]');
+  if (chk) chk.checked = leaf.checked;
+
+  const left = row.querySelector('.recent-row .left');
+  if (left) left.replaceWith(cloneLeft(item, row.__entry));
+
+  const origBtns = item.querySelectorAll('.dir-mini .segbtn-mini');
+  row.querySelectorAll('.dir-mini .segbtn-mini').forEach((btn, i) => {
+    if (origBtns[i]) btn.className = origBtns[i].className;
+  });
+}
+
 function makeRow(entry, leaf){
   const item = leaf.closest('.item');
-  const icon = item?.querySelector('.item-head .left')?.firstElementChild;
   const name = item?.querySelector('.item-head .name')?.textContent || entry.id;
 
   const chk = el('input', { type: 'checkbox', 'aria-label': `Mostrar ${name}` });
@@ -75,16 +122,17 @@ function makeRow(entry, leaf){
     renderRecents();
   });
 
-  const label = el('label', { class: 'recent-row' },
-    icon ? icon.cloneNode(true) : el('span', { class: 'tag' }, entry.id),
-    el('span', { class: 'recent-text' },
-      el('span', { class: 'recent-name' }, name),
-      el('span', { class: 'recent-sub' }, SYSTEM_LABELS[entry.system] || '')
-    ),
-    chk
-  );
+  const head = el('label', { class: 'recent-row item-head', title: SYSTEM_LABELS[entry.system] || '' },
+    cloneLeft(item, entry), chk);
 
-  return el('div', { class: 'recent-item' }, label, btnRemove);
+  const row = el('div', { class: 'recent-item' },
+    el('div', { class: 'recent-top' }, head, btnRemove));
+  row.__leaf = leaf;
+  row.__entry = entry;
+
+  const dir = makeDirControls(item, row);
+  if (dir) row.appendChild(dir);
+  return row;
 }
 
 export function renderRecents(){
@@ -104,12 +152,7 @@ export function renderRecents(){
 export function refreshRecents(){
   const list = $('#p-recent-list');
   if (!list || !recents.length) return;
-  list.querySelectorAll('.recent-item').forEach((row, i) => {
-    const entry = recents[i];
-    const leaf = entry && findLeaf(entry);
-    const chk = row.querySelector('input[type="checkbox"]');
-    if (leaf && chk) chk.checked = leaf.checked;
-  });
+  list.querySelectorAll('.recent-item').forEach(syncRow);
 }
 
 export function addRecent(leaf){
@@ -143,6 +186,13 @@ export function wireRecents(){
 
     if (leaf.checked && reordering) addRecent(leaf);
     else refreshRecents();
+  });
+
+  // Si se cambia el sentido en el menú principal, se refleja aquí
+  panels.addEventListener('click', (e) => {
+    const btn = e.target.closest('.dir-mini .segbtn-mini');
+    if (!btn || btn.closest('#p-recent')) return;
+    setTimeout(refreshRecents, 0);
   });
 
   const btnClear = $('#btnClearRecents');

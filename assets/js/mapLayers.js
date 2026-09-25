@@ -2,6 +2,7 @@
 import { state, getDirFor, CARTO_API_KEY } from './config.js';
 import { $$, uniqueOrder } from './utils.js';
 import { buildWikiroutesLayer } from './parsers.js';
+import { wireStopLayer, setOverStop } from './stopHover.js';
 
 const MIN_ZOOM = 10;
 const MAX_ZOOM = 19;
@@ -550,6 +551,8 @@ export function renderService(systemId, id, opts={}){
       }).addTo(gStop);
       const nm = sys.stops.get(st)?.name || st;
       marker.bindTooltip(nm, { permanent:false, direction:'top' });
+      marker.on('mouseover', () => setOverStop(true));
+      marker.on('mouseout', () => setOverStop(false));
     });
   }
 
@@ -675,8 +678,11 @@ async function ensureWrLayer(id){
       await withWrBuildSlot(() => {
         // Si se desmarcó mientras esperaba turno, no descargar nada
         if (wr._wanted?.get(id) === false) return null;
-        return buildWikiroutesLayer(String(id), def.folder, { color: colorToUse, trip: def.trip });
+        return buildWikiroutesLayer(String(id), def.folder, { color: colorToUse, trip: def.trip, stopPane: PANES.stop });
       });
+
+      // Nombre del paradero al pasar el mouse
+      wr.stopLayers?.get(id)?.eachLayer(wireStopLayer);
 
       // Post-fix: si el layer quedó en SVG y algo pisó el stroke, forzar.
       const g = wr.layers?.get(id);

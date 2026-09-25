@@ -721,7 +721,9 @@ export async function buildWikiroutesLayer(id, folderPath, opts = {}) {
       opacity: f?.properties?.opacity ?? 0.9
     });
 
-    const lineLyr = L.geoJSON(lineFC, { style });
+    // Sin eventos: el panel "Rutas en este punto" hace su propio hit-test
+    // y así los paraderos (en su pane, encima) reciben el mouse
+    const lineLyr = L.geoJSON(lineFC, { style, interactive: false });
     lineLyr.addTo(group);
 
     try {
@@ -741,8 +743,12 @@ export async function buildWikiroutesLayer(id, folderPath, opts = {}) {
     };
 
     const stopLyr = L.geoJSON(pts, {
-      // Sin eventos: no tapan el hover de la línea ni cuestan en el hit-test
-      pointToLayer: (_feat, latlng) => L.circleMarker(latlng, { ...stopStyle, interactive: false })
+      // Hover/toque muestra el nombre (stopHover.js); el clic no llega al mapa
+      pointToLayer: (_feat, latlng) => L.circleMarker(latlng, {
+        ...stopStyle,
+        bubblingMouseEvents: false,
+        ...(opts.stopPane ? { pane: opts.stopPane } : {})
+      })
     });
     stopLyr.addTo(stopsGroup);
 

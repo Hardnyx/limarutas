@@ -471,12 +471,13 @@ function makeCorrDirPairControls(chk){
       applyCorrTextsToItem(item, sel);
     }
 
+    // Cambiar de sentido no mueve la vista
     if (chk.checked){
       if (sel==='ida'){
-        setWikiroutesVisible(chk.dataset.ida, true, {fit:true});
+        setWikiroutesVisible(chk.dataset.ida, true);
         setWikiroutesVisible(chk.dataset.vuelta, false);
       } else {
-        setWikiroutesVisible(chk.dataset.vuelta, true, {fit:true});
+        setWikiroutesVisible(chk.dataset.vuelta, true);
         setWikiroutesVisible(chk.dataset.ida, false);
       }
     }

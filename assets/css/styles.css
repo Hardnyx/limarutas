@@ -579,52 +579,28 @@ body {
 
 .recent-item {
   display: flex;
-  align-items: center;
-  gap: 4px;
-  padding: 4px 4px 4px 7px;
+  flex-direction: column;
+  gap: 5px;
+  padding: 5px 4px 5px 7px;
   border-radius: 10px;
   background: rgba(15, 23, 42, 0.95);
   border: 1px solid rgba(148, 163, 184, 0.25);
 }
 
-.recent-row {
+.recent-top {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
+}
+
+.recent-row {
   flex: 1;
   min-width: 0;
   cursor: pointer;
 }
 
-.recent-row .tag,
-.recent-row img {
-  flex: none;
-}
-
-.recent-row img {
-  width: 26px;
-  height: 26px;
-  object-fit: contain;
-}
-
-.recent-text {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
+.recent-row .left {
   min-width: 0;
-}
-
-.recent-name {
-  font-size: 12px;
-  font-weight: 600;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.recent-sub {
-  font-size: 10px;
-  color: var(--text-muted);
 }
 
 .recent-remove {
@@ -841,4 +817,20 @@ body {
   background: #f59e0b;
   color: #0b1020;
   border-radius: 999px;
+}
+
+/* Nombre del paradero (stopHover.js) */
+.leaflet-tooltip.stop-tip {
+  padding: 4px 8px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: 8px;
+  background: rgba(11, 16, 32, 0.95);
+  color: var(--text-main);
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: var(--shadow-soft);
+}
+
+.leaflet-tooltip.stop-tip::before {
+  display: none;
 }
