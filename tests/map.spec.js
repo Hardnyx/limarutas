@@ -138,3 +138,21 @@ test('Esc y Desmarcar todo cierran el panel del paradero y su marcador', async (
   await expect(page.locator('.route-inspector')).toBeHidden();
   expect(await markers()).toBe(0);
 });
+
+test('cambiar "Mostrar paradas" no dibuja corredores de más (regresión)', async ({ app, page }) => {
+  // Corredor 301 (capa Wikiroutes) marcado, paradas apagar/prender, Desmarcar todo
+  await app.search('301');
+  await page.keyboard.press('Enter');
+  await app.settle();
+  await page.locator('#chkStops').uncheck();
+  await page.locator('#chkStops').check();
+  await page.click('#btnClearAll');
+  await app.settle();
+  const drawn = await app.state(s => {
+    let n = 0;
+    s.systems.corr.lineLayers?.forEach(g => { n += g.getLayers().length; });
+    return n;
+  });
+  expect(drawn).toBe(0);
+  expect(await app.visibleWr()).toEqual([]);
+});

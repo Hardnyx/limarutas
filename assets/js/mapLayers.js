@@ -8,7 +8,7 @@ import { setOverStop } from './stopHover.js';
 import { ensureCustomPanes, getLinePane, getStopPane } from './mapPanes.js';
 import { fitTo, currentFitBatch, addBoundsToBatch } from './mapFit.js';
 import { corrColorForSvc, forceStroke } from './mapColors.js';
-import { setWikiroutesVisible, syncOneWrStopsVisibility } from './mapLayers.wr.js';
+import { syncOneWrStopsVisibility } from './mapLayers.wr.js';
 
 export { fitTo, beginFitBatch, endFitBatch } from './mapFit.js';
 export { setWikiroutesVisible, countVisibleWrRoutes } from './mapLayers.wr.js';
@@ -371,27 +371,27 @@ export function onToggleService(systemId, id, checked, opts={}){
 }
 
 // Re-render de lo visible
+// Redibuja lo visible de un sistema (p. ej. al cambiar "Mostrar paradas")
 export function reRenderVisibleSystem(sysId){
+  // Wikiroutes: las capas ya están bien; solo cambian sus paraderos
+  if (sysId==='wr'){
+    state.systems.wr.layers?.forEach((_layer, id) => syncOneWrStopsVisibility(id));
+    return;
+  }
+
   const sel =
     sysId==='met'   ? '#p-met-reg .item input[type=checkbox], #p-met-exp .item input[type=checkbox]' :
     sysId==='alim'  ? '#p-met-alim .item input[type=checkbox]' :
     sysId==='corr'  ? '#p-corr .item input[type=checkbox]' :
-    sysId==='wr'    ? '#p-wr .item input[type=checkbox]' :
     '#p-metro .item input[type=checkbox]';
 
   $$(sel).forEach(chk=>{
-    if (sysId==='wr'){
-      setWikiroutesVisible(chk.dataset.id, chk.checked);
-    } else {
-      if (chk.checked) onToggleService(sysId, chk.dataset.id, true, {silentFit:true});
-      else hideService(sysId, chk.dataset.id);
-    }
+    // Corredores que se dibujan como capa Wikiroutes: no son servicios
+    const { ida, vuelta, layer, id } = chk.dataset;
+    if ((ida && vuelta) || layer || (sysId==='corr' && /^\d+$/.test(String(id)))) return;
+    if (chk.checked) onToggleService(sysId, id, true, {silentFit:true});
+    else hideService(sysId, id);
   });
-
-  if (sysId==='wr'){
-    const wr = state.systems.wr;
-    wr.layers?.forEach((_layer, id) => syncOneWrStopsVisibility(id));
-  }
 }
 
 export function reRenderVisible(){
