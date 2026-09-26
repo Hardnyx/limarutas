@@ -139,3 +139,13 @@ test('tema del mapa: el botón activo queda marcado', async ({ app, page }) => {
 test('no hay un segundo control de dirección para Metropolitano', async ({ app, page }) => {
   await expect(page.locator('input[name="dir"]')).toHaveCount(0);
 });
+
+test('colores de ruta chillones se suavizan y llevan texto oscuro', async ({ app, page }) => {
+  // 1122 viene en amarillo fosforescente (#FEFF00) desde Wikiroutes
+  const tag = page.locator('#p-wr .item:has(input[data-id="1122"]) .item-head .tag');
+  const bg = await tag.evaluate(t => getComputedStyle(t).backgroundColor);
+  expect(bg).not.toBe('rgb(254, 255, 0)');
+  await expect(tag).toHaveClass(/on-light/);
+  const line = await app.state(s => s.systems.wr.routeDefs.get('1122-ida')?.color);
+  expect(line?.toLowerCase()).not.toBe('#feff00');
+});

@@ -264,9 +264,32 @@ function colorOf(route){
   return svc?.color || '#3b82f6';
 }
 
+// Nombre por el que se conoce la ruta: empresa y alias ("Unidos de Pasajeros ·
+// La 73-1"), el que muestra su fila en la pestaña Rutas
+function routeName(route){
+  const item = route.leaf.closest('.item');
+  let name = item?.querySelector('.item-head .name')?.textContent?.trim() || '';
+  if (route.group === 'corredor'){
+    // "Servicio 205" no dice nada: el corredor sí ("Corredor Rojo")
+    const titles = [];
+    for (let p = item?.closest('section.panel'); p; p = p.parentElement?.closest('section.panel')){
+      const t = p.querySelector(':scope > .panel-head .title')?.firstChild?.textContent?.trim();
+      if (t) titles.push(t);
+    }
+    return titles.find(t => /^Corredor\b/i.test(t)) || 'Corredor';
+  }
+  if (route.group === 'metropolitano') return `Metropolitano · ${name || route.code}`;
+  if (route.group === 'metro') return `Metro de Lima · ${name.replace(/^Línea\s+L/i, 'Línea ') || route.code}`;
+  if (name && name !== route.code) return name;
+  const m = item?.__wrMeta;
+  return [m?.empresa_operadora, m?.alias].filter(Boolean).join(' · ');
+}
+
 function chip(route){
   const c = el('span', { class: 'tag trip-chip' }, route.code);
   paintTag(c, colorOf(route));
+  const name = routeName(route);
+  if (name) c.title = name;
   return c;
 }
 
@@ -289,7 +312,7 @@ function stepsOf(opt){
       const n = leg.to - leg.from;
       const alts = leg.alts || [];
       const text = el('span', {},
-        'Toma la ', chip(r), ` hacia ${headsign(r)} en `, el('b', {}, stopName(r.stops[leg.from])),
+        'Toma la ', chip(r), routeName(r) ? ` (${routeName(r)})` : '', ` hacia ${headsign(r)} en `, el('b', {}, stopName(r.stops[leg.from])),
         '. Baja en ', el('b', {}, stopName(r.stops[leg.to])), ` (${n} paradero${n === 1 ? '' : 's'}).`);
       if (alts.length){
         const also = el('span', { class: 'trip-also' }, 'También te sirven: ');
@@ -307,16 +330,22 @@ function stepsOf(opt){
   return steps;
 }
 
-// Rutas de un tramo: la principal y las que hacen lo mismo ("1297 · 1122 · +2")
-const MAX_CHIPS = 3;
-function legChips(leg){
+// Rutas de un tramo, cada una con su nombre: la principal y las que hacen lo
+// mismo. La gente conoce la empresa o el alias más que el código.
+const MAX_ROUTES_SHOWN = 3;
+function legRoutes(leg){
   const all = [leg.route, ...(leg.alts || []).map(a => a.route)];
-  const box = el('span', { class: 'trip-leg' });
-  all.slice(0, MAX_CHIPS).forEach((r, i) => {
-    if (i) box.append(el('span', { class: 'trip-or' }, 'o'));
-    box.append(chip(r));
+  const box = el('div', { class: 'trip-leg' });
+  all.slice(0, MAX_ROUTES_SHOWN).forEach((r, i) => {
+    box.append(el('div', { class: 'trip-leg-route' },
+      el('span', { class: 'trip-or' }, i ? 'o' : ''), chip(r),
+      el('span', { class: 'trip-name' }, routeName(r))));
   });
-  if (all.length > MAX_CHIPS) box.append(el('span', { class: 'trip-more' }, `+${all.length - MAX_CHIPS}`));
+  if (all.length > MAX_ROUTES_SHOWN){
+    const more = all.slice(MAX_ROUTES_SHOWN);
+    box.append(el('div', { class: 'trip-more', title: more.map(r => `${r.code} ${routeName(r)}`).join('\n') },
+      `y ${more.length} más: ${more.map(r => r.code).join(', ')}`));
+  }
   return box;
 }
 
@@ -324,8 +353,8 @@ function card(opt, k){
   const rides = opt.legs.filter(l => l.type === 'ride');
   const head = el('div', { class: 'trip-card-head' });
   rides.forEach((l, j) => {
-    if (j) head.append(el('span', { class: 'trip-arrow' }, '›'));
-    head.append(legChips(l));
+    if (j) head.append(el('div', { class: 'trip-arrow' }, `› transbordo en ${stopName(l.route.stops[l.from])}`));
+    head.append(legRoutes(l));
   });
   // Con varias rutas en un tramo no hay que esperar una en especial
   const many = rides.every(l => (l.alts || []).length > 0);

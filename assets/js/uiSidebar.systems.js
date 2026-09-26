@@ -1,5 +1,6 @@
 // uiSidebar.systems.js
 import { PATHS, COLOR_AN, COLOR_AS, state, getDirFor, setDirFor } from './config.js';
+import { isLightColor } from './mapColors.js';
 import { $, el } from './utils.js';
 import { syncTriFromLeaf } from './uiSidebar.hierarchy.js';
 import { toggleLeaf, refreshLeafDirection } from './leafToggle.js';
@@ -80,9 +81,10 @@ function makeServiceItemMet(svc){
 
 function makeServiceItemAlim(svc){
   const code = String(svc.id).toUpperCase();
+  const bg = svc.color || (code.startsWith('AN') ? COLOR_AN : COLOR_AS);
   const tag = el('span',{
-    class:'tag',
-    style:`background:${svc.color || (code.startsWith('AN')?COLOR_AN:COLOR_AS)}`
+    class: isLightColor(bg) ? 'tag on-light' : 'tag',
+    style:`background:${bg}`
   }, code);
 
   const left = el('div',{class:'left'},
@@ -123,7 +125,7 @@ function makeServiceItemMetro(svc){
       ico.src = alt;
     } else {
       ico.replaceWith(
-        el('span',{class:'tag', style:`background:${svc.color}`}, code)
+        el('span',{class: isLightColor(svc.color) ? 'tag on-light' : 'tag', style:`background:${svc.color}`}, code)
       );
     }
   };

@@ -7,6 +7,8 @@ const PUENTE_NUEVO = { lat: -12.0433, lon: -77.0126 };
 const PLAZA_SAN_MARTIN = { lat: -12.0515, lon: -77.0347 };
 const VES = { lat: -12.2130, lon: -76.9370 };
 const COMAS = { lat: -11.9380, lon: -77.0600 };
+const SAN_ISIDRO = { lat: -12.0930, lon: -77.0230 };   // Canaval y Moreyra
+const VES_MEGA = { lat: -12.2090, lon: -76.9410 };      // Mega Plaza Villa El Salvador
 
 // Corre planTrip en la página y devuelve un resumen de cada opción
 function plan(page, from, to, opts = {}){
@@ -32,6 +34,8 @@ function plan(page, from, to, opts = {}){
           d2(x.route.stops[x.from], l.route.stops[l.from]) <= 151 &&
           d2(x.route.stops[x.to], l.route.stops[l.to]) <= 151));
         return {
+          mass: opt.mass,
+          massGroups: rides.some(l => ['metro', 'metropolitano', 'corredor'].includes(l.route.group)),
           transfers: opt.transfers,
           minutes: opt.minutes,
           cost: opt.cost,
@@ -54,7 +58,7 @@ test('viaje directo: opciones hacia adelante, cerca de A y B y con rutas alterna
   const r = await plan(page, PUENTE_NUEVO, PLAZA_SAN_MARTIN);
   expect(r.walkOnly).toBe(false);
   expect(r.options.length).toBeGreaterThan(0);
-  expect(r.options.length).toBeLessThanOrEqual(3);
+  expect(r.options.length).toBeLessThanOrEqual(6);
   for (const o of r.options){
     expect(o.forward).toBe(true);
     expect(o.startNear).toBe(true);
@@ -87,6 +91,14 @@ test('lejos: los transbordos no repiten rutas que ya van directo', async ({ app,
     for (const a of o.alts.flat()) expect(direct.has(a)).toBe(false);
   }
   expect(r.ms).toBeLessThan(3000);
+});
+
+test('Metro, Metropolitano o corredor: si se puede ir en ellos, aparece esa opción', async ({ app, page }) => {
+  const r = await plan(page, SAN_ISIDRO, VES_MEGA);
+  expect(r.options.length).toBeGreaterThan(3);
+  const mass = r.options.filter(o => o.mass);
+  expect(mass.length).toBeGreaterThan(0);
+  for (const o of r.options) expect(o.mass).toBe(o.massGroups);
 });
 
 test('muy cerca conviene caminar', async ({ app, page }) => {
@@ -123,7 +135,9 @@ test.describe('pestaña Cómo llegar', () => {
 
     const cards = page.locator('.trip-card');
     await expect(cards.first()).toBeVisible();
-    expect(await cards.count()).toBeLessThanOrEqual(3);
+    expect(await cards.count()).toBeLessThanOrEqual(6);
+    // Cada ruta con el nombre que la gente conoce (empresa · alias)
+    await expect(cards.first().locator('.trip-name').first()).not.toBeEmpty();
     await expect(cards.first()).toHaveClass(/selected/);
     await expect(cards.first().locator('.trip-meta')).toContainText('min aprox.');
     await expect(cards.first().locator('.trip-step-ride')).not.toHaveCount(0);

@@ -2,6 +2,7 @@
 // Ítems y listas de Wikiroutes en el sidebar (Transporte público,
 // AeroDirecto, Otros, Semiformal).
 import { state } from './config.js';
+import { isLightColor } from './mapColors.js';
 import { el } from './utils.js';
 import { syncTriFromLeaf } from './uiSidebar.hierarchy.js';
 import { toggleLeaf, refreshLeafDirection } from './leafToggle.js';
@@ -112,7 +113,7 @@ function makeWrDirPairControls(chk){
 function makeWrItem(rt, metaByCodigo, routesById, extremes, systemId='wr'){
   const labelId = (rt.display_id || String(rt.id)).toUpperCase();
   const tagColor = (rt && rt.color) ? rt.color : '#64748b';
-  const tag = el('span',{ class:'tag', style:`background:${tagColor}` }, labelId);
+  const tag = el('span',{ class: isLightColor(tagColor) ? 'tag on-light' : 'tag', style:`background:${tagColor}` }, labelId);
 
   const textBlock = el('div',{},
     el('div',{ class:'name wr-main-title' }, ''),
