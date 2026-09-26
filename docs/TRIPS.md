@@ -1,7 +1,7 @@
 # Datos para "Cómo llegar"
 
-Base para calcular viajes de A a B. Este paso solo prepara los datos; el
-cálculo y su interfaz vienen después.
+Cálculo de viajes de A a B: datos (`tripData.js`), algoritmo
+(`tripPlanner.js`) y pestaña "Cómo llegar" de la nueva interfaz (`tripUi.js`).
 
 ## Archivos
 
@@ -10,6 +10,8 @@ cálculo y su interfaz vienen después.
 | `pipeline/scripts/trips/build_trip_graph.py` | Genera el grafo (unos 5 s) |
 | `pipeline/output/trip_graph.json` | Paraderos y, por ruta y sentido, los paraderos en orden (1,8 MB; ~0,4 MB comprimido) |
 | `assets/js/tripData.js` | Lo carga en el navegador y le agrega grupos, caminatas y búsqueda de paraderos cercanos |
+| `assets/js/tripPlanner.js` | Calcula las opciones de viaje |
+| `assets/js/tripUi.js` | Pestaña "Cómo llegar": origen, destino, opciones y dibujo en el mapa |
 
 Regenerar después de cambiar los datos de Wikiroutes, Metropolitano o Metro:
 
@@ -58,3 +60,24 @@ bus de la principal no para en la auxiliar y puede haber un separador),
 
 **Caminatas.** Entre paraderos a 400 m o menos en línea recta
 (`WALK_MAX_M`), calculadas en el navegador con una grilla.
+
+## Cálculo (`planTrip`)
+
+1. Paraderos a 800 m o menos de A y de B (`ACCESS_MAX_M`). Si A y B están a
+   600 m o menos, se sugiere caminar.
+2. **Directos**: desde cada paradero cerca de A, cada ruta que pasa por ahí
+   se recorre hacia adelante hasta un paradero cerca de B.
+3. **Un transbordo**: se precalcula, para cada paradero, la mejor forma de
+   terminar el viaje (subir ahí y bajar cerca de B). Luego, desde cada
+   paradero de la primera ruta, se busca ese final en el mismo paradero o
+   caminando hasta 400 m. Nunca entre la ida y la vuelta del mismo servicio.
+4. Se guarda la mejor opción por combinación de rutas y se ordena por
+   **menos transbordos** y luego **menos minutos estimados**. Se muestran
+   hasta 3, sin repetir la misma combinación de servicios.
+
+Minutos estimados: caminata 75 m/min con 30 % de rodeo, bus 250 m/min
+(~15 km/h), Metro y Metropolitano 500 m/min, 5 min por transbordo. Sin
+horarios ni frecuencias: son aproximados y no incluyen la espera.
+
+Pendiente: viajes con 2 transbordos, búsqueda de direcciones
+(geocodificación), Alimentadores del Metropolitano.

@@ -8,13 +8,14 @@ test.describe('nueva interfaz', () => {
     test.skip(!(await app.isBeta()), 'solo con ?beta=1');
   });
 
-  test('pestañas: se abre en Rutas y "Cómo llegar" anuncia lo que viene', async ({ app, page }) => {
+  test('pestañas: se abre en Rutas; "Cómo llegar" pide origen y destino', async ({ app, page }) => {
     await expect(page.locator('#topbar')).toHaveCount(0);
     await expect(page.locator('#tabRoutes')).toHaveAttribute('aria-selected', 'true');
     await expect(page.locator('#routesPane #searchInput')).toBeVisible();
 
     await page.click('#tabTrip');
-    await expect(page.locator('#tripPane')).toContainText('Próximamente');
+    await expect(page.locator('#tripFrom')).toBeVisible();
+    await expect(page.locator('#tripTo')).toBeVisible();
     await expect(page.locator('#searchInput')).toBeHidden();
     await page.keyboard.press('ArrowRight');
     await expect(page.locator('#tabRoutes')).toHaveAttribute('aria-selected', 'true');
