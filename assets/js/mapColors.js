@@ -127,3 +127,56 @@ export function corrColorForWrId(id){
   const base = String(id).replace(/-(ida|vuelta)$/i, '');
   return corrColorForId(base);
 }
+
+/* ===========================
+   Colores de ruta legibles
+   =========================== */
+
+// Brillo percibido (0–1) de un color #rrggbb
+export function luminance(hex){
+  const m = String(hex || '').match(/^#?([0-9a-f]{6})$/i);
+  if (!m) return 0;
+  const n = parseInt(m[1], 16);
+  return (0.299 * (n >> 16) + 0.587 * ((n >> 8) & 255) + 0.114 * (n & 255)) / 255;
+}
+
+// ¿Texto oscuro sobre este color?
+export const isLightColor = hex => luminance(hex) > 0.55;
+
+const MAX_LUM = 0.6;    // más brillante que esto (amarillo o verde fosforescente) no se lee en el mapa claro
+
+function hexToHsl(hex){
+  const n = parseInt(hex.slice(1), 16);
+  const r = (n >> 16) / 255, g = ((n >> 8) & 255) / 255, b = (n & 255) / 255;
+  const max = Math.max(r, g, b), min = Math.min(r, g, b);
+  const l = (max + min) / 2;
+  if (max === min) return [0, 0, l];
+  const d = max - min;
+  const s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+  const h = max === r ? (g - b) / d + (g < b ? 6 : 0) : max === g ? (b - r) / d + 2 : (r - g) / d + 4;
+  return [h * 60, s, l];
+}
+
+function hslToHex(h, s, l){
+  const k = n => (n + h / 30) % 12;
+  const a = s * Math.min(l, 1 - l);
+  const f = n => Math.round(255 * (l - a * Math.max(-1, Math.min(k(n) - 3, 9 - k(n), 1))));
+  return '#' + [f(0), f(8), f(4)].map(v => v.toString(16).padStart(2, '0')).join('');
+}
+
+// Colores de Wikiroutes muy chillones (amarillo, verde o cyan fosforescentes):
+// los amarillos pasan a dorado y todos se oscurecen hasta un brillo legible.
+// El resto no cambia.
+export function softenColor(hex){
+  if (!/^#[0-9a-f]{6}$/i.test(String(hex || ''))) return hex;
+  if (luminance(hex) <= MAX_LUM) return hex;
+  let [h, s, l] = hexToHsl(hex);
+  s = Math.min(s, 0.78);
+  if (h >= 48 && h <= 75) h = 44;
+  let out = hslToHex(h, s, l);
+  for (let i = 0; i < 20 && luminance(out) > MAX_LUM; i++){
+    l -= 0.02;
+    out = hslToHex(h, s, l);
+  }
+  return out;
+}

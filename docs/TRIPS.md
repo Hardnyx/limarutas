@@ -80,9 +80,12 @@ bus de la principal no para en la auxiliar y puede haber un separador),
    5 por transbordo + la espera de cada subida, 10 / (1 + alternativas). Así un
    directo que te deja a varias cuadras, o que depende de una sola ruta, no
    gana siempre a un transbordo cómodo con varias rutas.
-7. Hasta 3 opciones que no se repitan (dos son la misma si en cada tramo
+7. Hasta 6 opciones que no se repitan (dos son la misma si en cada tramo
    comparten alguna ruta). Si hay un directo que cueste hasta 1,5 veces la
    mejor, siempre aparece uno.
+8. **Metro, Metropolitano y corredores** pesan más: su tiempo a bordo cuenta
+   un 20 % menos y su espera es de 4 min (pasan seguido). Si hay una opción
+   con ellos que cueste hasta 1,8 veces la mejor, siempre aparece.
 
 Minutos estimados: caminata 75 m/min con 30 % de rodeo, bus 250 m/min
 (~15 km/h), Metro y Metropolitano 500 m/min, 3 min por transbordo (bajar

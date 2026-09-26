@@ -1,5 +1,6 @@
 // uiSidebar.corr.js
 import { PATHS, state } from './config.js';
+import { isLightColor } from './mapColors.js';
 import { $, el } from './utils.js';
 import { syncTriFromLeaf, syncAllTri } from './uiSidebar.hierarchy.js';
 import { toggleLeaf, refreshLeafDirection } from './leafToggle.js';
@@ -465,7 +466,7 @@ function makeServiceItemCorr(svc){
   const code = servicio || String(svc.id || '').trim();
 
   const color = corrColorForCode(code) || svc.corrColor || svc.color || '#10b981';
-  const tag = el('span',{class:'tag', style:`background:${color}`}, code || 'Corr');
+  const tag = el('span',{class: isLightColor(color) ? 'tag on-light' : 'tag', style:`background:${color}`}, code || 'Corr');
 
   const textBlock = el('div',{},
     el('div',{class:'name corr-main-title'}, ''),

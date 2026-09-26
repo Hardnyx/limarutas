@@ -16,16 +16,21 @@ const BUS_M_PER_MIN = 250;      // ~15 km/h con paradas y tráfico
 const FAST_M_PER_MIN = 500;     // Metro y Metropolitano (vía exclusiva)
 const DETOUR = 1.3;             // la caminata real es más larga que la recta
 const TRANSFER_MIN = 3;         // bajar y cruzar hasta el otro paradero
-const MAX_OPTIONS = 3;
+const MAX_OPTIONS = 6;
 
 // Para ordenar (no se muestran como minutos)
 const WALK_WEIGHT = 2;          // un minuto a pie "cuesta" como dos
 const TRANSFER_PENALTY = 5;     // molestia de cambiar de bus
 const WAIT_MIN = 10;            // espera de una sola ruta; con N que sirven, 10/(1+N)
-const TOP_FOR_ALTS = 40;        // candidatos a los que se buscan alternativas
+const TOP_FOR_ALTS = 60;        // candidatos a los que se buscan alternativas
 const ALT_M = 150;              // alternativas: suben y bajan a esta distancia o menos
 const MAX_ALTS = 8;
-const DIRECT_MAX_RATIO = 1.5;   // un directo se muestra si "cuesta" hasta 1,5 veces la mejor
+const DIRECT_MAX_RATIO = 1.5;
+// Metro, Metropolitano y corredores: más frecuentes y previsibles; se prefieren
+const MASS_GROUPS = new Set(['metro', 'metropolitano', 'corredor']);
+const MASS_RIDE_FACTOR = 0.8;   // su tiempo a bordo "cuesta" menos
+const MASS_WAIT_MIN = 4;        // pasan seguido
+const MASS_MAX_RATIO = 1.8;     // una opción con ellos se muestra si cuesta hasta 1,8 veces la mejor   // un directo se muestra si "cuesta" hasta 1,5 veces la mejor
 const DOMINATED_SAVING_MIN = 10; // un transbordo con una ruta que ya va directo debe ahorrar esto
 
 const walkMin = m => (m * DETOUR) / WALK_M_PER_MIN;
@@ -64,6 +69,8 @@ function legsOf(g, c){
   }
   return legs;
 }
+
+const isMass = r => MASS_GROUPS.has(r.group);
 
 // Mismo servicio (ida y vuelta de una ruta, o sus dos sentidos)
 const sameService = (a, b) => a.leaf === b.leaf;
@@ -159,7 +166,16 @@ export function planTrip(g, from, to, { includeOld = false } = {}){
   // que depende de una sola ruta, no gana siempre a un transbordo cómodo.
   const cands = Array.from(best.values(), c => {
     const legs = legsOf(g, c);
-    return { ...c, legs, base: c.minutes + walkMin(c.walkM) * (WALK_WEIGHT - 1) + c.transfers * TRANSFER_PENALTY };
+    // Descuento por los tramos en Metro, Metropolitano o corredor
+    let massSaving = 0;
+    for (const l of legs){
+      if (l.type !== 'ride' || !isMass(l.route)) continue;
+      let m = 0;
+      for (let k = l.from; k < l.to; k++) m += legMin(g, l.route, k);
+      massSaving += m * (1 - MASS_RIDE_FACTOR);
+    }
+    return { ...c, legs, mass: massSaving > 0,
+      base: c.minutes - massSaving + walkMin(c.walkM) * (WALK_WEIGHT - 1) + c.transfers * TRANSFER_PENALTY };
   });
   cands.sort((a, b) => a.base - b.base);
 
@@ -182,6 +198,7 @@ export function planTrip(g, from, to, { includeOld = false } = {}){
   // Los mejores candidatos y, aunque los transbordos llenen esa lista, los mejores directos
   const top = useful.slice(0, TOP_FOR_ALTS);
   top.push(...useful.slice(TOP_FOR_ALTS).filter(c => !c.transfers).slice(0, 5));
+  top.push(...useful.slice(TOP_FOR_ALTS).filter(c => c.mass && c.transfers).slice(0, 5));
   for (const c of top){
     let wait = 0;
     const mains = c.legs.filter(l => l.type === 'ride').map(l => l.route.leaf);
@@ -191,7 +208,7 @@ export function planTrip(g, from, to, { includeOld = false } = {}){
       // un transbordo sin las que ya van directo (esas son su propia opción)
       leg.alts = alternativesFor(g, leg, isActive).filter(a =>
         !mains.includes(a.route.leaf) && !(c.transfers && directBase.has(svc(a.route))));
-      wait += WAIT_MIN / (1 + leg.alts.length);
+      wait += (isMass(leg.route) ? MASS_WAIT_MIN : WAIT_MIN) / (1 + leg.alts.length);
     }
     c.cost = c.base + wait;
   }
@@ -223,6 +240,15 @@ export function planTrip(g, from, to, { includeOld = false } = {}){
       picked.sort((a, b) => a.cost - b.cost);
     }
   }
+  // Si se puede ir en Metro, Metropolitano o corredor, siempre aparece una opción así
+  if (picked.length && !picked.some(c => c.mass)){
+    const m = top.find(c => c.mass && c.cost <= picked[0].cost * MASS_MAX_RATIO && !picked.some(o => covers(o, c)));
+    if (m){
+      if (picked.length >= MAX_OPTIONS) picked.pop();
+      picked.push(m);
+      picked.sort((a, b) => a.cost - b.cost);
+    }
+  }
   for (const c of picked){
     out.options.push({
       legs: c.legs,
@@ -230,6 +256,7 @@ export function planTrip(g, from, to, { includeOld = false } = {}){
       minutes: Math.round(c.minutes),
       walkM: Math.round(c.walkM),
       cost: Math.round(c.cost),
+      mass: c.mass,
       old: rideLegs(c).some(l => l.route.group === 'antigua')
     });
   }

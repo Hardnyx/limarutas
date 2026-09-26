@@ -28,6 +28,7 @@ import {
   syncAllTri
 } from './uiSidebar.js';
 import { wirePanelTogglesOnce } from './panels.js';
+import { softenColor } from './mapColors.js';
 import { setupSearch } from './search.js';
 import { wireRecents } from './recents.js';
 import { wireStopHover } from './stopHover.js';
@@ -300,7 +301,7 @@ function buildWrUiAndDefsFromWrMap(wrMap){
 
     routeDefs.set(String(rid), {
       folder,
-      color: conf.color || '#00008C',
+      color: softenColor(conf.color || '#00008C'),
       trip: conf.trip,
       name: conf.name || `Ruta ${rid}`
     });
@@ -319,14 +320,14 @@ function buildWrUiAndDefsFromWrMap(wrMap){
         id: rid,                              // era: only
         display_id: routesObj[rid].display_id || null,  // era: routesObj[only]
         name: routesObj[rid].name || `Ruta ${rid}`,
-        color: routesObj[rid].color || '#00008C'
+        color: softenColor(routesObj[rid].color || '#00008C')
       });
     }
   }
 
   groups.forEach(g => {
     if (g.ida && g.vuelta) {
-      const baseColor = (routesObj[g.ida].color || routesObj[g.vuelta].color || '#00008C');
+      const baseColor = softenColor(routesObj[g.ida].color || routesObj[g.vuelta].color || '#00008C');
       routesUi.push({
         id: g.base,
         display_id: routesObj[g.ida].display_id || routesObj[g.vuelta].display_id || null,
@@ -345,7 +346,7 @@ function buildWrUiAndDefsFromWrMap(wrMap){
           label: routesObj[only].label || null,
           subtitle: routesObj[only].subtitle || null,
           name: routesObj[only].name || `Ruta ${only}`,
-          color: routesObj[only].color || '#00008C',
+          color: softenColor(routesObj[only].color || '#00008C'),
           pair: { ida: only, vuelta: null }
         });
       }

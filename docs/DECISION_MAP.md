@@ -114,7 +114,7 @@ Se activa con `?beta=1` (queda recordada en el navegador) y se apaga con
 | Escribir en Origen o Destino | — | Paraderos que coinciden (nombre · distrito · rutas); si ninguno tiene todas las palabras, los que más coinciden ("ovalo higuereta" → Higuereta). ↑/↓ y Enter eligen |
 | 📍 | — | El siguiente clic en el mapa pone ese punto ("Punto en el mapa · cerca de…"); no abre el panel de rutas. Esc cancela |
 | Elegir el primer extremo | El punto no se ve | El mapa va a él; el foco pasa a Destino |
-| Tener A y B | — | Hasta 3 opciones distintas, ordenadas por un costo que suma tiempo, caminata (doble), transbordos y espera (menor si varias rutas hacen el tramo). Si hay un directo razonable, siempre aparece uno. Cada tramo muestra las rutas que sirven igual ("1057 o 1099 o 1200"): basta tomar la primera que pase. La primera opción queda elegida, con sus pasos y dibujada por las calles |
+| Tener A y B | — | Hasta 6 opciones distintas, ordenadas por un costo que suma tiempo, caminata (doble), transbordos y espera (menor si varias rutas hacen el tramo). Si hay un directo razonable, siempre aparece uno, y lo mismo con Metro, Metropolitano o corredor (que pesan más: pasan seguido). Cada ruta se muestra con su código y su nombre (empresa · alias, "Corredor Rojo", "Metropolitano · Ruta C"). Cada tramo muestra las rutas que sirven igual ("1057 o 1099 o 1200"): basta tomar la primera que pase. La primera opción queda elegida, con sus pasos y dibujada por las calles |
 | A y B a 600 m o menos | — | "Te conviene caminar" |
 | Clic en otra opción | — | Se expande y se dibuja; la anterior se pliega |
 | Arrastrar el pin A o B | — | Se vuelve a calcular |

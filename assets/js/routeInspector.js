@@ -32,7 +32,7 @@ export function paintTag(tagEl, color){
   if (!m) return;
   const [r, g, b] = m.map(Number);
   const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-  if (luminance > 0.62) tagEl.classList.add('on-light');
+  if (luminance > 0.55) tagEl.classList.add('on-light');   // mismo umbral que isLightColor
 }
 
 /* =========================
