@@ -1678,3 +1678,15 @@ html:not(.trip-mode) .leaflet-tripMark-pane {
   margin-top: 3px;
   color: var(--text-muted);
 }
+
+.trip-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ri-trip {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+}

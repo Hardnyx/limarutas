@@ -15,8 +15,10 @@ npm run test:ui                  # modo interactivo
 `npm test` levanta un servidor local (`python3 -m http.server 8765`) o reutiliza
 uno que ya esté corriendo en ese puerto.
 
-Hay dos proyectos: `chromium` abre la interfaz actual y `beta` la nueva
-(`/index.html?beta=1&debug=1`). Las pruebas son las mismas; para tocar las
+Hay dos proyectos: `chromium` abre la interfaz anterior (`/index.html?beta=0`)
+y `beta` la nueva, que es la de todos (`/index.html?beta=1&debug=1`). La nueva
+abre en "Cómo llegar"; el fixture pasa a la pestaña Rutas salvo con
+`test.use({ startTab: 'default' })`. Las pruebas son las mismas; para tocar las
 opciones del mapa (paradas, tema), que en la nueva interfaz están en el menú ⚙,
 se usa `app.setting('#chkStops')`, que lo abre si hace falta.
 

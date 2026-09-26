@@ -22,7 +22,7 @@ test('interfaz actual: el sidebar y el buscador caben en la pantalla', async ({ 
 
 test.describe('nueva interfaz en celular', () => {
   test.beforeEach(async ({ app }) => {
-    test.skip(!(await app.isBeta()), 'solo con ?beta=1');
+    test.skip(!(await app.isBeta()), 'solo en la nueva interfaz');
   });
 
   test('abre como hoja inferior a media altura, sin tapar ⚙', async ({ app, page }) => {
