@@ -71,12 +71,23 @@ bus de la principal no para en la auxiliar y puede haber un separador),
    terminar el viaje (subir ahí y bajar cerca de B). Luego, desde cada
    paradero de la primera ruta, se busca ese final en el mismo paradero o
    caminando hasta 400 m. Nunca entre la ida y la vuelta del mismo servicio.
-4. Se guarda la mejor opción por combinación de rutas y se ordena por
-   **menos transbordos** y luego **menos minutos estimados**. Se muestran
-   hasta 3, sin repetir la misma combinación de servicios.
+4. Se guarda la mejor opción por combinación de rutas. Un transbordo en el
+   que alguna de sus rutas ya va directo se descarta, salvo que ahorre 10 min.
+5. **Alternativas por tramo**: otras rutas que suben a 150 m o menos de donde
+   sube la del tramo y bajan a 150 m o menos de donde baja, sin tardar más del
+   40 % (+5 min). Se muestran como "1057 o 1099 o 1200": la que pase primero.
+6. **Orden por costo**: minutos de viaje + la caminata otra vez (pesa doble) +
+   5 por transbordo + la espera de cada subida, 10 / (1 + alternativas). Así un
+   directo que te deja a varias cuadras, o que depende de una sola ruta, no
+   gana siempre a un transbordo cómodo con varias rutas.
+7. Hasta 3 opciones que no se repitan (dos son la misma si en cada tramo
+   comparten alguna ruta). Si hay un directo que cueste hasta 1,5 veces la
+   mejor, siempre aparece uno.
 
 Minutos estimados: caminata 75 m/min con 30 % de rodeo, bus 250 m/min
-(~15 km/h), Metro y Metropolitano 500 m/min, 5 min por transbordo. Sin
+(~15 km/h), Metro y Metropolitano 500 m/min, 3 min por transbordo (bajar
+y cruzar). El tramo se dibuja por el trazo de Wikiroutes (Metro y
+Metropolitano, entre estaciones). Sin
 horarios ni frecuencias: son aproximados y no incluyen la espera.
 
 Pendiente: viajes con 2 transbordos, búsqueda de direcciones

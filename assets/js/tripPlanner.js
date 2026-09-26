@@ -1,8 +1,9 @@
 // tripPlanner.js
 // Cálculo de viajes de A a B sobre el grafo de tripData.js: directos y con
-// un transbordo. Sin horarios ni frecuencias, las opciones se ordenan por
-// menos transbordos y, entre ellas, por menos tiempo estimado (paraderos
-// recorridos y caminata). Los tiempos son aproximados.
+// un transbordo. Sin horarios ni frecuencias, se ordenan por un costo que
+// suma el tiempo estimado, la caminata (pesa doble), los transbordos y la
+// espera, que es menor cuando varias rutas hacen el mismo tramo. Cada tramo
+// trae esas rutas alternativas: basta tomar la primera que pase.
 import { distM } from './tripData.js';
 
 // Hasta cuánto se camina al inicio y al final del viaje
@@ -14,8 +15,18 @@ const WALK_M_PER_MIN = 75;      // caminando, con cruces
 const BUS_M_PER_MIN = 250;      // ~15 km/h con paradas y tráfico
 const FAST_M_PER_MIN = 500;     // Metro y Metropolitano (vía exclusiva)
 const DETOUR = 1.3;             // la caminata real es más larga que la recta
-const TRANSFER_MIN = 5;         // espera y cambio
+const TRANSFER_MIN = 3;         // bajar y cruzar hasta el otro paradero
 const MAX_OPTIONS = 3;
+
+// Para ordenar (no se muestran como minutos)
+const WALK_WEIGHT = 2;          // un minuto a pie "cuesta" como dos
+const TRANSFER_PENALTY = 5;     // molestia de cambiar de bus
+const WAIT_MIN = 10;            // espera de una sola ruta; con N que sirven, 10/(1+N)
+const TOP_FOR_ALTS = 40;        // candidatos a los que se buscan alternativas
+const ALT_M = 150;              // alternativas: suben y bajan a esta distancia o menos
+const MAX_ALTS = 8;
+const DIRECT_MAX_RATIO = 1.5;   // un directo se muestra si "cuesta" hasta 1,5 veces la mejor
+const DOMINATED_SAVING_MIN = 10; // un transbordo con una ruta que ya va directo debe ahorrar esto
 
 const walkMin = m => (m * DETOUR) / WALK_M_PER_MIN;
 
@@ -63,7 +74,8 @@ const sameService = (a, b) => a.leaf === b.leaf;
  * @param from   {lat, lon}
  * @param to     {lat, lon}
  * @param opts   { includeOld }
- * @returns { walkOnly, meters, options: [{ legs, minutes, transfers, walkM, old }] }
+ * @returns { walkOnly, meters, options: [{ legs, minutes, transfers, walkM, cost, old }] }
+ *          cada tramo 'ride' trae alts: [{ route, from, to }]
  */
 export function planTrip(g, from, to, { includeOld = false } = {}){
   const direct = distM(from.lat, from.lon, to.lat, to.lon);
@@ -141,28 +153,117 @@ export function planTrip(g, from, to, { includeOld = false } = {}){
     }
   }
 
-  const found = Array.from(best.values(), c => ({ ...c, legs: legsOf(g, c) }));
+  // Orden: costo total. La caminata pesa el doble (cuadras a pie con apuro),
+  // cada transbordo suma una molestia y cada subida una espera que baja si
+  // pasan varias rutas que sirven igual: así un directo que te deja lejos, o
+  // que depende de una sola ruta, no gana siempre a un transbordo cómodo.
+  const cands = Array.from(best.values(), c => {
+    const legs = legsOf(g, c);
+    return { ...c, legs, base: c.minutes + walkMin(c.walkM) * (WALK_WEIGHT - 1) + c.transfers * TRANSFER_PENALTY };
+  });
+  cands.sort((a, b) => a.base - b.base);
 
-  // Menos transbordos primero; luego menos tiempo. Una opción por
-  // combinación de rutas (la mejor), hasta MAX_OPTIONS, y las directas antes
-  found.sort((a, b) => a.transfers - b.transfers || a.minutes - b.minutes);
-  const seen = new Set();
-  for (const opt of found){
-    const rides = opt.legs.filter(l => l.type === 'ride');
-    // Misma combinación de servicios (p. ej. la ida de una y la vuelta de otra): una sola
-    const svcKey = rides.map(l => `${l.route.leaf.dataset.system}:${l.route.leaf.dataset.id}`).join('>');
-    if (seen.has(svcKey)) continue;
-    seen.add(svcKey);
-    out.options.push({
-      legs: opt.legs,
-      transfers: opt.transfers,
-      minutes: Math.round(opt.minutes),
-      walkM: Math.round(opt.walkM),
-      old: rides.some(l => l.route.group === 'antigua')
+  // Un transbordo no tiene sentido si una de sus rutas ya te lleva directo
+  // (salvo que ahorre bastante): mejor quedarse en el mismo bus
+  const svc = r => r.leaf;
+  const directBase = new Map();
+  for (const c of cands){
+    if (c.transfers) continue;
+    const k = svc(g.routes[c.r1]);
+    if (!directBase.has(k)) directBase.set(k, c.base);
+  }
+  const useful = cands.filter(c => {
+    if (!c.transfers) return true;
+    return [g.routes[c.r1], g.routes[c.r2]].every(r => {
+      const d = directBase.get(svc(r));
+      return d == null || c.base < d - DOMINATED_SAVING_MIN;
     });
-    if (out.options.length >= MAX_OPTIONS) break;
+  });
+  // Los mejores candidatos y, aunque los transbordos llenen esa lista, los mejores directos
+  const top = useful.slice(0, TOP_FOR_ALTS);
+  top.push(...useful.slice(TOP_FOR_ALTS).filter(c => !c.transfers).slice(0, 5));
+  for (const c of top){
+    let wait = 0;
+    const mains = c.legs.filter(l => l.type === 'ride').map(l => l.route.leaf);
+    for (const leg of c.legs){
+      if (leg.type !== 'ride') continue;
+      // Sin repetir en un tramo la ruta de otro tramo ("1057 › 1057"), y en
+      // un transbordo sin las que ya van directo (esas son su propia opción)
+      leg.alts = alternativesFor(g, leg, isActive).filter(a =>
+        !mains.includes(a.route.leaf) && !(c.transfers && directBase.has(svc(a.route))));
+      wait += WAIT_MIN / (1 + leg.alts.length);
+    }
+    c.cost = c.base + wait;
+  }
+  top.sort((a, b) => a.cost - b.cost);
+
+  // Una opción ya cubierta por otra (sus rutas son alternativas de aquella) no se repite
+  const rideLegs = o => o.legs.filter(l => l.type === 'ride');
+  const legSet = leg => new Set([leg.route, ...leg.alts.map(x => x.route)].map(svc));
+  // Equivalentes: en cada tramo comparten alguna ruta (principal o alternativa)
+  const covers = (o, c) => {
+    const a = rideLegs(o), b = rideLegs(c);
+    return a.length === b.length && b.every((l, i) => {
+      const sa = legSet(a[i]);
+      return [...legSet(l)].some(x => sa.has(x));
+    });
+  };
+  const picked = [];
+  for (const c of top){
+    if (picked.some(o => covers(o, c))) continue;
+    picked.push(c);
+    if (picked.length >= MAX_OPTIONS) break;
+  }
+  // Si hay un directo razonable, siempre aparece uno (hay quien prefiere no cambiar de bus)
+  if (picked.length && !picked.some(c => !c.transfers)){
+    const d = top.find(c => !c.transfers && c.cost <= picked[0].cost * DIRECT_MAX_RATIO);
+    if (d){
+      if (picked.length >= MAX_OPTIONS) picked.pop();
+      picked.push(d);
+      picked.sort((a, b) => a.cost - b.cost);
+    }
+  }
+  for (const c of picked){
+    out.options.push({
+      legs: c.legs,
+      transfers: c.transfers,
+      minutes: Math.round(c.minutes),
+      walkM: Math.round(c.walkM),
+      cost: Math.round(c.cost),
+      old: rideLegs(c).some(l => l.route.group === 'antigua')
+    });
   }
   return out;
+}
+
+// Otras rutas que hacen el mismo tramo: suben a 150 m o menos de donde sube
+// la ruta del tramo y bajan a 150 m o menos de donde baja, sin tardar mucho más.
+// Con varias, basta tomar la primera que pase.
+function alternativesFor(g, leg, isActive){
+  const r = leg.route;
+  const s = r.stops[leg.from];
+  const t = r.stops[leg.to];
+  const boards = [[s, 0], ...g.walkFrom(s).filter(([, d]) => d <= ALT_M)];
+  const alights = new Set([t, ...g.walkFrom(t).filter(([, d]) => d <= ALT_M).map(([j]) => j)]);
+  let mainMin = 0;
+  for (let k = leg.from; k < leg.to; k++) mainMin += legMin(g, r, k);
+  const limit = mainMin * 1.4 + 5;
+
+  const found = new Map();   // casilla → alternativa (una por servicio)
+  for (const [b] of boards){
+    for (const [ri, pos] of g.atStop[b]){
+      if (!isActive(ri)) continue;
+      const ar = g.routes[ri];
+      if (sameService(ar, r) || found.has(ar.leaf)) continue;
+      let m = 0;
+      for (let k = pos + 1; k < ar.stops.length; k++){
+        m += legMin(g, ar, k - 1);
+        if (m > limit) break;
+        if (alights.has(ar.stops[k])){ found.set(ar.leaf, { route: ar, from: pos, to: k }); break; }
+      }
+    }
+  }
+  return Array.from(found.values()).slice(0, MAX_ALTS);
 }
 
 // Cuántas opciones más aparecerían con las rutas antiguas (para ofrecerlas)

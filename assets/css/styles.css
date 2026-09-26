@@ -806,8 +806,13 @@ body {
   }
 }
 
+.btn[hidden] {
+  display: none;
+}
+
 .tag.ri-chip.on-light,
-.tag.ri-detail-tag.on-light {
+.tag.ri-detail-tag.on-light,
+.tag.trip-chip.on-light {
   color: #0b1020;
   text-shadow: none;
 }
@@ -1311,6 +1316,11 @@ html.sheet .map-settings-panel {
 
 #tripPane {
   overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.trip-field > * {
+  min-width: 0;
 }
 
 .trip-form {
@@ -1394,7 +1404,7 @@ html.trip-picking #map {
   cursor: crosshair;
 }
 
-.trip-suggest {
+html .suggest.trip-suggest {
   top: 100%;
   left: 28px;
   right: 40px;
@@ -1543,4 +1553,38 @@ html.trip-picking #map {
 
 html.sheet .trip-input {
   font-size: 16px;
+}
+
+/* Cada pestaña muestra lo suyo: en "Cómo llegar", el viaje; en "Rutas", las
+   rutas marcadas (siguen marcadas mientras tanto) */
+html.trip-mode .leaflet-overlay-pane,
+html.trip-mode .leaflet-alimLine-pane,
+html.trip-mode .leaflet-corrLine-pane,
+html.trip-mode .leaflet-metroLine-pane,
+html.trip-mode .leaflet-metLine-pane,
+html.trip-mode .leaflet-metTopLine-pane,
+html.trip-mode .leaflet-stop-pane,
+html.trip-mode .leaflet-metTopStop-pane,
+html.trip-mode .leaflet-tooltip.stop-tip,
+html:not(.trip-mode) .leaflet-tripLine-pane,
+html:not(.trip-mode) .leaflet-tripMark-pane {
+  display: none;
+}
+
+.trip-leg {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.trip-or,
+.trip-more {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.trip-also {
+  display: inline-block;
+  margin-top: 3px;
+  color: var(--text-muted);
 }

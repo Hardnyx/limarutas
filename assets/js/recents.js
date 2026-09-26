@@ -101,13 +101,19 @@ function makeRow(entry, leaf){
     chk.checked = leaf.checked;
   });
 
+  // Quitar la fila también la quita del mapa: sin la fila, la ruta seguiría
+  // dibujada y solo se podría apagar buscándola en su lista
   const btnRemove = el('button', {
     type: 'button',
     class: 'recent-remove',
-    title: 'Quitar de recientes',
-    'aria-label': `Quitar ${name} de recientes`
+    title: 'Quitar de recientes y del mapa',
+    'aria-label': `Quitar ${name} de recientes y del mapa`
   }, '×');
   btnRemove.addEventListener('click', () => {
+    if (leaf.checked){
+      reordering = false;
+      try { leaf.click(); } finally { reordering = true; }
+    }
     recents = recents.filter(e => !(e.system === entry.system && e.id === entry.id));
     save();
     renderRecents();
@@ -137,6 +143,13 @@ export function renderRecents(){
     if (leaf) list.appendChild(makeRow(entry, leaf));
   }
   panel.hidden = !list.children.length;
+  syncClearButton();
+}
+
+// "Limpiar" solo aparece si hay filas que no están en el mapa
+function syncClearButton(){
+  const btn = $('#btnClearRecents');
+  if (btn) btn.hidden = !recents.some(e => findLeaf(e) && !findLeaf(e).checked);
 }
 
 // Refleja en el panel el estado actual de las casillas originales
@@ -144,6 +157,7 @@ export function refreshRecents(){
   const list = $('#p-recent-list');
   if (!list || !recents.length) return;
   list.querySelectorAll('.recent-item').forEach(syncRow);
+  syncClearButton();
 }
 
 export function addRecent(leaf){
@@ -188,8 +202,10 @@ export function wireRecents(){
 
   const btnClear = $('#btnClearRecents');
   if (btnClear){
+    // Limpia el historial: las rutas que están en el mapa se quedan (son su
+    // forma de apagarlas); para quitarlas del mapa está "Limpiar" de En el mapa
     btnClear.addEventListener('click', () => {
-      recents = [];
+      recents = recents.filter(e => findLeaf(e)?.checked);
       save();
       renderRecents();
     });
