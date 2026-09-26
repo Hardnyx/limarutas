@@ -56,3 +56,8 @@ pipeline/output/comparacion_rutas.csv
 config/no_display_id_skips.json
 pipeline/output/unmatched_routes.json
 pipeline/input/lista_rutas.csv
+
+# Node / Playwright
+node_modules/
+test-results/
+playwright-report/

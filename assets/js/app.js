@@ -31,7 +31,7 @@ import { wirePanelTogglesOnce } from './panels.js';
 import { setupSearch } from './search.js';
 import { wireRecents } from './recents.js';
 import { wireStopHover } from './stopHover.js';
-import { confirmShowStops, setShowStops } from './stopsGuard.js';
+import { confirmShowStops, setShowStops, showStopsNeedsConfirm } from './stopsGuard.js';
 import { wireRouteInspector } from './routeInspector.js';
 
 /* ===========================
@@ -546,10 +546,11 @@ async function buildUI(){
   const chkStops = $('#chkStops');
   if (chkStops){
     chkStops.checked = state.showStops;
-    chkStops.addEventListener('change', () => {
-      // Con muchas rutas son miles de paraderos: pedir confirmación
-      if (chkStops.checked && !confirmShowStops()){
+    chkStops.addEventListener('change', async () => {
+      // Con muchas rutas son miles de paraderos: preguntar antes
+      if (chkStops.checked && showStopsNeedsConfirm()){
         chkStops.checked = false;
+        if (await confirmShowStops()) setShowStops(true);
         return;
       }
       setShowStops(chkStops.checked);
