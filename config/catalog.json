@@ -102,6 +102,8 @@
   },
   "semiformal": {
     "_comment": "Transporte historico pre-PRR: rutas de 4 digitos municipales (> 1492) y codigos alfanumericos (IO, IM, CR, etc.). Generado desde pipeline/output/unmatched_routes.json.",
+    "_verificadas": "Rutas antiguas revisadas que siguen circulando (mismo formato de codigo que only). Entran por defecto en Como llegar, con la etiqueta Sin autorizacion ATU; las demas solo si se activa Incluir rutas antiguas.",
+    "verificadas": [],
     "mode": "only",
     "only": [
       "1507", "1509", "1510", "1511", "1512", "1515", "1516", "1517", "1519",
