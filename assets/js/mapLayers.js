@@ -10,7 +10,7 @@ import { fitTo, currentFitBatch, addBoundsToBatch } from './mapFit.js';
 import { corrColorForSvc, forceStroke } from './mapColors.js';
 import { syncOneWrStopsVisibility } from './mapLayers.wr.js';
 
-export { fitTo, beginFitBatch, endFitBatch } from './mapFit.js';
+export { fitTo, centerOn, beginFitBatch, endFitBatch } from './mapFit.js';
 export { setWikiroutesVisible, countVisibleWrRoutes } from './mapLayers.wr.js';
 
 const MIN_ZOOM = 10;

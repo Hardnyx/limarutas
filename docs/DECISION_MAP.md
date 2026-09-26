@@ -107,6 +107,26 @@ Se activa con `?beta=1` (queda recordada en el navegador) y se apaga con
 | ⚙ (esquina del mapa) | — | Abre Mostrar paradas, Auto-centrar y Tema; se cierra con Esc, clic fuera o ⚙ |
 | Esc | Ajustes abiertos | Cierra solo los ajustes (el panel de rutas, si estaba abierto, sigue) |
 
+### Celular (pantallas de hasta 700 px)
+
+El sidebar es una hoja que sube desde abajo, con tres alturas: **asomada**
+(pestañas, buscador y "En el mapa"), **media** (al abrir) y **completa**.
+
+| Acción | Resultado esperado |
+|---|---|
+| Tocar la manija | Alterna asomada ↔ media |
+| Arrastrar la manija | Sigue al dedo y al soltar queda en la altura más cercana (con impulso) |
+| ↑ / ↓ con la manija enfocada | Sube o baja una altura |
+| Tocar el buscador | Completa (hay espacio para sugerencias y teclado) |
+| Elegir una ruta o un paradero | Asomada; la ruta se encuadra en la parte visible del mapa y el paradero queda sobre el panel de rutas |
+| Tocar el mapa | Asomada |
+| Pestaña con la hoja asomada | Media |
+
+El zoom y los créditos del mapa suben con la hoja (con la hoja completa se
+ocultan) y el panel "Rutas en este punto" queda justo encima de ella. En la
+interfaz actual, en celular, el sidebar y el buscador ocupan el ancho de la
+pantalla sin salirse.
+
 Orden de las secciones: Metro, Metropolitano, Corredores, Transporte público
 ("Buses con ruta autorizada por la ATU"), AeroDirecto, Otros, Rutas antiguas
 ("Sin autorización vigente de la ATU; algunas podrían ya no circular").

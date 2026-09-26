@@ -15,6 +15,7 @@ import { bulk, setLeafChecked, syncAllTri } from './uiSidebar.hierarchy.js';
 import { isOverStop } from './stopHover.js';
 import { confirmManyRoutes } from './stopsGuard.js';
 import { findUnderPoint, entriesForFolders } from './routeEntries.js';
+import { centerOn } from './mapFit.js';
 
 // El hover abre el panel solo con rutas superpuestas; con una sola no aporta
 const HOVER_MIN_ROUTES = 2;
@@ -305,7 +306,6 @@ export function wireRouteInspector(){
         marker = L.circleMarker([lat, lon], {
           radius: 9, color: '#fff', weight: 3, fillColor: '#f59e0b', fillOpacity: 1, interactive: false
         }).addTo(map);
-        map.setView([lat, lon], Math.max(map.getZoom(), 16));
       }
       stopMode = { name, marker };
       title.textContent = district ? `Paradero ${name} · ${district}` : `Paradero ${name}`;
@@ -313,6 +313,8 @@ export function wireRouteInspector(){
       render(found);
       pinned = true;
       setHint();
+      // Con el panel ya armado: en celular el paradero queda sobre él
+      if (marker) centerOn([lat, lon], Math.max(map.getZoom(), 16));
     }
   };
 }

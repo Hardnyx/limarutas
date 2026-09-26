@@ -10,6 +10,7 @@ import { state } from './config.js';
 import { $, $$, el } from './utils.js';
 import { FLAGS } from './flags.js';
 import { syncAllTri, FILTERED_SEL, ROUTES_CHANGED } from './uiSidebar.hierarchy.js';
+import { wireMobileSheet } from './mobileSheet.js';
 
 const LEAF_SEL = '.item .item-head input[type="checkbox"]';
 
@@ -43,6 +44,7 @@ export function applyBetaLayout(){
   buildTabs(sidebar, panels);
   reorderSections(panels);
   buildMapSettings(panels);
+  wireMobileSheet();
 }
 
 function buildTabs(sidebar, panels){
