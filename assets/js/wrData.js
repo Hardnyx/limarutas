@@ -84,6 +84,36 @@ export function loadWrExtremes(){
    Filtrado por grupo (catalog.json)
    ========================= */
 
+// Códigos con los que una ruta puede figurar en config/catalog.json:
+// "1240-ida" → 1240; "1_52587" → 1_52587, 52587 y 1; "0123" → 0123 y 123
+export function wrRouteBases(idRaw){
+  let base = String(idRaw || '').toUpperCase().trim();
+  const mTrip = base.match(/^(.*?)-(IDA|VUELTA)$/i);
+  if (mTrip) base = mTrip[1];
+
+  const out = new Set();
+  if (base) out.add(base);
+
+  // extrae la parte numérica final: "1_52587" → "52587"
+  const mSuffix = base.match(/^\d+_(\d+)$/);
+  if (mSuffix) out.add(mSuffix[1]);
+
+  const m = base.match(/^(.+)_\d+$/);
+  if (m && m[1]) out.add(m[1]);
+
+  if (/^\d+$/.test(base)) out.add(String(Number(base)));
+
+  return Array.from(out);
+}
+
+// ¿Ruta antigua revisada que sigue circulando? (catalog.semiformal.verificadas)
+export function wrIsVerifiedOld(id){
+  const list = state.catalog?.semiformal?.verificadas;
+  if (!Array.isArray(list) || !list.length) return false;
+  const set = new Set(list.map(c => String(c).toUpperCase().trim()));
+  return wrRouteBases(id).some(b => set.has(b));
+}
+
 export function wrFilterRoutesByGroup(groupName, routes){
   const catalog = state.catalog || {};
   const upper = s => String(s).toUpperCase().trim();
@@ -109,28 +139,8 @@ export function wrFilterRoutesByGroup(groupName, routes){
   const only = Array.isArray(cfg.only) ? new Set(cfg.only.map(upper)) : null;
   const exc  = Array.isArray(cfg.exclude) ? new Set(cfg.exclude.map(upper)) : new Set();
 
-  function basesFor(idRaw) {
-    let base = upper(idRaw || '');
-    const mTrip = base.match(/^(.*?)-(IDA|VUELTA)$/i);
-    if (mTrip) base = mTrip[1];
-
-    const out = new Set();
-    if (base) out.add(base);
-
-    // extrae la parte numérica final: "1_52587" → "52587"
-    const mSuffix = base.match(/^\d+_(\d+)$/);
-    if (mSuffix) out.add(mSuffix[1]);
-
-    const m = base.match(/^(.+)_\d+$/);
-    if (m && m[1]) out.add(m[1]);
-
-    if (/^\d+$/.test(base)) out.add(String(Number(base)));
-
-    return Array.from(out);
-  };
-
   return (routes || []).filter(rt => {
-    const bases = basesFor(rt && rt.id != null ? rt.id : '');
+    const bases = wrRouteBases(rt && rt.id != null ? rt.id : '');
     if (!bases.length) return false;
 
     if (bases.some(b => exc.has(b))) return false;
