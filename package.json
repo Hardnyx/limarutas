@@ -1,0 +1,13 @@
+{
+  "name": "limarutas",
+  "private": true,
+  "description": "Mapa de Rutas de Lima y Callao (sitio estático)",
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test --ui"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.56.1",
+    "leaflet": "1.9.4"
+  }
+}

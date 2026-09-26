@@ -113,8 +113,8 @@ export function wireRouteInspector(){
       if (hidden.length){
         const btnAll = el('button', { type: 'button', class: 'btn small' },
           `Mostrar ${hidden.length === entries.length ? 'las' : 'las otras'} ${hidden.length} rutas`);
-        btnAll.addEventListener('click', () => {
-          confirmManyRoutes(hidden.length);
+        btnAll.addEventListener('click', async () => {
+          if (!(await confirmManyRoutes(hidden.length))) return;
           bulk(() => hidden.forEach(e => setLeafChecked(e.leaf.dataset.system, e.leaf, true, { silentFit: true })));
           syncAllTri();
           setHint();

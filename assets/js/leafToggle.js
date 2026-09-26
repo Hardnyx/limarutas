@@ -46,6 +46,15 @@ export function toggleLeaf(leaf, visible, { fit = false } = {}){
   onToggleService(system, id, visible, { silentFit: !fit });
 }
 
+// ¿La hoja dibuja una capa Wikiroutes? (con sus paraderos: las que pesan)
+export function isWrLeaf(leaf){
+  if (!leaf) return false;
+  const { system, id, ida, vuelta, layer } = leaf.dataset;
+  if ((ida && vuelta) || layer) return true;
+  if (system === 'corr') return /^\d+$/.test(String(id));
+  return !!(system && system.startsWith('wr'));
+}
+
 // Tras cambiar data-sel de una hoja ya marcada: mostrar el otro sentido
 // sin mover la vista
 export function refreshLeafDirection(leaf){

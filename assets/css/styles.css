@@ -834,3 +834,72 @@ body {
 .leaflet-tooltip.stop-tip::before {
   display: none;
 }
+
+/* Diálogo propio de la página (uiDialog.js) */
+.ui-dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(2, 6, 23, 0.55);
+  backdrop-filter: blur(2px);
+}
+
+.ui-dialog {
+  width: 100%;
+  max-width: 420px;
+  padding: 16px 18px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: var(--radius-md);
+  background: var(--bg-sidebar);
+  color: var(--text-main);
+  box-shadow: var(--shadow-soft);
+}
+
+.ui-dialog-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.ui-dialog-msg {
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+
+.ui-dialog-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.btn.ui-dialog-btn {
+  box-shadow: none;
+}
+
+.btn.ui-dialog-btn.primary {
+  background: var(--accent-strong);
+  border-color: rgba(129, 140, 248, 0.9);
+  font-weight: 600;
+}
+
+.btn.ui-dialog-btn:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+@media (max-width: 700px) {
+  .ui-dialog-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+  .btn.ui-dialog-btn {
+    justify-content: center;
+  }
+}

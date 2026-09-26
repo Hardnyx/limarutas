@@ -9,9 +9,9 @@
 import { state } from './config.js';
 import { $$ } from './utils.js';
 import { beginFitBatch, endFitBatch } from './mapLayers.js';
-import { toggleLeaf } from './leafToggle.js';
+import { toggleLeaf, isWrLeaf } from './leafToggle.js';
 import { refreshRecents } from './recents.js';
-import { confirmManyRoutes } from './stopsGuard.js';
+import { confirmManyRoutes, manyRoutesNeedsConfirm } from './stopsGuard.js';
 
 const GROUP_SEL = '#panels .panel-head > input[type="checkbox"]';
 const LEAF_SEL  = '.item .item-head input[type="checkbox"]';
@@ -96,11 +96,23 @@ export function clearAllRoutes(){
    Wire
    ========================= */
 
-function onGroupChange(groupChk){
-  const v = groupChk.checked;
-  if (v) confirmManyRoutes(leavesOfGroup(groupChk).filter(l => !l.checked).length);
+function applyGroup(groupChk, v){
   bulk(() => setGroupChecked(groupChk, v));
   syncAllTri();
+}
+
+async function onGroupChange(groupChk){
+  const v = groupChk.checked;
+  // Solo cuentan las rutas Wikiroutes: son las que traen miles de paraderos
+  const n = v ? leavesOfGroup(groupChk).filter(l => !l.checked && isWrLeaf(l)).length : 0;
+  if (!v || !manyRoutesNeedsConfirm(n)){
+    applyGroup(groupChk, v);
+    return;
+  }
+  // Con muchas rutas nuevas se pregunta antes de dibujar; mientras el
+  // diálogo está abierto la casilla muestra su estado real
+  syncAllTri();
+  if (await confirmManyRoutes(n)) applyGroup(groupChk, true);
 }
 
 // Un solo listener delegado: vale también para los grupos que se crean
