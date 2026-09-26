@@ -71,6 +71,11 @@ function highlight(entries, active){
 
 let api = null;
 
+// Cierra el panel (y el marcador del paradero)
+export function closeRouteInspector(){
+  api?.hide();
+}
+
 // Abre el panel con las rutas de un paradero: { name, lat, lon, folderIds, district }
 export function showStopRoutes(stop){
   api?.showStop(stop);
@@ -277,7 +282,17 @@ export function wireRouteInspector(){
   // Al mover o hacer zoom cambian las líneas bajo el punto: se suelta
   map.on('zoomstart', () => { if (!pinned && !stopMode) hide(); else clearHighlight(); });
 
+  // Esc cierra el panel (salvo que haya un diálogo o sugerencias abiertas:
+  // ese Esc es para ellos)
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape' || panel.hidden) return;
+    if (document.querySelector('.ui-dialog')) return;
+    if (document.querySelector('#searchSuggest.open')) return;
+    hide();
+  });
+
   api = {
+    hide,
     showStop({ name, lat, lon, folderIds, district }){
       clearTimeout(timer);
       leaveStopMode();

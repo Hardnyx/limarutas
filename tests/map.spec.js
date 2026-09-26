@@ -121,3 +121,20 @@ test('advertencia de muchas rutas: cada botón hace lo que dice', async ({ app, 
   await page.locator('.ui-dialog-btn', { hasText: 'Cancelar' }).click();
   await expect(page.locator('#chkStops')).not.toBeChecked();
 });
+
+test('Esc y Desmarcar todo cierran el panel del paradero y su marcador', async ({ app, page }) => {
+  const markers = () => app.state(s => { let n = 0; s.map.eachLayer(l => { if (l.options?.fillColor === '#f59e0b') n++; }); return n; });
+  const items = await app.search('puente nuevo');
+  await items.first().click();
+  await expect(page.locator('.route-inspector')).toBeVisible();
+  expect(await markers()).toBe(1);
+  await page.keyboard.press('Escape');
+  await expect(page.locator('.route-inspector')).toBeHidden();
+  expect(await markers()).toBe(0);
+
+  await (await app.search('puente nuevo')).first().click();
+  await expect(page.locator('.route-inspector')).toBeVisible();
+  await page.click('#btnClearAll');
+  await expect(page.locator('.route-inspector')).toBeHidden();
+  expect(await markers()).toBe(0);
+});

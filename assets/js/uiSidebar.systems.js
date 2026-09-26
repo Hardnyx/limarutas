@@ -1,7 +1,7 @@
 // uiSidebar.systems.js
 import { PATHS, COLOR_AN, COLOR_AS, state, getDirFor, setDirFor } from './config.js';
 import { $, el } from './utils.js';
-import { setLeafChecked, syncTriFromLeaf } from './uiSidebar.hierarchy.js';
+import { syncTriFromLeaf } from './uiSidebar.hierarchy.js';
 import { toggleLeaf, refreshLeafDirection } from './leafToggle.js';
 
 const labelForSvc = (s) =>
@@ -35,12 +35,9 @@ function miniDir(systemId, svc){
 
     const chk = wrap.parentElement.querySelector('.item-head input[type="checkbox"]');
     if (chk){
-      if (!chk.checked){
-        setLeafChecked(systemId, chk, true, {silentFit:true});
-        syncTriFromLeaf(systemId);
-      } else {
-        refreshLeafDirection(chk);
-      }
+      // Igual que en Wikiroutes: sin marcar, elegir dirección la muestra
+      if (!chk.checked) chk.click();
+      else refreshLeafDirection(chk);
     }
   });
 

@@ -451,8 +451,10 @@ function makeCorrDirPairControls(chk){
       applyCorrTextsToItem(item, sel);
     }
 
-    // Cambiar de sentido no mueve la vista
-    refreshLeafDirection(chk);
+    // Elegir sentido en una ruta sin marcar la muestra (como marcarla);
+    // si ya está marcada, cambia de sentido sin mover la vista
+    if (!chk.checked) chk.click();
+    else refreshLeafDirection(chk);
   });
 
   return wrap;

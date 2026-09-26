@@ -903,3 +903,9 @@ body {
     justify-content: center;
   }
 }
+
+/* Botón de opción activa (tema del mapa) */
+.btn.active {
+  background: var(--accent-strong);
+  border-color: rgba(129, 140, 248, 0.9);
+}
