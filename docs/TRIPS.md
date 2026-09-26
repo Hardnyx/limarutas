@@ -76,13 +76,19 @@ bus de la principal no para en la auxiliar y puede haber un separador),
 5. **Alternativas por tramo**: otras rutas que suben a 150 m o menos de donde
    sube la del tramo y bajan a 150 m o menos de donde baja, sin tardar más del
    40 % (+5 min). Se muestran como "1057 o 1099 o 1200": la que pase primero.
-6. **Orden por costo**: minutos de viaje + la caminata otra vez (pesa doble) +
-   5 por transbordo + la espera de cada subida, 10 / (1 + alternativas). Así un
-   directo que te deja a varias cuadras, o que depende de una sola ruta, no
-   gana siempre a un transbordo cómodo con varias rutas.
+6. **Orden**: primero las **rutas únicas cómodas** (directas con hasta 800 m
+   a pie en total) y los transbordos que ahorran al menos 20 min frente a
+   ellas; después, el resto. Dentro de cada grupo, por costo: minutos de
+   viaje + la caminata otra vez (pesa doble; la del transbordo, triple) +
+   20 por transbordo (bajarse, cruzar y esperar otro bus) + la espera de
+   cada subida, 10 / (1 + alternativas).
+   Calibrado a mano con Canaval y Moreyra → Mariátegui (VES): la 1122
+   directa (750 m a pie, ~82 min) va antes que 1057 › 1185 (~80 min, con
+   transbordo en Atocongo).
 7. Hasta 6 opciones que no se repitan (dos son la misma si en cada tramo
-   comparten alguna ruta). Si hay un directo que cueste hasta 1,5 veces la
-   mejor, siempre aparece uno.
+   comparten alguna ruta) y como mucho 2 transbordos que empiecen con las
+   mismas rutas. Todas las rutas únicas que cuesten hasta 1,5 veces la
+   mejor aparecen.
 8. **Metro, Metropolitano y corredores** pesan más: su tiempo a bordo cuenta
    un 20 % menos y su espera es de 4 min (pasan seguido). Si hay una opción
    con ellos que cueste hasta 1,8 veces la mejor, siempre aparece.

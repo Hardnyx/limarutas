@@ -70,9 +70,8 @@ test('viaje directo: opciones hacia adelante, cerca de A y B y con rutas alterna
   // algún tramo varias rutas sirven
   expect(r.options.some(o => o.transfers === 0)).toBe(true);
   expect(r.options.some(o => o.alts.some(a => a.length > 0))).toBe(true);
-  // Ordenadas por costo y sin repetir la misma ruta como principal
-  const costs = r.options.map(o => o.cost);
-  expect(costs).toEqual([...costs].sort((a, b) => a - b));
+  // Primero una ruta única (hay una con poca caminata) y sin repetir la misma ruta como principal
+  expect(r.options[0].transfers).toBe(0);
   expect(new Set(r.options.map(o => o.services.join('>'))).size).toBe(r.options.length);
 });
 
@@ -99,6 +98,19 @@ test('Metro, Metropolitano o corredor: si se puede ir en ellos, aparece esa opci
   const mass = r.options.filter(o => o.mass);
   expect(mass.length).toBeGreaterThan(0);
   for (const o of r.options) expect(o.mass).toBe(o.massGroups);
+});
+
+test('una ruta única con poca caminata va antes que un transbordo (Canaval y Moreyra → Mariátegui)', async ({ app, page }) => {
+  // Revisado a mano: la 1122 va directo (750 m a pie en total, ~82 min); el
+  // mejor transbordo (1057 › 1185) apenas ahorra 2 min y obliga a cambiar en Atocongo
+  const r = await plan(page, { lat: -12.09805, lon: -77.02017 }, { lat: -12.2177, lon: -76.9273 });
+  expect(r.options[0].codes).toEqual(['1122']);
+  expect(r.options[0].transfers).toBe(0);
+  // La otra ruta única (1297, más caminata) también aparece
+  expect(r.options.some(o => o.codes.length === 1 && o.codes[0] === '1297')).toBe(true);
+  // Los transbordos no empiezan todos con las mismas rutas
+  const starts = r.options.filter(o => o.transfers).map(o => o.services[0]);
+  for (const s of new Set(starts)) expect(starts.filter(x => x === s).length).toBeLessThanOrEqual(2);
 });
 
 test('muy cerca conviene caminar', async ({ app, page }) => {
@@ -139,7 +151,8 @@ test.describe('pestaña Cómo llegar', () => {
     // Cada ruta con el nombre que la gente conoce (empresa · alias)
     await expect(cards.first().locator('.trip-name').first()).not.toBeEmpty();
     await expect(cards.first()).toHaveClass(/selected/);
-    await expect(cards.first().locator('.trip-meta')).toContainText('min aprox.');
+    await expect(cards.first().locator('.trip-time')).toContainText('min');
+    await expect(cards.first().locator('.trip-meta')).toContainText('a pie');
     await expect(cards.first().locator('.trip-step-ride')).not.toHaveCount(0);
     await expect(page.locator('.trip-pin-from')).toHaveCount(1);
     await expect(page.locator('.trip-pin-to')).toHaveCount(1);

@@ -7,7 +7,7 @@
    =========================== */
 
 const CORR_COLORS = {
-  '1': '#ffcd00', // Amarillo
+  '1': '#c89919', // Amarillo (#ffcd00 suavizado, ver softenColor)
   '2': '#e4002b', // Rojo
   '3': '#003594', // Azul
   '4': '#9b26b6', // Morado

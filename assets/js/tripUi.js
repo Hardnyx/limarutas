@@ -301,24 +301,24 @@ function stepsOf(opt){
   opt.legs.forEach((leg, k) => {
     if (leg.type === 'walk'){
       if (leg.m < 15) return;
-      const where = k === 0 ? `hasta el paradero ${stopName(leg.to)}`
+      const where = k === 0 ? `hasta ${stopName(leg.to)}`
         : k === opt.legs.length - 1 ? 'hasta tu destino'
-          : `hasta el paradero ${stopName(leg.to)} (transbordo)`;
+          : `hasta ${stopName(leg.to)} para el transbordo`;
       steps.push(el('li', { class: 'trip-step trip-step-walk' },
         el('span', { class: 'trip-step-ico' }, '🚶'),
-        el('span', {}, `Camina ${fmtM(leg.m)} (${walkMinOf(leg.m)} min) ${where}`)));
+        el('span', {}, `Camina ${fmtM(leg.m)} ${where}`, el('span', { class: 'trip-sub' }, ` · ${walkMinOf(leg.m)} min`))));
     } else {
       const r = leg.route;
       const n = leg.to - leg.from;
       const alts = leg.alts || [];
       const text = el('span', {},
-        'Toma la ', chip(r), routeName(r) ? ` (${routeName(r)})` : '', ` hacia ${headsign(r)} en `, el('b', {}, stopName(r.stops[leg.from])),
-        '. Baja en ', el('b', {}, stopName(r.stops[leg.to])), ` (${n} paradero${n === 1 ? '' : 's'}).`);
+        'Sube a la ', chip(r), ' en ', el('b', {}, stopName(r.stops[leg.from])),
+        ' y baja en ', el('b', {}, stopName(r.stops[leg.to])),
+        el('span', { class: 'trip-sub' }, ` · ${n} paradero${n === 1 ? '' : 's'} · dirección ${headsign(r)}`));
       if (alts.length){
-        const also = el('span', { class: 'trip-also' }, 'También te sirven: ');
+        const also = el('div', { class: 'trip-also' }, 'O la que pase primero: ');
         alts.forEach((a, i) => { if (i) also.append(' '); also.append(chip(a.route)); });
-        also.append(' (la que pase primero).');
-        text.append(el('br'), also);
+        text.append(also);
       }
       if (r.group === 'antigua'){
         text.append(' ', el('span', { class: 'trip-warn' }, r.verified ? 'Sin autorización ATU' : 'Ruta antigua · podría no circular'));
@@ -330,44 +330,32 @@ function stepsOf(opt){
   return steps;
 }
 
-// Rutas de un tramo, cada una con su nombre: la principal y las que hacen lo
-// mismo. La gente conoce la empresa o el alias más que el código.
-const MAX_ROUTES_SHOWN = 3;
-function legRoutes(leg){
-  const all = [leg.route, ...(leg.alts || []).map(a => a.route)];
-  const box = el('div', { class: 'trip-leg' });
-  all.slice(0, MAX_ROUTES_SHOWN).forEach((r, i) => {
-    box.append(el('div', { class: 'trip-leg-route' },
-      el('span', { class: 'trip-or' }, i ? 'o' : ''), chip(r),
-      el('span', { class: 'trip-name' }, routeName(r))));
-  });
-  if (all.length > MAX_ROUTES_SHOWN){
-    const more = all.slice(MAX_ROUTES_SHOWN);
-    box.append(el('div', { class: 'trip-more', title: more.map(r => `${r.code} ${routeName(r)}`).join('\n') },
-      `y ${more.length} más: ${more.map(r => r.code).join(', ')}`));
+// Un tramo en una línea: la ruta principal con su nombre y, si otras hacen
+// lo mismo, "+N" (al pasar el mouse, cuáles)
+function legRow(leg){
+  const alts = (leg.alts || []).map(a => a.route);
+  const row = el('div', { class: 'trip-leg-row' }, chip(leg.route),
+    el('span', { class: 'trip-name' }, routeName(leg.route)));
+  if (alts.length){
+    row.append(el('span', {
+      class: 'trip-plus',
+      title: 'También te sirven:\n' + alts.map(r => `${r.code} ${routeName(r)}`).join('\n')
+    }, `+${alts.length}`));
   }
-  return box;
+  return row;
 }
 
 function card(opt, k){
   const rides = opt.legs.filter(l => l.type === 'ride');
-  const head = el('div', { class: 'trip-card-head' });
-  rides.forEach((l, j) => {
-    if (j) head.append(el('div', { class: 'trip-arrow' }, `› transbordo en ${stopName(l.route.stops[l.from])}`));
-    head.append(legRoutes(l));
-  });
-  // Con varias rutas en un tramo no hay que esperar una en especial
-  const many = rides.every(l => (l.alts || []).length > 0);
-  const meta = [
-    `~${opt.minutes} min aprox.`,
-    opt.transfers ? '1 transbordo' : 'Directo',
-    `${fmtM(opt.walkM)} a pie`,
-    ...(many ? ['varias rutas te sirven'] : [])
-  ].join(' · ');
-  const body = el('div', { class: 'trip-card', role: 'button', tabindex: '0', 'aria-expanded': String(k === selected) },
-    head, el('div', { class: 'trip-meta' }, meta));
+  const isOpen = k === selected;
+  const legs = el('div', { class: 'trip-legs' }, ...rides.map(legRow));
+  const where = opt.transfers ? `1 transbordo en ${stopName(rides[1].route.stops[rides[1].from])}` : 'Directo';
+  const head = el('div', { class: 'trip-card-head' }, legs,
+    el('div', { class: 'trip-time' }, `~${opt.minutes}`, el('small', {}, ' min')));
+  const body = el('div', { class: 'trip-card', role: 'button', tabindex: '0', 'aria-expanded': String(isOpen) },
+    head, el('div', { class: 'trip-meta' }, `${where} · ${fmtM(opt.walkM)} a pie`));
   if (opt.old) body.append(el('div', { class: 'trip-warn' }, 'Usa una ruta antigua: podría no circular'));
-  if (k === selected){
+  if (isOpen){
     body.classList.add('selected');
     const ol = el('ol', { class: 'trip-steps' }, ...stepsOf(opt));
     const show = el('button', { type: 'button', class: 'btn small btn-ghost trip-show' }, 'Ver estas rutas completas (pestaña Rutas)');
