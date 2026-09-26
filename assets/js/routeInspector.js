@@ -282,12 +282,13 @@ export function wireRouteInspector(){
   // Al mover o hacer zoom cambian las líneas bajo el punto: se suelta
   map.on('zoomstart', () => { if (!pinned && !stopMode) hide(); else clearHighlight(); });
 
-  // Esc cierra el panel (salvo que haya un diálogo o sugerencias abiertas:
-  // ese Esc es para ellos)
+  // Esc cierra el panel (salvo que haya un diálogo, sugerencias o ajustes
+  // del mapa abiertos: ese Esc es para ellos)
   document.addEventListener('keydown', (e) => {
     if (e.key !== 'Escape' || panel.hidden) return;
     if (document.querySelector('.ui-dialog')) return;
     if (document.querySelector('#searchSuggest.open')) return;
+    if (document.querySelector('#mapSettings:not([hidden])')) return;
     hide();
   });
 

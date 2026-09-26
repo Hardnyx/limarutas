@@ -35,7 +35,7 @@ function typeLabel(doc){
     case 'corr':    return 'Corredores';
     case 'wrAero':  return 'AeroDirecto';
     case 'wrOtros': return 'Expreso San Isidro';
-    case 'wrSemi':  return 'Transporte semiformal';
+    case 'wrSemi':  return 'Rutas antiguas';
     case 'wr':      return 'Transporte público';
     default:        return '';
   }
@@ -384,7 +384,7 @@ function sameNameDocs(stops){
 }
 
 // Rutas que paran en el paradero, como resultados normales del buscador
-// Transporte público primero; semiformal al final
+// Transporte público primero; rutas antiguas (semiformal) al final
 const STOP_ROUTE_ORDER = { wr: 0, corr: 1, wrAero: 2, wrOtros: 3, wrSemi: 4 };
 
 function stopRouteDocs(st){

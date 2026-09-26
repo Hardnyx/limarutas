@@ -50,9 +50,11 @@ export function loadWrListaMeta(){
       if (!codigo) continue;
       metaByCodigo[wrCanonicalCode(codigo)] = {
         codigo_nuevo: codigo,
+        codigo_antiguo: row.codigo_antiguo || '',
         distrito_origen: row.distrito_origen || '',
         distrito_destino: row.distrito_destino || '',
         empresa_operadora: row.empresa_operadora || '',
+        empresa_abrev: row.empresa_abrev || '',
         alias: row.alias || ''
       };
     }

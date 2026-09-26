@@ -116,7 +116,7 @@ test('advertencia de muchas rutas: cada botón hace lo que dice', async ({ app, 
 
   // Reactivar paradas con muchas rutas visibles también pregunta
   await app.settle();
-  await page.locator('#chkStops').click();
+  await (await app.setting('#chkStops')).click();
   await expect(page.locator('.ui-dialog')).toBeVisible();
   await page.locator('.ui-dialog-btn', { hasText: 'Cancelar' }).click();
   await expect(page.locator('#chkStops')).not.toBeChecked();
@@ -132,6 +132,9 @@ test('Esc y Desmarcar todo cierran el panel del paradero y su marcador', async (
   await expect(page.locator('.route-inspector')).toBeHidden();
   expect(await markers()).toBe(0);
 
+  // Con una ruta en el mapa (en la nueva interfaz "Limpiar" solo se ve así)
+  await app.search('1240');
+  await page.keyboard.press('Enter');
   await (await app.search('puente nuevo')).first().click();
   await expect(page.locator('.route-inspector')).toBeVisible();
   await page.click('#btnClearAll');
@@ -144,8 +147,8 @@ test('cambiar "Mostrar paradas" no dibuja corredores de más (regresión)', asyn
   await app.search('301');
   await page.keyboard.press('Enter');
   await app.settle();
-  await page.locator('#chkStops').uncheck();
-  await page.locator('#chkStops').check();
+  await (await app.setting('#chkStops')).uncheck();
+  await (await app.setting('#chkStops')).check();
   await page.click('#btnClearAll');
   await app.settle();
   const drawn = await app.state(s => {

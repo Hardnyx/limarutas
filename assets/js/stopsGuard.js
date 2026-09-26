@@ -8,6 +8,7 @@ import { state } from './config.js';
 import { $ } from './utils.js';
 import { reRenderVisible, countVisibleWrRoutes } from './mapLayers.js';
 import { askChoice } from './uiDialog.js';
+import { FLAGS } from './flags.js';
 
 // A partir de cuántas rutas se pregunta
 export const STOPS_CONFIRM_ROUTES = 30;
@@ -51,7 +52,7 @@ export async function confirmManyRoutes(n){
   const total = n + countVisibleWrRoutes();
   const v = await askChoice({
     title: `Mostrar ${total} rutas`,
-    message: `Con todos sus paraderos son miles de puntos y el mapa puede volverse lento. Puedes activarlos después en "Mostrar paradas".`,
+    message: `Con todos sus paraderos son miles de puntos y el mapa puede volverse lento. Puedes activarlos después en "Mostrar paradas"${FLAGS.beta ? ' (ajustes del mapa ⚙)' : ''}.`,
     choices: [
       { label: 'Mostrar sin paraderos', value: 'nostops', primary: true },
       { label: 'Mostrar con paraderos', value: 'stops' },

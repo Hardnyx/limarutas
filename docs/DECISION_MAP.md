@@ -5,6 +5,9 @@ según lo que ella esperaría. Es la especificación que verifican las pruebas:
 `tests/explore.spec.js` recorre estas acciones en órdenes aleatorios y, después
 de cada paso, comprueba los invariantes del final de este documento.
 
+La nueva interfaz (`?beta=1`) tiene las mismas acciones con otro orden en
+pantalla; sus diferencias están en [Nueva interfaz](#nueva-interfaz-beta1).
+
 ## Estado que ve el usuario
 
 - **Rutas marcadas** (casillas del sidebar) → rutas dibujadas en el mapa.
@@ -32,6 +35,7 @@ de cada paso, comprueba los invariantes del final de este documento.
 | Desmarcar todo | — | Ninguna ruta marcada ni dibujada; se cierra el panel de rutas o paradero |
 | Abrir/cerrar sección | Clic en el título | Solo pliega o despliega; no marca nada |
 | Filtro de color (Transporte público) | — | Oculta las rutas que no corresponden y las desmarca si estaban marcadas; la casilla del grupo solo afecta a las visibles |
+| Filtro de lista (Transporte público, Rutas antiguas; solo en la nueva interfaz) | — | Oculta las rutas que no coinciden (código, empresa, sigla, alias, distritos), **sin desmarcarlas**: siguen en el mapa. La casilla del grupo solo afecta a las visibles. Esc limpia el filtro |
 
 ### Buscador
 
@@ -80,7 +84,7 @@ de cada paso, comprueba los invariantes del final de este documento.
 | Limpiar | Vacía la lista |
 | Recargar la página | Las filas vuelven, desmarcadas |
 
-### Opciones
+### Opciones (en la nueva interfaz, menú ⚙ del mapa)
 
 | Acción | Situación | Resultado esperado |
 |---|---|---|
@@ -89,9 +93,27 @@ de cada paso, comprueba los invariantes del final de este documento.
 | Auto-centrar | Apagado | Marcar rutas o grupos no mueve la vista (elegir un paradero sí) |
 | Mapa claro / oscuro | — | Cambia el fondo; el botón activo queda marcado |
 
+## Nueva interfaz (`?beta=1`)
+
+Se activa con `?beta=1` (queda recordada en el navegador) y se apaga con
+`?beta=0`. `?debug=1` muestra además la depuración de color.
+
+| Acción | Situación | Resultado esperado |
+|---|---|---|
+| Abrir la página | — | Pestaña **Rutas** activa; buscador arriba del sidebar |
+| Pestaña Cómo llegar | — | Aviso de que viene pronto y cómo buscar mientras tanto; ←/→ cambian de pestaña |
+| Marcar o desmarcar rutas | — | "En el mapa (N)" muestra cuántas hay; cada sección, cuántas de las suyas (`1/440`) |
+| Limpiar (En el mapa) | Con rutas | Igual que "Desmarcar todo"; el bloque desaparece al quedar en 0 |
+| ⚙ (esquina del mapa) | — | Abre Mostrar paradas, Auto-centrar y Tema; se cierra con Esc, clic fuera o ⚙ |
+| Esc | Ajustes abiertos | Cierra solo los ajustes (el panel de rutas, si estaba abierto, sigue) |
+
+Orden de las secciones: Metro, Metropolitano, Corredores, Transporte público
+("Buses con ruta autorizada por la ATU"), AeroDirecto, Otros, Rutas antiguas
+("Sin autorización vigente de la ATU; algunas podrían ya no circular").
+
 ## Invariantes (se verifican después de cada paso)
 
-1. Cada casilla de grupo está marcada, desmarcada o a medias según **todas** sus rutas visibles.
+1. Cada casilla de grupo está marcada, desmarcada o a medias según **todas** sus rutas visibles (las ocultas por un filtro no cuentan).
 2. Una ruta Wikiroutes se dibuja **si y solo si** alguna casilla marcada la pide, en el sentido elegido.
 3. Metropolitano, Alimentadores, Corredores y Metro solo se dibujan si su casilla está marcada.
 4. Hay paraderos en el mapa solo con "Mostrar paradas" activo, y solo de rutas visibles.

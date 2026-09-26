@@ -909,3 +909,274 @@ body {
   background: var(--accent-strong);
   border-color: rgba(129, 140, 248, 0.9);
 }
+
+/* =========================
+   Nueva interfaz (?beta=1, betaLayout.js)
+   ========================= */
+
+html.beta #sidebar {
+  top: 18px;
+}
+
+html.beta #sidebar .header {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* Depuración de color solo con ?debug=1 */
+html.beta:not(.debug) #wrColorFilter {
+  display: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Pestañas Cómo llegar | Rutas */
+.side-tabs {
+  display: flex;
+  gap: 4px;
+  padding: 3px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+.side-tab {
+  flex: 1;
+  border: none;
+  border-radius: 999px;
+  padding: 6px 10px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.side-tab[aria-selected="true"] {
+  background: var(--accent-strong);
+  color: #f9fafb;
+}
+
+.side-tab:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 1px;
+}
+
+.side-pane {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  min-height: 0;
+}
+
+.side-pane[hidden] {
+  display: none;
+}
+
+.trip-soon {
+  padding: 14px 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.trip-soon-title {
+  font-size: 14px;
+  font-weight: 700;
+  padding: 0 6px;
+}
+
+/* Buscador dentro del sidebar */
+html.beta #sidebar .search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+html.beta #sidebar .loupe {
+  position: absolute;
+  left: 11px;
+  font-size: 13px;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+html.beta #searchInput {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px 34px 8px 32px;
+}
+
+html.beta .suggest {
+  top: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 10;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+.search-clear {
+  position: absolute;
+  right: 6px;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 17px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.search-clear:hover,
+.search-clear:focus-visible {
+  color: var(--text-main);
+  background: rgba(148, 163, 184, 0.15);
+}
+
+/* En el mapa (N) + Limpiar */
+.on-map {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 4px 2px 8px;
+  font-size: 12px;
+}
+
+.on-map[hidden] {
+  display: none;
+}
+
+.on-map-label {
+  color: var(--text-muted);
+}
+
+.on-map-count {
+  min-width: 20px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--text-main);
+  font-weight: 700;
+  text-align: center;
+}
+
+.on-map .btn {
+  margin-left: auto;
+}
+
+/* Secciones: subtítulo y cantidad de rutas */
+.panel-sub {
+  display: block;
+  margin-top: 1px;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.panel-count {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.panel-count.has-on {
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+/* Filtro de listas largas */
+.list-filter {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 2px 0 6px;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  background: rgba(2, 6, 23, 0.6);
+  color: var(--text-main);
+  font-size: 12px;
+  box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.3);
+}
+
+.list-filter:focus {
+  box-shadow: inset 0 0 0 1px var(--accent-strong);
+}
+
+.list-filter-empty[hidden],
+.item.is-text-filtered {
+  display: none;
+}
+
+/* Ajustes del mapa (control de Leaflet) */
+.map-settings {
+  position: relative;
+}
+
+.map-settings-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  background: rgba(11, 16, 32, 0.95);
+  color: var(--text-main);
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+}
+
+.map-settings-btn:hover,
+.map-settings-btn[aria-expanded="true"] {
+  border-color: var(--accent-strong);
+}
+
+.map-settings-panel {
+  position: absolute;
+  top: 46px;
+  right: 0;
+  width: 240px;
+  padding: 12px 14px 6px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: var(--radius-md);
+  background: rgba(11, 16, 32, 0.97);
+  color: var(--text-main);
+  box-shadow: var(--shadow-soft);
+  z-index: 1100;
+}
+
+.map-settings-panel[hidden] {
+  display: none;
+}
+
+.map-settings-title {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.map-settings-panel .label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* El panel "Rutas en este punto" queda debajo del botón de ajustes */
+html.beta .route-inspector {
+  top: 64px;
+}

@@ -18,8 +18,11 @@ export default defineConfig({
     viewport: { width: 1600, height: 900 },
     trace: 'retain-on-failure'
   },
+  // Todo se prueba en la interfaz actual y en la nueva (?beta=1, con las
+  // herramientas de depuración para el filtro de color)
   projects: [
-    { name: 'chromium', use: { ...devices['Desktop Chrome'], viewport: { width: 1600, height: 900 } } }
+    { name: 'chromium', use: { ...devices['Desktop Chrome'], viewport: { width: 1600, height: 900 } } },
+    { name: 'beta', use: { ...devices['Desktop Chrome'], viewport: { width: 1600, height: 900 }, entry: '/index.html?beta=1&debug=1' } }
   ],
   // Sitio estático: basta un servidor de archivos
   webServer: {

@@ -1,4 +1,5 @@
 // app.js (punto de entrada)
+import './flags.js';   // marca html.beta / html.debug antes que nada
 import { PATHS, state } from './config.js';
 import { $, $$, fetchJSON, stopsArrayToMap, asLatLng } from './utils.js';
 import {
@@ -32,6 +33,7 @@ import { wireRecents } from './recents.js';
 import { wireStopHover } from './stopHover.js';
 import { confirmShowStops, setShowStops, showStopsNeedsConfirm } from './stopsGuard.js';
 import { wireRouteInspector, closeRouteInspector } from './routeInspector.js';
+import { applyBetaLayout, finishBetaLayout } from './betaLayout.js';
 
 /* ===========================
    Helpers UI de carga
@@ -435,6 +437,7 @@ async function loadCorrFromWikiroutes(){
 
 async function init(){
   initMap();
+  applyBetaLayout();
 
   disableSidebarChecks(true);
   setSidebarLoading(true, 'Cargando rutas y paraderos...');
@@ -448,7 +451,7 @@ async function init(){
   setListPlaceholder($('#p-metro'), 'Cargando Metro...');
   setListPlaceholder($('#p-wr'), 'Cargando Transporte público...');
 
-  setListPlaceholder(pickFirst('#p-wr-semi-body', '#p-wr-semi'), 'Cargando Transporte semiformal...');
+  setListPlaceholder(pickFirst('#p-wr-semi-body', '#p-wr-semi'), 'Cargando Rutas antiguas...');
   setListPlaceholder(pickFirst('#p-wr-aero-body', '#p-wr-aero'), 'Cargando AeroDirecto...');
   setListPlaceholder($('#p-wr-esi'), 'Cargando Otros...');
 
@@ -576,6 +579,7 @@ async function buildUI(){
   wireRecents();
   wireRouteInspector();
   wireStopHover();
+  finishBetaLayout();
 }
 
 // Lanzar
