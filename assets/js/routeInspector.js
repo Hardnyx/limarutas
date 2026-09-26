@@ -22,7 +22,7 @@ const HOVER_MIN_ROUTES = 2;
 const HOVER_DELAY_MS = 150;
 
 // Texto oscuro sobre colores claros (amarillo, verde lima...) para que se lea
-function paintTag(tagEl, color){
+export function paintTag(tagEl, color){
   tagEl.style.background = color;
   const probe = document.createElement('span');
   probe.style.color = color;

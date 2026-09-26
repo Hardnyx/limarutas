@@ -2,7 +2,7 @@
 // Nueva interfaz (?beta=1). Reutiliza los mismos elementos del index.html
 // (mismos id, mismos listeners): solo los reordena y agrega lo nuevo.
 //
-//   Sidebar: pestañas [Cómo llegar | Rutas]
+//   Sidebar: pestañas [Cómo llegar (tripUi.js) | Rutas]
 //     Rutas: buscador · "En el mapa (N)" + Limpiar · Recientes ·
 //            secciones por sistema, con cantidad de rutas y subtítulo
 //   Mapa: control de ajustes (paraderos, auto-centrar, tema)
@@ -11,6 +11,7 @@ import { $, $$, el } from './utils.js';
 import { FLAGS } from './flags.js';
 import { syncAllTri, FILTERED_SEL, ROUTES_CHANGED } from './uiSidebar.hierarchy.js';
 import { wireMobileSheet } from './mobileSheet.js';
+import { wireTripUi } from './tripUi.js';
 
 const LEAF_SEL = '.item .item-head input[type="checkbox"]';
 
@@ -53,11 +54,8 @@ function buildTabs(sidebar, panels){
   const tabRoutes = el('button', { type: 'button', class: 'side-tab', id: 'tabRoutes', role: 'tab', 'aria-controls': 'routesPane' }, 'Rutas');
   tabs.append(tabTrip, tabRoutes);
 
-  const tripPane = el('div', { class: 'side-pane', id: 'tripPane', role: 'tabpanel', 'aria-labelledby': 'tabTrip' },
-    el('div', { class: 'trip-soon' },
-      el('div', { class: 'trip-soon-title' }, 'Próximamente'),
-      el('div', { class: 'muted' }, 'Elige de dónde sales y a dónde vas, y te mostraremos qué rutas te llevan y dónde tomarlas.'),
-      el('div', { class: 'muted' }, 'Mientras tanto, busca una ruta o un paradero en la pestaña Rutas.')));
+  // Su contenido lo arma tripUi.js cuando las listas están listas
+  const tripPane = el('div', { class: 'side-pane', id: 'tripPane', role: 'tabpanel', 'aria-labelledby': 'tabTrip' });
 
   const routesPane = el('div', { class: 'side-pane', id: 'routesPane', role: 'tabpanel', 'aria-labelledby': 'tabRoutes' });
 
@@ -111,7 +109,7 @@ function buildTabs(sidebar, panels){
     next.click();
     next.focus();
   });
-  // Mientras "Cómo llegar" no exista, se abre en Rutas
+  // Se abre en Rutas mientras la nueva interfaz está en prueba
   select('routes');
 }
 
@@ -208,6 +206,7 @@ export function finishBetaLayout(){
   const corrList = $('#p-corr-list');
   if (corrList) new MutationObserver(schedule).observe(corrList, { childList: true });
   updateCounts();
+  wireTripUi();
 }
 
 const mainLeaves = () => $$(`#panels ${LEAF_SEL}`).filter(c => !c.closest('#p-recent'));

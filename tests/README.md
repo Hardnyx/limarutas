@@ -29,6 +29,7 @@ se usa `app.setting('#chkStops')`, que lo abre si hace falta.
 | `beta.spec.js` | Nueva interfaz: pestañas, orden y conteo de secciones, "En el mapa", filtro de listas, ajustes del mapa, `?debug=1` y `?beta=0` |
 | `mobile.spec.js` | Celular (390×844): hoja inferior de la nueva interfaz (alturas, manija, buscador, encuadre, paradero) y que la actual no se salga de la pantalla |
 | `trips.spec.js` | Datos para "Cómo llegar": orden de paraderos por ruta y sentido, rutas del sidebar con su grupo, rutas antiguas verificadas, vía auxiliar unida por caminata, paraderos cercanos |
+| `tripPlanner.spec.js` | Cómo llegar: opciones directas y con transbordo (orden, sentido, cerca de A y B), caminar si está cerca, rutas antiguas; la pestaña (paraderos, 📍 en el mapa, Esc, invertir, borrar) |
 | `explore.spec.js` | Secuencias aleatorias reproducibles de todas las acciones, con invariantes (ver `docs/DECISION_MAP.md`) |
 | `fixtures.js` | Fixture `app` (página lista) y utilidades para leer el estado del mapa |
 

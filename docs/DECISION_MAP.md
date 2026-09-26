@@ -107,6 +107,26 @@ Se activa con `?beta=1` (queda recordada en el navegador) y se apaga con
 | ⚙ (esquina del mapa) | — | Abre Mostrar paradas, Auto-centrar y Tema; se cierra con Esc, clic fuera o ⚙ |
 | Esc | Ajustes abiertos | Cierra solo los ajustes (el panel de rutas, si estaba abierto, sigue) |
 
+### Cómo llegar
+
+| Acción | Situación | Resultado esperado |
+|---|---|---|
+| Escribir en Origen o Destino | — | Paraderos que coinciden (nombre · distrito · rutas); si ninguno tiene todas las palabras, los que más coinciden ("ovalo higuereta" → Higuereta). ↑/↓ y Enter eligen |
+| 📍 | — | El siguiente clic en el mapa pone ese punto ("Punto en el mapa · cerca de…"); no abre el panel de rutas. Esc cancela |
+| Elegir el primer extremo | El punto no se ve | El mapa va a él; el foco pasa a Destino |
+| Tener A y B | — | Hasta 3 opciones: directas primero, luego con 1 transbordo; entre ellas, la más rápida. La primera queda elegida, con sus pasos y dibujada en el mapa |
+| A y B a 600 m o menos | — | "Te conviene caminar" |
+| Clic en otra opción | — | Se expande y se dibuja; la anterior se pliega |
+| Arrastrar el pin A o B | — | Se vuelve a calcular |
+| ⇅ Invertir | — | Cambia A por B y recalcula |
+| Incluir rutas antiguas | — | Recalcula incluyéndolas; sus pasos dicen "Ruta antigua · podría no circular" |
+| Sin opciones | Hay con rutas antiguas | Botón "Buscar también con rutas antiguas" |
+| Ver rutas completas en el mapa | — | Marca esas rutas en la pestaña Rutas |
+| × en un campo | — | Borra ese extremo, su pin y el resultado |
+
+Los tiempos son estimados por distancia (bus ~15 km/h; Metro y
+Metropolitano ~30 km/h; caminata con 30 % de rodeo) y no incluyen la espera.
+
 ### Celular (pantallas de hasta 700 px)
 
 El sidebar es una hoja que sube desde abajo, con tres alturas: **asomada**
