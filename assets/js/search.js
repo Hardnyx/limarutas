@@ -5,6 +5,7 @@ import { loadMaestroRows } from './wrData.js';
 import { wrIsPlaceholder } from './wrTexts.js';
 import { entriesForFolders } from './routeEntries.js';
 import { showStopRoutes } from './routeInspector.js';
+import { MAP_PICK } from './mobileSheet.js';
 import { toggleLeaf } from './leafToggle.js';
 import { addRecent } from './recents.js';
 
@@ -486,6 +487,8 @@ function renderResults(resultsBox, docs, selectedIndex){
 
 function selectDoc(doc){
   if (!doc) return;
+  // En celular la hoja baja antes de encuadrar
+  document.dispatchEvent(new Event(MAP_PICK));
   if (doc.type === 'stop'){
     showStopRoutes(doc.stop);
     return;

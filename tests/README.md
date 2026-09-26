@@ -27,6 +27,7 @@ se usa `app.setting('#chkStops')`, que lo abre si hace falta.
 | `map.spec.js` | Paraderos con nombre, panel "Rutas en este punto", advertencia de muchas rutas |
 | `recents.spec.js` | Rutas recientes: sentido sincronizado y persistencia |
 | `beta.spec.js` | Nueva interfaz: pestañas, orden y conteo de secciones, "En el mapa", filtro de listas, ajustes del mapa, `?debug=1` y `?beta=0` |
+| `mobile.spec.js` | Celular (390×844): hoja inferior de la nueva interfaz (alturas, manija, buscador, encuadre, paradero) y que la actual no se salga de la pantalla |
 | `explore.spec.js` | Secuencias aleatorias reproducibles de todas las acciones, con invariantes (ver `docs/DECISION_MAP.md`) |
 | `fixtures.js` | Fixture `app` (página lista) y utilidades para leer el estado del mapa |
 

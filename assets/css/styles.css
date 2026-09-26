@@ -1180,3 +1180,140 @@ html.beta .suggest {
 html.beta .route-inspector {
   top: 64px;
 }
+
+/* =========================
+   Pantallas angostas
+   ========================= */
+
+/* Interfaz actual: que el sidebar y el buscador no se salgan de la pantalla */
+@media (max-width: 700px) {
+  html:not(.beta) #sidebar {
+    left: 8px;
+    width: auto;
+    right: 8px;
+    top: 64px;
+    bottom: 8px;
+  }
+  html:not(.beta) #topbar {
+    top: 10px;
+    left: 8px;
+    right: 8px;
+    transform: none;
+    padding: 6px 8px;
+  }
+  html:not(.beta) #topbar .search {
+    flex: 1;
+    min-width: 0;
+  }
+  html:not(.beta) #searchInput {
+    width: 100%;
+    min-width: 0;
+  }
+  html:not(.beta) .suggest {
+    width: calc(100vw - 16px);
+    left: -30px;
+  }
+  html:not(.beta) #btnClearSearch {
+    flex: none;
+    font-size: 0;
+    padding: 6px 10px;
+  }
+  html:not(.beta) #btnClearSearch::before {
+    content: "×";
+    font-size: 14px;
+  }
+}
+
+/* Nueva interfaz: hoja inferior (mobileSheet.js) */
+.sheet-handle {
+  display: none;
+}
+
+html.sheet #sidebar {
+  box-sizing: border-box;   /* la altura que fija mobileSheet.js es la que tapa */
+  top: auto;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: auto;
+  padding: 0 12px 8px;
+  gap: 8px;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  border-bottom: none;
+  transition: height 180ms ease;
+  overflow: hidden;
+}
+
+html.sheet #sidebar.sheet-dragging {
+  transition: none;
+}
+
+html.sheet .sheet-handle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: none;
+  height: 22px;
+  margin: 0 -12px;
+  border: none;
+  background: transparent;
+  cursor: grab;
+  touch-action: none;
+}
+
+html.sheet .sheet-handle:focus-visible .sheet-grip {
+  background: #fff;
+}
+
+.sheet-grip {
+  width: 40px;
+  height: 5px;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.6);
+}
+
+html.sheet #sidebar .header {
+  display: none;
+}
+
+/* Casillas y botones un poco más grandes para el dedo */
+html.sheet .item-head input[type="checkbox"],
+html.sheet .panel-head > input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+}
+
+html.sheet .panel-head {
+  padding: 9px 10px;
+}
+
+html.sheet #searchInput,
+html.sheet .list-filter {
+  font-size: 16px;   /* evita el zoom automático de iOS al enfocar */
+}
+
+html.sheet .suggest {
+  max-height: 50vh;
+  background: var(--bg-sidebar);
+}
+
+/* Con la hoja completa no caben: zoom y créditos vuelven al bajarla */
+html.sheet[data-sheet="full"] .leaflet-bottom {
+  visibility: hidden;
+}
+
+/* Controles de Leaflet y panel de rutas por encima de la hoja */
+html.sheet .leaflet-bottom {
+  bottom: var(--sheet-h, 0px);
+  transition: bottom 180ms ease;
+}
+
+html.sheet .route-inspector {
+  top: auto;
+  bottom: calc(var(--sheet-h, 0px) + 8px);
+  max-height: min(40vh, calc(100vh - var(--sheet-h, 0px) - 90px));
+}
+
+html.sheet .map-settings-panel {
+  width: min(240px, calc(100vw - 32px));
+}
