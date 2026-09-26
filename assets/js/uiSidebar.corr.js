@@ -11,7 +11,7 @@ import { toggleLeaf, refreshLeafDirection } from './leafToggle.js';
 
 // Colores oficiales para corredores según primer dígito del servicio
 const CORR_COLORS = {
-  '1': '#ffcd00', // Amarillo
+  '1': '#c89919', // Amarillo (suavizado)
   '2': '#e4002b', // Rojo
   '3': '#003594', // Azul
   '4': '#9b26b6', // Morado
@@ -36,7 +36,7 @@ const CORR_KEY_LABEL = {
 };
 
 const CORR_KEY_COLOR = {
-  amarillo: '#ffcd00',
+  amarillo: '#c89919',
   rojo: '#e4002b',
   azul: '#003594',
   morado: '#9b26b6',

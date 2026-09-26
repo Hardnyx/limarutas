@@ -26,11 +26,11 @@ export const PATHS = {
 };
 
 export const COLOR_AN = '#FF4500';  // Alimentadores Norte
-export const COLOR_AS = '#FFCD00';  // Alimentadores Sur
+export const COLOR_AS = '#c89919';  // Alimentadores Sur (amarillo #FFCD00 suavizado: se lee sobre el mapa claro)
 
 // Colores de corredores por primer dígito del servicio
 export const COLOR_CORR = {
-  '1': '#ffc928', // Amarillo
+  '1': '#c89919', // Amarillo (suavizado)
   '2': '#e4002b', // Rojo
   '3': '#003594', // Azul
   '4': '#662d91', // Morado
