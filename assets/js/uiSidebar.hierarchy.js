@@ -15,6 +15,9 @@ import { confirmManyRoutes, manyRoutesNeedsConfirm } from './stopsGuard.js';
 
 const GROUP_SEL = '#panels .panel-head > input[type="checkbox"]';
 const LEAF_SEL  = '.item .item-head input[type="checkbox"]';
+export const FILTERED_SEL = '.is-color-filtered, .is-text-filtered';
+// Evento en document al terminar un cambio de rutas en lote
+export const ROUTES_CHANGED = 'limarutas:routes-changed';
 
 /* =========================
    Operaciones en lote
@@ -29,7 +32,11 @@ export function bulk(fn){
   try { fn(); } finally {
     if (--bulkDepth === 0) state.bulk = false;
     void endFitBatch();
-    if (bulkDepth === 0) refreshRecents();
+    if (bulkDepth === 0){
+      refreshRecents();
+      // Las casillas de grupo cambian las hojas sin eventos 'change'
+      document.dispatchEvent(new Event(ROUTES_CHANGED));
+    }
   }
 }
 
@@ -37,12 +44,12 @@ export function bulk(fn){
    Hojas
    ========================= */
 
-// Hojas de una casilla de grupo; las ocultas por el filtro de color no cuentan
+// Hojas de una casilla de grupo; las ocultas por un filtro (color o texto) no cuentan
 export function leavesOfGroup(groupChk){
   const panel = groupChk && groupChk.closest('.panel');
   if (!panel) return [];
   return Array.from(panel.querySelectorAll(LEAF_SEL))
-    .filter(chk => !chk.closest('.is-color-filtered'));
+    .filter(chk => !chk.closest(FILTERED_SEL));
 }
 
 export function setLeafChecked(systemId, leafChk, checked, { silentFit = false } = {}){ // eslint-disable-line no-unused-vars

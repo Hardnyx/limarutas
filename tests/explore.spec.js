@@ -31,7 +31,7 @@ async function checkInvariants(page){
     // 1) Casillas de grupo coherentes con sus hojas
     document.querySelectorAll('#panels .panel-head > input[type="checkbox"]').forEach(g => {
       const leaves = [...g.closest('.panel').querySelectorAll('.item .item-head input')]
-        .filter(c => !c.closest('.is-color-filtered'));
+        .filter(c => !c.closest('.is-color-filtered, .is-text-filtered'));
       if (!leaves.length) return;
       const n = leaves.filter(c => c.checked).length;
       const want = n === 0 ? 'off' : n === leaves.length ? 'on' : 'mixed';
@@ -114,7 +114,8 @@ function actions(page, r){
     [5, 'marcar/desmarcar una ruta', () => clickRandom('#panels .item .item-head input[type="checkbox"]', 'ruta')],
     [2, 'casilla de grupo', () => clickRandom('#panels .panel-head > input[type="checkbox"]', 'grupo')],
     [3, 'cambiar sentido', () => clickRandom('#panels .item .dir-mini .segbtn-mini:not(.active)', 'sentido')],
-    [1, 'Desmarcar todo', async () => { await page.click('#btnClearAll'); return 'Desmarcar todo'; }],
+    // En la nueva interfaz "Limpiar" solo se ve con rutas en el mapa
+    [1, 'Desmarcar todo', async () => { await page.evaluate(() => document.getElementById('btnClearAll').click()); return 'Desmarcar todo'; }],
     [3, 'buscar ruta', async () => {
       const q = pick(CODES);
       await page.fill('#searchInput', q);
@@ -137,6 +138,18 @@ function actions(page, r){
       const m = pick(['all', 'real', 'default', 'all']);
       await page.evaluate(k => document.querySelector(`#wrColorFilter [data-mode="${k}"]`).click(), m);
       return `filtro ${m}`;
+    }],
+    // Solo en la nueva interfaz (Transporte público y Rutas antiguas)
+    [1, 'filtro de lista', async () => {
+      const n = await page.locator('.list-filter').count();
+      if (!n) return 'filtro de lista: no hay';
+      const q = pick(['', '', '12', 'vipusa', 'ate', 'san', 'zzz']);
+      await page.locator('.list-filter').nth(Math.floor(r() * n)).evaluate((inp, v) => {
+        inp.value = v;
+        inp.dispatchEvent(new Event('input', { bubbles: true }));
+      }, q);
+      await page.waitForTimeout(250);
+      return `filtro de lista "${q}"`;
     }],
     [2, 'recientes: casilla', () => clickRandom('#p-recent-list .recent-row input', 'reciente casilla')],
     [2, 'recientes: sentido', () => clickRandom('#p-recent-list .dir-mini .segbtn-mini:not(.active)', 'reciente sentido')],

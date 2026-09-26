@@ -8,7 +8,10 @@ import path from 'node:path';
 const LEAFLET_DIST = path.resolve('node_modules/leaflet/dist');
 
 export const test = base.extend({
-  app: async ({ page }, use) => {
+  // Dirección de entrada; el proyecto "beta" de playwright.config.js la cambia
+  entry: ['/index.html', { option: true }],
+
+  app: async ({ page, entry }, use) => {
     const errors = [];
     page.on('pageerror', e => errors.push(e.message));
     page.on('console', m => { if (m.type() === 'error') errors.push(m.text()); });
@@ -19,7 +22,7 @@ export const test = base.extend({
     });
     await page.route('https://*.basemaps.cartocdn.com/**', route => route.fulfill({ status: 204 }));
 
-    await page.goto('/index.html');
+    await page.goto(entry);
     await expect(page.locator('#status')).toHaveText('Listo', { timeout: 90_000 });
     // Corredores se reconstruye al cargar sus tipos
     await page.waitForTimeout(1500);
@@ -92,6 +95,19 @@ export class App {
     await this.page.fill('#searchInput', text);
     await expect(this.page.locator('.suggest-item').first()).toBeVisible();
     return this.page.locator('.suggest-item');
+  }
+
+  // ¿Está activa la nueva interfaz (?beta=1)?
+  isBeta(){
+    return this.page.evaluate(() => document.documentElement.classList.contains('beta'));
+  }
+
+  // Un control de las opciones del mapa (paradas, auto-centrar, tema). En
+  // la nueva interfaz están en el menú ⚙ del mapa: se abre si hace falta.
+  async setting(sel){
+    const pop = this.page.locator('#mapSettings');
+    if (await pop.count() && await pop.isHidden()) await this.page.click('#btnMapSettings');
+    return this.page.locator(sel);
   }
 
   leaf(system, id){

@@ -11,7 +11,7 @@ test('arranca sin rutas marcadas ni dibujadas', async ({ app, page }) => {
 
 test('cada casilla de grupo marca y desmarca todas sus rutas', async ({ app, page }) => {
   // Sin paraderos no hay advertencia de muchas rutas (se prueba en map.spec.js)
-  await page.locator('#chkStops').uncheck();
+  await (await app.setting('#chkStops')).uncheck();
   const groups = await page.$$eval('#panels .panel-head > input', cs => cs.map(c => c.id));
   expect(groups.length).toBeGreaterThan(20);
 
@@ -131,7 +131,7 @@ test('elegir sentido en una ruta sin marcar la muestra (en todos los sistemas)',
 
 test('tema del mapa: el botón activo queda marcado', async ({ app, page }) => {
   await expect(page.locator('#btnLight')).toHaveClass(/active/);
-  await page.click('#btnDark');
+  await (await app.setting('#btnDark')).click();
   await expect(page.locator('#btnDark')).toHaveClass(/active/);
   await expect(page.locator('#btnLight')).not.toHaveClass(/active/);
 });

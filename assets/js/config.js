@@ -40,7 +40,7 @@ export const COLOR_CORR = {
 // Nombre de cada sistema (data-system de las casillas) para mostrar
 export const SYSTEM_LABELS = {
   wr: 'Transporte público',
-  wrSemi: 'Transporte semiformal',
+  wrSemi: 'Rutas antiguas',
   wrAero: 'AeroDirecto',
   wrOtros: 'Expreso San Isidro',
   corr: 'Corredor',
