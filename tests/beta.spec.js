@@ -1,25 +1,11 @@
 // tests/beta.spec.js
-// Nueva interfaz (?beta=1): pestañas, buscador en el sidebar, "En el mapa",
+// Nueva interfaz (la de todos; ?beta=0 vuelve a la anterior): pestañas, buscador en el sidebar, "En el mapa",
 // orden de secciones, filtro de listas largas y ajustes del mapa.
 import { test, expect } from './fixtures.js';
 
 test.describe('nueva interfaz', () => {
   test.beforeEach(async ({ app }) => {
-    test.skip(!(await app.isBeta()), 'solo con ?beta=1');
-  });
-
-  test('pestañas: se abre en Rutas; "Cómo llegar" pide origen y destino', async ({ app, page }) => {
-    await expect(page.locator('#topbar')).toHaveCount(0);
-    await expect(page.locator('#tabRoutes')).toHaveAttribute('aria-selected', 'true');
-    await expect(page.locator('#routesPane #searchInput')).toBeVisible();
-
-    await page.click('#tabTrip');
-    await expect(page.locator('#tripFrom')).toBeVisible();
-    await expect(page.locator('#tripTo')).toBeVisible();
-    await expect(page.locator('#searchInput')).toBeHidden();
-    await page.keyboard.press('ArrowRight');
-    await expect(page.locator('#tabRoutes')).toHaveAttribute('aria-selected', 'true');
-    await expect(page.locator('#searchInput')).toBeVisible();
+    test.skip(!(await app.isBeta()), 'solo en la nueva interfaz');
   });
 
   test('secciones en orden, con cantidad de rutas y subtítulos', async ({ app, page }) => {
@@ -105,9 +91,9 @@ test.describe('nueva interfaz', () => {
   test('la depuración de color solo aparece con ?debug=1', async ({ app, page }) => {
     await page.click('.panel-head:has(#chk-wr) .title');
     await expect(page.locator('#wrColorFilter')).toBeVisible();
-    await page.goto('/index.html');   // beta queda recordada, sin debug
+    await page.goto('/index.html');   // sin debug
     await expect(page.locator('#status')).toHaveText('Listo', { timeout: 90_000 });
-    await expect(page.locator('#tabRoutes')).toBeVisible();
+    await page.click('#tabRoutes');
     await page.click('.panel-head:has(#chk-wr) .title');
     await expect(page.locator('#wrColorFilter')).toBeHidden();
   });
@@ -121,9 +107,34 @@ test.describe('nueva interfaz', () => {
   });
 });
 
-test('sin ?beta=1 no cambia la interfaz', async ({ app, page }) => {
+test('con ?beta=0 se ve la interfaz anterior', async ({ app, page }) => {
   test.skip(await app.isBeta(), 'solo en la interfaz actual');
   await expect(page.locator('#topbar #searchInput')).toBeVisible();
   await expect(page.locator('#tabRoutes, #btnMapSettings, .list-filter')).toHaveCount(0);
   await expect(page.locator('#btnClearAll')).toHaveText('Desmarcar todo');
+});
+
+test.describe('pestaña con la que abre', () => {
+  test.use({ startTab: 'default' });
+
+  test('abre en Cómo llegar; ←/→ cambian a Rutas', async ({ app, page }) => {
+    test.skip(!(await app.isBeta()), 'solo en la nueva interfaz');
+    await expect(page.locator('#topbar')).toHaveCount(0);
+    await expect(page.locator('#tabTrip')).toHaveAttribute('aria-selected', 'true');
+    await expect(page.locator('#tripFrom')).toBeVisible();
+    await expect(page.locator('#searchInput')).toBeHidden();
+
+    await page.focus('#tabTrip');
+    await page.keyboard.press('ArrowRight');
+    await expect(page.locator('#tabRoutes')).toHaveAttribute('aria-selected', 'true');
+    await expect(page.locator('#routesPane #searchInput')).toBeVisible();
+  });
+
+  test('sin parámetros, la nueva interfaz es la predeterminada', async ({ app, page }) => {
+    await page.goto('/index.html');
+    await expect(page.locator('#status')).toHaveText('Listo', { timeout: 90_000 });
+    // En el proyecto de la interfaz anterior, ?beta=0 quedó recordado
+    const remembered = await page.evaluate(() => localStorage.getItem('limarutas.interfazAnterior'));
+    await expect(page.locator('#tabTrip')).toHaveCount(remembered === '1' ? 0 : 1);
+  });
 });

@@ -2,6 +2,9 @@
 // "Cómo llegar": cálculo de viajes (tripPlanner.js) y su pestaña en la nueva
 // interfaz (tripUi.js).
 import { test, expect } from './fixtures.js';
+import path from 'node:path';
+
+const LEAFLET_DIST = path.resolve('node_modules/leaflet/dist');
 
 const PUENTE_NUEVO = { lat: -12.0433, lon: -77.0126 };
 const PLAZA_SAN_MARTIN = { lat: -12.0515, lon: -77.0347 };
@@ -129,7 +132,7 @@ test('rutas antiguas solo si se piden', async ({ app, page }) => {
 
 test.describe('pestaña Cómo llegar', () => {
   test.beforeEach(async ({ app, page }) => {
-    test.skip(!(await app.isBeta()), 'solo con ?beta=1');
+    test.skip(!(await app.isBeta()), 'solo en la nueva interfaz');
     await page.click('#tabTrip');
   });
 
@@ -215,6 +218,43 @@ test.describe('pestaña Cómo llegar', () => {
     await page.click('#tabRoutes');
     expect(await shown('.leaflet-overlay-pane')).toBe(true);
     expect(await shown('.leaflet-tripLine-pane')).toBe(false);
+  });
+
+  test('el viaje queda en la URL y se abre desde un enlace', async ({ app, page }) => {
+    await pickStop(page, '#tripFrom', 'acho');
+    await pickStop(page, '#tripTo', 'ovalo higuereta');
+    await expect(page.locator('.trip-card').first()).toBeVisible();
+    const url = new URL(page.url());
+    expect(url.searchParams.get('desde')).toMatch(/^-1\d\.\d{5},-7\d\.\d{5}$/);
+    expect(url.searchParams.get('hasta')).toMatch(/^-1\d\.\d{5},-7\d\.\d{5}$/);
+    await expect(page.locator('.trip-card.selected .trip-share')).toBeVisible();
+
+    // Abrir ese enlace en otra pestaña calcula el mismo viaje
+    const other = await page.context().newPage();
+    await other.route('https://unpkg.com/**', r => r.fulfill({
+      path: path.join(LEAFLET_DIST, r.request().url().endsWith('.css') ? 'leaflet.css' : 'leaflet.js') }));
+    await other.route('https://*.basemaps.cartocdn.com/**', r => r.fulfill({ status: 204 }));
+    await other.goto(url.pathname + url.search);
+    await expect(other.locator('#status')).toHaveText('Listo', { timeout: 90_000 });
+    await expect(other.locator('#tabTrip')).toHaveAttribute('aria-selected', 'true');
+    await expect(other.locator('.trip-card').first()).toBeVisible({ timeout: 30_000 });
+    await expect(other.locator('#tripFrom')).toHaveValue(/cerca de Acho|Acho/);
+    await other.close();
+
+    // Borrar un extremo lo quita de la URL
+    await page.click('.trip-field[data-end="to"] .trip-clear');
+    expect(new URL(page.url()).searchParams.get('hasta')).toBeNull();
+  });
+
+  test('desde el panel de un paradero: Salir de aquí / Llegar aquí', async ({ app, page }) => {
+    await page.click('#tabRoutes');
+    const items = await app.search('puente nuevo');
+    await items.first().click();
+    await expect(page.locator('.route-inspector .ri-trip')).toBeVisible();
+    await page.click('.route-inspector .ri-trip [data-end="from"]');
+    await expect(page.locator('#tabTrip')).toHaveAttribute('aria-selected', 'true');
+    await expect(page.locator('#tripFrom')).toHaveValue('Puente Nuevo · El Agustino');
+    await expect(page.locator('.route-inspector')).toBeHidden();
   });
 
   test('muy cerca: sugiere caminar; borrar un extremo limpia el resultado', async ({ app, page }) => {

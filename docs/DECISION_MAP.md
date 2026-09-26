@@ -5,8 +5,9 @@ según lo que ella esperaría. Es la especificación que verifican las pruebas:
 `tests/explore.spec.js` recorre estas acciones en órdenes aleatorios y, después
 de cada paso, comprueba los invariantes del final de este documento.
 
-La nueva interfaz (`?beta=1`) tiene las mismas acciones con otro orden en
-pantalla; sus diferencias están en [Nueva interfaz](#nueva-interfaz-beta1).
+La nueva interfaz es la de todos (`?beta=0` vuelve a la anterior) y tiene las
+mismas acciones con otro orden en pantalla; sus diferencias están en
+[Nueva interfaz](#nueva-interfaz-beta1).
 
 ## Estado que ve el usuario
 
@@ -95,12 +96,14 @@ pantalla; sus diferencias están en [Nueva interfaz](#nueva-interfaz-beta1).
 
 ## Nueva interfaz (`?beta=1`)
 
-Se activa con `?beta=1` (queda recordada en el navegador) y se apaga con
-`?beta=0`. `?debug=1` muestra además la depuración de color.
+Es la predeterminada. `?beta=0` vuelve a la interfaz anterior (queda recordado
+en el navegador) y `?beta=1` regresa a la nueva. `?debug=1` muestra además la
+depuración de color.
 
 | Acción | Situación | Resultado esperado |
 |---|---|---|
-| Abrir la página | — | Pestaña **Rutas** activa; buscador arriba del sidebar |
+| Abrir la página | — | Pestaña **Cómo llegar** activa; en Rutas, el buscador arriba del sidebar |
+| Abrir un enlace con `?desde=lat,lon&hasta=lat,lon` | — | Cómo llegar con ese viaje ya calculado |
 | Pestaña Cómo llegar | — | Aviso de que viene pronto y cómo buscar mientras tanto; ←/→ cambian de pestaña |
 | Marcar o desmarcar rutas | — | "En el mapa (N)" muestra cuántas hay; cada sección, cuántas de las suyas (`1/440`) |
 | Limpiar (En el mapa) | Con rutas | Igual que "Desmarcar todo"; el bloque desaparece al quedar en 0 |
@@ -124,6 +127,9 @@ Se activa con `?beta=1` (queda recordada en el navegador) y se apaga con
 | Ver estas rutas completas | — | Las marca y pasa a la pestaña Rutas |
 | Cambiar de pestaña | — | Cada una muestra lo suyo: en Cómo llegar solo el viaje; en Rutas solo las rutas marcadas (siguen marcadas mientras tanto) |
 | × en un campo | — | Borra ese extremo, su pin y el resultado |
+| (La URL) | — | Siempre refleja A y B (`?desde=…&hasta=…`); borrar un extremo lo quita |
+| Compartir este viaje | Opción elegida | Copia el enlace (en celular, abre el menú de compartir) |
+| Salir de aquí / Llegar aquí | Panel de un paradero | Pasa a Cómo llegar con ese paradero como origen o destino |
 
 Los tiempos son estimados por distancia (bus ~15 km/h; Metro y
 Metropolitano ~30 km/h; caminata con 30 % de rodeo) y no incluyen la espera.

@@ -17,6 +17,9 @@ import { confirmManyRoutes } from './stopsGuard.js';
 import { findUnderPoint, entriesForFolders } from './routeEntries.js';
 import { centerOn } from './mapFit.js';
 
+// Evento para usar un paradero como origen o destino de "Cómo llegar" (tripUi.js)
+export const TRIP_END_EVENT = 'limarutas:trip-end';
+
 // El hover abre el panel solo con rutas superpuestas; con una sola no aporta
 const HOVER_MIN_ROUTES = 2;
 const HOVER_DELAY_MS = 150;
@@ -128,6 +131,20 @@ export function wireRouteInspector(){
         hint.appendChild(btnAll);
       } else {
         hint.textContent = 'Todas las rutas de este paradero están en el mapa';
+      }
+      // "Cómo llegar": usar este paradero como origen o destino
+      if (document.getElementById('tabTrip')){
+        const point = { lat: stopMode.lat, lon: stopMode.lon,
+          label: stopMode.district ? `${stopMode.name} · ${stopMode.district}` : stopMode.name };
+        const trip = el('div', { class: 'ri-trip' });
+        [['from', 'Salir de aquí'], ['to', 'Llegar aquí']].forEach(([end, label]) => {
+          const b = el('button', { type: 'button', class: 'btn small btn-ghost', 'data-end': end }, label);
+          b.addEventListener('click', () => {
+            document.dispatchEvent(new CustomEvent(TRIP_END_EVENT, { detail: { end, point } }));
+          });
+          trip.appendChild(b);
+        });
+        hint.appendChild(trip);
       }
       panel.classList.add('pinned');
       return;
@@ -311,7 +328,7 @@ export function wireRouteInspector(){
           radius: 9, color: '#fff', weight: 3, fillColor: '#f59e0b', fillOpacity: 1, interactive: false
         }).addTo(map);
       }
-      stopMode = { name, marker };
+      stopMode = { name, marker, lat, lon, district };
       title.textContent = district ? `Paradero ${name} · ${district}` : `Paradero ${name}`;
       lastKey = '';
       render(found);

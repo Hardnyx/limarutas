@@ -1,17 +1,18 @@
 // flags.js
-// Banderas por URL para probar funciones antes de publicarlas:
-//   ?beta=1   nueva interfaz (se recuerda en el navegador; ?beta=0 la apaga)
+// Banderas por URL:
+//   la nueva interfaz ("beta") es la de todos; ?beta=0 vuelve a la anterior
+//   (se recuerda en el navegador) y ?beta=1 regresa a la nueva
 //   ?debug=1  herramientas de depuración (solo en esa visita)
-const BETA_KEY = 'limarutas.beta';
+const OLD_UI_KEY = 'limarutas.interfazAnterior';
 
 function readBeta(params){
   const v = params.get('beta');
   try {
-    if (v === '1') localStorage.setItem(BETA_KEY, '1');
-    else if (v === '0') localStorage.removeItem(BETA_KEY);
-    return localStorage.getItem(BETA_KEY) === '1';
+    if (v === '0') localStorage.setItem(OLD_UI_KEY, '1');
+    else if (v === '1') localStorage.removeItem(OLD_UI_KEY);
+    return localStorage.getItem(OLD_UI_KEY) !== '1';
   } catch {
-    return v === '1';
+    return v !== '0';
   }
 }
 

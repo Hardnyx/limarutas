@@ -1,5 +1,5 @@
 // betaLayout.js
-// Nueva interfaz (?beta=1). Reutiliza los mismos elementos del index.html
+// Nueva interfaz (la de todos; ?beta=0 vuelve a la anterior). Reutiliza los mismos elementos del index.html
 // (mismos id, mismos listeners): solo los reordena y agrega lo nuevo.
 //
 //   Sidebar: pestañas [Cómo llegar (tripUi.js) | Rutas]
@@ -114,8 +114,8 @@ function buildTabs(sidebar, panels){
     next.click();
     next.focus();
   });
-  // Se abre en Rutas mientras la nueva interfaz está en prueba
-  select('routes');
+  // Se abre en "Cómo llegar": ir de A a B es lo que más se busca
+  select('trip');
 }
 
 function reorderSections(panels){

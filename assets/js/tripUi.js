@@ -6,7 +6,7 @@ import { $, el } from './utils.js';
 import { loadTripGraph } from './tripData.js';
 import { planTrip, oldWouldHelp } from './tripPlanner.js';
 import { fitTo } from './mapFit.js';
-import { paintTag } from './routeInspector.js';
+import { paintTag, TRIP_END_EVENT } from './routeInspector.js';
 import { setSheet } from './mobileSheet.js';
 
 const LINE_PANE = 'tripLinePane';     // sobre las rutas y sus paraderos
@@ -120,6 +120,7 @@ function field(end, letter, placeholder){
     ends[end] = null;
     removePin(end);
     clearResults();
+    syncUrl();
     if (!input.value.trim()){ close(); return; }
     await ensureGraph();
     items = suggestStops(input.value);
@@ -133,7 +134,7 @@ function field(end, letter, placeholder){
     else if (e.key === 'Escape' && list.classList.contains('open')){ e.stopPropagation(); close(); }
   });
   input.addEventListener('blur', () => setTimeout(close, 150));
-  clear.addEventListener('click', () => { input.value = ''; ends[end] = null; removePin(end); clearResults(); close(); input.focus(); });
+  clear.addEventListener('click', () => { input.value = ''; ends[end] = null; removePin(end); clearResults(); syncUrl(); close(); input.focus(); });
   pick.addEventListener('click', () => startPicking(end));
   return wrap;
 }
@@ -364,7 +365,9 @@ function card(opt, k){
       rides.forEach(l => { if (!l.route.leaf.checked) l.route.leaf.click(); });
       $('#tabRoutes')?.click();
     });
-    body.append(ol, show);
+    const share = el('button', { type: 'button', class: 'btn small btn-ghost trip-share' }, 'Compartir este viaje');
+    share.addEventListener('click', (e) => { e.stopPropagation(); void shareTrip(share); });
+    body.append(ol, el('div', { class: 'trip-actions' }, show, share));
   }
   const pickCard = () => { if (selected !== k){ selected = k; renderResults(); draw(); } };
   body.addEventListener('click', pickCard);
@@ -495,16 +498,68 @@ function draw({ fit = true } = {}){
 async function replan(){
   clearResults();
   selected = 0;
-  if (!ends.from || !ends.to) return;
+  if (!ends.from || !ends.to){ syncUrl(); return; }
   await ensureGraph();
   setStatus('Buscando opciones…');
   // Deja pintar el estado antes del cálculo
   await new Promise(res => setTimeout(res, 0));
   last = planTrip(graph, ends.from, ends.to, { includeOld: $('#tripOld').checked });
   setStatus('');
+  syncUrl();
   await renderResults();
   draw();
   if (last.options.length || last.walkOnly) setSheet('half');
+}
+
+/* =========================
+   Enlace del viaje (?desde=lat,lon&hasta=lat,lon)
+   ========================= */
+
+const fmtPt = p => `${p.lat.toFixed(5)},${p.lon.toFixed(5)}`;
+const parsePt = v => {
+  const m = String(v || '').match(/^(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)$/);
+  return m ? { lat: +m[1], lon: +m[2] } : null;
+};
+
+// La URL refleja el viaje: se puede compartir o guardar
+function syncUrl(){
+  const url = new URL(window.location.href);
+  ['desde', 'hasta'].forEach((k, i) => {
+    const p = ends[i ? 'to' : 'from'];
+    if (p) url.searchParams.set(k, fmtPt(p)); else url.searchParams.delete(k);
+  });
+  window.history.replaceState(null, '', url);
+}
+
+export function tripShareUrl(){
+  const url = new URL(window.location.href);
+  url.searchParams.delete('debug');
+  return url.toString();
+}
+
+async function shareTrip(btn){
+  const link = tripShareUrl();
+  try {
+    if (navigator.share && window.matchMedia('(max-width: 700px)').matches){
+      await navigator.share({ title: 'Cómo llegar', url: link });
+      return;
+    }
+    await navigator.clipboard.writeText(link);
+    btn.textContent = 'Enlace copiado';
+  } catch {
+    window.prompt('Copia este enlace:', link);
+  }
+}
+
+async function loadFromUrl(){
+  const params = new URLSearchParams(window.location.search);
+  const a = parsePt(params.get('desde'));
+  const b = parsePt(params.get('hasta'));
+  if (!a && !b) return;
+  $('#tabTrip')?.click();
+  if (a) a.label = await pointLabel(a.lat, a.lon);
+  if (b) b.label = await pointLabel(b.lat, b.lon);
+  await setTripEnds(a, b);
 }
 
 /* =========================
@@ -520,6 +575,15 @@ export function wireTripUi(){
   });
   buildForm(pane);
   wireMapPicking();
+
+  // "Salir de aquí" / "Llegar aquí" desde el panel de un paradero
+  document.addEventListener(TRIP_END_EVENT, (e) => {
+    const { end, point } = e.detail || {};
+    if (!point || (end !== 'from' && end !== 'to')) return;
+    $('#tabTrip')?.click();
+    setEnd(end, point);
+  });
+  void loadFromUrl();
 }
 
 // Para pruebas y para enlazar desde otras partes (p. ej. "Ir desde aquí")
@@ -527,6 +591,9 @@ export function setTripEnds(from, to){
   if (from) ends.from = from;
   if (to) ends.to = to;
   ['from', 'to'].forEach(k => { removePin(k); addPin(k); });
+  // Solo un extremo (enlace a medias): que se vea
+  const only = ends.from && !ends.to ? ends.from : (!ends.from && ends.to ? ends.to : null);
+  if (only) state.map.setView([only.lat, only.lon], Math.max(state.map.getZoom(), 14));
   syncInputs();
   return replan();
 }

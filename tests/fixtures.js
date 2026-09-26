@@ -10,8 +10,11 @@ const LEAFLET_DIST = path.resolve('node_modules/leaflet/dist');
 export const test = base.extend({
   // Dirección de entrada; el proyecto "beta" de playwright.config.js la cambia
   entry: ['/index.html', { option: true }],
+  // La nueva interfaz abre en "Cómo llegar"; casi todas las pruebas usan Rutas.
+  // 'default' deja la pestaña con la que abre.
+  startTab: ['routes', { option: true }],
 
-  app: async ({ page, entry }, use) => {
+  app: async ({ page, entry, startTab }, use) => {
     const errors = [];
     page.on('pageerror', e => errors.push(e.message));
     page.on('console', m => { if (m.type() === 'error') errors.push(m.text()); });
@@ -26,6 +29,7 @@ export const test = base.extend({
     await expect(page.locator('#status')).toHaveText('Listo', { timeout: 90_000 });
     // Corredores se reconstruye al cargar sus tipos
     await page.waitForTimeout(1500);
+    if (startTab === 'routes' && await page.locator('#tabRoutes').count()) await page.click('#tabRoutes');
 
     await use(new App(page));
     expect(errors, 'errores de JavaScript en la página').toEqual([]);
@@ -97,7 +101,7 @@ export class App {
     return this.page.locator('.suggest-item');
   }
 
-  // ¿Está activa la nueva interfaz (?beta=1)?
+  // ¿Está activa la nueva interfaz? (la de todos; ?beta=0 la apaga)
   isBeta(){
     return this.page.evaluate(() => document.documentElement.classList.contains('beta'));
   }
