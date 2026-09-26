@@ -10,7 +10,6 @@ import {
 } from './parsers.js';
 import {
   initMap,
-  reRenderVisibleSystem,
   setBase
 } from './mapLayers.js';
 import {
@@ -32,7 +31,7 @@ import { setupSearch } from './search.js';
 import { wireRecents } from './recents.js';
 import { wireStopHover } from './stopHover.js';
 import { confirmShowStops, setShowStops, showStopsNeedsConfirm } from './stopsGuard.js';
-import { wireRouteInspector } from './routeInspector.js';
+import { wireRouteInspector, closeRouteInspector } from './routeInspector.js';
 
 /* ===========================
    Helpers UI de carga
@@ -531,17 +530,17 @@ async function buildUI(){
 
   const btnLight = $('#btnLight');
   const btnDark  = $('#btnDark');
-  btnLight && btnLight.addEventListener('click', () => setBase('light'));
-  btnDark  && btnDark .addEventListener('click', () => setBase('dark'));
-
-  $$('input[name="dir"]').forEach(r => {
-    r.addEventListener('change', () => {
-      if (r.checked) {
-        state.dir = r.value;
-        reRenderVisibleSystem('met');
-      }
+  // El botón del tema activo queda marcado
+  const pickTheme = (theme) => {
+    setBase(theme);
+    [[btnLight, 'light'], [btnDark, 'dark']].forEach(([b, t]) => {
+      if (!b) return;
+      b.classList.toggle('active', t === theme);
+      b.setAttribute('aria-pressed', String(t === theme));
     });
-  });
+  };
+  btnLight && btnLight.addEventListener('click', () => pickTheme('light'));
+  btnDark  && btnDark .addEventListener('click', () => pickTheme('dark'));
 
   const chkStops = $('#chkStops');
   if (chkStops){
@@ -566,7 +565,10 @@ async function buildUI(){
   }
 
   const btnClearAll = $('#btnClearAll');
-  if (btnClearAll) btnClearAll.addEventListener('click', clearAllRoutes);
+  if (btnClearAll) btnClearAll.addEventListener('click', () => {
+    clearAllRoutes();
+    closeRouteInspector();   // y el marcador del paradero, si había uno
+  });
 
   wirePanelTogglesOnce();
 

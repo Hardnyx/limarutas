@@ -100,8 +100,10 @@ function makeWrDirPairControls(chk){
     const item = wrap.closest('.item');
     if (item) applyWrTextsToWrItem(item, sel);
 
-    // Cambiar de sentido no mueve la vista: se sigue mirando la misma zona
-    refreshLeafDirection(chk);
+    // Elegir sentido en una ruta sin marcar la muestra (como marcarla);
+    // si ya está marcada, cambia de sentido sin mover la vista
+    if (!chk.checked) chk.click();
+    else refreshLeafDirection(chk);
   });
 
   return wrap;

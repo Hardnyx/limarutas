@@ -67,3 +67,21 @@ test('nombre repetido: lista cada lugar con su distrito', async ({ app, page }) 
   // Varios en un mismo distrito se distinguen por el paradero vecino
   expect(subs.some(s => s.includes('cerca de'))).toBe(true);
 });
+
+test('elegir una ruta ya marcada lleva el mapa a ella y la sube en recientes', async ({ app, page }) => {
+  await app.search('1240');
+  await page.keyboard.press('Enter');
+  await app.search('1255');
+  await page.keyboard.press('Enter');
+  await app.settle();
+  await app.setView(-12.3, -76.8, 15);
+  const before = await app.view();
+
+  await app.search('1240');
+  await page.keyboard.press('Enter');
+  await page.waitForTimeout(800);
+  expect(await app.view()).not.toEqual(before);
+  const inView = await app.state(s => s.map.getBounds().intersects(s.systems.wr.bounds.get('1240-ida')));
+  expect(inView).toBe(true);
+  await expect(page.locator('#p-recent-list .recent-item').first()).toContainText('1240');
+});

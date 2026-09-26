@@ -5,6 +5,8 @@ import { loadMaestroRows } from './wrData.js';
 import { wrIsPlaceholder } from './wrTexts.js';
 import { entriesForFolders } from './routeEntries.js';
 import { showStopRoutes } from './routeInspector.js';
+import { toggleLeaf } from './leafToggle.js';
+import { addRecent } from './recents.js';
 
 function norm(text){
   return String(text || '')
@@ -501,7 +503,13 @@ function selectDoc(doc){
   }
 
   if (chk){
-    if (!chk.checked) chk.click();
+    if (!chk.checked){
+      chk.click();
+    } else {
+      // Ya estaba en el mapa: elegirla es "ir a ella" y pasa a ser la reciente
+      toggleLeaf(chk, true, { fit: true });
+      addRecent(chk);
+    }
     const item = chk.closest('.item');
     if (item) item.scrollIntoView({ block: 'nearest' });
   }
@@ -587,6 +595,7 @@ export function setupSearch(){
       selectDoc(doc);
     } else if (e.key === 'Escape'){
       e.preventDefault();
+      e.stopPropagation();   // este Esc es solo para las sugerencias
       currentDocs = [];
       selectedIndex = -1;
       clearResults(resultsBox);

@@ -115,3 +115,27 @@ test('marcar y desmarcar enseguida no deja la ruta dibujada', async ({ app, page
   await page.waitForTimeout(4000);
   expect(await app.visibleWr()).toEqual([]);
 });
+
+test('elegir sentido en una ruta sin marcar la muestra (en todos los sistemas)', async ({ app, page }) => {
+  // Wikiroutes
+  await page.evaluate(() => document.querySelector('#p-wr input[data-id="1240"]')
+    .closest('.item').querySelector('.segbtn-mini[data-dir="vuelta"]').click());
+  await app.settle();
+  await expect(app.leaf('wr', '1240')).toBeChecked();
+  expect(await app.visibleWr()).toEqual(['1240-vuelta']);
+  // Metropolitano
+  const id = await page.$eval('#p-met-exp .item .item-head input', c => c.dataset.id);
+  await page.evaluate(() => document.querySelector('#p-met-exp .item .segbtn-mini:not(.active)').click());
+  await expect(app.leaf('met', id)).toBeChecked();
+});
+
+test('tema del mapa: el botón activo queda marcado', async ({ app, page }) => {
+  await expect(page.locator('#btnLight')).toHaveClass(/active/);
+  await page.click('#btnDark');
+  await expect(page.locator('#btnDark')).toHaveClass(/active/);
+  await expect(page.locator('#btnLight')).not.toHaveClass(/active/);
+});
+
+test('no hay un segundo control de dirección para Metropolitano', async ({ app, page }) => {
+  await expect(page.locator('input[name="dir"]')).toHaveCount(0);
+});
