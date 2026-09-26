@@ -49,7 +49,7 @@ test('paradero con nombre único: primero el paradero y debajo sus rutas', async
   expect(chips).toBeGreaterThan(50);
 
   // "Mostrar las N rutas" pregunta por los paraderos (más de 30 rutas)
-  await page.locator('.ri-hint .btn').click();
+  await page.locator('.ri-show-all').click();
   await page.locator('.ui-dialog-btn', { hasText: 'Mostrar sin paraderos' }).click();
   await app.settle();
   expect((await app.visibleWr()).length).toBe(chips);

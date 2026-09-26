@@ -120,7 +120,7 @@ export function wireRouteInspector(){
     if (stopMode){
       const hidden = entries.filter(e => e.leaf && !e.leaf.checked);
       if (hidden.length){
-        const btnAll = el('button', { type: 'button', class: 'btn small' },
+        const btnAll = el('button', { type: 'button', class: 'btn small ri-show-all' },
           `Mostrar ${hidden.length === entries.length ? 'las' : 'las otras'} ${hidden.length} rutas`);
         btnAll.addEventListener('click', async () => {
           if (!(await confirmManyRoutes(hidden.length))) return;
