@@ -80,8 +80,8 @@ pantalla; sus diferencias están en [Nueva interfaz](#nueva-interfaz-beta1).
 |---|---|
 | Casilla de una fila | Igual que la casilla de la ruta en su lista (y se sincronizan); no reordena |
 | Ida/Vuelta en una fila | Igual que en la lista principal; la vista no se mueve |
-| × | Quita la fila; la ruta sigue como estaba |
-| Limpiar | Vacía la lista |
+| × | Quita la fila **y la ruta del mapa** (sin la fila, solo se podría apagar buscándola en su lista) |
+| Limpiar | Borra el historial; las rutas que están en el mapa se quedan (para quitarlas está Limpiar de "En el mapa"). Solo aparece si hay filas que no están en el mapa |
 | Recargar la página | Las filas vuelven, desmarcadas |
 
 ### Opciones (en la nueva interfaz, menú ⚙ del mapa)
@@ -114,14 +114,15 @@ Se activa con `?beta=1` (queda recordada en el navegador) y se apaga con
 | Escribir en Origen o Destino | — | Paraderos que coinciden (nombre · distrito · rutas); si ninguno tiene todas las palabras, los que más coinciden ("ovalo higuereta" → Higuereta). ↑/↓ y Enter eligen |
 | 📍 | — | El siguiente clic en el mapa pone ese punto ("Punto en el mapa · cerca de…"); no abre el panel de rutas. Esc cancela |
 | Elegir el primer extremo | El punto no se ve | El mapa va a él; el foco pasa a Destino |
-| Tener A y B | — | Hasta 3 opciones: directas primero, luego con 1 transbordo; entre ellas, la más rápida. La primera queda elegida, con sus pasos y dibujada en el mapa |
+| Tener A y B | — | Hasta 3 opciones distintas, ordenadas por un costo que suma tiempo, caminata (doble), transbordos y espera (menor si varias rutas hacen el tramo). Si hay un directo razonable, siempre aparece uno. Cada tramo muestra las rutas que sirven igual ("1057 o 1099 o 1200"): basta tomar la primera que pase. La primera opción queda elegida, con sus pasos y dibujada por las calles |
 | A y B a 600 m o menos | — | "Te conviene caminar" |
 | Clic en otra opción | — | Se expande y se dibuja; la anterior se pliega |
 | Arrastrar el pin A o B | — | Se vuelve a calcular |
 | ⇅ Invertir | — | Cambia A por B y recalcula |
 | Incluir rutas antiguas | — | Recalcula incluyéndolas; sus pasos dicen "Ruta antigua · podría no circular" |
 | Sin opciones | Hay con rutas antiguas | Botón "Buscar también con rutas antiguas" |
-| Ver rutas completas en el mapa | — | Marca esas rutas en la pestaña Rutas |
+| Ver estas rutas completas | — | Las marca y pasa a la pestaña Rutas |
+| Cambiar de pestaña | — | Cada una muestra lo suyo: en Cómo llegar solo el viaje; en Rutas solo las rutas marcadas (siguen marcadas mientras tanto) |
 | × en un campo | — | Borra ese extremo, su pin y el resultado |
 
 Los tiempos son estimados por distancia (bus ~15 km/h; Metro y

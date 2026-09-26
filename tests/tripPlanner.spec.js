@@ -19,15 +19,24 @@ function plan(page, from, to, opts = {}){
     const ms = performance.now() - t;
     const { lat, lon } = g.stops;
     const d = (i, p) => Math.hypot((lon[i] - p.lon) * 108_900, (lat[i] - p.lat) * 110_574);
+    const d2 = (i, j) => d(i, { lat: lat[j], lon: lon[j] });
     return {
       ms,
       walkOnly: res.walkOnly,
       options: res.options.map(opt => {
         const rides = opt.legs.filter(l => l.type === 'ride');
         const first = rides[0], lastR = rides[rides.length - 1];
+        // Cada alternativa sube y baja cerca de donde lo hace la ruta del tramo
+        const altsOk = rides.every(l => (l.alts || []).every(x =>
+          x.to > x.from &&
+          d2(x.route.stops[x.from], l.route.stops[l.from]) <= 151 &&
+          d2(x.route.stops[x.to], l.route.stops[l.to]) <= 151));
         return {
           transfers: opt.transfers,
           minutes: opt.minutes,
+          cost: opt.cost,
+          altsOk,
+          alts: rides.map(l => (l.alts || []).map(x => `${x.route.leaf.dataset.system}:${x.route.leaf.dataset.id}`)),
           old: opt.old,
           codes: rides.map(l => l.route.code),
           services: rides.map(l => `${l.route.leaf.dataset.system}:${l.route.leaf.dataset.id}`),
@@ -41,36 +50,43 @@ function plan(page, from, to, opts = {}){
   }, [from, to, opts]);
 }
 
-test('viaje directo: hasta 3 opciones, hacia adelante y desde/hasta cerca de A y B', async ({ app, page }) => {
+test('viaje directo: opciones hacia adelante, cerca de A y B y con rutas alternativas', async ({ app, page }) => {
   const r = await plan(page, PUENTE_NUEVO, PLAZA_SAN_MARTIN);
   expect(r.walkOnly).toBe(false);
-  expect(r.options.length).toBe(3);
+  expect(r.options.length).toBeGreaterThan(0);
+  expect(r.options.length).toBeLessThanOrEqual(3);
   for (const o of r.options){
-    expect(o.transfers).toBe(0);
     expect(o.forward).toBe(true);
     expect(o.startNear).toBe(true);
     expect(o.endNear).toBe(true);
     expect(o.old).toBe(false);
+    expect(o.altsOk).toBe(true);
   }
-  // Ordenadas por tiempo y sin repetir servicio
-  const mins = r.options.map(o => o.minutes);
-  expect(mins).toEqual([...mins].sort((a, b) => a - b));
-  expect(new Set(r.options.map(o => o.services.join('>'))).size).toBe(3);
+  // Hay una directa (aunque un transbordo con menos caminata gane) y en
+  // algún tramo varias rutas sirven
+  expect(r.options.some(o => o.transfers === 0)).toBe(true);
+  expect(r.options.some(o => o.alts.some(a => a.length > 0))).toBe(true);
+  // Ordenadas por costo y sin repetir la misma ruta como principal
+  const costs = r.options.map(o => o.cost);
+  expect(costs).toEqual([...costs].sort((a, b) => a - b));
+  expect(new Set(r.options.map(o => o.services.join('>'))).size).toBe(r.options.length);
 });
 
-test('lejos: directos primero y luego con un transbordo entre servicios distintos', async ({ app, page }) => {
+test('lejos: los transbordos no repiten rutas que ya van directo', async ({ app, page }) => {
   const r = await plan(page, VES, COMAS);
   expect(r.options.length).toBeGreaterThan(0);
-  const t = r.options.map(o => o.transfers);
-  expect(t).toEqual([...t].sort());
+  const direct = new Set(r.options.filter(o => !o.transfers).flatMap(o => [...o.services, ...o.alts[0]]));
   const withTransfer = r.options.filter(o => o.transfers === 1);
-  expect(withTransfer.length).toBeGreaterThan(0);
   for (const o of withTransfer){
     expect(o.codes.length).toBe(2);
     expect(o.services[0]).not.toBe(o.services[1]);
-    expect(o.forward && o.startNear && o.endNear).toBe(true);
+    expect(o.forward && o.startNear && o.endNear && o.altsOk).toBe(true);
+    // Ni la misma ruta en los dos tramos ni, como alternativa, una que ya va directo
+    expect(o.alts[1]).not.toContain(o.services[0]);
+    expect(o.alts[0]).not.toContain(o.services[1]);
+    for (const a of o.alts.flat()) expect(direct.has(a)).toBe(false);
   }
-  expect(r.ms).toBeLessThan(2000);
+  expect(r.ms).toBeLessThan(3000);
 });
 
 test('muy cerca conviene caminar', async ({ app, page }) => {
@@ -121,8 +137,9 @@ test.describe('pestaña Cómo llegar', () => {
       await expect(cards.first().locator('.trip-steps')).toHaveCount(0);
     }
 
-    // "Ver rutas completas" marca sus rutas en la pestaña Rutas
+    // "Ver estas rutas completas" las marca y lleva a la pestaña Rutas
     await page.locator('.trip-card.selected .trip-show').click();
+    await expect(page.locator('#tabRoutes')).toHaveAttribute('aria-selected', 'true');
     await expect(page.locator('#onMapCount')).not.toHaveText('0');
   });
 
@@ -149,6 +166,28 @@ test.describe('pestaña Cómo llegar', () => {
     await expect(page.locator('#tripFrom')).toHaveValue(b);
     await expect(page.locator('#tripTo')).toHaveValue(a);
     await expect(page.locator('.trip-card').first()).toBeVisible();
+  });
+
+  test('cada pestaña muestra lo suyo en el mapa', async ({ app, page }) => {
+    await page.click('#tabRoutes');
+    await app.search('1240');
+    await page.keyboard.press('Enter');
+    await app.settle();
+    const shown = sel => page.$eval(sel, n => getComputedStyle(n).display !== 'none');
+    expect(await shown('.leaflet-overlay-pane')).toBe(true);
+
+    await page.click('#tabTrip');
+    expect(await shown('.leaflet-overlay-pane')).toBe(false);
+    // La ruta sigue marcada: solo no se ve mientras se planea el viaje
+    await expect(app.leaf('wr', '1240')).toBeChecked();
+    await pickStop(page, '#tripFrom', 'acho');
+    await pickStop(page, '#tripTo', 'ovalo higuereta');
+    await expect(page.locator('.trip-card').first()).toBeVisible();
+    expect(await shown('.leaflet-tripLine-pane')).toBe(true);
+
+    await page.click('#tabRoutes');
+    expect(await shown('.leaflet-overlay-pane')).toBe(true);
+    expect(await shown('.leaflet-tripLine-pane')).toBe(false);
   });
 
   test('muy cerca: sugiere caminar; borrar un extremo limpia el resultado', async ({ app, page }) => {

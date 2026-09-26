@@ -252,8 +252,11 @@ export function wireRouteInspector(){
     btnCollapse.setAttribute('aria-label', collapsed ? 'Desplegar panel' : 'Plegar panel');
   });
 
+  // En "Cómo llegar" las rutas marcadas no se ven: el panel no aplica
+  const tripMode = () => document.documentElement.classList.contains('trip-mode');
+
   map.on('mousemove', (e) => {
-    if (pinned || overPanel || stopMode) return;
+    if (pinned || overPanel || stopMode || tripMode()) return;
     clearTimeout(timer);
     // Sobre un paradero manda su nombre: el panel se queda como está
     if (isOverStop()) return;
@@ -271,6 +274,7 @@ export function wireRouteInspector(){
   // Clic (o toque): fija el panel con lo que hay en ese punto
   map.on('click', (e) => {
     clearTimeout(timer);
+    if (tripMode()) return;
     const found = findUnderPoint(e.layerPoint);
     if (!found.length){ hide(); return; }
     leaveStopMode();

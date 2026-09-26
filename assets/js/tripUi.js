@@ -287,9 +287,16 @@ function stepsOf(opt){
     } else {
       const r = leg.route;
       const n = leg.to - leg.from;
+      const alts = leg.alts || [];
       const text = el('span', {},
         'Toma la ', chip(r), ` hacia ${headsign(r)} en `, el('b', {}, stopName(r.stops[leg.from])),
         '. Baja en ', el('b', {}, stopName(r.stops[leg.to])), ` (${n} paradero${n === 1 ? '' : 's'}).`);
+      if (alts.length){
+        const also = el('span', { class: 'trip-also' }, 'También te sirven: ');
+        alts.forEach((a, i) => { if (i) also.append(' '); also.append(chip(a.route)); });
+        also.append(' (la que pase primero).');
+        text.append(el('br'), also);
+      }
       if (r.group === 'antigua'){
         text.append(' ', el('span', { class: 'trip-warn' }, r.verified ? 'Sin autorización ATU' : 'Ruta antigua · podría no circular'));
       }
@@ -300,17 +307,33 @@ function stepsOf(opt){
   return steps;
 }
 
+// Rutas de un tramo: la principal y las que hacen lo mismo ("1297 · 1122 · +2")
+const MAX_CHIPS = 3;
+function legChips(leg){
+  const all = [leg.route, ...(leg.alts || []).map(a => a.route)];
+  const box = el('span', { class: 'trip-leg' });
+  all.slice(0, MAX_CHIPS).forEach((r, i) => {
+    if (i) box.append(el('span', { class: 'trip-or' }, 'o'));
+    box.append(chip(r));
+  });
+  if (all.length > MAX_CHIPS) box.append(el('span', { class: 'trip-more' }, `+${all.length - MAX_CHIPS}`));
+  return box;
+}
+
 function card(opt, k){
   const rides = opt.legs.filter(l => l.type === 'ride');
   const head = el('div', { class: 'trip-card-head' });
   rides.forEach((l, j) => {
     if (j) head.append(el('span', { class: 'trip-arrow' }, '›'));
-    head.append(chip(l.route));
+    head.append(legChips(l));
   });
+  // Con varias rutas en un tramo no hay que esperar una en especial
+  const many = rides.every(l => (l.alts || []).length > 0);
   const meta = [
     `~${opt.minutes} min aprox.`,
     opt.transfers ? '1 transbordo' : 'Directo',
-    `${fmtM(opt.walkM)} a pie`
+    `${fmtM(opt.walkM)} a pie`,
+    ...(many ? ['varias rutas te sirven'] : [])
   ].join(' · ');
   const body = el('div', { class: 'trip-card', role: 'button', tabindex: '0', 'aria-expanded': String(k === selected) },
     head, el('div', { class: 'trip-meta' }, meta));
@@ -318,10 +341,11 @@ function card(opt, k){
   if (k === selected){
     body.classList.add('selected');
     const ol = el('ol', { class: 'trip-steps' }, ...stepsOf(opt));
-    const show = el('button', { type: 'button', class: 'btn small btn-ghost trip-show' }, 'Ver rutas completas en el mapa');
+    const show = el('button', { type: 'button', class: 'btn small btn-ghost trip-show' }, 'Ver estas rutas completas (pestaña Rutas)');
     show.addEventListener('click', (e) => {
       e.stopPropagation();
       rides.forEach(l => { if (!l.route.leaf.checked) l.route.leaf.click(); });
+      $('#tabRoutes')?.click();
     });
     body.append(ol, show);
   }
@@ -358,7 +382,60 @@ async function renderResults(){
    Dibujo en el mapa
    ========================= */
 
-function draw(){
+// Trazos de Wikiroutes (route_track_trip<N>.geojson), para dibujar el tramo
+// por las calles y no en línea recta entre paraderos
+const tracks = new Map();
+function loadTrack(key){
+  if (tracks.has(key)) return tracks.get(key);
+  const def = state.systems.wr.routeDefs?.get(key);
+  const p = !def ? Promise.resolve(null)
+    : fetch(`${def.folder}/route_track_trip${def.trip || 1}.geojson`)
+      .then(r => (r.ok ? r.json() : null))
+      .then(gj => {
+        const f = gj?.features?.find(x => x.geometry?.type === 'LineString');
+        return f ? f.geometry.coordinates.map(([lo, la]) => [la, lo]) : null;
+      })
+      .catch(() => null);
+  tracks.set(key, p);
+  return p;
+}
+
+const d2 = (a, b) => (a[0] - b[0]) ** 2 + ((a[1] - b[1]) * 0.978) ** 2;
+function nearestIdx(line, p, from = 0){
+  let best = -1, bd = Infinity;
+  for (let i = from; i < line.length; i++){
+    const d = d2(line[i], p);
+    if (d < bd){ bd = d; best = i; }
+  }
+  return [best, bd];
+}
+
+// Tramo del trazo entre el paradero de subida y el de bajada; si el trazo no
+// está cargado o no calza (~150 m), línea entre paraderos
+const loadedTracks = new Map();
+function rideCoords(r, leg, pt){
+  const stops = Array.from(r.stops.slice(leg.from, leg.to + 1), pt);
+  const line = loadedTracks.get(r.key);
+  if (!line) return stops;
+  const TOL = (150 / 111_000) ** 2;
+  const [i, di] = nearestIdx(line, stops[0]);
+  const [j, dj] = nearestIdx(line, stops[stops.length - 1], Math.max(0, i));
+  if (i < 0 || j <= i || di > TOL || dj > TOL) return stops;
+  return [stops[0], ...line.slice(i, j + 1), stops[stops.length - 1]];
+}
+
+async function drawWithTracks(){
+  const opt = last?.options?.[selected];
+  if (!opt) return;
+  const keys = opt.legs.filter(l => l.type === 'ride' && !/^(met|metro):/.test(l.route.key)).map(l => l.route.key);
+  const missing = keys.filter(k => !loadedTracks.has(k));
+  if (!missing.length) return;
+  const lines = await Promise.all(missing.map(loadTrack));
+  missing.forEach((k, i) => { if (lines[i]) loadedTracks.set(k, lines[i]); });
+  if (last?.options?.[selected] === opt) draw({ fit: false });
+}
+
+function draw({ fit = true } = {}){
   if (!tripLayer) tripLayer = L.layerGroup().addTo(state.map);
   tripLayer.clearLayers();
   const opt = last?.options?.[selected];
@@ -381,7 +458,7 @@ function draw(){
       return;
     }
     const r = leg.route;
-    const coords = Array.from(r.stops.slice(leg.from, leg.to + 1), pt);
+    const coords = rideCoords(r, leg, pt);
     const color = colorOf(r);
     tripLayer.addLayer(L.polyline(coords, { pane: LINE_PANE, color: '#fff', weight: 10, opacity: 0.9, interactive: false }));
     tripLayer.addLayer(L.polyline(coords, { pane: LINE_PANE, color, weight: 6, interactive: false }));
@@ -390,7 +467,8 @@ function draw(){
     all.push(...coords);
     prev = coords[coords.length - 1];
   });
-  if (all.length) fitTo(L.latLngBounds(all));
+  if (fit && all.length) fitTo(L.latLngBounds(all));
+  void drawWithTracks();
 }
 
 /* =========================

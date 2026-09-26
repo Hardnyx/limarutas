@@ -12,6 +12,7 @@ import { FLAGS } from './flags.js';
 import { syncAllTri, FILTERED_SEL, ROUTES_CHANGED } from './uiSidebar.hierarchy.js';
 import { wireMobileSheet } from './mobileSheet.js';
 import { wireTripUi } from './tripUi.js';
+import { closeRouteInspector } from './routeInspector.js';
 
 const LEAF_SEL = '.item .item-head input[type="checkbox"]';
 
@@ -100,6 +101,10 @@ function buildTabs(sidebar, panels){
     tabRoutes.tabIndex = isTrip ? -1 : 0;
     tripPane.hidden = !isTrip;
     routesPane.hidden = isTrip;
+    // Cada pestaña muestra lo suyo en el mapa: el viaje o las rutas marcadas
+    // (siguen marcadas; al volver a Rutas reaparecen)
+    document.documentElement.classList.toggle('trip-mode', isTrip);
+    if (isTrip) closeRouteInspector();
   };
   tabTrip.addEventListener('click', () => select('trip'));
   tabRoutes.addEventListener('click', () => select('routes'));
