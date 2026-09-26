@@ -154,7 +154,7 @@ function actions(page, r){
     [2, 'recientes: casilla', () => clickRandom('#p-recent-list .recent-row input', 'reciente casilla')],
     [2, 'recientes: sentido', () => clickRandom('#p-recent-list .dir-mini .segbtn-mini:not(.active)', 'reciente sentido')],
     [1, 'recientes: quitar', () => clickRandom('#p-recent-list .recent-remove', 'reciente quitar')],
-    [1, 'panel: Mostrar las N', () => clickRandom('.route-inspector:not([hidden]) .ri-hint .btn', 'mostrar todas')],
+    [1, 'panel: Mostrar las N', () => clickRandom('.route-inspector:not([hidden]) .ri-show-all', 'mostrar todas')],
     [1, 'panel: Ver solo esta', async () => {
       const chips = page.locator('.route-inspector:not([hidden]) .ri-chip');
       if (!(await chips.count())) return 'panel: sin chips';
