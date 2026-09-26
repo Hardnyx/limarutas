@@ -20,12 +20,16 @@ const MAX_OPTIONS = 6;
 
 // Para ordenar (no se muestran como minutos)
 const WALK_WEIGHT = 2;          // un minuto a pie "cuesta" como dos
-const TRANSFER_PENALTY = 5;     // molestia de cambiar de bus
+const TRANSFER_PENALTY = 20;    // bajarse, cruzar y esperar otro bus sin saber cuándo pasa
 const WAIT_MIN = 10;            // espera de una sola ruta; con N que sirven, 10/(1+N)
 const TOP_FOR_ALTS = 60;        // candidatos a los que se buscan alternativas
 const ALT_M = 150;              // alternativas: suben y bajan a esta distancia o menos
 const MAX_ALTS = 8;
 const DIRECT_MAX_RATIO = 1.5;
+const TRANSFER_WALK_EXTRA = 1;  // la caminata del transbordo (cruzar la avenida) pesa triple
+const EASY_DIRECT_WALK_M = 800; // directo "cómodo": hasta esto a pie en total…
+const MAX_SAME_START = 2;       // opciones con transbordo que empiezan con las mismas rutas
+const TRANSFER_MUST_SAVE_MIN = 20; // …va antes que un transbordo que no ahorre al menos esto
 // Metro, Metropolitano y corredores: más frecuentes y previsibles; se prefieren
 const MASS_GROUPS = new Set(['metro', 'metropolitano', 'corredor']);
 const MASS_RIDE_FACTOR = 0.8;   // su tiempo a bordo "cuesta" menos
@@ -175,7 +179,8 @@ export function planTrip(g, from, to, { includeOld = false } = {}){
       massSaving += m * (1 - MASS_RIDE_FACTOR);
     }
     return { ...c, legs, mass: massSaving > 0,
-      base: c.minutes - massSaving + walkMin(c.walkM) * (WALK_WEIGHT - 1) + c.transfers * TRANSFER_PENALTY };
+      base: c.minutes - massSaving + walkMin(c.walkM) * (WALK_WEIGHT - 1)
+        + walkMin(c.walkT || 0) * TRANSFER_WALK_EXTRA + c.transfers * TRANSFER_PENALTY };
   });
   cands.sort((a, b) => a.base - b.base);
 
@@ -212,7 +217,14 @@ export function planTrip(g, from, to, { includeOld = false } = {}){
     }
     c.cost = c.base + wait;
   }
-  top.sort((a, b) => a.cost - b.cost);
+  // Un directo con poca caminata va antes que cualquier transbordo, salvo que
+  // el transbordo ahorre bastante tiempo de viaje
+  const bestDirectMin = Math.min(...top.filter(c => !c.transfers && c.walkM <= EASY_DIRECT_WALK_M).map(c => c.minutes));
+  // Primero: directos cómodos y transbordos que sí ahorran; luego el resto por costo
+  const tier = c => c.transfers
+    ? (c.minutes <= bestDirectMin - TRANSFER_MUST_SAVE_MIN ? 0 : 1)
+    : (c.walkM <= EASY_DIRECT_WALK_M ? 0 : 1);
+  top.sort((a, b) => tier(a) - tier(b) || a.cost - b.cost);
 
   // Una opción ya cubierta por otra (sus rutas son alternativas de aquella) no se repite
   const rideLegs = o => o.legs.filter(l => l.type === 'ride');
@@ -225,28 +237,37 @@ export function planTrip(g, from, to, { includeOld = false } = {}){
       return [...legSet(l)].some(x => sa.has(x));
     });
   };
+  // Variedad: como mucho 2 opciones que empiecen con las mismas rutas
+  const sameStart = (o, c) => {
+    const sa = legSet(rideLegs(o)[0]);
+    return [...legSet(rideLegs(c)[0])].some(x => sa.has(x));
+  };
   const picked = [];
   for (const c of top){
     if (picked.some(o => covers(o, c))) continue;
+    if (c.transfers && picked.filter(o => o.transfers && sameStart(o, c)).length >= MAX_SAME_START) continue;
     picked.push(c);
     if (picked.length >= MAX_OPTIONS) break;
   }
-  // Si hay un directo razonable, siempre aparece uno (hay quien prefiere no cambiar de bus)
-  if (picked.length && !picked.some(c => !c.transfers)){
-    const d = top.find(c => !c.transfers && c.cost <= picked[0].cost * DIRECT_MAX_RATIO);
-    if (d){
-      if (picked.length >= MAX_OPTIONS) picked.pop();
+  // Las rutas únicas razonables (directas) siempre aparecen: hay quien prefiere no cambiar de bus
+  if (picked.length){
+    const limit = picked[0].cost * DIRECT_MAX_RATIO;
+    for (const d of top.filter(c => !c.transfers && c.cost <= limit)){
+      if (picked.includes(d) || picked.some(o => covers(o, d))) continue;
+      const drop = picked.map((o, i) => [o, i]).reverse().find(([o]) => o.transfers);
+      if (picked.length >= MAX_OPTIONS){ if (!drop) break; picked.splice(drop[1], 1); }
       picked.push(d);
-      picked.sort((a, b) => a.cost - b.cost);
     }
+    picked.sort((a, b) => tier(a) - tier(b) || a.cost - b.cost);
   }
   // Si se puede ir en Metro, Metropolitano o corredor, siempre aparece una opción así
   if (picked.length && !picked.some(c => c.mass)){
-    const m = top.find(c => c.mass && c.cost <= picked[0].cost * MASS_MAX_RATIO && !picked.some(o => covers(o, c)));
+    const m = top.find(c => c.mass && c.cost <= picked[0].cost * MASS_MAX_RATIO && !picked.some(o => covers(o, c))
+      && !(c.transfers && picked.filter(o => o.transfers && sameStart(o, c)).length >= MAX_SAME_START));
     if (m){
       if (picked.length >= MAX_OPTIONS) picked.pop();
       picked.push(m);
-      picked.sort((a, b) => a.cost - b.cost);
+      picked.sort((a, b) => tier(a) - tier(b) || a.cost - b.cost);
     }
   }
   for (const c of picked){

@@ -1617,3 +1617,64 @@ html:not(.trip-mode) .leaflet-tripMark-pane {
   margin-top: 3px;
   color: var(--text-muted);
 }
+
+/* Tarjetas de viaje compactas: un tramo por línea y el tiempo a la derecha */
+.trip-card-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  flex-wrap: nowrap;
+}
+
+.trip-legs {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.trip-leg-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.trip-leg-row + .trip-leg-row::before {
+  content: "›";
+  color: var(--text-muted);
+  margin-right: -2px;
+}
+
+.trip-plus {
+  flex: none;
+  padding: 0 6px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  font-size: 11px;
+  color: var(--text-muted);
+  cursor: help;
+}
+
+.trip-time {
+  flex: none;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 22px;
+}
+
+.trip-time small {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.trip-sub {
+  color: var(--text-muted);
+}
+
+.trip-also {
+  margin-top: 3px;
+  color: var(--text-muted);
+}
