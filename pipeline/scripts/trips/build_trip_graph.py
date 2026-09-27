@@ -20,8 +20,8 @@ Fuentes:
   Metro          metro.geojson: estaciones (Point) ordenadas a lo largo del
                  trazo (LineString) de cada sentido
 
-Alimentadores del Metropolitano: sus paraderos no traen orden y varios son
-circuitos; quedan fuera hasta tener un orden confiable.
+Alimentadores del Metropolitano: alimentadores_paths.json (build_alim_paths.py)
+corta cada circuito en ida y vuelta con sus paraderos en orden.
 
 Paraderos: Wikiroutes comparte el stop_id entre las rutas que paran en el
 mismo lugar, así que cada stop_id es un nodo. Los puntos sin stop_id se
@@ -147,6 +147,29 @@ def metropolitano(stops: Stops, routes: dict, seg_m: dict) -> int:
     return n
 
 
+def alimentadores(stops: Stops, routes: dict, seg_m: dict) -> int:
+    """Cada Alimentador en ida y vuelta (build_alim_paths.py): la estación del
+    terminal es el mismo nodo que en el Metropolitano (se transborda sin caminar)."""
+    path = MET / 'alimentadores_paths.json'
+    if not path.is_file():
+        return 0
+    n = 0
+    for ref, svc in json.loads(path.read_text(encoding='utf-8'))['services'].items():
+        for key in ('ida', 'vuelta'):
+            seq, meters = [], []
+            for s in svc[key]['stops']:
+                node = stops.get(s['id'], s['lat'], s['lon'], s['name'])
+                if seq and seq[-1] == node:
+                    continue
+                seq.append(node)
+                meters.append(s['m'])
+            if len(seq) >= 2:
+                routes[f'alim:{ref}:{key}'] = seq
+                seg_m[f'alim:{ref}:{key}'] = [max(1, b - a) for a, b in zip(meters, meters[1:])]
+                n += 1
+    return n
+
+
 def _project(line: list[list[float]], lat: float, lon: float) -> float:
     """Posición (en metros desde el inicio) del punto más cercano del trazo."""
     best_d, best_pos, pos = math.inf, 0.0, 0.0
@@ -198,6 +221,7 @@ def main() -> None:
     n_layers, missing = wikiroutes(stops, routes)
     seg_m: dict[str, list[int]] = {}
     n_met = metropolitano(stops, routes, seg_m)
+    n_alim = alimentadores(stops, routes, seg_m)
     n_metro = metro(stops, routes)
 
     dist = Distritos()
@@ -217,7 +241,7 @@ def main() -> None:
 
     wr = sum(1 for k in routes if ':' not in k)
     print(f'Wikiroutes: {wr} de {n_layers} capas con paraderos ({missing} sin archivo)')
-    print(f'Metropolitano: {n_met} servicios · Metro: {n_metro} líneas (ambos sentidos)')
+    print(f'Metropolitano: {n_met} servicios · Alimentadores: {n_alim} sentidos · Metro: {n_metro} líneas (ambos sentidos)')
     print(f'Paraderos: {len(rows)} · {OUT.relative_to(ROOT)}: {OUT.stat().st_size / 1e6:.2f} MB')
 
 

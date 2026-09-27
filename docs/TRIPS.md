@@ -41,8 +41,13 @@ de qué grupo son se decide en el navegador.
   `met:A:sn`; `met:6:ns` solo, porque el Expreso 6 solo va al sur), con sus
   propias estaciones por sentido, y las líneas del
   Metro (`metro:L1:0`, `metro:L1:1`), con sus paraderos en orden.
-- **Fuera por ahora**: los Alimentadores del Metropolitano, porque sus
-  paraderos no traen orden y varios son circuitos.
+- **Alimentadores del Metropolitano** (`alim:AN-01:ida`, `alim:AN-01:vuelta`):
+  `build_alim_paths.py` corta cada circuito en el terminal (el punto del
+  trazado más cercano a su estación) y en el punto más lejano; los paraderos
+  se ordenan por su posición a lo largo del trazado. La estación del
+  terminal es el mismo nodo que en el Metropolitano: se transborda sin
+  caminar. Los paraderos de OSM traen el nombre de la ruta; se nombran con
+  el paradero de Wikiroutes más cercano.
 
 ## Decisiones
 
@@ -137,6 +142,7 @@ tramos que el export no cubre (ampliación norte) van por la macroruta.
 
 ```bash
 python pipeline/scripts/metropolitano/build_met_paths.py
+python pipeline/scripts/metropolitano/build_alim_paths.py
 python pipeline/scripts/trips/build_trip_graph.py
 ```
 

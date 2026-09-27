@@ -12,7 +12,7 @@ mismas acciones con otro orden en pantalla; sus diferencias están en
 ## Estado que ve el usuario
 
 - **Rutas marcadas** (casillas del sidebar) → rutas dibujadas en el mapa.
-- **Sentido** de cada ruta (Ida/Vuelta, o Amb/N/S en Metropolitano y Alimentadores). Los expresos de un solo sentido no tienen Amb/N/S; cada servicio del Metropolitano muestra su recorrido y horario por sentido.
+- **Sentido** de cada ruta (Ida/Vuelta, Amb/N/S en el Metropolitano; en los Alimentadores Amb/Ida/Vta: ida del terminal al barrio, vuelta al terminal). Los expresos de un solo sentido no tienen Amb/N/S; cada servicio del Metropolitano muestra su recorrido y horario por sentido.
 - **Mostrar paradas** (activado por defecto).
 - **Filtro de color** de Transporte público (depuración).
 - **Rutas recientes** (hasta 8, se recuerdan en el navegador).

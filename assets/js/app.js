@@ -202,7 +202,12 @@ async function loadMetropolitano(){
 
 async function loadAlimentadores(){
   try {
-    const alim = await fetchJSON(`${PATHS.met}/alimentadores.json`);
+    const [alim, alimPaths] = await Promise.all([
+      fetchJSON(`${PATHS.met}/alimentadores.json`),
+      // Ida y vuelta de cada circuito, con paraderos en orden (build_alim_paths.py)
+      fetchJSON(`${PATHS.met}/alimentadores_paths.json`).catch(() => null)
+    ]);
+    state.systems.alim.paths = alimPaths?.services || {};
     if (alim && alim.type === 'FeatureCollection') {
       const parsed = buildAlimFromFC(alim);
       state.systems.alim.stops    = parsed.stops;

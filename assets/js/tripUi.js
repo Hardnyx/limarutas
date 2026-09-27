@@ -364,6 +364,11 @@ function routeName(route){
     return titles.find(t => /^Corredor\b/i.test(t)) || 'Corredor';
   }
   if (route.group === 'metropolitano') return `Metropolitano · ${name || route.code}`;
+  if (route.group === 'alimentador'){
+    const m = route.key.match(/^alim:(.+):(ida|vuelta)$/);
+    const to = m && state.systems.alim.paths?.[m[1]]?.[m[2]]?.to;
+    return `Alimentador ${route.code}${to ? ` · hacia ${to}` : ''}`;
+  }
   if (route.group === 'metro') return `Metro de Lima · ${name.replace(/^Línea\s+L/i, 'Línea ') || route.code}`;
   if (name && name !== route.code) return titleCase(name);
   const m = item?.__wrMeta;
@@ -388,7 +393,11 @@ function chip(route){
 }
 
 const stopName = i => graph.stops.name[i] || 'paradero';
-const headsign = r => stopName(r.stops[r.stops.length - 1]);
+// Hacia dónde va: el último paradero; en un alimentador, el barrio o la estación
+const headsign = r => {
+  const m = r.group === 'alimentador' && r.key.match(/^alim:(.+):(ida|vuelta)$/);
+  return (m && state.systems.alim.paths?.[m[1]]?.[m[2]]?.to) || stopName(r.stops[r.stops.length - 1]);
+};
 
 function stepsOf(opt){
   const steps = [];
@@ -632,6 +641,13 @@ function metCoords(r, stops, leg){
 function rideCoords(r, leg, pt){
   const stops = Array.from(r.stops.slice(leg.from, leg.to + 1), pt);
   if (r.group === 'metropolitano') return metCoords(r, stops, leg);
+  if (r.group === 'alimentador'){
+    // Por su trazado entre el paradero de subida y el de bajada
+    const m = r.key.match(/^alim:(.+):(ida|vuelta)$/);
+    const d = m && state.systems.alim.paths?.[m[1]]?.[m[2]];
+    if (d && d.stops.length === r.stops.length) return d.coords.slice(d.stops[leg.from].at, d.stops[leg.to].at + 1);
+    return stops;
+  }
   const line = loadedTracks.get(r.key);
   if (!line) return stops;
   const TOL = (150 / 111_000) ** 2;

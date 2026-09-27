@@ -265,7 +265,12 @@ export function renderService(systemId, id, opts={}){
 
   const routeDir = getDirFor(systemId, id);
 
-  if (systemId === 'alim'){
+  const alimPath = systemId === 'alim' ? state.systems.alim.paths?.[svc.id] : null;
+  if (alimPath){
+    // Ida (sur) y vuelta (norte) del circuito, cada una con su trazado
+    if (routeDir !== 'norte') drawSegments([alimPath.ida.coords], svc.color);
+    if (routeDir !== 'sur') drawSegments([alimPath.vuelta.coords], svc.color);
+  } else if (systemId === 'alim'){
     if (routeDir === 'ambas'){
       const segs = svc.geom.length
         ? svc.geom
