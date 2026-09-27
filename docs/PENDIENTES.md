@@ -27,6 +27,24 @@ rutas (634 calles residenciales). Plan, un PR por fase:
 
 Licencia: ODbL; el mapa ya muestra "© OpenStreetMap".
 
+## Rutas que realmente operan (ATU)
+
+- **Rutas desiertas** (sin operador tras la renovación, RD D-000024-2025-ATU/DO,
+  Anexo I): 1003, 1004, 1088, 1107, 1153, 1190, 1250, 1278, 1327, 1340, 1371,
+  1437, 1456. Están en `catalog.transporte.exclude`. Si la ATU autoriza
+  alguna (resoluciones DO-SSTR posteriores a junio de 2025), sacarla de ahí.
+- **Corredores**: solo los servicios en operación según el portal de la ATU
+  (`catalog.corredores.only`). Faltan trazados de **SE-08** (Azul) y **SE-09**
+  (Morado).
+- **Cole Bus B** (Corredor Azul, escolar): recorridos, paraderos y horarios de
+  salida en `config/cole_bus.json`. Falta ubicar Ricardo Bentín, Mónaco y
+  México para dibujarlo.
+- **Rutas del PRR sin trazado de Wikiroutes**: 1420 y 1427–1460 (33 rutas,
+  probablemente nuevas del PRR).
+- Fuente de "rutas que circulan": el anexo del subsidio ECO (resolución SSTR
+  del 24/07/2026, operadores con servicio registrado en el SICM) listaría las
+  rutas con operación real; el PDF recibido no trae el anexo.
+
 ## Otros
 
 - Viajes con 2 transbordos.
