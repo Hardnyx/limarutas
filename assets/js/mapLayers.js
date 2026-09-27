@@ -99,30 +99,19 @@ function clearServiceLayers(sys, id){
    Macrorutas Metropolitano A/B
    =========================== */
 
-// A y C siguen macro A; expresos macro B salvo el 10. Regulares: macro B.
+// Macro A: los servicios que pasan por Ramón Castilla, Tacna, Jirón de la
+// Unión o Colmena (A, C, 10, Lechucero). El resto va por la macro B.
+const MACRO_A_STATIONS = /^(ramon-castilla|tacna|jiron-de-la-union|colmena)/;
 export function getMetMacroId(svc){
-  const id   = String(svc.id).toUpperCase();
-  const name = (svc.name || '').toUpperCase();
-
-  if (id === 'A' || id === 'C') return 'A';
-
-  if (svc.kind === 'expreso' || svc.kind === 'expreso corto' || svc.kind === 'expreso largo') {
-    if (id === '10' || name.includes(' 10') || name.startsWith('10 ') || name.endsWith(' 10')) {
-      return 'A';
-    }
-    return 'B';
-  }
-
-  return 'B';
+  const all = [...(svc.stops || []), ...(svc.north_south || []), ...(svc.south_north || [])];
+  return all.some(id => MACRO_A_STATIONS.test(id)) ? 'A' : 'B';
 }
 
 // dirKey: 'sur' (norte->sur) o 'norte' (sur->norte)
 function getMetStopsForDir(svc, dirKey){
-  const kind = svc.kind;
-
-  if (kind === 'expreso' || kind === 'expreso corto' || kind === 'expreso largo') {
-    const ns = Array.isArray(svc.north_south) ? svc.north_south : [];
-    const sn = Array.isArray(svc.south_north) ? svc.south_north : [];
+  if (Array.isArray(svc.north_south) || Array.isArray(svc.south_north)) {
+    const ns = svc.north_south || [];
+    const sn = svc.south_north || [];
 
     if (dirKey === 'sur')   return ns;
     if (dirKey === 'norte') return sn;
@@ -140,7 +129,8 @@ function cutMacroSegmentsToStops(segments, svc, dirKey){
 
   const sysMet = state.systems.met;
   const stopIds = getMetStopsForDir(svc, dirKey);
-  if (!stopIds || stopIds.length === 0) return segments;
+  // Sentido que no existe (expresos de un solo sentido): nada que dibujar
+  if (!stopIds || stopIds.length === 0) return [];
 
   const stopsMap = sysMet.stops;
   const startStop = stopsMap.get(stopIds[0]);
@@ -291,17 +281,11 @@ export function renderService(systemId, id, opts={}){
     const prevBounds = bounds;
     bounds = drawMetMacro(svc, routeDir, gLine, svc.color, bounds, paneLine);
     if (bounds === prevBounds) {
-      if (svc.kind === 'regular'){
-        drawByStops(svc.stops || [], svc.color);
+      if (routeDir === 'ambas'){
+        if (state.dir === 'ambas' || state.dir === 'ns') drawByStops(getMetStopsForDir(svc, 'sur'), svc.color);
+        if (state.dir === 'ambas' || state.dir === 'sn') drawByStops(getMetStopsForDir(svc, 'norte'), svc.color);
       } else {
-        if (routeDir === 'ambas'){
-          if (state.dir === 'ambas' || state.dir === 'ns') drawByStops(svc.north_south || [], svc.color);
-          if (state.dir === 'ambas' || state.dir === 'sn') drawByStops(svc.south_north || [], svc.color);
-        } else if (routeDir === 'norte'){
-          drawByStops(svc.south_north || [], svc.color);
-        } else if (routeDir === 'sur'){
-          drawByStops(svc.north_south || [], svc.color);
-        }
+        drawByStops(getMetStopsForDir(svc, routeDir), svc.color);
       }
     }
 
@@ -317,21 +301,16 @@ export function renderService(systemId, id, opts={}){
   // Paraderos
   let stopsToUse = [];
 
-  if (Array.isArray(svc.stops) && svc.stops.length){
-    stopsToUse = svc.stops;
-  } else if (systemId === 'met') {
-    const ns = Array.isArray(svc.north_south) ? svc.north_south : [];
-    const sn = Array.isArray(svc.south_north) ? svc.south_north : [];
-
+  if (systemId === 'met') {
     if (routeDir === 'ambas'){
-      if (state.dir === 'ambas')      stopsToUse = ns.concat(sn);
-      else if (state.dir === 'ns')    stopsToUse = ns;
-      else if (state.dir === 'sn')    stopsToUse = sn;
-    } else if (routeDir === 'norte'){
-      stopsToUse = sn;
-    } else if (routeDir === 'sur'){
-      stopsToUse = ns;
+      if (state.dir === 'ambas')      stopsToUse = getMetStopsForDir(svc, 'ambas');
+      else if (state.dir === 'ns')    stopsToUse = getMetStopsForDir(svc, 'sur');
+      else if (state.dir === 'sn')    stopsToUse = getMetStopsForDir(svc, 'norte');
+    } else {
+      stopsToUse = getMetStopsForDir(svc, routeDir);
     }
+  } else if (Array.isArray(svc.stops) && svc.stops.length){
+    stopsToUse = svc.stops;
   }
 
   if (state.showStops && Array.isArray(stopsToUse) && stopsToUse.length){

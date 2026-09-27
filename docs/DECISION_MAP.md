@@ -12,7 +12,7 @@ mismas acciones con otro orden en pantalla; sus diferencias están en
 ## Estado que ve el usuario
 
 - **Rutas marcadas** (casillas del sidebar) → rutas dibujadas en el mapa.
-- **Sentido** de cada ruta (Ida/Vuelta, o Amb/N/S en Metropolitano y Alimentadores).
+- **Sentido** de cada ruta (Ida/Vuelta, o Amb/N/S en Metropolitano y Alimentadores). Los expresos de un solo sentido no tienen Amb/N/S; cada servicio del Metropolitano muestra su recorrido y horario por sentido.
 - **Mostrar paradas** (activado por defecto).
 - **Filtro de color** de Transporte público (depuración).
 - **Rutas recientes** (hasta 8, se recuerdan en el navegador).
@@ -122,6 +122,7 @@ depuración de color.
 | Clic en otra opción | — | Se expande y se dibuja; la anterior se pliega |
 | Arrastrar el pin A o B | — | Se vuelve a calcular |
 | ⇅ Invertir | — | Cambia A por B y recalcula |
+| Salida | Ahora (por defecto) o un día y hora | Solo entran los servicios del Metropolitano que circulan a esa hora (hora de Lima). El paso muestra su horario; si uno serviría pero no circula, se avisa "A esta hora no circula" con su horario |
 | Incluir rutas antiguas | — | Recalcula incluyéndolas; sus pasos dicen "Ruta antigua · podría no circular" |
 | Sin opciones | Hay con rutas antiguas | Botón "Buscar también con rutas antiguas" |
 | Ver estas rutas completas | — | Las marca y pasa a la pestaña Rutas |

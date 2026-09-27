@@ -1,8 +1,9 @@
 {
   "metropolitano": {
     "mode": "only",
-    "regulares": { "only": ["A", "B", "C"] },
-    "expresos": { "only": ["1", "2", "3", "5", "6", "7", "8", "9", "10", "11", "12", "13", "L", "SX", "SXN"] },
+    "_comment": "Servicios con horario vigente (metropolitano_services.json, 2026-09). B, D, 1, 13 y SXN no están en la lista de horarios.",
+    "regulares": { "only": ["A", "C"] },
+    "expresos": { "only": ["2", "3", "5", "6", "7", "8", "9", "10", "11", "12", "L", "SX"] },
     "alimentadores": { "only": [
       "AN-01", "AN-02", "AN-03", "AN-04", "AN-05", "AN-06", "AN-07", "AN-08", "AN-09", "AN-10",
       "AN-12", "AN-13", "AN-14", "AN-15", "AN-16", "AN-17",

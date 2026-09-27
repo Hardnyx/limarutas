@@ -120,6 +120,35 @@ test('una ruta única con poca caminata va antes que un transbordo (Canaval y Mo
   for (const s of new Set(starts)) expect(starts.filter(x => x === s).length).toBeLessThanOrEqual(2);
 });
 
+test('Metropolitano: solo entra lo que circula a la hora de salida', async ({ app, page }) => {
+  const r = await page.evaluate(async ([a, b]) => {
+    const { loadTripGraph } = await import('/assets/js/tripData.js');
+    const { planTrip } = await import('/assets/js/tripPlanner.js');
+    const g = await loadTripGraph();
+    // day: 0 = domingo; min: minutos desde la medianoche (hora de Lima)
+    const on = (key, day, h, m = 0) =>
+      g.activeRoutes({ at: { day, min: h * 60 + m } }).some(x => x.key === key);
+    const met = (day, h, m = 0) => planTrip(g, a, b, { at: { day, min: h * 60 + m } }).options
+      .flatMap(o => o.legs).filter(l => l.type === 'ride' && l.route.group === 'metropolitano').length;
+    return {
+      e6: [on('met:6:ns', 2, 7), on('met:6:ns', 2, 10, 30), on('met:6:ns', 6, 7)],
+      e5: [on('met:5:ns', 3, 12), on('met:5:ns', 6, 6), on('met:5:ns', 0, 12)],
+      // Lechucero: viernes y sábado de 23:30 a 4:00
+      lech: [on('met:L:ns', 5, 23, 45), on('met:L:ns', 6, 2), on('met:L:ns', 0, 2), on('met:L:ns', 1, 2), on('met:L:ns', 5, 22)],
+      // El resto de rutas no tiene horario
+      bus: on('1122-ida', 0, 3),
+      metDay: met(2, 10, 30),
+      metNight: met(0, 23, 30)
+    };
+  }, [SAN_ISIDRO, VES_MEGA]);
+  expect(r.e6).toEqual([true, false, false]);
+  expect(r.e5).toEqual([true, true, false]);
+  expect(r.lech).toEqual([true, true, true, false, false]);
+  expect(r.bus).toBe(true);
+  expect(r.metDay).toBeGreaterThan(0);
+  expect(r.metNight).toBe(0);
+});
+
 test('muy cerca conviene caminar', async ({ app, page }) => {
   const r = await plan(page, PUENTE_NUEVO, { lat: -12.0450, lon: -77.0140 });
   expect(r.walkOnly).toBe(true);
@@ -282,6 +311,27 @@ test.describe('pestaña Cómo llegar', () => {
     // La macroruta tiene muchos más puntos que las estaciones del tramo
     expect(r.maxPts).toBeGreaterThan(30);
     expect(r.dots).toBeGreaterThan(6);
+  });
+
+  test('Salida: el horario del Metropolitano sale en el paso y, fuera de hora, se avisa', async ({ app, page }) => {
+    // La página está en martes 10:30 (fixtures.js): la Regular C circula
+    await page.evaluate(async ([a, b]) => {
+      const m = await import('/assets/js/tripUi.js');
+      await m.setTripEnds({ ...a, label: 'A' }, { ...b, label: 'B' });
+    }, [SAN_ISIDRO, VES_MEGA]);
+    await expect(page.locator('#tripDay')).toHaveValue('now');
+    await expect(page.locator('#tripTime')).toBeHidden();
+    const met = page.locator('.trip-card', { hasText: 'Metropolitano' }).first();
+    await met.click();
+    await expect(met.locator('.trip-hours').first()).toContainText('Horario: L–S 5:00–23:00 · Dom 5:00–22:00');
+
+    // Domingo 23:30: ya no hay Metropolitano; se avisa cuál serviría y su horario
+    await page.selectOption('#tripDay', '0');
+    await page.fill('#tripTime', '23:30');
+    await page.locator('#tripTime').dispatchEvent('change');
+    await expect(page.locator('.trip-card', { hasText: 'Metropolitano' })).toHaveCount(0);
+    await expect(page.locator('.trip-offhours')).toContainText('A esta hora no circula');
+    await expect(page.locator('.trip-offhours .trip-sub').first()).toHaveText(/\d:\d\d–\d/);
   });
 
   test('muy cerca: sugiere caminar; borrar un extremo limpia el resultado', async ({ app, page }) => {

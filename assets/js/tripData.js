@@ -10,6 +10,8 @@
 // de la pista) no se juntan: se unen con caminatas cortas (walkFrom).
 import { wrLeafFor } from './routeEntries.js';
 import { wrIsVerifiedOld } from './wrData.js';
+import { state } from './config.js';
+import { runsAt } from './metSchedule.js';
 
 const GRAPH_URL = 'pipeline/output/trip_graph.json';
 
@@ -54,6 +56,14 @@ function leafFor(key){
       `#panels .item .item-head input[data-system="${m[1]}"][data-id="${CSS.escape(m[2])}"]`);
   }
   return wrLeafFor(key);
+}
+
+// Horario de un sentido del Metropolitano ("met:5:ns"); el resto no tiene
+function scheduleOf(key){
+  const m = key.match(/^met:(.+):(ns|sn)$/);
+  if (!m) return null;
+  const svc = state.systems.met?.services?.find(s => String(s.id) === m[1]);
+  return svc?.schedule?.[m[2]] || null;
 }
 
 function codeOf(leaf, key){
@@ -106,6 +116,7 @@ export function buildTripGraph(raw){
       // Rutas antiguas: ¿revisada y sigue circulando?
       verified: group === 'antigua' ? wrIsVerifiedOld(leaf.dataset.id) : true,
       code: codeOf(leaf, key),
+      schedule: scheduleOf(key),
       stops: Int32Array.from(seq)
     });
   }
@@ -147,9 +158,11 @@ export function buildTripGraph(raw){
     routes,
     atStop,
 
-    // Rutas para calcular: las antiguas sin revisar solo si se piden
-    activeRoutes({ includeOld = false } = {}){
-      return routes.filter(r => r.group !== 'antigua' || r.verified || includeOld);
+    // Rutas para calcular: las antiguas sin revisar solo si se piden; con
+    // at = { day, min } (hora de Lima), solo lo que circula a esa hora
+    activeRoutes({ includeOld = false, at = null } = {}){
+      return routes.filter(r => (r.group !== 'antigua' || r.verified || includeOld) &&
+        (!at || !r.schedule || runsAt(r.schedule, at)));
     },
 
     // Paraderos a los que se puede caminar desde i: [[j, metros], ...]

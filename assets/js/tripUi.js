@@ -4,7 +4,8 @@
 import { state } from './config.js';
 import { $, el } from './utils.js';
 import { loadTripGraph } from './tripData.js';
-import { planTrip, oldWouldHelp } from './tripPlanner.js';
+import { planTrip, oldWouldHelp, offHoursHelp } from './tripPlanner.js';
+import { limaTime, scheduleText, DAY_NAMES } from './metSchedule.js';
 import { fitTo } from './mapFit.js';
 import { getMetMacroId } from './mapLayers.js';
 import { paintTag, TRIP_END_EVENT } from './routeInspector.js';
@@ -140,6 +141,29 @@ function field(end, letter, placeholder){
   return wrap;
 }
 
+// Hora de salida (Lima): "Ahora" o un día y hora. El Metropolitano tiene
+// horarios; el resto se asume en servicio a cualquier hora.
+function departure(){
+  const day = $('#tripDay')?.value;
+  if (!day || day === 'now') return limaTime();
+  const [h, m] = ($('#tripTime').value || '08:00').split(':').map(Number);
+  return { day: Number(day), min: h * 60 + m };
+}
+
+function whenRow(){
+  const now = limaTime();
+  // De lunes a domingo
+  const days = [1, 2, 3, 4, 5, 6, 0].map(d => el('option', { value: String(d) }, DAY_NAMES[d]));
+  const daySel = el('select', { id: 'tripDay', 'aria-label': 'Día de salida' }, el('option', { value: 'now' }, 'Ahora'), ...days);
+  const hh = String(Math.floor(now.min / 60)).padStart(2, '0');
+  const mm = String(now.min % 60).padStart(2, '0');
+  const time = el('input', { type: 'time', id: 'tripTime', value: `${hh}:${mm}`, 'aria-label': 'Hora de salida', hidden: '' });
+  daySel.addEventListener('change', () => { time.hidden = daySel.value === 'now'; void replan(); });
+  time.addEventListener('change', () => { void replan(); });
+  return el('div', { class: 'trip-row trip-when' },
+    el('label', { for: 'tripDay' }, 'Salida'), daySel, time);
+}
+
 function buildForm(pane){
   pane.innerHTML = '';
   const oldChk = el('input', { type: 'checkbox', id: 'tripOld' });
@@ -147,6 +171,7 @@ function buildForm(pane){
     el('div', { class: 'trip-form' },
       field('from', 'A', 'Origen: paradero o 📍 en el mapa'),
       field('to', 'B', 'Destino: paradero o 📍 en el mapa'),
+      whenRow(),
       el('div', { class: 'trip-row' },
         el('label', { class: 'trip-old' }, oldChk, 'Incluir rutas antiguas'),
         el('button', { type: 'button', id: 'tripSwap', class: 'btn small btn-ghost', title: 'Intercambiar origen y destino' }, '⇅ Invertir'))),
@@ -325,6 +350,9 @@ function stepsOf(opt){
         'Sube a la ', chip(r), ' en ', el('b', {}, stopName(r.stops[leg.from])),
         ' y baja en ', el('b', {}, stopName(r.stops[leg.to])),
         el('span', { class: 'trip-sub' }, ` · ${n} paradero${n === 1 ? '' : 's'} · dirección ${headsign(r)}`));
+      if (r.schedule){
+        text.append(el('div', { class: 'trip-hours' }, `Horario: ${scheduleText(r.schedule)}`));
+      }
       if (alts.length){
         const also = el('div', { class: 'trip-also' }, 'O la que pase primero: ');
         alts.forEach((a, i) => { if (i) also.append(' '); also.append(chip(a.route)); });
@@ -397,15 +425,26 @@ async function renderResults(){
   if (!last.options.length){
     const msg = el('div', { class: 'trip-empty' }, 'No encontramos un viaje directo ni con un transbordo entre estos puntos.');
     box.append(msg);
-    if (!$('#tripOld').checked && oldWouldHelp(graph, ends.from, ends.to)){
+    if (!$('#tripOld').checked && oldWouldHelp(graph, ends.from, ends.to, { at: departure() })){
       const b = el('button', { type: 'button', class: 'btn small' }, 'Buscar también con rutas antiguas');
       b.addEventListener('click', () => { $('#tripOld').checked = true; void replan(); });
       msg.append(el('div', { class: 'trip-empty-hint' }, 'Hay opciones con rutas antiguas, que podrían ya no circular. ', b));
     }
+    offHoursNote(box);
     return;
   }
   last.options.forEach((opt, k) => box.append(card(opt, k)));
+  offHoursNote(box);
   box.append(el('div', { class: 'muted trip-note' }, 'Tiempos estimados por distancia; no incluyen la espera del bus.'));
+}
+
+// Expresos que servirían pero no circulan a la hora de salida
+function offHoursNote(box){
+  const off = offHoursHelp(graph, ends.from, ends.to, { includeOld: $('#tripOld').checked, at: departure() });
+  if (!off.length) return;
+  const note = el('div', { class: 'trip-offhours' }, 'A esta hora no circula', off.length > 1 ? 'n' : '', ':');
+  off.forEach(r => note.append(el('div', {}, chip(r), ' ', el('span', { class: 'trip-sub' }, scheduleText(r.schedule)))));
+  box.append(note);
 }
 
 /* =========================
@@ -540,7 +579,7 @@ async function replan(){
   setStatus('Buscando opciones…');
   // Deja pintar el estado antes del cálculo
   await new Promise(res => setTimeout(res, 0));
-  last = planTrip(graph, ends.from, ends.to, { includeOld: $('#tripOld').checked });
+  last = planTrip(graph, ends.from, ends.to, { includeOld: $('#tripOld').checked, at: departure() });
   setStatus('');
   syncUrl();
   await renderResults();

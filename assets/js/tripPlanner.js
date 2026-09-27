@@ -1,9 +1,11 @@
 // tripPlanner.js
 // Cálculo de viajes de A a B sobre el grafo de tripData.js: directos y con
-// un transbordo. Sin horarios ni frecuencias, se ordenan por un costo que
+// un transbordo. Del Metropolitano solo entra lo que circula a la hora de
+// salida (tiene horarios); sin frecuencias, se ordenan por un costo que
 // suma el tiempo estimado, la caminata (pesa doble), los transbordos y la
 // espera, que es menor cuando varias rutas hacen el mismo tramo. Cada tramo
 // trae esas rutas alternativas: basta tomar la primera que pase.
+import { runsAt } from './metSchedule.js';
 import { distM } from './tripData.js';
 
 // Hasta cuánto se camina al inicio y al final del viaje
@@ -89,16 +91,17 @@ const sameService = (a, b) => a.leaf === b.leaf;
  * @param g      grafo de loadTripGraph()
  * @param from   {lat, lon}
  * @param to     {lat, lon}
- * @param opts   { includeOld }
+ * @param opts   { includeOld, at }  at = { day, min } en Lima: solo lo que
+ *               circula a esa hora (el Metropolitano tiene horarios)
  * @returns { walkOnly, meters, options: [{ legs, minutes, transfers, walkM, cost, old }] }
  *          cada tramo 'ride' trae alts: [{ route, from, to }]
  */
-export function planTrip(g, from, to, { includeOld = false } = {}){
+export function planTrip(g, from, to, { includeOld = false, at = null } = {}){
   const direct = distM(from.lat, from.lon, to.lat, to.lon);
   const out = { walkOnly: direct <= WALK_ONLY_M, meters: direct, options: [] };
   if (out.walkOnly) return out;
 
-  const active = new Set(g.activeRoutes({ includeOld }));
+  const active = new Set(g.activeRoutes({ includeOld, at }));
   const isActive = i => active.has(g.routes[i]);
 
   const origins = g.nearestStops(from.lat, from.lon, DIRECT_ACCESS_MAX_M);
@@ -331,9 +334,21 @@ function alternativesFor(g, leg, isActive){
   return Array.from(found.values()).slice(0, MAX_ALTS);
 }
 
-// Cuántas opciones más aparecerían con las rutas antiguas (para ofrecerlas)
-export function oldWouldHelp(g, from, to){
-  const withOld = planTrip(g, from, to, { includeOld: true });
+// ¿Aparecerían más opciones con las rutas antiguas? (para ofrecerlas)
+export function oldWouldHelp(g, from, to, { at = null } = {}){
+  const withOld = planTrip(g, from, to, { includeOld: true, at });
   return withOld.options.some(o => o.old);
 }
 
+// Servicios con horario que servirían para este viaje pero no circulan a esa
+// hora (p. ej. un expreso de hora punta): [route, ...], uno por servicio
+export function offHoursHelp(g, from, to, { includeOld = false, at = null } = {}){
+  if (!at) return [];
+  const anyTime = planTrip(g, from, to, { includeOld });
+  const found = new Map();
+  anyTime.options.forEach(o => o.legs.forEach(l => {
+    const r = l.route;
+    if (l.type === 'ride' && r.schedule && !runsAt(r.schedule, at) && !found.has(r.leaf)) found.set(r.leaf, r);
+  }));
+  return Array.from(found.values());
+}
