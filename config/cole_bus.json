@@ -1,0 +1,50 @@
+{
+  "_comment": "Cole Bus B (Corredor Azul): servicio escolar a la salida de los colegios, de lunes a viernes en días de clase, hacia Flor de Amancaes (Rímac). Fuente: portal de la ATU (2026-09). Pendiente de dibujar: faltan coordenadas de Ricardo Bentín, Mónaco y México; las demás salen de wr_stops_index.json.",
+  "corredor": "azul",
+  "services": [
+    {
+      "id": "B-bentin",
+      "desde": "Totoritas (I.E. Ricardo Bentín)",
+      "hasta": "Flor de Amancaes",
+      "calles": ["Totoritas", "Guardia Republicana", "Felipe Arancibia", "Amancaes", "Flor de Amancaes"],
+      "paraderos": ["Ricardo Bentín", "Arancibia", "Amancaes", "Calle 3", "El Sol", "Calle 10", "24 de Junio", "Claveles", "Cerezos", "Pasaje 17", "Mónaco", "México"],
+      "salidas": [
+        { "colegio": "I.E. Ricardo Bentín", "nivel": "inicial y primaria", "hora": "12:00" },
+        { "colegio": "I.E. Ricardo Bentín", "nivel": "secundaria", "hora": "15:30" }
+      ]
+    },
+    {
+      "id": "B-parado-bellido",
+      "desde": "Antón Sánchez (I.E. María Parado de Bellido)",
+      "hasta": "Flor de Amancaes",
+      "calles": ["Antón Sánchez", "Encalada", "Amancaes", "Flor de Amancaes"],
+      "paraderos": ["Virreyes", "Aguilar", "El Sol", "Calle 10", "24 de Junio", "Claveles", "Cerezos", "Pasaje 17", "Mónaco", "México"],
+      "salidas": [
+        { "colegio": "I.E. María Parado de Bellido", "nivel": "primaria", "hora": "13:00" },
+        { "colegio": "I.E. María Parado de Bellido", "nivel": "secundaria", "hora": "13:30" }
+      ]
+    },
+    {
+      "id": "B-cecilia-risco",
+      "desde": "Cecilia de Risco (I.E. Leoncio Prado, Esther Cáceres, Virgen del Carmen)",
+      "hasta": "Flor de Amancaes",
+      "calles": ["Cecilia de Risco", "Antón Sánchez", "Encalada", "Amancaes", "Flor de Amancaes"],
+      "paraderos": ["Colegios", "Virreyes", "Aguilar", "El Sol", "Calle 10", "24 de Junio", "Claveles", "Cerezos", "Pasaje 17", "Mónaco", "México"],
+      "salidas": [
+        { "colegio": "I.E. Leoncio Prado", "hora": "12:55" },
+        { "colegio": "I.E. Esther Cáceres", "hora": "14:20" },
+        { "colegio": "I.E. Virgen del Carmen", "nivel": "inicial", "hora": "12:30" },
+        { "colegio": "I.E. Virgen del Carmen", "nivel": "primaria", "hora": "12:50" }
+      ]
+    }
+  ],
+  "coordenadas_conocidas": {
+    "Arancibia": [-12.030129, -77.035725],
+    "Amancaes": [-12.026196, -77.034328],
+    "Colegios": [-12.029945, -77.030972],
+    "Virreyes": [-12.029562, -77.029108],
+    "Aguilar": [-12.023822, -77.026783],
+    "Pasaje 17": [-12.00937, -77.034432],
+    "Flor de Amancaes": [-12.007762, -77.035768]
+  }
+}
