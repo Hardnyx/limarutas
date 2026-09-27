@@ -151,20 +151,30 @@ test('colores de ruta chillones se suavizan y llevan texto oscuro', async ({ app
 });
 
 test('Metropolitano: cada servicio muestra su recorrido y horario; los de un solo sentido no tienen N/S', async ({ app, page }) => {
+  // Cada línea: recorrido y, debajo (.met-hours), el horario
   const item = (id) => page.locator(`#p-met .item:has(> .item-head input[data-id="${id}"])`);
   // Expreso 6: solo de Izaguirre a Benavides, en la mañana
-  await expect(item('6').locator('.met-trip')).toHaveText(['Izaguirre → Benavides · L–V 5:30–10:00']);
+  await expect(item('6').locator('.met-trip')).toHaveText(['Izaguirre → BenavidesL–V 5:30–10:00']);
   await expect(item('6').locator('.segbtn-mini')).toHaveCount(0);
   // Expreso 8: horario distinto por sentido
   await expect(item('8').locator('.met-trip')).toHaveText([
-    'Izaguirre → Plaza de Flores · L–V 17:00–20:20',
-    'Plaza de Flores → Izaguirre · L–V 17:00–21:00'
+    'Izaguirre → Plaza de FloresL–V 17:00–20:20',
+    'Plaza de Flores → IzaguirreL–V 17:00–21:00'
   ]);
   await expect(item('8').locator('.segbtn-mini')).toHaveCount(3);
   // Regular C: ida y vuelta con el mismo horario, en una línea
-  await expect(item('C').locator('.met-trip')).toHaveText(['Ramón Castilla ↔ Matellini · L–S 5:00–23:00 · Dom 5:00–22:00']);
-  // Los que no están en la lista de horarios vigente no aparecen
-  for (const id of ['B', '1', '13', 'SXN']) await expect(app.leaf('met', id)).toHaveCount(0);
+  await expect(item('C').locator('.met-trip')).toHaveText(['Ramón Castilla ↔ MatelliniL–S 5:00–23:00 · Dom 5:00–22:00']);
+  // Expreso 1: horarios distintos por sentido y los fines de semana
+  await expect(item('1').locator('.met-trip')).toHaveText([
+    'Estación Central → MatelliniL–V 5:30–21:00 · Sáb y Dom 6:30–21:00',
+    'Matellini → Estación CentralL–V 5:00–21:00 · Sáb y Dom 6:00–21:00'
+  ]);
+  // SXN desde 22 de Agosto: solo al sur, con el ícono del SXN
+  await expect(item('SXN-22').locator('.name')).toHaveText('Súper Expreso Norte desde 22 de Agosto');
+  await expect(item('SXN-22').locator('img.badge')).toHaveAttribute('src', /\/SXN\.png$/);
+  await expect(item('SXN-22').locator('.segbtn-mini')).toHaveCount(0);
+  // La Ruta D ya no opera
+  await expect(app.leaf('met', 'D')).toHaveCount(0);
 
   // Un expreso de un solo sentido se dibuja solo en ese sentido
   await page.evaluate(() => document.querySelector('#p-met .item-head input[data-id="6"]').click());

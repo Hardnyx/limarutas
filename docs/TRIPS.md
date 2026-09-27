@@ -124,9 +124,9 @@ entra lo que circula a esa hora. El paso dice el horario del servicio, y si
 un servicio serviría pero no circula a esa hora, se avisa con su horario.
 El resto de rutas se asume en servicio a cualquier hora.
 
-Servicios vigentes (lista de horarios de 2026-09): regulares A y C; expresos
-2, 3, 5, 6, 7, 8, 9, 10, 11, 12, SX y Lechucero. B, D, 1, 13 y SXN salieron
-del catálogo y de los datos.
+Servicios vigentes (horarios de los mapas QR de la ATU, 2026-09): regulares A,
+B y C; expresos 1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, SX, SXN, SXN desde 22
+de Agosto (`SXN-22`, solo al sur) y Lechucero. La Ruta D ya no opera.
 
 Pendiente: viajes con 2 transbordos, búsqueda de direcciones
 (geocodificación), Alimentadores del Metropolitano.

@@ -26,7 +26,9 @@ test('cada ruta trae sus paraderos en el orden del recorrido', async ({ app, pag
       // Expresos de un solo sentido: el 6 solo va al sur, el 9 solo al norte
       e6: ['met:6:ns', 'met:6:sn'].map(k => g.routes.some(x => x.key === k)),
       e9: ['met:9:ns', 'met:9:sn'].map(k => g.routes.some(x => x.key === k)),
-      exp1: g.routes.some(x => x.key.startsWith('met:1:')),
+      exp1: ['met:1:ns', 'met:1:sn'].map(k => g.routes.some(x => x.key === k)),
+      sxn22: ['met:SXN-22:ns', 'met:SXN-22:sn'].map(k => g.routes.some(x => x.key === k)),
+      d: g.routes.some(x => x.key.startsWith('met:D:')),
       sched: g.routes.find(x => x.key === 'met:5:ns').schedule?.length
     };
   });
@@ -44,8 +46,10 @@ test('cada ruta trae sus paraderos en el orden del recorrido', async ({ app, pag
   expect([r.aBack[0], r.aBack.at(-1)]).toEqual(['Estación Central', 'Naranjal']);
   expect(r.e6).toEqual([true, false]);
   expect(r.e9).toEqual([false, true]);
-  // Fuera de la lista de horarios vigente
-  expect(r.exp1).toBe(false);
+  expect(r.exp1).toEqual([true, true]);
+  expect(r.sxn22).toEqual([true, false]);
+  // La Ruta D ya no opera
+  expect(r.d).toBe(false);
   expect(r.sched).toBe(2);
 });
 

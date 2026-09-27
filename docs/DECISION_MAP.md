@@ -122,7 +122,9 @@ depuración de color.
 | Clic en otra opción | — | Se expande y se dibuja; la anterior se pliega |
 | Arrastrar el pin A o B | — | Se vuelve a calcular |
 | ⇅ Invertir | — | Cambia A por B y recalcula |
-| Salida | Ahora (por defecto) o un día y hora | Solo entran los servicios del Metropolitano que circulan a esa hora (hora de Lima). El paso muestra su horario; si uno serviría pero no circula, se avisa "A esta hora no circula" con su horario |
+| Sin A ni B | — | Una ayuda corta: escribir un paradero o 📍, "Salir de aquí / Llegar aquí" y la Salida |
+| Texto sin paraderos | — | "Ningún paradero con ese nombre…" con la sugerencia de usar 📍 |
+| Salida | "Ahora (8:05)" (por defecto) o un día y hora | Solo entran los servicios del Metropolitano que circulan a esa hora (hora de Lima). El paso muestra su horario; si uno serviría pero no circula, se avisa "A esta hora no circula" con su horario |
 | Incluir rutas antiguas | — | Recalcula incluyéndolas; sus pasos dicen "Ruta antigua · podría no circular" |
 | Sin opciones | Hay con rutas antiguas | Botón "Buscar también con rutas antiguas" |
 | Ver estas rutas completas | — | Las marca y pasa a la pestaña Rutas |

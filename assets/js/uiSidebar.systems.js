@@ -48,8 +48,8 @@ function miniDir(systemId, svc){
   return wrap;
 }
 
-// Recorrido y horario de cada sentido: "Naranjal → Central · L–V 6:00–9:00".
-// Si ida y vuelta tienen el mismo horario va en una línea: "A ↔ B · …"
+// Recorrido de cada sentido con su horario debajo: "Naranjal → Central" /
+// "L–V 6:00–9:00". Si ida y vuelta tienen el mismo horario, una sola: "A ↔ B"
 function metTrips(svc){
   const stops = state.systems.met.stops;
   const nameOf = (id) => stops?.get(id)?.name?.replace(/ (Norte|Sur)$/, '') || id;
@@ -59,15 +59,15 @@ function metTrips(svc){
     return { a: nameOf(a), b: nameOf(b), when: scheduleText(svc.schedule?.[dir]) };
   });
   const [x, y] = trips;
-  if (y && x.when === y.when && x.a === y.b && x.b === y.a) {
-    return [[`${x.a} ↔ ${x.b}`, x.when].filter(Boolean).join(' · ')];
-  }
-  return trips.map(t => [`${t.a} → ${t.b}`, t.when].filter(Boolean).join(' · '));
+  const both = y && x.when === y.when && x.a === y.b && x.b === y.a;
+  return (both ? [{ ...x, arrow: '↔' }] : trips.map(t => ({ ...t, arrow: '→' })))
+    .map(t => el('div', { class: 'sub met-trip' }, `${t.a} ${t.arrow} ${t.b}`,
+      t.when ? el('span', { class: 'met-hours' }, t.when) : ''));
 }
 
 function makeServiceItemMet(svc){
   const img = el('img', {
-    src:`${PATHS.icons.met}/${String(svc.id).toUpperCase()}.png`,
+    src:`${PATHS.icons.met}/${String(svc.icon || svc.id).toUpperCase()}.png`,
     class:'badge',
     alt:svc.id
   });
@@ -80,8 +80,8 @@ function makeServiceItemMet(svc){
   const left = el('div',{class:'left'},
     img,
     el('div',{},
-      el('div',{class:'name'}, `${labelForSvc(svc)} ${svc.id}`),
-      ...metTrips(svc).map(text => el('div',{class:'sub met-trip'}, text))
+      el('div',{class:'name'}, svc.name || `${labelForSvc(svc)} ${svc.id}`),
+      ...metTrips(svc)
     )
   );
 

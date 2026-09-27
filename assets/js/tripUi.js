@@ -107,6 +107,12 @@ function field(end, letter, placeholder){
   };
   const render = () => {
     list.innerHTML = '';
+    if (!items.length && input.value.trim()){
+      list.appendChild(el('div', { class: 'suggest-empty' },
+        'Ningún paradero con ese nombre. Prueba con otra palabra o usa 📍 para elegirlo en el mapa.'));
+      list.classList.add('open');
+      return;
+    }
     items.forEach((c, k) => {
       const row = el('div', { class: `suggest-item${k === active ? ' selected' : ''}`, role: 'option' },
         el('span', { class: 's-ico s-ico-stop' }, '●'),
@@ -154,7 +160,16 @@ function whenRow(){
   const now = limaTime();
   // De lunes a domingo
   const days = [1, 2, 3, 4, 5, 6, 0].map(d => el('option', { value: String(d) }, DAY_NAMES[d]));
-  const daySel = el('select', { id: 'tripDay', 'aria-label': 'Día de salida' }, el('option', { value: 'now' }, 'Ahora'), ...days);
+  const nowOpt = el('option', { value: 'now' }, 'Ahora');
+  const daySel = el('select', { id: 'tripDay', 'aria-label': 'Día de salida' }, nowOpt, ...days);
+  // "Ahora (8:05)": la hora que se usa, al día cuando se abre la lista
+  const refreshNow = () => {
+    const n = limaTime();
+    nowOpt.textContent = `Ahora (${Math.floor(n.min / 60)}:${String(n.min % 60).padStart(2, '0')})`;
+  };
+  refreshNow();
+  daySel.addEventListener('focus', refreshNow);
+  daySel.addEventListener('pointerdown', refreshNow);
   const hh = String(Math.floor(now.min / 60)).padStart(2, '0');
   const mm = String(now.min % 60).padStart(2, '0');
   const time = el('input', { type: 'time', id: 'tripTime', value: `${hh}:${mm}`, 'aria-label': 'Hora de salida', hidden: '' });
@@ -176,7 +191,12 @@ function buildForm(pane){
         el('label', { class: 'trip-old' }, oldChk, 'Incluir rutas antiguas'),
         el('button', { type: 'button', id: 'tripSwap', class: 'btn small btn-ghost', title: 'Intercambiar origen y destino' }, '⇅ Invertir'))),
     el('div', { id: 'tripStatus', class: 'muted trip-status', role: 'status' }),
-    el('div', { id: 'tripResults', class: 'trip-results' }));
+    el('div', { id: 'tripResults', class: 'trip-results' }),
+    // Se ve mientras no hay resultados (CSS: #tripResults:empty + .trip-help)
+    el('div', { class: 'trip-help' },
+      el('p', {}, 'Escribe el nombre de un paradero en A y B, o toca 📍 y elige el punto en el mapa.'),
+      el('p', {}, 'También puedes abrir un paradero en el mapa y usar "Salir de aquí" o "Llegar aquí".'),
+      el('p', {}, 'Con "Salida" eliges el día y la hora: los expresos del Metropolitano solo circulan en ciertos horarios.')));
 
   oldChk.addEventListener('change', () => { void replan(); });
   $('#tripSwap').addEventListener('click', () => {
@@ -309,7 +329,8 @@ function routeName(route){
   if (route.group === 'metro') return `Metro de Lima · ${name.replace(/^Línea\s+L/i, 'Línea ') || route.code}`;
   if (name && name !== route.code) return titleCase(name);
   const m = item?.__wrMeta;
-  return titleCase([m?.empresa_operadora, m?.alias].filter(Boolean).join(' · '));
+  const known = titleCase([m?.empresa_operadora, m?.alias].filter(Boolean).join(' · '));
+  return known || (route.group === 'antigua' ? 'Ruta antigua' : '');
 }
 
 // "HOLDING REAL EXPRESS" → "Holding Real Express" (siglas cortas y "La 6" quedan igual)
@@ -392,18 +413,20 @@ function card(opt, k){
     el('div', { class: 'trip-time' }, `~${opt.minutes}`, el('small', {}, ' min')));
   const body = el('div', { class: 'trip-card', role: 'button', tabindex: '0', 'aria-expanded': String(isOpen) },
     head, el('div', { class: 'trip-meta' }, `${where} · `,
-      el('span', { class: opt.walkM > 1000 ? 'trip-walk-long' : '' }, `${fmtM(opt.walkM)} a pie`)));
+      el('span', { class: opt.walkM > 1000 ? 'trip-walk-long' : '' }, opt.walkM < 15 ? 'sin caminar' : `${fmtM(opt.walkM)} a pie`)));
   if (opt.old) body.append(el('div', { class: 'trip-warn' }, 'Usa una ruta antigua: podría no circular'));
   if (isOpen){
     body.classList.add('selected');
     const ol = el('ol', { class: 'trip-steps' }, ...stepsOf(opt));
-    const show = el('button', { type: 'button', class: 'btn small btn-ghost trip-show' }, 'Ver estas rutas completas (pestaña Rutas)');
+    const show = el('button', { type: 'button', class: 'btn small btn-ghost trip-show' }, 'Ver rutas completas');
+    show.title = 'Marca estas rutas y abre la pestaña Rutas';
     show.addEventListener('click', (e) => {
       e.stopPropagation();
       rides.forEach(l => { if (!l.route.leaf.checked) l.route.leaf.click(); });
       $('#tabRoutes')?.click();
     });
-    const share = el('button', { type: 'button', class: 'btn small btn-ghost trip-share' }, 'Compartir este viaje');
+    const share = el('button', { type: 'button', class: 'btn small btn-ghost trip-share' }, 'Compartir');
+    share.title = 'Copiar el enlace de este viaje';
     share.addEventListener('click', (e) => { e.stopPropagation(); void shareTrip(share); });
     body.append(ol, el('div', { class: 'trip-actions' }, show, share));
   }
