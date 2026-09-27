@@ -147,3 +147,20 @@ test('los typos de config/stop_name_fixes.json no llegan al mapa ni al buscador'
   });
   expect(r.every(n => n === 0)).toBe(true);
 });
+
+test('Metropolitano: el tiempo a bordo se mide por la vía, no en línea recta', async ({ app, page }) => {
+  const r = await withGraph(page, (g) => {
+    const a = g.routes.find(x => x.key === 'met:A:ns');
+    const { lat, lon } = g.stops;
+    let straight = 0;
+    for (let i = 0; i + 1 < a.stops.length; i++){
+      const p = a.stops[i], q = a.stops[i + 1];
+      straight += Math.hypot((lon[p] - lon[q]) * 108_900, (lat[p] - lat[q]) * 110_574);
+    }
+    return { n: a.segM?.length, stops: a.stops.length, byWay: a.segM?.reduce((s, m) => s + m, 0), straight };
+  });
+  expect(r.n).toBe(r.stops - 1);
+  // Por la vía siempre es algo más largo que en recta, pero no absurdo
+  expect(r.byWay).toBeGreaterThan(r.straight);
+  expect(r.byWay).toBeLessThan(r.straight * 1.3);
+});

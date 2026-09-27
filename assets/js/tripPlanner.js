@@ -57,7 +57,9 @@ function legMin(g, r, k){
     legs = new Float32Array(Math.max(0, r.stops.length - 1));
     for (let i = 0; i < legs.length; i++){
       const a = r.stops[i], b = r.stops[i + 1];
-      legs[i] = distM(lat[a], lon[a], lat[b], lon[b]) / speed;
+      // Por la vía si se conoce (Metropolitano); si no, en línea recta
+      const m = r.segM?.[i] ?? distM(lat[a], lon[a], lat[b], lon[b]);
+      legs[i] = m / speed;
     }
     legCache.set(r, legs);
   }

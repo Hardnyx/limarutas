@@ -117,6 +117,8 @@ export function buildTripGraph(raw){
       verified: group === 'antigua' ? wrIsVerifiedOld(leaf.dataset.id) : true,
       code: codeOf(leaf, key),
       schedule: scheduleOf(key),
+      // Metros por la vía entre paraderos consecutivos (Metropolitano)
+      segM: raw.segM?.[key] || null,
       stops: Int32Array.from(seq)
     });
   }

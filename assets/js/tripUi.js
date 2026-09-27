@@ -409,28 +409,37 @@ function stepsOf(opt){
   return steps;
 }
 
-// Un tramo en una línea. Las rutas que hacen el mismo tramo son igual de
-// buenas (basta tomar la primera que pase): las primeras EQUAL_CHIPS van con
-// el mismo tamaño y sus nombres; si hay más, "+N" (al pasar el mouse, cuáles)
-const EQUAL_CHIPS = 2;
+// Un tramo en una línea: la ruta principal con su nombre completo y, si otras
+// hacen el mismo tramo (igual de buenas: basta tomar la primera que pase),
+// "o" y sus códigos (hasta ALT_CHIPS; el resto, "+N")
+const ALT_CHIPS = 1;
 function legRow(leg){
-  const all = [leg.route, ...(leg.alts || []).map(a => a.route)];
-  const shown = all.slice(0, EQUAL_CHIPS);
-  const rest = all.slice(EQUAL_CHIPS);
-  // Con varias, el nombre corto de cada una (la empresa, sin el alias)
-  const name = shown.length === 1 ? routeName(leg.route)
-    : shown.map(r => routeName(r).split(' · ')[0]).filter(Boolean).join(' / ');
-  const row = el('div', { class: 'trip-leg-row' }, ...shown.map(chip),
-    el('span', { class: 'trip-name', title: shown.map(r => `${r.code} ${routeName(r)}`).join('\n') }, name));
-  if (rest.length){
-    row.append(el('span', {
-      class: 'trip-plus',
-      title: 'También te sirven:\n' + rest.map(r => `${r.code} ${routeName(r)}`).join('\n')
-    }, `+${rest.length}`));
+  const alts = (leg.alts || []).map(a => a.route);
+  const row = el('div', { class: 'trip-leg-row' }, chip(leg.route),
+    el('span', { class: 'trip-name' }, routeName(leg.route)));
+  if (alts.length){
+    const or = el('span', { class: 'trip-or-alts', title: 'También te sirven:\n' + alts.map(r => `${r.code} ${routeName(r)}`).join('\n') }, 'o');
+    alts.slice(0, ALT_CHIPS).forEach(r => { const c = chip(r); c.classList.add('trip-chip-sm'); or.append(c); });
+    if (alts.length > ALT_CHIPS) or.append(el('span', { class: 'trip-plus' }, `+${alts.length - ALT_CHIPS}`));
+    row.append(or);
   }
   return row;
 }
 
+// Por qué va cada opción donde va: la primera es la recomendada; se marcan
+// la más rápida y la de menos caminata si son otras
+function badgesOf(options){
+  const out = new Map();
+  if (!options.length) return out;
+  out.set(options[0], 'Recomendada');
+  const fastest = options.reduce((a, b) => (b.minutes < a.minutes ? b : a));
+  if (!out.has(fastest)) out.set(fastest, 'Más rápida');
+  const leastWalk = options.reduce((a, b) => (b.walkM < a.walkM ? b : a));
+  if (!out.has(leastWalk) && leastWalk.walkM + 150 < options[0].walkM) out.set(leastWalk, 'Menos caminata');
+  return out;
+}
+
+let badges = null;
 function card(opt, k){
   const rides = opt.legs.filter(l => l.type === 'ride');
   const isOpen = k === selected;
@@ -438,8 +447,9 @@ function card(opt, k){
   const where = opt.transfers ? `1 transbordo en ${stopName(rides[1].route.stops[rides[1].from])}` : 'Directo';
   const head = el('div', { class: 'trip-card-head' }, legs,
     el('div', { class: 'trip-time' }, `~${opt.minutes}`, el('small', {}, ' min')));
+  const badge = badges?.get(opt);
   const body = el('div', { class: 'trip-card', role: 'button', tabindex: '0', 'aria-expanded': String(isOpen) },
-    head, el('div', { class: 'trip-meta' }, `${where} · `,
+    head, el('div', { class: 'trip-meta' }, badge ? el('span', { class: 'trip-badge' }, badge) : '', `${where} · `,
       el('span', { class: opt.walkM > 1000 ? 'trip-walk-long' : '' }, opt.walkM < 15 ? 'sin caminar' : `${fmtM(opt.walkM)} a pie`)));
   if (opt.old) body.append(el('div', { class: 'trip-warn' }, 'Usa una ruta antigua: podría no circular'));
   if (isOpen){
@@ -483,6 +493,7 @@ async function renderResults(){
     offHoursNote(box);
     return;
   }
+  badges = badgesOf(last.options);
   last.options.forEach((opt, k) => box.append(card(opt, k)));
   offHoursNote(box);
   box.append(el('div', { class: 'muted trip-note' }, 'Tiempos estimados por distancia; no incluyen la espera del bus.'));
@@ -551,10 +562,14 @@ function nearestIdx(line, p, from = 0){
 // está cargado o no calza (~150 m), línea entre paraderos
 const loadedTracks = new Map();
 
-// Metropolitano: el tramo por la macroruta (A o B, en el sentido del viaje)
-// entre la estación de subida y la de bajada, como en el mapa de Rutas
-function metCoords(r, stops){
+// Metropolitano: el tramo por su trazado sobre la vía (metropolitano_paths.json)
+// entre la estación de subida y la de bajada; si no está, por la macroruta
+function metCoords(r, stops, leg){
   const m = r.key.match(/^met:(.+):(ns|sn)$/);
+  const path = m && state.systems.met.paths?.[`${m[1]}:${m[2]}`];
+  if (path && path.at.length === r.stops.length){
+    return path.coords.slice(path.at[leg.from], path.at[leg.to] + 1);
+  }
   const svc = m && state.systems.met.services?.find(x => String(x.id) === m[1]);
   const def = svc && state.systems.met.macros?.[getMetMacroId(svc)];
   const segs = def && def[m[2] === 'ns' ? 'north_south' : 'south_north'];
@@ -570,7 +585,7 @@ function metCoords(r, stops){
 
 function rideCoords(r, leg, pt){
   const stops = Array.from(r.stops.slice(leg.from, leg.to + 1), pt);
-  if (r.group === 'metropolitano') return metCoords(r, stops);
+  if (r.group === 'metropolitano') return metCoords(r, stops, leg);
   const line = loadedTracks.get(r.key);
   if (!line) return stops;
   const TOL = (150 / 111_000) ** 2;

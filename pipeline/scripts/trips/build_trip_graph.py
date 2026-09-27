@@ -15,6 +15,8 @@ Fuentes:
   Metropolitano  metropolitano_services.json: regulares con sus estaciones en
                  orden norte→sur (se agrega el sentido contrario) y expresos
                  con las de cada sentido; coordenadas de metropolitano_stops.json
+                 y metropolitano_paths.json (build_met_paths.py) para los
+                 metros por la vía entre estaciones
   Metro          metro.geojson: estaciones (Point) ordenadas a lo largo del
                  trazo (LineString) de cada sentido
 
@@ -34,8 +36,9 @@ Formato de salida (compacto, se carga al abrir "Cómo llegar"):
   "stops":  [[lat, lon, nombre, i_distrito], ...],
   "routes": {"1240-ida": [i_paradero, ...],        # capa Wikiroutes
              "met:A:ns": [...], "met:A:sn": [...],  # servicio y sentido
-             "metro:L1:0": [...], "metro:L1:1": [...]}
-}
+             "metro:L1:0": [...], "metro:L1:1": [...]},
+  "segM":   {"met:A:ns": [metros, ...]}          # por la vía entre paraderos
+}                                               # consecutivos (sin esto, en recta)
 
 Uso:
     python pipeline/scripts/trips/build_trip_graph.py
@@ -113,7 +116,9 @@ def wikiroutes(stops: Stops, routes: dict) -> tuple[int, int]:
     return len(layers), missing
 
 
-def metropolitano(stops: Stops, routes: dict) -> int:
+def metropolitano(stops: Stops, routes: dict, seg_m: dict) -> int:
+    paths_file = MET / 'metropolitano_paths.json'
+    met_paths = json.loads(paths_file.read_text(encoding='utf-8'))['paths'] if paths_file.is_file() else {}
     stations = json.loads((MET / 'metropolitano_stops.json').read_text(encoding='utf-8'))['stations']
     by_id = {s['id']: s for s in stations}
     services = json.loads((MET / 'metropolitano_services.json').read_text(encoding='utf-8'))['services']
@@ -134,6 +139,10 @@ def metropolitano(stops: Stops, routes: dict) -> int:
         for key, seq in (('ns', ns), ('sn', sn)):
             if len(seq) >= 2:
                 routes[f"met:{svc['id']}:{key}"] = seq
+                # Metros por la vía entre estaciones (build_met_paths.py)
+                path = met_paths.get(f"{svc['id']}:{key}")
+                if path and len(path['m']) == len(seq):
+                    seg_m[f"met:{svc['id']}:{key}"] = [b - a for a, b in zip(path['m'], path['m'][1:])]
         n += 1 if len(ns) >= 2 or len(sn) >= 2 else 0
     return n
 
@@ -187,7 +196,8 @@ def main() -> None:
     stops = Stops()
     routes: dict[str, list[int]] = {}
     n_layers, missing = wikiroutes(stops, routes)
-    n_met = metropolitano(stops, routes)
+    seg_m: dict[str, list[int]] = {}
+    n_met = metropolitano(stops, routes, seg_m)
     n_metro = metro(stops, routes)
 
     dist = Distritos()
@@ -202,7 +212,7 @@ def main() -> None:
         name = names.most_common(1)[0][0] if names else ''
         rows.append([round(lat, 6), round(lon, 6), name, d_index[d]])
 
-    out = {'version': 1, 'districts': districts, 'stops': rows, 'routes': routes}
+    out = {'version': 1, 'districts': districts, 'stops': rows, 'routes': routes, 'segM': seg_m}
     OUT.write_text(json.dumps(out, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
 
     wr = sum(1 for k in routes if ':' not in k)
