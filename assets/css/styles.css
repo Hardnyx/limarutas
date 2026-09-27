@@ -1540,6 +1540,22 @@ html .suggest.trip-suggest {
   font-size: 11px;
 }
 
+.trip-help {
+  display: none;
+  margin: 10px 4px 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+.trip-help p { margin: 0 0 6px; }
+#tripResults:empty + .trip-help { display: block; }
+
+.suggest-empty {
+  padding: 10px 12px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
 /* Salida: Ahora o día y hora (el Metropolitano tiene horarios) */
 .trip-when {
   justify-content: flex-start;
@@ -1576,6 +1592,11 @@ html .suggest.trip-suggest {
 /* Recorrido y horario de cada servicio del Metropolitano */
 .item .sub.met-trip {
   font-size: 11px;
+}
+.item .sub.met-trip + .sub.met-trip { margin-top: 3px; }
+.met-hours {
+  display: block;
+  opacity: 0.75;
 }
 
 /* Pines A y B */

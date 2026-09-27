@@ -19,7 +19,8 @@
     "D": "#6D1F6D",
     "L": "#706F6D",
     "SX": "#ADC90C",
-    "SXN": "#FFDD00"
+    "SXN": "#FFDD00",
+    "SXN-22": "#FFDD00"
   },
   "services": [
     {
@@ -84,6 +85,93 @@
           {
             "days": "D",
             "from": "05:35",
+            "to": "22:00"
+          }
+        ]
+      }
+    },
+    {
+      "id": "B",
+      "kind": "regular",
+      "name": "Ruta B",
+      "north_south": [
+        "chimpu-ocllo",
+        "los-incas",
+        "andres-belaunde",
+        "22-de-agosto",
+        "las-vegas",
+        "universidad",
+        "naranjal",
+        "izaguirre",
+        "pacifico",
+        "independencia",
+        "los-jazmines",
+        "tomas-valle",
+        "el-milagro",
+        "honorio-delgado",
+        "uni",
+        "parque-del-trabajo",
+        "caqueta",
+        "dos-de-mayo-sur",
+        "quilca",
+        "espana",
+        "estacion-central"
+      ],
+      "south_north": [
+        "estacion-central",
+        "espana",
+        "quilca",
+        "dos-de-mayo-norte",
+        "caqueta",
+        "parque-del-trabajo",
+        "uni",
+        "honorio-delgado",
+        "el-milagro",
+        "tomas-valle",
+        "los-jazmines",
+        "independencia",
+        "pacifico",
+        "izaguirre",
+        "naranjal",
+        "universidad",
+        "las-vegas",
+        "22-de-agosto",
+        "andres-belaunde",
+        "los-incas",
+        "chimpu-ocllo"
+      ],
+      "schedule": {
+        "ns": [
+          {
+            "days": "LMXJV",
+            "from": "10:00",
+            "to": "23:00"
+          },
+          {
+            "days": "S",
+            "from": "05:00",
+            "to": "23:00"
+          },
+          {
+            "days": "D",
+            "from": "05:00",
+            "to": "22:00"
+          }
+        ],
+        "sn": [
+          {
+            "days": "LMXJV",
+            "from": "10:00",
+            "to": "23:00"
+          },
+          {
+            "days": "S",
+            "from": "05:00",
+            "to": "23:00"
+          },
+          {
+            "days": "D",
+            "from": "05:00",
             "to": "22:00"
           }
         ]
@@ -168,6 +256,60 @@
             "days": "D",
             "from": "05:00",
             "to": "22:00"
+          }
+        ]
+      }
+    },
+    {
+      "id": "1",
+      "kind": "expreso",
+      "name": "Expreso 1",
+      "north_south": [
+        "estacion-central",
+        "estadio-nacional",
+        "javier-prado",
+        "canaval-moreyra",
+        "angamos",
+        "28-de-julio",
+        "balta",
+        "estadio-union",
+        "teran",
+        "matellini"
+      ],
+      "south_north": [
+        "matellini",
+        "teran",
+        "estadio-union",
+        "balta",
+        "angamos",
+        "canaval-moreyra",
+        "javier-prado",
+        "estadio-nacional",
+        "estacion-central"
+      ],
+      "schedule": {
+        "ns": [
+          {
+            "days": "LMXJV",
+            "from": "05:30",
+            "to": "21:00"
+          },
+          {
+            "days": "SD",
+            "from": "06:30",
+            "to": "21:00"
+          }
+        ],
+        "sn": [
+          {
+            "days": "LMXJV",
+            "from": "05:00",
+            "to": "21:00"
+          },
+          {
+            "days": "SD",
+            "from": "06:00",
+            "to": "21:00"
           }
         ]
       }
@@ -506,6 +648,38 @@
       }
     },
     {
+      "id": "13",
+      "kind": "expreso",
+      "name": "Expreso 13",
+      "north_south": [
+        "chimpu-ocllo",
+        "andres-belaunde",
+        "uni",
+        "estacion-central"
+      ],
+      "south_north": [
+        "estacion-central",
+        "los-incas",
+        "chimpu-ocllo"
+      ],
+      "schedule": {
+        "ns": [
+          {
+            "days": "LMXJV",
+            "from": "05:00",
+            "to": "10:00"
+          }
+        ],
+        "sn": [
+          {
+            "days": "LMXJV",
+            "from": "05:50",
+            "to": "10:00"
+          }
+        ]
+      }
+    },
+    {
       "id": "L",
       "kind": "expreso",
       "name": "Lechucero L",
@@ -589,6 +763,77 @@
             "days": "LMXJV",
             "from": "17:00",
             "to": "21:00"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SXN",
+      "kind": "expreso",
+      "name": "Súper Expreso Norte SXN",
+      "north_south": [
+        "naranjal",
+        "dos-de-mayo-sur",
+        "quilca",
+        "espana",
+        "estacion-central"
+      ],
+      "south_north": [
+        "estacion-central",
+        "espana",
+        "quilca",
+        "dos-de-mayo-norte",
+        "naranjal"
+      ],
+      "schedule": {
+        "ns": [
+          {
+            "days": "LMXJV",
+            "from": "05:00",
+            "to": "10:00"
+          },
+          {
+            "days": "LMXJV",
+            "from": "16:30",
+            "to": "20:30"
+          }
+        ],
+        "sn": [
+          {
+            "days": "LMXJV",
+            "from": "05:30",
+            "to": "10:00"
+          },
+          {
+            "days": "LMXJV",
+            "from": "17:00",
+            "to": "21:00"
+          }
+        ]
+      }
+    },
+    {
+      "id": "SXN-22",
+      "kind": "expreso",
+      "name": "Súper Expreso Norte desde 22 de Agosto",
+      "icon": "SXN",
+      "north_south": [
+        "22-de-agosto",
+        "las-vegas",
+        "universidad",
+        "naranjal",
+        "dos-de-mayo-sur",
+        "quilca",
+        "espana",
+        "estacion-central"
+      ],
+      "south_north": [],
+      "schedule": {
+        "ns": [
+          {
+            "days": "LMXJV",
+            "from": "06:00",
+            "to": "08:30"
           }
         ]
       }

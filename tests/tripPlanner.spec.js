@@ -175,6 +175,23 @@ test.describe('pestaña Cómo llegar', () => {
     await page.keyboard.press('Enter');
   };
 
+  test('sin A y B se explica cómo empezar; un texto sin paraderos lo dice', async ({ app, page }) => {
+    await expect(page.locator('.trip-help')).toBeVisible();
+    await expect(page.locator('.trip-help')).toContainText('📍');
+    await expect(page.locator('#tripDay option[value="now"]')).toHaveText(/^Ahora \(\d{1,2}:\d\d\)$/);
+    await page.fill('#tripFrom', 'zzqxw');
+    await expect(page.locator('.trip-field:has(#tripFrom) .suggest-empty')).toBeVisible();
+    await expect(page.locator('.trip-field:has(#tripFrom) .suggest-item')).toHaveCount(0);
+
+    // Con resultados, la ayuda se va
+    await page.evaluate(async () => {
+      const m = await import('/assets/js/tripUi.js');
+      await m.setTripEnds({ lat: -12.09805, lon: -77.02017, label: 'A' }, { lat: -12.2177, lon: -76.9273, label: 'B' });
+    });
+    await expect(page.locator('.trip-card').first()).toBeVisible();
+    await expect(page.locator('.trip-help')).toBeHidden();
+  });
+
   test('origen y destino por paradero: opciones, pasos y el viaje en el mapa', async ({ app, page }) => {
     await pickStop(page, '#tripFrom', 'acho');
     await expect(page.locator('#tripFrom')).toHaveValue('Acho · Rímac');
@@ -314,7 +331,7 @@ test.describe('pestaña Cómo llegar', () => {
   });
 
   test('Salida: el horario del Metropolitano sale en el paso y, fuera de hora, se avisa', async ({ app, page }) => {
-    // La página está en martes 10:30 (fixtures.js): la Regular C circula
+    // La página está en martes 10:30 (fixtures.js): circulan la C y el Expreso 1
     await page.evaluate(async ([a, b]) => {
       const m = await import('/assets/js/tripUi.js');
       await m.setTripEnds({ ...a, label: 'A' }, { ...b, label: 'B' });
@@ -323,7 +340,7 @@ test.describe('pestaña Cómo llegar', () => {
     await expect(page.locator('#tripTime')).toBeHidden();
     const met = page.locator('.trip-card', { hasText: 'Metropolitano' }).first();
     await met.click();
-    await expect(met.locator('.trip-hours').first()).toContainText('Horario: L–S 5:00–23:00 · Dom 5:00–22:00');
+    await expect(met.locator('.trip-hours').first()).toHaveText(/^Horario: .*\d:\d\d–\d{1,2}:\d\d/);
 
     // Domingo 23:30: ya no hay Metropolitano; se avisa cuál serviría y su horario
     await page.selectOption('#tripDay', '0');
