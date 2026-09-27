@@ -128,5 +128,16 @@ Servicios vigentes (horarios de los mapas QR de la ATU, 2026-09): regulares A,
 B y C; expresos 1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, SX, SXN, SXN desde 22
 de Agosto (`SXN-22`, solo al sur) y Lechucero. La Ruta D ya no opera.
 
-Pendiente: viajes con 2 transbordos, búsqueda de direcciones
-(geocodificación), Alimentadores del Metropolitano.
+**Trazado del Metropolitano.** `build_met_paths.py` arma el recorrido de cada
+servicio y sentido sobre la vía exclusiva (export de OSM
+`metropolitano.json`, respetando las calzadas de un solo sentido), estación
+por estación, con los metros recorridos. Se usa para dibujar (en Rutas y en
+Cómo llegar) y para el tiempo a bordo (`segM` en `trip_graph.json`). Los
+tramos que el export no cubre (ampliación norte) van por la macroruta.
+
+```bash
+python pipeline/scripts/metropolitano/build_met_paths.py
+python pipeline/scripts/trips/build_trip_graph.py
+```
+
+Pendientes (OSM, 2 transbordos, direcciones…): [PENDIENTES.md](PENDIENTES.md).

@@ -279,7 +279,14 @@ export function renderService(systemId, id, opts={}){
 
   } else if (systemId === 'met') {
     const prevBounds = bounds;
-    bounds = drawMetMacro(svc, routeDir, gLine, svc.color, bounds, paneLine);
+    // Trazado por la vía de cada sentido (metropolitano_paths.json); si falta, la macroruta
+    const paths = state.systems.met.paths || {};
+    const dirs = routeDir === 'ambas'
+      ? ['ns', 'sn'].filter(d => state.dir === 'ambas' || state.dir === d)
+      : [routeDir === 'sur' ? 'ns' : 'sn'];
+    const own = dirs.map(d => paths[`${svc.id}:${d}`]).filter(Boolean);
+    if (own.length) own.forEach(p => drawSegments([p.coords], svc.color));
+    else bounds = drawMetMacro(svc, routeDir, gLine, svc.color, bounds, paneLine);
     if (bounds === prevBounds) {
       if (routeDir === 'ambas'){
         if (state.dir === 'ambas' || state.dir === 'ns') drawByStops(getMetStopsForDir(svc, 'sur'), svc.color);

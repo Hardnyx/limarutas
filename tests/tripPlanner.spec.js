@@ -325,8 +325,11 @@ test.describe('pestaña Cómo llegar', () => {
       });
       return { lines, maxPts, dots };
     });
-    // La macroruta tiene muchos más puntos que las estaciones del tramo
+    // El trazado por la vía tiene muchos más puntos que las estaciones del tramo
     expect(r.maxPts).toBeGreaterThan(30);
+    // La primera opción es la recomendada; si la más rápida es otra, lo dice
+    await expect(page.locator('.trip-card').first().locator('.trip-badge')).toHaveText('Recomendada');
+    await expect(page.locator('.trip-badge', { hasText: 'Recomendada' })).toHaveCount(1);
     expect(r.dots).toBeGreaterThan(6);
   });
 

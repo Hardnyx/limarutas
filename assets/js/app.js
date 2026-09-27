@@ -178,10 +178,13 @@ async function loadCatalog(){
 }
 
 async function loadMetropolitano(){
-  const [stopsMet, svcsMet] = await Promise.all([
+  const [stopsMet, svcsMet, pathsMet] = await Promise.all([
     fetchJSON(`${PATHS.met}/metropolitano_stops.json`),
-    fetchJSON(`${PATHS.met}/metropolitano_services.json`)
+    fetchJSON(`${PATHS.met}/metropolitano_services.json`),
+    // Trazado por la vía de cada servicio y sentido (build_met_paths.py)
+    fetchJSON(`${PATHS.met}/metropolitano_paths.json`).catch(() => null)
   ]);
+  state.systems.met.paths = pathsMet?.paths || {};
 
   state.systems.met.stops = stopsArrayToMap(stopsMet.stations);
 
