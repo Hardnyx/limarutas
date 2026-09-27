@@ -70,7 +70,7 @@ function makeIcon(doc){
 
   if (doc.type === 'metro' || doc.type === 'met'){
     const folder = doc.type === 'metro' ? 'metro' : 'metropolitano';
-    const iconId = doc.type === 'metro' ? String(doc.id).replace(/^L/i, '') : doc.id;
+    const iconId = doc.type === 'metro' ? String(doc.id).replace(/^L/i, '') : (doc.icon || doc.id);
     const img = el('img', {
       src: `assets/icons/${folder}/${iconId}.png`,
       alt: doc.id,
@@ -137,9 +137,10 @@ async function buildSearchIndex(){
     const prefix = kindLabel === 'Expreso' ? `Metropolitano · Expreso ${id}` :
                   kindLabel === 'Ruta regular' ? `Metropolitano · Ruta ${id}` :
                   `Metropolitano · ${id}`;
-    const label = prefix;
+    // "Metropolitano · Súper Expreso Norte desde 22 de Agosto" dice más que el id
+    const label = name ? `Metropolitano · ${name}` : prefix;
     const tokens = norm([id, name, kindLabel, 'metropolitano', 'troncal'].join(' '));
-    docs.push({ key: `met:${id}`, system: 'met', id, label, type: 'met', tokens });
+    docs.push({ key: `met:${id}`, system: 'met', id, label, type: 'met', tokens, icon: svc.icon });
   }
 
   // Alimentadores

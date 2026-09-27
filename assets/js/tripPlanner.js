@@ -36,6 +36,7 @@ const EASY_DIRECT_WALK_M = 800; // directo "cómodo": hasta esto a pie en total�
 const MIN_LEG_STOPS = 3;        // con transbordo, cada tramo recorre al menos esto
 const MAX_SAME_START = 2;       // opciones con transbordo que empiezan con las mismas rutas
 const TRANSFER_MUST_SAVE_MIN = 20; // …va antes que un transbordo que no ahorre al menos esto
+const TRANSFER_MUST_SAVE_SHARE = 0.2; // …ni el 20 % del tiempo del directo
 // Metro, Metropolitano y corredores: más frecuentes y previsibles; se prefieren
 const MASS_GROUPS = new Set(['metro', 'metropolitano', 'corredor']);
 const MASS_RIDE_FACTOR = 0.8;   // su tiempo a bordo "cuesta" menos
@@ -234,12 +235,17 @@ export function planTrip(g, from, to, { includeOld = false, at = null } = {}){
     }
     c.cost = c.base + wait;
   }
-  // Un directo con poca caminata va antes que cualquier transbordo, salvo que
-  // el transbordo ahorre bastante tiempo de viaje
-  const bestDirectMin = Math.min(...top.filter(c => !c.transfers && c.walkM <= EASY_DIRECT_WALK_M).map(c => c.minutes));
+  // Un directo va antes que cualquier transbordo, salvo que el transbordo
+  // ahorre bastante: 20 min o el 20 % del viaje (en 2 h y media, 20 min no
+  // compensan bajarse y esperar otro bus). Se compara con el directo cómodo
+  // (poca caminata) más rápido o, si no hay, con el directo más rápido.
+  const directs = top.filter(c => !c.transfers);
+  const easy = directs.filter(c => c.walkM <= EASY_DIRECT_WALK_M);
+  const bestDirectMin = Math.min(...(easy.length ? easy : directs).map(c => c.minutes));
+  const mustSave = Math.max(TRANSFER_MUST_SAVE_MIN, TRANSFER_MUST_SAVE_SHARE * bestDirectMin);
   // Primero: directos cómodos y transbordos que sí ahorran; luego el resto por costo
   const tier = c => c.transfers
-    ? (c.minutes <= bestDirectMin - TRANSFER_MUST_SAVE_MIN ? 0 : 1)
+    ? (c.minutes <= bestDirectMin - mustSave ? 0 : 1)
     : (c.walkM <= EASY_DIRECT_WALK_M ? 0 : 1);
   top.sort((a, b) => tier(a) - tier(b) || a.cost - b.cost);
 
@@ -327,11 +333,12 @@ function alternativesFor(g, leg, isActive){
       for (let k = pos + 1; k < ar.stops.length; k++){
         m += legMin(g, ar, k - 1);
         if (m > limit) break;
-        if (alights.has(ar.stops[k])){ found.set(ar.leaf, { route: ar, from: pos, to: k }); break; }
+        if (alights.has(ar.stops[k])){ found.set(ar.leaf, { route: ar, from: pos, to: k, min: m }); break; }
       }
     }
   }
-  return Array.from(found.values()).slice(0, MAX_ALTS);
+  // Las más rápidas primero
+  return Array.from(found.values()).sort((a, b) => a.min - b.min).slice(0, MAX_ALTS);
 }
 
 // ¿Aparecerían más opciones con las rutas antiguas? (para ofrecerlas)
