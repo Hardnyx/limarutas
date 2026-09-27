@@ -100,7 +100,7 @@ function clearServiceLayers(sys, id){
    =========================== */
 
 // A y C siguen macro A; expresos macro B salvo el 10. Regulares: macro B.
-function getMetMacroId(svc){
+export function getMetMacroId(svc){
   const id   = String(svc.id).toUpperCase();
   const name = (svc.name || '').toUpperCase();
 
