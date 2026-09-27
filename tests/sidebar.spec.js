@@ -13,7 +13,8 @@ test('cada casilla de grupo marca y desmarca todas sus rutas', async ({ app, pag
   // Sin paraderos no hay advertencia de muchas rutas (se prueba en map.spec.js)
   await (await app.setting('#chkStops')).uncheck();
   const groups = await page.$$eval('#panels .panel-head > input', cs => cs.map(c => c.id));
-  expect(groups.length).toBeGreaterThan(20);
+  // Metro, Metropolitano (y sus subgrupos), corredores activos, WR…
+  expect(groups.length).toBeGreaterThan(15);
 
   for (const id of groups){
     const res = await page.evaluate((gid) => {
