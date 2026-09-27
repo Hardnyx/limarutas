@@ -1540,6 +1540,44 @@ html .suggest.trip-suggest {
   font-size: 11px;
 }
 
+/* Salida: Ahora o día y hora (el Metropolitano tiene horarios) */
+.trip-when {
+  justify-content: flex-start;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.trip-when select,
+.trip-when input[type="time"] {
+  font: inherit;
+  color: var(--text-main);
+  background: rgba(15, 23, 42, 0.97);
+  color-scheme: dark;
+  border: none;
+  border-radius: 8px;
+  box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.4);
+  padding: 3px 6px;
+}
+.trip-when input[hidden] { display: none; }
+
+.trip-hours {
+  margin-top: 2px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.trip-offhours {
+  display: grid;
+  gap: 4px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* Recorrido y horario de cada servicio del Metropolitano */
+.item .sub.met-trip {
+  font-size: 11px;
+}
+
 /* Pines A y B */
 .leaflet-marker-icon.trip-pin {
   display: flex;

@@ -21,9 +21,13 @@ test('cada ruta trae sus paraderos en el orden del recorrido', async ({ app, pag
       group: g.routes.find(x => x.key === '1240-ida').group,
       l1: names('metro:L1:0'),
       l1back: names('metro:L1:1'),
-      a: names('met:A:ns').slice(0, 2),
-      aBack: names('met:A:sn').slice(-2),
-      exp1: g.routes.some(x => x.key === 'met:1:ns')
+      a: names('met:A:ns'),
+      aBack: names('met:A:sn'),
+      // Expresos de un solo sentido: el 6 solo va al sur, el 9 solo al norte
+      e6: ['met:6:ns', 'met:6:sn'].map(k => g.routes.some(x => x.key === k)),
+      e9: ['met:9:ns', 'met:9:sn'].map(k => g.routes.some(x => x.key === k)),
+      exp1: g.routes.some(x => x.key.startsWith('met:1:')),
+      sched: g.routes.find(x => x.key === 'met:5:ns').schedule?.length
     };
   });
   expect(r.ida).toEqual(['Las Palmas', 144]);
@@ -32,9 +36,17 @@ test('cada ruta trae sus paraderos en el orden del recorrido', async ({ app, pag
   expect([r.l1[0], r.l1.at(-1)].sort()).toEqual(['Bayóvar', 'Villa El Salvador']);
   expect(r.l1.length).toBe(26);
   expect(r.l1back).toEqual([...r.l1].reverse());
-  expect(r.a).toEqual(['Chimpu Ocllo', 'Los Incas']);
-  expect(r.aBack).toEqual(['Los Incas', 'Chimpu Ocllo']);
-  expect(r.exp1).toBe(true);
+  // Regular A: Naranjal ↔ Estación Central por Tacna y Jirón de la Unión,
+  // con el andén de cada sentido
+  expect([r.a[0], r.a.at(-1)]).toEqual(['Naranjal', 'Estación Central']);
+  expect(r.a).toContain('Tacna Sur');
+  expect(r.aBack).toContain('Tacna Norte');
+  expect([r.aBack[0], r.aBack.at(-1)]).toEqual(['Estación Central', 'Naranjal']);
+  expect(r.e6).toEqual([true, false]);
+  expect(r.e9).toEqual([false, true]);
+  // Fuera de la lista de horarios vigente
+  expect(r.exp1).toBe(false);
+  expect(r.sched).toBe(2);
 });
 
 test('solo entran las rutas que están en el sidebar, con su grupo', async ({ app, page }) => {

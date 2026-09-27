@@ -149,3 +149,24 @@ test('colores de ruta chillones se suavizan y llevan texto oscuro', async ({ app
   const line = await app.state(s => s.systems.wr.routeDefs.get('1122-ida')?.color);
   expect(line?.toLowerCase()).not.toBe('#feff00');
 });
+
+test('Metropolitano: cada servicio muestra su recorrido y horario; los de un solo sentido no tienen N/S', async ({ app, page }) => {
+  const item = (id) => page.locator(`#p-met .item:has(> .item-head input[data-id="${id}"])`);
+  // Expreso 6: solo de Izaguirre a Benavides, en la mañana
+  await expect(item('6').locator('.met-trip')).toHaveText(['Izaguirre → Benavides · L–V 5:30–10:00']);
+  await expect(item('6').locator('.segbtn-mini')).toHaveCount(0);
+  // Expreso 8: horario distinto por sentido
+  await expect(item('8').locator('.met-trip')).toHaveText([
+    'Izaguirre → Plaza de Flores · L–V 17:00–20:20',
+    'Plaza de Flores → Izaguirre · L–V 17:00–21:00'
+  ]);
+  await expect(item('8').locator('.segbtn-mini')).toHaveCount(3);
+  // Regular C: ida y vuelta con el mismo horario, en una línea
+  await expect(item('C').locator('.met-trip')).toHaveText(['Ramón Castilla ↔ Matellini · L–S 5:00–23:00 · Dom 5:00–22:00']);
+  // Los que no están en la lista de horarios vigente no aparecen
+  for (const id of ['B', '1', '13', 'SXN']) await expect(app.leaf('met', id)).toHaveCount(0);
+
+  // Un expreso de un solo sentido se dibuja solo en ese sentido
+  await page.evaluate(() => document.querySelector('#p-met .item-head input[data-id="6"]').click());
+  await expect.poll(() => app.state(s => s.systems.met.lineLayers.get('6')?.getLayers().length)).toBe(1);
+});

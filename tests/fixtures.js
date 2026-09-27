@@ -13,8 +13,11 @@ export const test = base.extend({
   // La nueva interfaz abre en "Cómo llegar"; casi todas las pruebas usan Rutas.
   // 'default' deja la pestaña con la que abre.
   startTab: ['routes', { option: true }],
+  // Hora de la página: el Metropolitano tiene horarios. Martes 10:30 en Lima
+  // (circulan A, C y el Expreso 5; los de hora punta de la mañana ya no)
+  clockAt: ['2026-09-29T15:30:00Z', { option: true }],
 
-  app: async ({ page, entry, startTab }, use) => {
+  app: async ({ page, entry, startTab, clockAt }, use) => {
     const errors = [];
     page.on('pageerror', e => errors.push(e.message));
     page.on('console', m => { if (m.type() === 'error') errors.push(m.text()); });
@@ -25,6 +28,7 @@ export const test = base.extend({
     });
     await page.route('https://*.basemaps.cartocdn.com/**', route => route.fulfill({ status: 204 }));
 
+    if (clockAt) await page.clock.install({ time: new Date(clockAt) });
     await page.goto(entry);
     await expect(page.locator('#status')).toHaveText('Listo', { timeout: 90_000 });
     // Corredores se reconstruye al cargar sus tipos

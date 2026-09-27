@@ -22,9 +22,13 @@ abre en "Cómo llegar"; el fixture pasa a la pestaña Rutas salvo con
 opciones del mapa (paradas, tema), que en la nueva interfaz están en el menú ⚙,
 se usa `app.setting('#chkStops')`, que lo abre si hace falta.
 
+La página corre con el reloj fijo en martes 10:30 de Lima (`clockAt` en
+`fixtures.js`), porque el Metropolitano tiene horarios; `test.use({ clockAt: … })`
+lo cambia.
+
 | Archivo | Qué cubre |
 |---|---|
-| `sidebar.spec.js` | Casillas de grupo, Metropolitano con Alimentadores, Desmarcar todo, encuadre, filtro de color, sentido, carrera marcar/desmarcar |
+| `sidebar.spec.js` | Casillas de grupo, Metropolitano con Alimentadores, Desmarcar todo, encuadre, filtro de color, sentido, carrera marcar/desmarcar, recorrido y horario del Metropolitano |
 | `search.spec.js` | Código, alias, rutas antiguas (semiformal), Limpiar, paradero único y nombres repetidos por distrito |
 | `map.spec.js` | Paraderos con nombre, panel "Rutas en este punto", advertencia de muchas rutas |
 | `recents.spec.js` | Rutas recientes: sentido sincronizado y persistencia |

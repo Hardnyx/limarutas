@@ -24,12 +24,13 @@ de qué grupo son se decide en el navegador.
 
 ## Qué contiene
 
-- **Paraderos**: 9 948, con nombre y distrito. En Wikiroutes, las rutas que
+- **Paraderos**: 9 950, con nombre y distrito. En Wikiroutes, las rutas que
   paran en el mismo lugar comparten el id del paradero, así que cada id es
   un nodo.
 - **Rutas**: cada capa de Wikiroutes (`1240-ida`, `1240-vuelta`…), cada
-  servicio del Metropolitano en sus dos sentidos (`met:A:ns`, `met:A:sn`;
-  los expresos con sus propias estaciones por sentido) y las líneas del
+  servicio del Metropolitano en cada sentido que existe (`met:A:ns`,
+  `met:A:sn`; `met:6:ns` solo, porque el Expreso 6 solo va al sur), con sus
+  propias estaciones por sentido, y las líneas del
   Metro (`metro:L1:0`, `metro:L1:1`), con sus paraderos en orden.
 - **Fuera por ahora**: los Alimentadores del Metropolitano, porque sus
   paraderos no traen orden y varios son circuitos.
@@ -103,7 +104,20 @@ Minutos estimados: caminata 75 m/min con 30 % de rodeo, bus 250 m/min
 y cruzar). El tramo se dibuja por el trazo de Wikiroutes; el Metropolitano, por su
 macroruta (A o B, en el sentido del viaje), como en la pestaña Rutas; el Metro,
 entre estaciones. Se marca cada paradero del tramo, con su nombre. Sin
-horarios ni frecuencias: son aproximados y no incluyen la espera.
+frecuencias: son aproximados y no incluyen la espera.
+
+**Horarios del Metropolitano.** `metropolitano_services.json` trae el horario
+de cada sentido (`schedule.ns`, `schedule.sn`: días `LMXJVSD` y horas; si
+termina antes de empezar, cruza la medianoche, como el Lechucero de viernes y
+sábado 23:30–4:00). Un sentido sin horario no existe. En "Cómo llegar" se
+elige la **Salida** (Ahora, o un día y hora; siempre hora de Lima): solo
+entra lo que circula a esa hora. El paso dice el horario del servicio, y si
+un servicio serviría pero no circula a esa hora, se avisa con su horario.
+El resto de rutas se asume en servicio a cualquier hora.
+
+Servicios vigentes (lista de horarios de 2026-09): regulares A y C; expresos
+2, 3, 5, 6, 7, 8, 9, 10, 11, 12, SX y Lechucero. B, D, 1, 13 y SXN salieron
+del catálogo y de los datos.
 
 Pendiente: viajes con 2 transbordos, búsqueda de direcciones
 (geocodificación), Alimentadores del Metropolitano.

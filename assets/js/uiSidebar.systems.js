@@ -4,6 +4,7 @@ import { isLightColor } from './mapColors.js';
 import { $, el } from './utils.js';
 import { syncTriFromLeaf } from './uiSidebar.hierarchy.js';
 import { toggleLeaf, refreshLeafDirection } from './leafToggle.js';
+import { directionsOf, scheduleText } from './metSchedule.js';
 
 const labelForSvc = (s) =>
   s.kind === 'regular' ? 'Ruta' : (s.kind === 'expreso' ? 'Expreso' : 'Servicio');
@@ -11,6 +12,8 @@ const labelForSvc = (s) =>
 // Direcciones mini (Norte/Sur/Ambas) para Met/Alim
 function miniDir(systemId, svc){
   if (systemId === 'corr' || systemId === 'metro') return el('div');
+  // Expresos de un solo sentido: no hay nada que elegir
+  if (systemId === 'met' && directionsOf(svc).length < 2) return el('div');
 
   const cur = getDirFor(systemId, svc.id);
   const wrap = el('div',{class:'dir-mini'});
@@ -45,6 +48,23 @@ function miniDir(systemId, svc){
   return wrap;
 }
 
+// Recorrido y horario de cada sentido: "Naranjal → Central · L–V 6:00–9:00".
+// Si ida y vuelta tienen el mismo horario va en una línea: "A ↔ B · …"
+function metTrips(svc){
+  const stops = state.systems.met.stops;
+  const nameOf = (id) => stops?.get(id)?.name?.replace(/ (Norte|Sur)$/, '') || id;
+  const trips = directionsOf(svc).map(dir => {
+    const ids = (dir === 'ns' ? svc.north_south : svc.south_north) || svc.stops || [];
+    const [a, b] = dir === 'sn' && !svc.south_north ? [ids[ids.length - 1], ids[0]] : [ids[0], ids[ids.length - 1]];
+    return { a: nameOf(a), b: nameOf(b), when: scheduleText(svc.schedule?.[dir]) };
+  });
+  const [x, y] = trips;
+  if (y && x.when === y.when && x.a === y.b && x.b === y.a) {
+    return [[`${x.a} ↔ ${x.b}`, x.when].filter(Boolean).join(' · ')];
+  }
+  return trips.map(t => [`${t.a} → ${t.b}`, t.when].filter(Boolean).join(' · '));
+}
+
 function makeServiceItemMet(svc){
   const img = el('img', {
     src:`${PATHS.icons.met}/${String(svc.id).toUpperCase()}.png`,
@@ -61,7 +81,7 @@ function makeServiceItemMet(svc){
     img,
     el('div',{},
       el('div',{class:'name'}, `${labelForSvc(svc)} ${svc.id}`),
-      el('div',{class:'sub'}, svc.name || '')
+      ...metTrips(svc).map(text => el('div',{class:'sub met-trip'}, text))
     )
   );
 
