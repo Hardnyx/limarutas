@@ -1,6 +1,7 @@
 // mapPanes.js
 // Panes de Leaflet para el orden de dibujo entre sistemas.
 import { state } from './config.js';
+import { FLAGS } from './flags.js';
 
 /* ===========================
    Panes (orden de dibujo)
@@ -47,7 +48,18 @@ export function ensureCustomPanes(){
 
   ensurePane(map, PANES.stop, Z.stop);
   ensurePane(map, PANES.metTopStop, Z.metTopStop);
+
+  // Nueva interfaz: los paraderos de las rutas solo al acercarse; de lejos
+  // tapan el trazado (una ruta tiene 100+ paraderos)
+  if (FLAGS.beta){
+    const pane = map.getPane(PANES.stop);
+    const sync = () => { pane.style.display = map.getZoom() < STOP_MIN_ZOOM ? 'none' : ''; };
+    map.on('zoomend', sync);
+    sync();
+  }
 }
+
+export const STOP_MIN_ZOOM = 14;
 
 export function getLinePane(systemId, svc){
   if (systemId === 'met'){
