@@ -49,7 +49,7 @@ Licencia: ODbL; el mapa ya muestra "© OpenStreetMap".
 
 - Viajes con 2 transbordos.
 - Búsqueda de direcciones (geocodificación).
-- Alimentadores del Metropolitano en "Cómo llegar" (sus paraderos no traen orden).
+- Alimentadores: OSM solo trae de 2 a 9 paraderos por sentido (en la calle paran en más); completar con los paraderos reales.
 - Imágenes de las rutas.
 - Llenar `semiformal.verificadas` en `config/catalog.json`.
 - Ampliación norte del Metropolitano (Chimpu Ocllo – Naranjal) en el export de

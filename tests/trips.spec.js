@@ -61,16 +61,17 @@ test('solo entran las rutas que están en el sidebar, con su grupo', async ({ ap
     return {
       groups,
       allHaveLeaf: g.routes.every(x => x.leaf && x.leaf.isConnected),
-      noAlim: !g.routes.some(x => x.system === 'alim'),
+      alim: g.routes.filter(x => x.system === 'alim').map(x => x.key),
       codeOf1240: g.routes.find(x => x.key === '1240-ida').code,
       leaves: leaves.length
     };
   });
-  for (const k of ['atu', 'corredor', 'aero', 'otros', 'antigua', 'metropolitano', 'metro']){
+  for (const k of ['atu', 'corredor', 'aero', 'otros', 'antigua', 'metropolitano', 'alimentador', 'metro']){
     expect(r.groups[k], k).toBeGreaterThan(0);
   }
   expect(r.allHaveLeaf).toBe(true);
-  expect(r.noAlim).toBe(true);
+  // Alimentadores: cada circuito en ida y vuelta
+  expect(r.alim).toEqual(expect.arrayContaining(['alim:AN-01:ida', 'alim:AN-01:vuelta', 'alim:AS-04:ida']));
   expect(r.codeOf1240).toBe('1240');
 });
 
@@ -163,4 +164,23 @@ test('Metropolitano: el tiempo a bordo se mide por la vía, no en línea recta',
   // Por la vía siempre es algo más largo que en recta, pero no absurdo
   expect(r.byWay).toBeGreaterThan(r.straight);
   expect(r.byWay).toBeLessThan(r.straight * 1.3);
+});
+
+test('Alimentadores: el circuito se corta en el terminal y en el punto más lejano; comparte la estación con el Metropolitano', async ({ app, page }) => {
+  const r = await withGraph(page, (g) => {
+    const ida = g.routes.find(x => x.key === 'alim:AS-04:ida');
+    const vta = g.routes.find(x => x.key === 'alim:AS-04:vuelta');
+    const c = g.routes.find(x => x.key === 'met:C:ns');
+    const name = i => g.stops.name[i];
+    return {
+      idaFirst: name(ida.stops[0]), vtaLast: name(vta.stops[vta.stops.length - 1]),
+      // La estación Matellini es el mismo nodo en el alimentador y en la Ruta C
+      shared: c.stops.includes(ida.stops[0]),
+      idaSeg: ida.segM?.length === ida.stops.length - 1
+    };
+  });
+  expect(r.idaFirst).toBe('Matellini');
+  expect(r.vtaLast).toBe('Matellini');
+  expect(r.shared).toBe(true);
+  expect(r.idaSeg).toBe(true);
 });

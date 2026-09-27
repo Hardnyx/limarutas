@@ -21,11 +21,21 @@ function miniDir(systemId, svc){
   const mk = (val,label,title) =>
     el('button',{class:`segbtn-mini${cur===val?' active':''}`,'data-dir':val,title},label);
 
-  wrap.append(
-    mk('ambas','Amb','Ambas'),
-    mk('norte','N','Norte'),
-    mk('sur','S','Sur')
-  );
+  // Alimentadores: ida (del terminal al barrio) y vuelta, no norte/sur
+  const alimP = systemId === 'alim' ? state.systems.alim.paths?.[svc.id] : null;
+  if (alimP){
+    wrap.append(
+      mk('ambas','Amb','Ida y vuelta'),
+      mk('sur','Ida',`Hacia ${alimP.ida.to}`),
+      mk('norte','Vta',`Hacia ${alimP.vuelta.to}`)
+    );
+  } else {
+    wrap.append(
+      mk('ambas','Amb','Ambas'),
+      mk('norte','N','Norte'),
+      mk('sur','S','Sur')
+    );
+  }
 
   wrap.addEventListener('click',(e)=>{
     const b = e.target.closest('.segbtn-mini');
@@ -99,6 +109,14 @@ function makeServiceItemMet(svc){
   return body;
 }
 
+// "Naranjal → Tahuantinsuyo → Naranjal" (circuito) o "Zona Norte"
+function alimTripText(svc){
+  const p = state.systems.alim.paths?.[svc.id];
+  if (!p) return `Zona ${svc.zone === 'NORTE' ? 'Norte' : 'Sur'}`;
+  const from = p.vuelta?.to || '';
+  return p.loop ? `Circuito: ${from} → ${p.ida.to} → ${from}` : `${from} ↔ ${p.ida.to}`;
+}
+
 function makeServiceItemAlim(svc){
   const code = String(svc.id).toUpperCase();
   const bg = svc.color || (code.startsWith('AN') ? COLOR_AN : COLOR_AS);
@@ -111,7 +129,7 @@ function makeServiceItemAlim(svc){
     tag,
     el('div',{},
       el('div',{class:'name'}, svc.name || `Alimentador ${code}`),
-      el('div',{class:'sub'}, `Zona ${svc.zone==='NORTE'?'Norte':'Sur'}`)
+      el('div',{class:'sub'}, alimTripText(svc))
     )
   );
 

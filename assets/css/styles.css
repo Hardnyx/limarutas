@@ -375,6 +375,7 @@ body {
   min-width: 28px;
   height: 26px;
   padding: 0 8px;
+  white-space: nowrap;
   border-radius: 999px;
   background: rgba(15, 23, 42, 0.96);
   color: #f9fafb;

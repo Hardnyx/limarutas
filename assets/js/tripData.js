@@ -27,6 +27,7 @@ export const TRIP_GROUPS = {
   wrOtros: 'otros',
   wrSemi: 'antigua',    // Rutas antiguas
   met: 'metropolitano',
+  alim: 'alimentador',  // Alimentadores del Metropolitano
   metro: 'metro'
 };
 
@@ -50,7 +51,7 @@ const cellOf = (lat, lon) => [Math.floor(lat * M_LAT / WALK_MAX_M), Math.floor(l
 // "met:A:ns" → casilla de Metropolitano A; "metro:L1:0" → Línea 1;
 // el resto son capas Wikiroutes ("1240-ida")
 function leafFor(key){
-  const m = key.match(/^(met|metro):(.+):[^:]+$/);
+  const m = key.match(/^(met|metro|alim):(.+):[^:]+$/);
   if (m){
     return document.querySelector(
       `#panels .item .item-head input[data-system="${m[1]}"][data-id="${CSS.escape(m[2])}"]`);
