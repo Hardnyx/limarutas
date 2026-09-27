@@ -115,7 +115,7 @@ depuración de color.
 | Acción | Situación | Resultado esperado |
 |---|---|---|
 | Escribir en Origen o Destino | — | Paraderos que coinciden (nombre · distrito · rutas); si ninguno tiene todas las palabras, los que más coinciden ("ovalo higuereta" → Higuereta). ↑/↓ y Enter eligen |
-| 📍 | — | El siguiente clic en el mapa pone ese punto ("Punto en el mapa · cerca de…"); no abre el panel de rutas. Esc cancela |
+| 📍 | — | El siguiente clic en el mapa pone ese punto donde se tocó ("Cerca de…"): puede ser la casa o el trabajo, y la caminata a los paraderos ya se cuenta. Si cae casi encima de un paradero (14 px en pantalla, 60 m como mucho) se ajusta a él y lleva su nombre. No abre el panel de rutas. Esc cancela. Arrastrar el pin sigue la misma regla |
 | Elegir el primer extremo | El punto no se ve | El mapa va a él; el foco pasa a Destino |
 | Tener A y B | — | Hasta 6 opciones distintas. Primero las rutas únicas con poca caminata (hasta 800 m) y los transbordos que ahorran 20 min o más; luego el resto, por un costo que suma tiempo, caminata (doble), transbordos (20 min) y espera (menor si varias rutas hacen el tramo). Todas las rutas únicas razonables aparecen, y lo mismo con Metro, Metropolitano o corredor (que pesan más: pasan seguido). Cada ruta se muestra con su código y su nombre (empresa · alias, "Corredor Rojo", "Metropolitano · Ruta C"). Cada tramo va en una línea (código, nombre y "+N" si otras rutas hacen lo mismo; basta tomar la primera que pase) y el tiempo a la derecha; los pasos solo en la opción elegida. La primera opción queda elegida, con sus pasos y dibujada por las calles |
 | A y B a 600 m o menos | — | "Te conviene caminar" |

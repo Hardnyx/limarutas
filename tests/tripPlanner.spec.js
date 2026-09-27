@@ -351,6 +351,41 @@ test.describe('pestaña Cómo llegar', () => {
     await expect(page.locator('.trip-offhours .trip-sub').first()).toHaveText(/\d:\d\d–\d/);
   });
 
+  test('elegir en el mapa: libre, salvo que el clic caiga encima de un paradero', async ({ app, page }) => {
+    const stop = await page.evaluate(async () => {
+      const { loadTripGraph } = await import('/assets/js/tripData.js');
+      const g = await loadTripGraph();
+      const i = g.nearestStops(-12.0433, -77.0126, 300)[0][0];
+      const lat = g.stops.lat[i], lon = g.stops.lon[i];
+      // Un punto a unos 150 m sin paraderos a menos de 80 m
+      let free = null;
+      for (let a = 0; a < 16 && !free; a++){
+        const la = lat + 0.00135 * Math.cos(a * Math.PI / 8), lo = lon + 0.00135 * Math.sin(a * Math.PI / 8);
+        if (!g.nearestStops(la, lo, 80).length) free = { lat: la, lon: lo };
+      }
+      return { lat, lon, name: g.stops.name[i], district: g.stops.district[i], free };
+    });
+    await app.setView(stop.lat, stop.lon, 17);
+    const end = () => app.state(async () => {
+      const u = new URL(location.href).searchParams.get('desde');
+      return u && u.split(',').map(Number);
+    });
+
+    // ~8 m del paradero (unos pocos píxeles a zoom 17): se ajusta a él
+    await page.click('.trip-field[data-end="from"] .trip-pick');
+    let p = await app.screenPoint(stop.lat + 0.00007, stop.lon);
+    await page.mouse.click(p.x, p.y);
+    await expect(page.locator('#tripFrom')).toHaveValue(`${stop.name} · ${stop.district}`);
+    await expect.poll(end).toEqual([+stop.lat.toFixed(5), +stop.lon.toFixed(5)]);
+
+    // ~150 m, lejos de otros paraderos: queda donde se tocó
+    expect(stop.free).not.toBeNull();
+    await page.click('.trip-field[data-end="from"] .trip-pick');
+    p = await app.screenPoint(stop.free.lat, stop.free.lon);
+    await page.mouse.click(p.x, p.y);
+    await expect(page.locator('#tripFrom')).toHaveValue(/^(Cerca de|Punto en el mapa)/);
+  });
+
   test('muy cerca: sugiere caminar; borrar un extremo limpia el resultado', async ({ app, page }) => {
     // Dos puntos a ~150 m, elegidos en el mapa
     await app.setView(PUENTE_NUEVO.lat, PUENTE_NUEVO.lon, 16);
@@ -358,7 +393,8 @@ test.describe('pestaña Cómo llegar', () => {
       await page.click(`.trip-field[data-end="${end}"] .trip-pick`);
       const p = await app.screenPoint(PUENTE_NUEVO.lat + dLat, PUENTE_NUEVO.lon + dLon);
       await page.mouse.click(p.x, p.y);
-      await expect(page.locator(end === 'from' ? '#tripFrom' : '#tripTo')).toHaveValue(/^(Cerca de|Punto en el mapa)/);
+      // Libre ("Cerca de…") o, si cayó encima de un paradero, ese paradero
+      await expect(page.locator(end === 'from' ? '#tripFrom' : '#tripTo')).not.toHaveValue('');
     }
     await expect(page.locator('.trip-empty')).toContainText('te conviene caminar');
 

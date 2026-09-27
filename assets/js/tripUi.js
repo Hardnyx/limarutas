@@ -250,6 +250,25 @@ async function pointLabel(lat, lon){
   return near ? `Cerca de ${graph.stops.name[near[0]]}` : 'Punto en el mapa';
 }
 
+// Punto elegido en el mapa: libre (la casa, el trabajo), salvo que caiga casi
+// encima de un paradero (a SNAP_PX en pantalla y como mucho SNAP_MAX_M): ahí
+// se entiende que se quiso ese paradero y se ajusta a él, con su nombre.
+const SNAP_PX = 14;
+const SNAP_MAX_M = 60;
+async function pickedPoint(lat, lon){
+  await ensureGraph();
+  const map = state.map;
+  const p = map.latLngToContainerPoint([lat, lon]);
+  const mPerPx = map.distance(map.containerPointToLatLng(p), map.containerPointToLatLng([p.x + 1, p.y]));
+  const near = graph.nearestStops(lat, lon, Math.min(SNAP_MAX_M, SNAP_PX * mPerPx))[0];
+  if (near){
+    const i = near[0];
+    const { name, district } = graph.stops;
+    return { lat: graph.stops.lat[i], lon: graph.stops.lon[i], label: [name[i], district[i]].filter(Boolean).join(' · ') };
+  }
+  return { lat, lon, label: await pointLabel(lat, lon) };
+}
+
 function wireMapPicking(){
   const box = state.map.getContainer();
   let down = null;
@@ -264,7 +283,7 @@ function wireMapPicking(){
     stopPicking();
     const ll = state.map.mouseEventToLatLng(e);
     setStatus('');
-    setEnd(end, { lat: ll.lat, lon: ll.lng, label: await pointLabel(ll.lat, ll.lng) });
+    setEnd(end, await pickedPoint(ll.lat, ll.lng));
   }, true);
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && picking){ stopPicking(); setStatus(''); }
@@ -282,7 +301,8 @@ function addPin(end){
   const m = L.marker([p.lat, p.lon], { icon, draggable: true, pane: MARK_PANE, keyboard: false, title: end === 'from' ? 'Origen' : 'Destino' }).addTo(state.map);
   m.on('dragend', async () => {
     const ll = m.getLatLng();
-    ends[end] = { lat: ll.lat, lon: ll.lng, label: await pointLabel(ll.lat, ll.lng) };
+    ends[end] = await pickedPoint(ll.lat, ll.lng);
+    m.setLatLng([ends[end].lat, ends[end].lon]);
     syncInputs();
     void replan();
   });
