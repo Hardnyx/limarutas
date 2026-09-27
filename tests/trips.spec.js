@@ -132,3 +132,14 @@ test('paraderos cercanos a un punto, del más cercano al más lejano', async ({ 
   expect(r.self).toBe(false);
   expect(r.routesHere).toBeGreaterThan(20);
 });
+
+test('los typos de config/stop_name_fixes.json no llegan al mapa ni al buscador', async ({ app, page }) => {
+  const r = await page.evaluate(async () => {
+    const fixes = (await (await fetch('/config/stop_name_fixes.json')).json()).fixes;
+    const graph = await (await fetch('/pipeline/output/trip_graph.json')).json();
+    const index = await (await fetch('/pipeline/output/wr_stops_index.json')).json();
+    const names = [...graph.stops.map(s => s[2]), ...index.stops.map(s => s[0])];
+    return fixes.map(f => names.filter(n => new RegExp(`\\b${f.from}\\b`, 'i').test(n)).length);
+  });
+  expect(r.every(n => n === 0)).toBe(true);
+});

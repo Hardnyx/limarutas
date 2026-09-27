@@ -19,6 +19,15 @@ Regenerar después de cambiar los datos de Wikiroutes, Metropolitano o Metro:
 python pipeline/scripts/trips/build_trip_graph.py
 ```
 
+**Nombres mal escritos** (typos de Wikiroutes, como "Canaval y Moreira"): se
+corrigen en `config/stop_name_fixes.json` (palabra completa, sin distinguir
+mayúsculas). Después de agregar una corrección:
+
+```bash
+python pipeline/scripts/wikiroutes/wr_build_stops_index.py --write-stops   # buscador y stops_trip<N>.geojson
+python pipeline/scripts/trips/build_trip_graph.py
+```
+
 Cambiar `config/catalog.json` **no** requiere regenerarlo: qué rutas entran y
 de qué grupo son se decide en el navegador.
 

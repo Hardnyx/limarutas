@@ -48,9 +48,10 @@ test.describe('nueva interfaz', () => {
     const filter = page.locator('#p-wr-body .list-filter');
     await filter.fill('vipusa');
     const shown = page.locator('#p-wr .item:not(.is-text-filtered)');
+    // El filtro se aplica tras una breve espera
+    await expect.poll(() => shown.count()).toBeLessThan(10);
     await expect(shown.filter({ hasText: '1240' })).toHaveCount(1);
     const n = await shown.count();
-    expect(n).toBeLessThan(10);
     // 1255 queda oculta pero sigue marcada y dibujada
     await expect(app.leaf('wr', '1255')).toBeChecked();
 
