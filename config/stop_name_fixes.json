@@ -1,0 +1,6 @@
+{
+  "_comment": "Correcciones de nombres de paraderos que vienen mal escritos de Wikiroutes. Cada 'from' se reemplaza por 'to' como palabra completa (sin distinguir mayúsculas). Se aplican en wr_build_stops_index.py (índice de búsqueda y stops_trip<N>.geojson) y en build_trip_graph.py.",
+  "fixes": [
+    { "from": "Moreira", "to": "Moreyra" }
+  ]
+}

@@ -12,6 +12,9 @@ recorrido, pero empiezan con 1 a 9 marcadores que no son paraderos. Se
 emparejan los últimos len(nombres) puntos con la lista; si hay menos puntos
 que nombres, ese sentido queda sin ubicación.
 
+Los nombres pasan por name_fixes.py (config/stop_name_fixes.json), que corrige
+typos de Wikiroutes ("Moreira" → "Moreyra").
+
 Paraderos con el mismo nombre a menos de MERGE_M metros se juntan en uno
 (por ejemplo, los dos lados de la pista); si están más lejos, son lugares
 distintos (hay "Santa Rosa" en varios distritos).
@@ -48,6 +51,7 @@ from html import unescape
 from pathlib import Path
 
 from distritos import Distritos
+from name_fixes import fix_stop_name
 
 ROOT = Path(__file__).resolve().parents[3]
 DATA_DIR = ROOT / 'data' / 'processed' / 'transporte'
@@ -89,7 +93,7 @@ def parse_blocks(html: str) -> list[list[tuple[str, str]]]:
     """[(id_paradero, nombre), ...] por sentido, en orden."""
     blocks = []
     for chunk in html.split(BLOCK_SPLIT)[1:]:
-        items = [(sid, ' '.join(unescape(name).split())) for sid, name in ITEM_RE.findall(chunk)]
+        items = [(sid, fix_stop_name(' '.join(unescape(name).split()))) for sid, name in ITEM_RE.findall(chunk)]
         if items:
             blocks.append(items)
     return blocks
@@ -241,7 +245,7 @@ def main():
     print(f'Escrito: {OUT_PATH.relative_to(ROOT)} ({OUT_PATH.stat().st_size / 1024:.0f} KB)')
     print()
     print('Paraderos con más rutas:')
-    for name, lat, lon, rs in places[:15]:
+    for name, lat, lon, rs, *_ in places[:15]:
         print(f'  {len(rs):>4}  {name}')
 
 

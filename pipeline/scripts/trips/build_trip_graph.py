@@ -52,6 +52,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT / 'pipeline' / 'scripts' / 'wikiroutes'))
 from distritos import Distritos  # noqa: E402
+from name_fixes import fix_stop_name  # noqa: E402
 
 WR_MAP = ROOT / 'pipeline' / 'output' / 'wr_map.json'
 MET = ROOT / 'data' / 'processed' / 'metropolitano'
@@ -75,7 +76,7 @@ class Stops:
             self.coords.append((lat, lon))
             self.names.append(Counter())
         if name:
-            self.names[i][name.strip()] += 1
+            self.names[i][fix_stop_name(name.strip())] += 1
         return i
 
 
