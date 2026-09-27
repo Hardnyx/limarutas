@@ -6,6 +6,7 @@ import { $, el } from './utils.js';
 import { loadTripGraph } from './tripData.js';
 import { planTrip, oldWouldHelp } from './tripPlanner.js';
 import { fitTo } from './mapFit.js';
+import { getMetMacroId } from './mapLayers.js';
 import { paintTag, TRIP_END_EVENT } from './routeInspector.js';
 import { setSheet } from './mobileSheet.js';
 
@@ -201,7 +202,7 @@ function stopPicking(){
 async function pointLabel(lat, lon){
   await ensureGraph();
   const near = graph.nearestStops(lat, lon, 400)[0];
-  return near ? `Punto en el mapa · cerca de ${graph.stops.name[near[0]]}` : 'Punto en el mapa';
+  return near ? `Cerca de ${graph.stops.name[near[0]]}` : 'Punto en el mapa';
 }
 
 function wireMapPicking(){
@@ -281,9 +282,17 @@ function routeName(route){
   }
   if (route.group === 'metropolitano') return `Metropolitano · ${name || route.code}`;
   if (route.group === 'metro') return `Metro de Lima · ${name.replace(/^Línea\s+L/i, 'Línea ') || route.code}`;
-  if (name && name !== route.code) return name;
+  if (name && name !== route.code) return titleCase(name);
   const m = item?.__wrMeta;
-  return [m?.empresa_operadora, m?.alias].filter(Boolean).join(' · ');
+  return titleCase([m?.empresa_operadora, m?.alias].filter(Boolean).join(' · '));
+}
+
+// "HOLDING REAL EXPRESS" → "Holding Real Express" (siglas cortas y "La 6" quedan igual)
+const SMALL = new Set(['de', 'del', 'la', 'las', 'los', 'y', 'e', 'en']);
+function titleCase(s){
+  if (!s || s !== s.toUpperCase() || !/[A-ZÁÉÍÓÚÑ]{4}/.test(s)) return s;
+  return s.toLowerCase().replace(/[a-záéíóúñü]+/g, (w, i) =>
+    (i > 0 && SMALL.has(w)) ? w : w.charAt(0).toUpperCase() + w.slice(1));
 }
 
 function chip(route){
@@ -354,7 +363,8 @@ function card(opt, k){
   const head = el('div', { class: 'trip-card-head' }, legs,
     el('div', { class: 'trip-time' }, `~${opt.minutes}`, el('small', {}, ' min')));
   const body = el('div', { class: 'trip-card', role: 'button', tabindex: '0', 'aria-expanded': String(isOpen) },
-    head, el('div', { class: 'trip-meta' }, `${where} · ${fmtM(opt.walkM)} a pie`));
+    head, el('div', { class: 'trip-meta' }, `${where} · `,
+      el('span', { class: opt.walkM > 1000 ? 'trip-walk-long' : '' }, `${fmtM(opt.walkM)} a pie`)));
   if (opt.old) body.append(el('div', { class: 'trip-warn' }, 'Usa una ruta antigua: podría no circular'));
   if (isOpen){
     body.classList.add('selected');
@@ -433,8 +443,27 @@ function nearestIdx(line, p, from = 0){
 // Tramo del trazo entre el paradero de subida y el de bajada; si el trazo no
 // está cargado o no calza (~150 m), línea entre paraderos
 const loadedTracks = new Map();
+
+// Metropolitano: el tramo por la macroruta (A o B, en el sentido del viaje)
+// entre la estación de subida y la de bajada, como en el mapa de Rutas
+function metCoords(r, stops){
+  const m = r.key.match(/^met:(.+):(ns|sn)$/);
+  const svc = m && state.systems.met.services?.find(x => String(x.id) === m[1]);
+  const def = svc && state.systems.met.macros?.[getMetMacroId(svc)];
+  const segs = def && def[m[2] === 'ns' ? 'north_south' : 'south_north'];
+  if (!segs?.length) return stops;
+  const line = segs.flat();
+  const TOL = (300 / 111_000) ** 2;
+  const [i, di] = nearestIdx(line, stops[0]);
+  const [j, dj] = nearestIdx(line, stops[stops.length - 1]);
+  if (i < 0 || j < 0 || di > TOL || dj > TOL || i === j) return stops;
+  const part = i < j ? line.slice(i, j + 1) : line.slice(j, i + 1).reverse();
+  return [stops[0], ...part, stops[stops.length - 1]];
+}
+
 function rideCoords(r, leg, pt){
   const stops = Array.from(r.stops.slice(leg.from, leg.to + 1), pt);
+  if (r.group === 'metropolitano') return metCoords(r, stops);
   const line = loadedTracks.get(r.key);
   if (!line) return stops;
   const TOL = (150 / 111_000) ** 2;
@@ -482,8 +511,16 @@ function draw({ fit = true } = {}){
     const color = colorOf(r);
     tripLayer.addLayer(L.polyline(coords, { pane: LINE_PANE, color: '#fff', weight: 10, opacity: 0.9, interactive: false }));
     tripLayer.addLayer(L.polyline(coords, { pane: LINE_PANE, color, weight: 6, interactive: false }));
-    [coords[0], coords[coords.length - 1]].forEach(c => tripLayer.addLayer(
-      L.circleMarker(c, { pane: MARK_PANE, radius: 6, color, weight: 3, fillColor: '#fff', fillOpacity: 1, interactive: false })));
+    // Cada paradero del tramo, con su nombre; los de subida y bajada más grandes
+    for (let k = leg.from; k <= leg.to; k++){
+      const end = k === leg.from || k === leg.to;
+      const stop = r.stops[k];
+      tripLayer.addLayer(L.circleMarker(pt(stop), {
+        pane: MARK_PANE, radius: end ? 6 : 3.5, color, weight: end ? 3 : 2,
+        fillColor: '#fff', fillOpacity: 1, bubblingMouseEvents: false
+      }).bindTooltip(end ? `${k === leg.from ? 'Sube' : 'Baja'} en ${stopName(stop)}` : stopName(stop),
+        { className: 'stop-tip', direction: 'top', offset: [0, -6] }));
+    }
     all.push(...coords);
     prev = coords[coords.length - 1];
   });

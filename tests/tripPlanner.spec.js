@@ -17,7 +17,7 @@ const VES_MEGA = { lat: -12.2090, lon: -76.9410 };      // Mega Plaza Villa El S
 function plan(page, from, to, opts = {}){
   return page.evaluate(async ([a, b, o]) => {
     const { loadTripGraph } = await import('/assets/js/tripData.js');
-    const { planTrip, ACCESS_MAX_M } = await import('/assets/js/tripPlanner.js');
+    const { planTrip, ACCESS_MAX_M, DIRECT_ACCESS_MAX_M } = await import('/assets/js/tripPlanner.js');
     const g = await loadTripGraph();
     const t = performance.now();
     const res = planTrip(g, a, b, o);
@@ -49,8 +49,9 @@ function plan(page, from, to, opts = {}){
           services: rides.map(l => `${l.route.leaf.dataset.system}:${l.route.leaf.dataset.id}`),
           forward: rides.every(l => l.to > l.from),
           groups: rides.map(l => l.route.group),
-          startNear: d(first.route.stops[first.from], a) <= ACCESS_MAX_M + 1,
-          endNear: d(lastR.route.stops[lastR.to], b) <= ACCESS_MAX_M + 1
+          // Rutas únicas: hasta 1,3 km en un extremo; con transbordo, 800 m
+          startNear: d(first.route.stops[first.from], a) <= (opt.transfers ? ACCESS_MAX_M : DIRECT_ACCESS_MAX_M) + 1,
+          endNear: d(lastR.route.stops[lastR.to], b) <= (opt.transfers ? ACCESS_MAX_M : DIRECT_ACCESS_MAX_M) + 1
         };
       })
     };
@@ -109,8 +110,11 @@ test('una ruta única con poca caminata va antes que un transbordo (Canaval y Mo
   const r = await plan(page, { lat: -12.09805, lon: -77.02017 }, { lat: -12.2177, lon: -76.9273 });
   expect(r.options[0].codes).toEqual(['1122']);
   expect(r.options[0].transfers).toBe(0);
-  // La otra ruta única (1297, más caminata) también aparece
-  expect(r.options.some(o => o.codes.length === 1 && o.codes[0] === '1297')).toBe(true);
+  // Las otras rutas únicas, con más caminata, también aparecen: la 1297 y la
+  // 1244 (La 73-1), que pasa a 1,25 km de B
+  for (const code of ['1297', '1244']){
+    expect(r.options.some(o => o.codes.length === 1 && o.codes[0] === code), code).toBe(true);
+  }
   // Los transbordos no empiezan todos con las mismas rutas
   const starts = r.options.filter(o => o.transfers).map(o => o.services[0]);
   for (const s of new Set(starts)) expect(starts.filter(x => x === s).length).toBeLessThanOrEqual(2);
@@ -183,7 +187,7 @@ test.describe('pestaña Cómo llegar', () => {
     await app.setView(PUENTE_NUEVO.lat, PUENTE_NUEVO.lon, 16);
     const p = await app.screenPoint(PUENTE_NUEVO.lat, PUENTE_NUEVO.lon);
     await page.mouse.click(p.x, p.y);
-    await expect(page.locator('#tripFrom')).toHaveValue(/^Punto en el mapa · cerca de /);
+    await expect(page.locator('#tripFrom')).toHaveValue(/^Cerca de /);
     await expect(page.locator('.route-inspector')).toBeHidden();
 
     await pickStop(page, '#tripTo', 'plaza san martin');
@@ -257,6 +261,29 @@ test.describe('pestaña Cómo llegar', () => {
     await expect(page.locator('.route-inspector')).toBeHidden();
   });
 
+  test('Metropolitano: el tramo va por la macroruta y muestra cada estación', async ({ app, page }) => {
+    // Canaval y Moreyra → Villa El Salvador: hay una opción en Metropolitano
+    const { lat, lon } = { lat: -12.0930, lon: -77.0230 };
+    await page.evaluate(async ([a, b]) => {
+      const m = await import('/assets/js/tripUi.js');
+      await m.setTripEnds({ ...a, label: 'A' }, { ...b, label: 'B' });
+    }, [{ lat, lon }, { lat: -12.2090, lon: -76.9410 }]);
+    const met = page.locator('.trip-card', { hasText: 'Metropolitano' }).first();
+    await expect(met).toBeVisible();
+    await met.click();
+    const r = await app.state(s => {
+      let lines = 0, maxPts = 0, dots = 0;
+      s.map.eachLayer(l => {
+        if (l.options?.pane === 'tripLinePane' && l.getLatLngs){ lines++; maxPts = Math.max(maxPts, l.getLatLngs().length); }
+        if (l.options?.pane === 'tripMarkPane' && l.getRadius) dots++;
+      });
+      return { lines, maxPts, dots };
+    });
+    // La macroruta tiene muchos más puntos que las estaciones del tramo
+    expect(r.maxPts).toBeGreaterThan(30);
+    expect(r.dots).toBeGreaterThan(6);
+  });
+
   test('muy cerca: sugiere caminar; borrar un extremo limpia el resultado', async ({ app, page }) => {
     // Dos puntos a ~150 m, elegidos en el mapa
     await app.setView(PUENTE_NUEVO.lat, PUENTE_NUEVO.lon, 16);
@@ -264,7 +291,7 @@ test.describe('pestaña Cómo llegar', () => {
       await page.click(`.trip-field[data-end="${end}"] .trip-pick`);
       const p = await app.screenPoint(PUENTE_NUEVO.lat + dLat, PUENTE_NUEVO.lon + dLon);
       await page.mouse.click(p.x, p.y);
-      await expect(page.locator(end === 'from' ? '#tripFrom' : '#tripTo')).toHaveValue(/^Punto en el mapa/);
+      await expect(page.locator(end === 'from' ? '#tripFrom' : '#tripTo')).toHaveValue(/^(Cerca de|Punto en el mapa)/);
     }
     await expect(page.locator('.trip-empty')).toContainText('te conviene caminar');
 

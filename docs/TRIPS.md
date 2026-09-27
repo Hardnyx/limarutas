@@ -63,8 +63,10 @@ bus de la principal no para en la auxiliar y puede haber un separador),
 
 ## Cálculo (`planTrip`)
 
-1. Paraderos a 800 m o menos de A y de B (`ACCESS_MAX_M`). Si A y B están a
-   600 m o menos, se sugiere caminar.
+1. Paraderos a 800 m o menos de A y de B (`ACCESS_MAX_M`); en rutas únicas,
+   hasta 1,3 km (`DIRECT_ACCESS_MAX_M`: hay quien prefiere caminar 15 min antes
+   que transbordar; su costo lo refleja). Si A y B están a 600 m o menos, se
+   sugiere caminar.
 2. **Directos**: desde cada paradero cerca de A, cada ruta que pasa por ahí
    se recorre hacia adelante hasta un paradero cerca de B.
 3. **Un transbordo**: se precalcula, para cada paradero, la mejor forma de
@@ -72,7 +74,8 @@ bus de la principal no para en la auxiliar y puede haber un separador),
    paradero de la primera ruta, se busca ese final en el mismo paradero o
    caminando hasta 400 m. Nunca entre la ida y la vuelta del mismo servicio.
 4. Se guarda la mejor opción por combinación de rutas. Un transbordo en el
-   que alguna de sus rutas ya va directo se descarta, salvo que ahorre 10 min.
+   que alguna de sus rutas ya va directo se descarta, salvo que ahorre 10 min,
+   y también uno con un tramo de 1 o 2 paraderos (mejor caminar).
 5. **Alternativas por tramo**: otras rutas que suben a 150 m o menos de donde
    sube la del tramo y bajan a 150 m o menos de donde baja, sin tardar más del
    40 % (+5 min). Se muestran como "1057 o 1099 o 1200": la que pase primero.
@@ -91,12 +94,15 @@ bus de la principal no para en la auxiliar y puede haber un separador),
    mejor aparecen.
 8. **Metro, Metropolitano y corredores** pesan más: su tiempo a bordo cuenta
    un 20 % menos y su espera es de 4 min (pasan seguido). Si hay una opción
-   con ellos que cueste hasta 1,8 veces la mejor, siempre aparece.
+   con ellos que cueste hasta 1,8 veces la mejor y haga al menos el 40 % del
+   viaje en ellos, siempre aparece (le hace lugar el transbordo más caro,
+   nunca una ruta única).
 
 Minutos estimados: caminata 75 m/min con 30 % de rodeo, bus 250 m/min
 (~15 km/h), Metro y Metropolitano 500 m/min, 3 min por transbordo (bajar
-y cruzar). El tramo se dibuja por el trazo de Wikiroutes (Metro y
-Metropolitano, entre estaciones). Sin
+y cruzar). El tramo se dibuja por el trazo de Wikiroutes; el Metropolitano, por su
+macroruta (A o B, en el sentido del viaje), como en la pestaña Rutas; el Metro,
+entre estaciones. Se marca cada paradero del tramo, con su nombre. Sin
 horarios ni frecuencias: son aproximados y no incluyen la espera.
 
 Pendiente: viajes con 2 transbordos, búsqueda de direcciones

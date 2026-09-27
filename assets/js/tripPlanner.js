@@ -8,6 +8,9 @@ import { distM } from './tripData.js';
 
 // Hasta cuánto se camina al inicio y al final del viaje
 export const ACCESS_MAX_M = 800;
+// En una ruta única se acepta caminar más en un extremo (hay quien prefiere
+// caminar 15 min antes que transbordar); su costo lo refleja
+export const DIRECT_ACCESS_MAX_M = 1300;
 // Más cerca que esto, conviene caminar
 export const WALK_ONLY_M = 600;
 
@@ -28,13 +31,15 @@ const MAX_ALTS = 8;
 const DIRECT_MAX_RATIO = 1.5;
 const TRANSFER_WALK_EXTRA = 1;  // la caminata del transbordo (cruzar la avenida) pesa triple
 const EASY_DIRECT_WALK_M = 800; // directo "cómodo": hasta esto a pie en total…
+const MIN_LEG_STOPS = 3;        // con transbordo, cada tramo recorre al menos esto
 const MAX_SAME_START = 2;       // opciones con transbordo que empiezan con las mismas rutas
 const TRANSFER_MUST_SAVE_MIN = 20; // …va antes que un transbordo que no ahorre al menos esto
 // Metro, Metropolitano y corredores: más frecuentes y previsibles; se prefieren
 const MASS_GROUPS = new Set(['metro', 'metropolitano', 'corredor']);
 const MASS_RIDE_FACTOR = 0.8;   // su tiempo a bordo "cuesta" menos
 const MASS_WAIT_MIN = 4;        // pasan seguido
-const MASS_MAX_RATIO = 1.8;     // una opción con ellos se muestra si cuesta hasta 1,8 veces la mejor   // un directo se muestra si "cuesta" hasta 1,5 veces la mejor
+const MASS_MAX_RATIO = 1.8;
+const MASS_MIN_SHARE = 0.4;     // …y que al menos el 40 % del tiempo a bordo sea en ellos     // una opción con ellos se muestra si cuesta hasta 1,8 veces la mejor   // un directo se muestra si "cuesta" hasta 1,5 veces la mejor
 const DOMINATED_SAVING_MIN = 10; // un transbordo con una ruta que ya va directo debe ahorrar esto
 
 const walkMin = m => (m * DETOUR) / WALK_M_PER_MIN;
@@ -96,9 +101,11 @@ export function planTrip(g, from, to, { includeOld = false } = {}){
   const active = new Set(g.activeRoutes({ includeOld }));
   const isActive = i => active.has(g.routes[i]);
 
-  const origins = g.nearestStops(from.lat, from.lon, ACCESS_MAX_M);
-  const dests = new Map(g.nearestStops(to.lat, to.lon, ACCESS_MAX_M));
-  if (!origins.length || !dests.size) return out;
+  const origins = g.nearestStops(from.lat, from.lon, DIRECT_ACCESS_MAX_M);
+  const destsAll = new Map(g.nearestStops(to.lat, to.lon, DIRECT_ACCESS_MAX_M));
+  // Para transbordos, solo los paraderos a la distancia de siempre
+  const dests = new Map([...destsAll].filter(([, m]) => m <= ACCESS_MAX_M));
+  if (!origins.length || !destsAll.size) return out;
 
   // Mejor forma de terminar desde cada paradero: subir a una ruta ahí y
   // bajar cerca del destino. toDest: paradero → Map(índice de ruta → { from, to, min, walkB })
@@ -138,7 +145,7 @@ export function planTrip(g, from, to, { includeOld = false } = {}){
         const x = r1.stops[k];
 
         // Directo: bajar cerca del destino
-        const walkB = dests.get(x);
+        const walkB = destsAll.get(x);
         if (walkB != null){
           keep(`${rIdx}`, {
             transfers: 0, minutes: head + ride1 + walkMin(walkB), walkM: walkA + walkB,
@@ -147,6 +154,8 @@ export function planTrip(g, from, to, { includeOld = false } = {}){
         }
 
         // Un transbordo: en el mismo paradero o caminando a uno cercano
+        // (solo si al inicio se camina lo de siempre)
+        if (walkA > ACCESS_MAX_M) continue;
         const hops = [[x, 0], ...g.walkFrom(x)];
         for (const [y, walkT] of hops){
           const ends = toDest.get(y);
@@ -171,14 +180,17 @@ export function planTrip(g, from, to, { includeOld = false } = {}){
   const cands = Array.from(best.values(), c => {
     const legs = legsOf(g, c);
     // Descuento por los tramos en Metro, Metropolitano o corredor
-    let massSaving = 0;
+    let massSaving = 0, massMin = 0, rideMin = 0;
     for (const l of legs){
-      if (l.type !== 'ride' || !isMass(l.route)) continue;
+      if (l.type !== 'ride') continue;
       let m = 0;
       for (let k = l.from; k < l.to; k++) m += legMin(g, l.route, k);
+      rideMin += m;
+      if (!isMass(l.route)) continue;
+      massMin += m;
       massSaving += m * (1 - MASS_RIDE_FACTOR);
     }
-    return { ...c, legs, mass: massSaving > 0,
+    return { ...c, legs, mass: massSaving > 0, massShare: rideMin ? massMin / rideMin : 0,
       base: c.minutes - massSaving + walkMin(c.walkM) * (WALK_WEIGHT - 1)
         + walkMin(c.walkT || 0) * TRANSFER_WALK_EXTRA + c.transfers * TRANSFER_PENALTY };
   });
@@ -195,6 +207,8 @@ export function planTrip(g, from, to, { includeOld = false } = {}){
   }
   const useful = cands.filter(c => {
     if (!c.transfers) return true;
+    // Un tramo de 1 o 2 paraderos no compensa el transbordo: mejor caminar
+    if (c.legs.some(l => l.type === 'ride' && l.to - l.from < MIN_LEG_STOPS)) return false;
     return [g.routes[c.r1], g.routes[c.r2]].every(r => {
       const d = directBase.get(svc(r));
       return d == null || c.base < d - DOMINATED_SAVING_MIN;
@@ -262,10 +276,13 @@ export function planTrip(g, from, to, { includeOld = false } = {}){
   }
   // Si se puede ir en Metro, Metropolitano o corredor, siempre aparece una opción así
   if (picked.length && !picked.some(c => c.mass)){
-    const m = top.find(c => c.mass && c.cost <= picked[0].cost * MASS_MAX_RATIO && !picked.some(o => covers(o, c))
+    // …y que haga buena parte del viaje en ellos (no 2 estaciones y luego un bus)
+    const m = top.find(c => c.mass && c.massShare >= MASS_MIN_SHARE && c.cost <= picked[0].cost * MASS_MAX_RATIO && !picked.some(o => covers(o, c))
       && !(c.transfers && picked.filter(o => o.transfers && sameStart(o, c)).length >= MAX_SAME_START));
-    if (m){
-      if (picked.length >= MAX_OPTIONS) picked.pop();
+    // Le hace lugar el transbordo más caro (nunca una ruta única)
+    const drop = picked.map((o, i) => [o, i]).filter(([o]) => o.transfers).sort((a, b) => b[0].cost - a[0].cost)[0];
+    if (m && (picked.length < MAX_OPTIONS || drop)){
+      if (picked.length >= MAX_OPTIONS) picked.splice(drop[1], 1);
       picked.push(m);
       picked.sort((a, b) => tier(a) - tier(b) || a.cost - b.cost);
     }

@@ -1690,3 +1690,8 @@ html:not(.trip-mode) .leaflet-tripMark-pane {
   gap: 6px;
   margin-top: 6px;
 }
+
+/* Caminata larga (más de 1 km) en una opción */
+.trip-walk-long {
+  color: #fbbf24;
+}
