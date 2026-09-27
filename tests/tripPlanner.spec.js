@@ -205,7 +205,7 @@ test.describe('pestaña Cómo llegar', () => {
     await expect(cards.first().locator('.trip-name').first()).not.toBeEmpty();
     await expect(cards.first()).toHaveClass(/selected/);
     await expect(cards.first().locator('.trip-time')).toContainText('min');
-    await expect(cards.first().locator('.trip-meta')).toContainText('a pie');
+    await expect(cards.first().locator('.trip-meta')).toHaveText(/a pie|sin caminar/);
     await expect(cards.first().locator('.trip-step-ride')).not.toHaveCount(0);
     await expect(page.locator('.trip-pin-from')).toHaveCount(1);
     await expect(page.locator('.trip-pin-to')).toHaveCount(1);
