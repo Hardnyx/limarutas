@@ -224,10 +224,18 @@ function updateCounts(){
     $('#onMapCount').textContent = String(n);
   }
 
-  SECTIONS.forEach(({ sel }) => {
-    const section = sectionOf(sel);
-    const count = section && section.querySelector(':scope > .panel-head .panel-count');
-    if (!count) return;
+  // Secciones y subgrupos (Corredor Amarillo › Principales…): cuántas rutas
+  // tienen y cuántas están en el mapa
+  const sections = [...SECTIONS.map(({ sel }) => sectionOf(sel)), ...$$('#panels section.panel.nested')];
+  sections.forEach(section => {
+    if (!section || section.id === 'p-recent') return;
+    const head = section.querySelector(':scope > .panel-head');
+    if (!head) return;
+    let count = head.querySelector(':scope > .panel-count');
+    if (!count){
+      count = el('span', { class: 'panel-count' });
+      head.insertBefore(count, head.querySelector(':scope > input'));
+    }
     const leaves = section.querySelectorAll(LEAF_SEL);
     const on = Array.from(leaves).filter(c => c.checked).length;
     count.textContent = on ? `${on}/${leaves.length}` : String(leaves.length);

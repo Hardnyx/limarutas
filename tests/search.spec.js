@@ -26,8 +26,8 @@ test('las rutas semiformales se marcan en su propio panel', async ({ app, page }
 test('no ofrece rutas que no están en ninguna lista', async ({ app, page }) => {
   await page.fill('#searchInput', '453');
   await page.waitForTimeout(600);
-  const labels = await page.locator('.suggest-item .s-label').allTextContents();
-  expect(labels.some(l => /^453\b/.test(l))).toBe(false);
+  const codes = await page.locator('.suggest-item .s-ico').allTextContents();
+  expect(codes.some(c => /^453$/.test(c.trim()))).toBe(false);
 });
 
 test('Limpiar búsqueda vacía el campo y las sugerencias', async ({ app, page }) => {
