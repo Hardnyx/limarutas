@@ -660,11 +660,13 @@ function rideCoords(r, leg, pt){
 async function drawWithTracks(){
   const opt = last?.options?.[selected];
   if (!opt) return;
-  const keys = opt.legs.filter(l => l.type === 'ride' && !/^(met|metro):/.test(l.route.key)).map(l => l.route.key);
+  // Metro, Metropolitano y Alimentadores tienen su propio trazado
+  const keys = opt.legs.filter(l => l.type === 'ride' && !/^(met|metro|alim):/.test(l.route.key)).map(l => l.route.key);
   const missing = keys.filter(k => !loadedTracks.has(k));
   if (!missing.length) return;
   const lines = await Promise.all(missing.map(loadTrack));
-  missing.forEach((k, i) => { if (lines[i]) loadedTracks.set(k, lines[i]); });
+  // También los que no tienen trazado (null): si no, se volvería a dibujar sin fin
+  missing.forEach((k, i) => loadedTracks.set(k, lines[i]));
   if (last?.options?.[selected] === opt) draw({ fit: false });
 }
 
