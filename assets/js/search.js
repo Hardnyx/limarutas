@@ -2,7 +2,7 @@
 import { state } from './config.js';
 import { $, el } from './utils.js';
 import { loadMaestroRows } from './wrData.js';
-import { wrIsPlaceholder } from './wrTexts.js';
+import { wrIsPlaceholder, wrBuildTituloPrincipal } from './wrTexts.js';
 import { entriesForFolders } from './routeEntries.js';
 import { showStopRoutes } from './routeInspector.js';
 import { MAP_PICK } from './mobileSheet.js';
@@ -248,11 +248,12 @@ async function buildSearchIndex(){
     const siglas        = (row && row.empresa_abrev) || extractSiglas(empresa);
     const empresaCorta  = siglas || empresa;
 
-    let label;
-    if (alias && empresaCorta)      label = `${alias} – ${empresaCorta} (${codigoNuevo})`;
-    else if (alias)                 label = `${alias} (${codigoNuevo})`;
-    else if (empresaCorta)          label = `${codigoNuevo} – ${empresaCorta}`;
-    else                            label = rt.name || `Ruta ${codigoNuevo}`;
+    // El mismo nombre que su fila en la lista ("Santa Catalina · La 23C");
+    // el código ya va en la etiqueta de color
+    const titulo = wrBuildTituloPrincipal({ alias, empresa_operadora: empresa }, rt);
+    const label = (titulo && titulo.toUpperCase() !== codigoNuevo.toUpperCase())
+      ? titulo
+      : (rt.name ? rt.name.replace(/^\s*[^\s·]+\s*·\s*/, '') : `Ruta ${codigoNuevo}`);
 
     const tokens = norm([
       codigoNuevo, codigoAntiguo, alias, empresa, empresaCorta,

@@ -14,7 +14,20 @@ import { wrIsDefaultColor } from './uiSidebar.wrColorFilter.js';
    Ítem WR: Ida / Vuelta
    ========================= */
 
+// Sin empresa ni alias el título repetía el código ("1507" / "1507"): el
+// recorrido pasa a ser el título
 function applyWrTextsToWrItem(item, direccion){
+  fillWrTexts(item, direccion);
+  const titleEl = item.querySelector('.wr-main-title');
+  const routeEl = item.querySelector('.wr-subtitle-route');
+  const code = item.querySelector('.item-head .tag')?.textContent?.trim().toUpperCase();
+  if (titleEl && routeEl && code && titleEl.textContent.trim().toUpperCase() === code && routeEl.textContent){
+    titleEl.textContent = routeEl.textContent;
+    routeEl.textContent = '';
+  }
+}
+
+function fillWrTexts(item, direccion){
   const rt   = item.__wrRoute || null;
   const meta = item.__wrMeta  || null;
 

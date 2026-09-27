@@ -212,7 +212,15 @@ export function wireRouteInspector(){
     entries = found;
 
     chips.innerHTML = '';
+    // Las rutas antiguas van al final, en su propio grupo
+    const isOld = e => e.leaf?.dataset.system === 'wrSemi';
+    entries = [...entries.filter(e => !isOld(e)), ...entries.filter(isOld)];
+    const nOld = entries.filter(isOld).length;
     for (const entry of entries){
+      if (isOld(entry) && nOld && !chips.querySelector('.ri-group') && nOld < entries.length){
+        chips.appendChild(el('div', { class: 'ri-group', role: 'presentation' },
+          `Rutas antiguas (${nOld}) · podrían ya no circular`));
+      }
       const chip = el('button', {
         type: 'button',
         class: 'tag ri-chip',

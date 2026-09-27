@@ -317,7 +317,7 @@ body {
   transition: transform 120ms ease;
 }
 
-.panel.open .chev {
+.panel.open > .panel-head .chev {
   transform: rotate(90deg);
 }
 
@@ -1771,4 +1771,12 @@ html:not(.trip-mode) .leaflet-tripMark-pane {
 /* Caminata larga (más de 1 km) en una opción */
 .trip-walk-long {
   color: #fbbf24;
+}
+
+/* Panel de rutas en un punto: separador de las rutas antiguas */
+.ri-chips .ri-group {
+  flex-basis: 100%;
+  margin: 6px 0 2px;
+  font-size: 11px;
+  color: var(--text-muted);
 }
