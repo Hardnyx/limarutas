@@ -347,8 +347,13 @@ test.describe('pestaña Cómo llegar', () => {
     await page.fill('#tripTime', '23:30');
     await page.locator('#tripTime').dispatchEvent('change');
     await expect(page.locator('.trip-card', { hasText: 'Metropolitano' })).toHaveCount(0);
-    await expect(page.locator('.trip-offhours')).toContainText('A esta hora no circula');
+    await expect(page.locator('.trip-offhours')).toContainText('En otro horario también te sirve');
     await expect(page.locator('.trip-offhours .trip-sub').first()).toHaveText(/\d:\d\d–\d/);
+    // Tocarlo busca con su próximo horario (el lunes temprano) y vuelve el Metropolitano
+    await page.locator('.trip-offhours-item').first().click();
+    await expect(page.locator('#tripDay')).toHaveValue('1');
+    await expect(page.locator('#tripTime')).toHaveValue(/^0[5-9]:\d\d$/);
+    await expect(page.locator('.trip-card', { hasText: 'Metropolitano' }).first()).toBeVisible();
   });
 
   test('elegir en el mapa: libre, salvo que el clic caiga encima de un paradero', async ({ app, page }) => {

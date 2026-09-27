@@ -64,3 +64,16 @@ export function directionsOf(svc){
     return Array.isArray(list) ? list.length > 1 : Array.isArray(svc.stops) && svc.stops.length > 1;
   });
 }
+
+// Próximo inicio de servicio desde when: { day, min } (hoy más tarde o los
+// próximos días); null si no tiene horario
+export function nextStart(windows, when){
+  if (!Array.isArray(windows) || !windows.length || !when) return null;
+  for (let k = 0; k < 8; k++){
+    const day = (when.day + k) % 7;
+    const starts = windows.filter(w => hasDay(w, day)).map(w => toMin(w.from))
+      .filter(m => k > 0 || m > when.min).sort((a, b) => a - b);
+    if (starts.length) return { day, min: starts[0] };
+  }
+  return null;
+}

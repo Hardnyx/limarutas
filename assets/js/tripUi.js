@@ -5,7 +5,7 @@ import { state } from './config.js';
 import { $, el } from './utils.js';
 import { loadTripGraph } from './tripData.js';
 import { planTrip, oldWouldHelp, offHoursHelp } from './tripPlanner.js';
-import { limaTime, scheduleText, DAY_NAMES } from './metSchedule.js';
+import { limaTime, scheduleText, nextStart, DAY_NAMES } from './metSchedule.js';
 import { fitTo } from './mapFit.js';
 import { getMetMacroId } from './mapLayers.js';
 import { paintTag, TRIP_END_EVENT } from './routeInspector.js';
@@ -409,17 +409,24 @@ function stepsOf(opt){
   return steps;
 }
 
-// Un tramo en una línea: la ruta principal con su nombre y, si otras hacen
-// lo mismo, "+N" (al pasar el mouse, cuáles)
+// Un tramo en una línea. Las rutas que hacen el mismo tramo son igual de
+// buenas (basta tomar la primera que pase): las primeras EQUAL_CHIPS van con
+// el mismo tamaño y sus nombres; si hay más, "+N" (al pasar el mouse, cuáles)
+const EQUAL_CHIPS = 2;
 function legRow(leg){
-  const alts = (leg.alts || []).map(a => a.route);
-  const row = el('div', { class: 'trip-leg-row' }, chip(leg.route),
-    el('span', { class: 'trip-name' }, routeName(leg.route)));
-  if (alts.length){
+  const all = [leg.route, ...(leg.alts || []).map(a => a.route)];
+  const shown = all.slice(0, EQUAL_CHIPS);
+  const rest = all.slice(EQUAL_CHIPS);
+  // Con varias, el nombre corto de cada una (la empresa, sin el alias)
+  const name = shown.length === 1 ? routeName(leg.route)
+    : shown.map(r => routeName(r).split(' · ')[0]).filter(Boolean).join(' / ');
+  const row = el('div', { class: 'trip-leg-row' }, ...shown.map(chip),
+    el('span', { class: 'trip-name', title: shown.map(r => `${r.code} ${routeName(r)}`).join('\n') }, name));
+  if (rest.length){
     row.append(el('span', {
       class: 'trip-plus',
-      title: 'También te sirven:\n' + alts.map(r => `${r.code} ${routeName(r)}`).join('\n')
-    }, `+${alts.length}`));
+      title: 'También te sirven:\n' + rest.map(r => `${r.code} ${routeName(r)}`).join('\n')
+    }, `+${rest.length}`));
   }
   return row;
 }
@@ -481,13 +488,31 @@ async function renderResults(){
   box.append(el('div', { class: 'muted trip-note' }, 'Tiempos estimados por distancia; no incluyen la espera del bus.'));
 }
 
-// Expresos que servirían pero no circulan a la hora de salida
+// Servicios que servirían pero no circulan a la hora de salida: tocarlos
+// cambia la Salida a su próximo horario y recalcula
 function offHoursNote(box){
-  const off = offHoursHelp(graph, ends.from, ends.to, { includeOld: $('#tripOld').checked, at: departure() });
+  const at = departure();
+  const off = offHoursHelp(graph, ends.from, ends.to, { includeOld: $('#tripOld').checked, at });
   if (!off.length) return;
-  const note = el('div', { class: 'trip-offhours' }, 'A esta hora no circula', off.length > 1 ? 'n' : '', ':');
-  off.forEach(r => note.append(el('div', {}, chip(r), ' ', el('span', { class: 'trip-sub' }, scheduleText(r.schedule)))));
+  const note = el('div', { class: 'trip-offhours' }, 'En otro horario también te sirve:');
+  off.forEach(r => {
+    const next = nextStart(r.schedule, at);
+    const b = el('button', { type: 'button', class: 'trip-offhours-item', title: 'Buscar con esa hora de salida' },
+      chip(r), ' ', el('span', { class: 'trip-name' }, routeName(r)),
+      el('span', { class: 'trip-sub' }, scheduleText(r.schedule)));
+    if (next) b.addEventListener('click', () => setDeparture(next));
+    note.append(b);
+  });
   box.append(note);
+}
+
+// Pone la Salida en { day, min } y recalcula
+function setDeparture({ day, min }){
+  $('#tripDay').value = String(day);
+  const time = $('#tripTime');
+  time.value = `${String(Math.floor(min / 60)).padStart(2, '0')}:${String(min % 60).padStart(2, '0')}`;
+  time.hidden = false;
+  void replan();
 }
 
 /* =========================

@@ -1584,10 +1584,26 @@ html .suggest.trip-suggest {
 .trip-offhours {
   display: grid;
   gap: 4px;
-  margin: 4px 0;
+  margin: 6px 0;
   font-size: 12px;
   color: var(--text-muted);
 }
+.trip-offhours-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 6px;
+  align-items: center;
+  text-align: left;
+  padding: 6px 8px;
+  border-radius: 10px;
+  border: 1px dashed rgba(148, 163, 184, 0.4);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+.trip-offhours-item:hover { border-color: var(--accent-strong); }
+.trip-offhours-item .trip-sub { grid-column: 2; }
 
 /* Recorrido y horario de cada servicio del Metropolitano */
 .item .sub.met-trip {
@@ -1699,6 +1715,8 @@ html:not(.trip-mode) .leaflet-tripMark-pane {
   gap: 6px;
   min-width: 0;
 }
+.trip-leg-row .trip-chip { flex: none; }
+.trip-leg-row .trip-chip + .trip-chip { margin-left: -2px; }
 
 .trip-leg-row + .trip-leg-row::before {
   content: "›";
