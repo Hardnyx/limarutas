@@ -175,21 +175,27 @@ function whenRow(){
   const time = el('input', { type: 'time', id: 'tripTime', value: `${hh}:${mm}`, 'aria-label': 'Hora de salida', hidden: '' });
   daySel.addEventListener('change', () => { time.hidden = daySel.value === 'now'; void replan(); });
   time.addEventListener('change', () => { void replan(); });
-  return el('div', { class: 'trip-row trip-when' },
-    el('label', { for: 'tripDay' }, 'Salida'), daySel, time);
+  return el('label', { class: 'trip-opt trip-when', title: 'Día y hora de salida' },
+    el('span', { class: 'trip-opt-ico', 'aria-hidden': 'true' }, '🕒'), daySel, time);
 }
 
 function buildForm(pane){
   pane.innerHTML = '';
   const oldChk = el('input', { type: 'checkbox', id: 'tripOld' });
-  pane.append(
+  // En el celular, con resultados, el formulario se resume en una línea que
+  // se toca para editar (así se ven más opciones)
+  const summary = el('button', { type: 'button', class: 'trip-summary', 'aria-label': 'Editar origen, destino y salida' },
+    el('span', { class: 'trip-summary-text' }), el('span', { class: 'trip-summary-edit' }, 'Editar'));
+  summary.addEventListener('click', () => setCompact(false));
+  pane.append(summary,
     el('div', { class: 'trip-form' },
       field('from', 'A', 'Origen: paradero o 📍 en el mapa'),
       field('to', 'B', 'Destino: paradero o 📍 en el mapa'),
-      whenRow(),
-      el('div', { class: 'trip-row' },
-        el('label', { class: 'trip-old' }, oldChk, 'Incluir rutas antiguas'),
-        el('button', { type: 'button', id: 'tripSwap', class: 'btn small btn-ghost', title: 'Intercambiar origen y destino' }, '⇅ Invertir'))),
+      // Opciones en una fila de chips: salida, invertir, rutas antiguas
+      el('div', { class: 'trip-opts' },
+        whenRow(),
+        el('button', { type: 'button', id: 'tripSwap', class: 'trip-opt trip-opt-icon', title: 'Invertir origen y destino', 'aria-label': 'Invertir origen y destino' }, '⇅'),
+        el('label', { class: 'trip-opt trip-old', title: 'Incluir rutas sin autorización de la ATU; podrían ya no circular' }, oldChk, 'Rutas antiguas'))),
     el('div', { id: 'tripStatus', class: 'muted trip-status', role: 'status' }),
     el('div', { id: 'tripResults', class: 'trip-results' }),
     // Se ve mientras no hay resultados (CSS: #tripResults:empty + .trip-help)
@@ -205,6 +211,18 @@ function buildForm(pane){
     syncInputs();
     void replan();
   });
+}
+
+function setCompact(on){
+  const pane = $('#tripPane');
+  if (!pane) return;
+  const compact = on && document.documentElement.classList.contains('sheet') && !!(ends.from && ends.to);
+  pane.classList.toggle('trip-compact', compact);
+  if (compact){
+    const day = $('#tripDay');
+    const when = day?.value === 'now' ? 'Ahora' : `${day?.selectedOptions[0]?.textContent} ${$('#tripTime').value}`;
+    $('.trip-summary-text').textContent = `${ends.from.label} → ${ends.to.label} · ${when}`;
+  }
 }
 
 function syncInputs(){
@@ -402,28 +420,11 @@ function stepsOf(opt){
       if (r.group === 'antigua'){
         text.append(' ', el('span', { class: 'trip-warn' }, r.verified ? 'Sin autorización ATU' : 'Ruta antigua · podría no circular'));
       }
-      steps.push(el('li', { class: 'trip-step trip-step-ride' },
+      steps.push(el('li', { class: 'trip-step trip-step-ride', style: `--c:${colorOf(r)}` },
         el('span', { class: 'trip-step-ico' }, r.group === 'metro' ? '🚇' : '🚌'), text));
     }
   });
   return steps;
-}
-
-// Un tramo en una línea: la ruta principal con su nombre completo y, si otras
-// hacen el mismo tramo (igual de buenas: basta tomar la primera que pase),
-// "o" y sus códigos (hasta ALT_CHIPS; el resto, "+N")
-const ALT_CHIPS = 1;
-function legRow(leg){
-  const alts = (leg.alts || []).map(a => a.route);
-  const row = el('div', { class: 'trip-leg-row' }, chip(leg.route),
-    el('span', { class: 'trip-name' }, routeName(leg.route)));
-  if (alts.length){
-    const or = el('span', { class: 'trip-or-alts', title: 'También te sirven:\n' + alts.map(r => `${r.code} ${routeName(r)}`).join('\n') }, 'o');
-    alts.slice(0, ALT_CHIPS).forEach(r => { const c = chip(r); c.classList.add('trip-chip-sm'); or.append(c); });
-    if (alts.length > ALT_CHIPS) or.append(el('span', { class: 'trip-plus' }, `+${alts.length - ALT_CHIPS}`));
-    row.append(or);
-  }
-  return row;
 }
 
 // Por qué va cada opción donde va: la primera es la recomendada; se marcan
@@ -440,13 +441,57 @@ function badgesOf(options){
 }
 
 let badges = null;
+// "45 min", "2 h 16 min"
+function fmtDur(min){
+  const m = Math.round(min);
+  return m < 60 ? `${m} min` : `${Math.floor(m / 60)} h${m % 60 ? ` ${m % 60} min` : ''}`;
+}
+
+// Hora de llegada estimada ("12:46") según la Salida
+function arrivalText(min){
+  const at = departure();
+  const t = (at.min + Math.round(min)) % (24 * 60);
+  return `${Math.floor(t / 60)}:${String(t % 60).padStart(2, '0')}`;
+}
+
+// Tira del viaje, como en las apps de transporte: 🚶 7 › [1115] o [1116] › 🚶 3
+function stripOf(opt){
+  const strip = el('div', { class: 'trip-strip' });
+  const parts = [];
+  const multi = opt.legs.filter(l => l.type === 'ride').length > 1;
+  opt.legs.forEach(leg => {
+    if (leg.type === 'walk'){
+      if (leg.m < 15) return;
+      parts.push(el('span', { class: 'trip-seg-walk', title: `Caminar ${fmtM(leg.m)}` },
+        el('span', { class: 'trip-walk-ico', 'aria-hidden': 'true' }, '🚶'), String(walkMinOf(leg.m))));
+    } else {
+      const seg = el('span', { class: 'trip-seg-ride' }, chip(leg.route));
+      const alts = (leg.alts || []).map(a => a.route);
+      // Con transbordo, las equivalentes solo como "+N" (la tira no entraría en una línea)
+      if (alts.length && multi){
+        seg.append(el('span', { class: 'trip-plus', title: 'También te sirven:\n' + alts.map(r => `${r.code} ${routeName(r)}`).join('\n') }, `+${alts.length}`));
+      } else if (alts.length){
+        const c = chip(alts[0]); c.classList.add('trip-chip-sm');
+        const or = el('span', { class: 'trip-or-alts', title: 'También te sirven:\n' + alts.map(r => `${r.code} ${routeName(r)}`).join('\n') }, 'o', c);
+        if (alts.length > 1) or.append(el('span', { class: 'trip-plus' }, `+${alts.length - 1}`));
+        seg.append(or);
+      }
+      parts.push(seg);
+    }
+  });
+  parts.forEach((p, i) => { if (i) strip.append(el('span', { class: 'trip-sep', 'aria-hidden': 'true' }, '›')); strip.append(p); });
+  return strip;
+}
+
 function card(opt, k){
   const rides = opt.legs.filter(l => l.type === 'ride');
   const isOpen = k === selected;
-  const legs = el('div', { class: 'trip-legs' }, ...rides.map(legRow));
-  const where = opt.transfers ? `1 transbordo en ${stopName(rides[1].route.stops[rides[1].from])}` : 'Directo';
-  const head = el('div', { class: 'trip-card-head' }, legs,
-    el('div', { class: 'trip-time' }, `~${opt.minutes}`, el('small', {}, ' min')));
+  const where = opt.transfers ? `1 transbordo en ${stopName(rides[1].route.stops[rides[1].from])}` : 'Sin transbordo';
+  const names = rides.map(l => routeName(l.route)).filter(Boolean).join(', luego ');
+  const head = el('div', { class: 'trip-card-head' },
+    el('div', { class: 'trip-legs' }, stripOf(opt), el('div', { class: 'trip-name' }, names)),
+    el('div', { class: 'trip-time' }, fmtDur(opt.minutes),
+      el('small', { class: 'trip-arrive' }, `llegas ~${arrivalText(opt.minutes)}`)));
   const badge = badges?.get(opt);
   const body = el('div', { class: 'trip-card', role: 'button', tabindex: '0', 'aria-expanded': String(isOpen) },
     head, el('div', { class: 'trip-meta' }, badge ? el('span', { class: 'trip-badge' }, badge) : '', `${where} · `,
@@ -494,6 +539,7 @@ async function renderResults(){
     return;
   }
   badges = badgesOf(last.options);
+  setCompact(true);
   last.options.forEach((opt, k) => box.append(card(opt, k)));
   offHoursNote(box);
   box.append(el('div', { class: 'muted trip-note' }, 'Tiempos estimados por distancia; no incluyen la espera del bus.'));
@@ -638,8 +684,9 @@ function draw({ fit = true } = {}){
       const end = k === leg.from || k === leg.to;
       const stop = r.stops[k];
       tripLayer.addLayer(L.circleMarker(pt(stop), {
-        pane: MARK_PANE, radius: end ? 6 : 3.5, color, weight: end ? 3 : 2,
-        fillColor: '#fff', fillOpacity: 1, bubblingMouseEvents: false
+        // Subida y bajada bien marcadas; las intermedias, discretas (del color de la ruta)
+        pane: MARK_PANE, radius: end ? 6.5 : 2.5, color: end ? color : '#fff', weight: end ? 3.5 : 1,
+        fillColor: end ? '#fff' : color, fillOpacity: 1, bubblingMouseEvents: false
       }).bindTooltip(end ? `${k === leg.from ? 'Sube' : 'Baja'} en ${stopName(stop)}` : stopName(stop),
         { className: 'stop-tip', direction: 'top', offset: [0, -6] }));
     }

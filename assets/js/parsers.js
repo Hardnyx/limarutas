@@ -733,13 +733,14 @@ export async function buildWikiroutesLayer(id, folderPath, opts = {}) {
   }
 
   if (pts && pts.type === 'FeatureCollection') {
+    // Como en los mapas de transporte: punto blanco con borde del color de la ruta
     const stopStyle = {
-      radius: 4,
-      fillColor: color,
-      color: '#000',
-      weight: 1,
+      radius: 3.5,
+      fillColor: '#fff',
+      color,
+      weight: 2,
       opacity: 1,
-      fillOpacity: 0.9
+      fillOpacity: 1
     };
 
     const stopLyr = L.geoJSON(pts, {
