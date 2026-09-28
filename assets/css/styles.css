@@ -947,9 +947,11 @@ body {
   box-shadow: none;
 }
 
-.btn.ui-dialog-btn.primary {
+.btn.ui-dialog-btn.primary,
+.btn.ui-dialog-btn.primary:hover {
   background: var(--accent-strong);
   border-color: var(--accent);
+  color: var(--on-accent);
   font-weight: 600;
 }
 
