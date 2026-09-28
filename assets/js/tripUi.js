@@ -421,6 +421,12 @@ function stepsOf(opt){
       if (r.schedule){
         text.append(el('div', { class: 'trip-hours' }, `Horario: ${scheduleText(r.schedule)}`));
       }
+      // Intervalo de la ficha técnica del PRR (sin horario: todo el día)
+      if (r.headway){
+        const wait = Math.max(1, Math.round(leg.wait || r.headway / 2));
+        text.append(el('div', { class: 'trip-hours' },
+          `Pasa cada ~${r.headway} min según la ATU · espera ~${wait} min${alts.length ? ' con cualquiera' : ''}`));
+      }
       if (alts.length){
         const also = el('div', { class: 'trip-also' }, 'O la que pase primero: ');
         alts.forEach((a, i) => { if (i) also.append(' '); also.append(chip(a.route)); });

@@ -163,6 +163,32 @@ test('rutas antiguas solo si se piden', async ({ app, page }) => {
   expect(on.options.every(o => o.old === o.groups.includes('antigua'))).toBe(true);
 });
 
+test('la espera sale del intervalo de la ficha técnica y entra en el tiempo estimado', async ({ app, page }) => {
+  const r = await page.evaluate(async () => {
+    const { loadTripGraph } = await import('/assets/js/tripData.js');
+    const { planTrip, headwayOf } = await import('/assets/js/tripPlanner.js');
+    const g = await loadTripGraph();
+    // Canaval y Moreyra → Mariátegui: la 1122 directa (pasa cada 8 min según su ficha)
+    const res = planTrip(g, { lat: -12.09805, lon: -77.02017 }, { lat: -12.2177, lon: -76.9273 });
+    const opt = res.options[0];
+    const ride = opt.legs.find(l => l.type === 'ride');
+    const routes = [ride.route, ...ride.alts.map(a => a.route)];
+    return {
+      code: ride.route.code,
+      headway: ride.route.headway,
+      wait: ride.wait,
+      expected: 1 / (2 * routes.reduce((s, x) => s + 1 / headwayOf(x), 0)),
+      oldHeadway: headwayOf(g.routes.find(x => x.group === 'antigua'))
+    };
+  });
+  expect(r.code).toBe('1122');
+  expect(r.headway).toBe(8);
+  expect(r.wait).toBeCloseTo(r.expected, 5);
+  expect(r.wait).toBeLessThanOrEqual(4);
+  // Sin ficha (ruta antigua), un intervalo conservador
+  expect(r.oldHeadway).toBe(20);
+});
+
 test.describe('pestaña Cómo llegar', () => {
   test.beforeEach(async ({ app, page }) => {
     test.skip(!(await app.isBeta()), 'solo en la nueva interfaz');
@@ -190,6 +216,9 @@ test.describe('pestaña Cómo llegar', () => {
     });
     await expect(page.locator('.trip-card').first()).toBeVisible();
     await expect(page.locator('.trip-help')).toBeHidden();
+    // Cada cuánto pasa (ficha técnica) y cuánto se espera
+    await expect(page.locator('.trip-card').first().locator('.trip-step-ride .trip-hours'))
+      .toContainText(/Pasa cada ~8 min según la ATU · espera ~\d+ min/);
   });
 
   test('origen y destino por paradero: opciones, pasos y el viaje en el mapa', async ({ app, page }) => {

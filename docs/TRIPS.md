@@ -99,7 +99,7 @@ bus de la principal no para en la auxiliar y puede haber un separador),
    ellas; después, el resto. Dentro de cada grupo, por costo: minutos de
    viaje + la caminata otra vez (pesa doble; la del transbordo, triple) +
    20 por transbordo (bajarse, cruzar y esperar otro bus) + la espera de
-   cada subida, 10 / (1 + alternativas).
+   cada subida (ver abajo).
    Calibrado a mano con Canaval y Moreyra → Mariátegui (VES): la 1122
    directa (750 m a pie, ~82 min) va antes que 1057 › 1185 (~80 min, con
    transbordo en Atocongo).
@@ -108,7 +108,7 @@ bus de la principal no para en la auxiliar y puede haber un separador),
    mismas rutas. Todas las rutas únicas que cuesten hasta 1,5 veces la
    mejor aparecen.
 8. **Metro, Metropolitano y corredores** pesan más: su tiempo a bordo cuenta
-   un 20 % menos y su espera es de 4 min (pasan seguido). Si hay una opción
+   un 20 % menos y se asume que pasan cada 8 min. Si hay una opción
    con ellos que cueste hasta 1,8 veces la mejor y haga al menos el 40 % del
    viaje en ellos, siempre aparece (le hace lugar el transbordo más caro,
    nunca una ruta única).
@@ -117,8 +117,21 @@ Minutos estimados: caminata 75 m/min con 30 % de rodeo, bus 250 m/min
 (~15 km/h), Metro y Metropolitano 500 m/min, 3 min por transbordo (bajar
 y cruzar). El tramo se dibuja por el trazo de Wikiroutes; el Metropolitano, por su
 macroruta (A o B, en el sentido del viaje), como en la pestaña Rutas; el Metro,
-entre estaciones. Se marca cada paradero del tramo, con su nombre. Sin
-frecuencias: son aproximados y no incluyen la espera.
+entre estaciones. Se marca cada paradero del tramo, con su nombre.
+
+**Espera.** Cada ruta del PRR trae en su ficha técnica el intervalo de paso
+(`prr_fichas.json` → `trip_graph.json` `headway`): de 2 a 8 min, mediana 5.
+La ficha no trae horario de operación ni distingue hora punta: es el
+intervalo de diseño, uno para todo el día (en la práctica, de noche pasan
+menos). Llegando sin mirar el horario, la espera media es la mitad del
+intervalo; si sirven varias rutas, 1 / (2 · Σ 1/intervalo). Sin ficha
+(rutas antiguas, alimentadores) se asume un intervalo de 20 min; Metro,
+Metropolitano y corredores, 8. Los minutos del viaje incluyen esa espera, y
+el paso lo dice: "Pasa cada ~5 min según la ATU · espera ~3 min".
+
+La flota y el intervalo de la ficha dan una velocidad comercial (km de ida y
+vuelta ÷ flota × intervalo) de mediana 14,6 km/h, lo que confirma los ~15 km/h
+del bus; por ruta es muy dispersa (4 a 45 km/h) y no se usa.
 
 **Horarios del Metropolitano.** `metropolitano_services.json` trae el horario
 de cada sentido (`schedule.ns`, `schedule.sn`: días `LMXJVSD` y horas; si

@@ -37,8 +37,10 @@ Formato de salida (compacto, se carga al abrir "Cómo llegar"):
   "routes": {"1240-ida": [i_paradero, ...],        # capa Wikiroutes
              "met:A:ns": [...], "met:A:sn": [...],  # servicio y sentido
              "metro:L1:0": [...], "metro:L1:1": [...]},
-  "segM":   {"met:A:ns": [metros, ...]}          # por la vía entre paraderos
-}                                               # consecutivos (sin esto, en recta)
+  "segM":   {"met:A:ns": [metros, ...]},         # por la vía entre paraderos
+                                                # consecutivos (sin esto, en recta)
+  "headway": {"1240-ida": 5, ...}               # minutos entre buses según la
+}                                               # ficha técnica del PRR (prr_fichas.json)
 
 Uso:
     python pipeline/scripts/trips/build_trip_graph.py
@@ -58,6 +60,7 @@ from distritos import Distritos  # noqa: E402
 from name_fixes import fix_stop_name  # noqa: E402
 
 WR_MAP = ROOT / 'pipeline' / 'output' / 'wr_map.json'
+FICHAS = ROOT / 'pipeline' / 'output' / 'prr_fichas.json'
 MET = ROOT / 'data' / 'processed' / 'metropolitano'
 METRO = ROOT / 'data' / 'processed' / 'metro' / 'metro.geojson'
 OUT = ROOT / 'pipeline' / 'output' / 'trip_graph.json'
@@ -215,6 +218,21 @@ def metro(stops: Stops, routes: dict) -> int:
     return n
 
 
+def headways(routes: dict) -> dict[str, float]:
+    """Intervalo de paso de la ficha técnica para cada capa de Wikiroutes con
+    código del PRR ("1240-ida", "1188_69457-vuelta" → 1188). La ficha no trae
+    horario de operación: es el intervalo de diseño, uno para todo el día."""
+    fichas = json.loads(FICHAS.read_text(encoding='utf-8'))['rutas']
+    out = {}
+    for key in routes:
+        if ':' in key:
+            continue
+        h = (fichas.get(key.rsplit('-', 1)[0].split('_')[0]) or {}).get('intervalo_min')
+        if h:
+            out[key] = h
+    return out
+
+
 def main() -> None:
     stops = Stops()
     routes: dict[str, list[int]] = {}
@@ -236,12 +254,15 @@ def main() -> None:
         name = names.most_common(1)[0][0] if names else ''
         rows.append([round(lat, 6), round(lon, 6), name, d_index[d]])
 
-    out = {'version': 1, 'districts': districts, 'stops': rows, 'routes': routes, 'segM': seg_m}
+    headway = headways(routes)
+    out = {'version': 1, 'districts': districts, 'stops': rows, 'routes': routes, 'segM': seg_m,
+           'headway': headway}
     OUT.write_text(json.dumps(out, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
 
     wr = sum(1 for k in routes if ':' not in k)
     print(f'Wikiroutes: {wr} de {n_layers} capas con paraderos ({missing} sin archivo)')
     print(f'Metropolitano: {n_met} servicios · Alimentadores: {n_alim} sentidos · Metro: {n_metro} líneas (ambos sentidos)')
+    print(f'Intervalo de paso (fichas del PRR): {len(headway)} capas')
     print(f'Paraderos: {len(rows)} · {OUT.relative_to(ROOT)}: {OUT.stat().st_size / 1e6:.2f} MB')
 
 
