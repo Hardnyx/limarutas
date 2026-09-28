@@ -29,6 +29,9 @@ jobs:
       - name: Instalar Chromium
         run: npx playwright install --with-deps chromium
 
+      - name: Validar fotos de rutas (autor y licencia libre)
+        run: python3 pipeline/scripts/photos/commons_photos.py --check
+
       - name: Correr pruebas
         run: npm test
         env:

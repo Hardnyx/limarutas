@@ -1,0 +1,4 @@
+{
+  "_doc": "Fotos referenciales por ruta (código del catálogo). Se llenan con pipeline/scripts/photos/commons_photos.py (Wikimedia Commons) o a mano con los mismos campos; solo licencias libres o permiso del autor. Ver el docstring del script.",
+  "rutas": {}
+}

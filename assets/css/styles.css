@@ -1944,3 +1944,46 @@ html.beta .panel-head:hover { background: rgba(148, 163, 184, 0.06); }
 }
 .trip-summary-text { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .trip-summary-edit { flex: none; color: var(--accent); font-weight: 600; font-size: 12px; }
+
+/* Foto referencial de una ruta (config/route_photos.json) */
+.wr-photo-btn {
+  margin-top: 3px;
+  padding: 1px 8px;
+  font: inherit;
+  font-size: 11px;
+  color: inherit;
+  background: transparent;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  opacity: .75;
+  cursor: pointer;
+}
+.wr-photo-btn[aria-expanded="true"] { opacity: 1; }
+.wr-photos {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 6px 0 2px;
+}
+.wr-photos[hidden] { display: none; }
+.wr-photo {
+  flex: 0 0 100%;
+  margin: 0;
+  scroll-snap-align: start;
+}
+.wr-photo img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 6px;
+  background: rgba(127, 127, 127, .15);
+}
+.wr-photo figcaption {
+  margin-top: 3px;
+  font-size: 10.5px;
+  line-height: 1.35;
+  opacity: .8;
+}
+.wr-photo figcaption a { color: inherit; }

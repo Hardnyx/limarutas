@@ -6,6 +6,7 @@ import { test as base, expect } from '@playwright/test';
 import path from 'node:path';
 
 const LEAFLET_DIST = path.resolve('node_modules/leaflet/dist');
+const PIXEL = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=', 'base64');
 
 export const test = base.extend({
   // Dirección de entrada; el proyecto "beta" de playwright.config.js la cambia
@@ -16,8 +17,10 @@ export const test = base.extend({
   // Hora de la página: el Metropolitano tiene horarios. Martes 10:30 en Lima
   // (circulan A, C y el Expreso 5; los de hora punta de la mañana ya no)
   clockAt: ['2026-09-29T15:30:00Z', { option: true }],
+  // Contenido de config/route_photos.json para la prueba (null: el del repo)
+  routePhotos: [null, { option: true }],
 
-  app: async ({ page, entry, startTab, clockAt }, use) => {
+  app: async ({ page, entry, startTab, clockAt, routePhotos }, use) => {
     const errors = [];
     page.on('pageerror', e => errors.push(e.message));
     page.on('console', m => { if (m.type() === 'error') errors.push(m.text()); });
@@ -27,6 +30,9 @@ export const test = base.extend({
       route.fulfill({ path: path.join(LEAFLET_DIST, file) });
     });
     await page.route('https://*.basemaps.cartocdn.com/**', route => route.fulfill({ status: 204 }));
+    // Fotos de Commons: un PNG de 1×1 en vez de la red
+    await page.route('https://upload.wikimedia.org/**', route => route.fulfill({ contentType: 'image/png', body: PIXEL }));
+    if (routePhotos) await page.route('**/config/route_photos.json', route => route.fulfill({ json: routePhotos }));
 
     if (clockAt) await page.clock.install({ time: new Date(clockAt) });
     await page.goto(entry);
