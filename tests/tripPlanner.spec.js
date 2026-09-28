@@ -216,7 +216,7 @@ test.describe('pestaña Cómo llegar', () => {
 
   test('sin A y B se explica cómo empezar; un texto sin paraderos lo dice', async ({ app, page }) => {
     await expect(page.locator('.trip-help')).toBeVisible();
-    await expect(page.locator('.trip-help')).toContainText('📍');
+    await expect(page.locator('.trip-help .ico-pin')).toBeVisible();
     await expect(page.locator('#tripDay option[value="now"]')).toHaveText(/^Ahora \(\d{1,2}:\d\d\)$/);
     await page.fill('#tripFrom', 'zzqxw');
     await expect(page.locator('.trip-field:has(#tripFrom) .suggest-empty')).toBeVisible();

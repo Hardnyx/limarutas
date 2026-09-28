@@ -13,24 +13,76 @@
 */
 
 :root {
-  --bg: #050816;
-  --bg-sidebar: #0b1020;
-  --bg-panel: #101426;
-  --bg-panel-soft: #151a30;
-  --border-soft: rgba(255, 255, 255, 0.06);
-  --accent: #3b82f6;
-  --accent-soft: rgba(59, 130, 246, 0.2);
-  --accent-strong: rgba(59, 130, 246, 0.9);
-  --text-main: #f9fafb;
-  --text-muted: #9ca3af;
-  --danger: #f97373;
-  --radius-lg: 18px;
-  --radius-md: 12px;
+  /* Tema claro (por defecto), al estilo de las apps de mapas: superficies
+     blancas, texto casi negro, un solo acento azul y sombras suaves */
+  --bg: #e8eaed;
+  --surface: #ffffff;           /* paneles, tarjetas, menús */
+  --surface-2: #f3f6fb;         /* campos, tarjetas dentro del panel */
+  --fill: #e9eef6;              /* chips y botones secundarios */
+  --hover: #f1f4f9;
+  --line: #e1e5eb;
+  --line-strong: #c4cbd5;
+  --text-main: #1b1c1f;
+  --text-muted: #5e6470;
+  --accent: #0b57d0;
+  --accent-soft: #d8e5fb;
+  --accent-text: #0842a0;       /* texto sobre --accent-soft */
+  --on-accent: #ffffff;
+  --focus: #0b57d0;
+  --warn: #a15c00;
+  --warn-soft: #fff6e0;
+  --warn-line: #f1c26b;
+  --good-bg: #dff3e6;
+  --good-fg: #0f6a33;
+  --scrim: rgba(32, 33, 36, 0.35);
+  --shadow-1: 0 1px 2px rgba(60, 64, 67, 0.22), 0 2px 8px rgba(60, 64, 67, 0.14);
+  --shadow-soft: 0 2px 6px rgba(60, 64, 67, 0.18), 0 12px 32px rgba(60, 64, 67, 0.18);
+  --danger: #c5221f;
+
+  /* Nombres anteriores */
+  --bg-sidebar: var(--surface);
+  --bg-panel: var(--surface);
+  --bg-panel-soft: var(--surface-2);
+  --border-soft: var(--line);
+  --accent-strong: var(--accent);
+  --shadow-light: var(--shadow-1);
+
+  --radius-lg: 20px;
+  --radius-md: 14px;
   --radius-sm: 999px;
-  --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.55);
-  --shadow-light: 0 18px 40px rgba(15, 23, 42, 0.85);
   --blur: 12px;
-  --sidebar-width: 380px;
+  --sidebar-width: 400px;
+  --font: "Google Sans Text", "Google Sans", Roboto, "SF Pro Text", -apple-system,
+    BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  color-scheme: light;
+}
+
+/* Tema oscuro: con "Mapa oscuro" todo el panel acompaña al mapa */
+html.theme-dark {
+  --bg: #0f1114;
+  --surface: #1f2226;
+  --surface-2: #2a2e33;
+  --fill: #33373d;
+  --hover: #2a2e33;
+  --line: #3a3f45;
+  --line-strong: #585e66;
+  --text-main: #e8eaed;
+  --text-muted: #a0a6ae;
+  --accent: #8ab4f8;
+  --accent-soft: #233a5e;
+  --accent-text: #d2e3fc;
+  --on-accent: #0b1b33;
+  --focus: #8ab4f8;
+  --warn: #f5c451;
+  --warn-soft: #3a3020;
+  --warn-line: #7a6330;
+  --good-bg: #1d3a28;
+  --good-fg: #81c995;
+  --scrim: rgba(0, 0, 0, 0.5);
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.35);
+  --shadow-soft: 0 2px 6px rgba(0, 0, 0, 0.45), 0 12px 32px rgba(0, 0, 0, 0.45);
+  --danger: #f28b82;
+  color-scheme: dark;
 }
 
 /* Layout base */
@@ -40,9 +92,8 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI",
-    Roboto, sans-serif;
-  background: radial-gradient(circle at top, #020617 0, #020617 35%, #000 100%);
+  font-family: var(--font);
+  background: var(--bg);
   color: var(--text-main);
   overflow: hidden;
 }
@@ -72,7 +123,7 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
-  background: rgba(15, 23, 42, 0.9);
+  background: var(--surface);
   border-radius: 999px;
   padding: 8px 14px;
   box-shadow: var(--shadow-soft);
@@ -95,16 +146,16 @@ body {
   width: 320px;
   border: none;
   outline: none;
-  background: rgba(15, 23, 42, 0.97);
+  background: var(--surface);
   border-radius: 999px;
   padding: 7px 12px;
   font-size: 14px;
   color: var(--text-main);
-  box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.4);
+  box-shadow: inset 0 0 0 1px var(--line);
 }
 
 #searchInput::placeholder {
-  color: rgba(148, 163, 184, 0.8);
+  color: var(--text-muted);
 }
 
 /* Sugerencias de búsqueda */
@@ -116,7 +167,7 @@ body {
   width: 360px;
   max-height: 360px;
   overflow-y: auto;
-  background: rgba(15, 23, 42, 0.98);
+  background: var(--surface);
   border-radius: 16px;
   box-shadow: var(--shadow-light);
   padding: 6px 0;
@@ -143,20 +194,20 @@ body {
 }
 
 .suggest-item:hover {
-  background: rgba(37, 99, 235, 0.15);
+  background: var(--accent-soft);
 }
 
 .s-ico {
   width: 26px;
   height: 26px;
   border-radius: 7px;
-  background: rgba(15, 23, 42, 0.95);
+  background: var(--surface);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   font-size: 11px;
   font-weight: 600;
-  color: #e5e7eb;
+  color: var(--text-main);
   overflow: hidden;
 }
 
@@ -168,7 +219,7 @@ body {
 
 .s-label {
   font-weight: 600;
-  color: #e5e7eb;
+  color: var(--text-main);
 }
 
 .s-sub {
@@ -180,8 +231,8 @@ body {
 
 .btn {
   border-radius: 999px;
-  border: 1px solid rgba(148, 163, 184, 0.7);
-  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
   color: var(--text-main);
   font-size: 12px;
   padding: 6px 12px;
@@ -190,7 +241,7 @@ body {
   align-items: center;
   gap: 6px;
   transition: background 120ms ease, border-color 120ms ease, transform 80ms ease;
-  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.8);
+  box-shadow: var(--shadow-1);
 }
 
 .btn.small {
@@ -200,13 +251,13 @@ body {
 
 .btn-ghost {
   background: transparent;
-  border-color: rgba(148, 163, 184, 0.5);
+  border-color: var(--line-strong);
   box-shadow: none;
 }
 
 .btn:hover {
-  background: rgba(37, 99, 235, 0.95);
-  border-color: rgba(96, 165, 250, 0.9);
+  background: var(--accent);
+  border-color: var(--accent);
   transform: translateY(-1px);
 }
 
@@ -223,7 +274,7 @@ body {
   bottom: 18px;
   width: var(--sidebar-width);
   z-index: 900;
-  background: rgba(11, 16, 32, 0.96);
+  background: var(--surface);
   border-radius: var(--radius-lg);
   padding: 14px 14px 12px;
   display: flex;
@@ -231,7 +282,7 @@ body {
   gap: 10px;
   box-shadow: var(--shadow-soft);
   backdrop-filter: blur(var(--blur));
-  border: 1px solid rgba(148, 163, 184, 0.3);
+  border: 1px solid var(--line);
 }
 
 #sidebar .header {
@@ -262,16 +313,14 @@ body {
 .panel {
   border-radius: var(--radius-md);
   margin-bottom: 6px;
-  background: radial-gradient(circle at top left, rgba(37, 99, 235, 0.16), transparent 55%),
-    linear-gradient(to bottom, rgba(15, 23, 42, 0.94), rgba(15, 23, 42, 0.9));
-  border: 1px solid rgba(148, 163, 184, 0.3);
+  background: var(--surface);
+  border: 1px solid var(--line);
   overflow: hidden;
 }
 
 .panel.nested {
-  background: radial-gradient(circle at top left, rgba(37, 99, 235, 0.08), transparent 55%),
-    linear-gradient(to bottom, rgba(15, 23, 42, 0.92), rgba(15, 23, 42, 0.88));
-  border-color: rgba(148, 163, 184, 0.25);
+  background: var(--surface);
+  border-color: var(--line);
 }
 
 .panel-head {
@@ -299,7 +348,7 @@ body {
 
 .panel-body {
   padding: 6px 9px 8px;
-  border-top: 1px solid rgba(148, 163, 184, 0.25);
+  border-top: 1px solid var(--line);
 }
 
 .panel-body.list {
@@ -330,8 +379,8 @@ body {
   padding: 5px 7px;
   margin-bottom: 3px;
   border-radius: 10px;
-  background: rgba(15, 23, 42, 0.95);
-  border: 1px solid rgba(148, 163, 184, 0.25);
+  background: var(--surface);
+  border: 1px solid var(--line);
 }
 
 .list .item:last-child {
@@ -362,7 +411,7 @@ body {
 }
 
 .item-head .sub.wr-flag {
-  color: #d97706;
+  color: var(--warn);
 }
 
 .item-head .sub.wr-flag:empty {
@@ -385,13 +434,13 @@ body {
   padding: 0 8px;
   white-space: nowrap;
   border-radius: 999px;
-  background: rgba(15, 23, 42, 0.96);
-  color: #f9fafb;
+  background: var(--surface);
+  color: var(--text-main);
   font-size: 13px;
   font-weight: 700;
   text-transform: uppercase;
-  box-shadow: 0 6px 14px rgba(15, 23, 42, 0.8);
-  border: 1px solid rgba(148, 163, 184, 0.5);
+  box-shadow: var(--shadow-1);
+  border: 1px solid var(--line-strong);
 }
 
 .badge {
@@ -416,8 +465,8 @@ body {
 
 .segbtn-mini {
   border-radius: 999px;
-  border: 1px solid rgba(148, 163, 184, 0.45);
-  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
   color: var(--text-muted);
   font-size: 10px;
   padding: 2px 7px;
@@ -427,8 +476,8 @@ body {
 
 .segbtn-mini.active {
   background: var(--accent-strong);
-  color: #f9fafb;
-  border-color: rgba(129, 140, 248, 0.9);
+  color: var(--on-accent);
+  border-color: var(--accent);
 }
 
 /* Opciones varias */
@@ -491,7 +540,7 @@ body {
   background: radial-gradient(circle at 50% 35%, #ffffff 0 28%, #d22 29% 30%, #f44 31% 100%);
   border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
   border: 1px solid #b00;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.35);
+  box-shadow: var(--shadow-1);
 }
 
 /* Scrollbar ligera */
@@ -505,18 +554,18 @@ body {
 }
 
 #panels::-webkit-scrollbar-thumb {
-  background: rgba(148, 163, 184, 0.6);
+  background: var(--line-strong);
   border-radius: 999px;
 }
 
 /* Search: item seleccionado con teclado */
 .suggest-item.selected {
-  background: rgba(37, 99, 235, 0.2);
+  background: var(--accent-soft);
 }
 
 .suggest-item .s-label {
   font-weight: 600;
-  color: #e5e7eb;
+  color: var(--text-main);
   font-size: 13px;
 }
 
@@ -537,8 +586,8 @@ body {
   padding: 6px 7px;
   margin-bottom: 4px;
   border-radius: 10px;
-  border: 1px dashed rgba(250, 204, 21, 0.45);
-  background: rgba(250, 204, 21, 0.06);
+  border: 1px dashed var(--warn-line);
+  background: var(--warn-soft);
 }
 
 .wr-debug-label {
@@ -546,7 +595,7 @@ body {
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: #facc15;
+  color: var(--warn);
 }
 
 .wr-debug-seg {
@@ -583,7 +632,7 @@ body {
   flex-direction: column;
   gap: 3px;
   padding: 4px 4px 6px;
-  border-top: 1px solid rgba(148, 163, 184, 0.25);
+  border-top: 1px solid var(--line);
 }
 
 .recent-item {
@@ -592,8 +641,8 @@ body {
   gap: 5px;
   padding: 5px 4px 5px 7px;
   border-radius: 10px;
-  background: rgba(15, 23, 42, 0.95);
-  border: 1px solid rgba(148, 163, 184, 0.25);
+  background: var(--surface);
+  border: 1px solid var(--line);
 }
 
 .recent-top {
@@ -628,7 +677,7 @@ body {
 .recent-remove:hover,
 .recent-remove:focus-visible {
   color: var(--text-main);
-  background: rgba(148, 163, 184, 0.15);
+  background: var(--fill);
 }
 
 /* Rutas en este punto (routeInspector.js) */
@@ -642,9 +691,9 @@ body {
   max-height: 60vh;
   display: flex;
   flex-direction: column;
-  border: 1px solid rgba(148, 163, 184, 0.35);
+  border: 1px solid var(--line);
   border-radius: var(--radius-md);
-  background: rgba(11, 16, 32, 0.95);
+  background: var(--surface);
   backdrop-filter: blur(var(--blur));
   color: var(--text-main);
   box-shadow: var(--shadow-soft);
@@ -692,14 +741,14 @@ body {
 .ri-btn:hover,
 .ri-btn:focus-visible {
   color: var(--text-main);
-  background: rgba(148, 163, 184, 0.15);
+  background: var(--fill);
 }
 
 .ri-body {
   display: flex;
   flex-direction: column;
   min-height: 0;
-  border-top: 1px solid rgba(148, 163, 184, 0.25);
+  border-top: 1px solid var(--line);
 }
 
 .route-inspector.collapsed .ri-body {
@@ -739,14 +788,14 @@ body {
 
 .tag.ri-chip.active,
 .tag.ri-chip:focus-visible {
-  outline: 2px solid #fff;
+  outline: 2px solid var(--focus);
   outline-offset: 1px;
 }
 
 .ri-detail {
   flex: none;
   padding: 8px 12px 10px;
-  border-top: 1px solid rgba(148, 163, 184, 0.2);
+  border-top: 1px solid var(--line);
 }
 
 .ri-placeholder {
@@ -837,9 +886,9 @@ body {
 /* Nombre del paradero (stopHover.js) */
 .leaflet-tooltip.stop-tip {
   padding: 4px 8px;
-  border: 1px solid rgba(148, 163, 184, 0.35);
+  border: 1px solid var(--line);
   border-radius: 8px;
-  background: rgba(11, 16, 32, 0.95);
+  background: var(--surface);
   color: var(--text-main);
   font-size: 12px;
   font-weight: 600;
@@ -859,7 +908,7 @@ body {
   align-items: center;
   justify-content: center;
   padding: 16px;
-  background: rgba(2, 6, 23, 0.55);
+  background: var(--scrim);
   backdrop-filter: blur(2px);
 }
 
@@ -867,7 +916,7 @@ body {
   width: 100%;
   max-width: 420px;
   padding: 16px 18px;
-  border: 1px solid rgba(148, 163, 184, 0.35);
+  border: 1px solid var(--line);
   border-radius: var(--radius-md);
   background: var(--bg-sidebar);
   color: var(--text-main);
@@ -900,12 +949,12 @@ body {
 
 .btn.ui-dialog-btn.primary {
   background: var(--accent-strong);
-  border-color: rgba(129, 140, 248, 0.9);
+  border-color: var(--accent);
   font-weight: 600;
 }
 
 .btn.ui-dialog-btn:focus-visible {
-  outline: 2px solid #fff;
+  outline: 2px solid var(--focus);
   outline-offset: 2px;
 }
 
@@ -922,7 +971,7 @@ body {
 /* Botón de opción activa (tema del mapa) */
 .btn.active {
   background: var(--accent-strong);
-  border-color: rgba(129, 140, 248, 0.9);
+  border-color: var(--accent);
 }
 
 /* =========================
@@ -961,8 +1010,8 @@ html.beta:not(.debug) #wrColorFilter {
   gap: 4px;
   padding: 3px;
   border-radius: 999px;
-  background: rgba(15, 23, 42, 0.9);
-  border: 1px solid rgba(148, 163, 184, 0.3);
+  background: var(--surface);
+  border: 1px solid var(--line);
 }
 
 .side-tab {
@@ -979,11 +1028,11 @@ html.beta:not(.debug) #wrColorFilter {
 
 .side-tab[aria-selected="true"] {
   background: var(--accent-strong);
-  color: #f9fafb;
+  color: var(--text-main);
 }
 
 .side-tab:focus-visible {
-  outline: 2px solid #fff;
+  outline: 2px solid var(--focus);
   outline-offset: 1px;
 }
 
@@ -1026,7 +1075,7 @@ html.beta .suggest {
   width: 100%;
   box-sizing: border-box;
   z-index: 10;
-  border: 1px solid rgba(148, 163, 184, 0.3);
+  border: 1px solid var(--line);
 }
 
 .search-clear {
@@ -1046,7 +1095,7 @@ html.beta .suggest {
 .search-clear:hover,
 .search-clear:focus-visible {
   color: var(--text-main);
-  background: rgba(148, 163, 184, 0.15);
+  background: var(--fill);
 }
 
 /* En el mapa (N) + Limpiar */
@@ -1109,10 +1158,10 @@ html.beta .suggest {
   border: none;
   border-radius: 8px;
   outline: none;
-  background: rgba(2, 6, 23, 0.6);
+  background: var(--surface-2);
   color: var(--text-main);
   font-size: 12px;
-  box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.3);
+  box-shadow: inset 0 0 0 1px var(--line);
 }
 
 .list-filter:focus {
@@ -1133,8 +1182,8 @@ html.beta .suggest {
   width: 38px;
   height: 38px;
   border-radius: 999px;
-  border: 1px solid rgba(148, 163, 184, 0.45);
-  background: rgba(11, 16, 32, 0.95);
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
   color: var(--text-main);
   font-size: 18px;
   cursor: pointer;
@@ -1152,9 +1201,9 @@ html.beta .suggest {
   right: 0;
   width: 240px;
   padding: 12px 14px 6px;
-  border: 1px solid rgba(148, 163, 184, 0.35);
+  border: 1px solid var(--line);
   border-radius: var(--radius-md);
-  background: rgba(11, 16, 32, 0.97);
+  background: var(--surface);
   color: var(--text-main);
   box-shadow: var(--shadow-soft);
   z-index: 1100;
@@ -1264,14 +1313,14 @@ html.sheet .sheet-handle {
 }
 
 html.sheet .sheet-handle:focus-visible .sheet-grip {
-  background: #fff;
+  background: var(--accent);
 }
 
 .sheet-grip {
   width: 40px;
   height: 5px;
   border-radius: 999px;
-  background: rgba(148, 163, 184, 0.6);
+  background: var(--line-strong);
 }
 
 html.sheet #sidebar .header {
@@ -1372,9 +1421,9 @@ html.sheet .map-settings-panel {
   border-radius: 999px;
   padding: 8px 30px 8px 12px;
   font-size: 13px;
-  background: rgba(15, 23, 42, 0.97);
+  background: var(--surface);
   color: var(--text-main);
-  box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.4);
+  box-shadow: inset 0 0 0 1px var(--line);
 }
 
 .trip-input:focus {
@@ -1399,8 +1448,8 @@ html.sheet .map-settings-panel {
   width: 34px;
   height: 34px;
   border-radius: 999px;
-  border: 1px solid rgba(148, 163, 184, 0.45);
-  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
   cursor: pointer;
   font-size: 15px;
 }
@@ -1421,7 +1470,7 @@ html .suggest.trip-suggest {
   width: auto;
   z-index: 20;
   background: var(--bg-sidebar);
-  border: 1px solid rgba(148, 163, 184, 0.3);
+  border: 1px solid var(--line);
 }
 
 .trip-row {
@@ -1454,8 +1503,8 @@ html .suggest.trip-suggest {
 .trip-card {
   padding: 8px 10px;
   border-radius: 10px;
-  border: 1px solid rgba(148, 163, 184, 0.3);
-  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid var(--line);
+  background: var(--surface);
   cursor: pointer;
 }
 
@@ -1464,7 +1513,7 @@ html .suggest.trip-suggest {
 }
 
 .trip-card:focus-visible {
-  outline: 2px solid #fff;
+  outline: 2px solid var(--focus);
   outline-offset: 1px;
 }
 
@@ -1499,7 +1548,7 @@ html .suggest.trip-suggest {
   display: inline-block;
   margin-top: 4px;
   font-size: 11px;
-  color: #fbbf24;
+  color: var(--warn);
 }
 
 .trip-steps {
@@ -1528,7 +1577,7 @@ html .suggest.trip-suggest {
   left: 8px;
   top: 20px;
   bottom: -2px;
-  border-left: 2px dotted rgba(148, 163, 184, 0.55);
+  border-left: 2px dotted var(--line-strong);
 }
 .trip-step-ride::before {
   left: 7px;
@@ -1598,11 +1647,11 @@ html .suggest.trip-suggest {
 .trip-when input[type="time"] {
   font: inherit;
   color: var(--text-main);
-  background: rgba(15, 23, 42, 0.97);
+  background: var(--surface);
   color-scheme: dark;
   border: none;
   border-radius: 8px;
-  box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.4);
+  box-shadow: inset 0 0 0 1px var(--line);
   padding: 3px 6px;
 }
 .trip-when input[hidden] { display: none; }
@@ -1628,7 +1677,7 @@ html .suggest.trip-suggest {
   text-align: left;
   padding: 6px 8px;
   border-radius: 10px;
-  border: 1px dashed rgba(148, 163, 184, 0.4);
+  border: 1px dashed var(--line-strong);
   background: transparent;
   color: inherit;
   font: inherit;
@@ -1766,8 +1815,8 @@ html:not(.trip-mode) .leaflet-tripMark-pane {
   border-radius: 999px;
   font-size: 10.5px;
   font-weight: 600;
-  color: #0b1020;
-  background: #93c5fd;
+  color: var(--good-fg);
+  background: var(--good-bg);
 }
 
 .trip-leg-row + .trip-leg-row::before {
@@ -1780,7 +1829,7 @@ html:not(.trip-mode) .leaflet-tripMark-pane {
   flex: none;
   padding: 0 6px;
   border-radius: 999px;
-  border: 1px solid rgba(148, 163, 184, 0.45);
+  border: 1px solid var(--line-strong);
   font-size: 11px;
   color: var(--text-muted);
   cursor: help;
@@ -1822,7 +1871,7 @@ html:not(.trip-mode) .leaflet-tripMark-pane {
 
 /* Caminata larga (más de 1 km) en una opción */
 .trip-walk-long {
-  color: #fbbf24;
+  color: var(--warn);
 }
 
 /* Panel de rutas en un punto: separador de las rutas antiguas */
@@ -1892,8 +1941,8 @@ html:not(.trip-mode) .leaflet-tripMark-pane {
   padding: 0 10px;
   border-radius: 999px;
   border: none;
-  background: rgba(15, 23, 42, 0.97);
-  box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.35);
+  background: var(--surface);
+  box-shadow: inset 0 0 0 1px var(--line);
   color: var(--text-main);
   font: inherit;
   font-size: 12px;
@@ -1914,13 +1963,13 @@ html:not(.trip-mode) .leaflet-tripMark-pane {
 /* Nueva interfaz: secciones planas (sin degradados), como en una app */
 html.beta .panel {
   background: var(--bg-panel);
-  border-color: rgba(148, 163, 184, 0.18);
+  border-color: var(--line);
 }
 html.beta .panel.nested {
   background: transparent;
-  border-color: rgba(148, 163, 184, 0.14);
+  border-color: var(--line);
 }
-html.beta .panel-head:hover { background: rgba(148, 163, 184, 0.06); }
+html.beta .panel-head:hover { background: var(--hover); }
 
 /* Celular con resultados: el formulario resumido en una línea */
 .trip-summary { display: none; }
@@ -1934,8 +1983,8 @@ html.beta .panel-head:hover { background: rgba(148, 163, 184, 0.06); }
   padding: 8px 12px;
   border: none;
   border-radius: 12px;
-  background: rgba(15, 23, 42, 0.97);
-  box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.35);
+  background: var(--surface);
+  box-shadow: inset 0 0 0 1px var(--line);
   color: var(--text-main);
   font: inherit;
   font-size: 13px;
@@ -1987,3 +2036,818 @@ html.beta .panel-head:hover { background: rgba(148, 163, 184, 0.06); }
   opacity: .8;
 }
 .wr-photo figcaption a { color: inherit; }
+
+/* =========================================================================
+   Interfaz de app (2026): como una app de mapas. Superficies blancas (u
+   oscuras con "Mapa oscuro"), un solo acento, íconos SVG (icons.js), filas
+   en vez de tarjetas con borde y controles flotantes redondos.
+   ========================================================================= */
+
+body {
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.ico {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  flex: none;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.ico-inline {
+  width: 16px;
+  height: 16px;
+  vertical-align: -3px;
+  color: var(--accent);
+}
+
+input[type="checkbox"] {
+  accent-color: var(--accent);
+}
+
+/* Chips de ruta: rectángulos redondeados del color de la ruta */
+.tag {
+  height: 24px;
+  padding: 0 7px;
+  border: none;
+  border-radius: 6px;
+  background: #5f6368;
+  color: #fff;
+  box-shadow: none;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.tag.on-light,
+.tag.ri-chip.on-light,
+.tag.ri-detail-tag.on-light,
+.tag.trip-chip.on-light {
+  color: #1b1c1f;
+}
+
+.badge {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+/* Botones: píldoras con borde fino y texto en el acento */
+.btn {
+  height: 32px;
+  padding: 0 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--accent);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent-soft);
+}
+
+.btn.small {
+  height: 28px;
+  padding: 0 12px;
+  font-size: 12px;
+}
+
+.btn.active {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent-text);
+}
+
+/* ---------- Panel lateral ---------- */
+
+html.beta #sidebar {
+  border: none;
+  backdrop-filter: none;
+  box-shadow: var(--shadow-soft);
+  color: var(--text-main);
+}
+
+html.beta:not(.sheet) #sidebar {
+  top: 12px;
+  left: 12px;
+  bottom: 12px;
+  width: 408px;
+  padding: 16px 16px 12px;
+  border-radius: 18px;
+}
+
+html.beta #sidebar .header {
+  padding: 0 4px;
+}
+
+/* Marca: cuadrado del acento con un bus y el nombre */
+html.beta #sidebar h1 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+html.beta #sidebar h1::before {
+  content: "";
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: var(--accent)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M4 16c0 .88.39 1.67 1 2.22V20c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h8v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1.78c.61-.55 1-1.34 1-2.22V6c0-3.5-3.58-4-8-4s-8 .5-8 4v10zm3.5 1c-.83 0-1.5-.67-1.5-1.5S6.67 14 7.5 14s1.5.67 1.5 1.5S8.33 17 7.5 17zm9 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm1.5-6H6V6h12v5z'/%3E%3C/svg%3E")
+    center / 20px no-repeat;
+}
+
+html.theme-dark.beta #sidebar h1::before {
+  background-color: #1a73e8;
+}
+
+/* Pestañas con subrayado, como las de una app */
+html.beta .side-tabs {
+  gap: 0;
+  margin: 0 -16px;
+  padding: 0 12px;
+  border: none;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+}
+
+html.beta .side-tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 8px 13px;
+  border-radius: 0;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+html.beta .side-tab:hover {
+  color: var(--text-main);
+}
+
+html.beta .side-tab[aria-selected="true"] {
+  background: transparent;
+  color: var(--accent);
+}
+
+html.beta .side-tab[aria-selected="true"]::after {
+  content: "";
+  position: absolute;
+  left: 18%;
+  right: 18%;
+  bottom: -1px;
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+  background: var(--accent);
+}
+
+html.beta .side-tab .ico {
+  width: 18px;
+  height: 18px;
+}
+
+/* ---------- Cómo llegar: formulario ---------- */
+
+/* El panel ocupa todo el ancho (las filas de resultados van de borde a borde) */
+html.beta #tripPane {
+  margin: 0 -16px;
+  padding: 4px 16px 0;
+}
+
+html.beta .trip-form {
+  gap: 8px;
+}
+
+html.beta .trip-field {
+  gap: 10px;
+}
+
+/* Puntos A y B unidos por una línea punteada */
+html.beta .trip-field[data-end="from"]::after {
+  content: "";
+  position: absolute;
+  left: 11px;
+  top: 36px;
+  height: 22px;
+  border-left: 2px dotted var(--line-strong);
+}
+
+html.beta .trip-dot {
+  width: 24px;
+  height: 24px;
+  font-size: 11px;
+  box-shadow: 0 0 0 3px var(--surface);
+}
+
+html.beta .trip-input {
+  height: 44px;
+  padding: 0 40px 0 14px;
+  border-radius: 12px;
+  background: var(--surface-2);
+  box-shadow: none;
+  font: inherit;
+  font-size: 15px;
+}
+
+html.beta .trip-input::placeholder {
+  color: var(--text-muted);
+}
+
+html.beta .trip-input:focus {
+  background: var(--surface);
+  box-shadow: inset 0 0 0 2px var(--accent);
+}
+
+html.beta .trip-clear {
+  right: 56px;
+  top: 50%;
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-50%);
+}
+
+html.beta .trip-clear:hover {
+  background: var(--fill);
+  color: var(--text-main);
+}
+
+html.beta .trip-clear .ico {
+  width: 18px;
+  height: 18px;
+}
+
+html.beta .trip-pick {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--accent);
+}
+
+html.beta .trip-pick:hover {
+  background: var(--accent-soft);
+}
+
+html.beta.trip-picking .trip-pick {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+html.beta .suggest.trip-suggest {
+  left: 34px;
+  right: 54px;
+  margin-top: 4px;
+  border: none;
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+}
+
+/* Chips de opciones: salida, invertir, rutas antiguas */
+html.beta .trip-opts {
+  gap: 8px;
+  padding: 4px 0 0 34px;
+}
+
+html.beta .trip-opt {
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text-main);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  box-sizing: border-box;
+}
+
+html.beta .trip-opt:hover {
+  background: var(--hover);
+}
+
+html.beta .trip-opt-icon {
+  width: 34px;
+  padding: 0;
+  justify-content: center;
+}
+
+html.beta .trip-opt .ico {
+  width: 18px;
+  height: 18px;
+  color: var(--text-muted);
+}
+
+html.beta .trip-when select,
+html.beta .trip-when input[type="time"] {
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-weight: 600;
+}
+
+/* ---------- Cómo llegar: resultados en filas ---------- */
+
+html.beta .trip-results {
+  gap: 0;
+  margin: 12px -16px 0;
+  border-top: 8px solid var(--surface-2);
+}
+
+html.beta .trip-card {
+  padding: 14px 16px;
+  border: none;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  background: var(--surface);
+  transition: background 120ms ease;
+}
+
+html.beta .trip-card:hover {
+  background: var(--hover);
+}
+
+html.beta .trip-card.selected {
+  background: var(--surface);
+  box-shadow: inset 4px 0 0 var(--accent);
+}
+
+html.beta .trip-card:focus-visible {
+  outline-offset: -2px;
+}
+
+html.beta .tag.trip-chip {
+  height: 24px;
+  font-size: 13px;
+}
+
+html.beta .trip-strip {
+  gap: 5px;
+}
+
+html.beta .trip-seg-walk {
+  gap: 0;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+html.beta .trip-walk-ico .ico {
+  width: 18px;
+  height: 18px;
+}
+
+html.beta .trip-sep {
+  font-size: 14px;
+}
+
+html.beta .trip-time {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+html.beta .trip-time .trip-arrive {
+  margin-top: 2px;
+  font-size: 12px;
+  letter-spacing: 0;
+}
+
+html.beta .trip-card .trip-legs > .trip-name {
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--text-main);
+}
+
+html.beta .trip-meta {
+  margin-top: 3px;
+  font-size: 13px;
+}
+
+html.beta .trip-badge {
+  margin-right: 8px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  vertical-align: 1px;
+}
+
+/* Pasos: línea de tiempo con íconos */
+html.beta .trip-steps {
+  margin: 14px 0 12px;
+  gap: 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+html.beta .trip-step {
+  gap: 12px;
+  padding-bottom: 12px;
+}
+
+html.beta .trip-step-ico {
+  align-self: flex-start;
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  background: var(--surface);
+}
+
+html.beta .trip-card:hover .trip-step-ico {
+  background: var(--hover);
+}
+
+html.beta .trip-step-ride .trip-step-ico {
+  color: var(--c, var(--accent));
+}
+
+html.beta .trip-step::before {
+  left: 11px;
+  top: 24px;
+  bottom: 0;
+}
+
+html.beta .trip-step-ride::before {
+  left: 9.5px;
+  border-left-width: 5px;
+}
+
+html.beta .trip-step .tag.trip-chip {
+  height: 20px;
+  font-size: 12px;
+  border-radius: 5px;
+}
+
+html.beta .trip-hours,
+html.beta .trip-also {
+  font-size: 12px;
+}
+
+html.beta .trip-actions {
+  gap: 8px;
+}
+
+html.beta .trip-note {
+  padding: 12px 16px 4px;
+  font-size: 12px;
+}
+
+html.beta .trip-help {
+  padding: 16px 4px 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+/* ---------- Rutas ---------- */
+
+/* Buscador: barra grande como la de una app de mapas */
+html.beta #sidebar .search {
+  margin-top: 4px;
+}
+
+html.beta #sidebar .loupe {
+  left: 14px;
+  display: inline-flex;
+  color: var(--text-muted);
+}
+
+html.beta #searchInput {
+  width: 100%;
+  height: 46px;
+  padding: 0 44px 0 46px;
+  border: none;
+  border-radius: 999px;
+  background: var(--surface-2);
+  box-shadow: none;
+  color: var(--text-main);
+  font: inherit;
+  font-size: 15px;
+}
+
+html.beta #searchInput:focus {
+  background: var(--surface);
+  box-shadow: inset 0 0 0 2px var(--accent);
+  outline: none;
+}
+
+html.beta .search-clear {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  right: 8px;
+  border-radius: 999px;
+  color: var(--text-muted);
+}
+
+html.beta .search-clear:hover {
+  background: var(--fill);
+}
+
+html.beta .search-clear .ico {
+  width: 18px;
+  height: 18px;
+}
+
+html.beta .suggest {
+  border: none;
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+}
+
+/* Secciones: filas separadas por líneas, sin cajas */
+html.beta #panels {
+  margin: 0 -16px;
+  padding: 0;
+}
+
+html.beta .panel {
+  margin: 0;
+  border: none;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+}
+
+html.beta .panel.nested {
+  border-bottom: none;
+}
+
+html.beta .panel-head {
+  min-height: 52px;
+  padding: 8px 16px;
+  gap: 12px;
+  font: inherit;
+  font-size: 15px;
+}
+
+html.beta .panel.nested > .panel-head {
+  min-height: 44px;
+  padding-left: 28px;
+  font-size: 14px;
+}
+
+html.beta .panel-head .title {
+  font-weight: 600;
+}
+
+html.beta .panel-sub {
+  margin-top: 2px;
+  font-size: 12px;
+}
+
+html.beta .panel-count {
+  min-width: 22px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--fill);
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+}
+
+html.beta .panel-count.has-on {
+  background: var(--accent-soft);
+  color: var(--accent-text);
+}
+
+/* Chevron dibujado (en vez de ▸) */
+html.beta .chev {
+  flex: none;
+  width: 7px;
+  height: 7px;
+  margin: 0 4px 0 2px;
+  border-right: 2px solid var(--text-muted);
+  border-bottom: 2px solid var(--text-muted);
+  font-size: 0;
+  transform: rotate(-45deg);
+}
+
+html.beta .panel.open > .panel-head .chev {
+  transform: rotate(45deg) translate(-2px, -2px);
+}
+
+html.beta .panel-head input[type="checkbox"],
+html.beta .item-head input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+html.beta .panel-body {
+  border-top: none;
+  padding: 0 8px 8px;
+}
+
+html.beta .list .item {
+  gap: 6px;
+  margin: 0;
+  padding: 10px 8px;
+  border: none;
+  border-radius: 12px;
+  background: transparent;
+}
+
+html.beta .list .item:hover {
+  background: var(--hover);
+}
+
+html.beta .item-head .name {
+  font-size: 14px;
+}
+
+html.beta .item-head .sub {
+  font-size: 12px;
+}
+
+html.beta .on-map {
+  margin: 4px 0 0;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: var(--accent-soft);
+  color: var(--accent-text);
+  font-size: 13px;
+}
+
+html.beta .on-map-label {
+  color: inherit;
+  font-weight: 600;
+}
+
+html.beta .on-map-count {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+html.beta .list-filter {
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  box-shadow: none;
+  font: inherit;
+  font-size: 13px;
+}
+
+html.beta .list-filter:focus {
+  background: var(--surface);
+  box-shadow: inset 0 0 0 2px var(--accent);
+}
+
+/* ---------- Controles del mapa ---------- */
+
+.leaflet-bar {
+  border: none !important;
+  border-radius: 12px !important;
+  box-shadow: var(--shadow-1) !important;
+  overflow: hidden;
+}
+
+.leaflet-bar a,
+.leaflet-bar a:hover {
+  width: 40px !important;
+  height: 40px !important;
+  line-height: 40px !important;
+  border-bottom-color: var(--line) !important;
+  background: var(--surface) !important;
+  color: var(--text-main) !important;
+  font-size: 20px !important;
+}
+
+.leaflet-bar a:hover {
+  background: var(--hover) !important;
+}
+
+.leaflet-control-attribution {
+  border-radius: 8px 0 0 0;
+  background: color-mix(in srgb, var(--surface) 85%, transparent) !important;
+  color: var(--text-muted) !important;
+  font-size: 10px !important;
+}
+
+.leaflet-control-attribution a {
+  color: var(--accent) !important;
+}
+
+html.beta .map-settings-btn {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--text-main);
+  box-shadow: var(--shadow-1);
+}
+
+html.beta .map-settings-btn:hover,
+html.beta .map-settings-btn[aria-expanded="true"] {
+  color: var(--accent);
+  background: var(--surface);
+}
+
+html.beta .map-settings-btn .ico {
+  width: 22px;
+  height: 22px;
+}
+
+html.beta .map-settings-panel {
+  top: 52px;
+  width: 260px;
+  padding: 14px 16px 8px;
+  border: none;
+  border-radius: 16px;
+}
+
+html.beta .map-settings-title {
+  font-size: 14px;
+}
+
+html.beta .status {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* Paneles del mapa (paradero, rutas en un punto) */
+html.beta .route-inspector,
+html.beta .leaflet-popup-content-wrapper {
+  border: none;
+  border-radius: 16px;
+  background: var(--surface);
+  color: var(--text-main);
+  box-shadow: var(--shadow-soft);
+}
+
+html.beta .leaflet-popup-tip {
+  background: var(--surface);
+}
+
+/* ---------- Celular: hoja inferior ---------- */
+
+html.sheet.beta #sidebar {
+  padding: 0 16px 8px;
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 -2px 12px rgba(60, 64, 67, 0.2);
+}
+
+html.sheet .sheet-grip {
+  width: 36px;
+  height: 4px;
+  background: var(--line-strong);
+}
+
+html.sheet.beta .side-tabs {
+  margin: 0 -16px;
+}
+
+html.sheet .trip-summary {
+  min-height: 44px;
+  border: none;
+  border-radius: 12px;
+  background: var(--surface-2);
+  color: var(--text-main);
+  font: inherit;
+  font-size: 14px;
+}
+
+html.sheet .trip-summary-edit {
+  color: var(--accent);
+  font-weight: 600;
+}

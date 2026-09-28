@@ -13,6 +13,7 @@ import { syncAllTri, FILTERED_SEL, ROUTES_CHANGED } from './uiSidebar.hierarchy.
 import { wireMobileSheet } from './mobileSheet.js';
 import { wireTripUi } from './tripUi.js';
 import { closeRouteInspector } from './routeInspector.js';
+import { icon } from './icons.js';
 
 const LEAF_SEL = '.item .item-head input[type="checkbox"]';
 
@@ -51,8 +52,8 @@ export function applyBetaLayout(){
 
 function buildTabs(sidebar, panels){
   const tabs = el('div', { class: 'side-tabs', role: 'tablist', 'aria-label': 'Modo' });
-  const tabTrip = el('button', { type: 'button', class: 'side-tab', id: 'tabTrip', role: 'tab', 'aria-controls': 'tripPane' }, 'Cómo llegar');
-  const tabRoutes = el('button', { type: 'button', class: 'side-tab', id: 'tabRoutes', role: 'tab', 'aria-controls': 'routesPane' }, 'Rutas');
+  const tabTrip = el('button', { type: 'button', class: 'side-tab', id: 'tabTrip', role: 'tab', 'aria-controls': 'tripPane' }, icon('directions'), 'Cómo llegar');
+  const tabRoutes = el('button', { type: 'button', class: 'side-tab', id: 'tabRoutes', role: 'tab', 'aria-controls': 'routesPane' }, icon('route'), 'Rutas');
   tabs.append(tabTrip, tabRoutes);
 
   // Su contenido lo arma tripUi.js cuando las listas están listas
@@ -66,11 +67,12 @@ function buildTabs(sidebar, panels){
   if (search){
     if (btnClearSearch){
       btnClearSearch.className = 'search-clear';
-      btnClearSearch.textContent = '×';
+      btnClearSearch.replaceChildren(icon('close'));
       btnClearSearch.setAttribute('aria-label', 'Limpiar búsqueda');
       btnClearSearch.title = 'Limpiar búsqueda';
       search.appendChild(btnClearSearch);
     }
+    search.querySelector('.loupe')?.replaceChildren(icon('search'));
     const input = $('#searchInput');
     if (input) input.placeholder = 'Busca una ruta, empresa o paradero';
     routesPane.appendChild(search);
@@ -151,7 +153,7 @@ function buildMapSettings(panels){
         type: 'button', id: 'btnMapSettings', class: 'map-settings-btn',
         'aria-expanded': 'false', 'aria-controls': 'mapSettings',
         'aria-label': 'Ajustes del mapa', title: 'Ajustes del mapa'
-      }, '⚙');
+      }, icon('layers'));
       const pop = el('div', { id: 'mapSettings', class: 'map-settings-panel', role: 'dialog', 'aria-label': 'Ajustes del mapa', hidden: '' },
         el('div', { class: 'map-settings-title' }, 'Ajustes del mapa'), ...groups);
       box.append(btn, pop);

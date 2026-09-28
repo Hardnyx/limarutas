@@ -10,6 +10,7 @@ import { fitTo } from './mapFit.js';
 import { getMetMacroId } from './mapLayers.js';
 import { paintTag, TRIP_END_EVENT } from './routeInspector.js';
 import { setSheet } from './mobileSheet.js';
+import { icon } from './icons.js';
 
 const LINE_PANE = 'tripLinePane';     // sobre las rutas y sus paraderos
 const MARK_PANE = 'tripMarkPane';
@@ -92,8 +93,8 @@ function field(end, letter, placeholder){
     placeholder, autocomplete: 'off', 'aria-label': placeholder
   });
   const pick = el('button', { type: 'button', class: 'trip-pick', 'data-end': end,
-    title: 'Elegir en el mapa', 'aria-label': `Elegir ${end === 'from' ? 'origen' : 'destino'} en el mapa` }, '📍');
-  const clear = el('button', { type: 'button', class: 'trip-clear', 'data-end': end, 'aria-label': 'Borrar' }, '×');
+    title: 'Elegir en el mapa', 'aria-label': `Elegir ${end === 'from' ? 'origen' : 'destino'} en el mapa` }, icon('pin'));
+  const clear = el('button', { type: 'button', class: 'trip-clear', 'data-end': end, 'aria-label': 'Borrar' }, icon('close'));
   const list = el('div', { class: 'suggest trip-suggest', role: 'listbox' });
   const wrap = el('div', { class: 'trip-field', 'data-end': end },
     el('span', { class: `trip-dot trip-dot-${end}` }, letter), input, clear, pick, list);
@@ -109,7 +110,7 @@ function field(end, letter, placeholder){
     list.innerHTML = '';
     if (!items.length && input.value.trim()){
       list.appendChild(el('div', { class: 'suggest-empty' },
-        'Ningún paradero con ese nombre. Prueba con otra palabra o usa 📍 para elegirlo en el mapa.'));
+        'Ningún paradero con ese nombre. Prueba con otra palabra o elige el punto en el mapa con el botón del pin.'));
       list.classList.add('open');
       return;
     }
@@ -176,7 +177,7 @@ function whenRow(){
   daySel.addEventListener('change', () => { time.hidden = daySel.value === 'now'; void replan(); });
   time.addEventListener('change', () => { void replan(); });
   return el('label', { class: 'trip-opt trip-when', title: 'Día y hora de salida' },
-    el('span', { class: 'trip-opt-ico', 'aria-hidden': 'true' }, '🕒'), daySel, time);
+    el('span', { class: 'trip-opt-ico', 'aria-hidden': 'true' }, icon('clock')), daySel, time);
 }
 
 function buildForm(pane){
@@ -189,18 +190,18 @@ function buildForm(pane){
   summary.addEventListener('click', () => setCompact(false));
   pane.append(summary,
     el('div', { class: 'trip-form' },
-      field('from', 'A', 'Origen: paradero o 📍 en el mapa'),
-      field('to', 'B', 'Destino: paradero o 📍 en el mapa'),
+      field('from', 'A', '¿Desde dónde sales?'),
+      field('to', 'B', '¿A dónde vas?'),
       // Opciones en una fila de chips: salida, invertir, rutas antiguas
       el('div', { class: 'trip-opts' },
         whenRow(),
-        el('button', { type: 'button', id: 'tripSwap', class: 'trip-opt trip-opt-icon', title: 'Invertir origen y destino', 'aria-label': 'Invertir origen y destino' }, '⇅'),
+        el('button', { type: 'button', id: 'tripSwap', class: 'trip-opt trip-opt-icon', title: 'Invertir origen y destino', 'aria-label': 'Invertir origen y destino' }, icon('swap')),
         el('label', { class: 'trip-opt trip-old', title: 'Incluir rutas sin autorización de la ATU; podrían ya no circular' }, oldChk, 'Rutas antiguas'))),
     el('div', { id: 'tripStatus', class: 'muted trip-status', role: 'status' }),
     el('div', { id: 'tripResults', class: 'trip-results' }),
     // Se ve mientras no hay resultados (CSS: #tripResults:empty + .trip-help)
     el('div', { class: 'trip-help' },
-      el('p', {}, 'Escribe el nombre de un paradero en A y B, o toca 📍 y elige el punto en el mapa.'),
+      el('p', {}, 'Escribe el nombre de un paradero en A y B, o toca ', icon('pin', 'ico-inline'), ' y elige el punto en el mapa.'),
       el('p', {}, 'También puedes abrir un paradero en el mapa y usar "Salir de aquí" o "Llegar aquí".'),
       el('p', {}, 'Con "Salida" eliges el día y la hora: los expresos del Metropolitano solo circulan en ciertos horarios.')));
 
@@ -408,7 +409,7 @@ function stepsOf(opt){
         : k === opt.legs.length - 1 ? 'hasta tu destino'
           : `hasta ${stopName(leg.to)} para el transbordo`;
       steps.push(el('li', { class: 'trip-step trip-step-walk' },
-        el('span', { class: 'trip-step-ico' }, '🚶'),
+        el('span', { class: 'trip-step-ico' }, icon('walk')),
         el('span', {}, `Camina ${fmtM(leg.m)} ${where}`, el('span', { class: 'trip-sub' }, ` · ${walkMinOf(leg.m)} min`))));
     } else {
       const r = leg.route;
@@ -436,7 +437,7 @@ function stepsOf(opt){
         text.append(' ', el('span', { class: 'trip-warn' }, r.verified ? 'Sin autorización ATU' : 'Ruta antigua · podría no circular'));
       }
       steps.push(el('li', { class: 'trip-step trip-step-ride', style: `--c:${colorOf(r)}` },
-        el('span', { class: 'trip-step-ico' }, r.group === 'metro' ? '🚇' : '🚌'), text));
+        el('span', { class: 'trip-step-ico' }, icon(r.group === 'metro' ? 'subway' : 'bus')), text));
     }
   });
   return steps;
@@ -469,7 +470,7 @@ function arrivalText(min){
   return `${Math.floor(t / 60)}:${String(t % 60).padStart(2, '0')}`;
 }
 
-// Tira del viaje, como en las apps de transporte: 🚶 7 › [1115] o [1116] › 🚶 3
+// Tira del viaje, como en las apps de transporte: (a pie) 7 › [1115] o [1116] › (a pie) 3
 function stripOf(opt){
   const strip = el('div', { class: 'trip-strip' });
   const parts = [];
@@ -478,7 +479,7 @@ function stripOf(opt){
     if (leg.type === 'walk'){
       if (leg.m < 15) return;
       parts.push(el('span', { class: 'trip-seg-walk', title: `Caminar ${fmtM(leg.m)}` },
-        el('span', { class: 'trip-walk-ico', 'aria-hidden': 'true' }, '🚶'), String(walkMinOf(leg.m))));
+        el('span', { class: 'trip-walk-ico', 'aria-hidden': 'true' }, icon('walk')), String(walkMinOf(leg.m))));
     } else {
       const seg = el('span', { class: 'trip-seg-ride' }, chip(leg.route));
       const alts = (leg.alts || []).map(a => a.route);
