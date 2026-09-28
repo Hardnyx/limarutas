@@ -63,3 +63,4 @@ Licencia: ODbL; el mapa ya muestra "© OpenStreetMap".
 - Llenar `semiformal.verificadas` en `config/catalog.json`.
 - Ampliación norte del Metropolitano (Chimpu Ocllo – Naranjal) en el export de
   OSM de la vía (`metropolitano.json`): hoy esos tramos usan la macroruta.
+- Fotos referenciales (`config/route_photos.json`, vacío): desde una máquina con acceso a Wikimedia Commons, correr `python pipeline/scripts/photos/commons_photos.py --buscar` (categorías «Ruta <código>» de Commons) o agregar un archivo por enlace con `--ruta 1244 --archivo <enlace de Commons>`. Solo licencias libres o permiso del autor con su enlace; el CI lo valida con `--check`.
