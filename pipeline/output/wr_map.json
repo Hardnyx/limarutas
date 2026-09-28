@@ -21120,17 +21120,17 @@
       "color": "#FFA304",
       "name": "1187 · Universitaria → Angamos"
     },
-    "1188_69457-ida": {
+    "2305-ida": {
       "folder": "data/processed/transporte/route_69457",
       "trip": 1,
       "color": "#456878",
-      "name": "1188 · Las Rosas → Regalgar"
+      "name": "2305 · Las Rosas → Regalgar"
     },
-    "1188_69457-vuelta": {
+    "2305-vuelta": {
       "folder": "data/processed/transporte/route_69457",
       "trip": 2,
       "color": "#456878",
-      "name": "1188 · Regalgar → Las Rosas"
+      "name": "2305 · Regalgar → Las Rosas"
     },
     "1189_70648-ida": {
       "folder": "data/processed/transporte/route_70648",

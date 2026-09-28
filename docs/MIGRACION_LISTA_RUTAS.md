@@ -53,6 +53,16 @@ y el color del CSV se actualiza automáticamente.
 
 - `lista_rutas_nuevas.csv`: scraping de Wikipedia (1001-1269, con alias, empresa, color)
 - `lista_rutas_antiguas.csv`: scraping de Wikipedia (códigos antiguos 1101+)
-- `lista_rutas_maestro.csv`: fusión Wikipedia + PDFs ATU + tabla PRR oficial
-- Tabla de empresas: `docs/paraderos_ATU/PRR_099-2025_equivalencias.pdf`
-  (sección 14, Resolución 099-2025-ATU/PE)
+- `lista_rutas_maestro.csv`: fusión Wikipedia + fichas del PRR + tabla PRR oficial
+  (`build_lista_rutas_atu.py`). El código antiguo es siempre el de la sección 14.
+- `prr_fichas.json` (`pipeline/scripts/atu/build_prr_fichas.py`): las 465 rutas
+  del PRR con código antiguo y empresa (sección 14 del anexo,
+  `docs/3_099-2025-ATU_PE_ANEXO.pdf`) y lo que trae cada ficha técnica
+  (sección 13): distritos, itinerario de ida y de vuelta, km, flota,
+  intervalo, carrocería, puntos inicial y final.
+- Fichas técnicas: carpeta de SharePoint de la ATU enlazada en la sección 13
+  (https://atugobpe.sharepoint.com/:f:/s/DocumentosExternosSSTR/Ejh3kATKnVZKsuQE_ZPsm-ABFQaOF-Yiy7O7Blslk2kb7w?e=eb8yj4,
+  «Actualización del Plan Regulador de Rutas»). No se versiona (36 MB): se
+  descarga a `docs/paraderos_ATU/Plan actualizador de rutas/`. Archivos mal
+  nombrados por la ATU: RUTA_IM55_128 (1288), RUTA_IO57B_IM44 (1304) y
+  RUTA_2305_1188, que dice «RUTA 1188» pero la sección 14 le da el 1469.

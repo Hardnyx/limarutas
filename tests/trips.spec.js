@@ -184,3 +184,23 @@ test('Alimentadores: el circuito se corta en el terminal y en el punto más leja
   expect(r.shared).toBe(true);
   expect(r.idaSeg).toBe(true);
 });
+
+test('Transporte público: solo los códigos del PRR; los antiguos de 4 dígitos van a Rutas antiguas', async ({ app, page }) => {
+  const r = await withGraph(page, g => {
+    const group = key => g.routes.find(x => x.key === key)?.group;
+    return {
+      // 1188 es la antigua 1324; 1209, la 1003; 2305 (trazado 69457), la 1469
+      old: ['1188-ida', '1209-ida', '2305-ida', '1101-ida', '1402-ida'].map(group),
+      prr: ['1324-ida', '1469-ida', '1288-ida'].map(group)
+    };
+  });
+  expect(r.old).toEqual(['antigua', 'antigua', 'antigua', 'antigua', 'antigua']);
+  expect(r.prr).toEqual(['atu', 'atu', 'atu']);
+
+  // El catálogo trae exactamente las rutas del cuadro de equivalencias
+  const [catalog, fichas] = await page.evaluate(() => Promise.all([
+    fetch('/config/catalog.json').then(r => r.json()),
+    fetch('/pipeline/output/prr_fichas.json').then(r => r.json())
+  ]));
+  expect([...catalog.transporte.only].sort()).toEqual(Object.keys(fichas.rutas).sort());
+});

@@ -15,7 +15,7 @@ test.describe('nueva interfaz', () => {
 
     const count = (sel) => page.locator(`section.panel:has(> .panel-head ${sel}) > .panel-head .panel-count`);
     await expect(count('#chk-metro')).toHaveText('2');
-    await expect(count('#chk-wr')).toHaveText('429');
+    await expect(count('#chk-wr')).toHaveText('421');
     await expect(page.locator('.panel-head:has(#chk-wr) .panel-sub')).toHaveText('Buses con ruta autorizada por la ATU');
     await expect(page.locator('.panel-head:has(#chk-wr-semi) .panel-sub')).toContainText('podrían ya no circular');
     // Las opciones ya no están en el sidebar
@@ -27,7 +27,7 @@ test.describe('nueva interfaz', () => {
     await app.search('1240');
     await page.keyboard.press('Enter');
     await expect(page.locator('#onMapCount')).toHaveText('1');
-    await expect(page.locator('.panel-head:has(#chk-wr) .panel-count')).toHaveText('1/429');
+    await expect(page.locator('.panel-head:has(#chk-wr) .panel-count')).toHaveText('1/421');
 
     // Casilla de grupo (sin eventos en las hojas) también se cuenta
     await page.evaluate(() => document.getElementById('chk-metro').click());
