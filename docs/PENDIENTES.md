@@ -57,7 +57,8 @@ Licencia: ODbL; el mapa ya muestra "© OpenStreetMap".
 
 - Viajes con 2 transbordos.
 - Búsqueda de direcciones (geocodificación).
-- Alimentadores: OSM solo trae de 2 a 9 paraderos por sentido (en la calle paran en más); completar con los paraderos reales.
+- Alimentadores del norte (AN-01~17) y Gamarra: OSM solo trae de 2 a 9 paraderos por sentido; pasar sus listas del portal de la ATU a `config/alim_paraderos.json`, como los del sur.
+- Alimentadores del sur: 11 paraderos oficiales sin paradero de Wikiroutes cerca, ubicados entre sus vecinos: AS-02 Isla Española (vuelta, en el punto de vuelta) y 10 de Noviembre; AS-04 INR, Villa Panamericana y Velasco Alvarado (en ambos sentidos), 200 Millas y Lavalle; AS-07 Panamericana; AS-08 Vista Alegre.
 - Imágenes de las rutas.
 - Llenar `semiformal.verificadas` en `config/catalog.json`.
 - Ampliación norte del Metropolitano (Chimpu Ocllo – Naranjal) en el export de

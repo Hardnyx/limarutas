@@ -117,6 +117,12 @@ function alimTripText(svc){
   return p.loop ? `Circuito: ${from} → ${p.ida.to} → ${from}` : `${from} ↔ ${p.ida.to}`;
 }
 
+// Horario oficial de salida del terminal (portal de la ATU), si lo hay
+function alimHours(svc){
+  const p = state.systems.alim.paths?.[svc.id];
+  return p?.ida?.horario ? el('span', { class: 'met-hours' }, `Sale ${p.ida.horario}`) : '';
+}
+
 function makeServiceItemAlim(svc){
   const code = String(svc.id).toUpperCase();
   const bg = svc.color || (code.startsWith('AN') ? COLOR_AN : COLOR_AS);
@@ -129,7 +135,7 @@ function makeServiceItemAlim(svc){
     tag,
     el('div',{},
       el('div',{class:'name'}, svc.name || `Alimentador ${code}`),
-      el('div',{class:'sub'}, alimTripText(svc))
+      el('div',{class:'sub met-trip'}, alimTripText(svc), alimHours(svc))
     )
   );
 

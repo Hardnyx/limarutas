@@ -45,6 +45,10 @@ test('Metropolitano incluye Alimentadores y queda a medias con una sola ruta', a
   await page.evaluate(() => document.querySelector('#p-met-alim-n .item input').click());
   expect(await page.$eval('#chk-met', c => c.indeterminate)).toBe(true);
   expect(await page.$eval('#chk-met-alim-n', c => c.indeterminate)).toBe(true);
+
+  // Horario oficial de salida del terminal (portal de la ATU)
+  const as07 = page.locator('#p-met-alim .item:has(input[data-id="AS-07"]) .met-hours');
+  await expect(as07).toHaveText('Sale L-S 05:30-00:00 · D 05:30-23:00');
 });
 
 test('Desmarcar todo quita todas las rutas del mapa', async ({ app, page }) => {

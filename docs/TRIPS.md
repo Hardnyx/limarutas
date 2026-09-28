@@ -46,8 +46,11 @@ de qué grupo son se decide en el navegador.
   trazado más cercano a su estación) y en el punto más lejano; los paraderos
   se ordenan por su posición a lo largo del trazado. La estación del
   terminal es el mismo nodo que en el Metropolitano: se transborda sin
-  caminar. Los paraderos de OSM traen el nombre de la ruta; se nombran con
-  el paradero de Wikiroutes más cercano.
+  caminar. Los del sur (AS-02, AS-04, AS-07, AS-08, desde Matellini) usan
+  los paraderos oficiales del portal de la ATU (`config/alim_paraderos.json`),
+  cada uno en el paradero de Wikiroutes de su nombre junto al trazado o,
+  si no hay, entre sus vecinos (`aprox`). Los demás usan los de OSM, que traen
+  el nombre de la ruta y se nombran con el paradero de Wikiroutes más cercano.
 
 ## Decisiones
 
