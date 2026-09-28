@@ -3961,7 +3961,7 @@
     "total": 31
    },
    "intervalo_min": 7.0,
-   "categoria": "",
+   "categoria": "MINIBUS (M2-M3)",
    "punto_inicial": "AVENIDA FERNANDO WIESSE / JIRON MAR DEL NORTE",
    "punto_final": "AVENIDA RICARDO PALMA / AVENIDA PETIT THOUARS",
    "archivo": "RUTA_3604_1047.pdf",
@@ -14359,7 +14359,7 @@
     "total": 20
    },
    "intervalo_min": 7.0,
-   "categoria": "",
+   "categoria": "MINIBUS (M2-M3)",
    "punto_inicial": "AVENIDA SAN DIEGO DE ALCALA / AVENIDA CHUQUITANTA",
    "punto_final": "AVENIDA LOS RUISEÑORES / AVENIDA LOS CHANCAS DE ANDAHUAYLAS",
    "archivo": "RUTA_2405_1190.pdf",
@@ -23068,7 +23068,7 @@
     "total": 24
    },
    "intervalo_min": 8.0,
-   "categoria": "",
+   "categoria": "MINIBUS (M2-M3)",
    "punto_inicial": "AVENIDA EL SOL / AVENIDA LOS MANGOS AVENIDA 28 DE JULIO / AVENIDA GENERAL SALAVERRY (PLAZA JORGE",
    "punto_final": "CHAVEZ)",
    "archivo": "RUTA_IM56_1289.pdf",
@@ -26411,7 +26411,7 @@
     "total": 36
    },
    "intervalo_min": 5.0,
-   "categoria": "",
+   "categoria": "MICROBUS (M2)",
    "punto_inicial": "CALLE LOS ALAMOS / CALLE VIRGEN DEL CARMEN",
    "punto_final": "AVENIDA TOMAS VALLE / AVENIDA MARCO POLO",
    "archivo": "RUTA_1206_1328.pdf",
@@ -29154,7 +29154,7 @@
     "total": 80
    },
    "intervalo_min": 4.0,
-   "categoria": "",
+   "categoria": "MINIBUS (M2-M3)",
    "punto_inicial": "AVENIDA UNION JICAMARCA / CALLE LA AZUCENAS",
    "punto_final": "AVENIDA NICOLAS ARRIOLA / AVENIDA AVIACION (OVALO ARRIOLA)",
    "archivo": "RUTA_4624_1374.pdf",
@@ -31813,7 +31813,7 @@
     "total": 57
    },
    "intervalo_min": 4.0,
-   "categoria": "",
+   "categoria": "MICROBUS (M2)",
    "punto_inicial": "AVENIDA ARRIBA PERU / AVENIDA MAGISTERIO",
    "punto_final": "ANTIGUA PANAMERICANA SUR ALT. KM 49 / AVENIDA SANTA MARIA",
    "archivo": "RUTA_8802_1416.pdf",

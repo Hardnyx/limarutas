@@ -66,3 +66,29 @@ y el color del CSV se actualiza automáticamente.
   descarga a `docs/paraderos_ATU/Plan actualizador de rutas/`. Archivos mal
   nombrados por la ATU: RUTA_IM55_128 (1288), RUTA_IO57B_IM44 (1304) y
   RUTA_2305_1188, que dice «RUTA 1188» pero la sección 14 le da el 1469.
+
+## Combis (camionetas rurales)
+
+Las rutas que el mapa muestra como vigentes (`catalog.transporte.only`) son
+exactamente las 465 del PRR, y todas sus fichas exigen microbús (M2) o más:
+236 minibús (M2-M3), 136 ómnibus (M3), 90 microbús (M2), 1 minibús (M2) y
+2 eléctricas. Ninguna admite camioneta rural. Las rutas fuera del PRR (combis
+incluidas) quedan en «Rutas antiguas», ocultas por defecto y fuera de «Cómo
+llegar» salvo que se pidan.
+
+Eso garantiza lo que la ATU autorizó, no el vehículo que circula hoy: la RD
+N.° D-000029-2024-ATU/DO prorrogó en bloque todos los títulos habilitantes
+(combis y cústers incluidas) y el PRR se implementa por etapas. En 2023 la
+ATU nombró seis empresas cuya flota era solo de combis; sus rutas pasaron al
+PRR con la misma empresa, pero con ficha de microbús o minibús:
+
+| Código antiguo | PRR | Empresa | Carrocería en la ficha |
+|---|---|---|---|
+| CR62 | 1153 (desierta en 2025) | San Ignacio de Loyola | Minibús (M2-M3) |
+| CR43 | 1145 | Transportes y Servicios Callao | Minibús (M2-M3) |
+| CR17 | 1138 | Chim Pum Callao | Minibús (M2-M3) |
+| IPC06 | 1444 | Consorcio Grupo Uvita | Microbús (M2) |
+| CR42 | 1428 | Rápido Corre Caminos | Microbús (M2) |
+| IM47, IO35B, IO38, IO45 | 1162, 1440, 1165, 1167 | Consorcio Briza | Minibús (M2-M3) |
+
+No hay lista pública de qué rutas siguen con combis en la calle.
