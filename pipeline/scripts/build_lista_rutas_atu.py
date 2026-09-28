@@ -8,6 +8,9 @@ Logica:
   - Wikipedia gana si tiene la ruta (mejor calidad: alias, empresa, color)
   - Fichas del PRR como fallback para rutas no cubiertas por Wikipedia
   - Empresa oficial tomada del PRR (seccion 14 del anexo de la RPE 099-2025)
+  - Rutas sin fila en Wikipedia: color, alias y estado de su codigo antiguo
+    en lista_rutas_antiguas.csv (tabla de Wikipedia de los codigos
+    antiguos), si comparte al menos un distrito con la ficha
   - Codigo antiguo: siempre el de la seccion 14 (Wikipedia a veces trae otro:
     1003 figura como IO33B, la seccion 14 dice 1209); si Wikipedia trae el
     mismo con otros codigos fusionados (3611/TVE60) se conserva el suyo
@@ -18,6 +21,7 @@ Uso:
 Requiere:
     pipeline/output/lista_rutas_nuevas.csv   (output de scrap_wikipedia_rutas.py)
     pipeline/output/prr_fichas.json          (output de atu/build_prr_fichas.py)
+    pipeline/output/lista_rutas_antiguas.csv (Wikipedia, codigos antiguos)
 
 Produce:
     pipeline/output/lista_rutas_maestro.csv
@@ -32,6 +36,7 @@ from pathlib import Path
 ROOT        = Path(__file__).resolve().parents[2]
 FICHAS_JSON = ROOT / 'pipeline/output/prr_fichas.json'
 WIKI_CSV    = ROOT / 'pipeline/output/lista_rutas_nuevas.csv'
+ANTIGUAS_CSV = ROOT / 'pipeline/output/lista_rutas_antiguas.csv'
 OUT_CSV     = ROOT / 'pipeline/output/lista_rutas_maestro.csv'
 
 # Tabla oficial ATU PRR: codigo_nuevo -> empresa_raw
@@ -656,6 +661,39 @@ def codigo_antiguo(wiki, prr):
     return wiki or prr
 
 
+def norm_distrito(nombre):
+    """'Lurigancho/Chosica', 'LURIGANCHO (CHOSICA)' -> 'LURIGANCHO'; sin tildes."""
+    import unicodedata
+    t = unicodedata.normalize('NFKD', (nombre or '').upper()).encode('ascii', 'ignore').decode()
+    t = re.split(r'[/(]', t)[0].strip()
+    return {'SANTIAGO DE SURCO': 'SURCO', 'EL RIMAC': 'RIMAC',
+            'LURINGANCHO': 'LURIGANCHO', 'CERCADO DE LIMA': 'LIMA'}.get(t, t)
+
+
+def desde_ruta_antigua(entrada, antiguas):
+    """Color, alias y estado del codigo antiguo (Wikipedia), para una ruta
+    del PRR que solo tiene el color por defecto. Solo si la ruta antigua
+    comparte al menos un distrito con la ficha: el PRR cambio extremos de
+    algunas y reasigno otras (1201 -> 1326, 1408 -> 1334)."""
+    ant = antiguas.get(entrada['codigo_antiguo'].upper())
+    if not ant or not re.match(r'^#[0-9A-Fa-f]{6}$', ant.get('color_hex') or ''):
+        return False
+    if ant['color_hex'].upper() in {c.upper() for c in COLORES_PLACEHOLDER}:
+        return False
+    a = {norm_distrito(ant['distrito_origen']), norm_distrito(ant['distrito_destino'])} - {''}
+    b = {norm_distrito(entrada['distrito_origen']), norm_distrito(entrada['distrito_destino'])} - {''}
+    if not a & b:
+        return False
+    entrada['color_hex'] = ant['color_hex'].upper()
+    if (ant.get('alias') or '') not in ('', 'Desconocido', 'Ninguno'):
+        entrada['alias'] = ant['alias']
+    if not entrada.get('empresa_abrev') and ant.get('empresa_abrev'):
+        entrada['empresa_abrev'] = ant['empresa_abrev']
+    entrada['estado_wikipedia'] = ant.get('estado', '')
+    entrada['fuente'] = 'atu_pdf+wiki_antigua'
+    return True
+
+
 # ── Main ─────────────────────────────────────────────────────────────────────
 
 def main():
@@ -690,6 +728,14 @@ def main():
                 print(f'  {cod}: codigo antiguo {antes} (Wikipedia) -> '
                       f'{entrada["codigo_antiguo"]} (seccion 14 del PRR)')
         maestro[cod] = entrada
+
+    # 3b. Rutas del PRR sin Wikipedia: color, alias y estado del codigo antiguo
+    with open(ANTIGUAS_CSV, encoding='utf-8-sig') as f:
+        antiguas = {r['codigo_antiguo'].upper(): r for r in csv.DictReader(f) if r['codigo_antiguo']}
+    heredadas = [cod for cod, e in maestro.items()
+                 if e.get('fuente') == 'atu_pdf' and desde_ruta_antigua(e, antiguas)]
+    print(f'Color del codigo antiguo: {len(heredadas)} rutas; inactivas segun Wikipedia: '
+          f'{[c for c in heredadas if maestro[c]["estado_wikipedia"] == "Inactiva"]}')
 
     # 4. Aplicar overrides manuales conocidos
     overrides = {
@@ -728,7 +774,8 @@ def main():
     filas = sorted(maestro.values(), key=sort_key)
 
     campos = ['codigo_antiguo', 'codigo_nuevo', 'distrito_origen', 'distrito_destino',
-              'empresa_operadora', 'empresa_abrev', 'alias', 'color_hex', 'fuente']
+              'empresa_operadora', 'empresa_abrev', 'alias', 'color_hex', 'fuente',
+              'estado_wikipedia']
 
     OUT_CSV.parent.mkdir(parents=True, exist_ok=True)
     with open(OUT_CSV, 'w', newline='', encoding='utf-8') as f:

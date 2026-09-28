@@ -181,3 +181,13 @@ test('Metropolitano: cada servicio muestra su recorrido y horario; los de un sol
   await page.evaluate(() => document.querySelector('#p-met .item-head input[data-id="6"]').click());
   await expect.poll(() => app.state(s => s.systems.met.lineLayers.get('6')?.getLayers().length)).toBe(1);
 });
+
+test('rutas del PRR sin color heredan el de su código antiguo; las inactivas según Wikipedia lo avisan', async ({ app, page }) => {
+  await page.click('.panel-head[data-target="p-wr-body"]');
+  const item = id => page.locator(`#p-wr .item:has(> .item-head input[data-id="${id}"])`);
+  // 1320 (antigua 1104): verde de Wikipedia, ya no el azul metálico
+  await expect(item('1320')).toHaveAttribute('data-color-kind', 'real');
+  // 1369 (antigua 4602) figura inactiva en Wikipedia
+  await expect(item('1369').locator('.wr-flag')).toHaveText('Según Wikipedia ya no circula');
+  await expect(item('1320').locator('.wr-flag')).toBeHidden();
+});
