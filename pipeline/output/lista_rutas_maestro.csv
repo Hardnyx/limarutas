@@ -1,7 +1,7 @@
 codigo_antiguo,codigo_nuevo,distrito_origen,distrito_destino,empresa_operadora,empresa_abrev,alias,color_hex,fuente
 1117,1001,Santiago de Surco,San Isidro,Tablada 2000,ETTADOSA,La Tablada,#2E7D32,wikipedia
 1118,1002,La Punta,La Victoria,Urano Tours,,La U,#66BB6A,wikipedia
-IO33B,1003,Puente Piedra,Rímac,Rosa de las Américas,ETROASAC,La 9,#5A6470,wikipedia
+1209,1003,Puente Piedra,Rímac,Rosa de las Américas,ETROASAC,La 9,#5A6470,wikipedia
 1212,1004,Comas,San Martín de Porres,Doce de Junio,ETDOJUSA,Ninguno,#FE6317,wikipedia
 1217,1005,Carabayllo,La Victoria,Santa Cruz,,La 13,#FF0000,wikipedia
 1403,1006,Carabayllo,Ate,Impulsa Progreso,,La C,#0CB7F2,wikipedia
@@ -39,7 +39,7 @@ IO33B,1003,Puente Piedra,Rímac,Rosa de las Américas,ETROASAC,La 9,#5A6470,wiki
 2613,1038,San Martín de Porres,Lince,El Porvenir,ETEPSA,La 28 - La 504,#29B200,wikipedia
 2901,1039,Independencia,Callao,117,ETSEDISA,La 117,#42B587,wikipedia
 3204,1040,San Juan de Lurigancho,Rímac,San Ignacio,ETSISA,La SC - La San Ignacio,#0043FF,wikipedia
-3403/TVE27,1041,San Juan de Lurigancho,Chaclacayo,Santa Rosa de Jicamarca,ETSRJSA,Ninguno,#E71D1D,wikipedia
+3404,1041,San Juan de Lurigancho,Chaclacayo,Santa Rosa de Jicamarca,ETSRJSA,Ninguno,#E71D1D,wikipedia
 3405,1042,San Juan de Lurigancho,Ate,Las Águilas 75,ETLA75SA,La 75A,#FE0F0F,wikipedia
 3408,1043,San Juan de Lurigancho,La Molina,Cuarenta Integrada,ETRANCISA,La 40,#9A3E17,wikipedia
 3509,1044,San Juan de Lurigancho,Jesús María,104,,La 104,#FE3F0F,wikipedia
@@ -157,8 +157,8 @@ IM40,1161,Callao,Ate,Víctor Raúl Haya de La Torre,ETVRHTSA,La 89,#42A50D,wikip
 IM47,1162,Callao,San Miguel,Consorcio Briza,,Ninguno,#B10D01,wikipedia
 IO14,1163,Mi Perú,Santiago de Surco,Avagon,,La SV,#28FFD4,wikipedia
 IO19,1164,Callao,Independencia,Corazón de Jesús,CTCJ,Ninguno,#000BB2,wikipedia
-IO38B,1165,Los Olivos,Callao,Consorcio Briza,,Ninguno,#0010FF,wikipedia
-IO44B,1166,Carabayllo,San Miguel,Vía Bus,ETVIBUSAC,Ninguno,#022DFF,wikipedia
+IO38,1165,Los Olivos,Callao,Consorcio Briza,,Ninguno,#0010FF,wikipedia
+IO44,1166,Carabayllo,San Miguel,Vía Bus,ETVIBUSAC,Ninguno,#022DFF,wikipedia
 IO45,1167,Carabayllo,Callao,Consorcio Briza,,Ninguno,#6B4F46,wikipedia
 IO47,1168,Ventanilla,Lince,La Nueva Estrella,,Ninguno,#FFA304,wikipedia
 IO75B,1169,Mi Perú,Lima,Cielo Mar y Tierra,ETCIMATISA,Ninguno,#808080,wikipedia
@@ -179,7 +179,6 @@ OM33,1174,San Martín de Porres,San Martín de Porres,Los Ángeles del Perú,CIL
 1801,1184,Santa Rosa,Pachacámac,Edilberto Ramos,ETERSAC,La B39 - La C,#00B8FF,wikipedia
 1802,1185,Puente Piedra,Villa El Salvador,Urbano Los Chinos,ETUCHISA,La A - El Chino,#00B8FF,wikipedia
 2303,1187,San Martín de Porres,San Juan de Lurigancho,Señor Nazareno,,Ninguno,#FFA304,wikipedia
-2305,1188,San Martin De Porres,San Juan De Lurigancho,Desconocido,,Desconocido,#456878,atu_pdf
 2404,1189,San Martín de Porres,La Molina,El Inti,ETINSA,La 35B,#24A011,wikipedia
 2405,1190,San Martín de Porres,Santa Anita,Inversiones El Rápido,ESTIRSA,Ninguno,#0738FF,wikipedia
 2406,1191,San Martín de Porres,Ate,Los Excelentes Unidos,,La 35A,#0EAE03,wikipedia
@@ -267,11 +266,13 @@ IM22,1284,San Martin De Porres,Villa El Salvador,TREINTITRES,,Desconocido,#4F7F9
 IM24,1285,Ate,Callao,PESQUEROS,,Desconocido,#6595A5,atu_pdf
 IM26,1286,San Martin De Porres,San Juan De Lurigancho,HUASCAR,,Desconocido,#3A6878,atu_pdf
 IM43,1287,Santa Rosa,San Juan De Lurigancho,TRANSPORTE GROUP TIGRILLO,,Desconocido,#608090,atu_pdf
+IM55,1288,San Miguel,Ate,UNIDOS VITARTE,,Desconocido,#456878,atu_pdf
 IM56,1289,San Juan De Lurigancho,Jesus Maria,STARLET CONSORCIO,,Desconocido,#5A8595,atu_pdf
 IM57,1290,San Martin De Porres,Ate,VIRGEN DE LA ASUNCION,,Desconocido,#3D6B7A,atu_pdf
 IO03,1291,Mi Peru,Chorrillos,HOLDING REAL EXPRESS,,Desconocido,#4A7A8A,atu_pdf
 IO04,1292,Ventanilla,Ate,TURISMO CALIFORNIA SIGLO XXI,,Desconocido,#527585,atu_pdf
 IO06,1293,Mi Peru,Villa Maria Del Tirunfo,HOLDING REAL EXPRESS,,Desconocido,#5C8FA0,atu_pdf
+IO07,1294,Callao,Chorrillos,HOLDING REAL EXPRESS,,Desconocido,#4F7F90,atu_pdf
 IO12,1295,Santa Anita,Callao,SERVICIOS Y TURISMO EUREKS,,Desconocido,#6595A5,atu_pdf
 IO27,1296,San Martin De Porres,Ate,HOLDING REAL EXPRESS,,Desconocido,#3A6878,atu_pdf
 IO28B,1297,Ventanilla,Villa Maria Del Triunfo,HOLDING REAL EXPRESS,,Desconocido,#608090,atu_pdf
@@ -281,10 +282,13 @@ IO37B,1300,Ventanilla,San Juan De Lurigancho,CONSORCIO ROMA,,Desconocido,#3D6B7A
 IO50,1301,San Juan De Miraflores,Callao,PUBLICO EL MIRADOR,,Desconocido,#4A7A8A,atu_pdf
 IO52,1302,San Juan De Lurigancho,Callao,HUASCAR,,Desconocido,#527585,atu_pdf
 IO55,1303,Ventanilla,Ate,EXPRESO NUEVA LIMA S.A.C,,Desconocido,#5C8FA0,atu_pdf
+IO57B,1304,Pachacamac,La Punta,C.T.I. CORPORACION SAC.,,Desconocido,#4F7F90,atu_pdf
 IO63,1305,Ate,La Punta,EL CARMEN DE LA PUNTA,,Desconocido,#6595A5,atu_pdf
 IO68,1307,Callao,Ate,TURISMO CALIFORNIA SIGLO XXI,,Desconocido,#608090,atu_pdf
+OM18,1309,Callao,Santiago De Surco,HOLDING REAL EXPRESS,,Desconocido,#5A8595,atu_pdf
 OM19,1310,Callao,Villa El Salvador,HOLDING REAL EXPRESS,,Desconocido,#3D6B7A,atu_pdf
 OM21,1311,Los Olivos,Villa El Salvador,HOLDING REAL EXPRESS,,Desconocido,#4A7A8A,atu_pdf
+OM22,1312,Ventanilla,Ate,LA MAR,,Desconocido,#527585,atu_pdf
 OM28,1313,La Punta,Santa Anita,SENOR DEL MAR,,Desconocido,#5C8FA0,atu_pdf
 OM36,1314,Callao,Villa El Salvador,CONSORCIO DE TRANSPORTE TRANSCASTEL,,Desconocido,#4F7F90,atu_pdf
 OM37,1315,Callao,San Juan De Miraflores,HOLDING REAL EXPRESS,,Desconocido,#6595A5,atu_pdf
@@ -436,6 +440,7 @@ UCL16,1460,Ventanilla,Callao,MI DIVINO SAN SALVADOR,,Desconocido,#3D6B7A,atu_pdf
 8506,1466,Pachacamac,Cercado De Lima,E.S.E.T. SAN JUDAS TADEO,,Desconocido,#3A6878,atu_pdf
 8508,1467,Pucusana,Cercado De Lima,ROYAL EXPRESS,,Desconocido,#608090,atu_pdf
 1804,1468,Ancon,San Juan De Miraflores,VIRGEN DE LA PUERTA,,Desconocido,#456878,atu_pdf
+2305,1469,San Martin De Porres,San Juan De Lurigancho,VIRGEN DE FATIMA,,Desconocido,#5A8595,atu_pdf
 2702,1470,Chorrillos,San Martin De Porres,SERVICIO MULTIPLE RUMI,,Desconocido,#3D6B7A,atu_pdf
 2804,1471,San Martin De Porres,Villa El Salvador,LINEA PERUANA DE TRANSPORTES S.A. LIPETSA.,,Desconocido,#4A7A8A,atu_pdf
 2805,1472,San Martin De Porres,Villa El Salvador,SOL DE ORO,,Desconocido,#527585,atu_pdf
@@ -459,8 +464,8 @@ IO89,1482,San Martin De Porres,Chorrillos,MULTIPLES AQUARIUS EXPRESS,,Desconocid
 3816,1490,San Juan De Lurigancho,Villa Maria Del Triunfo,ESPECIAL SOLIDARIDAD,,Desconocido,#3D6B7A,atu_pdf
 CR20,1491,Callao,Villa Maria Del Triunfo,CONSORCIO GRUPO SALAMANCA,,Desconocido,#4A7A8A,atu_pdf
 8509,1492,Villa El Salvador,Los Olivos,SALVADOR,,Desconocido,#527585,atu_pdf
-,AD-C,,,AeroDirecto,AD,Centro,#3B82C4,manual
-,AD-N,,,AeroDirecto,AD,Norte,#0657AC,manual
-,AD-S,,,AeroDirecto,AD,Sur,#F22536,manual
+,AD-C,Cercado de Lima,Callao,AeroDirecto,AD,Centro,#3B82C4,manual
+,AD-N,Los Olivos,Callao,AeroDirecto,AD,Norte,#0657AC,manual
+,AD-S,Pueblo Libre,Callao,AeroDirecto,AD,Sur,#F22536,manual
 ,ESI-1,,,Expreso San Isidro,ESI,Periferia San Isidro,#00B296,manual
 ,ESI-2,,,Expreso San Isidro,ESI,Norte Centro Financiero,#00B369,manual

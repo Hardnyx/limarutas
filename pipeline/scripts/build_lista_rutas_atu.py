@@ -1,45 +1,38 @@
 """
 build_lista_rutas_atu.py
 
-Extrae datos de rutas desde los PDFs de la ATU y los fusiona con
+Fusiona las fichas del Plan Regulador de Rutas (prr_fichas.json) con
 lista_rutas_nuevas.csv (Wikipedia) para producir un CSV maestro completo.
 
 Logica:
   - Wikipedia gana si tiene la ruta (mejor calidad: alias, empresa, color)
-  - ATU PDFs como fallback para rutas no cubiertas por Wikipedia
-  - Empresa oficial tomada del PRR (PRR_099-2025_equivalencias.pdf)
+  - Fichas del PRR como fallback para rutas no cubiertas por Wikipedia
+  - Empresa oficial tomada del PRR (seccion 14 del anexo de la RPE 099-2025)
+  - Codigo antiguo: siempre el de la seccion 14 (Wikipedia a veces trae otro:
+    1003 figura como IO33B, la seccion 14 dice 1209); si Wikipedia trae el
+    mismo con otros codigos fusionados (3611/TVE60) se conserva el suyo
 
 Uso:
     python3 pipeline/scripts/build_lista_rutas_atu.py
 
 Requiere:
-    pipeline/output/lista_rutas_nuevas.csv        (output de scrap_wikipedia_rutas.py)
-    docs/paraderos_ATU/Actualizacion del Plan.../ (PDFs de fichas tecnicas ATU)
-    docs/paraderos_ATU/PRR_099-2025_equivalencias.pdf (tabla oficial de empresas)
+    pipeline/output/lista_rutas_nuevas.csv   (output de scrap_wikipedia_rutas.py)
+    pipeline/output/prr_fichas.json          (output de atu/build_prr_fichas.py)
 
 Produce:
     pipeline/output/lista_rutas_maestro.csv
 """
 
 import csv
+import json
 import re
 from pathlib import Path
 
-try:
-    import pdfplumber
-except ImportError:
-    import subprocess, sys
-    subprocess.check_call([sys.executable, '-m', 'pip', 'install',
-                           'pdfplumber', '--break-system-packages', '-q'])
-    import pdfplumber
 
-
-ROOT       = Path('/workspaces/limarutas')
-PDF_DIR    = ROOT / 'docs/paraderos_ATU/Actualización del Plan Regulador de Rutas'
-WIKI_CSV   = ROOT / 'pipeline/output/lista_rutas_nuevas.csv'
-OUT_CSV    = ROOT / 'pipeline/output/lista_rutas_maestro.csv'
-
-PDF_PATTERN = re.compile(r'RUTA_([^_/]+)_(\d{4})(?:_VF)?\.pdf$', re.IGNORECASE)
+ROOT        = Path(__file__).resolve().parents[2]
+FICHAS_JSON = ROOT / 'pipeline/output/prr_fichas.json'
+WIKI_CSV    = ROOT / 'pipeline/output/lista_rutas_nuevas.csv'
+OUT_CSV     = ROOT / 'pipeline/output/lista_rutas_maestro.csv'
 
 # Tabla oficial ATU PRR: codigo_nuevo -> empresa_raw
 # Fuente: docs/paraderos_ATU/PRR_099-2025_equivalencias.pdf
@@ -640,47 +633,27 @@ def color_placeholder(codigo_nuevo):
 
 
 
-def leer_pdf(filepath):
-    """Extrae cod_antiguo, cod_nuevo, origen, destino desde un PDF suelto."""
-    filepath = Path(filepath)
-    m = PDF_PATTERN.search(filepath.name)
-    if not m:
-        return None
-    cod_antiguo = m.group(1)
-    cod_nuevo   = m.group(2)
-
-    try:
-        texto = ''
-        with pdfplumber.open(filepath) as pdf:
-            for page in pdf.pages:
-                texto += (page.extract_text() or '') + '\n'
-    except Exception:
-        return {
-            'codigo_antiguo':    cod_antiguo,
-            'codigo_nuevo':      cod_nuevo,
-            'distrito_origen':   '',
-            'distrito_destino':  '',
-            'empresa_operadora': 'Desconocido',
-            'empresa_abrev':     '',
-            'alias':             'Desconocido',
-            'color_hex':         color_placeholder(cod_nuevo),
-            'fuente':            'atu_zip_error',
-        }
-
-    origen  = re.search(r'DISTRITO DE ORIGEN\s*:\s*(.+)',  texto)
-    destino = re.search(r'DISTRITO DE DESTINO\s*:\s*(.+)', texto)
-
+def desde_ficha(cod_nuevo, ficha):
+    """Fila del maestro desde una ruta de prr_fichas.json."""
     return {
-        'codigo_antiguo':    cod_antiguo,
+        'codigo_antiguo':    ficha['codigo_antiguo'],
         'codigo_nuevo':      cod_nuevo,
-        'distrito_origen':   origen.group(1).strip().title()  if origen  else '',
-        'distrito_destino':  destino.group(1).strip().title() if destino else '',
-        'empresa_operadora': PRR_EMPRESAS_NORM.get(cod_nuevo, 'Desconocido'),
+        'distrito_origen':   ficha.get('distrito_origen', ''),
+        'distrito_destino':  ficha.get('distrito_destino', ''),
+        'empresa_operadora': PRR_EMPRESAS_NORM.get(cod_nuevo) or limpiar_empresa(ficha.get('empresa'))[0],
         'empresa_abrev':     '',
         'alias':             'Desconocido',
         'color_hex':         color_placeholder(cod_nuevo),
         'fuente':            'atu_pdf',
     }
+
+
+def codigo_antiguo(wiki, prr):
+    """El de la seccion 14, salvo que Wikipedia traiga ese mismo con otros
+    codigos fusionados (3611/TVE60)."""
+    if prr and prr not in (wiki or '').split('/'):
+        return prr
+    return wiki or prr
 
 
 # ── Main ─────────────────────────────────────────────────────────────────────
@@ -694,26 +667,15 @@ def main():
 
     print(f'Rutas desde Wikipedia:  {len(wiki)}')
 
-    # 2. Leer PDFs del directorio ATU
-    print(f'Leyendo PDFs desde: {PDF_DIR}')
-    atu = {}
-    archivos = sorted(PDF_DIR.glob('RUTA_*.pdf'))
-    print(f'PDFs encontrados: {len(archivos)}')
-    for filepath in archivos:
-        row = leer_pdf(filepath)
-        if row:
-            cod = row['codigo_nuevo']
-            if cod not in atu:
-                atu[cod] = row
-            print(f'  {cod} ({row["codigo_antiguo"]}) [{row["fuente"]}] '
-                  f'| {row["distrito_origen"]} -> {row["distrito_destino"]}')
+    # 2. Fichas del PRR
+    fichas = json.loads(FICHAS_JSON.read_text(encoding='utf-8'))['rutas']
+    atu = {cod: desde_ficha(cod, f) for cod, f in fichas.items()}
+    print(f'Rutas desde el PRR:     {len(atu)}')
 
-    print(f'\nRutas desde ATU zip:    {len(atu)}')
-
-    # 3. Fusionar: Wikipedia gana, ATU zip como fallback
+    # 3. Fusionar: Wikipedia gana, PRR como fallback
     maestro = {}
 
-    # Primero todas las de ATU zip (base)
+    # Primero todas las del PRR (base)
     for cod, row in atu.items():
         maestro[cod] = dict(row)
 
@@ -721,6 +683,12 @@ def main():
     for cod, row in wiki.items():
         entrada = dict(row)
         entrada['fuente'] = 'wikipedia'
+        if cod in atu:
+            antes = entrada['codigo_antiguo']
+            entrada['codigo_antiguo'] = codigo_antiguo(antes, atu[cod]['codigo_antiguo'])
+            if entrada['codigo_antiguo'] != antes:
+                print(f'  {cod}: codigo antiguo {antes} (Wikipedia) -> '
+                      f'{entrada["codigo_antiguo"]} (seccion 14 del PRR)')
         maestro[cod] = entrada
 
     # 4. Aplicar overrides manuales conocidos
@@ -778,7 +746,7 @@ def main():
     print(f'\n{"="*50}')
     print(f'Total rutas en maestro: {total}')
     print(f'  Desde Wikipedia:      {de_wiki}')
-    print(f'  Desde ATU zip:        {de_atu}')
+    print(f'  Desde el PRR:        {de_atu}')
     print(f'  Con empresa:          {con_empresa}')
     print(f'  Sin empresa:          {sin_empresa}')
     print(f'\nArchivo: {OUT_CSV}')

@@ -40,7 +40,11 @@ Licencia: ODbL; el mapa ya muestra "© OpenStreetMap".
   salida en `config/cole_bus.json`. Falta ubicar Ricardo Bentín, Mónaco y
   México para dibujarlo.
 - **Rutas del PRR sin trazado de Wikiroutes**: 1420 y 1427–1460 (33 rutas,
-  probablemente nuevas del PRR).
+  probablemente nuevas del PRR). `prr_fichas.json` trae su itinerario calle
+  por calle: con las calles de OSM se podría trazar cada una.
+- **Fichas técnicas en el sidebar**: intervalo de paso, km, flota y
+  carrocería de cada ruta (`prr_fichas.json`, 1 MB: generar una versión
+  liviana para el front).
 - Fuente de "rutas que circulan": el anexo del subsidio ECO (resolución SSTR
   del 24/07/2026, operadores con servicio registrado en el SICM) listaría las
   rutas con operación real; el PDF recibido no trae el anexo.
