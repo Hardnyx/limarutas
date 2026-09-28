@@ -505,12 +505,12 @@
   },
   "route_106344": {
     "display_id": "1474",
-    "color": "#4F7F90",
+    "color": "#E8CC14",
     "name": "1474 · Calle 14 → Puente PUCP"
   },
   "106344": {
     "display_id": "1474",
-    "color": "#4F7F90"
+    "color": "#E8CC14"
   },
   "route_106503": {
     "display_id": "1023",
@@ -901,21 +901,21 @@
   },
   "route_108981": {
     "display_id": "1338",
-    "color": "#456878",
+    "color": "#248A8E",
     "name": "1338 · Calle 7 → Óvalo La Perla"
   },
   "108981": {
     "display_id": "1338",
-    "color": "#456878"
+    "color": "#248A8E"
   },
   "route_109146": {
     "display_id": "1488",
-    "color": "#456878",
+    "color": "#E3B03F",
     "name": "1488 · Ferrocarril → Entrada Huampaní (Carapongo)"
   },
   "109146": {
     "display_id": "1488",
-    "color": "#456878"
+    "color": "#E3B03F"
   },
   "route_137496": {
     "display_id": "1132",
@@ -955,12 +955,12 @@
   },
   "route_150590": {
     "display_id": "1489",
-    "color": "#5A8595",
+    "color": "#5A6470",
     "name": "1489 · Condominio Las Flores → San Nicolás"
   },
   "150590": {
     "display_id": "1489",
-    "color": "#5A8595"
+    "color": "#5A6470"
   },
   "route_150727": {
     "display_id": "1003",
@@ -1009,21 +1009,21 @@
   },
   "route_151307": {
     "display_id": "1346",
-    "color": "#3A6878",
+    "color": "#FF1202",
     "name": "1346 · Tacaymano → Minka"
   },
   "151307": {
     "display_id": "1346",
-    "color": "#3A6878"
+    "color": "#FF1202"
   },
   "route_151308": {
     "display_id": "1347",
-    "color": "#608090",
+    "color": "#FBDC12",
     "name": "1347 · AA.HH La Campiña → Gran Chimú"
   },
   "151308": {
     "display_id": "1347",
-    "color": "#608090"
+    "color": "#FBDC12"
   },
   "route_151309": {
     "display_id": "1200",
@@ -1036,12 +1036,12 @@
   },
   "route_151433": {
     "display_id": "1342",
-    "color": "#527585",
+    "color": "#A30F0F",
     "name": "1342 · AA.HH Cristo Rey Sector 1 → Óvalo La Paz"
   },
   "151433": {
     "display_id": "1342",
-    "color": "#527585"
+    "color": "#A30F0F"
   },
   "route_151463": {
     "display_id": "1132",
@@ -1063,12 +1063,12 @@
   },
   "route_151577": {
     "display_id": "1474",
-    "color": "#4F7F90",
+    "color": "#E8CC14",
     "name": "1474 · Calle 14 → Puente PUCP"
   },
   "151577": {
     "display_id": "1474",
-    "color": "#4F7F90"
+    "color": "#E8CC14"
   },
   "route_151578": {
     "display_id": "1331",
@@ -1621,12 +1621,12 @@
   },
   "route_152601": {
     "display_id": "1492",
-    "color": "#527585",
+    "color": "#00EEFF",
     "name": "1492 · Colegio Max Uhle → Universitaria"
   },
   "152601": {
     "display_id": "1492",
-    "color": "#527585"
+    "color": "#00EEFF"
   },
   "route_152602": {
     "display_id": "1491",
@@ -1666,12 +1666,12 @@
   },
   "route_152706": {
     "display_id": "1375",
-    "color": "#6595A5",
+    "color": "#A1FF28",
     "name": "1375 · Manchay Bajo → Las Madreselvas"
   },
   "152706": {
     "display_id": "1375",
-    "color": "#6595A5"
+    "color": "#A1FF28"
   },
   "route_152707": {
     "display_id": "1061",
@@ -1693,12 +1693,12 @@
   },
   "route_152771": {
     "display_id": "1417",
-    "color": "#608090",
+    "color": "#AEAE79",
     "name": "1417 · Los Constructores → Pasaje 2"
   },
   "152771": {
     "display_id": "1417",
-    "color": "#608090"
+    "color": "#AEAE79"
   },
   "route_152801": {
     "display_id": "1057",
@@ -1774,12 +1774,12 @@
   },
   "route_152890": {
     "display_id": "1355",
-    "color": "#6595A5",
+    "color": "#88FE12",
     "name": "1355 · Perales → El Lindero"
   },
   "152890": {
     "display_id": "1355",
-    "color": "#6595A5"
+    "color": "#88FE12"
   },
   "route_152909": {
     "display_id": "1130",
@@ -1819,12 +1819,12 @@
   },
   "route_152935": {
     "display_id": "1376",
-    "color": "#3A6878",
+    "color": "#00AAFF",
     "name": "1376 · Cabo Blanco → Ensenada de Collanac"
   },
   "152935": {
     "display_id": "1376",
-    "color": "#3A6878"
+    "color": "#00AAFF"
   },
   "route_153004": {
     "display_id": "EM16",
@@ -1864,12 +1864,12 @@
   },
   "route_153146": {
     "display_id": "1343",
-    "color": "#5C8FA0",
+    "color": "#FF9900",
     "name": "1343 · Mirador → AA.HH San Judas Tadeo"
   },
   "153146": {
     "display_id": "1343",
-    "color": "#5C8FA0"
+    "color": "#FF9900"
   },
   "route_153148": {
     "display_id": "NM17",
@@ -1945,12 +1945,12 @@
   },
   "route_153220": {
     "display_id": "1469",
-    "color": "#888888",
+    "color": "#4F8ED8",
     "name": "1469 · Las Rosas → 12 de Febrero"
   },
   "153220": {
     "display_id": "1469",
-    "color": "#888888"
+    "color": "#4F8ED8"
   },
   "route_153221": {
     "display_id": "NM29",
@@ -2044,12 +2044,12 @@
   },
   "route_153355": {
     "display_id": "1413",
-    "color": "#5C8FA0",
+    "color": "#BED222",
     "name": "1413 · Pasaje Túpac Amaru → Barrio Nuevo"
   },
   "153355": {
     "display_id": "1413",
-    "color": "#5C8FA0"
+    "color": "#BED222"
   },
   "route_153359": {
     "display_id": "1421",
@@ -2143,12 +2143,12 @@
   },
   "route_153420": {
     "display_id": "1338",
-    "color": "#456878",
+    "color": "#248A8E",
     "name": "1338 · Calle 7 → Óvalo La Perla"
   },
   "153420": {
     "display_id": "1338",
-    "color": "#456878"
+    "color": "#248A8E"
   },
   "route_153421": {
     "display_id": "1284",
@@ -2242,12 +2242,12 @@
   },
   "route_153479": {
     "display_id": "1395",
-    "color": "#6595A5",
+    "color": "#04C4FF",
     "name": "1395 · Pampa Chica → Calle 2"
   },
   "153479": {
     "display_id": "1395",
-    "color": "#6595A5"
+    "color": "#04C4FF"
   },
   "route_153480": {
     "display_id": "1300",
@@ -2269,12 +2269,12 @@
   },
   "route_153494": {
     "display_id": "1475",
-    "color": "#6595A5",
+    "color": "#0010FF",
     "name": "1475 · Calle S/N → España"
   },
   "153494": {
     "display_id": "1475",
-    "color": "#6595A5"
+    "color": "#0010FF"
   },
   "route_153529": {
     "display_id": "1173",
@@ -2287,12 +2287,12 @@
   },
   "route_153534": {
     "display_id": "1321",
-    "color": "#4A7A8A",
+    "color": "#FFC900",
     "name": "1321 · Plaza Vea (Puente Piedra) → Canta"
   },
   "153534": {
     "display_id": "1321",
-    "color": "#4A7A8A"
+    "color": "#FFC900"
   },
   "route_153535": {
     "display_id": "SDO01",
@@ -2323,21 +2323,21 @@
   },
   "route_153550": {
     "display_id": "1320",
-    "color": "#3D6B7A",
+    "color": "#3DA060",
     "name": "1320 · Laderas de Chillón → Belaúnde"
   },
   "153550": {
     "display_id": "1320",
-    "color": "#3D6B7A"
+    "color": "#3DA060"
   },
   "route_153551": {
     "display_id": "1325",
-    "color": "#6595A5",
+    "color": "#45763B",
     "name": "1325 · Manzana G → Mercado Huamantanga"
   },
   "153551": {
     "display_id": "1325",
-    "color": "#6595A5"
+    "color": "#45763B"
   },
   "route_153552": {
     "display_id": "1326",
@@ -2350,21 +2350,21 @@
   },
   "route_153553": {
     "display_id": "1328",
-    "color": "#456878",
+    "color": "#2D77F9",
     "name": "1328 · Ensenada → Mercado Central Fevacel"
   },
   "153553": {
     "display_id": "1328",
-    "color": "#456878"
+    "color": "#2D77F9"
   },
   "route_153554": {
     "display_id": "1462",
-    "color": "#527585",
+    "color": "#ED1313",
     "name": "1462 · Techo Propio → La Marina"
   },
   "153554": {
     "display_id": "1462",
-    "color": "#527585"
+    "color": "#ED1313"
   },
   "route_153555": {
     "display_id": "1178",
@@ -2395,30 +2395,30 @@
   },
   "route_153560": {
     "display_id": "1322",
-    "color": "#527585",
+    "color": "#F5700B",
     "name": "1322 · Cajamarca → Plaza El Progreso"
   },
   "153560": {
     "display_id": "1322",
-    "color": "#527585"
+    "color": "#F5700B"
   },
   "route_153561": {
     "display_id": "1323",
-    "color": "#5C8FA0",
+    "color": "#694848",
     "name": "1323 · I.E Celso Lino Ricaldi → Santa María"
   },
   "153561": {
     "display_id": "1323",
-    "color": "#5C8FA0"
+    "color": "#694848"
   },
   "route_153562": {
     "display_id": "1329",
-    "color": "#5A8595",
+    "color": "#DE1510",
     "name": "1329 · Ensenada → Metro (Angélica Gamarra)"
   },
   "153562": {
     "display_id": "1329",
-    "color": "#5A8595"
+    "color": "#DE1510"
   },
   "route_153564": {
     "display_id": "1303",
@@ -2431,12 +2431,12 @@
   },
   "route_153565": {
     "display_id": "1490",
-    "color": "#3D6B7A",
+    "color": "#328929",
     "name": "1490 · Mar del Norte → Calle José De San Martín"
   },
   "153565": {
     "display_id": "1490",
-    "color": "#3D6B7A"
+    "color": "#328929"
   },
   "route_153575": {
     "display_id": "1305",
@@ -2449,21 +2449,21 @@
   },
   "route_153579": {
     "display_id": "1327",
-    "color": "#608090",
+    "color": "#6D378B",
     "name": "1327 · Zegarra Sarmiento → Comisaría de Cerro Candela"
   },
   "153579": {
     "display_id": "1327",
-    "color": "#608090"
+    "color": "#6D378B"
   },
   "route_153581": {
     "display_id": "1324",
-    "color": "#4F7F90",
+    "color": "#FEFF00",
     "name": "1324 · Avenida A → Puente La Molina"
   },
   "153581": {
     "display_id": "1324",
-    "color": "#4F7F90"
+    "color": "#FEFF00"
   },
   "route_153593": {
     "display_id": "AD-C",
@@ -2593,48 +2593,48 @@
   },
   "route_153705": {
     "display_id": "1335",
-    "color": "#6595A5",
+    "color": "#FE1212",
     "name": "1335 · Virgen del Carmen → Los Andes"
   },
   "153705": {
     "display_id": "1335",
-    "color": "#6595A5"
+    "color": "#FE1212"
   },
   "route_153706": {
     "display_id": "1336",
-    "color": "#3A6878",
+    "color": "#F22710",
     "name": "1336 · Grifo América → La Marina"
   },
   "153706": {
     "display_id": "1336",
-    "color": "#3A6878"
+    "color": "#F22710"
   },
   "route_153707": {
     "display_id": "1337",
-    "color": "#608090",
+    "color": "#F21000",
     "name": "1337 · La Planicie III → La Marina"
   },
   "153707": {
     "display_id": "1337",
-    "color": "#608090"
+    "color": "#F21000"
   },
   "route_153708": {
     "display_id": "1339",
-    "color": "#5A8595",
+    "color": "#FEF70A",
     "name": "1339 · Los Cedros → Simón Bolívar"
   },
   "153708": {
     "display_id": "1339",
-    "color": "#5A8595"
+    "color": "#FEF70A"
   },
   "route_153709": {
     "display_id": "1340",
-    "color": "#3D6B7A",
+    "color": "#FF1D04",
     "name": "1340 · Bertello → Paramonga"
   },
   "153709": {
     "display_id": "1340",
-    "color": "#3D6B7A"
+    "color": "#FF1D04"
   },
   "route_153710": {
     "display_id": "1341",
@@ -2647,12 +2647,12 @@
   },
   "route_153711": {
     "display_id": "1348",
-    "color": "#456878",
+    "color": "#E61111",
     "name": "1348 · Prolongación Javier Prado → Gran Chimú"
   },
   "153711": {
     "display_id": "1348",
-    "color": "#456878"
+    "color": "#E61111"
   },
   "route_153778": {
     "display_id": "EO24",
@@ -2692,12 +2692,12 @@
   },
   "route_153836": {
     "display_id": "1349",
-    "color": "#5A8595",
+    "color": "#E61111",
     "name": "1349 · Condominio Las Flores → Gran Chimú"
   },
   "153836": {
     "display_id": "1349",
-    "color": "#5A8595"
+    "color": "#E61111"
   },
   "route_153837": {
     "display_id": "EM70",
@@ -2764,21 +2764,21 @@
   },
   "route_153917": {
     "display_id": "1350",
-    "color": "#3D6B7A",
+    "color": "#EA1212",
     "name": "1350 · Condominio Las Flores → Quipucamayoc"
   },
   "153917": {
     "display_id": "1350",
-    "color": "#3D6B7A"
+    "color": "#EA1212"
   },
   "route_153918": {
     "display_id": "1351",
-    "color": "#4A7A8A",
+    "color": "#FF0F07",
     "name": "1351 · Las Gaviotas → Gran Chimú"
   },
   "153918": {
     "display_id": "1351",
-    "color": "#4A7A8A"
+    "color": "#FF0F07"
   },
   "route_153963": {
     "display_id": "EO29",
@@ -2908,12 +2908,12 @@
   },
   "route_154232": {
     "display_id": "1353",
-    "color": "#5C8FA0",
+    "color": "#0DFECE",
     "name": "1353 · Terminal H-2 S.A. (Carapongo) → José La Mar"
   },
   "154232": {
     "display_id": "1353",
-    "color": "#5C8FA0"
+    "color": "#0DFECE"
   },
   "route_154233": {
     "display_id": "1354",
@@ -2944,12 +2944,12 @@
   },
   "route_154236": {
     "display_id": "1352",
-    "color": "#527585",
+    "color": "#0000D9",
     "name": "1352 · Parque La Capiña → Barrio Alto Huancaray"
   },
   "154236": {
     "display_id": "1352",
-    "color": "#527585"
+    "color": "#0000D9"
   },
   "route_154263": {
     "display_id": "C21m",
@@ -3304,12 +3304,12 @@
   },
   "route_155073": {
     "display_id": "1468",
-    "color": "#456878",
+    "color": "#2F921F",
     "name": "1468 · Terminal Conchitas → Miguel Iglesias"
   },
   "155073": {
     "display_id": "1468",
-    "color": "#456878"
+    "color": "#2F921F"
   },
   "route_155117": {
     "display_id": "1296",
@@ -3403,12 +3403,12 @@
   },
   "route_155169": {
     "display_id": "1356",
-    "color": "#3A6878",
+    "color": "#5CC9B4",
     "name": "1356 · Praderas de La Molina → Mariscal Ramón Castilla"
   },
   "155169": {
     "display_id": "1356",
-    "color": "#3A6878"
+    "color": "#5CC9B4"
   },
   "route_155170": {
     "display_id": "1357",
@@ -3592,30 +3592,30 @@
   },
   "route_155249": {
     "display_id": "1358",
-    "color": "#456878",
+    "color": "#0B6EA7",
     "name": "1358 · Portales de Río Seco → El Rosa de Santa Anita"
   },
   "155249": {
     "display_id": "1358",
-    "color": "#456878"
+    "color": "#0B6EA7"
   },
   "route_155250": {
     "display_id": "1359",
-    "color": "#5A8595",
+    "color": "#E80101",
     "name": "1359 · Institución Educativa El Amauta → Benjamín Franklin"
   },
   "155250": {
     "display_id": "1359",
-    "color": "#5A8595"
+    "color": "#E80101"
   },
   "route_155251": {
     "display_id": "1360",
-    "color": "#3D6B7A",
+    "color": "#4A753D",
     "name": "1360 · Hijos de Apurimac → Residencial Río Seco"
   },
   "155251": {
     "display_id": "1360",
-    "color": "#3D6B7A"
+    "color": "#4A753D"
   },
   "route_155254": {
     "display_id": "1126",
@@ -4843,12 +4843,12 @@
   },
   "route_156051": {
     "display_id": "1470",
-    "color": "#3D6B7A",
+    "color": "#FF2323",
     "name": "1470 · Estadio de San Genaro → Dominicos"
   },
   "156051": {
     "display_id": "1470",
-    "color": "#3D6B7A"
+    "color": "#FF2323"
   },
   "route_156062": {
     "display_id": "156062",
@@ -4942,12 +4942,12 @@
   },
   "route_156511": {
     "display_id": "1361",
-    "color": "#4A7A8A",
+    "color": "#EAEB00",
     "name": "1361 · AA.HH La Campiña → Benjamín Franklin"
   },
   "156511": {
     "display_id": "1361",
-    "color": "#4A7A8A"
+    "color": "#EAEB00"
   },
   "route_156574": {
     "display_id": "58",
@@ -4996,39 +4996,39 @@
   },
   "route_157678": {
     "display_id": "1465",
-    "color": "#6595A5",
+    "color": "#961B1B",
     "name": "1465 · Francisco Bolognesi → Pronoepsa Portugal"
   },
   "157678": {
     "display_id": "1465",
-    "color": "#6595A5"
+    "color": "#961B1B"
   },
   "route_157866": {
     "display_id": "1472",
-    "color": "#527585",
+    "color": "#55D2C6",
     "name": "1472 · Nogales → Mariano Pastor Sevilla"
   },
   "157866": {
     "display_id": "1472",
-    "color": "#527585"
+    "color": "#55D2C6"
   },
   "route_157867": {
     "display_id": "1483",
-    "color": "#5C8FA0",
+    "color": "#00DE34",
     "name": "1483 · Lomas de Villa María → Calle 4"
   },
   "157867": {
     "display_id": "1483",
-    "color": "#5C8FA0"
+    "color": "#00DE34"
   },
   "route_157951": {
     "display_id": "1471",
-    "color": "#4A7A8A",
+    "color": "#B81A1A",
     "name": "1471 · Mercado Nuevo Norte → Vicuña"
   },
   "157951": {
     "display_id": "1471",
-    "color": "#4A7A8A"
+    "color": "#B81A1A"
   },
   "route_157988": {
     "display_id": "SCR26",
@@ -5059,21 +5059,21 @@
   },
   "route_158339": {
     "display_id": "1461",
-    "color": "#4A7A8A",
+    "color": "#E60025",
     "name": "1461 · Villa Club IV → El Parque"
   },
   "158339": {
     "display_id": "1461",
-    "color": "#4A7A8A"
+    "color": "#E60025"
   },
   "route_158340": {
     "display_id": "1362",
-    "color": "#527585",
+    "color": "#FF0447",
     "name": "1362 · 11 de Junio → Marie Curie"
   },
   "158340": {
     "display_id": "1362",
-    "color": "#527585"
+    "color": "#FF0447"
   },
   "route_41832": {
     "display_id": "412",
@@ -5338,12 +5338,12 @@
   },
   "route_44807": {
     "display_id": "1471",
-    "color": "#4A7A8A",
+    "color": "#B81A1A",
     "name": "1471 · Mercado Nuevo Norte → Vicuña"
   },
   "44807": {
     "display_id": "1471",
-    "color": "#4A7A8A"
+    "color": "#B81A1A"
   },
   "route_44810": {
     "display_id": "1254",
@@ -5950,12 +5950,12 @@
   },
   "route_53089": {
     "display_id": "1492",
-    "color": "#527585",
+    "color": "#00EEFF",
     "name": "1492 · Colegio Max Uhle → Universitaria"
   },
   "53089": {
     "display_id": "1492",
-    "color": "#527585"
+    "color": "#00EEFF"
   },
   "route_53118": {
     "display_id": "1009",
@@ -5977,12 +5977,12 @@
   },
   "route_53367": {
     "display_id": "1320",
-    "color": "#3D6B7A",
+    "color": "#3DA060",
     "name": "1320 · Laderas de Chillón → Belaúnde"
   },
   "53367": {
     "display_id": "1320",
-    "color": "#3D6B7A"
+    "color": "#3DA060"
   },
   "route_53416": {
     "display_id": "CR12",
@@ -5995,12 +5995,12 @@
   },
   "route_53418": {
     "display_id": "1461",
-    "color": "#4A7A8A",
+    "color": "#E60025",
     "name": "1461 · Villa Club IV → El Parque"
   },
   "53418": {
     "display_id": "1461",
-    "color": "#4A7A8A"
+    "color": "#E60025"
   },
   "route_53462": {
     "display_id": "AN24",
@@ -6058,12 +6058,12 @@
   },
   "route_54364": {
     "display_id": "1462",
-    "color": "#527585",
+    "color": "#ED1313",
     "name": "1462 · Techo Propio → La Marina"
   },
   "54364": {
     "display_id": "1462",
-    "color": "#527585"
+    "color": "#ED1313"
   },
   "route_54432": {
     "display_id": "1183",
@@ -6076,12 +6076,12 @@
   },
   "route_54433": {
     "display_id": "1350",
-    "color": "#3D6B7A",
+    "color": "#EA1212",
     "name": "1350 · Condominio Las Flores → Quipucamayoc"
   },
   "54433": {
     "display_id": "1350",
-    "color": "#3D6B7A"
+    "color": "#EA1212"
   },
   "route_54452": {
     "display_id": "1045",
@@ -6157,12 +6157,12 @@
   },
   "route_55063": {
     "display_id": "1327",
-    "color": "#608090",
+    "color": "#6D378B",
     "name": "1327 · Zegarra Sarmiento → Comisaría de Cerro Candela"
   },
   "55063": {
     "display_id": "1327",
-    "color": "#608090"
+    "color": "#6D378B"
   },
   "route_55064": {
     "display_id": "301ex",
@@ -6265,12 +6265,12 @@
   },
   "route_56421": {
     "display_id": "1466",
-    "color": "#3A6878",
+    "color": "#C7AE60",
     "name": "1466 · Casa Club El Pamar → Plaza Bolognesi"
   },
   "56421": {
     "display_id": "1466",
-    "color": "#3A6878"
+    "color": "#C7AE60"
   },
   "route_56438": {
     "display_id": "CR53",
@@ -6292,12 +6292,12 @@
   },
   "route_56974": {
     "display_id": "1321",
-    "color": "#4A7A8A",
+    "color": "#FFC900",
     "name": "1321 · Plaza Vea (Puente Piedra) → Canta"
   },
   "56974": {
     "display_id": "1321",
-    "color": "#4A7A8A"
+    "color": "#FFC900"
   },
   "route_57383": {
     "display_id": "204",
@@ -6310,12 +6310,12 @@
   },
   "route_57854": {
     "display_id": "1335",
-    "color": "#6595A5",
+    "color": "#FE1212",
     "name": "1335 · Virgen del Carmen → Los Andes"
   },
   "57854": {
     "display_id": "1335",
-    "color": "#6595A5"
+    "color": "#FE1212"
   },
   "route_58270": {
     "display_id": "02",
@@ -6373,30 +6373,30 @@
   },
   "route_62791": {
     "display_id": "1328",
-    "color": "#456878",
+    "color": "#2D77F9",
     "name": "1328 · Ensenada → Mercado Central Fevacel"
   },
   "62791": {
     "display_id": "1328",
-    "color": "#456878"
+    "color": "#2D77F9"
   },
   "route_62792": {
     "display_id": "1329",
-    "color": "#5A8595",
+    "color": "#DE1510",
     "name": "1329 · Ensenada → Metro (Angélica Gamarra)"
   },
   "62792": {
     "display_id": "1329",
-    "color": "#5A8595"
+    "color": "#DE1510"
   },
   "route_62845": {
     "display_id": "1323",
-    "color": "#5C8FA0",
+    "color": "#694848",
     "name": "1323 · I.E Celso Lino Ricaldi → Santa María"
   },
   "62845": {
     "display_id": "1323",
-    "color": "#5C8FA0"
+    "color": "#694848"
   },
   "route_62846": {
     "display_id": "1188",
@@ -6409,12 +6409,12 @@
   },
   "route_62871": {
     "display_id": "1325",
-    "color": "#6595A5",
+    "color": "#45763B",
     "name": "1325 · Manzana G → Mercado Huamantanga"
   },
   "62871": {
     "display_id": "1325",
-    "color": "#6595A5"
+    "color": "#45763B"
   },
   "route_62889": {
     "display_id": "OM14",
@@ -6625,12 +6625,12 @@
   },
   "route_68803": {
     "display_id": "1465",
-    "color": "#6595A5",
+    "color": "#961B1B",
     "name": "1465 · Francisco Bolognesi → Pronoepsa Portugal"
   },
   "68803": {
     "display_id": "1465",
-    "color": "#6595A5"
+    "color": "#961B1B"
   },
   "route_68804": {
     "display_id": "1025",
@@ -6652,12 +6652,12 @@
   },
   "route_68808": {
     "display_id": "1468",
-    "color": "#456878",
+    "color": "#2F921F",
     "name": "1468 · Terminal Conchitas → Miguel Iglesias"
   },
   "68808": {
     "display_id": "1468",
-    "color": "#456878"
+    "color": "#2F921F"
   },
   "route_68809": {
     "display_id": "1131",
@@ -6724,12 +6724,12 @@
   },
   "route_68845": {
     "display_id": "1467",
-    "color": "#608090",
+    "color": "#5A6470",
     "name": "1467 · Lubricentro de Pucusana → Cornelio Borda"
   },
   "68845": {
     "display_id": "1467",
-    "color": "#608090"
+    "color": "#5A6470"
   },
   "route_68846": {
     "display_id": "1231",
@@ -6742,12 +6742,12 @@
   },
   "route_68847": {
     "display_id": "1472",
-    "color": "#527585",
+    "color": "#55D2C6",
     "name": "1472 · Nogales → Mariano Pastor Sevilla"
   },
   "68847": {
     "display_id": "1472",
-    "color": "#527585"
+    "color": "#55D2C6"
   },
   "route_68848": {
     "display_id": "IO66",
@@ -6760,30 +6760,30 @@
   },
   "route_68911": {
     "display_id": "1394",
-    "color": "#4F7F90",
+    "color": "#FFA200",
     "name": "1394 · Mercado de Lurín → Magda Portal"
   },
   "68911": {
     "display_id": "1394",
-    "color": "#4F7F90"
+    "color": "#FFA200"
   },
   "route_68912": {
     "display_id": "1476",
-    "color": "#3A6878",
+    "color": "#B24700",
     "name": "1476 · Nueva Esperanza → Real Madrid"
   },
   "68912": {
     "display_id": "1476",
-    "color": "#3A6878"
+    "color": "#B24700"
   },
   "route_68913": {
     "display_id": "1395",
-    "color": "#6595A5",
+    "color": "#04C4FF",
     "name": "1395 · Pampa Chica → Calle 2"
   },
   "68913": {
     "display_id": "1395",
-    "color": "#6595A5"
+    "color": "#04C4FF"
   },
   "route_68914": {
     "display_id": "IO37b",
@@ -6823,21 +6823,21 @@
   },
   "route_68918": {
     "display_id": "1376",
-    "color": "#3A6878",
+    "color": "#00AAFF",
     "name": "1376 · Cabo Blanco → Ensenada de Collanac"
   },
   "68918": {
     "display_id": "1376",
-    "color": "#3A6878"
+    "color": "#00AAFF"
   },
   "route_68988": {
     "display_id": "1464",
-    "color": "#4F7F90",
+    "color": "#1799FE",
     "name": "1464 · Iquitos → Pasaje D"
   },
   "68988": {
     "display_id": "1464",
-    "color": "#4F7F90"
+    "color": "#1799FE"
   },
   "route_68991": {
     "display_id": "7503",
@@ -6922,12 +6922,12 @@
   },
   "route_69002": {
     "display_id": "1360",
-    "color": "#3D6B7A",
+    "color": "#4A753D",
     "name": "1360 · Hijos de Apurimac → Residencial Río Seco"
   },
   "69002": {
     "display_id": "1360",
-    "color": "#3D6B7A"
+    "color": "#4A753D"
   },
   "route_69003": {
     "display_id": "3807",
@@ -6976,30 +6976,30 @@
   },
   "route_69055": {
     "display_id": "1485",
-    "color": "#6595A5",
+    "color": "#00DE34",
     "name": "1485 · Palma Roebellini → La Chira"
   },
   "69055": {
     "display_id": "1485",
-    "color": "#6595A5"
+    "color": "#00DE34"
   },
   "route_69056": {
     "display_id": "1384",
-    "color": "#4F7F90",
+    "color": "#00C92F",
     "name": "1384 · José Pardo → Río Surco"
   },
   "69056": {
     "display_id": "1384",
-    "color": "#4F7F90"
+    "color": "#00C92F"
   },
   "route_69057": {
     "display_id": "1483",
-    "color": "#5C8FA0",
+    "color": "#00DE34",
     "name": "1483 · Lomas de Villa María → Calle 4"
   },
   "69057": {
     "display_id": "1483",
-    "color": "#5C8FA0"
+    "color": "#00DE34"
   },
   "route_69058": {
     "display_id": "1234",
@@ -7147,12 +7147,12 @@
   },
   "route_69322": {
     "display_id": "1358",
-    "color": "#456878",
+    "color": "#0B6EA7",
     "name": "1358 · Portales de Río Seco → El Rosa de Santa Anita"
   },
   "69322": {
     "display_id": "1358",
-    "color": "#456878"
+    "color": "#0B6EA7"
   },
   "route_69323": {
     "display_id": "1249",
@@ -7255,12 +7255,12 @@
   },
   "route_69397": {
     "display_id": "1377",
-    "color": "#608090",
+    "color": "#189099",
     "name": "1377 · Villa Rica → Bajada Agua Dulce"
   },
   "69397": {
     "display_id": "1377",
-    "color": "#608090"
+    "color": "#189099"
   },
   "route_69398": {
     "display_id": "3612",
@@ -7273,21 +7273,21 @@
   },
   "route_69399": {
     "display_id": "1406",
-    "color": "#3A6878",
+    "color": "#318160",
     "name": "1406 · Rinconada → Ricardo Palma"
   },
   "69399": {
     "display_id": "1406",
-    "color": "#3A6878"
+    "color": "#318160"
   },
   "route_69401": {
     "display_id": "1414",
-    "color": "#4F7F90",
+    "color": "#E71A1A",
     "name": "1414 · Estadio José Galvez → Calle 2"
   },
   "69401": {
     "display_id": "1414",
-    "color": "#4F7F90"
+    "color": "#E71A1A"
   },
   "route_69402": {
     "display_id": "1055",
@@ -7354,12 +7354,12 @@
   },
   "route_69421": {
     "display_id": "1336",
-    "color": "#3A6878",
+    "color": "#F22710",
     "name": "1336 · Grifo América → La Marina"
   },
   "69421": {
     "display_id": "1336",
-    "color": "#3A6878"
+    "color": "#F22710"
   },
   "route_69422": {
     "display_id": "1196",
@@ -7444,12 +7444,12 @@
   },
   "route_69431": {
     "display_id": "1473",
-    "color": "#5C8FA0",
+    "color": "#F2E201",
     "name": "1473 · Jesús Mentor → La Paz"
   },
   "69431": {
     "display_id": "1473",
-    "color": "#5C8FA0"
+    "color": "#F2E201"
   },
   "route_69432": {
     "display_id": "CR58",
@@ -7561,12 +7561,12 @@
   },
   "route_69489": {
     "display_id": "1388",
-    "color": "#456878",
+    "color": "#EE0000",
     "name": "1388 · Las Dunas → Triángulo"
   },
   "69489": {
     "display_id": "1388",
-    "color": "#456878"
+    "color": "#EE0000"
   },
   "route_69490": {
     "display_id": "8901",
@@ -7642,12 +7642,12 @@
   },
   "route_69498": {
     "display_id": "1463",
-    "color": "#5C8FA0",
+    "color": "#0B00B3",
     "name": "1463 · Pasaje Túpac Amaru → Plaza Bolognesi"
   },
   "69498": {
     "display_id": "1463",
-    "color": "#5C8FA0"
+    "color": "#0B00B3"
   },
   "route_69499": {
     "display_id": "CR17",
@@ -7759,12 +7759,12 @@
   },
   "route_69514": {
     "display_id": "1487",
-    "color": "#608090",
+    "color": "#21AD06",
     "name": "1487 · Pasaje Túpac Amaru → Calle Los Ficus"
   },
   "69514": {
     "display_id": "1487",
-    "color": "#608090"
+    "color": "#21AD06"
   },
   "route_69538": {
     "display_id": "3206",
@@ -7849,12 +7849,12 @@
   },
   "route_69547": {
     "display_id": "1475",
-    "color": "#6595A5",
+    "color": "#0010FF",
     "name": "1475 · Calle S/N → España"
   },
   "69547": {
     "display_id": "1475",
-    "color": "#6595A5"
+    "color": "#0010FF"
   },
   "route_69548": {
     "display_id": "OM21",
@@ -7993,12 +7993,12 @@
   },
   "route_69635": {
     "display_id": "1342",
-    "color": "#527585",
+    "color": "#A30F0F",
     "name": "1342 · AA.HH Cristo Rey Sector 1 → Óvalo La Paz"
   },
   "69635": {
     "display_id": "1342",
-    "color": "#527585"
+    "color": "#A30F0F"
   },
   "route_69636": {
     "display_id": "IO75b",
@@ -8020,39 +8020,39 @@
   },
   "route_69638": {
     "display_id": "1419",
-    "color": "#5A8595",
+    "color": "#FF00B2",
     "name": "1419 · Elías Aguirre → María Reiche"
   },
   "69638": {
     "display_id": "1419",
-    "color": "#5A8595"
+    "color": "#FF00B2"
   },
   "route_69639": {
     "display_id": "1380",
-    "color": "#3D6B7A",
+    "color": "#FF00FE",
     "name": "1380 · Los Cipreses → Vilcanota"
   },
   "69639": {
     "display_id": "1380",
-    "color": "#3D6B7A"
+    "color": "#FF00FE"
   },
   "route_69640": {
     "display_id": "1407",
-    "color": "#608090",
+    "color": "#F700FF",
     "name": "1407 · Los Lloques → Parque Los Rosales"
   },
   "69640": {
     "display_id": "1407",
-    "color": "#608090"
+    "color": "#F700FF"
   },
   "route_69641": {
     "display_id": "1408",
-    "color": "#456878",
+    "color": "#FF28F0",
     "name": "1408 · Ferrocarril → Parque Los Rosales"
   },
   "69641": {
     "display_id": "1408",
-    "color": "#456878"
+    "color": "#FF28F0"
   },
   "route_69642": {
     "display_id": "1097",
@@ -8137,12 +8137,12 @@
   },
   "route_69729": {
     "display_id": "1356",
-    "color": "#3A6878",
+    "color": "#5CC9B4",
     "name": "1356 · Praderas de La Molina → Mariscal Ramón Castilla"
   },
   "69729": {
     "display_id": "1356",
-    "color": "#3A6878"
+    "color": "#5CC9B4"
   },
   "route_69730": {
     "display_id": "3404",
@@ -8245,12 +8245,12 @@
   },
   "route_69750": {
     "display_id": "1353",
-    "color": "#5C8FA0",
+    "color": "#0DFECE",
     "name": "1353 · Terminal H-2 S.A. (Carapongo) → José La Mar"
   },
   "69750": {
     "display_id": "1353",
-    "color": "#5C8FA0"
+    "color": "#0DFECE"
   },
   "route_69788": {
     "display_id": "4201",
@@ -8398,12 +8398,12 @@
   },
   "route_69877": {
     "display_id": "1375",
-    "color": "#6595A5",
+    "color": "#A1FF28",
     "name": "1375 · Manchay Bajo → Las Madreselvas"
   },
   "69877": {
     "display_id": "1375",
-    "color": "#6595A5"
+    "color": "#A1FF28"
   },
   "route_69878": {
     "display_id": "OM28",
@@ -8443,12 +8443,12 @@
   },
   "route_69960": {
     "display_id": "1343",
-    "color": "#5C8FA0",
+    "color": "#FF9900",
     "name": "1343 · Mirador → AA.HH San Judas Tadeo"
   },
   "69960": {
     "display_id": "1343",
-    "color": "#5C8FA0"
+    "color": "#FF9900"
   },
   "route_69961": {
     "display_id": "1344",
@@ -8479,21 +8479,21 @@
   },
   "route_69964": {
     "display_id": "1416",
-    "color": "#3A6878",
+    "color": "#7A513C",
     "name": "1416 · Urbanización San José → Aldea 6"
   },
   "69964": {
     "display_id": "1416",
-    "color": "#3A6878"
+    "color": "#7A513C"
   },
   "route_69965": {
     "display_id": "1484",
-    "color": "#4F7F90",
+    "color": "#FFA828",
     "name": "1484 · Calle B → Dante"
   },
   "69965": {
     "display_id": "1484",
-    "color": "#4F7F90"
+    "color": "#FFA828"
   },
   "route_70042": {
     "display_id": "1114",
@@ -8506,12 +8506,12 @@
   },
   "route_70163": {
     "display_id": "1370",
-    "color": "#3D6B7A",
+    "color": "#0707FF",
     "name": "1370 · Entrada Zona R → San Cristóbal"
   },
   "70163": {
     "display_id": "1370",
-    "color": "#3D6B7A"
+    "color": "#0707FF"
   },
   "route_70164": {
     "display_id": "7201",
@@ -8533,12 +8533,12 @@
   },
   "route_70166": {
     "display_id": "1398",
-    "color": "#456878",
+    "color": "#FFD323",
     "name": "1398 · Peaje de Punta Hermosa → Residencial Inclán"
   },
   "70166": {
     "display_id": "1398",
-    "color": "#456878"
+    "color": "#FFD323"
   },
   "route_70167": {
     "display_id": "4615",
@@ -8578,12 +8578,12 @@
   },
   "route_70171": {
     "display_id": "1367",
-    "color": "#608090",
+    "color": "#FF0000",
     "name": "1367 · Calle Londres → Esperanza"
   },
   "70171": {
     "display_id": "1367",
-    "color": "#608090"
+    "color": "#FF0000"
   },
   "route_70172": {
     "display_id": "4605",
@@ -8596,12 +8596,12 @@
   },
   "route_70173": {
     "display_id": "1369",
-    "color": "#5A8595",
+    "color": "#FF02F6",
     "name": "1369 · AA.HH La Campiña → San Cristóbal"
   },
   "70173": {
     "display_id": "1369",
-    "color": "#5A8595"
+    "color": "#FF02F6"
   },
   "route_70174": {
     "display_id": "4410",
@@ -8614,21 +8614,21 @@
   },
   "route_70175": {
     "display_id": "1368",
-    "color": "#456878",
+    "color": "#06EF55",
     "name": "1368 · AA.HH La Campiña → San Luis"
   },
   "70175": {
     "display_id": "1368",
-    "color": "#456878"
+    "color": "#06EF55"
   },
   "route_70176": {
     "display_id": "1361",
-    "color": "#4A7A8A",
+    "color": "#EAEB00",
     "name": "1361 · AA.HH La Campiña → Benjamín Franklin"
   },
   "70176": {
     "display_id": "1361",
-    "color": "#4A7A8A"
+    "color": "#EAEB00"
   },
   "route_70177": {
     "display_id": "1224",
@@ -8650,12 +8650,12 @@
   },
   "route_70179": {
     "display_id": "1352",
-    "color": "#527585",
+    "color": "#0000D9",
     "name": "1352 · Parque La Capiña → Barrio Alto Huancaray"
   },
   "70179": {
     "display_id": "1352",
-    "color": "#527585"
+    "color": "#0000D9"
   },
   "route_70180": {
     "display_id": "1130",
@@ -8812,12 +8812,12 @@
   },
   "route_70822": {
     "display_id": "1340",
-    "color": "#3D6B7A",
+    "color": "#FF1D04",
     "name": "1340 · Bertello → Paramonga"
   },
   "70822": {
     "display_id": "1340",
-    "color": "#3D6B7A"
+    "color": "#FF1D04"
   },
   "route_70823": {
     "display_id": "2206",
@@ -8848,12 +8848,12 @@
   },
   "route_70826": {
     "display_id": "1339",
-    "color": "#5A8595",
+    "color": "#FEF70A",
     "name": "1339 · Los Cedros → Simón Bolívar"
   },
   "70826": {
     "display_id": "1339",
-    "color": "#5A8595"
+    "color": "#FEF70A"
   },
   "route_70827": {
     "display_id": "2201",
@@ -8911,12 +8911,12 @@
   },
   "route_70833": {
     "display_id": "1337",
-    "color": "#608090",
+    "color": "#F21000",
     "name": "1337 · La Planicie III → La Marina"
   },
   "70833": {
     "display_id": "1337",
-    "color": "#608090"
+    "color": "#F21000"
   },
   "route_70834": {
     "display_id": "1007",
@@ -9028,12 +9028,12 @@
   },
   "route_70967": {
     "display_id": "1470",
-    "color": "#3D6B7A",
+    "color": "#FF2323",
     "name": "1470 · Estadio de San Genaro → Dominicos"
   },
   "70967": {
     "display_id": "1470",
-    "color": "#3D6B7A"
+    "color": "#FF2323"
   },
   "route_70968": {
     "display_id": "1037",
@@ -9136,21 +9136,21 @@
   },
   "route_71068": {
     "display_id": "1359",
-    "color": "#5A8595",
+    "color": "#E80101",
     "name": "1359 · Institución Educativa El Amauta → Benjamín Franklin"
   },
   "71068": {
     "display_id": "1359",
-    "color": "#5A8595"
+    "color": "#E80101"
   },
   "route_71069": {
     "display_id": "1355",
-    "color": "#6595A5",
+    "color": "#88FE12",
     "name": "1355 · Perales → El Lindero"
   },
   "71069": {
     "display_id": "1355",
-    "color": "#6595A5"
+    "color": "#88FE12"
   },
   "route_71070": {
     "display_id": "1065",
@@ -9163,12 +9163,12 @@
   },
   "route_71071": {
     "display_id": "1349",
-    "color": "#5A8595",
+    "color": "#E61111",
     "name": "1349 · Condominio Las Flores → Gran Chimú"
   },
   "71071": {
     "display_id": "1349",
-    "color": "#5A8595"
+    "color": "#E61111"
   },
   "route_71074": {
     "display_id": "1061",
@@ -9181,12 +9181,12 @@
   },
   "route_71075": {
     "display_id": "1346",
-    "color": "#3A6878",
+    "color": "#FF1202",
     "name": "1346 · Tacaymano → Minka"
   },
   "71075": {
     "display_id": "1346",
-    "color": "#3A6878"
+    "color": "#FF1202"
   },
   "route_71077": {
     "display_id": "1210",
@@ -9199,21 +9199,21 @@
   },
   "route_71107": {
     "display_id": "1373",
-    "color": "#5C8FA0",
+    "color": "#FEB60F",
     "name": "1373 · AA.HH Mariscal Andrés Avelino Cáceres → Eloy Ureta"
   },
   "71107": {
     "display_id": "1373",
-    "color": "#5C8FA0"
+    "color": "#FEB60F"
   },
   "route_71108": {
     "display_id": "1372",
-    "color": "#527585",
+    "color": "#FEC60F",
     "name": "1372 · AA.HH Mariscal Andrés Avelino Cáceres → San Luis"
   },
   "71108": {
     "display_id": "1372",
-    "color": "#527585"
+    "color": "#FEC60F"
   },
   "route_71109": {
     "display_id": "1074",
@@ -9244,12 +9244,12 @@
   },
   "route_71112": {
     "display_id": "1371",
-    "color": "#4A7A8A",
+    "color": "#FFF700",
     "name": "1371 · AA.HH El Amauta → San Cristóbal"
   },
   "71112": {
     "display_id": "1371",
-    "color": "#4A7A8A"
+    "color": "#FFF700"
   },
   "route_71113": {
     "display_id": "1070",
@@ -9289,39 +9289,39 @@
   },
   "route_71118": {
     "display_id": "1365",
-    "color": "#6595A5",
+    "color": "#FFE504",
     "name": "1365 · Terminal Los Ficus → Ñaña"
   },
   "71118": {
     "display_id": "1365",
-    "color": "#6595A5"
+    "color": "#FFE504"
   },
   "route_71119": {
     "display_id": "1366",
-    "color": "#3A6878",
+    "color": "#28FF28",
     "name": "1366 · José Santos Chocano → Junín"
   },
   "71119": {
     "display_id": "1366",
-    "color": "#3A6878"
+    "color": "#28FF28"
   },
   "route_71120": {
     "display_id": "1348",
-    "color": "#456878",
+    "color": "#E61111",
     "name": "1348 · Prolongación Javier Prado → Gran Chimú"
   },
   "71120": {
     "display_id": "1348",
-    "color": "#456878"
+    "color": "#E61111"
   },
   "route_71121": {
     "display_id": "1478",
-    "color": "#456878",
+    "color": "#00B200",
     "name": "1478 · Ferrocarril → 12 de Octubre"
   },
   "71121": {
     "display_id": "1478",
-    "color": "#456878"
+    "color": "#00B200"
   },
   "route_71122": {
     "display_id": "4203",
@@ -9334,12 +9334,12 @@
   },
   "route_71123": {
     "display_id": "1477",
-    "color": "#608090",
+    "color": "#1800B2",
     "name": "1477 · Ceres Medio → Óvalo Previ"
   },
   "71123": {
     "display_id": "1477",
-    "color": "#608090"
+    "color": "#1800B2"
   },
   "route_71124": {
     "display_id": "NH09b",
@@ -9442,57 +9442,57 @@
   },
   "route_71336": {
     "display_id": "1392",
-    "color": "#527585",
+    "color": "#FF2828",
     "name": "1392 · Vencedores → Patio Taller Línea 1 Metro de Lima (Villa El Salvador)"
   },
   "71336": {
     "display_id": "1392",
-    "color": "#527585"
+    "color": "#FF2828"
   },
   "route_71337": {
     "display_id": "1393",
-    "color": "#5C8FA0",
+    "color": "#0A30C8",
     "name": "1393 · Milagros Rin → Juan Velasco Alvarado"
   },
   "71337": {
     "display_id": "1393",
-    "color": "#5C8FA0"
+    "color": "#0A30C8"
   },
   "route_71338": {
     "display_id": "1390",
-    "color": "#3D6B7A",
+    "color": "#FFD607",
     "name": "1390 · Girasoles → Ramiro Merino"
   },
   "71338": {
     "display_id": "1390",
-    "color": "#3D6B7A"
+    "color": "#FFD607"
   },
   "route_71339": {
     "display_id": "1391",
-    "color": "#4A7A8A",
+    "color": "#FF1F1F",
     "name": "1391 · Calle 7 → Calle 14"
   },
   "71339": {
     "display_id": "1391",
-    "color": "#4A7A8A"
+    "color": "#FF1F1F"
   },
   "route_71340": {
     "display_id": "1389",
-    "color": "#5A8595",
+    "color": "#E30E0E",
     "name": "1389 · Fe y Alegría N°65 → Los Sauces"
   },
   "71340": {
     "display_id": "1389",
-    "color": "#5A8595"
+    "color": "#E30E0E"
   },
   "route_71357": {
     "display_id": "1386",
-    "color": "#3A6878",
+    "color": "#159D2D",
     "name": "1386 · Delicias de Villa → Óvalo La Curva"
   },
   "71357": {
     "display_id": "1386",
-    "color": "#3A6878"
+    "color": "#159D2D"
   },
   "route_71358": {
     "display_id": "7795",
@@ -9505,48 +9505,48 @@
   },
   "route_71359": {
     "display_id": "1383",
-    "color": "#5C8FA0",
+    "color": "#A50D0D",
     "name": "1383 · AA.HH. Hijos de Miyashiro → Girasoles"
   },
   "71359": {
     "display_id": "1383",
-    "color": "#5C8FA0"
+    "color": "#A50D0D"
   },
   "route_71360": {
     "display_id": "1381",
-    "color": "#4A7A8A",
+    "color": "#0006B2",
     "name": "1381 · Plaza Vea (Alameda Sur) → Nogales"
   },
   "71360": {
     "display_id": "1381",
-    "color": "#4A7A8A"
+    "color": "#0006B2"
   },
   "route_71361": {
     "display_id": "1382",
-    "color": "#527585",
+    "color": "#00B21C",
     "name": "1382 · La Chira → Babilonia"
   },
   "71361": {
     "display_id": "1382",
-    "color": "#527585"
+    "color": "#00B21C"
   },
   "route_71362": {
     "display_id": "1378",
-    "color": "#456878",
+    "color": "#E61B1B",
     "name": "1378 · Río Surco → Estadio Nazareno"
   },
   "71362": {
     "display_id": "1378",
-    "color": "#456878"
+    "color": "#E61B1B"
   },
   "route_71363": {
     "display_id": "1379",
-    "color": "#5A8595",
+    "color": "#E61B1B",
     "name": "1379 · Río Surco → Estadio Nazareno"
   },
   "71363": {
     "display_id": "1379",
-    "color": "#5A8595"
+    "color": "#E61B1B"
   },
   "route_71364": {
     "display_id": "1093",
@@ -9586,21 +9586,21 @@
   },
   "route_71368": {
     "display_id": "1347",
-    "color": "#608090",
+    "color": "#FBDC12",
     "name": "1347 · AA.HH La Campiña → Gran Chimú"
   },
   "71368": {
     "display_id": "1347",
-    "color": "#608090"
+    "color": "#FBDC12"
   },
   "route_71369": {
     "display_id": "1351",
-    "color": "#4A7A8A",
+    "color": "#FF0F07",
     "name": "1351 · Las Gaviotas → Gran Chimú"
   },
   "71369": {
     "display_id": "1351",
-    "color": "#4A7A8A"
+    "color": "#FF0F07"
   },
   "route_71370": {
     "display_id": "3302",
@@ -9640,39 +9640,39 @@
   },
   "route_71443": {
     "display_id": "1387",
-    "color": "#608090",
+    "color": "#EB0505",
     "name": "1387 · Terminal Ruta 7801 (San Juan de Miraflores) → Renacel"
   },
   "71443": {
     "display_id": "1387",
-    "color": "#608090"
+    "color": "#EB0505"
   },
   "route_71471": {
     "display_id": "1401",
-    "color": "#4A7A8A",
+    "color": "#FF1919",
     "name": "1401 · Pasaje Túpac Amaru → Terminal Ruta 8708"
   },
   "71471": {
     "display_id": "1401",
-    "color": "#4A7A8A"
+    "color": "#FF1919"
   },
   "route_71472": {
     "display_id": "1400",
-    "color": "#3D6B7A",
+    "color": "#FE4912",
     "name": "1400 · Calle 14 → La Chira"
   },
   "71472": {
     "display_id": "1400",
-    "color": "#3D6B7A"
+    "color": "#FE4912"
   },
   "route_71473": {
     "display_id": "1399",
-    "color": "#5A8595",
+    "color": "#FF0000",
     "name": "1399 · Calle 14 → La Chira"
   },
   "71473": {
     "display_id": "1399",
-    "color": "#5A8595"
+    "color": "#FF0000"
   },
   "route_71474": {
     "display_id": "1125",
@@ -9703,12 +9703,12 @@
   },
   "route_71477": {
     "display_id": "1397",
-    "color": "#608090",
+    "color": "#271BD6",
     "name": "1397 · Plaza de Armas de Santa Anita (Pachacamac) → José Olaya"
   },
   "71477": {
     "display_id": "1397",
-    "color": "#608090"
+    "color": "#271BD6"
   },
   "route_71478": {
     "display_id": "8625",
@@ -9748,12 +9748,12 @@
   },
   "route_71482": {
     "display_id": "1396",
-    "color": "#3A6878",
+    "color": "#0014C7",
     "name": "1396 · Luwa → Calle 22"
   },
   "71482": {
     "display_id": "1396",
-    "color": "#3A6878"
+    "color": "#0014C7"
   },
   "route_71575": {
     "display_id": "9501",
@@ -9802,21 +9802,21 @@
   },
   "route_71626": {
     "display_id": "1417",
-    "color": "#608090",
+    "color": "#AEAE79",
     "name": "1417 · Los Constructores → Pasaje 2"
   },
   "71626": {
     "display_id": "1417",
-    "color": "#608090"
+    "color": "#AEAE79"
   },
   "route_71627": {
     "display_id": "1418",
-    "color": "#456878",
+    "color": "#C88B44",
     "name": "1418 · San Pedro → Santo Domingo El Caminante"
   },
   "71627": {
     "display_id": "1418",
-    "color": "#456878"
+    "color": "#C88B44"
   },
   "route_71628": {
     "display_id": "8891",
@@ -9838,12 +9838,12 @@
   },
   "route_71630": {
     "display_id": "1415",
-    "color": "#6595A5",
+    "color": "#001BCF",
     "name": "1415 · Miguel Grau → Tipac"
   },
   "71630": {
     "display_id": "1415",
-    "color": "#6595A5"
+    "color": "#001BCF"
   },
   "route_71631": {
     "display_id": "4497",
@@ -9856,48 +9856,48 @@
   },
   "route_71632": {
     "display_id": "1486",
-    "color": "#3A6878",
+    "color": "#0006D1",
     "name": "1486 · Pasaje Túpac Amaru → La Chira"
   },
   "71632": {
     "display_id": "1486",
-    "color": "#3A6878"
+    "color": "#0006D1"
   },
   "route_71633": {
     "display_id": "1413",
-    "color": "#5C8FA0",
+    "color": "#BED222",
     "name": "1413 · Pasaje Túpac Amaru → Barrio Nuevo"
   },
   "71633": {
     "display_id": "1413",
-    "color": "#5C8FA0"
+    "color": "#BED222"
   },
   "route_71634": {
     "display_id": "1410",
-    "color": "#3D6B7A",
+    "color": "#FF5400",
     "name": "1410 · Los Incas → Vencedores"
   },
   "71634": {
     "display_id": "1410",
-    "color": "#3D6B7A"
+    "color": "#FF5400"
   },
   "route_71635": {
     "display_id": "1409",
-    "color": "#5A8595",
+    "color": "#FEFE12",
     "name": "1409 · Victoria Barcia Bonifatti → José Quiñones"
   },
   "71635": {
     "display_id": "1409",
-    "color": "#5A8595"
+    "color": "#FEFE12"
   },
   "route_71636": {
     "display_id": "1405",
-    "color": "#6595A5",
+    "color": "#FEFE12",
     "name": "1405 · Victoria Barcia Bonifatti → Ricardo Palma"
   },
   "71636": {
     "display_id": "1405",
-    "color": "#6595A5"
+    "color": "#FEFE12"
   },
   "route_71637": {
     "display_id": "1126",
@@ -10423,12 +10423,12 @@
   },
   "route_73024": {
     "display_id": "1385",
-    "color": "#6595A5",
+    "color": "#FF6600",
     "name": "1385 · Estadio Nazareno → Bajada Agua Dulce"
   },
   "73024": {
     "display_id": "1385",
-    "color": "#6595A5"
+    "color": "#FF6600"
   },
   "route_73118": {
     "display_id": "101",
@@ -10747,12 +10747,12 @@
   },
   "route_74604": {
     "display_id": "1490",
-    "color": "#3D6B7A",
+    "color": "#328929",
     "name": "1490 · Mar del Norte → Calle José De San Martín"
   },
   "74604": {
     "display_id": "1490",
-    "color": "#3D6B7A"
+    "color": "#328929"
   },
   "route_74605": {
     "display_id": "NM38",
@@ -11575,12 +11575,12 @@
   },
   "route_77853": {
     "display_id": "1322",
-    "color": "#527585",
+    "color": "#F5700B",
     "name": "1322 · Cajamarca → Plaza El Progreso"
   },
   "77853": {
     "display_id": "1322",
-    "color": "#527585"
+    "color": "#F5700B"
   },
   "route_77878": {
     "display_id": "015p",
@@ -12340,12 +12340,12 @@
   },
   "route_84812": {
     "display_id": "1410",
-    "color": "#3D6B7A",
+    "color": "#FF5400",
     "name": "1410 · Los Incas → Vencedores"
   },
   "84812": {
     "display_id": "1410",
-    "color": "#3D6B7A"
+    "color": "#FF5400"
   },
   "route_84815": {
     "display_id": "1305",
@@ -12385,21 +12385,21 @@
   },
   "route_84884": {
     "display_id": "1408",
-    "color": "#456878",
+    "color": "#FF28F0",
     "name": "1408 · Ferrocarril → Parque Los Rosales"
   },
   "84884": {
     "display_id": "1408",
-    "color": "#456878"
+    "color": "#FF28F0"
   },
   "route_84885": {
     "display_id": "1401",
-    "color": "#4A7A8A",
+    "color": "#FF1919",
     "name": "1401 · Pasaje Túpac Amaru → Terminal Ruta 8708"
   },
   "84885": {
     "display_id": "1401",
-    "color": "#4A7A8A"
+    "color": "#FF1919"
   },
   "route_84886": {
     "display_id": "1303",
@@ -12430,12 +12430,12 @@
   },
   "route_84921": {
     "display_id": "1409",
-    "color": "#5A8595",
+    "color": "#FEFE12",
     "name": "1409 · Victoria Barcia Bonifatti → José Quiñones"
   },
   "84921": {
     "display_id": "1409",
-    "color": "#5A8595"
+    "color": "#FEFE12"
   },
   "route_84924": {
     "display_id": "7301",
@@ -12484,12 +12484,12 @@
   },
   "route_85017": {
     "display_id": "1406",
-    "color": "#3A6878",
+    "color": "#318160",
     "name": "1406 · Rinconada → Ricardo Palma"
   },
   "85017": {
     "display_id": "1406",
-    "color": "#3A6878"
+    "color": "#318160"
   },
   "route_85021": {
     "display_id": "4305",
@@ -13096,12 +13096,12 @@
   },
   "route_85831": {
     "display_id": "1407",
-    "color": "#608090",
+    "color": "#F700FF",
     "name": "1407 · Los Lloques → Parque Los Rosales"
   },
   "85831": {
     "display_id": "1407",
-    "color": "#608090"
+    "color": "#F700FF"
   },
   "route_85832": {
     "display_id": "EO40",
@@ -15607,12 +15607,12 @@
   },
   "route_89763": {
     "display_id": "1405",
-    "color": "#6595A5",
+    "color": "#FEFE12",
     "name": "1405 · Victoria Barcia Bonifatti → Ricardo Palma"
   },
   "89763": {
     "display_id": "1405",
-    "color": "#6595A5"
+    "color": "#FEFE12"
   },
   "route_89770": {
     "display_id": "2508",
@@ -16120,12 +16120,12 @@
   },
   "route_90485": {
     "display_id": "1362",
-    "color": "#527585",
+    "color": "#FF0447",
     "name": "1362 · 11 de Junio → Marie Curie"
   },
   "90485": {
     "display_id": "1362",
-    "color": "#527585"
+    "color": "#FF0447"
   },
   "route_90486": {
     "display_id": "NO98",
@@ -16219,12 +16219,12 @@
   },
   "route_90632": {
     "display_id": "1363",
-    "color": "#5C8FA0",
+    "color": "#FF0054",
     "name": "1363 · 11 de Junio → Benjamín Franklin"
   },
   "90632": {
     "display_id": "1363",
-    "color": "#5C8FA0"
+    "color": "#FF0054"
   },
   "route_90638": {
     "display_id": "C109m",
@@ -16912,12 +16912,12 @@
   },
   "route_95208": {
     "display_id": "1364",
-    "color": "#4F7F90",
+    "color": "#00B8FF",
     "name": "1364 · Cabana → El Pino"
   },
   "95208": {
     "display_id": "1364",
-    "color": "#4F7F90"
+    "color": "#00B8FF"
   },
   "route_95224": {
     "display_id": "SM19g",

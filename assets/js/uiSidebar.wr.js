@@ -42,6 +42,12 @@ function fillWrTexts(item, direccion){
   const titleEl = item.querySelector('.wr-main-title');
   const distEl  = item.querySelector('.wr-subtitle-dist');
   const routeEl = item.querySelector('.wr-subtitle-route');
+  const flagEl  = item.querySelector('.wr-flag');
+
+  if (flagEl){
+    flagEl.textContent = meta && meta.estado_wikipedia === 'Inactiva'
+      ? 'Según Wikipedia ya no circula' : '';
+  }
 
   if (titleEl){
     titleEl.textContent = wrBuildTituloPrincipal(meta, rt);
@@ -131,7 +137,8 @@ function makeWrItem(rt, metaByCodigo, routesById, extremes, systemId='wr'){
   const textBlock = el('div',{},
     el('div',{ class:'name wr-main-title' }, ''),
     el('div',{ class:'sub wr-subtitle-dist' }, ''),
-    el('div',{ class:'sub wr-subtitle-route' }, '')
+    el('div',{ class:'sub wr-subtitle-route' }, ''),
+    el('div',{ class:'sub wr-flag' }, '')
   );
 
   const left = el('div',{ class:'left' }, tag, textBlock);

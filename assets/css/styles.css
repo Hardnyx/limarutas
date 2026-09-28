@@ -361,6 +361,14 @@ body {
   color: var(--text-muted);
 }
 
+.item-head .sub.wr-flag {
+  color: #d97706;
+}
+
+.item-head .sub.wr-flag:empty {
+  display: none;
+}
+
 .item-head input[type="checkbox"] {
   margin-left: auto;
 }

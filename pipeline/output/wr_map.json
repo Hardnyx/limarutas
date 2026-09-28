@@ -6315,73 +6315,73 @@
     "1320-ida": {
       "folder": "data/processed/transporte/route_153550",
       "trip": 1,
-      "color": "#3D6B7A",
+      "color": "#3DA060",
       "name": "1320 · Laderas de Chillón → Belaúnde"
     },
     "1320-vuelta": {
       "folder": "data/processed/transporte/route_153550",
       "trip": 2,
-      "color": "#3D6B7A",
+      "color": "#3DA060",
       "name": "1320 · Belaúnde → Laderas de Chillón"
     },
     "1321-ida": {
       "folder": "data/processed/transporte/route_153534",
       "trip": 1,
-      "color": "#4A7A8A",
+      "color": "#FFC900",
       "name": "1321 · Plaza Vea (Puente Piedra) → Canta"
     },
     "1321-vuelta": {
       "folder": "data/processed/transporte/route_153534",
       "trip": 2,
-      "color": "#4A7A8A",
+      "color": "#FFC900",
       "name": "1321 · Canta → Plaza Vea (Puente Piedra)"
     },
     "1322-ida": {
       "folder": "data/processed/transporte/route_153560",
       "trip": 1,
-      "color": "#527585",
+      "color": "#F5700B",
       "name": "1322 · Cajamarca → Plaza El Progreso"
     },
     "1322-vuelta": {
       "folder": "data/processed/transporte/route_153560",
       "trip": 2,
-      "color": "#527585",
+      "color": "#F5700B",
       "name": "1322 · Plaza El Progreso → Cajamarca"
     },
     "1323-ida": {
       "folder": "data/processed/transporte/route_153561",
       "trip": 1,
-      "color": "#5C8FA0",
+      "color": "#694848",
       "name": "1323 · I.E Celso Lino Ricaldi → Santa María"
     },
     "1323-vuelta": {
       "folder": "data/processed/transporte/route_153561",
       "trip": 2,
-      "color": "#5C8FA0",
+      "color": "#694848",
       "name": "1323 · Santa María → I.E Celso Lino Ricaldi"
     },
     "1324-ida": {
       "folder": "data/processed/transporte/route_153581",
       "trip": 1,
-      "color": "#4F7F90",
+      "color": "#FEFF00",
       "name": "1324 · Avenida A → Puente La Molina"
     },
     "1324-vuelta": {
       "folder": "data/processed/transporte/route_153581",
       "trip": 2,
-      "color": "#4F7F90",
+      "color": "#FEFF00",
       "name": "1324 · Puente La Molina → Avenida A"
     },
     "1325-ida": {
       "folder": "data/processed/transporte/route_153551",
       "trip": 1,
-      "color": "#6595A5",
+      "color": "#45763B",
       "name": "1325 · Manzana G → Mercado Huamantanga"
     },
     "1325-vuelta": {
       "folder": "data/processed/transporte/route_153551",
       "trip": 2,
-      "color": "#6595A5",
+      "color": "#45763B",
       "name": "1325 · Mercado Huamantanga → Manzana G"
     },
     "1326-ida": {
@@ -6399,37 +6399,37 @@
     "1327-ida": {
       "folder": "data/processed/transporte/route_153579",
       "trip": 1,
-      "color": "#608090",
+      "color": "#6D378B",
       "name": "1327 · Zegarra Sarmiento → Comisaría de Cerro Candela"
     },
     "1327-vuelta": {
       "folder": "data/processed/transporte/route_153579",
       "trip": 2,
-      "color": "#608090",
+      "color": "#6D378B",
       "name": "1327 · Comisaría de Cerro Candela → Zegarra Sarmiento"
     },
     "1328-ida": {
       "folder": "data/processed/transporte/route_153553",
       "trip": 1,
-      "color": "#456878",
+      "color": "#2D77F9",
       "name": "1328 · Ensenada → Mercado Central Fevacel"
     },
     "1328-vuelta": {
       "folder": "data/processed/transporte/route_153553",
       "trip": 2,
-      "color": "#456878",
+      "color": "#2D77F9",
       "name": "1328 · Mercado Central Fevacel → Ensenada"
     },
     "1329-ida": {
       "folder": "data/processed/transporte/route_153562",
       "trip": 1,
-      "color": "#5A8595",
+      "color": "#DE1510",
       "name": "1329 · Ensenada → Metro (Angélica Gamarra)"
     },
     "1329-vuelta": {
       "folder": "data/processed/transporte/route_153562",
       "trip": 2,
-      "color": "#5A8595",
+      "color": "#DE1510",
       "name": "1329 · Metro (Angélica Gamarra) → Ensenada"
     },
     "1330-ida": {
@@ -6495,73 +6495,73 @@
     "1335-ida": {
       "folder": "data/processed/transporte/route_153705",
       "trip": 1,
-      "color": "#6595A5",
+      "color": "#FE1212",
       "name": "1335 · Virgen del Carmen → Los Andes"
     },
     "1335-vuelta": {
       "folder": "data/processed/transporte/route_153705",
       "trip": 2,
-      "color": "#6595A5",
+      "color": "#FE1212",
       "name": "1335 · Huancauri → Virgen del Carmen"
     },
     "1336-ida": {
       "folder": "data/processed/transporte/route_153706",
       "trip": 1,
-      "color": "#3A6878",
+      "color": "#F22710",
       "name": "1336 · Grifo América → La Marina"
     },
     "1336-vuelta": {
       "folder": "data/processed/transporte/route_153706",
       "trip": 2,
-      "color": "#3A6878",
+      "color": "#F22710",
       "name": "1336 · La Marina → Grifo América"
     },
     "1337-ida": {
       "folder": "data/processed/transporte/route_153707",
       "trip": 1,
-      "color": "#608090",
+      "color": "#F21000",
       "name": "1337 · La Planicie III → La Marina"
     },
     "1337-vuelta": {
       "folder": "data/processed/transporte/route_153707",
       "trip": 2,
-      "color": "#608090",
+      "color": "#F21000",
       "name": "1337 · La Marina → La Planicie III"
     },
     "1338-ida": {
       "folder": "data/processed/transporte/route_108981",
       "trip": 1,
-      "color": "#456878",
+      "color": "#248A8E",
       "name": "1338 · Calle 7 → Óvalo La Perla"
     },
     "1338-vuelta": {
       "folder": "data/processed/transporte/route_108981",
       "trip": 2,
-      "color": "#456878",
+      "color": "#248A8E",
       "name": "1338 · Óvalo La Perla → Calle 7"
     },
     "1339-ida": {
       "folder": "data/processed/transporte/route_153708",
       "trip": 1,
-      "color": "#5A8595",
+      "color": "#FEF70A",
       "name": "1339 · Los Cedros → Simón Bolívar"
     },
     "1339-vuelta": {
       "folder": "data/processed/transporte/route_153708",
       "trip": 2,
-      "color": "#5A8595",
+      "color": "#FEF70A",
       "name": "1339 · Simón Bolívar → Los Cedros"
     },
     "1340-ida": {
       "folder": "data/processed/transporte/route_153709",
       "trip": 1,
-      "color": "#3D6B7A",
+      "color": "#FF1D04",
       "name": "1340 · Bertello → Paramonga"
     },
     "1340-vuelta": {
       "folder": "data/processed/transporte/route_153709",
       "trip": 2,
-      "color": "#3D6B7A",
+      "color": "#FF1D04",
       "name": "1340 · Las Violetas → Bertello"
     },
     "1341-ida": {
@@ -6579,25 +6579,25 @@
     "1342-ida": {
       "folder": "data/processed/transporte/route_151433",
       "trip": 1,
-      "color": "#527585",
+      "color": "#A30F0F",
       "name": "1342 · AA.HH Cristo Rey Sector 1 → Óvalo La Paz"
     },
     "1342-vuelta": {
       "folder": "data/processed/transporte/route_151433",
       "trip": 2,
-      "color": "#527585",
+      "color": "#A30F0F",
       "name": "1342 · Óvalo La Paz → AA.HH Cristo Rey Sector 1"
     },
     "1343-ida": {
       "folder": "data/processed/transporte/route_153146",
       "trip": 1,
-      "color": "#5C8FA0",
+      "color": "#FF9900",
       "name": "1343 · Mirador → AA.HH San Judas Tadeo"
     },
     "1343-vuelta": {
       "folder": "data/processed/transporte/route_153146",
       "trip": 2,
-      "color": "#5C8FA0",
+      "color": "#FF9900",
       "name": "1343 · AA.HH San Judas Tadeo → Mirador"
     },
     "1344-ida": {
@@ -6627,97 +6627,97 @@
     "1346-ida": {
       "folder": "data/processed/transporte/route_151307",
       "trip": 1,
-      "color": "#3A6878",
+      "color": "#FF1202",
       "name": "1346 · Tacaymano → Minka"
     },
     "1346-vuelta": {
       "folder": "data/processed/transporte/route_151307",
       "trip": 2,
-      "color": "#3A6878",
+      "color": "#FF1202",
       "name": "1346 · Minka → Tacaymano"
     },
     "1347-ida": {
       "folder": "data/processed/transporte/route_151308",
       "trip": 1,
-      "color": "#608090",
+      "color": "#FBDC12",
       "name": "1347 · AA.HH La Campiña → Gran Chimú"
     },
     "1347-vuelta": {
       "folder": "data/processed/transporte/route_151308",
       "trip": 2,
-      "color": "#608090",
+      "color": "#FBDC12",
       "name": "1347 · Quipucamayoc → AA.HH La Campiña"
     },
     "1348-ida": {
       "folder": "data/processed/transporte/route_153711",
       "trip": 1,
-      "color": "#456878",
+      "color": "#E61111",
       "name": "1348 · Prolongación Javier Prado → Gran Chimú"
     },
     "1348-vuelta": {
       "folder": "data/processed/transporte/route_153711",
       "trip": 2,
-      "color": "#456878",
+      "color": "#E61111",
       "name": "1348 · Gran Chimú → Prolongación Javier Prado"
     },
     "1349-ida": {
       "folder": "data/processed/transporte/route_153836",
       "trip": 1,
-      "color": "#5A8595",
+      "color": "#E61111",
       "name": "1349 · Condominio Las Flores → Gran Chimú"
     },
     "1349-vuelta": {
       "folder": "data/processed/transporte/route_153836",
       "trip": 2,
-      "color": "#5A8595",
+      "color": "#E61111",
       "name": "1349 · Gran Chimú → Condominio Las Flores"
     },
     "1350-ida": {
       "folder": "data/processed/transporte/route_153917",
       "trip": 1,
-      "color": "#3D6B7A",
+      "color": "#EA1212",
       "name": "1350 · Condominio Las Flores → Quipucamayoc"
     },
     "1350-vuelta": {
       "folder": "data/processed/transporte/route_153917",
       "trip": 2,
-      "color": "#3D6B7A",
+      "color": "#EA1212",
       "name": "1350 · Quipucamayoc → Condominio Las Flores"
     },
     "1351-ida": {
       "folder": "data/processed/transporte/route_153918",
       "trip": 1,
-      "color": "#4A7A8A",
+      "color": "#FF0F07",
       "name": "1351 · Las Gaviotas → Gran Chimú"
     },
     "1351-vuelta": {
       "folder": "data/processed/transporte/route_153918",
       "trip": 2,
-      "color": "#4A7A8A",
+      "color": "#FF0F07",
       "name": "1351 · Quipucamayoc → Las Gaviotas"
     },
     "1352-ida": {
       "folder": "data/processed/transporte/route_154236",
       "trip": 1,
-      "color": "#527585",
+      "color": "#0000D9",
       "name": "1352 · Parque La Capiña → Barrio Alto Huancaray"
     },
     "1352-vuelta": {
       "folder": "data/processed/transporte/route_154236",
       "trip": 2,
-      "color": "#527585",
+      "color": "#0000D9",
       "name": "1352 · Barrio Alto Huancaray → AA.HH La Campiña"
     },
     "1353-ida": {
       "folder": "data/processed/transporte/route_154232",
       "trip": 1,
-      "color": "#5C8FA0",
+      "color": "#0DFECE",
       "name": "1353 · Terminal H-2 S.A. (Carapongo) → José La Mar"
     },
     "1353-vuelta": {
       "folder": "data/processed/transporte/route_154232",
       "trip": 2,
-      "color": "#5C8FA0",
+      "color": "#0DFECE",
       "name": "1353 · José La Mar → Terminal H-2 S.A. (Carapongo)"
     },
     "1354-ida": {
@@ -6735,25 +6735,25 @@
     "1355-ida": {
       "folder": "data/processed/transporte/route_152890",
       "trip": 1,
-      "color": "#6595A5",
+      "color": "#88FE12",
       "name": "1355 · Perales → El Lindero"
     },
     "1355-vuelta": {
       "folder": "data/processed/transporte/route_152890",
       "trip": 2,
-      "color": "#6595A5",
+      "color": "#88FE12",
       "name": "1355 · El Lindero → Perales"
     },
     "1356-ida": {
       "folder": "data/processed/transporte/route_155169",
       "trip": 1,
-      "color": "#3A6878",
+      "color": "#5CC9B4",
       "name": "1356 · Praderas de La Molina → Mariscal Ramón Castilla"
     },
     "1356-vuelta": {
       "folder": "data/processed/transporte/route_155169",
       "trip": 2,
-      "color": "#3A6878",
+      "color": "#5CC9B4",
       "name": "1356 · Mariscal Ramón Castilla → Praderas de La Molina"
     },
     "1357-ida": {
@@ -6771,193 +6771,193 @@
     "1358-ida": {
       "folder": "data/processed/transporte/route_155249",
       "trip": 1,
-      "color": "#456878",
+      "color": "#0B6EA7",
       "name": "1358 · Portales de Río Seco → El Rosa de Santa Anita"
     },
     "1358-vuelta": {
       "folder": "data/processed/transporte/route_155249",
       "trip": 2,
-      "color": "#456878",
+      "color": "#0B6EA7",
       "name": "1358 · El Rosa de Santa Anita → Portales de Río Seco"
     },
     "1359-ida": {
       "folder": "data/processed/transporte/route_155250",
       "trip": 1,
-      "color": "#5A8595",
+      "color": "#E80101",
       "name": "1359 · Institución Educativa El Amauta → Benjamín Franklin"
     },
     "1359-vuelta": {
       "folder": "data/processed/transporte/route_155250",
       "trip": 2,
-      "color": "#5A8595",
+      "color": "#E80101",
       "name": "1359 · Benjamín Franklin → Institución Educativa El Amauta"
     },
     "1360-ida": {
       "folder": "data/processed/transporte/route_155251",
       "trip": 1,
-      "color": "#3D6B7A",
+      "color": "#4A753D",
       "name": "1360 · Hijos de Apurimac → Residencial Río Seco"
     },
     "1360-vuelta": {
       "folder": "data/processed/transporte/route_155251",
       "trip": 2,
-      "color": "#3D6B7A",
+      "color": "#4A753D",
       "name": "1360 · Residencial Río Seco → Hijos de Apurimac"
     },
     "1361-ida": {
       "folder": "data/processed/transporte/route_156511",
       "trip": 1,
-      "color": "#4A7A8A",
+      "color": "#EAEB00",
       "name": "1361 · AA.HH La Campiña → Benjamín Franklin"
     },
     "1361-vuelta": {
       "folder": "data/processed/transporte/route_156511",
       "trip": 2,
-      "color": "#4A7A8A",
+      "color": "#EAEB00",
       "name": "1361 · Benjamín Franklin → AA.HH La Campiña"
     },
     "1362-ida": {
       "folder": "data/processed/transporte/route_158340",
       "trip": 1,
-      "color": "#527585",
+      "color": "#FF0447",
       "name": "1362 · 11 de Junio → Marie Curie"
     },
     "1362-vuelta": {
       "folder": "data/processed/transporte/route_158340",
       "trip": 2,
-      "color": "#527585",
+      "color": "#FF0447",
       "name": "1362 · Marie Curie → 11 de Junio"
     },
     "1363-ida": {
       "folder": "data/processed/transporte/route_90632",
       "trip": 1,
-      "color": "#5C8FA0",
+      "color": "#FF0054",
       "name": "1363 · 11 de Junio → Benjamín Franklin"
     },
     "1363-vuelta": {
       "folder": "data/processed/transporte/route_90632",
       "trip": 2,
-      "color": "#5C8FA0",
+      "color": "#FF0054",
       "name": "1363 · Benjamín Franklin → 11 de Junio"
     },
     "1364-ida": {
       "folder": "data/processed/transporte/route_95208",
       "trip": 1,
-      "color": "#4F7F90",
+      "color": "#00B8FF",
       "name": "1364 · Cabana → El Pino"
     },
     "1364-vuelta": {
       "folder": "data/processed/transporte/route_95208",
       "trip": 2,
-      "color": "#4F7F90",
+      "color": "#00B8FF",
       "name": "1364 · El Pino → Cabana"
     },
     "1365-ida": {
       "folder": "data/processed/transporte/route_71118",
       "trip": 1,
-      "color": "#6595A5",
+      "color": "#FFE504",
       "name": "1365 · Terminal Los Ficus → Ñaña"
     },
     "1365-vuelta": {
       "folder": "data/processed/transporte/route_71118",
       "trip": 2,
-      "color": "#6595A5",
+      "color": "#FFE504",
       "name": "1365 · Ñaña → Terminal Los Ficus"
     },
     "1366-ida": {
       "folder": "data/processed/transporte/route_71119",
       "trip": 1,
-      "color": "#3A6878",
+      "color": "#28FF28",
       "name": "1366 · José Santos Chocano → Junín"
     },
     "1366-vuelta": {
       "folder": "data/processed/transporte/route_71119",
       "trip": 2,
-      "color": "#3A6878",
+      "color": "#28FF28",
       "name": "1366 · Junín → José Santos Chocano"
     },
     "1367-ida": {
       "folder": "data/processed/transporte/route_70171",
       "trip": 1,
-      "color": "#608090",
+      "color": "#FF0000",
       "name": "1367 · Calle Londres → Esperanza"
     },
     "1367-vuelta": {
       "folder": "data/processed/transporte/route_70171",
       "trip": 2,
-      "color": "#608090",
+      "color": "#FF0000",
       "name": "1367 · Esperanza → Calle Londres"
     },
     "1368-ida": {
       "folder": "data/processed/transporte/route_70175",
       "trip": 1,
-      "color": "#456878",
+      "color": "#06EF55",
       "name": "1368 · AA.HH La Campiña → San Luis"
     },
     "1368-vuelta": {
       "folder": "data/processed/transporte/route_70175",
       "trip": 2,
-      "color": "#456878",
+      "color": "#06EF55",
       "name": "1368 · San Luis → AA.HH La Campiña"
     },
     "1369-ida": {
       "folder": "data/processed/transporte/route_70173",
       "trip": 1,
-      "color": "#5A8595",
+      "color": "#FF02F6",
       "name": "1369 · AA.HH La Campiña → San Cristóbal"
     },
     "1369-vuelta": {
       "folder": "data/processed/transporte/route_70173",
       "trip": 2,
-      "color": "#5A8595",
+      "color": "#FF02F6",
       "name": "1369 · San Cristóbal → AA.HH La Campiña"
     },
     "1370-ida": {
       "folder": "data/processed/transporte/route_70163",
       "trip": 1,
-      "color": "#3D6B7A",
+      "color": "#0707FF",
       "name": "1370 · Entrada Zona R → San Cristóbal"
     },
     "1370-vuelta": {
       "folder": "data/processed/transporte/route_70163",
       "trip": 2,
-      "color": "#3D6B7A",
+      "color": "#0707FF",
       "name": "1370 · San Cristóbal → Entrada Zona R"
     },
     "1371-ida": {
       "folder": "data/processed/transporte/route_71112",
       "trip": 1,
-      "color": "#4A7A8A",
+      "color": "#FFF700",
       "name": "1371 · AA.HH El Amauta → San Cristóbal"
     },
     "1371-vuelta": {
       "folder": "data/processed/transporte/route_71112",
       "trip": 2,
-      "color": "#4A7A8A",
+      "color": "#FFF700",
       "name": "1371 · San Cristóbal → AA.HH El Amauta"
     },
     "1372-ida": {
       "folder": "data/processed/transporte/route_71108",
       "trip": 1,
-      "color": "#527585",
+      "color": "#FEC60F",
       "name": "1372 · AA.HH Mariscal Andrés Avelino Cáceres → San Luis"
     },
     "1372-vuelta": {
       "folder": "data/processed/transporte/route_71108",
       "trip": 2,
-      "color": "#527585",
+      "color": "#FEC60F",
       "name": "1372 · San Luis → AA.HH Mariscal Andrés Avelino Cáceres"
     },
     "1373-ida": {
       "folder": "data/processed/transporte/route_71107",
       "trip": 1,
-      "color": "#5C8FA0",
+      "color": "#FEB60F",
       "name": "1373 · AA.HH Mariscal Andrés Avelino Cáceres → Eloy Ureta"
     },
     "1373-vuelta": {
       "folder": "data/processed/transporte/route_71107",
       "trip": 2,
-      "color": "#5C8FA0",
+      "color": "#FEB60F",
       "name": "1373 · Eloy Ureta → AA.HH Mariscal Andrés Avelino Cáceres"
     },
     "1374-ida": {
@@ -6975,325 +6975,325 @@
     "1375-ida": {
       "folder": "data/processed/transporte/route_152706",
       "trip": 1,
-      "color": "#6595A5",
+      "color": "#A1FF28",
       "name": "1375 · Manchay Bajo → Las Madreselvas"
     },
     "1375-vuelta": {
       "folder": "data/processed/transporte/route_152706",
       "trip": 2,
-      "color": "#6595A5",
+      "color": "#A1FF28",
       "name": "1375 · Las Madreselvas → Manchay Bajo"
     },
     "1376-ida": {
       "folder": "data/processed/transporte/route_152935",
       "trip": 1,
-      "color": "#3A6878",
+      "color": "#00AAFF",
       "name": "1376 · Cabo Blanco → Ensenada de Collanac"
     },
     "1376-vuelta": {
       "folder": "data/processed/transporte/route_152935",
       "trip": 2,
-      "color": "#3A6878",
+      "color": "#00AAFF",
       "name": "1376 · Ensenada de Collanac → Los Sauces"
     },
     "1377-ida": {
       "folder": "data/processed/transporte/route_69397",
       "trip": 1,
-      "color": "#608090",
+      "color": "#189099",
       "name": "1377 · Villa Rica → Bajada Agua Dulce"
     },
     "1377-vuelta": {
       "folder": "data/processed/transporte/route_69397",
       "trip": 2,
-      "color": "#608090",
+      "color": "#189099",
       "name": "1377 · Bajada Agua Dulce → Villa Rica"
     },
     "1378-ida": {
       "folder": "data/processed/transporte/route_71362",
       "trip": 1,
-      "color": "#456878",
+      "color": "#E61B1B",
       "name": "1378 · Río Surco → Estadio Nazareno"
     },
     "1378-vuelta": {
       "folder": "data/processed/transporte/route_71362",
       "trip": 2,
-      "color": "#456878",
+      "color": "#E61B1B",
       "name": "1378 · Estadio Nazareno → Río Surco"
     },
     "1379-ida": {
       "folder": "data/processed/transporte/route_71363",
       "trip": 1,
-      "color": "#5A8595",
+      "color": "#E61B1B",
       "name": "1379 · Río Surco → Estadio Nazareno"
     },
     "1379-vuelta": {
       "folder": "data/processed/transporte/route_71363",
       "trip": 2,
-      "color": "#5A8595",
+      "color": "#E61B1B",
       "name": "1379 · Estadio Nazareno → Río Surco"
     },
     "1380-ida": {
       "folder": "data/processed/transporte/route_69639",
       "trip": 1,
-      "color": "#3D6B7A",
+      "color": "#FF00FE",
       "name": "1380 · Los Cipreses → Vilcanota"
     },
     "1380-vuelta": {
       "folder": "data/processed/transporte/route_69639",
       "trip": 2,
-      "color": "#3D6B7A",
+      "color": "#FF00FE",
       "name": "1380 · Vilcanota → Los Cipreses"
     },
     "1381-ida": {
       "folder": "data/processed/transporte/route_71360",
       "trip": 1,
-      "color": "#4A7A8A",
+      "color": "#0006B2",
       "name": "1381 · Plaza Vea (Alameda Sur) → Nogales"
     },
     "1381-vuelta": {
       "folder": "data/processed/transporte/route_71360",
       "trip": 2,
-      "color": "#4A7A8A",
+      "color": "#0006B2",
       "name": "1381 · Nogales → Plaza Vea (Alameda Sur)"
     },
     "1382-ida": {
       "folder": "data/processed/transporte/route_71361",
       "trip": 1,
-      "color": "#527585",
+      "color": "#00B21C",
       "name": "1382 · La Chira → Babilonia"
     },
     "1382-vuelta": {
       "folder": "data/processed/transporte/route_71361",
       "trip": 2,
-      "color": "#527585",
+      "color": "#00B21C",
       "name": "1382 · Babilonia → La Chira"
     },
     "1383-ida": {
       "folder": "data/processed/transporte/route_71359",
       "trip": 1,
-      "color": "#5C8FA0",
+      "color": "#A50D0D",
       "name": "1383 · AA.HH. Hijos de Miyashiro → Girasoles"
     },
     "1383-vuelta": {
       "folder": "data/processed/transporte/route_71359",
       "trip": 2,
-      "color": "#5C8FA0",
+      "color": "#A50D0D",
       "name": "1383 · Girasoles → AA.HH. Hijos de Miyashiro"
     },
     "1384-ida": {
       "folder": "data/processed/transporte/route_69056",
       "trip": 1,
-      "color": "#4F7F90",
+      "color": "#00C92F",
       "name": "1384 · José Pardo → Río Surco"
     },
     "1384-vuelta": {
       "folder": "data/processed/transporte/route_69056",
       "trip": 2,
-      "color": "#4F7F90",
+      "color": "#00C92F",
       "name": "1384 · Río Surco → José Pardo"
     },
     "1385-ida": {
       "folder": "data/processed/transporte/route_73024",
       "trip": 1,
-      "color": "#6595A5",
+      "color": "#FF6600",
       "name": "1385 · Estadio Nazareno → Bajada Agua Dulce"
     },
     "1385-vuelta": {
       "folder": "data/processed/transporte/route_73024",
       "trip": 2,
-      "color": "#6595A5",
+      "color": "#FF6600",
       "name": "1385 · Bajada Agua Dulce → Estadio Nazareno"
     },
     "1386-ida": {
       "folder": "data/processed/transporte/route_71357",
       "trip": 1,
-      "color": "#3A6878",
+      "color": "#159D2D",
       "name": "1386 · Delicias de Villa → Óvalo La Curva"
     },
     "1386-vuelta": {
       "folder": "data/processed/transporte/route_71357",
       "trip": 2,
-      "color": "#3A6878",
+      "color": "#159D2D",
       "name": "1386 · Óvalo La Curva → Delicias de Villa"
     },
     "1387-ida": {
       "folder": "data/processed/transporte/route_71443",
       "trip": 1,
-      "color": "#608090",
+      "color": "#EB0505",
       "name": "1387 · Terminal Ruta 7801 (San Juan de Miraflores) → Renacel"
     },
     "1387-vuelta": {
       "folder": "data/processed/transporte/route_71443",
       "trip": 2,
-      "color": "#608090",
+      "color": "#EB0505",
       "name": "1387 · Renacel → Terminal Ruta 7801 (San Juan de Miraflores)"
     },
     "1388-ida": {
       "folder": "data/processed/transporte/route_69489",
       "trip": 1,
-      "color": "#456878",
+      "color": "#EE0000",
       "name": "1388 · Las Dunas → Triángulo"
     },
     "1388-vuelta": {
       "folder": "data/processed/transporte/route_69489",
       "trip": 2,
-      "color": "#456878",
+      "color": "#EE0000",
       "name": "1388 · Triángulo → Las Dunas"
     },
     "1389-ida": {
       "folder": "data/processed/transporte/route_71340",
       "trip": 1,
-      "color": "#5A8595",
+      "color": "#E30E0E",
       "name": "1389 · Fe y Alegría N°65 → Los Sauces"
     },
     "1389-vuelta": {
       "folder": "data/processed/transporte/route_71340",
       "trip": 2,
-      "color": "#5A8595",
+      "color": "#E30E0E",
       "name": "1389 · Los Sauces → Fe y Alegría N°65"
     },
     "1390-ida": {
       "folder": "data/processed/transporte/route_71338",
       "trip": 1,
-      "color": "#3D6B7A",
+      "color": "#FFD607",
       "name": "1390 · Girasoles → Ramiro Merino"
     },
     "1390-vuelta": {
       "folder": "data/processed/transporte/route_71338",
       "trip": 2,
-      "color": "#3D6B7A",
+      "color": "#FFD607",
       "name": "1390 · Ramiro Merino → Girasoles"
     },
     "1391-ida": {
       "folder": "data/processed/transporte/route_71339",
       "trip": 1,
-      "color": "#4A7A8A",
+      "color": "#FF1F1F",
       "name": "1391 · Calle 7 → Calle 14"
     },
     "1391-vuelta": {
       "folder": "data/processed/transporte/route_71339",
       "trip": 2,
-      "color": "#4A7A8A",
+      "color": "#FF1F1F",
       "name": "1391 · Calle 14 → Calle 7"
     },
     "1392-ida": {
       "folder": "data/processed/transporte/route_71336",
       "trip": 1,
-      "color": "#527585",
+      "color": "#FF2828",
       "name": "1392 · Vencedores → Patio Taller Línea 1 Metro de Lima (Villa El Salvador)"
     },
     "1392-vuelta": {
       "folder": "data/processed/transporte/route_71336",
       "trip": 2,
-      "color": "#527585",
+      "color": "#FF2828",
       "name": "1392 · Patio Taller Línea 1 Metro de Lima (Villa El Salvador) → Vencedores"
     },
     "1393-ida": {
       "folder": "data/processed/transporte/route_71337",
       "trip": 1,
-      "color": "#5C8FA0",
+      "color": "#0A30C8",
       "name": "1393 · Milagros Rin → Juan Velasco Alvarado"
     },
     "1393-vuelta": {
       "folder": "data/processed/transporte/route_71337",
       "trip": 2,
-      "color": "#5C8FA0",
+      "color": "#0A30C8",
       "name": "1393 · Juan Velasco Alvarado → Milagros Rin"
     },
     "1394-ida": {
       "folder": "data/processed/transporte/route_68911",
       "trip": 1,
-      "color": "#4F7F90",
+      "color": "#FFA200",
       "name": "1394 · Mercado de Lurín → Magda Portal"
     },
     "1394-vuelta": {
       "folder": "data/processed/transporte/route_68911",
       "trip": 2,
-      "color": "#4F7F90",
+      "color": "#FFA200",
       "name": "1394 · Magda Portal → Mercado de Lurín"
     },
     "1395-ida": {
       "folder": "data/processed/transporte/route_153479",
       "trip": 1,
-      "color": "#6595A5",
+      "color": "#04C4FF",
       "name": "1395 · Pampa Chica → Calle 2"
     },
     "1395-vuelta": {
       "folder": "data/processed/transporte/route_153479",
       "trip": 2,
-      "color": "#6595A5",
+      "color": "#04C4FF",
       "name": "1395 · Calle 2 → Pampa Chica"
     },
     "1396-ida": {
       "folder": "data/processed/transporte/route_71482",
       "trip": 1,
-      "color": "#3A6878",
+      "color": "#0014C7",
       "name": "1396 · Luwa → Calle 22"
     },
     "1396-vuelta": {
       "folder": "data/processed/transporte/route_71482",
       "trip": 2,
-      "color": "#3A6878",
+      "color": "#0014C7",
       "name": "1396 · Calle 22 → Luwa"
     },
     "1397-ida": {
       "folder": "data/processed/transporte/route_71477",
       "trip": 1,
-      "color": "#608090",
+      "color": "#271BD6",
       "name": "1397 · Plaza de Armas de Santa Anita (Pachacamac) → José Olaya"
     },
     "1397-vuelta": {
       "folder": "data/processed/transporte/route_71477",
       "trip": 2,
-      "color": "#608090",
+      "color": "#271BD6",
       "name": "1397 · Geranios → Plaza de Armas de Santa Anita (Pachacamac)"
     },
     "1398-ida": {
       "folder": "data/processed/transporte/route_70166",
       "trip": 1,
-      "color": "#456878",
+      "color": "#FFD323",
       "name": "1398 · Peaje de Punta Hermosa → Residencial Inclán"
     },
     "1398-vuelta": {
       "folder": "data/processed/transporte/route_70166",
       "trip": 2,
-      "color": "#456878",
+      "color": "#FFD323",
       "name": "1398 · Residencial Inclán → Peaje de Punta Hermosa"
     },
     "1399-ida": {
       "folder": "data/processed/transporte/route_71473",
       "trip": 1,
-      "color": "#5A8595",
+      "color": "#FF0000",
       "name": "1399 · Calle 14 → La Chira"
     },
     "1399-vuelta": {
       "folder": "data/processed/transporte/route_71473",
       "trip": 2,
-      "color": "#5A8595",
+      "color": "#FF0000",
       "name": "1399 · La Chira → Calle 14"
     },
     "1400-ida": {
       "folder": "data/processed/transporte/route_71472",
       "trip": 1,
-      "color": "#3D6B7A",
+      "color": "#FE4912",
       "name": "1400 · Calle 14 → La Chira"
     },
     "1400-vuelta": {
       "folder": "data/processed/transporte/route_71472",
       "trip": 2,
-      "color": "#3D6B7A",
+      "color": "#FE4912",
       "name": "1400 · La Chira → Calle 14"
     },
     "1401-ida": {
       "folder": "data/processed/transporte/route_71471",
       "trip": 1,
-      "color": "#4A7A8A",
+      "color": "#FF1919",
       "name": "1401 · Pasaje Túpac Amaru → Terminal Ruta 8708"
     },
     "1401-vuelta": {
       "folder": "data/processed/transporte/route_71471",
       "trip": 2,
-      "color": "#4A7A8A",
+      "color": "#FF1919",
       "name": "1401 · Terminal Ruta 8708 → Pasaje Túpac Amaru"
     },
     "1402-ida": {
@@ -7311,157 +7311,157 @@
     "1405-ida": {
       "folder": "data/processed/transporte/route_71636",
       "trip": 1,
-      "color": "#6595A5",
+      "color": "#FEFE12",
       "name": "1405 · Victoria Barcia Bonifatti → Ricardo Palma"
     },
     "1405-vuelta": {
       "folder": "data/processed/transporte/route_71636",
       "trip": 2,
-      "color": "#6595A5",
+      "color": "#FEFE12",
       "name": "1405 · Ricardo Palma → Victoria Barcia Bonifatti"
     },
     "1406-ida": {
       "folder": "data/processed/transporte/route_69399",
       "trip": 1,
-      "color": "#3A6878",
+      "color": "#318160",
       "name": "1406 · Rinconada → Ricardo Palma"
     },
     "1406-vuelta": {
       "folder": "data/processed/transporte/route_69399",
       "trip": 2,
-      "color": "#3A6878",
+      "color": "#318160",
       "name": "1406 · Ricardo Palma → Rinconada"
     },
     "1407-ida": {
       "folder": "data/processed/transporte/route_69640",
       "trip": 1,
-      "color": "#608090",
+      "color": "#F700FF",
       "name": "1407 · Los Lloques → Parque Los Rosales"
     },
     "1407-vuelta": {
       "folder": "data/processed/transporte/route_69640",
       "trip": 2,
-      "color": "#608090",
+      "color": "#F700FF",
       "name": "1407 · Parque Los Rosales → Los Lloques"
     },
     "1408-ida": {
       "folder": "data/processed/transporte/route_69641",
       "trip": 1,
-      "color": "#456878",
+      "color": "#FF28F0",
       "name": "1408 · Ferrocarril → Parque Los Rosales"
     },
     "1408-vuelta": {
       "folder": "data/processed/transporte/route_69641",
       "trip": 2,
-      "color": "#456878",
+      "color": "#FF28F0",
       "name": "1408 · Parque Los Rosales → Ferrocarril"
     },
     "1409-ida": {
       "folder": "data/processed/transporte/route_71635",
       "trip": 1,
-      "color": "#5A8595",
+      "color": "#FEFE12",
       "name": "1409 · Victoria Barcia Bonifatti → José Quiñones"
     },
     "1409-vuelta": {
       "folder": "data/processed/transporte/route_71635",
       "trip": 2,
-      "color": "#5A8595",
+      "color": "#FEFE12",
       "name": "1409 · José Quiñones → Victoria Barcia Bonifatti"
     },
     "1410-ida": {
       "folder": "data/processed/transporte/route_71634",
       "trip": 1,
-      "color": "#3D6B7A",
+      "color": "#FF5400",
       "name": "1410 · Los Incas → Vencedores"
     },
     "1410-vuelta": {
       "folder": "data/processed/transporte/route_71634",
       "trip": 2,
-      "color": "#3D6B7A",
+      "color": "#FF5400",
       "name": "1410 · Vencedores → Los Incas"
     },
     "1413-ida": {
       "folder": "data/processed/transporte/route_153355",
       "trip": 1,
-      "color": "#5C8FA0",
+      "color": "#BED222",
       "name": "1413 · Pasaje Túpac Amaru → Barrio Nuevo"
     },
     "1413-vuelta": {
       "folder": "data/processed/transporte/route_153355",
       "trip": 2,
-      "color": "#5C8FA0",
+      "color": "#BED222",
       "name": "1413 · Barrio Nuevo → Pasaje Túpac Amaru"
     },
     "1414-ida": {
       "folder": "data/processed/transporte/route_69401",
       "trip": 1,
-      "color": "#4F7F90",
+      "color": "#E71A1A",
       "name": "1414 · Estadio José Galvez → Calle 2"
     },
     "1414-vuelta": {
       "folder": "data/processed/transporte/route_69401",
       "trip": 2,
-      "color": "#4F7F90",
+      "color": "#E71A1A",
       "name": "1414 · Calle 2 → Estadio José Galvez"
     },
     "1415-ida": {
       "folder": "data/processed/transporte/route_71630",
       "trip": 1,
-      "color": "#6595A5",
+      "color": "#001BCF",
       "name": "1415 · Miguel Grau → Tipac"
     },
     "1415-vuelta": {
       "folder": "data/processed/transporte/route_71630",
       "trip": 2,
-      "color": "#6595A5",
+      "color": "#001BCF",
       "name": "1415 · Tipac → Miguel Grau"
     },
     "1416-ida": {
       "folder": "data/processed/transporte/route_69964",
       "trip": 1,
-      "color": "#3A6878",
+      "color": "#7A513C",
       "name": "1416 · Urbanización San José → Aldea 6"
     },
     "1416-vuelta": {
       "folder": "data/processed/transporte/route_69964",
       "trip": 2,
-      "color": "#3A6878",
+      "color": "#7A513C",
       "name": "1416 · Aldea 6 → Urbanización San José"
     },
     "1417-ida": {
       "folder": "data/processed/transporte/route_152771",
       "trip": 1,
-      "color": "#608090",
+      "color": "#AEAE79",
       "name": "1417 · Los Constructores → Pasaje 2"
     },
     "1417-vuelta": {
       "folder": "data/processed/transporte/route_152771",
       "trip": 2,
-      "color": "#608090",
+      "color": "#AEAE79",
       "name": "1417 · Pasaje 2 → Los Constructores"
     },
     "1418-ida": {
       "folder": "data/processed/transporte/route_71627",
       "trip": 1,
-      "color": "#456878",
+      "color": "#C88B44",
       "name": "1418 · San Pedro → Santo Domingo El Caminante"
     },
     "1418-vuelta": {
       "folder": "data/processed/transporte/route_71627",
       "trip": 2,
-      "color": "#456878",
+      "color": "#C88B44",
       "name": "1418 · Santo Domingo El Caminante → San Pedro"
     },
     "1419-ida": {
       "folder": "data/processed/transporte/route_69638",
       "trip": 1,
-      "color": "#5A8595",
+      "color": "#FF00B2",
       "name": "1419 · Elías Aguirre → María Reiche"
     },
     "1419-vuelta": {
       "folder": "data/processed/transporte/route_69638",
       "trip": 2,
-      "color": "#5A8595",
+      "color": "#FF00B2",
       "name": "1419 · Forestal → Elías Aguirre"
     },
     "1421-ida": {
@@ -7563,217 +7563,217 @@
     "1461-ida": {
       "folder": "data/processed/transporte/route_158339",
       "trip": 1,
-      "color": "#4A7A8A",
+      "color": "#E60025",
       "name": "1461 · Villa Club IV → El Parque"
     },
     "1461-vuelta": {
       "folder": "data/processed/transporte/route_158339",
       "trip": 2,
-      "color": "#4A7A8A",
+      "color": "#E60025",
       "name": "1461 · El Parque → Villa Club IV"
     },
     "1462-ida": {
       "folder": "data/processed/transporte/route_153554",
       "trip": 1,
-      "color": "#527585",
+      "color": "#ED1313",
       "name": "1462 · Techo Propio → La Marina"
     },
     "1462-vuelta": {
       "folder": "data/processed/transporte/route_153554",
       "trip": 2,
-      "color": "#527585",
+      "color": "#ED1313",
       "name": "1462 · La Marina → Techo Propio"
     },
     "1463-ida": {
       "folder": "data/processed/transporte/route_69498",
       "trip": 1,
-      "color": "#5C8FA0",
+      "color": "#0B00B3",
       "name": "1463 · Pasaje Túpac Amaru → Plaza Bolognesi"
     },
     "1463-vuelta": {
       "folder": "data/processed/transporte/route_69498",
       "trip": 2,
-      "color": "#5C8FA0",
+      "color": "#0B00B3",
       "name": "1463 · Plaza Bolognesi → Pasaje Túpac Amaru"
     },
     "1464-ida": {
       "folder": "data/processed/transporte/route_68988",
       "trip": 1,
-      "color": "#4F7F90",
+      "color": "#1799FE",
       "name": "1464 · Iquitos → Pasaje D"
     },
     "1464-vuelta": {
       "folder": "data/processed/transporte/route_68988",
       "trip": 2,
-      "color": "#4F7F90",
+      "color": "#1799FE",
       "name": "1464 · Pasaje D → Iquitos"
     },
     "1465-ida": {
       "folder": "data/processed/transporte/route_157678",
       "trip": 1,
-      "color": "#6595A5",
+      "color": "#961B1B",
       "name": "1465 · Francisco Bolognesi → Pronoepsa Portugal"
     },
     "1465-vuelta": {
       "folder": "data/processed/transporte/route_157678",
       "trip": 2,
-      "color": "#6595A5",
+      "color": "#961B1B",
       "name": "1465 · Pronoepsa Portugal → Francisco Bolognesi"
     },
     "1466-ida": {
       "folder": "data/processed/transporte/route_56421",
       "trip": 1,
-      "color": "#3A6878",
+      "color": "#C7AE60",
       "name": "1466 · Casa Club El Pamar → Plaza Bolognesi"
     },
     "1466-vuelta": {
       "folder": "data/processed/transporte/route_56421",
       "trip": 2,
-      "color": "#3A6878",
+      "color": "#C7AE60",
       "name": "1466 · Plaza Bolognesi → Casa Club El Pamar"
     },
     "1467-ida": {
       "folder": "data/processed/transporte/route_68845",
       "trip": 1,
-      "color": "#608090",
+      "color": "#5A6470",
       "name": "1467 · Lubricentro de Pucusana → Cornelio Borda"
     },
     "1467-vuelta": {
       "folder": "data/processed/transporte/route_68845",
       "trip": 2,
-      "color": "#608090",
+      "color": "#5A6470",
       "name": "1467 · Cornelio Borda → Lubricentro de Pucusana"
     },
     "1468-ida": {
       "folder": "data/processed/transporte/route_155073",
       "trip": 1,
-      "color": "#456878",
+      "color": "#2F921F",
       "name": "1468 · Terminal Conchitas → Miguel Iglesias"
     },
     "1468-vuelta": {
       "folder": "data/processed/transporte/route_155073",
       "trip": 2,
-      "color": "#456878",
+      "color": "#2F921F",
       "name": "1468 · Miguel Iglesias → Terminal Conchitas"
     },
     "1469-ida": {
       "folder": "data/processed/transporte/route_153220",
       "trip": 1,
-      "color": "#888888",
+      "color": "#4F8ED8",
       "name": "1469 · Las Rosas → 12 de Febrero"
     },
     "1469-vuelta": {
       "folder": "data/processed/transporte/route_153220",
       "trip": 2,
-      "color": "#888888",
+      "color": "#4F8ED8",
       "name": "1469 · 12 de Febrero → Las Rosas"
     },
     "1470-ida": {
       "folder": "data/processed/transporte/route_156051",
       "trip": 1,
-      "color": "#3D6B7A",
+      "color": "#FF2323",
       "name": "1470 · Estadio de San Genaro → Dominicos"
     },
     "1470-vuelta": {
       "folder": "data/processed/transporte/route_156051",
       "trip": 2,
-      "color": "#3D6B7A",
+      "color": "#FF2323",
       "name": "1470 · Dominicos → Estadio de San Genaro"
     },
     "1471-ida": {
       "folder": "data/processed/transporte/route_157951",
       "trip": 1,
-      "color": "#4A7A8A",
+      "color": "#B81A1A",
       "name": "1471 · Mercado Nuevo Norte → Vicuña"
     },
     "1471-vuelta": {
       "folder": "data/processed/transporte/route_157951",
       "trip": 2,
-      "color": "#4A7A8A",
+      "color": "#B81A1A",
       "name": "1471 · Vicuña → Mercado Nuevo Norte"
     },
     "1472-ida": {
       "folder": "data/processed/transporte/route_157866",
       "trip": 1,
-      "color": "#527585",
+      "color": "#55D2C6",
       "name": "1472 · Nogales → Mariano Pastor Sevilla"
     },
     "1472-vuelta": {
       "folder": "data/processed/transporte/route_157866",
       "trip": 2,
-      "color": "#527585",
+      "color": "#55D2C6",
       "name": "1472 · Mariano Pastor Sevilla → Nogales"
     },
     "1473-ida": {
       "folder": "data/processed/transporte/route_69431",
       "trip": 1,
-      "color": "#5C8FA0",
+      "color": "#F2E201",
       "name": "1473 · Jesús Mentor → La Paz"
     },
     "1473-vuelta": {
       "folder": "data/processed/transporte/route_69431",
       "trip": 2,
-      "color": "#5C8FA0",
+      "color": "#F2E201",
       "name": "1473 · La Paz → Jesús Mentor"
     },
     "1474-ida": {
       "folder": "data/processed/transporte/route_106344",
       "trip": 1,
-      "color": "#4F7F90",
+      "color": "#E8CC14",
       "name": "1474 · Calle 14 → Puente PUCP"
     },
     "1474-vuelta": {
       "folder": "data/processed/transporte/route_106344",
       "trip": 2,
-      "color": "#4F7F90",
+      "color": "#E8CC14",
       "name": "1474 · Puente PUCP → Calle 14"
     },
     "1475-ida": {
       "folder": "data/processed/transporte/route_153494",
       "trip": 1,
-      "color": "#6595A5",
+      "color": "#0010FF",
       "name": "1475 · Calle S/N → España"
     },
     "1475-vuelta": {
       "folder": "data/processed/transporte/route_153494",
       "trip": 2,
-      "color": "#6595A5",
+      "color": "#0010FF",
       "name": "1475 · España → Calle S/N"
     },
     "1476-ida": {
       "folder": "data/processed/transporte/route_68912",
       "trip": 1,
-      "color": "#3A6878",
+      "color": "#B24700",
       "name": "1476 · Nueva Esperanza → Real Madrid"
     },
     "1476-vuelta": {
       "folder": "data/processed/transporte/route_68912",
       "trip": 2,
-      "color": "#3A6878",
+      "color": "#B24700",
       "name": "1476 · Real Madrid → Nueva Esperanza"
     },
     "1477-ida": {
       "folder": "data/processed/transporte/route_71123",
       "trip": 1,
-      "color": "#608090",
+      "color": "#1800B2",
       "name": "1477 · Ceres Medio → Óvalo Previ"
     },
     "1477-vuelta": {
       "folder": "data/processed/transporte/route_71123",
       "trip": 2,
-      "color": "#608090",
+      "color": "#1800B2",
       "name": "1477 · Óvalo Previ → Ceres Medio"
     },
     "1478-ida": {
       "folder": "data/processed/transporte/route_71121",
       "trip": 1,
-      "color": "#456878",
+      "color": "#00B200",
       "name": "1478 · Ferrocarril → 12 de Octubre"
     },
     "1478-vuelta": {
       "folder": "data/processed/transporte/route_71121",
       "trip": 2,
-      "color": "#456878",
+      "color": "#00B200",
       "name": "1478 · 12 de Octubre → Ferrocarril"
     },
     "1479-ida": {
@@ -7827,97 +7827,97 @@
     "1483-ida": {
       "folder": "data/processed/transporte/route_157867",
       "trip": 1,
-      "color": "#5C8FA0",
+      "color": "#00DE34",
       "name": "1483 · Lomas de Villa María → Calle 4"
     },
     "1483-vuelta": {
       "folder": "data/processed/transporte/route_157867",
       "trip": 2,
-      "color": "#5C8FA0",
+      "color": "#00DE34",
       "name": "1483 · Calle 4 → Lomas de Villa María"
     },
     "1484-ida": {
       "folder": "data/processed/transporte/route_69965",
       "trip": 1,
-      "color": "#4F7F90",
+      "color": "#FFA828",
       "name": "1484 · Calle B → Dante"
     },
     "1484-vuelta": {
       "folder": "data/processed/transporte/route_69965",
       "trip": 2,
-      "color": "#4F7F90",
+      "color": "#FFA828",
       "name": "1484 · Dante → Calle B"
     },
     "1485-ida": {
       "folder": "data/processed/transporte/route_69055",
       "trip": 1,
-      "color": "#6595A5",
+      "color": "#00DE34",
       "name": "1485 · Palma Roebellini → La Chira"
     },
     "1485-vuelta": {
       "folder": "data/processed/transporte/route_69055",
       "trip": 2,
-      "color": "#6595A5",
+      "color": "#00DE34",
       "name": "1485 · La Chira → Palma Roebellini"
     },
     "1486-ida": {
       "folder": "data/processed/transporte/route_71632",
       "trip": 1,
-      "color": "#3A6878",
+      "color": "#0006D1",
       "name": "1486 · Pasaje Túpac Amaru → La Chira"
     },
     "1486-vuelta": {
       "folder": "data/processed/transporte/route_71632",
       "trip": 2,
-      "color": "#3A6878",
+      "color": "#0006D1",
       "name": "1486 · La Chira → Pasaje Túpac Amaru"
     },
     "1487-ida": {
       "folder": "data/processed/transporte/route_69514",
       "trip": 1,
-      "color": "#608090",
+      "color": "#21AD06",
       "name": "1487 · Pasaje Túpac Amaru → Calle Los Ficus"
     },
     "1487-vuelta": {
       "folder": "data/processed/transporte/route_69514",
       "trip": 2,
-      "color": "#608090",
+      "color": "#21AD06",
       "name": "1487 · Calle Los Ficus → Pasaje Túpac Amaru"
     },
     "1488-ida": {
       "folder": "data/processed/transporte/route_109146",
       "trip": 1,
-      "color": "#456878",
+      "color": "#E3B03F",
       "name": "1488 · Ferrocarril → Entrada Huampaní (Carapongo)"
     },
     "1488-vuelta": {
       "folder": "data/processed/transporte/route_109146",
       "trip": 2,
-      "color": "#456878",
+      "color": "#E3B03F",
       "name": "1488 · Entrada Huampaní (Carapongo) → Ferrocarril"
     },
     "1489-ida": {
       "folder": "data/processed/transporte/route_150590",
       "trip": 1,
-      "color": "#5A8595",
+      "color": "#5A6470",
       "name": "1489 · Condominio Las Flores → San Nicolás"
     },
     "1489-vuelta": {
       "folder": "data/processed/transporte/route_150590",
       "trip": 2,
-      "color": "#5A8595",
+      "color": "#5A6470",
       "name": "1489 · San Nicolás → Condominio Las Flores"
     },
     "1490-ida": {
       "folder": "data/processed/transporte/route_153565",
       "trip": 1,
-      "color": "#3D6B7A",
+      "color": "#328929",
       "name": "1490 · Mar del Norte → Calle José De San Martín"
     },
     "1490-vuelta": {
       "folder": "data/processed/transporte/route_153565",
       "trip": 2,
-      "color": "#3D6B7A",
+      "color": "#328929",
       "name": "1490 · Calle José De San Martín → Mar del Norte"
     },
     "1491-ida": {
@@ -7935,13 +7935,13 @@
     "1492-ida": {
       "folder": "data/processed/transporte/route_152601",
       "trip": 1,
-      "color": "#527585",
+      "color": "#00EEFF",
       "name": "1492 · Colegio Max Uhle → Universitaria"
     },
     "1492-vuelta": {
       "folder": "data/processed/transporte/route_152601",
       "trip": 2,
-      "color": "#527585",
+      "color": "#00EEFF",
       "name": "1492 · Universitaria → Colegio Max Uhle"
     },
     "1507-ida": {
@@ -21975,61 +21975,61 @@
     "1320_53367-ida": {
       "folder": "data/processed/transporte/route_53367",
       "trip": 1,
-      "color": "#3D6B7A",
+      "color": "#3DA060",
       "name": "1320 · Laderas de Chillón → Óvalo El Misti"
     },
     "1320_53367-vuelta": {
       "folder": "data/processed/transporte/route_53367",
       "trip": 2,
-      "color": "#3D6B7A",
+      "color": "#3DA060",
       "name": "1320 · Óvalo El Misti → Laderas de Chillón"
     },
     "1321_56974-ida": {
       "folder": "data/processed/transporte/route_56974",
       "trip": 1,
-      "color": "#4A7A8A",
+      "color": "#FFC900",
       "name": "1321 · Plaza Vea (Puente Piedra) → Canta"
     },
     "1321_56974-vuelta": {
       "folder": "data/processed/transporte/route_56974",
       "trip": 2,
-      "color": "#4A7A8A",
+      "color": "#FFC900",
       "name": "1321 · Canta → Plaza Vea (Puente Piedra)"
     },
     "1322_77853-ida": {
       "folder": "data/processed/transporte/route_77853",
       "trip": 1,
-      "color": "#527585",
+      "color": "#F5700B",
       "name": "1322 · Cajamarca → Tokio"
     },
     "1322_77853-vuelta": {
       "folder": "data/processed/transporte/route_77853",
       "trip": 2,
-      "color": "#527585",
+      "color": "#F5700B",
       "name": "1322 · Tokio → Cajamarca"
     },
     "1323_62845-ida": {
       "folder": "data/processed/transporte/route_62845",
       "trip": 1,
-      "color": "#5C8FA0",
+      "color": "#694848",
       "name": "1323 · Andrés Avelino Cáceres → Entrada San Benito"
     },
     "1323_62845-vuelta": {
       "folder": "data/processed/transporte/route_62845",
       "trip": 2,
-      "color": "#5C8FA0",
+      "color": "#694848",
       "name": "1323 · Entrada San Benito → Andrés Avelino Cáceres"
     },
     "1325_62871-ida": {
       "folder": "data/processed/transporte/route_62871",
       "trip": 1,
-      "color": "#6595A5",
+      "color": "#45763B",
       "name": "1325 · Manzana G → Mercado Huamantanga"
     },
     "1325_62871-vuelta": {
       "folder": "data/processed/transporte/route_62871",
       "trip": 2,
-      "color": "#6595A5",
+      "color": "#45763B",
       "name": "1325 · Mercado Huamantanga → Manzana G"
     },
     "1326_154923-ida": {
@@ -22059,37 +22059,37 @@
     "1327_55063-ida": {
       "folder": "data/processed/transporte/route_55063",
       "trip": 1,
-      "color": "#608090",
+      "color": "#6D378B",
       "name": "1327 · José Villanueva → Comisaría de Cerro Candela"
     },
     "1327_55063-vuelta": {
       "folder": "data/processed/transporte/route_55063",
       "trip": 2,
-      "color": "#608090",
+      "color": "#6D378B",
       "name": "1327 · Comisaría de Cerro Candela → José Villanueva"
     },
     "1328_62791-ida": {
       "folder": "data/processed/transporte/route_62791",
       "trip": 1,
-      "color": "#456878",
+      "color": "#2D77F9",
       "name": "1328 · Ensenada → Mercado de Fiori"
     },
     "1328_62791-vuelta": {
       "folder": "data/processed/transporte/route_62791",
       "trip": 2,
-      "color": "#456878",
+      "color": "#2D77F9",
       "name": "1328 · Mercado de Fiori → Ensenada"
     },
     "1329_62792-ida": {
       "folder": "data/processed/transporte/route_62792",
       "trip": 1,
-      "color": "#5A8595",
+      "color": "#DE1510",
       "name": "1329 · Ensenada → Metro (Angélica Gamarra)"
     },
     "1329_62792-vuelta": {
       "folder": "data/processed/transporte/route_62792",
       "trip": 2,
-      "color": "#5A8595",
+      "color": "#DE1510",
       "name": "1329 · Metro (Angélica Gamarra) → Ensenada"
     },
     "1330_63005-ida": {
@@ -22107,73 +22107,73 @@
     "1335_57854-ida": {
       "folder": "data/processed/transporte/route_57854",
       "trip": 1,
-      "color": "#6595A5",
+      "color": "#FE1212",
       "name": "1335 · Virgen del Carmen → La Marina"
     },
     "1335_57854-vuelta": {
       "folder": "data/processed/transporte/route_57854",
       "trip": 2,
-      "color": "#6595A5",
+      "color": "#FE1212",
       "name": "1335 · Contisuyo → Virgen del Carmen"
     },
     "1336_69421-ida": {
       "folder": "data/processed/transporte/route_69421",
       "trip": 1,
-      "color": "#3A6878",
+      "color": "#F22710",
       "name": "1336 · San Lorenzo → Venus"
     },
     "1336_69421-vuelta": {
       "folder": "data/processed/transporte/route_69421",
       "trip": 2,
-      "color": "#3A6878",
+      "color": "#F22710",
       "name": "1336 · Venus → San Lorenzo"
     },
     "1337_70833-ida": {
       "folder": "data/processed/transporte/route_70833",
       "trip": 1,
-      "color": "#608090",
+      "color": "#F21000",
       "name": "1337 · La Planicie III → Lima"
     },
     "1337_70833-vuelta": {
       "folder": "data/processed/transporte/route_70833",
       "trip": 2,
-      "color": "#608090",
+      "color": "#F21000",
       "name": "1337 · Lima → La Planicie III"
     },
     "1338_153420-ida": {
       "folder": "data/processed/transporte/route_153420",
       "trip": 1,
-      "color": "#456878",
+      "color": "#248A8E",
       "name": "1338 · Entrada Playa Costa Azul → Óvalo La Perla"
     },
     "1338_153420-vuelta": {
       "folder": "data/processed/transporte/route_153420",
       "trip": 2,
-      "color": "#456878",
+      "color": "#248A8E",
       "name": "1338 · Óvalo La Perla → Entrada Playa Costa Azul"
     },
     "1339_70826-ida": {
       "folder": "data/processed/transporte/route_70826",
       "trip": 1,
-      "color": "#5A8595",
+      "color": "#FEF70A",
       "name": "1339 · Los Cedros → Santa Rosa"
     },
     "1339_70826-vuelta": {
       "folder": "data/processed/transporte/route_70826",
       "trip": 2,
-      "color": "#5A8595",
+      "color": "#FEF70A",
       "name": "1339 · Santa Rosa → Los Cedros"
     },
     "1340_70822-ida": {
       "folder": "data/processed/transporte/route_70822",
       "trip": 1,
-      "color": "#3D6B7A",
+      "color": "#FF1D04",
       "name": "1340 · Las Violetas → Bertello"
     },
     "1340_70822-vuelta": {
       "folder": "data/processed/transporte/route_70822",
       "trip": 2,
-      "color": "#3D6B7A",
+      "color": "#FF1D04",
       "name": "1340 · Bertello → Las Violetas"
     },
     "1341_69731-ida": {
@@ -22191,25 +22191,25 @@
     "1342_69635-ida": {
       "folder": "data/processed/transporte/route_69635",
       "trip": 1,
-      "color": "#527585",
+      "color": "#A30F0F",
       "name": "1342 · Portón → Huánuco"
     },
     "1342_69635-vuelta": {
       "folder": "data/processed/transporte/route_69635",
       "trip": 2,
-      "color": "#527585",
+      "color": "#A30F0F",
       "name": "1342 · Huánuco → Portón"
     },
     "1343_69960-ida": {
       "folder": "data/processed/transporte/route_69960",
       "trip": 1,
-      "color": "#5C8FA0",
+      "color": "#FF9900",
       "name": "1343 · Mirador → AA.HH San Judas Tadeo"
     },
     "1343_69960-vuelta": {
       "folder": "data/processed/transporte/route_69960",
       "trip": 2,
-      "color": "#5C8FA0",
+      "color": "#FF9900",
       "name": "1343 · AA.HH San Judas Tadeo → Mirador"
     },
     "1344_69961-ida": {
@@ -22239,97 +22239,97 @@
     "1346_71075-ida": {
       "folder": "data/processed/transporte/route_71075",
       "trip": 1,
-      "color": "#3A6878",
+      "color": "#FF1202",
       "name": "1346 · Gran Pajatén → Minka"
     },
     "1346_71075-vuelta": {
       "folder": "data/processed/transporte/route_71075",
       "trip": 2,
-      "color": "#3A6878",
+      "color": "#FF1202",
       "name": "1346 · Minka → Gran Pajatén"
     },
     "1347_71368-ida": {
       "folder": "data/processed/transporte/route_71368",
       "trip": 1,
-      "color": "#608090",
+      "color": "#FBDC12",
       "name": "1347 · AA.HH La Campiña → Tacna"
     },
     "1347_71368-vuelta": {
       "folder": "data/processed/transporte/route_71368",
       "trip": 2,
-      "color": "#608090",
+      "color": "#FBDC12",
       "name": "1347 · Tacna → AA.HH La Campiña"
     },
     "1348_71120-ida": {
       "folder": "data/processed/transporte/route_71120",
       "trip": 1,
-      "color": "#456878",
+      "color": "#E61111",
       "name": "1348 · Túpac Amaru → Gran Chimú"
     },
     "1348_71120-vuelta": {
       "folder": "data/processed/transporte/route_71120",
       "trip": 2,
-      "color": "#456878",
+      "color": "#E61111",
       "name": "1348 · Gran Chimú → Túpac Amaru"
     },
     "1349_71071-ida": {
       "folder": "data/processed/transporte/route_71071",
       "trip": 1,
-      "color": "#5A8595",
+      "color": "#E61111",
       "name": "1349 · Pedro Ruiz Gallo → Quipucamayoc"
     },
     "1349_71071-vuelta": {
       "folder": "data/processed/transporte/route_71071",
       "trip": 2,
-      "color": "#5A8595",
+      "color": "#E61111",
       "name": "1349 · Quipucamayoc → Pedro Ruiz Gallo"
     },
     "1350_54433-ida": {
       "folder": "data/processed/transporte/route_54433",
       "trip": 1,
-      "color": "#3D6B7A",
+      "color": "#EA1212",
       "name": "1350 · Pedro Ruiz Gallo → Quipucamayoc"
     },
     "1350_54433-vuelta": {
       "folder": "data/processed/transporte/route_54433",
       "trip": 2,
-      "color": "#3D6B7A",
+      "color": "#EA1212",
       "name": "1350 · Quipucamayoc → Pedro Ruiz Gallo"
     },
     "1351_71369-ida": {
       "folder": "data/processed/transporte/route_71369",
       "trip": 1,
-      "color": "#4A7A8A",
+      "color": "#FF0F07",
       "name": "1351 · Las Gaviotas → Quipucamayoc"
     },
     "1351_71369-vuelta": {
       "folder": "data/processed/transporte/route_71369",
       "trip": 2,
-      "color": "#4A7A8A",
+      "color": "#FF0F07",
       "name": "1351 · Quipucamayoc → Las Gaviotas"
     },
     "1352_70179-ida": {
       "folder": "data/processed/transporte/route_70179",
       "trip": 1,
-      "color": "#527585",
+      "color": "#0000D9",
       "name": "1352 · AA.HH La Campiña → La Cultura"
     },
     "1352_70179-vuelta": {
       "folder": "data/processed/transporte/route_70179",
       "trip": 2,
-      "color": "#527585",
+      "color": "#0000D9",
       "name": "1352 · La Cultura → AA.HH La Campiña"
     },
     "1353_69750-ida": {
       "folder": "data/processed/transporte/route_69750",
       "trip": 1,
-      "color": "#5C8FA0",
+      "color": "#0DFECE",
       "name": "1353 · Michael Faraday → Terminal H-2 S.A. (Carapongo)"
     },
     "1353_69750-vuelta": {
       "folder": "data/processed/transporte/route_69750",
       "trip": 2,
-      "color": "#5C8FA0",
+      "color": "#0DFECE",
       "name": "1353 · Terminal H-2 S.A. (Carapongo) → Michael Faraday"
     },
     "1354_70489-ida": {
@@ -22347,25 +22347,25 @@
     "1355_71069-ida": {
       "folder": "data/processed/transporte/route_71069",
       "trip": 1,
-      "color": "#6595A5",
+      "color": "#88FE12",
       "name": "1355 · Perales → El Lindero"
     },
     "1355_71069-vuelta": {
       "folder": "data/processed/transporte/route_71069",
       "trip": 2,
-      "color": "#6595A5",
+      "color": "#88FE12",
       "name": "1355 · El Lindero → Perales"
     },
     "1356_69729-ida": {
       "folder": "data/processed/transporte/route_69729",
       "trip": 1,
-      "color": "#3A6878",
+      "color": "#5CC9B4",
       "name": "1356 · Las Praderas de la Molina → Virgen de Fátima"
     },
     "1356_69729-vuelta": {
       "folder": "data/processed/transporte/route_69729",
       "trip": 2,
-      "color": "#3A6878",
+      "color": "#5CC9B4",
       "name": "1356 · Virgen de Fátima → Las Praderas de la Molina"
     },
     "1357_70168-ida": {
@@ -22383,61 +22383,61 @@
     "1358_69322-ida": {
       "folder": "data/processed/transporte/route_69322",
       "trip": 1,
-      "color": "#456878",
+      "color": "#0B6EA7",
       "name": "1358 · Gardenias → Río Seco"
     },
     "1358_69322-vuelta": {
       "folder": "data/processed/transporte/route_69322",
       "trip": 2,
-      "color": "#456878",
+      "color": "#0B6EA7",
       "name": "1358 · Río Seco → Gardenias"
     },
     "1359_71068-ida": {
       "folder": "data/processed/transporte/route_71068",
       "trip": 1,
-      "color": "#5A8595",
+      "color": "#E80101",
       "name": "1359 · Institución Educativa El Amauta → Michael Faraday"
     },
     "1359_71068-vuelta": {
       "folder": "data/processed/transporte/route_71068",
       "trip": 2,
-      "color": "#5A8595",
+      "color": "#E80101",
       "name": "1359 · Michael Faraday → Institución Educativa El Amauta"
     },
     "1360_69002-ida": {
       "folder": "data/processed/transporte/route_69002",
       "trip": 1,
-      "color": "#3D6B7A",
+      "color": "#4A753D",
       "name": "1360 · Hijos de Apurimac → Río Seco"
     },
     "1360_69002-vuelta": {
       "folder": "data/processed/transporte/route_69002",
       "trip": 2,
-      "color": "#3D6B7A",
+      "color": "#4A753D",
       "name": "1360 · Río Seco → Hijos de Apurimac"
     },
     "1361_70176-ida": {
       "folder": "data/processed/transporte/route_70176",
       "trip": 1,
-      "color": "#4A7A8A",
+      "color": "#EAEB00",
       "name": "1361 · AA.HH La Campiña → Benjamín Franklin"
     },
     "1361_70176-vuelta": {
       "folder": "data/processed/transporte/route_70176",
       "trip": 2,
-      "color": "#4A7A8A",
+      "color": "#EAEB00",
       "name": "1361 · Benjamín Franklin → AA.HH La Campiña"
     },
     "1362_90485-ida": {
       "folder": "data/processed/transporte/route_90485",
       "trip": 1,
-      "color": "#527585",
+      "color": "#FF0447",
       "name": "1362 · 11 de Junio → Marie Curie"
     },
     "1362_90485-vuelta": {
       "folder": "data/processed/transporte/route_90485",
       "trip": 2,
-      "color": "#527585",
+      "color": "#FF0447",
       "name": "1362 · Marie Curie → 11 de Junio"
     },
     "1374_94873-ida": {
@@ -22455,253 +22455,253 @@
     "1375_69877-ida": {
       "folder": "data/processed/transporte/route_69877",
       "trip": 1,
-      "color": "#6595A5",
+      "color": "#A1FF28",
       "name": "1375 · Depósito Municipal → Manchay Bajo"
     },
     "1375_69877-vuelta": {
       "folder": "data/processed/transporte/route_69877",
       "trip": 2,
-      "color": "#6595A5",
+      "color": "#A1FF28",
       "name": "1375 · Manchay Bajo → Depósito Municipal"
     },
     "1376_68918-ida": {
       "folder": "data/processed/transporte/route_68918",
       "trip": 1,
-      "color": "#3A6878",
+      "color": "#00AAFF",
       "name": "1376 · Cabo Blanco → Ensenada de Collanac"
     },
     "1376_68918-vuelta": {
       "folder": "data/processed/transporte/route_68918",
       "trip": 2,
-      "color": "#3A6878",
+      "color": "#00AAFF",
       "name": "1376 · Ensenada de Collanac → Los Sauces"
     },
     "1395_68913-ida": {
       "folder": "data/processed/transporte/route_68913",
       "trip": 1,
-      "color": "#6595A5",
+      "color": "#04C4FF",
       "name": "1395 · Pampa Chica → Condominio Kampu"
     },
     "1395_68913-vuelta": {
       "folder": "data/processed/transporte/route_68913",
       "trip": 2,
-      "color": "#6595A5",
+      "color": "#04C4FF",
       "name": "1395 · Condominio Kampu → Pampa Chica"
     },
     "1401_84885-ida": {
       "folder": "data/processed/transporte/route_84885",
       "trip": 1,
-      "color": "#4A7A8A",
+      "color": "#FF1919",
       "name": "1401 · Tulipanes → Condominio Las Flores"
     },
     "1401_84885-vuelta": {
       "folder": "data/processed/transporte/route_84885",
       "trip": 2,
-      "color": "#4A7A8A",
+      "color": "#FF1919",
       "name": "1401 · Condominio Las Flores → Tulipanes"
     },
     "1405_89763-ida": {
       "folder": "data/processed/transporte/route_89763",
       "trip": 1,
-      "color": "#6595A5",
+      "color": "#FEFE12",
       "name": "1405 · San Lorenzo → Marcona"
     },
     "1405_89763-vuelta": {
       "folder": "data/processed/transporte/route_89763",
       "trip": 2,
-      "color": "#6595A5",
+      "color": "#FEFE12",
       "name": "1405 · Marcona → San Lorenzo"
     },
     "1406_85017-ida": {
       "folder": "data/processed/transporte/route_85017",
       "trip": 1,
-      "color": "#3A6878",
+      "color": "#318160",
       "name": "1406 · Santa Dora → Benjamín Franklin"
     },
     "1406_85017-vuelta": {
       "folder": "data/processed/transporte/route_85017",
       "trip": 2,
-      "color": "#3A6878",
+      "color": "#318160",
       "name": "1406 · Benjamín Franklin → Santa Dora"
     },
     "1407_85831-ida": {
       "folder": "data/processed/transporte/route_85831",
       "trip": 1,
-      "color": "#608090",
+      "color": "#F700FF",
       "name": "1407 · José Pardo → Las Orquídeas"
     },
     "1407_85831-vuelta": {
       "folder": "data/processed/transporte/route_85831",
       "trip": 2,
-      "color": "#608090",
+      "color": "#F700FF",
       "name": "1407 · Las Orquídeas → José Pardo"
     },
     "1408_84884-ida": {
       "folder": "data/processed/transporte/route_84884",
       "trip": 1,
-      "color": "#456878",
+      "color": "#FF28F0",
       "name": "1408 · Grifo América → Vía de Evitamiento"
     },
     "1408_84884-vuelta": {
       "folder": "data/processed/transporte/route_84884",
       "trip": 2,
-      "color": "#456878",
+      "color": "#FF28F0",
       "name": "1408 · Vía de Evitamiento → Grifo América"
     },
     "1409_84921-ida": {
       "folder": "data/processed/transporte/route_84921",
       "trip": 1,
-      "color": "#5A8595",
+      "color": "#FEFE12",
       "name": "1409 · Óvalo Salamanca → Santa María"
     },
     "1409_84921-vuelta": {
       "folder": "data/processed/transporte/route_84921",
       "trip": 2,
-      "color": "#5A8595",
+      "color": "#FEFE12",
       "name": "1409 · Santa María → Óvalo Salamanca"
     },
     "1410_84812-ida": {
       "folder": "data/processed/transporte/route_84812",
       "trip": 1,
-      "color": "#3D6B7A",
+      "color": "#FF5400",
       "name": "1410 · Grifo América → Cóndores"
     },
     "1410_84812-vuelta": {
       "folder": "data/processed/transporte/route_84812",
       "trip": 2,
-      "color": "#3D6B7A",
+      "color": "#FF5400",
       "name": "1410 · Cóndores → Grifo América"
     },
     "1413_71633-ida": {
       "folder": "data/processed/transporte/route_71633",
       "trip": 1,
-      "color": "#5C8FA0",
+      "color": "#BED222",
       "name": "1413 · Pasaje Túpac Amaru → Barrio Nuevo"
     },
     "1413_71633-vuelta": {
       "folder": "data/processed/transporte/route_71633",
       "trip": 2,
-      "color": "#5C8FA0",
+      "color": "#BED222",
       "name": "1413 · Barrio Nuevo → Pasaje Túpac Amaru"
     },
     "1417_71626-ida": {
       "folder": "data/processed/transporte/route_71626",
       "trip": 1,
-      "color": "#608090",
+      "color": "#AEAE79",
       "name": "1417 · Pasaje 2 → Los Constructores"
     },
     "1417_71626-vuelta": {
       "folder": "data/processed/transporte/route_71626",
       "trip": 2,
-      "color": "#608090",
+      "color": "#AEAE79",
       "name": "1417 · Los Constructores → Pasaje 2"
     },
     "1461_53418-ida": {
       "folder": "data/processed/transporte/route_53418",
       "trip": 1,
-      "color": "#4A7A8A",
+      "color": "#E60025",
       "name": "1461 · Entrada San Benito → Asentamiento Humano La Molina"
     },
     "1461_53418-vuelta": {
       "folder": "data/processed/transporte/route_53418",
       "trip": 2,
-      "color": "#4A7A8A",
+      "color": "#E60025",
       "name": "1461 · Asentamiento Humano La Molina → Entrada San Benito"
     },
     "1462_54364-ida": {
       "folder": "data/processed/transporte/route_54364",
       "trip": 1,
-      "color": "#527585",
+      "color": "#ED1313",
       "name": "1462 · Techo Propio → Techo Propio (Ruta Universitaria"
     },
     "1462_54364-vuelta": {
       "folder": "data/processed/transporte/route_54364",
       "trip": 2,
-      "color": "#527585",
+      "color": "#ED1313",
       "name": "1462 · Techo Propio → Techo Propio (Ruta Rímac"
     },
     "1465_68803-ida": {
       "folder": "data/processed/transporte/route_68803",
       "trip": 1,
-      "color": "#6595A5",
+      "color": "#961B1B",
       "name": "1465 · Cementerio de Pachacamac → Pronoepsa Portugal"
     },
     "1465_68803-vuelta": {
       "folder": "data/processed/transporte/route_68803",
       "trip": 2,
-      "color": "#6595A5",
+      "color": "#961B1B",
       "name": "1465 · Pronoepsa Portugal → Cementerio de Pachacamac"
     },
     "1468_68808-ida": {
       "folder": "data/processed/transporte/route_68808",
       "trip": 1,
-      "color": "#456878",
+      "color": "#2F921F",
       "name": "1468 · Terminal Conchitas → Las Palmas"
     },
     "1468_68808-vuelta": {
       "folder": "data/processed/transporte/route_68808",
       "trip": 2,
-      "color": "#456878",
+      "color": "#2F921F",
       "name": "1468 · Las Palmas → Terminal Conchitas"
     },
     "1470_70967-ida": {
       "folder": "data/processed/transporte/route_70967",
       "trip": 1,
-      "color": "#3D6B7A",
+      "color": "#FF2323",
       "name": "1470 · Alcides Vigo → Eucaliptos"
     },
     "1470_70967-vuelta": {
       "folder": "data/processed/transporte/route_70967",
       "trip": 2,
-      "color": "#3D6B7A",
+      "color": "#FF2323",
       "name": "1470 · Eucaliptos → Alcides Vigo"
     },
     "1471_44807-ida": {
       "folder": "data/processed/transporte/route_44807",
       "trip": 1,
-      "color": "#4A7A8A",
+      "color": "#B81A1A",
       "name": "1471 · Mercado Nuevo Norte → Vicuña"
     },
     "1471_44807-vuelta": {
       "folder": "data/processed/transporte/route_44807",
       "trip": 2,
-      "color": "#4A7A8A",
+      "color": "#B81A1A",
       "name": "1471 · Vicuña → Mercado Nuevo Norte"
     },
     "1472_68847-ida": {
       "folder": "data/processed/transporte/route_68847",
       "trip": 1,
-      "color": "#527585",
+      "color": "#55D2C6",
       "name": "1472 · Nogales → Mariano Pastor Sevilla"
     },
     "1472_68847-vuelta": {
       "folder": "data/processed/transporte/route_68847",
       "trip": 2,
-      "color": "#527585",
+      "color": "#55D2C6",
       "name": "1472 · Mariano Pastor Sevilla → Nogales"
     },
     "1474_151577-ida": {
       "folder": "data/processed/transporte/route_151577",
       "trip": 1,
-      "color": "#4F7F90",
+      "color": "#E8CC14",
       "name": "1474 · Calle 14 → Puente PUCP"
     },
     "1474_151577-vuelta": {
       "folder": "data/processed/transporte/route_151577",
       "trip": 2,
-      "color": "#4F7F90",
+      "color": "#E8CC14",
       "name": "1474 · Puente PUCP → Calle 14"
     },
     "1475_69547-ida": {
       "folder": "data/processed/transporte/route_69547",
       "trip": 1,
-      "color": "#6595A5",
+      "color": "#0010FF",
       "name": "1475 · Calle S/N → España"
     },
     "1475_69547-vuelta": {
       "folder": "data/processed/transporte/route_69547",
       "trip": 2,
-      "color": "#6595A5",
+      "color": "#0010FF",
       "name": "1475 · España → Calle S/N"
     },
     "1480_68042-ida": {
@@ -22719,37 +22719,37 @@
     "1483_69057-ida": {
       "folder": "data/processed/transporte/route_69057",
       "trip": 1,
-      "color": "#5C8FA0",
+      "color": "#00DE34",
       "name": "1483 · Lomas de Villa María → Calle 4"
     },
     "1483_69057-vuelta": {
       "folder": "data/processed/transporte/route_69057",
       "trip": 2,
-      "color": "#5C8FA0",
+      "color": "#00DE34",
       "name": "1483 · Calle 4 → Lomas de Villa María"
     },
     "1490_74604-ida": {
       "folder": "data/processed/transporte/route_74604",
       "trip": 1,
-      "color": "#3D6B7A",
+      "color": "#328929",
       "name": "1490 · Mar del Norte → Calle José De San Martín"
     },
     "1490_74604-vuelta": {
       "folder": "data/processed/transporte/route_74604",
       "trip": 2,
-      "color": "#3D6B7A",
+      "color": "#328929",
       "name": "1490 · Calle José De San Martín → Mar del Norte"
     },
     "1492_53089-ida": {
       "folder": "data/processed/transporte/route_53089",
       "trip": 1,
-      "color": "#527585",
+      "color": "#00EEFF",
       "name": "1492 · Colegio Max Uhle → Universitaria"
     },
     "1492_53089-vuelta": {
       "folder": "data/processed/transporte/route_53089",
       "trip": 2,
-      "color": "#527585",
+      "color": "#00EEFF",
       "name": "1492 · Universitaria → Colegio Max Uhle"
     },
     "165_88984-ida": {

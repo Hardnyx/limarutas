@@ -55,7 +55,9 @@ export function loadWrListaMeta(){
         distrito_destino: row.distrito_destino || '',
         empresa_operadora: row.empresa_operadora || '',
         empresa_abrev: row.empresa_abrev || '',
-        alias: row.alias || ''
+        alias: row.alias || '',
+        // Estado de su código antiguo en Wikipedia ('Inactiva': ya no circularía)
+        estado_wikipedia: row.estado_wikipedia || ''
       };
     }
     return metaByCodigo;
