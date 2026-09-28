@@ -545,6 +545,8 @@ async function buildUI(){
   // El botón del tema activo queda marcado
   const pickTheme = (theme) => {
     setBase(theme);
+    // El panel acompaña al mapa (styles.css: html.theme-dark)
+    document.documentElement.classList.toggle('theme-dark', theme === 'dark');
     [[btnLight, 'light'], [btnDark, 'dark']].forEach(([b, t]) => {
       if (!b) return;
       b.classList.toggle('active', t === theme);
