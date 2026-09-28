@@ -135,7 +135,10 @@ depuración de color.
 | Salir de aquí / Llegar aquí | Panel de un paradero | Pasa a Cómo llegar con ese paradero como origen o destino |
 
 Los tiempos son estimados por distancia (bus ~15 km/h; Metro y
-Metropolitano ~30 km/h; caminata con 30 % de rodeo) y no incluyen la espera.
+Metropolitano ~30 km/h; caminata con 30 % de rodeo) e incluyen la espera
+(la mitad del intervalo de paso; ver docs/TRIPS.md). Un transbordo integrado
+de la ATU (todos los tramos en Metro, Metropolitano o corredor) va primero si
+es más rápido que el mejor directo y no hace caminar más de 500 m extra.
 
 ### Celular (pantallas de hasta 700 px)
 

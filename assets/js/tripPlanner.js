@@ -47,6 +47,13 @@ const MASS_GROUPS = new Set(['metro', 'metropolitano', 'corredor']);
 const MASS_RIDE_FACTOR = 0.8;   // su tiempo a bordo "cuesta" menos
 const MASS_HEADWAY_MIN = 8;     // pasan seguido
 const MASS_MAX_RATIO = 1.8;
+// Transbordo integrado de la ATU: todos los tramos en Metro, Metropolitano o
+// corredor (misma tarjeta, pasan seguido). Molesta menos que bajarse de un
+// bus y esperar otro, y compite con los directos si es más rápido que el
+// mejor sin hacer caminar mucho más
+const INTEGRATED_TRANSFER_PENALTY = 10;
+const INTEGRATED_EXTRA_WALK_M = 500;
+const INTEGRATED_SLACK_MIN = 5;   // …y va primero salvo que otra opción sea más rápida que esto
 const MASS_MIN_SHARE = 0.4;     // …y que al menos el 40 % del tiempo a bordo sea en ellos     // una opción con ellos se muestra si cuesta hasta 1,8 veces la mejor   // un directo se muestra si "cuesta" hasta 1,5 veces la mejor
 const DOMINATED_SAVING_MIN = 10; // un transbordo con una ruta que ya va directo debe ahorrar esto
 
@@ -210,9 +217,11 @@ export function planTrip(g, from, to, { includeOld = false, at = null } = {}){
       massMin += m;
       massSaving += m * (1 - MASS_RIDE_FACTOR);
     }
-    return { ...c, legs, mass: massSaving > 0, massShare: rideMin ? massMin / rideMin : 0,
+    const integrated = c.transfers > 0 && massMin === rideMin;
+    return { ...c, legs, mass: massSaving > 0, massShare: rideMin ? massMin / rideMin : 0, integrated,
       base: c.minutes - massSaving + walkMin(c.walkM) * (WALK_WEIGHT - 1)
-        + walkMin(c.walkT || 0) * TRANSFER_WALK_EXTRA + c.transfers * TRANSFER_PENALTY };
+        + walkMin(c.walkT || 0) * TRANSFER_WALK_EXTRA
+        + c.transfers * (integrated ? INTEGRATED_TRANSFER_PENALTY : TRANSFER_PENALTY) };
   });
   cands.sort((a, b) => a.base - b.base);
 
@@ -260,12 +269,19 @@ export function planTrip(g, from, to, { includeOld = false, at = null } = {}){
   // (poca caminata) más rápido o, si no hay, con el directo más rápido.
   const directs = top.filter(c => !c.transfers);
   const easy = directs.filter(c => c.walkM <= EASY_DIRECT_WALK_M);
-  const bestDirectMin = Math.min(...(easy.length ? easy : directs).map(c => c.minutes));
+  const refDirect = (easy.length ? easy : directs).reduce((a, c) => (!a || c.minutes < a.minutes ? c : a), null);
+  const bestDirectMin = refDirect ? refDirect.minutes : Infinity;
   const mustSave = Math.max(TRANSFER_MUST_SAVE_MIN, TRANSFER_MUST_SAVE_SHARE * bestDirectMin);
-  // Primero: directos cómodos y transbordos que sí ahorran; luego el resto por costo
-  const tier = c => c.transfers
-    ? (c.minutes <= bestDirectMin - mustSave ? 0 : 1)
-    : (c.walkM <= EASY_DIRECT_WALK_M ? 0 : 1);
+  // Un transbordo integrado de la ATU no necesita ahorrar tanto: basta que
+  // sea más rápido que ese directo sin mucha más caminata
+  const integratedWins = c => c.integrated && refDirect && c.minutes < bestDirectMin
+    && c.walkM <= refDirect.walkM + INTEGRATED_EXTRA_WALK_M;
+  // Primero: directos cómodos y transbordos que sí ahorran; luego el resto por
+  // costo. Un integrado que gana va antes que todos ellos, salvo que alguno
+  // sea claramente más rápido
+  const tier0 = c => c.transfers ? c.minutes <= bestDirectMin - mustSave || integratedWins(c) : c.walkM <= EASY_DIRECT_WALK_M;
+  const fastest0 = Math.min(...top.filter(tier0).map(c => c.minutes));
+  const tier = c => integratedWins(c) && c.minutes <= fastest0 + INTEGRATED_SLACK_MIN ? -1 : tier0(c) ? 0 : 1;
   top.sort((a, b) => tier(a) - tier(b) || a.cost - b.cost);
 
   // Una opción ya cubierta por otra (sus rutas son alternativas de aquella) no se repite

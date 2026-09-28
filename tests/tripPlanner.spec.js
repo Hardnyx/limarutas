@@ -120,6 +120,19 @@ test('una ruta única con poca caminata va antes que un transbordo (Canaval y Mo
   for (const s of new Set(starts)) expect(starts.filter(x => x === s).length).toBeLessThanOrEqual(2);
 });
 
+test('Metropolitano + corredor va primero si es más rápido que el directo sin mucha más caminata (Habich → Monumental)', async ({ app, page }) => {
+  // Lunes 15:57 (circula el Expreso 5). La 1191 va directo en ~96 min con
+  // ~600 m a pie; Expreso 5 › Corredor Rojo tarda ~87 min con ~300 m más
+  const r = await plan(page, { lat: -12.0225, lon: -77.0516 }, { lat: -12.058, lon: -76.9395 }, { at: { day: 1, min: 957 } });
+  const first = r.options[0];
+  expect(first.transfers).toBe(1);
+  expect(first.groups.every(g => ['metro', 'metropolitano', 'corredor'].includes(g))).toBe(true);
+  // El directo sigue apareciendo, detrás
+  const direct = r.options.find(o => o.transfers === 0);
+  expect(direct).toBeTruthy();
+  expect(first.minutes).toBeLessThan(direct.minutes);
+});
+
 test('Metropolitano: solo entra lo que circula a la hora de salida', async ({ app, page }) => {
   const r = await page.evaluate(async ([a, b]) => {
     const { loadTripGraph } = await import('/assets/js/tripData.js');

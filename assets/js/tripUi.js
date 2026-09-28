@@ -557,7 +557,7 @@ async function renderResults(){
   setCompact(true);
   last.options.forEach((opt, k) => box.append(card(opt, k)));
   offHoursNote(box);
-  box.append(el('div', { class: 'muted trip-note' }, 'Tiempos estimados por distancia; no incluyen la espera del bus.'));
+  box.append(el('div', { class: 'muted trip-note' }, 'Tiempos estimados por distancia; incluyen una espera según cada cuánto pasa el bus.'));
 }
 
 // Servicios que servirían pero no circulan a la hora de salida: tocarlos
