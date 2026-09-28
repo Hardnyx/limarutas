@@ -197,3 +197,30 @@ test('rutas del PRR sin color heredan el de su código antiguo; las inactivas se
   // 1285 (antigua IM24): alias histórico «la 129» del artículo de Wikipedia
   await expect(item('1285').locator('.wr-main-title')).toContainText('La 129');
 });
+
+test.describe('fotos referenciales', () => {
+  test.use({ routePhotos: { rutas: { '1320': [{
+    imagen: 'https://upload.wikimedia.org/prueba/480px-Bus.jpg',
+    pagina: 'https://commons.wikimedia.org/wiki/File:Bus.jpg',
+    autor: 'Autora de prueba', licencia: 'CC BY-SA 4.0',
+    licencia_url: 'https://creativecommons.org/licenses/by-sa/4.0', fuente: 'Wikimedia Commons'
+  }] } } });
+
+  test('la ruta con foto muestra el botón; la foto lleva autor, licencia y fuente', async ({ app, page }) => {
+    await page.click('.panel-head[data-target="p-wr-body"]');
+    const item = id => page.locator(`#p-wr .item:has(> .item-head input[data-id="${id}"])`);
+    const btn = item('1320').locator('.wr-photo-btn');
+    await expect(btn).toHaveText('Foto');
+    // Sin foto no hay botón
+    await expect(item('1122').locator('.wr-photo-btn')).toHaveCount(0);
+
+    await expect(item('1320').locator('.wr-photos')).toBeHidden();
+    await btn.click();
+    const photo = item('1320').locator('.wr-photo');
+    await expect(photo).toBeVisible();
+    await expect(photo.locator('img')).toHaveAttribute('src', 'https://upload.wikimedia.org/prueba/480px-Bus.jpg');
+    await expect(photo.locator('figcaption')).toHaveText('Foto referencial: Autora de prueba · CC BY-SA 4.0 · Wikimedia Commons');
+    await expect(photo.locator('figcaption a', { hasText: 'CC BY-SA 4.0' })).toHaveAttribute('href', 'https://creativecommons.org/licenses/by-sa/4.0');
+    await expect(btn).toHaveAttribute('aria-expanded', 'true');
+  });
+});

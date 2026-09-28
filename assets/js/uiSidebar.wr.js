@@ -6,7 +6,7 @@ import { isLightColor } from './mapColors.js';
 import { el } from './utils.js';
 import { syncTriFromLeaf } from './uiSidebar.hierarchy.js';
 import { toggleLeaf, refreshLeafDirection } from './leafToggle.js';
-import { wrCanonicalCode, loadWrListaMeta, loadWrExtremes, wrFilterRoutesByGroup } from './wrData.js';
+import { wrCanonicalCode, loadWrListaMeta, loadWrExtremes, wrFilterRoutesByGroup, loadRoutePhotos } from './wrData.js';
 import { wrIsPlaceholder, wrBuildTituloPrincipal, wrParseBaseStops, wrStopsFromExtremesForRoute } from './wrTexts.js';
 import { wrIsDefaultColor } from './uiSidebar.wrColorFilter.js';
 
@@ -129,6 +129,37 @@ function makeWrDirPairControls(chk){
   return wrap;
 }
 
+// Foto referencial con su crédito: "Foto: Autor · CC BY-SA 4.0 · Wikimedia
+// Commons" (autor enlaza a la ficha del archivo, licencia a su texto)
+function makeWrPhotos(fotos, code){
+  const link = (href, text) => /^https:\/\//.test(href || '')
+    ? el('a', { href, target: '_blank', rel: 'noopener' }, text) : text;
+  return el('div', { class: 'wr-photos', hidden: '' }, ...fotos.map(f => el('figure', { class: 'wr-photo' },
+    el('a', { href: f.pagina, target: '_blank', rel: 'noopener' },
+      el('img', { src: f.imagen, alt: f.descripcion || `Bus de la ruta ${code}`, loading: 'lazy' })),
+    el('figcaption', {}, 'Foto referencial: ', link(f.pagina, f.autor), ' · ',
+      link(f.licencia_url, f.licencia), ` · ${f.fuente}`,
+      f.codigo_foto ? ` · con su código antiguo ${f.codigo_foto}` : ''))));
+}
+
+// Botón "Foto" solo en las rutas con foto; la imagen se pide al abrirla
+function attachWrPhotos(body, textBlock, code){
+  loadRoutePhotos().then(photos => {
+    const fotos = photos[code];
+    if (!fotos?.length) return;
+    const box = makeWrPhotos(fotos, code);
+    const btn = el('button', { type: 'button', class: 'wr-photo-btn', 'aria-expanded': 'false' },
+      fotos.length > 1 ? `Fotos (${fotos.length})` : 'Foto');
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      box.hidden = !box.hidden;
+      btn.setAttribute('aria-expanded', String(!box.hidden));
+    });
+    textBlock.append(btn);
+    body.append(box);
+  });
+}
+
 function makeWrItem(rt, metaByCodigo, routesById, extremes, systemId='wr'){
   const labelId = (rt.display_id || String(rt.id)).toUpperCase();
   const tagColor = (rt && rt.color) ? rt.color : '#64748b';
@@ -237,6 +268,7 @@ function makeWrItem(rt, metaByCodigo, routesById, extremes, systemId='wr'){
 
   const initialDir = hasBothDirs ? (chk.dataset.sel || 'ida') : 'ida';
   applyWrTextsToWrItem(body, initialDir);
+  attachWrPhotos(body, textBlock, key);
 
   chk.addEventListener('change', () => {
     toggleLeaf(chk, chk.checked, { fit: true });

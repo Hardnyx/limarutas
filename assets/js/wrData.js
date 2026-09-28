@@ -150,3 +150,27 @@ export function wrFilterRoutesByGroup(groupName, routes){
     return true;
   });
 }
+
+/* =========================
+   Fotos referenciales (config/route_photos.json)
+   ========================= */
+
+let routePhotosPromise = null;
+
+// { código canónico: [{imagen, pagina, autor, licencia, licencia_url, fuente, …}] }
+export function loadRoutePhotos(){
+  if (routePhotosPromise) return routePhotosPromise;
+  routePhotosPromise = fetch('config/route_photos.json')
+    .then(r => r.ok ? r.json() : { rutas: {} })
+    .then(data => {
+      const out = {};
+      for (const [codigo, fotos] of Object.entries(data?.rutas || {})){
+        // Solo enlaces https (lo valida también commons_photos.py --check)
+        const ok = (fotos || []).filter(f => /^https:\/\//.test(f?.imagen || '') && /^https:\/\//.test(f?.pagina || ''));
+        if (ok.length) out[wrCanonicalCode(codigo)] = ok;
+      }
+      return out;
+    })
+    .catch(() => ({}));
+  return routePhotosPromise;
+}
