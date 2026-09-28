@@ -106,6 +106,12 @@ bus de la principal no para en la auxiliar y puede haber un separador),
    Calibrado a mano con Canaval y Moreyra → Mariátegui (VES): la 1122
    directa (750 m a pie, ~82 min) va antes que 1057 › 1185 (~80 min, con
    transbordo en Atocongo).
+   **Transbordo integrado de la ATU** (todos los tramos en Metro,
+   Metropolitano o corredor: misma tarjeta, pasan seguido): cuenta 10 en vez
+   de 20 y va primero si es más rápido que el mejor directo, no hace caminar
+   más de 500 m extra y ninguna otra opción es más de 5 min más rápida.
+   Calibrado con Habich → Estadio Monumental: Expreso 5 › Corredor Rojo
+   (~87 min) va antes que la 1191 directa (~96 min, ~300 m menos a pie).
 7. Hasta 6 opciones que no se repitan (dos son la misma si en cada tramo
    comparten alguna ruta) y como mucho 2 transbordos que empiecen con las
    mismas rutas. Todas las rutas únicas que cuesten hasta 1,5 veces la
