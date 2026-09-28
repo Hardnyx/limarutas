@@ -1,10 +1,11 @@
 // tripPlanner.js
 // Cálculo de viajes de A a B sobre el grafo de tripData.js: directos y con
 // un transbordo. Del Metropolitano solo entra lo que circula a la hora de
-// salida (tiene horarios); sin frecuencias, se ordenan por un costo que
-// suma el tiempo estimado, la caminata (pesa doble), los transbordos y la
-// espera, que es menor cuando varias rutas hacen el mismo tramo. Cada tramo
-// trae esas rutas alternativas: basta tomar la primera que pase.
+// salida (tiene horarios). Se ordenan por un costo que suma el tiempo
+// estimado, la caminata (pesa doble), los transbordos y la espera. La espera
+// sale del intervalo de paso (ficha técnica del PRR; si no se conoce, uno
+// conservador) y es menor cuando varias rutas hacen el mismo tramo. Cada
+// tramo trae esas rutas alternativas: basta tomar la primera que pase.
 import { runsAt } from './metSchedule.js';
 import { distM } from './tripData.js';
 
@@ -26,7 +27,11 @@ const MAX_OPTIONS = 6;
 // Para ordenar (no se muestran como minutos)
 const WALK_WEIGHT = 2;          // un minuto a pie "cuesta" como dos
 const TRANSFER_PENALTY = 20;    // bajarse, cruzar y esperar otro bus sin saber cuándo pasa
-const WAIT_MIN = 10;            // espera de una sola ruta; con N que sirven, 10/(1+N)
+// Espera en el paradero: la mitad del intervalo entre buses (se llega sin
+// mirar el horario). Con varias rutas que sirven, pasan más seguido:
+// espera = 1 / (2 · Σ 1/intervalo). El intervalo es el de la ficha técnica
+// del PRR (r.headway); sin ficha, uno conservador
+const HEADWAY_MIN = 20;         // bus sin ficha (ruta antigua, alimentador…)
 const TOP_FOR_ALTS = 60;        // candidatos a los que se buscan alternativas
 const ALT_M = 150;              // alternativas: suben y bajan a esta distancia o menos
 const MAX_ALTS = 8;
@@ -40,7 +45,7 @@ const TRANSFER_MUST_SAVE_SHARE = 0.2; // …ni el 20 % del tiempo del directo
 // Metro, Metropolitano y corredores: más frecuentes y previsibles; se prefieren
 const MASS_GROUPS = new Set(['metro', 'metropolitano', 'corredor']);
 const MASS_RIDE_FACTOR = 0.8;   // su tiempo a bordo "cuesta" menos
-const MASS_WAIT_MIN = 4;        // pasan seguido
+const MASS_HEADWAY_MIN = 8;     // pasan seguido
 const MASS_MAX_RATIO = 1.8;
 const MASS_MIN_SHARE = 0.4;     // …y que al menos el 40 % del tiempo a bordo sea en ellos     // una opción con ellos se muestra si cuesta hasta 1,8 veces la mejor   // un directo se muestra si "cuesta" hasta 1,5 veces la mejor
 const DOMINATED_SAVING_MIN = 10; // un transbordo con una ruta que ya va directo debe ahorrar esto
@@ -85,6 +90,15 @@ function legsOf(g, c){
 }
 
 const isMass = r => MASS_GROUPS.has(r.group);
+
+// Minutos entre buses de una ruta
+export const headwayOf = r => r.headway || (isMass(r) ? MASS_HEADWAY_MIN : HEADWAY_MIN);
+
+// Espera media si sirve cualquiera de estas rutas
+function waitMin(routes){
+  const perMin = routes.reduce((sum, r) => sum + 1 / headwayOf(r), 0);
+  return 1 / (2 * perMin);
+}
 
 // Mismo servicio (ida y vuelta de una ruta, o sus dos sentidos)
 const sameService = (a, b) => a.leaf === b.leaf;
@@ -233,8 +247,11 @@ export function planTrip(g, from, to, { includeOld = false, at = null } = {}){
       // un transbordo sin las que ya van directo (esas son su propia opción)
       leg.alts = alternativesFor(g, leg, isActive).filter(a =>
         !mains.includes(a.route.leaf) && !(c.transfers && directBase.has(svc(a.route))));
-      wait += (isMass(leg.route) ? MASS_WAIT_MIN : WAIT_MIN) / (1 + leg.alts.length);
+      leg.wait = waitMin([leg.route, ...leg.alts.map(a => a.route)]);
+      wait += leg.wait;
     }
+    // El tiempo estimado incluye la espera
+    c.minutes += wait;
     c.cost = c.base + wait;
   }
   // Un directo va antes que cualquier transbordo, salvo que el transbordo

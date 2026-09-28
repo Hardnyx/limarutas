@@ -37,12 +37,17 @@ Formato:
   }
 }
 
+También escribe prr_fichas.csv: la misma base en una tabla (una fila por
+ruta, el itinerario como calles separadas por « > »), para abrirla en una
+hoja de cálculo.
+
 Uso:
     python pipeline/scripts/atu/build_prr_fichas.py [carpeta_de_fichas]
 """
 
 from __future__ import annotations
 
+import csv
 import json
 import math
 import re
@@ -55,6 +60,7 @@ ROOT = Path(__file__).resolve().parents[3]
 ANEXO = ROOT / 'docs' / '3_099-2025-ATU_PE_ANEXO.pdf'
 FICHAS = ROOT / 'docs' / 'paraderos_ATU' / 'Plan actualizador de rutas'
 OUT = ROOT / 'pipeline' / 'output' / 'prr_fichas.json'
+OUT_CSV = ROOT / 'pipeline' / 'output' / 'prr_fichas.csv'
 
 LINE_TOL = 2.5      # palabras a menos de esto en vertical: misma línea
 WORD_GAP = 8        # un hueco mayor entre palabras separa ida de vuelta
@@ -145,6 +151,13 @@ def num(s):
     return float(s.replace(',', '.')) if s else None
 
 
+def categoria(text):
+    """'MINIBUS (M2 – M3)', 'MINIBUS (M2-M3)' → 'MINIBUS (M2-M3)'; 'ÓMNIBUS' → 'OMNIBUS'."""
+    text = re.split(r'\s*:?\s*F[L]?OTA', text)[0]
+    text = text.replace('–', '-').replace('Ó', 'O')
+    return re.sub(r'\s*-\s*', '-', ' '.join(text.split())).strip(' :')
+
+
 def ficha(path):
     with pdfplumber.open(path) as pdf:
         text = '\n'.join(p.extract_text() or '' for p in pdf.pages)
@@ -166,10 +179,35 @@ def ficha(path):
         'flota': ({'operativa': int(flota.group(1)), 'reserva': int(flota.group(2)),
                    'total': int(flota.group(3))} if flota else None),
         'intervalo_min': num(get(r'INTERVALO DE PASO\s*:\s*([\d.,]+)\s*MIN')),
-        'categoria': get(r'CATEGORIA\s*:\s*(.+?)\s*(?::\s*FLOTA|FLOTA)'),
+        'categoria': categoria(get(r'CATEGORIA\s*:\s*(.+?)\s*(?::\s*FLOTA|FLOTA)')),
         'punto_inicial': get(r'PUNTO INICIAL\s*:\s*(.+?)\s+PUNTO FINAL'),
         'punto_final': get(r'PUNTO FINAL\s*:\s*(.+?)\s+ZONA DE'),
     }
+
+
+CSV_FIELDS = ['codigo', 'codigo_antiguo', 'empresa', 'distrito_origen', 'distrito_destino',
+              'km_ida', 'km_vuelta', 'flota_operativa', 'flota_reserva', 'flota_total',
+              'intervalo_min', 'categoria', 'punto_inicial', 'punto_final',
+              'calles_ida', 'calles_vuelta', 'itinerario_ida', 'itinerario_vuelta', 'archivo', 'notas']
+
+
+def write_csv(rutas):
+    with open(OUT_CSV, 'w', encoding='utf-8', newline='') as f:
+        w = csv.DictWriter(f, fieldnames=CSV_FIELDS)
+        w.writeheader()
+        for codigo, r in rutas.items():
+            flota = r.get('flota') or {}
+            w.writerow({
+                'codigo': codigo, **{k: r.get(k, '') for k in (
+                    'codigo_antiguo', 'empresa', 'distrito_origen', 'distrito_destino', 'km_ida',
+                    'km_vuelta', 'intervalo_min', 'categoria', 'punto_inicial', 'punto_final', 'archivo')},
+                'flota_operativa': flota.get('operativa', ''), 'flota_reserva': flota.get('reserva', ''),
+                'flota_total': flota.get('total', ''),
+                'calles_ida': len(r.get('ida') or []), 'calles_vuelta': len(r.get('vuelta') or []),
+                'itinerario_ida': ' > '.join(r.get('ida') or []),
+                'itinerario_vuelta': ' > '.join(r.get('vuelta') or []),
+                'notas': ' | '.join(r.get('notas') or []),
+            })
 
 
 def main() -> None:
@@ -213,6 +251,8 @@ def main() -> None:
         'rutas': rutas,
     }, ensure_ascii=False, indent=1), encoding='utf-8')
 
+    write_csv(rutas)
+
     con = [r for r in rutas.values() if r.get('archivo')]
     print(f'Fichas: {len(con)} · sin ficha: {len(faltan)} {faltan}')
     print(f'Sin itinerario: {[c for c, r in rutas.items() if r.get("archivo") and not (r["ida"] and r["vuelta"])]}')
@@ -222,7 +262,7 @@ def main() -> None:
     for c, r in rutas.items():
         for n in r['notas']:
             print(f'  {c}: {n}')
-    print(f'Escrito: {OUT.relative_to(ROOT)} ({OUT.stat().st_size / 1024:.0f} KB)')
+    print(f'Escrito: {OUT.relative_to(ROOT)} ({OUT.stat().st_size / 1024:.0f} KB) y {OUT_CSV.relative_to(ROOT)}')
 
 
 if __name__ == '__main__':

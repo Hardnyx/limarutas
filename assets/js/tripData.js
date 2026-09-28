@@ -120,6 +120,8 @@ export function buildTripGraph(raw){
       schedule: scheduleOf(key),
       // Metros por la vía entre paraderos consecutivos (Metropolitano)
       segM: raw.segM?.[key] || null,
+      // Minutos entre buses según la ficha técnica del PRR (sin horario)
+      headway: raw.headway?.[key] ?? null,
       stops: Int32Array.from(seq)
     });
   }

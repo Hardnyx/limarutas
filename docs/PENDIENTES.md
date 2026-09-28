@@ -45,6 +45,10 @@ Licencia: ODbL; el mapa ya muestra "© OpenStreetMap".
 - **Fichas técnicas en el sidebar**: intervalo de paso, km, flota y
   carrocería de cada ruta (`prr_fichas.json`, 1 MB: generar una versión
   liviana para el front).
+- **Trazados sospechosos**: `pipeline/output/prr_wr_km.csv`
+  (`atu/check_wr_km.py`) compara el largo de cada trazado de Wikiroutes con
+  los km de su ficha; 88 capas se salen de ±30 % (1321 mide 3 veces lo de su
+  ficha; 1462, la mitad): revisar si son de otra ruta o variantes.
 - Fuente de "rutas que circulan": el anexo del subsidio ECO (resolución SSTR
   del 24/07/2026, operadores con servicio registrado en el SICM) listaría las
   rutas con operación real; el PDF recibido no trae el anexo.
