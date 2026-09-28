@@ -757,6 +757,16 @@ def main():
         'ESI-2':  {'empresa_operadora': 'Expreso San Isidro', 'empresa_abrev': 'ESI',
                    'alias': 'Norte Centro Financiero', 'color_hex': '#00B369', 'fuente': 'manual'},
     }
+    # Alias históricos del artículo de Wikipedia "Transporte público regular
+    # de Lima y Callao" (codigo antiguo -> alias), solo donde no hay otro.
+    # Los demás de esa lista ya llegan por el cruce del paso 3b; 9504 (la 2),
+    # 8519 (la 23B) y 3612 (la 48) no están en el PRR.
+    historicos = {'IM24': 'La 129'}
+    for fila in maestro.values():
+        alias = historicos.get(fila.get('codigo_antiguo', '').upper())
+        if alias and fila.get('alias') in ('', 'Desconocido', 'Ninguno'):
+            fila['alias'] = alias
+
     for cod, vals in overrides.items():
         if cod not in maestro:
             maestro[cod] = {'codigo_antiguo': '', 'codigo_nuevo': cod,

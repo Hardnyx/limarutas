@@ -179,7 +179,10 @@ def ficha(path):
         'flota': ({'operativa': int(flota.group(1)), 'reserva': int(flota.group(2)),
                    'total': int(flota.group(3))} if flota else None),
         'intervalo_min': num(get(r'INTERVALO DE PASO\s*:\s*([\d.,]+)\s*MIN')),
-        'categoria': categoria(get(r'CATEGORIA\s*:\s*(.+?)\s*(?::\s*FLOTA|FLOTA)')),
+        # La etiqueta varía ("CATEGORIA / CARROCERIA", "TIPO DE CARROCERIA", o
+        # queda en otra línea): si no aparece, se busca el tipo "XBUS (M2…)".
+        'categoria': (categoria(get(r'CATEGORIA\s*:\s*(.+?)\s*(?::\s*FLOTA|FLOTA)'))
+                      or categoria(get(r'((?:MICRO|MINI|OMNI|ÓMNI)BUS\s*\(\s*M[23][^)]*\))'))),
         'punto_inicial': get(r'PUNTO INICIAL\s*:\s*(.+?)\s+PUNTO FINAL'),
         'punto_final': get(r'PUNTO FINAL\s*:\s*(.+?)\s+ZONA DE'),
     }

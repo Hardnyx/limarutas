@@ -190,4 +190,6 @@ test('rutas del PRR sin color heredan el de su código antiguo; las inactivas se
   // 1369 (antigua 4602) figura inactiva en Wikipedia
   await expect(item('1369').locator('.wr-flag')).toHaveText('Según Wikipedia ya no circula');
   await expect(item('1320').locator('.wr-flag')).toBeHidden();
+  // 1285 (antigua IM24): alias histórico «la 129» del artículo de Wikipedia
+  await expect(item('1285').locator('.wr-main-title')).toContainText('La 129');
 });
