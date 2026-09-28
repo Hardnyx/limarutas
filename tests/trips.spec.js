@@ -176,13 +176,20 @@ test('Alimentadores: el circuito se corta en el terminal y en el punto más leja
       idaFirst: name(ida.stops[0]), vtaLast: name(vta.stops[vta.stops.length - 1]),
       // La estación Matellini es el mismo nodo en el alimentador y en la Ruta C
       shared: c.stops.includes(ida.stops[0]),
-      idaSeg: ida.segM?.length === ida.stops.length - 1
+      idaSeg: ida.segM?.length === ida.stops.length - 1,
+      // Paraderos oficiales del portal de la ATU (config/alim_paraderos.json)
+      as07: Array.from(g.routes.find(x => x.key === 'alim:AS-07:ida').stops, name),
+      as02: Array.from(g.routes.find(x => x.key === 'alim:AS-02:vuelta').stops, name)
     };
   });
   expect(r.idaFirst).toBe('Matellini');
   expect(r.vtaLast).toBe('Matellini');
   expect(r.shared).toBe(true);
   expect(r.idaSeg).toBe(true);
+  expect(r.as07).toEqual(['Matellini', 'Óvalo La Curva', 'Guardia Peruana', 'El Sol', 'Paradero C', 'Los Naranjos',
+    'Calle 3', 'Velasco Alvarado', 'Santa Rosa', 'Mártir Olaya', 'Mártires', 'Unión', 'Panamericana']);
+  expect(r.as02).toEqual(['Isla Española', 'Aruba', 'Las Tortugas', 'Cedros de Villa', 'San Lorenzo', 'Plaza Vea',
+    'Machupicchu', '10 de Noviembre', 'Santa Anita', 'Matellini']);
 });
 
 test('Transporte público: solo los códigos del PRR; los antiguos de 4 dígitos van a Rutas antiguas', async ({ app, page }) => {

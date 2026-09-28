@@ -4,6 +4,11 @@ Alimentador del Metropolitano en dos sentidos, ida (del terminal al punto de
 vuelta) y vuelta (de ahí al terminal), con su trazado y sus paraderos en
 orden.
 
+Paraderos: los oficiales de la ATU (config/alim_paraderos.json) donde los
+hay. Cada uno se ubica en el paradero de Wikiroutes del mismo nombre junto al
+trazado; si no hay ninguno, entre sus vecinos ("aprox": true). Sin lista
+oficial, los paraderos de OSM con el nombre del de Wikiroutes más cercano.
+
 Fuente: alimentadores.json (export de OSM: relaciones route=bus con sus ways
 como MultiLineString y sus paraderos como Point; vienen duplicados).
 
@@ -28,7 +33,9 @@ Formato:
       "terminal": "naranjal", "loop": true,
       "ida":    {"to": "…", "coords": [[lat, lon], ...],
                  "stops": [{"id": "met:naranjal"|"alim:<osm_id>", "name": "…",
-                            "lat": …, "lon": …, "at": i_coord, "m": metros}, ...]},
+                            "lat": …, "lon": …, "at": i_coord, "m": metros,
+                            "aprox": true (solo si se interpoló)}, ...],
+                 "horario": "L-S 05:30-00:00 · D 05:30-23:00" (si es oficial)},
       "vuelta": {...}
     }
   }
@@ -44,6 +51,7 @@ import datetime as dt
 import json
 import math
 import re
+import unicodedata
 from collections import defaultdict
 from pathlib import Path
 
@@ -51,11 +59,13 @@ ROOT = Path(__file__).resolve().parents[3]
 MET = ROOT / 'data' / 'processed' / 'metropolitano'
 OUT = MET / 'alimentadores_paths.json'
 WR_STOPS = ROOT / 'pipeline' / 'output' / 'wr_stops_index.json'
+OFFICIAL = ROOT / 'config' / 'alim_paraderos.json'
 
 LOOP_M = 80          # extremos a menos de esto: es un circuito
 MERGE_STOP_M = 40    # "stop" y "platform" de OSM del mismo paradero
 MAX_STOP_M = 80      # paraderos más lejos del trazado no se usan
 NAME_M = 150         # nombre del paradero: el de Wikiroutes más cercano, hasta esto
+OFFICIAL_M = 150     # paradero oficial: el de Wikiroutes de su nombre, hasta esto del trazado
 
 M_LAT = 110_574
 M_LON = 111_320 * math.cos(math.radians(-12.05))
@@ -150,6 +160,81 @@ class Namer:
         return best[2] if dist((lat, lon), (best[0], best[1])) <= NAME_M else ''
 
 
+STOPWORDS = {'av', 'avenida', 'jr', 'ca', 'ovalo', 'parque', 'la', 'el', 'los', 'las',
+             'de', 'del', 'y', 'd'}
+
+
+def tokens(name):
+    """'Óvalo La Curva' → {'curva'}; 'Machu Picchu' y 'Machupicchu' igual."""
+    s = unicodedata.normalize('NFKD', name).encode('ascii', 'ignore').decode().lower()
+    s = re.sub(r'[^a-z0-9 ]', ' ', s).replace('machu picchu', 'machupicchu')
+    return frozenset(re.sub(r's\b', '', w) for w in s.split() if w not in STOPWORDS)
+
+
+def same_name(official, wr):
+    """Todas las palabras del oficial en el de Wikiroutes ('Plaza Vea' →
+    'Plaza Vea (Alameda Sur)'), o al revés si no es una sola letra."""
+    return bool(official) and (official <= wr or (wr and wr <= official and max(map(len, wr)) > 3))
+
+
+def official(path, names, notes, dir_ref, first=None, last=None):
+    """Paraderos oficiales de un sentido, en orden sobre el trazado."""
+    cum = cumulative(path)
+    lats = [p[0] for p in path]
+    lons = [p[1] for p in path]
+    pad = 0.002
+    near = []
+    for lat, lon, name in NAMER.stops:
+        if not (min(lats) - pad <= lat <= max(lats) + pad and min(lons) - pad <= lon <= max(lons) + pad):
+            continue
+        d, m, _ = project(path, cum, (lat, lon))
+        if d <= OFFICIAL_M:
+            near.append((tokens(name), m, lat, lon))
+    # Cada uno, el primero de su nombre después del anterior (con 50 m de
+    # margen: dos paraderos pueden compartir esquina)
+    placed, last_m = [], 0.0
+    for name in names:
+        want = tokens(name)
+        hit = min((c for c in near if c[1] >= last_m - 50 and same_name(want, c[0])),
+                  key=lambda c: c[1], default=None)
+        if hit:
+            last_m = hit[1]
+        placed.append(hit)
+    # Sin paradero de Wikiroutes: repartidos entre sus vecinos; al empezar la
+    # vuelta, en el punto de vuelta; al terminar la ida, en su final
+    ms = [c[1] if c else None for c in placed]
+    i = 0
+    while i < len(ms):
+        if ms[i] is not None:
+            i += 1
+            continue
+        j = i
+        while j < len(ms) and ms[j] is None:
+            j += 1
+        lo = ms[i - 1] if i else 0.0
+        hi = ms[j] if j < len(ms) else cum[-1]
+        n = j - i
+        for k in range(n):
+            f = (k / n if i == 0 and first is None else
+                 (k + 1) / n if j == len(ms) and last is None else (k + 1) / (n + 1))
+            ms[i + k] = lo + (hi - lo) * f
+        i = j
+    stops = []
+    for n, (name, hit, m) in enumerate(zip(names, placed, ms)):
+        if hit:
+            lat, lon = hit[2], hit[3]
+        else:
+            at = min(range(len(cum)), key=lambda x: abs(cum[x] - m))
+            lat, lon = path[at]
+        s = {'id': f'alim:{dir_ref}:{n}', 'name': name, 'lat': lat, 'lon': lon, '_m': m}
+        if not hit:
+            s['aprox'] = True
+        if name in notes:
+            s['horario'] = notes[name]
+        stops.append(s)
+    return stops
+
+
 def route_destination(name):
     """'Alimentadora Norte Tahuantinsuyo' → 'Tahuantinsuyo' (sin "(Ida)")."""
     name = re.sub(r'\s*\((ida|vuelta)\)\s*$', '', name, flags=re.IGNORECASE)
@@ -177,6 +262,9 @@ def direction(path, stops, first=None, last=None):
     cum = cumulative(path)
     placed = []
     for s in stops:
+        if '_m' in s:          # oficial, ya ubicado y en orden
+            placed.append((s.pop('_m'), s))
+            continue
         d, m, _ = project(path, cum, (s['lat'], s['lon']))
         if d <= MAX_STOP_M:
             placed.append((m, s))
@@ -206,6 +294,8 @@ def main() -> None:
     stations = [s for s in json.loads((MET / 'metropolitano_stops.json').read_text(encoding='utf-8'))['stations']
                 if s.get('lat') is not None]
     rels, stops = load()
+    oficiales = {k: v for k, v in json.loads(OFFICIAL.read_text(encoding='utf-8')).items()
+                 if not k.startswith('_')}
     out = {}
     for ref in sorted(rels):
         paths = [chain(r['parts']) for r in rels[ref].values()]
@@ -249,11 +339,20 @@ def main() -> None:
                         'ida': direction(ida_path, side(ida_path), first=tstop),
                         'vuelta': direction(vta_path, side(vta_path), last=tstop)}
 
+        of = oficiales.get(ref)
+        if of:
+            for key, first, last in (('ida', tstop, None), ('vuelta', None, tstop)):
+                path = [tuple(p) for p in out[ref][key]['coords']]
+                stops_of = official(path, of[key], of.get('notas', {}), f'{ref}:{key}', first, last)
+                out[ref][key] = direction(path, stops_of, first=first, last=last)
+                if of.get('horario', {}).get(key):
+                    out[ref][key]['horario'] = of['horario'][key]
+
         # Hacia dónde va cada sentido: la ida, al barrio que da nombre a la
         # ruta; la vuelta, a la estación
         name = next(iter(rels[ref].values()))['name']
         out[ref]['name'] = name
-        out[ref]['ida']['to'] = route_destination(name)
+        out[ref]['ida']['to'] = (of or {}).get('nombre') or route_destination(name)
         out[ref]['vuelta']['to'] = term['name']
 
     OUT.write_text(json.dumps({'updated': dt.date.today().isoformat(), 'services': out},

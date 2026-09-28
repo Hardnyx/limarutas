@@ -1,0 +1,138 @@
+{
+  "_fuente": "Portal ATU, páginas de cada Alimentador del Metropolitano (capturas del 2026-09-28). Paraderos en orden por sentido, sin contar el terminal; build_alim_paths.py los ubica sobre el trazado de OSM por nombre (paradero de Wikiroutes) y, si no, entre sus vecinos.",
+  "AS-02": {
+    "nombre": "Cedros de Villa",
+    "ida": [
+      "Huaylas",
+      "Alameda Sur",
+      "Los Pinos",
+      "Plaza Vea",
+      "Las Camelias",
+      "Cedros de Villa",
+      "Ballestas",
+      "Isla Española"
+    ],
+    "vuelta": [
+      "Isla Española",
+      "Aruba",
+      "Las Tortugas",
+      "Cedros de Villa",
+      "San Lorenzo",
+      "Plaza Vea",
+      "Machupicchu",
+      "10 de Noviembre",
+      "Santa Anita"
+    ],
+    "horario": {
+      "ida": "L-S 05:30-00:00 · D 05:30-23:00",
+      "vuelta": "L-S 05:00-23:30 · D 05:00-22:30"
+    }
+  },
+  "AS-04": {
+    "nombre": "Villa El Salvador",
+    "ida": [
+      "INR",
+      "Confraternidad",
+      "Pantanos de Villa",
+      "Santa Rosa",
+      "Panamericana Sur",
+      "Almacenes",
+      "Villa Panamericana",
+      "Pastor Sevilla",
+      "Micaela Bastidas",
+      "Álamos",
+      "Velasco Alvarado",
+      "César Vallejo",
+      "José Carlos Mariátegui",
+      "200 Millas",
+      "Parque Zonal Huáscar"
+    ],
+    "vuelta": [
+      "José Carlos Mariátegui",
+      "César Vallejo",
+      "Velasco Alvarado",
+      "Álamos",
+      "Micaela Bastidas",
+      "Pastor Sevilla",
+      "Villa Panamericana",
+      "Almacenes",
+      "Panamericana Sur",
+      "Santa Rosa",
+      "Pantanos de Villa",
+      "Lavalle"
+    ],
+    "horario": {
+      "ida": "L-S 05:30-00:00 · D 05:30-23:00",
+      "vuelta": "L-S 05:00-23:30 · D 05:00-22:30"
+    },
+    "notas": {
+      "INR": "L-S 07:00-19:00",
+      "Pantanos de Villa": "L-D 05:30-19:00"
+    }
+  },
+  "AS-07": {
+    "nombre": "América",
+    "ida": [
+      "Óvalo La Curva",
+      "Guardia Peruana",
+      "El Sol",
+      "Paradero C",
+      "Los Naranjos",
+      "Calle 3",
+      "Velasco Alvarado",
+      "Santa Rosa",
+      "Mártir Olaya",
+      "Mártires",
+      "Unión",
+      "Panamericana"
+    ],
+    "vuelta": [
+      "Paradero E",
+      "Unión",
+      "Mártires",
+      "Micaela Bastidas",
+      "Unanue",
+      "Velasco Alvarado",
+      "Vista Alegre",
+      "Los Naranjos",
+      "Paradero B",
+      "Los Meteoros",
+      "Guardia Peruana",
+      "Óvalo La Curva"
+    ],
+    "horario": {
+      "ida": "L-S 05:30-00:00 · D 05:30-23:00",
+      "vuelta": "L-S 05:00-23:30 · D 05:00-22:30"
+    }
+  },
+  "AS-08": {
+    "nombre": "Los Próceres",
+    "ida": [
+      "Calango",
+      "Guardia Peruana",
+      "El Sol",
+      "Alipio Ponce",
+      "Los Incas",
+      "Vista Alegre",
+      "Villa Alegre",
+      "Alcides Vigo",
+      "Las Crucetas",
+      "D. Tristán y Moscoso"
+    ],
+    "vuelta": [
+      "Las Crucetas",
+      "Alcides Vigo",
+      "Parque Villa Alegre",
+      "Los Incas",
+      "Centro Instrucción PNP",
+      "Los Meteoros",
+      "Guardia Peruana",
+      "Calango",
+      "Óvalo La Curva"
+    ],
+    "horario": {
+      "ida": "L-S 05:30-00:00 · D 05:30-23:00",
+      "vuelta": "L-S 05:00-23:30 · D 05:00-22:30"
+    }
+  }
+}
