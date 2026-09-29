@@ -156,7 +156,8 @@ function actions(page, r){
     [1, 'recientes: quitar', () => clickRandom('#p-recent-list .recent-remove', 'reciente quitar')],
     [1, 'panel: Mostrar las N', () => clickRandom('.route-inspector:not([hidden]) .ri-show-all', 'mostrar todas')],
     [1, 'panel: Ver solo esta', async () => {
-      const chips = page.locator('.route-inspector:not([hidden]) .ri-chip');
+      // Solo los visibles: en un paradero las rutas antiguas empiezan plegadas
+      const chips = page.locator('.route-inspector:not([hidden]) .ri-chip:visible');
       if (!(await chips.count())) return 'panel: sin chips';
       await chips.nth(Math.floor(r() * await chips.count())).click();
       const b = page.locator('.ri-actions .btn', { hasText: pick(['Ver solo esta', 'Agregar a recientes', 'Mostrar', 'Ocultar']) });
