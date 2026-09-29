@@ -1,0 +1,37 @@
+{
+  "_fuente": "Índice del Portal Mapas QR de la ATU (https://portal.atu.gob.pe/QR/), captura del 2026-09-29. Lista los servicios que la ATU publica como operativos, cada uno con su mapa QR (imagen). pipeline/scripts/atu/check_portal_qr.py lo compara con el catálogo del mapa.",
+  "metro": ["Línea 1", "Línea 2"],
+  "corredores": ["Corredor Azul", "Corredor Rojo", "Corredor Morado"],
+  "cole_bus": ["Ricardo Bentín", "María Parado de Bellido", "Leoncio Prado / Esther Cáceres / Virgen del Carmen"],
+  "metropolitano": {
+    "estaciones": [
+      "Matellini", "Rosario de Villa", "Terán", "Escuela Militar", "Estadio Unión", "Bulevar", "Balta",
+      "Plaza de Flores", "28 de Julio", "Benavides", "Ricardo Palma", "Angamos", "Domingo Orué",
+      "Comunidad Andina / Aramburú", "Canaval y Moreyra", "Javier Prado", "Canadá", "México",
+      "Estadio Nacional", "Central", "España", "Quilca", "2 de Mayo", "Colmena", "Jirón de la Unión",
+      "Tacna", "Ramón Castilla", "Caquetá", "Parque del Trabajo", "UNI", "Honorio Delgado", "El Milagro",
+      "Tomás Valle", "Los Jazmines", "Independencia", "Pacífico", "Izaguirre", "Naranjal", "Universidad",
+      "Las Vegas", "22 de Agosto", "Andrés Belaunde", "Los Incas", "Chimpu Ocllo"
+    ],
+    "servicios": {
+      "Regular A": "A", "Regular B": "B", "Regular C": "C", "Regular D": "D",
+      "Expreso 1": "1", "Expreso 2": "2", "Expreso 3": "3", "Expreso 4": "4", "Expreso 5": "5",
+      "Expreso 6": "6", "Expreso 7": "7", "Expreso 8": "8", "Expreso 9": "9", "Expreso 10": "10",
+      "Expreso 11": "11", "Expreso 12": "12", "Expreso 13": "13",
+      "Super Expreso": "SX", "Super Expreso Norte": "SXN", "Lechucero": "L"
+    },
+    "alimentadores": {
+      "Matellini": ["América", "Cedros de Villa", "Los Próceres", "Villa El Salvador"],
+      "Naranjal": ["Naranjal", "Antúnez de Mayolo", "Belaunde", "Bertello", "Carabayllo", "Collique",
+                   "Izaguirre", "La Ensenada", "Los Alisos", "Los Olivos", "Milagros de Jesús", "Payet",
+                   "Puente Piedra", "Puno", "Santo Domingo", "Tahuantinsuyo", "Trapiche", "Tungasuca"],
+      "Belaunde": ["Carabayllo"],
+      "Los Incas": ["Collique"],
+      "Chimpu Ocllo": ["San Juan de Dios", "San Juan de Dios", "Universitaria", "Carabayllo", "Torre Blanca"],
+      "Universidad": ["Trapiche", "Torre Blanca"],
+      "22 de Agosto": ["Torre Blanca"]
+    },
+    "estacionales": ["Playero (temporada de verano)"]
+  },
+  "otros": ["AeroDirecto", "Recarga Fácil", "Cicloparqueaderos", "Protocolo para casos de acoso sexual", "Atención al usuario"]
+}
