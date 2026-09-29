@@ -40,21 +40,27 @@ async function ensureGraph(){
   return graph;
 }
 
-// Nombres de paraderos para sugerir: uno por nombre y distrito (el que más rutas tiene)
-let stopChoices = null;
+// Nombres de paraderos para sugerir: uno por nombre y distrito, el que más
+// rutas tiene de las que usa el cálculo (las antiguas sin revisar solo con
+// "Rutas antiguas"): así no gana un punto donde solo paran rutas antiguas
+const stopChoices = new Map();   // includeOld → lista
 function choices(){
-  if (stopChoices) return stopChoices;
+  const includeOld = !!$('#tripOld')?.checked;
+  if (stopChoices.has(includeOld)) return stopChoices.get(includeOld);
+  const usable = r => r.group !== 'antigua' || r.verified || includeOld;
   const byKey = new Map();
   const { name, district, lat, lon } = graph.stops;
   for (let i = 0; i < graph.stops.count; i++){
-    if (!name[i] || !graph.atStop[i].length) continue;
+    if (!name[i]) continue;
+    const n = new Set(graph.atStop[i].filter(([ri]) => usable(graph.routes[ri])).map(([ri]) => graph.routes[ri].leaf)).size;
+    if (!n) continue;
     const key = `${norm(name[i])}|${district[i]}`;
-    const n = graph.atStop[i].length;
     const cur = byKey.get(key);
     if (!cur || n > cur.n) byKey.set(key, { i, n, name: name[i], district: district[i], lat: lat[i], lon: lon[i], q: norm(name[i]) });
   }
-  stopChoices = Array.from(byKey.values()).sort((a, b) => b.n - a.n);
-  return stopChoices;
+  const list = Array.from(byKey.values()).sort((a, b) => b.n - a.n);
+  stopChoices.set(includeOld, list);
+  return list;
 }
 
 // Primero los que tienen todas las palabras; si no hay, los que coinciden en
