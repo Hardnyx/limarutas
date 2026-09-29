@@ -21,6 +21,18 @@ export function wrIsPlaceholder(text){
   );
 }
 
+// Alias por el que la gente conoce la ruta, corto para un chip: "La 9 - La
+// Banchero" → "La 9", "La U - La A" → "La U", "El Chosicano" queda igual.
+// Sin alias (o con uno de relleno) → '' y se muestra el código de 4 dígitos
+export function wrShortAlias(alias){
+  const s = String(alias || '').trim();
+  if (!s || wrIsPlaceholder(s)) return '';
+  const first = s.split(/\s+-\s+/)[0].trim();
+  const m = first.match(/^(la|el)\s+(\d{1,3}[a-z]?(?:-\d)?|[a-z]{1,2}\d{0,2}[a-z]?)$/i);
+  if (m) return `${m[1][0].toUpperCase()}${m[1].slice(1).toLowerCase()} ${m[2].toUpperCase()}`;
+  return first.length <= 16 && !wrIsPlaceholder(first) ? first : '';
+}
+
 export function wrBuildEmpresaDisplay(empresaRaw){
   if (!empresaRaw) return '';
   let s = empresaRaw.trim();

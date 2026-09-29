@@ -245,8 +245,11 @@ export function wireRouteInspector(){
         type: 'button',
         class: 'tag ri-chip',
         role: 'listitem',
-        title: entry.title || entry.code
-      }, entry.code);
+        title: [entry.title, entry.alias ? `ruta ${entry.code}` : ''].filter(Boolean).join(' · ') || entry.code
+      }, ...(entry.alias
+        // Alias y código: en un paradero hay muchas "La C" de empresas distintas
+        ? [el('span', { class: 'ri-chip-alias' }, entry.alias), el('span', { class: 'ri-chip-code' }, entry.code)]
+        : [entry.code]));
       paintTag(chip, entry.color);
       chip.__entry = entry;
 

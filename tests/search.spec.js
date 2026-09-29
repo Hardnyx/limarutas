@@ -30,6 +30,14 @@ test('no ofrece rutas que no están en ninguna lista', async ({ app, page }) => 
   expect(codes.some(c => /^453$/.test(c.trim()))).toBe(false);
 });
 
+test('se busca por el alias que conoce la gente: "la 36" y "36" traen primero la 1199', async ({ app, page }) => {
+  for (const q of ['la 36', '36']){
+    const items = await app.search(q);
+    await expect(items.first(), q).toContainText('1199');
+    await expect(items.first(), q).toContainText('La 36');
+  }
+});
+
 test('Limpiar búsqueda vacía el campo y las sugerencias', async ({ app, page }) => {
   await app.search('1240');
   await page.click('#btnClearSearch');

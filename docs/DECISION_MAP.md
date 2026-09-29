@@ -18,6 +18,7 @@ mismas acciones con otro orden en pantalla; sus diferencias están en
 - **Rutas recientes** (hasta 8, se recuerdan en el navegador).
 - **Panel "Rutas en este punto"**: cerrado, abierto por hover, fijado por clic, o de un paradero.
 - **Vista** del mapa y **tema** (claro/oscuro).
+- **Nombre de las rutas**: la gente no conoce el código de 4 dígitos sino el alias ("la 36", "la C", "El Chosicano"). En Cómo llegar el chip dice el alias (`wrShortAlias`: "La 9 - La Banchero" → "La 9") y el código va aparte ("ruta 1199"); en el panel del paradero, alias y código juntos, porque hay muchas "La C" de empresas distintas. Sin alias, el código. El buscador pone primero las rutas cuyo alias es exactamente lo escrito ("la 36" o "36").
 
 ## Acciones
 

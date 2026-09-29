@@ -279,7 +279,10 @@ async function buildSearchIndex(){
       tokens,
       color: rt.color || null,
       display_id: rt.display_id || null,
-      meta: { codigoNuevo, codigoAntiguo, alias, empresa, siglas: empresaCorta }
+      meta: { codigoNuevo, codigoAntiguo, alias, empresa, siglas: empresaCorta },
+      // Cada alias por separado ("La U - La A" → "la u", "la a"): "la 36" o
+      // "36" encuentran primero la ruta que la gente llama así
+      aliasKeys: alias ? alias.split(/\s+-\s+/).map(a => norm(a.trim())).filter(Boolean) : []
     });
   }
 
@@ -415,6 +418,7 @@ function rankDocs(docs, query){
   const words = q.split(/\s+/).filter(Boolean);
   if (!words.length) return [];
 
+  const exactAlias = new Set([q, `la ${q}`, `el ${q}`]);
   const scored = [];
   for (const doc of docs){
     const hay = doc.tokens;
@@ -426,10 +430,11 @@ function rankDocs(docs, query){
       score += idx;
     }
     if (!ok) continue;
-    scored.push({ doc, score });
+    scored.push({ doc, score, exact: !!doc.aliasKeys?.some(k => exactAlias.has(k)) });
   }
 
   scored.sort((a, b) => {
+    if (a.exact !== b.exact) return a.exact ? -1 : 1;
     const pa = TYPE_PRIORITY[a.doc.type] ?? 99;
     const pb = TYPE_PRIORITY[b.doc.type] ?? 99;
     if (pa !== pb) return pa - pb;

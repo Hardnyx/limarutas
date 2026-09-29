@@ -391,12 +391,23 @@ function titleCase(s){
     (i > 0 && SMALL.has(w)) ? w : w.charAt(0).toUpperCase() + w.slice(1));
 }
 
+// Chip de la ruta: su alias ("La 36") si tiene; si no, el código
 function chip(route){
-  const c = el('span', { class: 'tag trip-chip' }, route.code);
+  const c = el('span', { class: 'tag trip-chip' }, route.alias || route.code);
   paintTag(c, colorOf(route));
   const name = routeName(route);
-  if (name) c.title = name;
+  c.title = [name, route.alias ? `ruta ${route.code}` : ''].filter(Boolean).join(' · ');
   return c;
+}
+
+// Nombre para la tarjeta: sin repetir el alias del chip y con el código
+// de la ruta, que es el que figura en el bus y en la ATU
+function cardName(route){
+  let name = routeName(route);
+  if (!route.alias) return name;
+  const esc = route.alias.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  name = name.replace(new RegExp(`\\s*·\\s*${esc}(\\s*-[^·]*)?\\b`, 'i'), '').trim();
+  return [name, `ruta ${route.code}`].filter(Boolean).join(' · ');
 }
 
 const stopName = i => graph.stops.name[i] || 'paradero';
@@ -421,10 +432,11 @@ function stepsOf(opt){
       const r = leg.route;
       const n = leg.to - leg.from;
       const alts = leg.alts || [];
+      // "Sube a la La 36" no: con alias, "Sube a [La 36]" y el código aparte
       const text = el('span', {},
-        'Sube a la ', chip(r), ' en ', el('b', {}, stopName(r.stops[leg.from])),
+        r.alias ? 'Sube a ' : 'Sube a la ', chip(r), ' en ', el('b', {}, stopName(r.stops[leg.from])),
         ' y baja en ', el('b', {}, stopName(r.stops[leg.to])),
-        el('span', { class: 'trip-sub' }, ` · ${n} paradero${n === 1 ? '' : 's'} · dirección ${headsign(r)}`));
+        el('span', { class: 'trip-sub' }, `${r.alias ? ` · ruta ${r.code}` : ''} · ${n} paradero${n === 1 ? '' : 's'} · dirección ${headsign(r)}`));
       if (r.schedule){
         text.append(el('div', { class: 'trip-hours' }, `Horario: ${scheduleText(r.schedule)}`));
       }
@@ -491,10 +503,10 @@ function stripOf(opt){
       const alts = (leg.alts || []).map(a => a.route);
       // Con transbordo, las equivalentes solo como "+N" (la tira no entraría en una línea)
       if (alts.length && multi){
-        seg.append(el('span', { class: 'trip-plus', title: 'También te sirven:\n' + alts.map(r => `${r.code} ${routeName(r)}`).join('\n') }, `+${alts.length}`));
+        seg.append(el('span', { class: 'trip-plus', title: 'También te sirven:\n' + alts.map(r => `${r.alias || r.code} · ${cardName(r)}`).join('\n') }, `+${alts.length}`));
       } else if (alts.length){
         const c = chip(alts[0]); c.classList.add('trip-chip-sm');
-        const or = el('span', { class: 'trip-or-alts', title: 'También te sirven:\n' + alts.map(r => `${r.code} ${routeName(r)}`).join('\n') }, 'o', c);
+        const or = el('span', { class: 'trip-or-alts', title: 'También te sirven:\n' + alts.map(r => `${r.alias || r.code} · ${cardName(r)}`).join('\n') }, 'o', c);
         if (alts.length > 1) or.append(el('span', { class: 'trip-plus' }, `+${alts.length - 1}`));
         seg.append(or);
       }
@@ -509,7 +521,7 @@ function card(opt, k){
   const rides = opt.legs.filter(l => l.type === 'ride');
   const isOpen = k === selected;
   const where = opt.transfers ? `1 transbordo en ${stopName(rides[1].route.stops[rides[1].from])}` : 'Sin transbordo';
-  const names = rides.map(l => routeName(l.route)).filter(Boolean).join(', luego ');
+  const names = rides.map(l => cardName(l.route)).filter(Boolean).join(', luego ');
   const head = el('div', { class: 'trip-card-head' },
     el('div', { class: 'trip-legs' }, stripOf(opt), el('div', { class: 'trip-name' }, names)),
     el('div', { class: 'trip-time' }, fmtDur(opt.minutes),
@@ -577,7 +589,7 @@ function offHoursNote(box){
   off.forEach(r => {
     const next = nextStart(r.schedule, at);
     const b = el('button', { type: 'button', class: 'trip-offhours-item', title: 'Buscar con esa hora de salida' },
-      chip(r), ' ', el('span', { class: 'trip-name' }, routeName(r)),
+      chip(r), ' ', el('span', { class: 'trip-name' }, cardName(r)),
       el('span', { class: 'trip-sub' }, scheduleText(r.schedule)));
     if (next) b.addEventListener('click', () => setDeparture(next));
     note.append(b);
