@@ -55,6 +55,10 @@ y el color del CSV se actualiza automáticamente.
 - `lista_rutas_antiguas.csv`: scraping de Wikipedia (códigos antiguos 1101+)
 - `lista_rutas_maestro.csv`: fusión Wikipedia + fichas del PRR + tabla PRR oficial
   (`build_lista_rutas_atu.py`). El código antiguo es siempre el de la sección 14.
+  `nombre_popular` y `empresa_corta` salen de `nombres_populares.py`; para
+  corregir o agregar un nombre conocido (una marca como EVIFASA o una ruta
+  como «La 1» de ETUPSA 73) se edita `config/nombres_populares.json` con su
+  fuente y se vuelve a correr el script.
 - `prr_fichas.json` (`pipeline/scripts/atu/build_prr_fichas.py`): las 465 rutas
   del PRR con código antiguo y empresa (sección 14 del anexo,
   `docs/3_099-2025-ATU_PE_ANEXO.pdf`) y lo que trae cada ficha técnica

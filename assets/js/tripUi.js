@@ -405,9 +405,11 @@ function chip(route){
 function cardName(route){
   let name = routeName(route);
   if (!route.alias) return name;
-  const esc = route.alias.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  name = name.replace(new RegExp(`\\s*·\\s*${esc}(\\s*-[^·]*)?\\b`, 'i'), '').trim();
-  return [name, `ruta ${route.code}`].filter(Boolean).join(' · ');
+  // El nombre del chip puede ir al inicio ("EVIFASA B · Virgen de Fátima") o
+  // después de la empresa ("Santa Luzmila · La C"): se quita donde esté
+  const parts = name.split(/\s*·\s*/).filter(p => p && p.toLowerCase() !== route.alias.toLowerCase()
+    && !p.toLowerCase().startsWith(`${route.alias.toLowerCase()} -`));
+  return [...parts, `ruta ${route.code}`].join(' · ');
 }
 
 const stopName = i => graph.stops.name[i] || 'paradero';

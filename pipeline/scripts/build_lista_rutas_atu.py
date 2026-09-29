@@ -24,13 +24,18 @@ Requiere:
     pipeline/output/lista_rutas_antiguas.csv (Wikipedia, codigos antiguos)
 
 Produce:
-    pipeline/output/lista_rutas_maestro.csv
+    pipeline/output/lista_rutas_maestro.csv (con nombre_popular: el nombre con
+    el que la gente conoce la ruta, ver nombres_populares.py)
 """
 
 import csv
 import json
 import re
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from nombres_populares import cargar_curados, empresa_corta, nombre_popular  # noqa: E402
 
 
 ROOT        = Path(__file__).resolve().parents[2]
@@ -775,6 +780,12 @@ def main():
                             'alias': 'Desconocido', 'color_hex': '#888888', 'fuente': 'manual'}
         maestro[cod].update(vals)
 
+    # 4b. Nombre con el que la gente conoce la ruta (nombres_populares.py)
+    marcas, curados = cargar_curados()
+    for fila in maestro.values():
+        fila['empresa_corta'] = empresa_corta(fila.get('empresa_operadora', ''), fila.get('empresa_abrev', ''))
+        fila['nombre_popular'] = nombre_popular(fila, marcas, curados)
+
     # 5. Ordenar y escribir
     def sort_key(r):
         try:
@@ -785,7 +796,7 @@ def main():
 
     campos = ['codigo_antiguo', 'codigo_nuevo', 'distrito_origen', 'distrito_destino',
               'empresa_operadora', 'empresa_abrev', 'alias', 'color_hex', 'fuente',
-              'estado_wikipedia']
+              'estado_wikipedia', 'nombre_popular', 'empresa_corta']
 
     OUT_CSV.parent.mkdir(parents=True, exist_ok=True)
     with open(OUT_CSV, 'w', newline='', encoding='utf-8') as f:

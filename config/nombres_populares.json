@@ -1,0 +1,47 @@
+{
+  "_doc": "Nombre con el que la gente conoce una ruta, cuando no sale de la regla general de build_lista_rutas_atu.py (apodo › número › empresa + letra › empresa). 'marcas': empresas conocidas por su marca (clave: siglas de empresa_abrev); con alias de letra el nombre es 'marca + letra' (EVIFASA B). 'rutas': nombre exacto de una ruta. Cada entrada con su fuente.",
+  "marcas": {
+    "EVIFASA": {
+      "nombre": "EVIFASA",
+      "fuentes": [
+        "https://www.rutasenlima.com/car1linea.php?id=242",
+        "https://moovitapp.com/index/en/public_transit-lines-Lima-1102-983937",
+        "https://larepublica.pe/sociedad/2023/03/30/evifasa-vuelve-a-san-juan-de-lurigancho-tras-7-anos-cual-sera-su-ruta-y-hasta-donde-llegara-evifasa-sjl-nuevo-recorrido-evifasa-horarios-1644300"
+      ]
+    },
+    "ETUPSA": {
+      "nombre": "ETUPSA 73",
+      "fuentes": [
+        "https://moovitapp.com/index/en/public_transit-lines-Lima-1102-953684",
+        "https://www.facebook.com/p/Etupsa-73-Pagina-Oficial-100088265967801/"
+      ]
+    },
+    "ETUCHISA": {
+      "nombre": "Los Chinos",
+      "fuentes": [
+        "https://larepublica.pe/datos-lr/2024/08/21/los-chinos-conoce-el-origen-del-nombre-de-esta-iconica-empresa-de-transporte-publico-de-lima-metropolitana-etuchisa-puente-piedra-villa-el-salvador-evat-516222"
+      ]
+    }
+  },
+  "rutas": {
+    "1111": {
+      "nombre": "ETUPSA 73 A",
+      "fuentes": ["https://www.waze.com/live-map/directions/pe/provincia-de-lima/villa-maria-del-triunfo/etupsa-73-a-e.t.-unidos-de-pasajeros-s.a?to=place.ChIJRXQRU225BZERtVaSJ_RyYcE"]
+    },
+    "1025": {
+      "nombre": "ETUPSA 73 B",
+      "fuentes": ["https://moovitapp.com/index/en/public_transit-lines-Lima-1102-953684"]
+    },
+    "1244": {
+      "nombre": "La 1 (ETUPSA 73)",
+      "fuentes": [
+        "https://www.rutasenlima.com/car1linea.php?id=166",
+        "https://ves.org.pe/conoces-la-ruta-de-los-verdes-etupsa-73-o-la-1/"
+      ]
+    },
+    "1185": {
+      "nombre": "Los Chinos",
+      "fuentes": ["https://larepublica.pe/datos-lr/respuestas/2022/07/15/buses-los-chinos-por-que-se-llama-asi-la-popular-empresa-de-transporte-urbano-de-lima-etuchisa-evat"]
+    }
+  }
+}

@@ -10,7 +10,7 @@
 // de la pista) no se juntan: se unen con caminatas cortas (walkFrom).
 import { wrLeafFor } from './routeEntries.js';
 import { wrIsVerifiedOld } from './wrData.js';
-import { wrShortAlias } from './wrTexts.js';
+import { wrChipName } from './wrTexts.js';
 import { state } from './config.js';
 import { runsAt } from './metSchedule.js';
 
@@ -118,8 +118,8 @@ export function buildTripGraph(raw){
       // Rutas antiguas: ¿revisada y sigue circulando?
       verified: group === 'antigua' ? wrIsVerifiedOld(leaf.dataset.id) : true,
       code: codeOf(leaf, key),
-      // Alias corto ("La 36"): así la conoce la gente; el código va aparte
-      alias: wrShortAlias(leaf.closest('.item')?.__wrMeta?.alias),
+      // Nombre con el que la conoce la gente ("EVIFASA B", "La 36"); el código va aparte
+      alias: wrChipName(leaf.closest('.item')?.__wrMeta),
       schedule: scheduleOf(key),
       // Metros por la vía entre paraderos consecutivos (Metropolitano)
       segM: raw.segM?.[key] || null,

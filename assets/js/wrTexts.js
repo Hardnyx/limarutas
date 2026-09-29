@@ -24,6 +24,14 @@ export function wrIsPlaceholder(text){
 // Alias por el que la gente conoce la ruta, corto para un chip: "La 9 - La
 // Banchero" → "La 9", "La U - La A" → "La U", "El Chosicano" queda igual.
 // Sin alias (o con uno de relleno) → '' y se muestra el código de 4 dígitos
+// Nombre para un chip: el popular si es corto ("EVIFASA B", "Santa Luzmila C");
+// si no, el alias corto ("La C"); '' → el código
+export function wrChipName(meta){
+  const popular = String(meta?.nombre_popular || '').trim();
+  if (popular && popular.length <= 18 && !wrIsPlaceholder(popular) && !/^\d{4}$/.test(popular)) return popular;
+  return wrShortAlias(meta?.alias);
+}
+
 export function wrShortAlias(alias){
   const s = String(alias || '').trim();
   if (!s || wrIsPlaceholder(s)) return '';
@@ -62,7 +70,19 @@ export function wrBuildEmpresaDisplay(empresaRaw){
   return s.trim();
 }
 
+// Título de una ruta: primero el nombre con el que la conoce la gente
+// (nombre_popular del maestro: "EVIFASA B", "La 36", "El Chosicano"; ver
+// pipeline/scripts/nombres_populares.py) y, si no la nombra ya, la empresa
+// ("La 36 · 36 San Martín de Porres"). Sin nombre popular, "Empresa · Alias"
 export function wrBuildTituloPrincipal(meta, rt){
+  const popular = String(meta?.nombre_popular || '').trim();
+  if (popular && !wrIsPlaceholder(popular)){
+    const empresa = String(meta?.empresa_corta || '').trim();
+    const norm = s => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+    const extra = empresa && !norm(popular).includes(norm(empresa)) && norm(empresa) !== norm(popular)
+      ? ` · ${empresa}` : '';
+    return `${popular}${extra}`;
+  }
   const rawAlias = meta && meta.alias ? String(meta.alias).trim() : '';
   const alias = rawAlias && !wrIsPlaceholder(rawAlias) ? rawAlias : '';
 
