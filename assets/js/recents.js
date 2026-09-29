@@ -166,7 +166,8 @@ export function addRecent(leaf){
   if (!system || !id) return;
 
   const idx = recents.findIndex(e => e.system === system && e.id === id);
-  if (idx === 0) return;
+  // Ya es la primera: solo reflejar su casilla (pudo cambiar sin evento, p. ej. al limpiar el mapa)
+  if (idx === 0){ refreshRecents(); return; }
   if (idx > 0) recents.splice(idx, 1);
   recents.unshift({ system, id });
   recents = recents.slice(0, MAX_RECENTS);
