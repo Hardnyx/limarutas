@@ -3042,3 +3042,21 @@ html.beta .ri-actions .btn {
   font-size: 12px;
   white-space: nowrap;
 }
+
+/* Chip con alias y código: "La 36 1199" */
+.ri-chip .ri-chip-alias {
+  font-weight: 800;
+}
+
+.ri-chip .ri-chip-code {
+  margin-left: 5px;
+  font-size: 0.85em;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+/* Alias como los dice la gente ("La 35A", "El Chosicano"), sin mayúsculas forzadas */
+.tag.trip-chip,
+.tag.ri-chip {
+  text-transform: none;
+}

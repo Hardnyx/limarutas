@@ -234,6 +234,28 @@ test.describe('pestaña Cómo llegar', () => {
       .toContainText(/Pasa cada ~8 min según la ATU · espera ~\d+ min/);
   });
 
+  test('las rutas se muestran con su alias ("La 35A") y el código de 4 dígitos aparte', async ({ app, page }) => {
+    const short = await page.evaluate(async () => {
+      const { wrShortAlias } = await import('/assets/js/wrTexts.js');
+      return ['La 9 - La Banchero', 'La U - La A - La B - La C', 'El Chosicano', 'Desconocido', 'la 87b', '']
+        .map(wrShortAlias);
+    });
+    expect(short).toEqual(['La 9', 'La U', 'El Chosicano', '', 'La 87B', '']);
+
+    // Habich → Estadio Monumental: la 1191 es "la 35A"
+    await page.evaluate(async () => {
+      const m = await import('/assets/js/tripUi.js');
+      await m.setTripEnds({ lat: -12.0225, lon: -77.0516, label: 'A' }, { lat: -12.058, lon: -76.9395, label: 'B' });
+    });
+    const card = page.locator('.trip-card', { has: page.locator('.trip-strip .trip-chip', { hasText: /^La 35A$/ }) }).first();
+    await expect(card).toBeVisible();
+    await expect(card.locator('.trip-name').first()).toContainText('ruta 1191');
+    await card.click();
+    const step = card.locator('.trip-step-ride').first();
+    await expect(step).toContainText(/^Sube a La 35A en /);
+    await expect(step).toContainText('ruta 1191');
+  });
+
   test('origen y destino por paradero: opciones, pasos y el viaje en el mapa', async ({ app, page }) => {
     await pickStop(page, '#tripFrom', 'acho');
     await expect(page.locator('#tripFrom')).toHaveValue('Acho · Rímac');
