@@ -2853,3 +2853,20 @@ html.sheet .trip-summary-edit {
   color: var(--accent);
   font-weight: 600;
 }
+
+/* Junturas entre tiles: con zoom del navegador o escala de pantalla no
+   enteros (90 %, 125 %…) Chrome deja rendijas de 1 px por donde se ve el
+   fondo gris del mapa y aparece una cuadrícula. Cada tile se agranda 1 px
+   para solaparse con la vecina, y el fondo es el color base de las tiles */
+.leaflet-container {
+  background: #f2f2f0;
+}
+
+html.theme-dark .leaflet-container {
+  background: #262626;
+}
+
+.leaflet-container .leaflet-tile-pane img.leaflet-tile {
+  width: 257px !important;
+  height: 257px !important;
+}
