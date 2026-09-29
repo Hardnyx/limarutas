@@ -3,7 +3,7 @@
 // código, color, título, subtítulo y su casilla del sidebar. Lo usan el
 // panel "Rutas en este punto" y el buscador.
 import { state, SYSTEM_LABELS } from './config.js';
-import { wrShortAlias } from './wrTexts.js';
+import { wrChipName } from './wrTexts.js';
 
 const TOLERANCE_PX = 6;
 
@@ -79,8 +79,8 @@ function wrEntry(subId, polys){
   return {
     key: `wr:${subId}`,
     code: tag?.textContent?.trim() || String(subId).replace(/-(ida|vuelta)$/i, '').toUpperCase(),
-    // Alias corto ("La 36"), por el que la conoce la gente
-    alias: wrShortAlias(item?.__wrMeta?.alias),
+    // Nombre con el que la conoce la gente ("EVIFASA B", "La 36")
+    alias: wrChipName(item?.__wrMeta),
     color: tag?.style.background || polys[0]?.options.color || '#64748b',
     title,
     sub: (dist && dist !== title) ? dist : route,

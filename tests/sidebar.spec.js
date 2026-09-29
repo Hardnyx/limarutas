@@ -196,6 +196,11 @@ test('rutas del PRR sin color heredan el de su código antiguo; las inactivas se
   await expect(item('1320').locator('.wr-flag')).toBeHidden();
   // 1285 (antigua IM24): alias histórico «la 129» del artículo de Wikipedia
   await expect(item('1285').locator('.wr-main-title')).toContainText('La 129');
+  // Primero el nombre con el que la conoce la gente: la marca y la letra
+  // (EVIFASA B), el número (La 36) o la empresa con la letra (Santa Luzmila C)
+  await expect(item('1194').locator('.wr-main-title')).toHaveText('EVIFASA B · Virgen de Fátima');
+  await expect(item('1199').locator('.wr-main-title')).toHaveText('La 36 · 36 San Martín de Porres');
+  await expect(item('1020').locator('.wr-main-title')).toHaveText('Santa Luzmila C');
 });
 
 test.describe('fotos referenciales', () => {

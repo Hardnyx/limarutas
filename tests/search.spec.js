@@ -38,6 +38,15 @@ test('se busca por el alias que conoce la gente: "la 36" y "36" traen primero la
   }
 });
 
+test('la marca conocida manda: "evifasa b" trae la 1194 y "evifasa" sus dos rutas', async ({ app, page }) => {
+  const items = await app.search('evifasa b');
+  await expect(items.first()).toContainText('1194');
+  await expect(items.first()).toContainText('EVIFASA B');
+  const all = await app.search('evifasa');
+  await expect(all.filter({ hasText: '1469' }).first()).toBeVisible();
+  await expect(all.filter({ hasText: '1194' }).first()).toBeVisible();
+});
+
 test('Limpiar búsqueda vacía el campo y las sugerencias', async ({ app, page }) => {
   await app.search('1240');
   await page.click('#btnClearSearch');

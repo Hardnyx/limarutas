@@ -57,7 +57,10 @@ export function loadWrListaMeta(){
         empresa_abrev: row.empresa_abrev || '',
         alias: row.alias || '',
         // Estado de su código antiguo en Wikipedia ('Inactiva': ya no circularía)
-        estado_wikipedia: row.estado_wikipedia || ''
+        estado_wikipedia: row.estado_wikipedia || '',
+        // Nombre con el que la conoce la gente y empresa sin razón social
+        nombre_popular: row.nombre_popular || '',
+        empresa_corta: row.empresa_corta || ''
       };
     }
     return metaByCodigo;

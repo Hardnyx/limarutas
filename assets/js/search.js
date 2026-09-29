@@ -250,13 +250,14 @@ async function buildSearchIndex(){
 
     // El mismo nombre que su fila en la lista ("Santa Catalina · La 23C");
     // el código ya va en la etiqueta de color
-    const titulo = wrBuildTituloPrincipal({ alias, empresa_operadora: empresa }, rt);
+    const popular = (row && row.nombre_popular) || '';
+    const titulo = wrBuildTituloPrincipal({ alias, empresa_operadora: empresa, nombre_popular: popular, empresa_corta: row?.empresa_corta || '' }, rt);
     const label = (titulo && titulo.toUpperCase() !== codigoNuevo.toUpperCase())
       ? titulo
       : (rt.name ? rt.name.replace(/^\s*[^\s·]+\s*·\s*/, '') : `Ruta ${codigoNuevo}`);
 
     const tokens = norm([
-      codigoNuevo, codigoAntiguo, alias, empresa, empresaCorta,
+      codigoNuevo, codigoAntiguo, popular, alias, empresa, empresaCorta,
       rt.name || '', 'transporte', 'wikiroutes'
     ].join(' '));
 
@@ -282,7 +283,7 @@ async function buildSearchIndex(){
       meta: { codigoNuevo, codigoAntiguo, alias, empresa, siglas: empresaCorta },
       // Cada alias por separado ("La U - La A" → "la u", "la a"): "la 36" o
       // "36" encuentran primero la ruta que la gente llama así
-      aliasKeys: alias ? alias.split(/\s+-\s+/).map(a => norm(a.trim())).filter(Boolean) : []
+      aliasKeys: [popular, ...(alias ? alias.split(/\s+-\s+/) : [])].map(a => norm(a.trim())).filter(Boolean)
     });
   }
 
