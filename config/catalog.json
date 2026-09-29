@@ -7,8 +7,8 @@
     "alimentadores": { "only": [
       "AN-01", "AN-02", "AN-03", "AN-04", "AN-05", "AN-06", "AN-07", "AN-08", "AN-09", "AN-10",
       "AN-12", "AN-13", "AN-14", "AN-15", "AN-16", "AN-17",
-      "AS-02", "AS-04", "AS-07", "AS-08",
-      "Metropolitano Gamarra"] }
+      "AS-02", "AS-04", "AS-07", "AS-08"] },
+    "_comment_alimentadores": "Según el índice del portal Mapas QR de la ATU (config/atu_portal_qr.json, 2026-09-29). El de Gamarra ya no figura; faltan los de Naranjal e Izaguirre y los de la extensión norte (pipeline/scripts/atu/check_portal_qr.py)."
   },
   "corredores": {
     "mode": "only",
