@@ -11,7 +11,7 @@
 import { state } from './config.js';
 import { $, el } from './utils.js';
 import { addRecent } from './recents.js';
-import { bulk, setLeafChecked, syncAllTri } from './uiSidebar.hierarchy.js';
+import { bulk, setLeafChecked, syncAllTri, ROUTES_CHANGED } from './uiSidebar.hierarchy.js';
 import { isOverStop } from './stopHover.js';
 import { confirmManyRoutes } from './stopsGuard.js';
 import { findUnderPoint, entriesForFolders } from './routeEntries.js';
@@ -159,9 +159,9 @@ export function wireRouteInspector(){
     detail.innerHTML = '';
     if (!entry){
       detail.appendChild(el('div', { class: 'ri-placeholder' },
-        entries.length > 1
-          ? (hoverCapable ? 'Pasa el mouse sobre un código para ver su detalle' : 'Toca un código para ver su detalle')
-          : ''));
+        entries.length <= 1 ? ''
+          : stopMode ? 'Toca un código para verlo en el mapa'
+            : hoverCapable ? 'Pasa el mouse sobre un código para ver su detalle' : 'Toca un código para ver su detalle'));
       return;
     }
     const tag = el('span', { class: 'tag ri-detail-tag' }, entry.code);
@@ -174,7 +174,7 @@ export function wireRouteInspector(){
 
     const actions = el('div', { class: 'ri-actions' });
     if (entry.leaf){
-      const btnRecent = el('button', { type: 'button', class: 'btn small' }, 'Agregar a recientes');
+      const btnRecent = el('button', { type: 'button', class: 'btn small', title: 'Agregar a recientes' }, 'Agregar a recientes');
       btnRecent.addEventListener('click', () => {
         addRecent(entry.leaf);
         btnRecent.textContent = 'En recientes ✓';
@@ -186,6 +186,7 @@ export function wireRouteInspector(){
         btnShow.addEventListener('click', () => {
           entry.leaf.click();
           btnShow.textContent = entry.leaf.checked ? 'Ocultar' : 'Mostrar';
+          markOnMap();
           setHint();
         });
         actions.append(btnShow);
@@ -204,6 +205,14 @@ export function wireRouteInspector(){
     detail.append(el('div', { class: 'ri-detail-head' }, tag, text), actions);
   }
 
+  // Chips de las rutas que ya están en el mapa (en un paradero)
+  function markOnMap(){
+    chips.querySelectorAll('.ri-chip').forEach(c => {
+      c.classList.toggle('on', !!(stopMode && c.__entry?.leaf?.checked));
+    });
+  }
+  document.addEventListener(ROUTES_CHANGED, () => { if (!panel.hidden) markOnMap(); });
+
   function render(found){
     const key = found.map(f => f.key).join('|');
     if (key === lastKey && !panel.hidden) return;
@@ -212,14 +221,25 @@ export function wireRouteInspector(){
     entries = found;
 
     chips.innerHTML = '';
-    // Las rutas antiguas van al final, en su propio grupo
+    // Las rutas antiguas van al final, en su propio grupo; en un paradero
+    // (pueden ser más de 100) empiezan plegadas
     const isOld = e => e.leaf?.dataset.system === 'wrSemi';
     entries = [...entries.filter(e => !isOld(e)), ...entries.filter(isOld)];
     const nOld = entries.filter(isOld).length;
+    let target = chips;
     for (const entry of entries){
-      if (isOld(entry) && nOld && !chips.querySelector('.ri-group') && nOld < entries.length){
-        chips.appendChild(el('div', { class: 'ri-group', role: 'presentation' },
-          `Rutas antiguas (${nOld}) · podrían ya no circular`));
+      if (isOld(entry) && target === chips && nOld < entries.length){
+        const folded = !!stopMode;
+        const oldBox = el('div', { class: 'ri-old', role: 'presentation' });
+        oldBox.hidden = folded;
+        const head = el('button', { type: 'button', class: 'ri-group', 'aria-expanded': String(!folded) },
+          `Rutas antiguas (${nOld}) · podrían ya no circular`);
+        head.addEventListener('click', () => {
+          oldBox.hidden = !oldBox.hidden;
+          head.setAttribute('aria-expanded', String(!oldBox.hidden));
+        });
+        chips.append(head, oldBox);
+        target = oldBox;
       }
       const chip = el('button', {
         type: 'button',
@@ -228,6 +248,7 @@ export function wireRouteInspector(){
         title: entry.title || entry.code
       }, entry.code);
       paintTag(chip, entry.color);
+      chip.__entry = entry;
 
       const activate = () => {
         chips.querySelectorAll('.ri-chip.active').forEach(c => c.classList.remove('active'));
@@ -237,9 +258,18 @@ export function wireRouteInspector(){
       };
       chip.addEventListener('mouseenter', activate);
       chip.addEventListener('focus', activate);
-      chip.addEventListener('click', activate);
-      chips.appendChild(chip);
+      // En un paradero, tocar el chip muestra u oculta la ruta (un paso, no dos)
+      chip.addEventListener('click', () => {
+        if (stopMode && entry.leaf){
+          entry.leaf.click();
+          markOnMap();
+          setHint();
+        }
+        activate();
+      });
+      target.appendChild(chip);
     }
+    markOnMap();
 
     count.textContent = `${entries.length}`;
     showDetail(entries.length === 1 ? entries[0] : null);
