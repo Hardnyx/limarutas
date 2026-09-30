@@ -55,21 +55,25 @@ def main() -> None:
                for ref in activos}
     terminal_de = {ref: norm((paths.get(ref) or {}).get('terminal', '')) for ref in activos}
     print('Alimentadores (mismo nombre y mismo terminal)')
-    for terminal, lista in portal['metropolitano']['alimentadores'].items():
-        for nombre in lista:
-            hit = [ref for ref, n in nombres.items()
-                   if norm(nombre) and norm(nombre) in n and norm(terminal).replace(' ', '-') in terminal_de[ref].replace(' ', '-')]
-            # Mismo nombre, otro terminal: el del mapa sale de la geometría (la
-            # estación más cercana al trazado) y puede no ser el oficial
-            otro = [f'{ref} (terminal en el mapa: {terminal_de[ref]})' for ref, n in nombres.items()
-                    if not hit and norm(nombre) and norm(nombre) in n and terminal_de[ref] != 'naranjal' or False]
-            otro = [o for o in otro if not hit and 'naranjal' in norm(terminal)]
-            estado = ', '.join(sorted(hit)) if hit else (', '.join(otro) if otro else 'FALTA en el mapa')
+    oficiales_alim = set()
+    for terminal, grupo in portal['metropolitano']['alimentadores'].items():
+        for nombre in grupo:
+            oficiales_alim.add(norm(nombre))
+            mismo = [ref for ref, n in nombres.items() if norm(nombre) in n]
+            hit = [ref for ref in mismo if norm(terminal).replace(' ', '-') in terminal_de[ref].replace(' ', '-')]
+            if hit:
+                estado = ', '.join(sorted(hit))
+            elif mismo:
+                # El terminal del mapa sale de la geometría (la estación más
+                # cercana al trazado de OSM); si la ATU lo cambió, el trazado es viejo
+                estado = ', '.join(f'{ref} con terminal {terminal_de[ref]} en el mapa' for ref in sorted(mismo))
+            else:
+                estado = 'FALTA en el mapa'
             print(f'  {terminal:13} {nombre:20} {estado}')
-    oficiales_alim = {norm(n) for lista in portal['metropolitano']['alimentadores'].values() for n in lista}
-    sobran = [ref for ref, n in nombres.items() if not any(o and o in n for o in oficiales_alim)]
-    print('  en el mapa y no en el portal:', sorted(sobran) or '—')
-
+    ocultos = {norm(n) for lista in portal['ocultos']['alimentadores'].values() for n in lista}
+    sobran = [ref for ref, n in nombres.items() if not any(o in n for o in oficiales_alim)]
+    print('  en el mapa y no en el portal:', ', '.join(
+        f"{ref}{' (oculto por la ATU)' if any(o in nombres[ref] for o in ocultos) else ''}" for ref in sorted(sobran)) or '—')
     corr = json.loads(CORR.read_text(encoding='utf-8'))
     cole = [r for k in ('rutas_principales_activas', 'rutas_alimentadoras_activas')
             for r in corr.get(k, []) if 'cole' in str(r.get('servicio', '')).lower()]
