@@ -1,8 +1,12 @@
 {
-  "_fuente": "Índice del Portal Mapas QR de la ATU (https://portal.atu.gob.pe/QR/), captura del 2026-09-29. Lista los servicios que la ATU publica como operativos, cada uno con su mapa QR (imagen). pipeline/scripts/atu/check_portal_qr.py lo compara con el catálogo del mapa.",
+  "_fuente": "Índice del Portal Mapas QR de la ATU (https://portal.atu.gob.pe/QR/), capturas del 2026-09-29. Solo lo visible: lo que la ATU dejó comentado en el HTML (oculto a los usuarios) va en 'ocultos'. Cada servicio abre su mapa QR (imagen). pipeline/scripts/atu/check_portal_qr.py lo compara con el catálogo del mapa.",
   "metro": ["Línea 1", "Línea 2"],
   "corredores": ["Corredor Azul", "Corredor Rojo", "Corredor Morado"],
-  "cole_bus": ["Ricardo Bentín", "María Parado de Bellido", "Leoncio Prado / Esther Cáceres / Virgen del Carmen"],
+  "cole_bus": {
+    "Ricardo Bentín": "ColeBus/Ricardo-Bentin.php",
+    "María Parado de Bellido": "ColeBus/Maria-Parado-de-Bellido.php",
+    "Leoncio Prado / Esther Cáceres / Virgen del Carmen": "ColeBus/Leoncio-Prado_Esther-Caceres_Virgen-del-Carmen.php"
+  },
   "metropolitano": {
     "estaciones": [
       "Matellini", "Rosario de Villa", "Terán", "Escuela Militar", "Estadio Unión", "Bulevar", "Balta",
@@ -15,23 +19,56 @@
     ],
     "servicios": {
       "Regular A": "A", "Regular B": "B", "Regular C": "C", "Regular D": "D",
-      "Expreso 1": "1", "Expreso 2": "2", "Expreso 3": "3", "Expreso 4": "4", "Expreso 5": "5",
+      "Expreso 1": "1", "Expreso 2": "2", "Expreso 3": "3", "Expreso 5": "5",
       "Expreso 6": "6", "Expreso 7": "7", "Expreso 8": "8", "Expreso 9": "9", "Expreso 10": "10",
       "Expreso 11": "11", "Expreso 12": "12", "Expreso 13": "13",
       "Super Expreso": "SX", "Super Expreso Norte": "SXN", "Lechucero": "L"
     },
     "alimentadores": {
-      "Matellini": ["América", "Cedros de Villa", "Los Próceres", "Villa El Salvador"],
-      "Naranjal": ["Naranjal", "Antúnez de Mayolo", "Belaunde", "Bertello", "Carabayllo", "Collique",
-                   "Izaguirre", "La Ensenada", "Los Alisos", "Los Olivos", "Milagros de Jesús", "Payet",
-                   "Puente Piedra", "Puno", "Santo Domingo", "Tahuantinsuyo", "Trapiche", "Tungasuca"],
-      "Belaunde": ["Carabayllo"],
-      "Los Incas": ["Collique"],
-      "Chimpu Ocllo": ["San Juan de Dios", "San Juan de Dios", "Universitaria", "Carabayllo", "Torre Blanca"],
-      "Universidad": ["Trapiche", "Torre Blanca"],
-      "22 de Agosto": ["Torre Blanca"]
+      "Matellini": {
+        "América": "AlimentadoresSur/America/",
+        "Cedros de Villa": "AlimentadoresSur/CedrosDeVilla/",
+        "Los Próceres": "AlimentadoresSur/LosProceres/",
+        "Villa El Salvador": "AlimentadoresSur/VillaElSalvador/"
+      },
+      "Naranjal": {
+        "Naranjal": "AlimentadoresNorte/Naranjal/",
+        "Antúnez de Mayolo": "AlimentadoresNorte/AntunezDeMayolo/",
+        "Belaunde": "AlimentadoresNorte/Belaunde/",
+        "Bertello": "AlimentadoresNorte/Bertello/",
+        "Izaguirre": "AlimentadoresNorte/Izaguirre/",
+        "La Ensenada": "AlimentadoresNorte/LaEnsenada/",
+        "Los Alisos": "AlimentadoresNorte/LosAlisos/",
+        "Los Olivos": "AlimentadoresNorte/LosOlivos/",
+        "Milagros de Jesús": "AlimentadoresNorte/MilagroDeJesus/",
+        "Payet": "AlimentadoresNorte/Payet/",
+        "Puente Piedra": "AlimentadoresNorte/PuentePiedra/",
+        "Puno": "AlimentadoresNorte/Puno/",
+        "Tahuantinsuyo": "AlimentadoresNorte/Tahuantinsuyo/"
+      },
+      "Los Incas": {
+        "Collique": "AlimentadoresLosIncas/Collique/"
+      },
+      "Chimpu Ocllo": {
+        "San Juan de Dios": "AlimentadoresChimpuOcllo/SanJuanDeDios/",
+        "Universitaria": "AlimentadoresChimpuOcllo/Universitaria/",
+        "Carabayllo": "AlimentadoresLosIncas/Carabayllo/",
+        "Torre Blanca": "AlimentadoresLosIncas/TorreBlanca/"
+      },
+      "Universidad": {
+        "Trapiche": "AlimentadoresUniversidad/Trapiche/"
+      }
     },
     "estacionales": ["Playero (temporada de verano)"]
   },
-  "otros": ["AeroDirecto", "Recarga Fácil", "Cicloparqueaderos", "Protocolo para casos de acoso sexual", "Atención al usuario"]
+  "ocultos": {
+    "_nota": "Comentados en el HTML del portal: la ATU los quitó del menú.",
+    "metropolitano": ["Expreso 4"],
+    "alimentadores": {
+      "Naranjal": ["Carabayllo", "Collique", "Santo Domingo", "Trapiche", "Tungasuca"],
+      "Belaunde": ["Carabayllo"],
+      "22 de Agosto": ["Torre Blanca"]
+    }
+  },
+  "otros": ["AeroDirecto", "Recarga Fácil", "Cicloparqueaderos", "Protocolos contra el acoso sexual", "Atención al usuario"]
 }
