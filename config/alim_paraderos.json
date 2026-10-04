@@ -134,5 +134,45 @@
       "ida": "L-S 05:30-00:00 · D 05:30-23:00",
       "vuelta": "L-S 05:00-23:30 · D 05:00-22:30"
     }
+  },
+  "AN-03": {
+    "nombre": "Trapiche",
+    "ida": [
+      "Villasol",
+      "Yanbal",
+      "Plaza Vea",
+      "El Álamo",
+      "Botica",
+      "El Pinar",
+      "Kiosko",
+      "Los Incas",
+      "Alameda El Pinar",
+      "Oficina",
+      "San Felipe",
+      "Remanso",
+      "Peycar"
+    ],
+    "vuelta": [
+      "Peycar",
+      "Remanso",
+      "San Felipe",
+      "Oficina",
+      "Alameda El Pinar",
+      "Los Incas",
+      "Kiosko",
+      "El Pinar",
+      "Botica",
+      "El Álamo",
+      "Segunda de Pro",
+      "La Amistad",
+      "Plaza Vea",
+      "Yanbal",
+      "Villasol"
+    ],
+    "horario": {
+      "ida": "L-V 06:00-08:30 y 17:00-00:00",
+      "vuelta": "L-V 05:00-09:00 y 17:45-23:30"
+    },
+    "notas": {}
   }
 }

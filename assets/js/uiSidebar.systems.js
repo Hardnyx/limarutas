@@ -123,6 +123,12 @@ function alimHours(svc){
   return p?.ida?.horario ? el('span', { class: 'met-hours' }, `Sale ${p.ida.horario}`) : '';
 }
 
+// Trazado desde un mapa QR que no alcanza para seguirlo calle por calle
+function alimAprox(svc){
+  const p = state.systems.alim.paths?.[svc.id];
+  return p?.aprox ? el('span', { class: 'met-hours', title: 'Trazado a partir del mapa QR de la ATU: puede no seguir todas sus calles' }, 'Trazado aproximado') : '';
+}
+
 function makeServiceItemAlim(svc){
   const code = String(svc.id).toUpperCase();
   const bg = svc.color || (code.startsWith('AN') ? COLOR_AN : COLOR_AS);
@@ -135,7 +141,7 @@ function makeServiceItemAlim(svc){
     tag,
     el('div',{},
       el('div',{class:'name'}, svc.name || `Alimentador ${code}`),
-      el('div',{class:'sub met-trip'}, alimTripText(svc), alimHours(svc))
+      el('div',{class:'sub met-trip'}, alimTripText(svc), alimHours(svc), alimAprox(svc))
     )
   );
 

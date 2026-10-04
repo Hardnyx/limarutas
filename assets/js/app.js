@@ -1,6 +1,6 @@
 // app.js (punto de entrada)
 import './flags.js';   // marca html.beta / html.debug antes que nada
-import { PATHS, state } from './config.js';
+import { PATHS, state, COLOR_AN, COLOR_AS } from './config.js';
 import { $, $$, fetchJSON, stopsArrayToMap, asLatLng } from './utils.js';
 import {
   filterByCatalogFor,
@@ -210,6 +210,19 @@ async function loadAlimentadores(){
     state.systems.alim.paths = alimPaths?.services || {};
     if (alim && alim.type === 'FeatureCollection') {
       const parsed = buildAlimFromFC(alim);
+      // Los que OSM no tiene (trazados desde los mapas QR de la ATU) solo
+      // están en alimentadores_paths.json
+      const have = new Set(parsed.services.map(s => s.id));
+      for (const [ref, p] of Object.entries(state.systems.alim.paths)){
+        if (have.has(ref.toUpperCase()) || !p?.ida?.coords) continue;
+        const isN = ref.toUpperCase().startsWith('AN');
+        parsed.services.push({
+          id: ref.toUpperCase(), name: p.name || '', zone: isN ? 'NORTE' : 'SUR',
+          color: isN ? COLOR_AN : COLOR_AS,
+          geom: [p.ida.coords, p.vuelta.coords], geom_norte: [p.vuelta.coords], geom_sur: [p.ida.coords],
+          stops: []
+        });
+      }
       state.systems.alim.stops    = parsed.stops;
       state.systems.alim.services = filterByCatalogFor('alim', parsed.services, state.catalog);
       console.log('[Alimentadores] Rutas creadas:', parsed.services.length);
