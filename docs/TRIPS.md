@@ -78,6 +78,12 @@ bus de la principal no para en la auxiliar y puede haber un separador),
 
 **Caminatas.** Entre paraderos a 400 m o menos en línea recta
 (`WALK_MAX_M`), calculadas en el navegador con una grilla.
+En el mapa, cada tramo a pie del viaje elegido se dibuja por las calles,
+veredas, escaleras y puentes peatonales de OpenStreetMap (`walkRoute.js`:
+OSRM con perfil peatonal, servidor público de FOSSGIS, para todo el mundo).
+Sin respuesta en 6 s, o si el camino da más de 4 veces la recta (otra orilla
+de un río, un cruce sin mapear), queda en línea recta. El cálculo no lo usa:
+pedir un camino por cada combinación sería miles de consultas.
 
 ## Cálculo (`planTrip`)
 

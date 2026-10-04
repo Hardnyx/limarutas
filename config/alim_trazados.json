@@ -1,5 +1,5 @@
 {
-  "_fuente": "Mapas QR de la ATU (portal.atu.gob.pe/QR/, Alimentadores*, capturas 2026-09-29). OSM no tiene estos recorridos (o los tiene con su recorrido viejo: Trapiche, Collique y Carabayllo salían de Naranjal; Los Olivos y Antúnez de Mayolo, de Izaguirre): build_alim_paths.py los traza por la red vial de red_vial.py pasando por estos puntos en orden. 'puntos': [lat, lon, referencia]; sin 'vuelta', la vuelta pasa por los mismos al revés. 'paraderos': cuántos numera el mapa oficial (ida + vuelta). Los mapas no traen los nombres: sin lista oficial (alim_paraderos.json), los paraderos son los de Wikiroutes junto al trazado y van marcados como aproximados. 'aprox': el mapa no alcanza para seguir el recorrido calle por calle. Los códigos AN-18 en adelante son del mapa: la ATU no publica códigos de alimentadores.",
+  "_fuente": "Mapas QR de la ATU (portal.atu.gob.pe/QR/, Alimentadores*, capturas 2026-09-29). OSM no tiene estos recorridos (o los tiene con su recorrido viejo: Trapiche, Collique y Carabayllo salían de Naranjal; Los Olivos y Antúnez de Mayolo, de Izaguirre): build_alim_paths.py los traza por la red vial de red_vial.py pasando por estos puntos en orden. 'puntos': [lat, lon, referencia]; sin 'vuelta', la vuelta pasa por los mismos al revés. 'paraderos': cuántos numera el mapa oficial (ida + vuelta). Los mapas no traen los nombres: sin lista oficial (alim_paraderos.json), los paraderos son los de Wikiroutes junto al trazado y van marcados como aproximados. 'aprox': el mapa no alcanza para seguir el recorrido calle por calle. Los códigos AN-18 en adelante son del mapa: la ATU no publica códigos de alimentadores. Donde la lista oficial (alim_paraderos.json) tiene paraderos fuera del trazado, build_alim_paths.py lo corrige pasando por ellos si así calzan más.",
   "AN-03": {
     "nombre": "Trapiche",
     "name": "Alimentadora Norte Trapiche",
@@ -59,7 +59,6 @@
     "terminal": "chimpu-ocllo",
     "mapa": "AlimentadoresLosIncas/Carabayllo/Nuevo-mapa-alimentasdor-Carabayllo.png",
     "paraderos": 29,
-    "aprox": true,
     "ida": [
       [
         -11.8963694,

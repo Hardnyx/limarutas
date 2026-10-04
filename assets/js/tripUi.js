@@ -11,6 +11,7 @@ import { getMetMacroId } from './mapLayers.js';
 import { paintTag, TRIP_END_EVENT } from './routeInspector.js';
 import { setSheet } from './mobileSheet.js';
 import { icon } from './icons.js';
+import { walkCached, walkRoute } from './walkRoute.js';
 
 const LINE_PANE = 'tripLinePane';     // sobre las rutas y sus paraderos
 const MARK_PANE = 'tripMarkPane';
@@ -705,8 +706,14 @@ function draw({ fit = true } = {}){
   const { lat, lon } = graph.stops;
   const pt = i => [lat[i], lon[i]];
   const all = [];
+  // Tramos a pie: por las calles si ya se tiene el camino (walkRoute.js); si
+  // no, en recta mientras llega
+  const missingWalks = [];
   const walk = (a, b) => {
-    tripLayer.addLayer(L.polyline([a, b], { pane: LINE_PANE, color: '#64748b', weight: 4, dashArray: '2 8', lineCap: 'round', interactive: false }));
+    const w = walkCached(a, b);
+    if (w === undefined) missingWalks.push([a, b]);
+    const line = w ? w.coords : [a, b];
+    tripLayer.addLayer(L.polyline(line, { pane: LINE_PANE, color: '#64748b', weight: 4, dashArray: '2 8', lineCap: 'round', interactive: false }));
     all.push(a, b);
   };
 
@@ -740,6 +747,11 @@ function draw({ fit = true } = {}){
   });
   if (fit && all.length) fitTo(L.latLngBounds(all));
   void drawWithTracks();
+  if (missingWalks.length){
+    Promise.all(missingWalks.map(([a, b]) => walkRoute(a, b))).then(res => {
+      if (res.some(Boolean) && last?.options?.[selected] === opt) draw({ fit: false });
+    });
+  }
 }
 
 /* =========================

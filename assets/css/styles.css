@@ -2854,21 +2854,16 @@ html.sheet .trip-summary-edit {
   font-weight: 600;
 }
 
-/* Junturas entre tiles: con zoom del navegador o escala de pantalla no
-   enteros (90 %, 125 %…) Chrome deja rendijas de 1 px por donde se ve el
-   fondo gris del mapa y aparece una cuadrícula. Cada tile se agranda 1 px
-   para solaparse con la vecina, y el fondo es el color base de las tiles */
+/* Fondo del mapa del color de la tierra de los tiles de CARTO (Positron
+   #fafaf8, Dark Matter #262626): mientras cargan, o si algún navegador deja
+   una rendija entre tiles, no se ve una cuadrícula. No agrandar las tiles
+   (width: 257px): el reescalado pinta líneas claras cada 256 px */
 .leaflet-container {
-  background: #f2f2f0;
+  background: #fafaf8;
 }
 
 html.theme-dark .leaflet-container {
   background: #262626;
-}
-
-.leaflet-container .leaflet-tile-pane img.leaflet-tile {
-  width: 257px !important;
-  height: 257px !important;
 }
 
 /* ---------- Panel "Rutas en este punto" / paradero ---------- */
