@@ -30,6 +30,15 @@ export const test = base.extend({
       route.fulfill({ path: path.join(LEAFLET_DIST, file) });
     });
     await page.route('https://*.basemaps.cartocdn.com/**', route => route.fulfill({ status: 204 }));
+    // Caminos a pie (walkRoute.js): sin red, una "L" por la esquina entre los dos puntos
+    await page.route('https://routing.openstreetmap.de/**', route => {
+      const m = route.request().url().match(/foot\/([-\d.]+),([-\d.]+);([-\d.]+),([-\d.]+)/);
+      if (!m) return route.fulfill({ status: 404 });
+      const [lon1, lat1, lon2, lat2] = m.slice(1).map(Number);
+      const coordinates = [[lon1, lat1], [lon2, lat1], [lon2, lat2]];
+      const distance = (Math.abs(lon2 - lon1) + Math.abs(lat2 - lat1)) * 110_000;
+      route.fulfill({ json: { code: 'Ok', routes: [{ distance, geometry: { type: 'LineString', coordinates } }] } });
+    });
     // Fotos de Commons: un PNG de 1×1 en vez de la red
     await page.route('https://upload.wikimedia.org/**', route => route.fulfill({ contentType: 'image/png', body: PIXEL }));
     if (routePhotos) await page.route('**/config/route_photos.json', route => route.fulfill({ json: routePhotos }));

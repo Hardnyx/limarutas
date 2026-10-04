@@ -287,6 +287,21 @@ test.describe('pestaña Cómo llegar', () => {
     await expect(page.locator('#onMapCount')).not.toHaveText('0');
   });
 
+  test('los tramos a pie van por las calles (ruteador peatonal), no en línea recta', async ({ app, page }) => {
+    await page.evaluate(async () => {
+      const m = await import('/assets/js/tripUi.js');
+      await m.setTripEnds({ lat: -12.0225, lon: -77.0516, label: 'A' }, { lat: -12.058, lon: -76.9395, label: 'B' });
+    });
+    await expect(page.locator('.trip-card').first()).toBeVisible();
+    // El stub de fixtures.js devuelve una "L": el tramo tiene la esquina
+    await expect.poll(() => app.state(state => {
+      const walks = [];
+      state.map.eachLayer(l => { if (l instanceof L.Polyline && l.options.dashArray === '2 8') walks.push(l.getLatLngs().length); });
+      return walks.length > 0 && walks.every(n => n >= 4);
+    })).toBe(true);
+    await expect(page.locator('.leaflet-control-attribution')).toContainText('OSRM');
+  });
+
   test('elegir en el mapa no abre el panel de rutas; Esc cancela', async ({ app, page }) => {
     await page.click('.trip-field[data-end="from"] .trip-pick');
     await expect(page.locator('html')).toHaveClass(/trip-picking/);
