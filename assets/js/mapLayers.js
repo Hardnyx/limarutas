@@ -321,6 +321,11 @@ export function renderService(systemId, id, opts={}){
     } else {
       stopsToUse = getMetStopsForDir(svc, routeDir);
     }
+  } else if (alimPath){
+    // Los del sentido dibujado, en orden (alimentadores_paths.json); no los
+    // de OSM, que mezclan los dos sentidos y, si cambió, el recorrido viejo
+    const dirs = routeDir === 'sur' ? ['ida'] : routeDir === 'norte' ? ['vuelta'] : ['ida', 'vuelta'];
+    stopsToUse = dirs.flatMap(d => alimPath[d]?.stops || []);
   } else if (Array.isArray(svc.stops) && svc.stops.length){
     stopsToUse = svc.stops;
   }
@@ -328,15 +333,17 @@ export function renderService(systemId, id, opts={}){
   if (state.showStops && Array.isArray(stopsToUse) && stopsToUse.length){
     const used = new Set();
     stopsToUse.forEach(st => {
-      if (used.has(st)) return;
-      used.add(st);
-      const ll = getStopLatLng(sys, st);
+      // Paradero como objeto ({id, name, lat, lon}: alimentadores) o como id
+      const key = typeof st === 'object' ? st.id : st;
+      if (used.has(key)) return;
+      used.add(key);
+      const ll = typeof st === 'object' ? [st.lat, st.lon] : getStopLatLng(sys, st);
       if (!ll) return;
       const marker = L.marker(ll, {
         pane: paneStop,
         icon: L.divIcon({ className:'stop-pin', iconSize:[16,16] })
       }).addTo(gStop);
-      const nm = sys.stops.get(st)?.name || st;
+      const nm = typeof st === 'object' ? st.name : (sys.stops.get(st)?.name || st);
       marker.bindTooltip(nm, { permanent:false, direction:'top' });
       marker.on('mouseover', () => setOverStop(true));
       marker.on('mouseout', () => setOverStop(false));
