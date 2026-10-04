@@ -339,10 +339,14 @@ export function renderService(systemId, id, opts={}){
       used.add(key);
       const ll = typeof st === 'object' ? [st.lat, st.lon] : getStopLatLng(sys, st);
       if (!ll) return;
-      const marker = L.marker(ll, {
-        pane: paneStop,
-        icon: L.divIcon({ className:'stop-pin', iconSize:[16,16] })
-      }).addTo(gStop);
+      // Alimentadores: puntitos como los del corredor (blanco con borde del
+      // color de la ruta); solo la estación de la que parten lleva ícono
+      const dot = systemId === 'alim' && !(typeof st === 'object' && String(st.id).startsWith('met:'));
+      const marker = (dot
+        ? L.circleMarker(ll, { pane: paneStop, radius: 3.5, fillColor: '#fff', color: svc.color,
+                               weight: 2, opacity: 1, fillOpacity: 1, bubblingMouseEvents: false })
+        : L.marker(ll, { pane: paneStop, icon: L.divIcon({ className:'stop-pin', iconSize:[16,16] }) })
+      ).addTo(gStop);
       const nm = typeof st === 'object' ? st.name : (sys.stops.get(st)?.name || st);
       marker.bindTooltip(nm, { permanent:false, direction:'top' });
       marker.on('mouseover', () => setOverStop(true));

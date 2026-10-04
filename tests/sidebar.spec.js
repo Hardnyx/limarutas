@@ -62,24 +62,30 @@ test('Alimentadores: por defecto solo la ida, con sus paraderos; los paraderos s
   const drawn = id => app.state((state, id) => {
     const sys = state.systems.alim;
     const lines = sys.lineLayers.get(id)?.getLayers().length || 0;
-    const stops = (sys.stopLayers.get(id)?.getLayers() || []).map(m => m.getTooltip()?.getContent());
+    const marks = sys.stopLayers.get(id)?.getLayers() || [];
+    const stops = marks.map(m => m.getTooltip()?.getContent());
+    // Puntitos como los del corredor; solo la estación de partida, con ícono
+    const pins = marks.filter(m => !(m instanceof L.CircleMarker)).map(m => m.getTooltip()?.getContent());
     const p = sys.paths[id];
-    return { lines, stops, ida: p.ida.stops.map(s => s.name), vuelta: p.vuelta.stops.map(s => s.name) };
+    return { lines, stops, pins, ida: p.ida.stops.map(s => s.name), vuelta: p.vuelta.stops.map(s => s.name) };
   }, id);
   const item = page.locator('#p-met-alim .item:has(input[data-id="AN-03"])');
   await expect(item.locator('.segbtn-mini.active')).toHaveText('Ida');
-  await app.leaf('alim', 'AN-03').check();
+  const click = sel => page.evaluate(sel => document.querySelector(sel).click(), sel);
+  const btn = dir => `#p-met-alim .item:has(input[data-id="AN-03"]) .segbtn-mini[data-dir="${dir}"]`;
+  await click('#p-met-alim .item input[data-id="AN-03"]');
   let r = await drawn('AN-03');
   expect(r.lines).toBe(1);
   // Los de la ida, sin repetir la estación (la ida y la vuelta la comparten)
   expect(r.stops).toEqual(r.ida);
+  expect(r.pins).toEqual(['Universidad']);
 
-  await item.locator('.segbtn-mini', { hasText: 'Vta' }).click();
+  await click(btn('norte'));
   r = await drawn('AN-03');
   expect(r.lines).toBe(1);
   expect(r.stops).toEqual(r.vuelta);
 
-  await item.locator('.segbtn-mini', { hasText: 'Amb' }).click();
+  await click(btn('ambas'));
   r = await drawn('AN-03');
   expect(r.lines).toBe(2);
   // Los dos sentidos; la estación, una vez
