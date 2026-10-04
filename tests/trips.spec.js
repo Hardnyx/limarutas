@@ -192,6 +192,29 @@ test('Alimentadores: el circuito se corta en el terminal y en el punto más leja
     'Machupicchu', '10 de Noviembre', 'Santa Anita', 'Matellini']);
 });
 
+test('Alimentadores de los mapas QR: Trapiche sale de Universidad con sus paraderos oficiales; los nuevos del norte, de su estación', async ({ app, page }) => {
+  const r = await withGraph(page, (g) => {
+    const name = i => g.stops.name[i];
+    const route = k => g.routes.find(x => x.key === k);
+    const ends = k => { const x = route(k); return x && [name(x.stops[0]), name(x.stops[x.stops.length - 1])]; };
+    return {
+      trapiche: Array.from(route('alim:AN-03:ida').stops, name),
+      sharedUni: g.routes.some(x => x.key.startsWith('met:') && x.stops.includes(route('alim:AN-03:ida').stops[0])),
+      ends: ['AN-04', 'AN-09', 'AN-16', 'AN-17', 'AN-18', 'AN-19', 'AN-20', 'AN-21', 'AN-22']
+        .map(ref => [ref, ends(`alim:${ref}:ida`)?.[0], ends(`alim:${ref}:vuelta`)?.[1]])
+    };
+  });
+  expect(r.trapiche).toEqual(['Universidad', 'Villasol', 'Yanbal', 'Plaza Vea', 'El Álamo', 'Botica', 'El Pinar',
+    'Kiosko', 'Los Incas', 'Alameda El Pinar', 'Oficina', 'San Felipe', 'Remanso', 'Peycar']);
+  expect(r.sharedUni).toBe(true);
+  expect(r.ends).toEqual([
+    ['AN-04', 'Los Incas', 'Los Incas'], ['AN-09', 'Chimpu Ocllo', 'Chimpu Ocllo'],
+    ['AN-16', 'Naranjal', 'Naranjal'], ['AN-17', 'Naranjal', 'Naranjal'],
+    ['AN-18', 'Naranjal', 'Naranjal'], ['AN-19', 'Naranjal', 'Naranjal'],
+    ['AN-20', 'Chimpu Ocllo', 'Chimpu Ocllo'], ['AN-21', 'Chimpu Ocllo', 'Chimpu Ocllo'],
+    ['AN-22', 'Chimpu Ocllo', 'Chimpu Ocllo']]);
+});
+
 test('Transporte público: solo los códigos del PRR; los antiguos de 4 dígitos van a Rutas antiguas', async ({ app, page }) => {
   const r = await withGraph(page, g => {
     const group = key => g.routes.find(x => x.key === key)?.group;

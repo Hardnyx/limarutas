@@ -49,6 +49,13 @@ test('Metropolitano incluye Alimentadores y queda a medias con una sola ruta', a
   // Horario oficial de salida del terminal (portal de la ATU)
   const as07 = page.locator('#p-met-alim .item:has(input[data-id="AS-07"]) .met-hours');
   await expect(as07).toHaveText('Sale L-S 05:30-00:00 · D 05:30-23:00');
+
+  // Los que OSM no tiene salen de los mapas QR (config/alim_trazados.json)
+  const sjd = page.locator('#p-met-alim .item:has(input[data-id="AN-20"]) .met-trip');
+  await expect(sjd).toHaveText('Circuito: Chimpu Ocllo → San Juan de Dios → Chimpu Ocllo');
+  await expect(page.locator('#p-met-alim .item:has(input[data-id="AN-03"]) .met-hours'))
+    .toHaveText('Sale L-V 06:00-08:30 y 17:00-00:00');
+  await expect(page.locator('#p-met-alim .item:has(input[data-id="AN-22"]) .met-hours')).toHaveText('Trazado aproximado');
 });
 
 test('Desmarcar todo quita todas las rutas del mapa', async ({ app, page }) => {

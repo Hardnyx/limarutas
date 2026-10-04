@@ -1,0 +1,343 @@
+{
+  "_fuente": "Mapas QR de la ATU (portal.atu.gob.pe/QR/, Alimentadores*, capturas 2026-09-29). OSM no tiene estos recorridos (o los tiene con su recorrido viejo: Trapiche, Collique y Carabayllo salían de Naranjal; Los Olivos y Antúnez de Mayolo, de Izaguirre): build_alim_paths.py los traza por la red vial de red_vial.py pasando por estos puntos en orden. 'puntos': [lat, lon, referencia]; sin 'vuelta', la vuelta pasa por los mismos al revés. 'paraderos': cuántos numera el mapa oficial (ida + vuelta). Los mapas no traen los nombres: sin lista oficial (alim_paraderos.json), los paraderos son los de Wikiroutes junto al trazado y van marcados como aproximados. 'aprox': el mapa no alcanza para seguir el recorrido calle por calle. Los códigos AN-18 en adelante son del mapa: la ATU no publica códigos de alimentadores.",
+  "AN-03": {
+    "nombre": "Trapiche",
+    "name": "Alimentadora Norte Trapiche",
+    "terminal": "universidad",
+    "mapa": "AlimentadoresUniversidad/Trapiche/Trapiche-hora-punta.png",
+    "paraderos": 29,
+    "ida": [
+      [
+        -11.9627856,
+        -77.0623263,
+        "Estación Universidad"
+      ],
+      [
+        -11.9594528,
+        -77.0687345,
+        "Villasol (Panamericana Norte)"
+      ],
+      [
+        -11.9307,
+        -77.0723,
+        "Panamericana Norte con Chillón Trapiche"
+      ],
+      [
+        -11.89115,
+        -77.04443,
+        "Peycar"
+      ]
+    ]
+  },
+  "AN-04": {
+    "nombre": "Collique",
+    "name": "Alimentadora Norte Collique",
+    "terminal": "los-incas",
+    "mapa": "AlimentadoresLosIncas/Collique/Alimentador-Collique-QR.jpg",
+    "paraderos": 19,
+    "ida": [
+      [
+        -11.9154528,
+        -77.0480489,
+        "Estación Los Incas"
+      ],
+      [
+        -11.9162,
+        -77.04086,
+        "Túpac Amaru con Revolución"
+      ],
+      [
+        -11.91355,
+        -77.01015,
+        "Revolución, Francisco de Zela"
+      ]
+    ]
+  },
+  "AN-09": {
+    "nombre": "Carabayllo",
+    "name": "Alimentadora Norte Carabayllo",
+    "terminal": "chimpu-ocllo",
+    "mapa": "AlimentadoresLosIncas/Carabayllo/Nuevo-mapa-alimentasdor-Carabayllo.png",
+    "paraderos": 29,
+    "aprox": true,
+    "ida": [
+      [
+        -11.8963694,
+        -77.0373894,
+        "Estación Chimpu Ocllo"
+      ],
+      [
+        -11.8848811,
+        -77.0237004,
+        "Túpac Amaru, Villa Esperanza"
+      ],
+      [
+        -11.8752571,
+        -77.0122832,
+        "Plaza El Progreso"
+      ]
+    ]
+  },
+  "AN-16": {
+    "nombre": "Los Olivos",
+    "name": "Alimentadora Norte Los Olivos",
+    "terminal": "naranjal",
+    "mapa": "AlimentadoresNorte/LosOlivos/Mapa_LosOlivos.png",
+    "paraderos": 12,
+    "ida": [
+      [
+        -11.9821275,
+        -77.0587452,
+        "Estación Naranjal"
+      ],
+      [
+        -11.9841,
+        -77.06511,
+        "Los Alisos con Panamericana Norte"
+      ],
+      [
+        -11.98317,
+        -77.07825,
+        "Los Alisos con Universitaria"
+      ],
+      [
+        -11.98868,
+        -77.08084,
+        "Los Olivos con Universitaria"
+      ],
+      [
+        -11.98381,
+        -77.0992,
+        "Los Olivos con Canta Callao"
+      ]
+    ]
+  },
+  "AN-17": {
+    "nombre": "Antúnez de Mayolo",
+    "name": "Alimentadora Norte Antúnez de Mayolo",
+    "terminal": "naranjal",
+    "mapa": "AlimentadoresNorte/AntunezDeMayolo/AntunezDeMayolo.png",
+    "paraderos": 27,
+    "aprox": true,
+    "ida": [
+      [
+        -11.9821275,
+        -77.0587452,
+        "Estación Naranjal"
+      ],
+      [
+        -11.9841,
+        -77.06511,
+        "Los Alisos con Panamericana Norte"
+      ],
+      [
+        -11.9914,
+        -77.07172,
+        "Carlos Izaguirre con Antúnez de Mayolo"
+      ],
+      [
+        -11.99644,
+        -77.0865,
+        "Antúnez de Mayolo con Daniel Alcides Carrión"
+      ],
+      [
+        -11.99052,
+        -77.09615,
+        "Daniel Alcides Carrión con Santa Rosa"
+      ],
+      [
+        -11.9995444,
+        -77.0969917,
+        "Santa Rosa, Nísperos (Alcides Vigo)"
+      ]
+    ]
+  },
+  "AN-18": {
+    "nombre": "Naranjal",
+    "name": "Alimentadora Norte Naranjal",
+    "terminal": "naranjal",
+    "mapa": "AlimentadoresNorte/Naranjal/Naranjal.png",
+    "paraderos": 21,
+    "ida": [
+      [
+        -11.9821275,
+        -77.0587452,
+        "Estación Naranjal"
+      ],
+      [
+        -11.97802,
+        -77.07678,
+        "Av. Naranjal"
+      ],
+      [
+        -11.96127,
+        -77.0992,
+        "Paramonga"
+      ]
+    ]
+  },
+  "AN-19": {
+    "nombre": "Izaguirre",
+    "name": "Alimentadora Norte Izaguirre",
+    "terminal": "naranjal",
+    "mapa": "AlimentadoresNorte/Izaguirre/Mapa_Izaguirre.png",
+    "paraderos": 18,
+    "ida": [
+      [
+        -11.9821275,
+        -77.0587452,
+        "Estación Naranjal"
+      ],
+      [
+        -11.9841,
+        -77.06511,
+        "Los Alisos con Panamericana Norte"
+      ],
+      [
+        -11.99098,
+        -77.06437,
+        "Carlos Izaguirre con Panamericana Norte"
+      ],
+      [
+        -11.9914,
+        -77.07172,
+        "Carlos Izaguirre con Antúnez de Mayolo"
+      ],
+      [
+        -11.99032,
+        -77.09726,
+        "Carlos Izaguirre con Santa Rosa"
+      ]
+    ],
+    "vuelta": [
+      [
+        -11.99032,
+        -77.09726,
+        "Carlos Izaguirre con Santa Rosa"
+      ],
+      [
+        -11.99222,
+        -77.0933,
+        "Daniel Alcides Carrión con 12 de Octubre"
+      ],
+      [
+        -11.99089,
+        -77.09293,
+        "Carlos Izaguirre con 12 de Octubre"
+      ],
+      [
+        -11.9914,
+        -77.07172,
+        "Carlos Izaguirre con Antúnez de Mayolo"
+      ],
+      [
+        -11.99098,
+        -77.06437,
+        "Carlos Izaguirre con Panamericana Norte"
+      ],
+      [
+        -11.9841,
+        -77.06511,
+        "Los Alisos con Panamericana Norte"
+      ],
+      [
+        -11.9821275,
+        -77.0587452,
+        "Estación Naranjal"
+      ]
+    ]
+  },
+  "AN-20": {
+    "nombre": "San Juan de Dios",
+    "name": "Alimentadora Norte San Juan de Dios",
+    "terminal": "chimpu-ocllo",
+    "mapa": "AlimentadoresChimpuOcllo/SanJuanDeDios/San-Juan-de-Dios.png",
+    "paraderos": 45,
+    "ida": [
+      [
+        -11.8963694,
+        -77.0373894,
+        "Estación Chimpu Ocllo"
+      ],
+      [
+        -11.89263,
+        -77.03897,
+        "Chimpu Ocllo con Mariano Condorcanqui"
+      ],
+      [
+        -11.85422,
+        -77.03715,
+        "Camino Real con José Saco Rojas"
+      ],
+      [
+        -11.864,
+        -77.067,
+        "Polos (San Juan de Dios con Industrial)"
+      ]
+    ]
+  },
+  "AN-21": {
+    "nombre": "Universitaria",
+    "name": "Alimentadora Norte Universitaria",
+    "terminal": "chimpu-ocllo",
+    "mapa": "AlimentadoresChimpuOcllo/Universitaria/Alimentador-Universitaria-QR.jpg",
+    "paraderos": 22,
+    "ida": [
+      [
+        -11.8963694,
+        -77.0373894,
+        "Estación Chimpu Ocllo"
+      ],
+      [
+        -11.87774,
+        -77.02605,
+        "Universitaria con Camino Real"
+      ],
+      [
+        -11.8703,
+        -77.0215,
+        "Universitaria con Manuel Prado"
+      ],
+      [
+        -11.85704,
+        -77.00897,
+        "Periurbana"
+      ]
+    ]
+  },
+  "AN-22": {
+    "nombre": "Torre Blanca",
+    "name": "Alimentadora Norte Torre Blanca",
+    "terminal": "chimpu-ocllo",
+    "mapa": "AlimentadoresLosIncas/TorreBlanca/Nuevo-Torre-Blanca.png",
+    "paraderos": 21,
+    "aprox": true,
+    "ida": [
+      [
+        -11.8963694,
+        -77.0373894,
+        "Estación Chimpu Ocllo"
+      ],
+      [
+        -11.87774,
+        -77.02605,
+        "Universitaria con Camino Real"
+      ],
+      [
+        -11.8703,
+        -77.0215,
+        "Universitaria con Manuel Prado"
+      ],
+      [
+        -11.8735,
+        -77.0155,
+        "Manuel Prado con Túpac Amaru"
+      ],
+      [
+        -11.84974,
+        -77.0024,
+        "Torre Blanca"
+      ]
+    ]
+  }
+}

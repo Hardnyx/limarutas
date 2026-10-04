@@ -5,10 +5,11 @@
     "regulares": { "only": ["A", "B", "C"] },
     "expresos": { "only": ["1", "2", "3", "5", "6", "7", "8", "9", "10", "11", "12", "13", "L", "SX", "SXN", "SXN-22"] },
     "alimentadores": { "only": [
-      "AN-01", "AN-05", "AN-06", "AN-07", "AN-08",
+      "AN-01", "AN-03", "AN-04", "AN-05", "AN-06", "AN-07", "AN-08", "AN-09",
       "AN-12", "AN-13", "AN-14", "AN-15", "AN-16", "AN-17",
+      "AN-18", "AN-19", "AN-20", "AN-21", "AN-22",
       "AS-02", "AS-04", "AS-07", "AS-08"] },
-    "_comment_alimentadores": "Solo los que muestra el portal Mapas QR de la ATU con el mismo terminal (config/atu_portal_qr.json, 2026-09-29; pipeline/scripts/atu/check_portal_qr.py). Fuera: Gamarra (no figura), AN-02 Tungasuca y AN-10 Santo Domingo (ocultos por la ATU) y AN-03 Trapiche, AN-04 Collique y AN-09 Carabayllo, que ahora salen de Universidad, Los Incas y Chimpu Ocllo: su trazado de OSM es el viejo, desde Naranjal."
+    "_comment_alimentadores": "Solo los que muestra el portal Mapas QR de la ATU con el mismo terminal (config/atu_portal_qr.json, 2026-09-29; pipeline/scripts/atu/check_portal_qr.py). Fuera: Gamarra (no figura), AN-02 Tungasuca y AN-10 Santo Domingo (ocultos por la ATU). AN-03 Trapiche, AN-04 Collique y AN-09 Carabayllo (que ahora salen de Universidad, Los Incas y Chimpu Ocllo) y AN-18 a AN-22 (Naranjal, Izaguirre, San Juan de Dios, Universitaria, Torre Blanca: OSM no los tiene) van trazados desde sus mapas QR (config/alim_trazados.json)."
   },
   "corredores": {
     "mode": "only",

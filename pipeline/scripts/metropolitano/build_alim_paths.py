@@ -25,6 +25,11 @@ grafo de viajes une el alimentador con el Metropolitano sin caminar.
 Con dos relaciones abiertas (una por sentido), la ida es la que sale del
 terminal y la vuelta la otra.
 
+Los que OSM no tiene, o tiene con su recorrido viejo (config/alim_trazados.json,
+de los mapas QR de la ATU), se trazan por la red vial de red_vial.py pasando
+por sus puntos en orden y reemplazan al de OSM del mismo código. Sin lista
+oficial, sus paraderos son los de Wikiroutes junto al trazado ("aprox").
+
 Formato:
 {
   "updated": "...",
@@ -60,12 +65,15 @@ MET = ROOT / 'data' / 'processed' / 'metropolitano'
 OUT = MET / 'alimentadores_paths.json'
 WR_STOPS = ROOT / 'pipeline' / 'output' / 'wr_stops_index.json'
 OFFICIAL = ROOT / 'config' / 'alim_paraderos.json'
+TRAZADOS = ROOT / 'config' / 'alim_trazados.json'
 
 LOOP_M = 80          # extremos a menos de esto: es un circuito
 MERGE_STOP_M = 40    # "stop" y "platform" de OSM del mismo paradero
 MAX_STOP_M = 80      # paraderos más lejos del trazado no se usan
 NAME_M = 150         # nombre del paradero: el de Wikiroutes más cercano, hasta esto
 OFFICIAL_M = 150     # paradero oficial: el de Wikiroutes de su nombre, hasta esto del trazado
+WR_ALONG_M = 30      # trazado sin lista oficial: paraderos de Wikiroutes hasta esto del trazado
+WR_GAP_M = 250       # ...y uno cada esto como mínimo (los de enfrente o de la misma cuadra se juntan)
 
 M_LAT = 110_574
 M_LON = 111_320 * math.cos(math.radians(-12.05))
@@ -154,6 +162,8 @@ class Namer:
     def __init__(self):
         idx = json.loads(WR_STOPS.read_text(encoding='utf-8'))
         self.stops = [(s[1], s[2], s[0]) for s in idx['stops'] if s[1] is not None]
+        # Con cuántas rutas pasan (el más usado de una cuadra es el de verdad)
+        self.full = [(s[1], s[2], s[0], len(s[3])) for s in idx['stops'] if s[1] is not None]
 
     def near(self, lat, lon):
         best = min(self.stops, key=lambda s: dist((lat, lon), (s[0], s[1])))
@@ -285,6 +295,75 @@ def direction(path, stops, first=None, last=None):
     return {'coords': [[round(lat, 6), round(lon, 6)] for lat, lon in path], 'stops': out}
 
 
+def along(path, skip, n=None):
+    """Paraderos de Wikiroutes sobre el trazado, en orden, uno cada WR_GAP_M
+    como mínimo (de los cercanos, el que más rutas usan). skip: el terminal;
+    n: cuántos numera el mapa oficial en este sentido (separa más si sobran)."""
+    cum = cumulative(path)
+    gap = max(WR_GAP_M, 0.8 * cum[-1] / n) if n else WR_GAP_M
+    lats = [p[0] for p in path]
+    lons = [p[1] for p in path]
+    pad = 0.001
+    hits = []
+    for lat, lon, name, n in NAMER.full:
+        if not (min(lats) - pad <= lat <= max(lats) + pad and min(lons) - pad <= lon <= max(lons) + pad):
+            continue
+        if dist((lat, lon), skip) < 150:
+            continue
+        d, m, _ = project(path, cum, (lat, lon))
+        if d <= WR_ALONG_M:
+            hits.append((m, -n, lat, lon, name))
+    hits.sort()
+    out = []
+    for m, neg, lat, lon, name in hits:
+        if out and m - out[-1][0] < gap:
+            if neg < out[-1][1]:
+                out[-1] = (out[-1][0], neg, lat, lon, name)
+            continue
+        out.append((m, neg, lat, lon, name))
+    return out
+
+
+def trazados(stations, oficiales):
+    """Alimentadores de config/alim_trazados.json, por la red vial."""
+    cfg = {k: v for k, v in json.loads(TRAZADOS.read_text(encoding='utf-8')).items()
+           if not k.startswith('_')}
+    if not cfg:
+        return {}
+    from red_vial import Red
+    pts = [p for c in cfg.values() for p in c['ida'] + c.get('vuelta', [])]
+    pad = 0.01
+    red = Red((min(p[0] for p in pts) - pad, min(p[1] for p in pts) - pad,
+               max(p[0] for p in pts) + pad, max(p[1] for p in pts) + pad))
+    by_id = {s['id']: s for s in stations}
+    out = {}
+    for ref, c in cfg.items():
+        term = by_id[c['terminal']]
+        tpt = (term['lat'], term['lon'])
+        tstop = {'id': f"met:{term['id']}", 'name': term['name'], 'lat': term['lat'], 'lon': term['lon']}
+        svc = {'terminal': term['id'], 'loop': True, 'name': c['name'], 'mapa': c.get('mapa')}
+        if c.get('aprox'):
+            svc['aprox'] = True
+        of = oficiales.get(ref)
+        for key, first, last in (('ida', tstop, None), ('vuelta', None, tstop)):
+            way = c.get(key) or (c['ida'][::-1] if key == 'vuelta' else None)
+            path = [tuple(p) for p in red.ruta([(p[0], p[1]) for p in way])]
+            if of:
+                st = official(path, of[key], of.get('notas', {}), f'{ref}:{key}', first, last)
+            else:
+                st = [{'id': f'alim:{ref}:{key}:{i}', 'name': name, 'lat': lat, 'lon': lon,
+                       '_m': m, 'aprox': True}
+                      for i, (m, _, lat, lon, name) in enumerate(
+                          along(path, tpt, c.get('paraderos', 0) // 2 or None))]
+            svc[key] = direction(path, st, first=first, last=last)
+            if of and of.get('horario', {}).get(key):
+                svc[key]['horario'] = of['horario'][key]
+        svc['ida']['to'] = (of or {}).get('nombre') or c['nombre']
+        svc['vuelta']['to'] = term['name']
+        out[ref] = svc
+    return out
+
+
 NAMER = None
 
 
@@ -354,6 +433,9 @@ def main() -> None:
         out[ref]['name'] = name
         out[ref]['ida']['to'] = (of or {}).get('nombre') or route_destination(name)
         out[ref]['vuelta']['to'] = term['name']
+
+    # Los de los mapas QR reemplazan al de OSM del mismo código
+    out.update(trazados(stations, oficiales))
 
     OUT.write_text(json.dumps({'updated': dt.date.today().isoformat(), 'services': out},
                               ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
