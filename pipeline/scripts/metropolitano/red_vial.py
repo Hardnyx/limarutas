@@ -163,7 +163,7 @@ class Red:
         return [[round(lat, 6), round(lon, 6)] for lat, lon in simplify(out)]
 
 
-def simplify(pts, tol_m=3.0):
+def simplify(pts, tol_m=6.0):
     """Douglas-Peucker: las celdas en línea recta sobran."""
     if len(pts) < 3:
         return pts
