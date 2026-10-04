@@ -136,8 +136,12 @@ export const state = {
 export const keyFor = (systemId, id) =>
   `${systemId}:${String(id).toUpperCase()}`;
 
+// Alimentadores: por defecto solo la ida (de la estación al barrio); la
+// vuelta va casi por las mismas calles y dibujar las dos solo ensucia el mapa
+export const defaultDirFor = (systemId) => systemId === 'alim' ? 'sur' : 'ambas';
+
 export const getDirFor = (systemId, id) =>
-  state.routeDir.get(keyFor(systemId, id)) || 'ambas';
+  state.routeDir.get(keyFor(systemId, id)) || defaultDirFor(systemId);
 
 export const setDirFor = (systemId, id, dir) =>
   state.routeDir.set(keyFor(systemId, id), dir);

@@ -58,6 +58,39 @@ test('Metropolitano incluye Alimentadores y queda a medias con una sola ruta', a
   await expect(page.locator('#p-met-alim .item:has(input[data-id="AN-22"]) .met-hours')).toHaveText('Trazado aproximado');
 });
 
+test('Alimentadores: por defecto solo la ida, con sus paraderos; los paraderos siguen al sentido dibujado', async ({ app, page }) => {
+  const drawn = id => app.state((state, id) => {
+    const sys = state.systems.alim;
+    const lines = sys.lineLayers.get(id)?.getLayers().length || 0;
+    const stops = (sys.stopLayers.get(id)?.getLayers() || []).map(m => m.getTooltip()?.getContent());
+    const p = sys.paths[id];
+    return { lines, stops, ida: p.ida.stops.map(s => s.name), vuelta: p.vuelta.stops.map(s => s.name) };
+  }, id);
+  const item = page.locator('#p-met-alim .item:has(input[data-id="AN-03"])');
+  await expect(item.locator('.segbtn-mini.active')).toHaveText('Ida');
+  await app.leaf('alim', 'AN-03').check();
+  let r = await drawn('AN-03');
+  expect(r.lines).toBe(1);
+  // Los de la ida, sin repetir la estación (la ida y la vuelta la comparten)
+  expect(r.stops).toEqual(r.ida);
+
+  await item.locator('.segbtn-mini', { hasText: 'Vta' }).click();
+  r = await drawn('AN-03');
+  expect(r.lines).toBe(1);
+  expect(r.stops).toEqual(r.vuelta);
+
+  await item.locator('.segbtn-mini', { hasText: 'Amb' }).click();
+  r = await drawn('AN-03');
+  expect(r.lines).toBe(2);
+  // Los dos sentidos; la estación, una vez
+  expect(r.stops.length).toBe(r.ida.length + r.vuelta.length - 1);
+
+  // Sin "Mostrar paradas", ninguno
+  await (await app.setting('#chkStops')).uncheck();
+  r = await drawn('AN-03');
+  expect(r.stops).toEqual([]);
+});
+
 test('Desmarcar todo quita todas las rutas del mapa', async ({ app, page }) => {
   await page.evaluate(() => { document.getElementById('chk-metro').click(); document.getElementById('chk-wr-aero').click(); });
   await app.settle();
