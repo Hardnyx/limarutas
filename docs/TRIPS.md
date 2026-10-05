@@ -164,7 +164,7 @@ Metropolitano y hay otra más cerca donde ese servicio no para, el paso lo
 dice («El Expreso 2 no para en Canaval y Moreyra, que está más cerca»).
 
 Minutos estimados: caminata 75 m/min con 30 % de rodeo, bus 250 m/min (más la congestión)
-(~15 km/h), Metro y Metropolitano 500 m/min, 3 min por transbordo (bajar
+(~15 km/h), Metro 500 m/min, Metropolitano 425 m/min, 3 min por transbordo (bajar
 y cruzar). El tramo se dibuja por el trazo de Wikiroutes; el Metropolitano, por su
 macroruta (A o B, en el sentido del viaje), como en la pestaña Rutas; el Metro,
 entre estaciones. Se marca cada paradero del tramo, con su nombre.
