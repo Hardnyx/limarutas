@@ -1,0 +1,10 @@
+{
+  "_fuente": "Ampliación del Metropolitano por la Vía Expresa Grau (Estación Central → Parinacochas I, y luego Grau con transbordo a la Línea 1). Marcha blanca con pasajeros del 1 al 6 de octubre de 2026 (10:00–16:00, dos buses cada ~20 min); operación regular prevista para diciembre de 2026 (La República 2026-09-30, El Peruano, Infobae 2026-09-29). Ni OSM (export del 2025-09-25) ni Wikiroutes tienen aún el servicio ni sus estaciones; OSM sí tiene la calzada: los ways 'Vía Expresa Almirante Miguel Grau', de Paseo de los Héroes a Aviación. Cuando opere: pasar estas estaciones a data/processed/metropolitano/metropolitano_stops.json, agregar el servicio con su horario en metropolitano_services.json y su trazado por esos ways (build_met_paths.py). 'aprox': coordenada sobre la calzada a la altura del cruce, sin confirmar con el mapa QR.",
+  "estado": "marcha blanca (operación regular en diciembre de 2026)",
+  "estaciones": [
+    {"id": "grau-abancay", "name": "Abancay", "lat": -12.0590422, "lon": -77.0300702},
+    {"id": "grau-andahuaylas", "name": "Andahuaylas", "lat": -12.0586785, "lon": -77.0264129, "aprox": true},
+    {"id": "grau-parinacochas", "name": "Parinacochas I", "lat": -12.0576461, "lon": -77.0183789, "aprox": true},
+    {"id": "grau-linea-1", "name": "Grau (Línea 1)", "lat": -12.0566896, "lon": -77.0148691, "aprox": true, "nota": "Transbordo con la estación Grau de la Línea 1; aún sin fecha"}
+  ]
+}
