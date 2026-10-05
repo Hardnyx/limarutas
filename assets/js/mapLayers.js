@@ -4,7 +4,7 @@
 // módulos siga importando todo desde aquí.
 import { state, getDirFor, CARTO_API_KEY } from './config.js';
 import { $$, uniqueOrder } from './utils.js';
-import { setOverStop } from './stopHover.js';
+import { setOverStop, formalStopClicked } from './stopHover.js';
 import { ensureCustomPanes, getLinePane, getStopPane } from './mapPanes.js';
 import { fitTo, currentFitBatch, addBoundsToBatch } from './mapFit.js';
 import { corrColorForSvc, forceStroke } from './mapColors.js';
@@ -341,16 +341,20 @@ export function renderService(systemId, id, opts={}){
       if (!ll) return;
       // Alimentadores: puntitos como los del corredor (blanco con borde del
       // color de la ruta); solo la estación de la que parten lleva ícono
+      // Paraderos formales: sólidos del color de la ruta con borde blanco,
+      // como los del corredor (los de la pista son blancos con borde)
       const dot = systemId === 'alim' && !(typeof st === 'object' && String(st.id).startsWith('met:'));
       const marker = (dot
-        ? L.circleMarker(ll, { pane: paneStop, radius: 3.5, fillColor: '#fff', color: svc.color,
-                               weight: 2, opacity: 1, fillOpacity: 1, bubblingMouseEvents: false })
+        ? L.circleMarker(ll, { pane: paneStop, radius: 4.5, fillColor: svc.color, color: '#fff',
+                               weight: 1.5, opacity: 1, fillOpacity: 1, bubblingMouseEvents: false })
         : L.marker(ll, { pane: paneStop, icon: L.divIcon({ className:'stop-pin', iconSize:[16,16] }) })
       ).addTo(gStop);
       const nm = typeof st === 'object' ? st.name : (sys.stops.get(st)?.name || st);
       marker.bindTooltip(nm, { permanent:false, direction:'top' });
       marker.on('mouseover', () => setOverStop(true));
       marker.on('mouseout', () => setOverStop(false));
+      // Tocarlo: qué alimentadores y corredores paran ahí
+      if (dot) marker.on('click', () => formalStopClicked(L.latLng(ll), nm));
     });
   }
 

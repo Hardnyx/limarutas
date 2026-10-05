@@ -275,3 +275,28 @@ test.describe('fotos referenciales', () => {
     await expect(btn).toHaveAttribute('aria-expanded', 'true');
   });
 });
+
+test('paraderos formales: sólidos del color de la ruta; al tocarlos, sus alimentadores y corredores', async ({ app, page }) => {
+  await app.search('AN-19');
+  await page.keyboard.press('Enter');
+  await app.settle();
+  // Puntos sólidos (relleno del color de la ruta, borde blanco)
+  const style = await app.state(s => {
+    let out = null;
+    s.systems.alim.stopLayers.get('AN-19')?.eachLayer(l => {
+      if (!out && l instanceof L.CircleMarker) out = { fill: l.options.fillColor, color: l.options.color };
+    });
+    return out;
+  });
+  expect(style.color).toBe('#fff');
+  expect(style.fill).not.toBe('#fff');
+  // Tocar un paradero abre el panel con los alimentadores que paran ahí
+  await app.state(s => {
+    let m = null;
+    s.systems.alim.stopLayers.get('AN-19')?.eachLayer(l => { if (!m && l instanceof L.CircleMarker) m = l; });
+    m.fire('click');
+  });
+  await expect(page.locator('.route-inspector')).toBeVisible();
+  await expect(page.locator('.ri-title')).toHaveText(/^Paradero /);
+  await expect(page.locator('.ri-chip', { hasText: 'AN-19' })).toHaveCount(1);
+});

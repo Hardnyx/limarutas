@@ -12,9 +12,10 @@ import { state } from './config.js';
 import { $, el } from './utils.js';
 import { addRecent } from './recents.js';
 import { bulk, setLeafChecked, syncAllTri, ROUTES_CHANGED } from './uiSidebar.hierarchy.js';
-import { isOverStop } from './stopHover.js';
+import { isOverStop, setFormalStopHandler } from './stopHover.js';
+import { stopsNear } from './search.js';
 import { confirmManyRoutes } from './stopsGuard.js';
-import { findUnderPoint, entriesForFolders } from './routeEntries.js';
+import { findUnderPoint, entriesForFolders, feederEntriesNear, corridorEntriesFor } from './routeEntries.js';
 import { centerOn } from './mapFit.js';
 
 // Evento para usar un paradero como origen o destino de "Cómo llegar" (tripUi.js)
@@ -85,6 +86,14 @@ export function showStopRoutes(stop){
   api?.showStop(stop);
 }
 
+// Paradero formal (de un corredor o un alimentador) tocado en el mapa: qué
+// rutas de corredor y alimentadores paran ahí. folderIds: los paraderos de
+// Wikiroutes de ese punto (search.js stopsNear)
+export function showFormalStop({ name, lat, lon, folderIds = [], district = '' }){
+  const entries = [...corridorEntriesFor(folderIds), ...feederEntriesNear(lat, lon)];
+  api?.showStop({ name, lat, lon, district, entries, formal: true });
+}
+
 export function wireRouteInspector(){
   const map = state.map;
   if (!map) return;
@@ -121,7 +130,9 @@ export function wireRouteInspector(){
       const hidden = entries.filter(e => e.leaf && !e.leaf.checked);
       if (hidden.length){
         const btnAll = el('button', { type: 'button', class: 'btn small ri-show-all' },
-          `Mostrar ${hidden.length === entries.length ? 'las' : 'las otras'} ${hidden.length} rutas`);
+          hidden.length === 1
+            ? (entries.length === 1 ? 'Mostrar la ruta' : 'Mostrar la otra ruta')
+            : `Mostrar ${hidden.length === entries.length ? 'las' : 'las otras'} ${hidden.length} rutas`);
         btnAll.addEventListener('click', async () => {
           if (!(await confirmManyRoutes(hidden.length))) return;
           bulk(() => hidden.forEach(e => setLeafChecked(e.leaf.dataset.system, e.leaf, true, { silentFit: true })));
@@ -357,10 +368,10 @@ export function wireRouteInspector(){
 
   api = {
     hide,
-    showStop({ name, lat, lon, folderIds, district }){
+    showStop({ name, lat, lon, folderIds, district, entries: given, formal = false }){
       clearTimeout(timer);
       leaveStopMode();
-      const found = entriesForFolders(folderIds);
+      const found = given || entriesForFolders(folderIds);
       if (!found.length) return;
 
       let marker = null;
@@ -369,7 +380,7 @@ export function wireRouteInspector(){
           radius: 9, color: '#fff', weight: 3, fillColor: '#f59e0b', fillOpacity: 1, interactive: false
         }).addTo(map);
       }
-      stopMode = { name, marker, lat, lon, district };
+      stopMode = { name, marker, lat, lon, district, formal };
       title.textContent = district ? `Paradero ${name} · ${district}` : `Paradero ${name}`;
       lastKey = '';
       render(found);
@@ -379,4 +390,12 @@ export function wireRouteInspector(){
       if (marker) centerOn([lat, lon], Math.max(map.getZoom(), 16));
     }
   };
+
+  // Paradero formal tocado: sus corredores y alimentadores
+  setFormalStopHandler(async (latlng, name) => {
+    const near = await stopsNear(latlng.lat, latlng.lng, 40);
+    const folderIds = [...new Set(near.flatMap(st => st.folderIds))];
+    showFormalStop({ name: name || near[0]?.name || 'Paradero', lat: latlng.lat, lon: latlng.lng,
+      folderIds, district: near[0]?.district || '' });
+  });
 }

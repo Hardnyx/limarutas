@@ -92,11 +92,12 @@ async function ensureWrLayer(id){
       await withWrBuildSlot(() => {
         // Si se desmarcó mientras esperaba turno, no descargar nada
         if (wr._wanted?.get(id) === false) return null;
-        return buildWikiroutesLayer(String(id), def.folder, { color: colorToUse, trip: def.trip, stopPane: PANES.stop });
+        return buildWikiroutesLayer(String(id), def.folder,
+          { color: colorToUse, trip: def.trip, stopPane: PANES.stop, formal: isCorrLikeWrId(id) });
       });
 
       // Nombre del paradero al pasar el mouse
-      wr.stopLayers?.get(id)?.eachLayer(wireStopLayer);
+      wr.stopLayers?.get(id)?.eachLayer(l => wireStopLayer(l, { formal: !!wr.stopLayers.get(id).__formal }));
 
       // Post-fix: si el layer quedó en SVG y algo pisó el stroke, forzar.
       const g = wr.layers?.get(id);

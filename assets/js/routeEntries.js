@@ -168,3 +168,30 @@ export function findUnderPoint(layerPoint){
 
   return found.sort((a, b) => a.code.localeCompare(b.code, 'es', { numeric: true }));
 }
+
+/* =========================
+   Paraderos formales (corredores y alimentadores)
+   ========================= */
+
+const near = (a, b, m) => {
+  const k = Math.cos(a[0] * Math.PI / 180);
+  return Math.hypot((a[0] - b[0]) * 110_574, (a[1] - b[1]) * 111_320 * k) <= m;
+};
+
+// Alimentadores con un paradero (de su recorrido dibujado) a menos de m metros
+export function feederEntriesNear(lat, lon, m = 40){
+  const out = [];
+  const paths = state.systems.alim?.paths || {};
+  for (const [id, svc] of Object.entries(paths)){
+    const stops = [...(svc.ida?.stops || []), ...(svc.vuelta?.stops || [])];
+    if (!stops.some(s => near([s.lat, s.lon], [lat, lon], m))) continue;
+    const group = state.systems.alim?.lineLayers?.get(id);
+    out.push(serviceEntry('alim', id, group ? polylinesOf(group) : []));
+  }
+  return out.sort((a, b) => a.code.localeCompare(b.code, 'es', { numeric: true }));
+}
+
+// Corredores entre las rutas de unos paraderos de Wikiroutes
+export function corridorEntriesFor(folderIds){
+  return entriesForFolders(folderIds).filter(e => e.leaf?.dataset.system === 'corr');
+}

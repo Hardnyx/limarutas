@@ -4,6 +4,12 @@
 // paradero, el panel "Rutas en este punto" no se actualiza (isOverStop).
 import { state } from './config.js';
 
+// Al tocar un paradero formal (corredor, alimentador) se abre qué rutas de
+// corredor y alimentadores paran ahí (routeInspector.js lo registra)
+let onFormalStop = null;
+export function setFormalStopHandler(fn){ onFormalStop = fn; }
+export function formalStopClicked(latlng, name){ onFormalStop?.(latlng, name); }
+
 let tip = null;
 let overStop = false;
 let pinnedByTap = false;
@@ -28,7 +34,7 @@ function hideTip(){
 }
 
 // Paraderos WR (circleMarkers en canvas) con properties.name
-export function wireStopLayer(layer){
+export function wireStopLayer(layer, { formal = false } = {}){
   if (!layer || typeof layer.on !== 'function') return;
   layer.on('mouseover', (e) => {
     overStop = true;
@@ -43,6 +49,7 @@ export function wireStopLayer(layer){
   layer.on('click', (e) => {
     pinnedByTap = true;
     showTip(e.layer.getLatLng(), e.layer.feature?.properties?.name);
+    if (formal) formalStopClicked(e.layer.getLatLng(), e.layer.feature?.properties?.name);
   });
 }
 

@@ -733,15 +733,12 @@ export async function buildWikiroutesLayer(id, folderPath, opts = {}) {
   }
 
   if (pts && pts.type === 'FeatureCollection') {
-    // Como en los mapas de transporte: punto blanco con borde del color de la ruta
-    const stopStyle = {
-      radius: 3.5,
-      fillColor: '#fff',
-      color,
-      weight: 2,
-      opacity: 1,
-      fillOpacity: 1
-    };
+    // Como en los mapas de transporte: punto blanco con borde del color de la
+    // ruta. Los paraderos formales (corredores) van al revés, sólidos del
+    // color de la ruta con borde blanco: se distinguen de los de la pista
+    const stopStyle = opts.formal
+      ? { radius: 4.5, fillColor: color, color: '#fff', weight: 1.5, opacity: 1, fillOpacity: 1 }
+      : { radius: 3.5, fillColor: '#fff', color, weight: 2, opacity: 1, fillOpacity: 1 };
 
     const stopLyr = L.geoJSON(pts, {
       // Hover/toque muestra el nombre (stopHover.js); el clic no llega al mapa
@@ -752,6 +749,7 @@ export async function buildWikiroutesLayer(id, folderPath, opts = {}) {
       })
     });
     stopLyr.addTo(stopsGroup);
+    if (opts.formal) stopsGroup.__formal = true;
 
     try {
       const b = stopLyr.getBounds?.();

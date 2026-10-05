@@ -398,6 +398,18 @@ function findStops(stops, query){
   return out;
 }
 
+// Paraderos de Wikiroutes a menos de m metros de un punto (el más cercano
+// primero): para saber qué rutas paran en un paradero tocado en el mapa
+export async function stopsNear(lat, lon, m = 40){
+  const stops = await loadStopsIndex();
+  const k = Math.cos(lat * Math.PI / 180);
+  return stops
+    .map(st => [st, Math.hypot((st.lat - lat) * 110_574, (st.lon - lon) * 111_320 * k)])
+    .filter(([, d]) => d <= m)
+    .sort((a, b) => a[1] - b[1])
+    .map(([st]) => st);
+}
+
 // Dos paraderos del mismo cruce: las mismas calles (en cualquier orden) y a
 // menos de 200 m
 function sameCrossing(a, b){
