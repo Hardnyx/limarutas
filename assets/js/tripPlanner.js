@@ -19,7 +19,8 @@ export const WALK_ONLY_M = 600;
 
 const WALK_M_PER_MIN = 75;      // caminando, con cruces
 const BUS_M_PER_MIN = 250;      // ~15 km/h con paradas y tráfico
-const FAST_M_PER_MIN = 500;     // Metro y Metropolitano (vía exclusiva)
+const FAST_M_PER_MIN = 500;     // Metro (vía exclusiva)
+const BRT_M_PER_MIN = 425;      // Metropolitano: 25,5 km/h de velocidad operacional (Global BRTData)
 const DETOUR = 1.3;             // la caminata real es más larga que la recta
 const TRANSFER_MIN = 3;         // bajar y cruzar hasta el otro paradero
 const MAX_OPTIONS = 6;
@@ -82,7 +83,7 @@ function legMin(g, r, k){
   let legs = entry && entry.w === congestionW ? entry.legs : null;
   if (!legs){
     const { lat, lon } = g.stops;
-    const speed = (r.group === 'metro' || r.group === 'metropolitano') ? FAST_M_PER_MIN : BUS_M_PER_MIN;
+    const speed = r.group === 'metro' ? FAST_M_PER_MIN : r.group === 'metropolitano' ? BRT_M_PER_MIN : BUS_M_PER_MIN;
     legs = new Float32Array(Math.max(0, r.stops.length - 1));
     for (let i = 0; i < legs.length; i++){
       const a = r.stops[i], b = r.stops[i + 1];

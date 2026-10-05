@@ -1,11 +1,13 @@
 {
-  "_fuente": "Avenidas donde el bus de transporte público va más lento que el promedio (~15 km/h, BUS_M_PER_MIN del planificador). 'factor': cuántas veces más dura el tramo en hora punta (15 km/h / velocidad medida o estimada). 'nombres': el nombre exacto del way en OSM (data/raw/osm/transporte.zip); 'bbox' [sur, oeste, norte, este]: solo el tramo congestionado (hay una Av. Grau o una Túpac Amaru en otros distritos). Fuera de hora punta pesa menos (tripPlanner.js). No aplica al Metropolitano ni al Metro, ni a los tramos con carril exclusivo o segregado por donde solo pasa un corredor: Javier Prado (Corredor Rojo) y Arequipa (Corredor Azul); tampoco Brasil ni Tomás Marsano, que ya tienen carril segregado. Abancay sí: aunque tiene carril segregado entre Amazonas y Nicolás de Piérola desde el 20-01-2026, por ahí pasan muchas rutas y autos y taxis lo invaden. build_trip_graph.py lo lleva a trip_graph.json ('slow').",
+  "_fuente": "Demora de los buses por tramo (pipeline/scripts/trips/congestion.py). 'factor': cuántas veces dura el tramo en hora punta frente al promedio (~15 km/h, BUS_M_PER_MIN del planificador); menor que 1, carril exclusivo (manda sobre todo lo demás). 'nombres': el nombre exacto del way en OSM (data/raw/osm/transporte.zip), o ['*'] para una zona (Acho); 'bbox' [sur, oeste, norte, este]: solo el tramo (hay una Av. Grau o una Túpac Amaru en otros distritos). Además de esta lista, congestion.py calcula la carga de cada calle (líneas por carril) y en cada punto vale la mayor de las dos. Fuera de hora punta pesa menos (tripPlanner.js). No aplica al Metropolitano ni al Metro, que tienen su propia velocidad. Abancay se penaliza aunque tiene carril segregado entre Amazonas y Nicolás de Piérola desde el 20-01-2026: lo comparten muchas rutas y lo invaden autos y taxis. La Panamericana, solo en sus tramos críticos: el resto fluye mejor.",
   "_referencias": [
     "ATU: transporte público a 11 km/h en los 1,18 km de la Av. Abancay (antes del carril segregado Amazonas–Nicolás de Piérola del 20-01-2026; desde la marcha blanca lo invaden autos y taxis: Infobae 2026-01-22); ~10 km/h en el cruce Abancay-Grau (Gestión, Panamericana, RPP)",
     "TomTom Traffic Index 2025: Lima a 13,9 km/h en hora punta de la mañana y 11,7 km/h de la tarde (Forbes Perú, Energiminas, 2026-01)",
     "Puntos críticos reportados: Grau de la Plaza Grau a Aviación (los buses van por la calzada; la Vía Expresa Grau es del Metropolitano), Samuel Alcázar en el Rímac (cruce con Tacna), Universitaria, Túpac Amaru (Naranjal), Próceres de la Independencia (SJL), Carretera Central (Santa Clara, Vitarte, Santa Anita), Panamericana Sur desde el km 10, Vía de Evitamiento y Panamericana Norte (La República, Infobae, RPP, 2025)",
     "Carriles segregados: Corredor Rojo en Javier Prado (La Molina, Guardia Civil, Navarrete, Manuel Olguín–óvalo Monitor; Gestión, Andina) y Corredor Azul en Arequipa (9 de Diciembre–Emilio Fernández, ambos sentidos; RPP, El Peruano)",
-    "Aviación en Gamarra: hasta 40 min para cruzar por el comercio ambulatorio (Panamericana, 2025); Aviación y Huánuco, puntos críticos en hora punta (Mininter); Huanta, pistas destruidas (Panamericana, 2025); La Marina: el Corredor Rojo comparte carril con combis y la ATU evalúa segregarla, igual que Angamos y Venezuela; Brasil y Tomás Marsano ya tienen carril segregado (Panamericana, 2026)"
+    "Aviación en Gamarra: hasta 40 min para cruzar por el comercio ambulatorio (Panamericana, 2025); Aviación y Huánuco, puntos críticos en hora punta (Mininter); Huanta, pistas destruidas (Panamericana, 2025); La Marina: el Corredor Rojo comparte carril con combis y la ATU evalúa segregarla, igual que Angamos y Venezuela; Brasil y Tomás Marsano ya tienen carril segregado (Panamericana, 2026)",
+    "Corredor Azul: vía exclusiva de 1,5 km en Arequipa, el recorrido en hora punta baja de 75 a 30 min (RPP, Andina, Panamericana); Corredor Rojo: los carriles segregados de Javier Prado ahorran hasta 15 min (Andina, Gestión). Metropolitano: 25,5 km/h de velocidad operacional (Global BRTData)",
+    "Acho: nudo de la Vía de Evitamiento con Abancay y el puente Ricardo Palma (RPP, Gestión); Caquetá: desvío de la Evitamiento. Panamericana Sur: el tramo crítico es Benavides (giros sobre el puente) → Atocongo → Puente Alipio (Exitosa, El Peruano); Panamericana Norte: más buses del óvalo Zapallal al óvalo Habich y accesos de Puente Piedra (RPP, Correo)"
   ],
   "avenidas": [
     {
@@ -192,34 +194,6 @@
       "factor": 1.3
     },
     {
-      "nombre": "Panamericana Sur (desde el km 10)",
-      "nombres": [
-        "Avenida Panamericana Sur",
-        "Carretera Panamericana Sur"
-      ],
-      "bbox": [
-        -12.32,
-        -77.0,
-        -12.15,
-        -76.88
-      ],
-      "factor": 1.2
-    },
-    {
-      "nombre": "Panamericana Norte",
-      "nombres": [
-        "Avenida Panamericana Norte",
-        "Carretera Panamericana Norte"
-      ],
-      "bbox": [
-        -12.02,
-        -77.1,
-        -11.85,
-        -77.04
-      ],
-      "factor": 1.2
-    },
-    {
       "nombre": "Vía de Evitamiento",
       "nombres": [
         "Vía de Evitamiento"
@@ -231,6 +205,100 @@
         -76.95
       ],
       "factor": 1.2
+    },
+    {
+      "nombre": "Acho (Evitamiento, Abancay y Puente Ricardo Palma)",
+      "nombres": [
+        "*"
+      ],
+      "bbox": [
+        -12.0465,
+        -77.0275,
+        -12.0395,
+        -77.0185
+      ],
+      "factor": 1.6
+    },
+    {
+      "nombre": "Caquetá",
+      "nombres": [
+        "Avenida Caquetá"
+      ],
+      "bbox": [
+        -12.045,
+        -77.05,
+        -12.02,
+        -77.038
+      ],
+      "factor": 1.3
+    },
+    {
+      "nombre": "Panamericana Sur (Benavides a Puente Alipio)",
+      "nombres": [
+        "Avenida Panamericana Sur",
+        "Carretera Panamericana Sur"
+      ],
+      "bbox": [
+        -12.178,
+        -77.0,
+        -12.12,
+        -76.96
+      ],
+      "factor": 1.35
+    },
+    {
+      "nombre": "Panamericana Norte (Habich a Naranjal)",
+      "nombres": [
+        "Avenida Panamericana Norte",
+        "Carretera Panamericana Norte"
+      ],
+      "bbox": [
+        -12.036,
+        -77.08,
+        -11.975,
+        -77.04
+      ],
+      "factor": 1.2
+    },
+    {
+      "nombre": "Panamericana Norte (Naranjal a Zapallal, accesos de Puente Piedra)",
+      "nombres": [
+        "Avenida Panamericana Norte",
+        "Carretera Panamericana Norte"
+      ],
+      "bbox": [
+        -11.975,
+        -77.13,
+        -11.835,
+        -77.05
+      ],
+      "factor": 1.3
+    },
+    {
+      "nombre": "Arequipa, vía exclusiva del Corredor Azul (9 de Diciembre a Emilio Fernández)",
+      "nombres": [
+        "Avenida Arequipa"
+      ],
+      "bbox": [
+        -12.074,
+        -77.04,
+        -12.058,
+        -77.032
+      ],
+      "factor": 0.6
+    },
+    {
+      "nombre": "Javier Prado, carriles segregados del Corredor Rojo",
+      "nombres": [
+        "Avenida Javier Prado Este"
+      ],
+      "bbox": [
+        -12.096,
+        -77.026,
+        -12.076,
+        -76.968
+      ],
+      "factor": 0.8
     }
   ]
 }

@@ -128,27 +128,42 @@ pedir un camino por cada combinación sería miles de consultas.
    viaje en ellos, siempre aparece (le hace lugar el transbordo más caro,
    nunca una ruta única).
 
-**Congestión.** `config/congestion.json` lista las avenidas donde el bus va
-más lento que el promedio (Abancay y Grau, a ~10–11 km/h según la ATU;
-Aviación en Gamarra, Huánuco, Huanta, La Marina, Angamos, Venezuela,
-Samuel Alcázar, Alfonso Ugarte, Universitaria, Túpac Amaru, Próceres de la
-Independencia, Carretera Central, las Panamericanas y la Vía de
-Evitamiento), cada una con su tramo crítico y cuánto más dura en hora punta.
-Quedan fuera las avenidas con carril exclusivo por donde solo pasa un
-corredor: Javier Prado (Corredor Rojo) y Arequipa (Corredor Azul); y Brasil
-y Tomás Marsano, que ya tienen carril segregado. Abancay
-se queda: su carril segregado (desde enero de 2026) lo comparten muchas
-rutas y lo invaden autos y taxis. `build_trip_graph.py` (`congestion.py`) da a
-cada tramo entre paraderos su % extra (`slow`) según cuánto de él va por esas
-avenidas; el planificador lo aplica completo en hora punta de lunes a viernes
+**Congestión.** Cada tramo de bus entre dos paraderos lleva el % extra que
+dura en hora punta (`slow` en `trip_graph.json`, de
+`pipeline/scripts/trips/congestion.py`). En cada punto vale la mayor de dos
+demoras:
+
+- La lista curada (`config/congestion.json`): tramos con factor medido o
+  reportado. Abancay y Grau ×1,4 (~10–11 km/h según la ATU), Aviación en
+  Gamarra ×1,5, Acho ×1,6 (zona: Evitamiento, Abancay, puente Ricardo
+  Palma), Huánuco, Huanta, Caquetá, Samuel Alcázar, Alfonso Ugarte y
+  Carretera Central ×1,3, La Marina, Universitaria, Túpac Amaru y Próceres
+  ×1,25, Angamos, Venezuela y Evitamiento ×1,2. De la Panamericana, solo
+  sus tramos críticos: Sur de Benavides al Puente Alipio ×1,35; Norte de
+  Habich a Naranjal ×1,2 y de Naranjal a Zapallal ×1,3.
+- La carga de la calle: cuántas líneas vigentes (rutas del PRR y
+  corredores, por sus trazados de Wikiroutes) pasan por cada tramo frente a
+  sus carriles por sentido (`lanes` de OSM). Desde 8 líneas por carril (la
+  mediana de Lima es ~5), cada una suma 4 %, hasta 40 %: Huanta o Huánuco,
+  ~22 líneas en 2 carriles, +12 % a +40 %.
+
+Un carril exclusivo descuenta y manda sobre lo demás: Arequipa entre 9 de
+Diciembre y Emilio Fernández (Corredor Azul) ×0,6, Javier Prado (Corredor
+Rojo) ×0,8. Brasil y Tomás Marsano tienen carril segregado y no se
+penalizan. Abancay sí, aunque tiene carril segregado desde enero de 2026:
+lo comparten muchas rutas y lo invaden autos y taxis.
+
+El planificador lo aplica completo en hora punta de lunes a viernes
 (6:00–9:30 y 17:00–21:00), la mitad el resto del día, 0,4 los sábados, 0,2
-los domingos y nada de noche. No aplica al Metropolitano ni al Metro.
+los domingos y nada de noche. El Metropolitano (425 m/min, 25,5 km/h según
+Global BRTData) y el Metro (500 m/min) van por vía exclusiva y tienen su
+propia velocidad.
 
 **Estación más lejana.** Si el tramo a pie lleva a una estación del
 Metropolitano y hay otra más cerca donde ese servicio no para, el paso lo
 dice («El Expreso 2 no para en Canaval y Moreyra, que está más cerca»).
 
-Minutos estimados: caminata 75 m/min con 30 % de rodeo, bus 250 m/min
+Minutos estimados: caminata 75 m/min con 30 % de rodeo, bus 250 m/min (más la congestión)
 (~15 km/h), Metro y Metropolitano 500 m/min, 3 min por transbordo (bajar
 y cruzar). El tramo se dibuja por el trazo de Wikiroutes; el Metropolitano, por su
 macroruta (A o B, en el sentido del viaje), como en la pestaña Rutas; el Metro,

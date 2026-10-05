@@ -90,16 +90,20 @@ test('congestión: en hora punta el tramo por Abancay y Grau dura más; de noche
       return Math.min(...res.options.filter(o => !o.transfers).map(o => o.minutes));
     };
     const r1481 = g.routes.find(x => x.key === '1481-ida');
+    // El Corredor Azul por la vía exclusiva de Arequipa va más rápido (% negativo)
+    const r301 = g.routes.find(x => x.key === '301-ida');
     return {
       w: [congestionWeight({ day: 2, min: 7 * 60 + 30 }), congestionWeight({ day: 2, min: 12 * 60 }),
           congestionWeight({ day: 0, min: 12 * 60 }), congestionWeight({ day: 2, min: 23 * 60 })],
       // La 1481 baja por Grau y sube por Abancay: esos tramos llevan % extra
       slowMax: Math.max(...(r1481.slow || [0])),
+      exclusiveMin: Math.min(...(r301.slow || [0])),
       peak: ride({ day: 2, min: 7 * 60 + 30 }), night: ride({ day: 2, min: 22 * 60 + 30 })
     };
   });
   expect(r.w).toEqual([1, 0.5, 0.2, 0]);
   expect(r.slowMax).toBeGreaterThanOrEqual(30);
+  expect(r.exclusiveMin).toBeLessThanOrEqual(-30);
   expect(r.peak).toBeGreaterThan(r.night);
 });
 
