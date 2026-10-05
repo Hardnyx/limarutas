@@ -46,6 +46,8 @@ function plan(page, from, to, opts = {}){
           alts: rides.map(l => (l.alts || []).map(x => `${x.route.leaf.dataset.system}:${x.route.leaf.dataset.id}`)),
           old: opt.old,
           codes: rides.map(l => l.route.code),
+          waits: rides.map(l => l.wait),
+          exits: rides.map(l => l.exitMin || 0),
           services: rides.map(l => `${l.route.leaf.dataset.system}:${l.route.leaf.dataset.id}`),
           forward: rides.every(l => l.to > l.from),
           groups: rides.map(l => l.route.group),
@@ -57,6 +59,15 @@ function plan(page, from, to, opts = {}){
     };
   }, [from, to, opts]);
 }
+
+test('después de la recomendada, las opciones van de la que llega antes a la que llega después', async ({ app, page }) => {
+  // Javier Prado con Francisco Masías → Amazonas, en hora punta de la mañana
+  const r = await plan(page, { lat: -12.0915, lon: -77.0256 }, { lat: -12.0455, lon: -77.0278 },
+    { at: { day: 1, min: 6 * 60 + 48 } });
+  expect(r.options.length).toBeGreaterThan(2);
+  const rest = r.options.slice(1).map(o => o.minutes);
+  expect(rest).toEqual([...rest].sort((a, b) => a - b));
+});
 
 test('viaje directo: opciones hacia adelante, cerca de A y B y con rutas alternativas', async ({ app, page }) => {
   // De noche, sin congestión (con tráfico, el directo por Abancay deja de ser cómodo)
@@ -107,12 +118,20 @@ test('congestión: en hora punta el tramo por Abancay y Grau dura más; de noche
   expect(r.peak).toBeGreaterThan(r.night);
 });
 
-test('Metropolitano con cambio de servicio y luego un bus (Habich → San Rodolfo: B › Expreso 1 a Matellini › 1087)', async ({ app, page }) => {
+test('Metropolitano con cambio de servicio y luego un bus (Habich → San Rodolfo: B › Expreso 1 a Matellini › 1087, con 5 min de espera y 4 de salida)', async ({ app, page }) => {
   const r = await plan(page, { lat: -12.0233, lon: -77.0498 }, { lat: -12.1888, lon: -77.0132 }, { at: { day: 2, min: 11 * 60 + 33 } });
-  const first = r.options[0];
-  expect(first.groups).toEqual(['metropolitano', 'metropolitano', 'atu']);
-  expect(first.codes[2]).toBe('1087');
-  expect(first.transfers).toBe(2);
+  // Primero, el Metropolitano y luego un bus
+  expect(r.options[0].groups[0]).toBe('metropolitano');
+  expect(r.options[0].groups.at(-1)).toBe('atu');
+  // Entre las opciones, B › Expreso 1 a Matellini › 1087
+  const chain = r.options.find(o => o.codes.join('>') === 'B>1>1087');
+  expect(chain).toBeTruthy();
+  expect(chain.groups).toEqual(['metropolitano', 'metropolitano', 'atu']);
+  expect(chain.transfers).toBe(2);
+  // Cambiar de servicio del Metropolitano: al menos 5 min de espera; salir de
+  // la estación para tomar el bus: 4 min más
+  expect(chain.waits[1]).toBeGreaterThanOrEqual(5);
+  expect(chain.exits).toEqual([0, 0, 4]);
 });
 
 test('hora punta de la tarde: el bus por la pista tarda bastante más; el Metropolitano no', async ({ app, page }) => {

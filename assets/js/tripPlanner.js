@@ -25,6 +25,8 @@ const DETOUR = 1.3;             // la caminata real es más larga que la recta
 const TRANSFER_MIN = 3;         // bajar y cruzar hasta el otro paradero
 const MET_SWITCH_MIN = 2;       // cambiar de servicio del Metropolitano en la misma estación…
 const MET_SWITCH_PENALTY = 4;   // …es cambiar de andén: molesta menos que un transbordo integrado
+const MET_TRANSFER_WAIT_MIN = 5; // de un servicio del Metropolitano a otro se espera al menos esto
+const STATION_EXIT_MIN = 4;     // salir de una estación del Metropolitano (escaleras, puente, torniquete) para tomar otra ruta
 const MAX_OPTIONS = 6;
 
 // Para ordenar (no se muestran como minutos)
@@ -317,6 +319,7 @@ export function planTrip(g, from, to, { includeOld = false, at = null } = {}){
   top.push(...useful.slice(TOP_FOR_ALTS).filter(c => c.mass && c.transfers).slice(0, 5));
   for (const c of top){
     let wait = 0;
+    let prev = null;
     const mains = c.legs.filter(l => l.type === 'ride').map(l => l.route.leaf);
     for (const leg of c.legs){
       if (leg.type !== 'ride') continue;
@@ -325,7 +328,13 @@ export function planTrip(g, from, to, { includeOld = false, at = null } = {}){
       leg.alts = alternativesFor(g, leg, isActive).filter(a =>
         !mains.includes(a.route.leaf) && !(c.transfers && directBase.has(svc(a.route))));
       leg.wait = waitMin([leg.route, ...leg.alts.map(a => a.route)]);
-      wait += leg.wait;
+      const fromMet = prev?.group === 'metropolitano';
+      // De un servicio del Metropolitano a otro: la espera no baja de 5 min
+      if (fromMet && leg.route.group === 'metropolitano') leg.wait = Math.max(leg.wait, MET_TRANSFER_WAIT_MIN);
+      // Del Metropolitano a otra ruta: primero hay que salir de la estación
+      leg.exitMin = fromMet && leg.route.group !== 'metropolitano' ? STATION_EXIT_MIN : 0;
+      wait += leg.wait + leg.exitMin;
+      prev = leg.route;
     }
     // El tiempo estimado incluye la espera
     c.minutes += wait;
@@ -398,6 +407,13 @@ export function planTrip(g, from, to, { includeOld = false, at = null } = {}){
       picked.push(m);
       picked.sort((a, b) => tier(a) - tier(b) || a.cost - b.cost);
     }
+  }
+  // Primero la recomendada (la más cómoda según lo de arriba); el resto, de la
+  // que llega antes a la que llega después: quien mira las otras opciones
+  // las compara por tiempo
+  if (picked.length > 2){
+    const rest = picked.slice(1).sort((a, b) => a.minutes - b.minutes || a.walkM - b.walkM);
+    picked.splice(1, rest.length, ...rest);
   }
   for (const c of picked){
     out.options.push({

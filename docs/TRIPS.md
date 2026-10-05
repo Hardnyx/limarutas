@@ -180,6 +180,15 @@ Metropolitano puede seguir en otro servicio en la misma estación (B › Expreso
 1 en Central) y de ahí hacer un transbordo a un bus: Habich → San Rodolfo va
 en Metropolitano hasta Matellini y la 1087. Cambiar de servicio no es salir
 del sistema: suma 2 min y una molestia menor que un transbordo integrado.
+La espera del segundo servicio del Metropolitano es de al menos 5 min
+(`MET_TRANSFER_WAIT_MIN`), aunque su intervalo dé menos. Del Metropolitano a
+otra ruta se suman 4 min para salir de la estación (`STATION_EXIT_MIN`:
+escaleras, puente, torniquete); el paso lo dice («Sal de la estación y
+camina…»).
+
+**Orden de las opciones.** Primero la recomendada (la más cómoda: directos
+con poca caminata y transbordos que sí ahorran, por costo); el resto, de la
+que llega antes a la que llega después (empate: menos caminata).
 
 **Estación más lejana.** Si el tramo a pie lleva a una estación del
 Metropolitano y hay otra más cerca donde ese servicio no para, el paso lo

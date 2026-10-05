@@ -481,11 +481,21 @@ function stepsOf(opt){
           : `hasta ${stopName(leg.to)} para el transbordo`;
       const start = leg.from != null ? [graph.stops.lat[leg.from], graph.stops.lon[leg.from]] : [ends.from.lat, ends.from.lon];
       const why = k < opt.legs.length - 1 && skippedNearer(start, opt.legs[k + 1]);
+      // Tras el Metropolitano, primero se sale de la estación
+      const exit = opt.legs[k + 1]?.exitMin || 0;
       steps.push(el('li', { class: 'trip-step trip-step-walk' },
         el('span', { class: 'trip-step-ico' }, icon('walk')),
-        el('span', {}, `Camina ${fmtM(leg.m)} ${where}`, el('span', { class: 'trip-sub' }, ` · ${walkMinOf(leg.m)} min`),
+        el('span', {}, `${exit ? 'Sal de la estación y camina' : 'Camina'} ${fmtM(leg.m)} ${where}`,
+          el('span', { class: 'trip-sub' }, ` · ${walkMinOf(leg.m) + exit} min`),
           why ? el('div', { class: 'trip-sub trip-why' }, why) : '')));
     } else {
+      // Sin caminata entre medio (el bus para en la puerta de la estación)
+      const prevLeg = opt.legs[k - 1];
+      if (leg.exitMin && !(prevLeg?.type === 'walk' && prevLeg.m >= 15)){
+        steps.push(el('li', { class: 'trip-step trip-step-walk' },
+          el('span', { class: 'trip-step-ico' }, icon('walk')),
+          el('span', {}, 'Sal de la estación', el('span', { class: 'trip-sub' }, ` · ${leg.exitMin} min`))));
+      }
       const r = leg.route;
       const n = leg.to - leg.from;
       const alts = leg.alts || [];
