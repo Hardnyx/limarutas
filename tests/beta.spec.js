@@ -84,6 +84,15 @@ test.describe('nueva interfaz', () => {
     expect(h2.y).toBeGreaterThanOrEqual(p.y - 1);
   });
 
+  test('una sección principal abierta a la vez', async ({ page }) => {
+    await page.click('.panel-head:has(#chk-metro) .title');
+    await expect(page.locator('#panels > section.panel:has(> .panel-head #chk-metro)')).toHaveClass(/\bopen\b/);
+    await page.click('.panel-head:has(#chk-wr) .title');
+    await expect(page.locator('#panels > section.panel:has(> .panel-head #chk-wr)')).toHaveClass(/\bopen\b/);
+    await expect(page.locator('#panels > section.panel:has(> .panel-head #chk-metro)')).not.toHaveClass(/\bopen\b/);
+    await expect(page.locator('#panels > section.panel.open:not(#p-recent)')).toHaveCount(1);
+  });
+
   test('filtro de lista: por empresa, sin desmarcar las ocultas; el grupo solo marca las visibles', async ({ app, page }) => {
     await app.search('1255');
     await page.keyboard.press('Enter');

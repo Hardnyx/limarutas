@@ -147,14 +147,26 @@ function buildTabs(sidebar, panels){
 }
 
 // Al cerrar una sección larga desde su título fijo, la lista vuelve a ese
-// título (si no, quedaría a mitad de la sección siguiente)
+// título (si no, quedaría a mitad de la sección siguiente); al abrir una
+// sección principal, se cierran las otras
 function keepClosedHeadInView(panels){
   panels.addEventListener('click', (e) => {
     const head = e.target.closest('.panel-head');
     if (!head || e.target.closest('input[type="checkbox"]')) return;
     setTimeout(() => {
       const section = head.closest('section.panel');
-      if (!section || section.classList.contains('open')) return;
+      if (!section) return;
+      if (section.classList.contains('open')){
+        // Una sección principal abierta a la vez: abrir una cierra las otras
+        // (las listas largas abiertas a la vez obligan a bajar mucho)
+        if (section.parentElement !== panels || section.id === 'p-recent') return;
+        const others = [...panels.querySelectorAll(':scope > section.panel.open')]
+          .filter(s => s !== section && s.id !== 'p-recent');
+        if (!others.length) return;
+        others.forEach(s => s.querySelector(':scope > .panel-head')?.click());
+        head.scrollIntoView({ block: 'nearest' });
+        return;
+      }
       const top = panels.getBoundingClientRect().top;
       if (head.getBoundingClientRect().top < top) head.scrollIntoView({ block: 'start' });
     }, 0);

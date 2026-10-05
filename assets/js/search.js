@@ -503,10 +503,17 @@ function clearResults(resultsBox){
   resultsBox.classList.remove('open');
 }
 
-function renderResults(resultsBox, docs, selectedIndex){
+function renderResults(resultsBox, docs, selectedIndex, query = ''){
   resultsBox.innerHTML = '';
   if (!docs.length){
-    resultsBox.classList.remove('open');
+    // Sin resultados: decirlo (si no, parece que el buscador no respondió)
+    if (query.trim()){
+      resultsBox.appendChild(el('div', { class: 'suggest-empty', role: 'status' },
+        `Nada con «${query.trim()}». Prueba con el código de la ruta, la empresa o el nombre de un paradero.`));
+      resultsBox.classList.add('open');
+    } else {
+      resultsBox.classList.remove('open');
+    }
     return;
   }
 
@@ -587,6 +594,9 @@ function looksLikeRoute(q){
 
 function selectDoc(doc){
   if (!doc) return;
+  // Elegido el resultado, el buscador queda listo para la siguiente búsqueda
+  const input = $('#searchInput');
+  if (input){ input.value = ''; input.removeAttribute('aria-activedescendant'); }
   // En celular la hoja baja antes de encuadrar
   document.dispatchEvent(new Event(MAP_PICK));
   if (doc.type === 'stop'){
@@ -681,7 +691,7 @@ export function setupSearch(){
     }
     currentDocs = hits;
     selectedIndex = nextItem(hits, -1, 1);
-    renderResults(resultsBox, hits, selectedIndex);
+    renderResults(resultsBox, hits, selectedIndex, q);
   });
 
   input.addEventListener('keydown', e => {

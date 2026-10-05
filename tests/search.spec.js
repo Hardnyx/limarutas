@@ -170,3 +170,13 @@ test('nombres con que se conoce: tréboles, bypasses, Colonial, Wilson y el 22',
   await app.search('22');
   await expect(page.locator('.suggest-item', { hasText: 'Kilómetro 22' }).first()).toBeVisible();
 });
+
+test('elegir un resultado vacía el buscador; sin resultados, lo dice', async ({ app, page }) => {
+  await app.search('1240');
+  await page.keyboard.press('Enter');
+  await expect(page.locator('#searchInput')).toHaveValue('');
+  await expect(app.leaf('wr', '1240')).toBeChecked();
+  await page.fill('#searchInput', 'zzqxw');
+  await expect(page.locator('#searchSuggest .suggest-empty')).toContainText('Nada con «zzqxw»');
+  await expect(page.locator('#searchSuggest .suggest-item')).toHaveCount(0);
+});
