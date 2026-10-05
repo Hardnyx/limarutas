@@ -678,14 +678,15 @@ function setDeparture({ day, min }){
    Dibujo en el mapa
    ========================= */
 
-// Trazos de Wikiroutes (route_track_trip<N>.geojson), para dibujar el tramo
-// por las calles y no en línea recta entre paraderos
+// Trazos de Wikiroutes (route_track_trip<N>.geojson, o su recorrido por las
+// calles de OSM .osm.geojson si lo hay), para dibujar el tramo por las
+// calles y no en línea recta entre paraderos
 const tracks = new Map();
 function loadTrack(key){
   if (tracks.has(key)) return tracks.get(key);
   const def = state.systems.wr.routeDefs?.get(key);
   const p = !def ? Promise.resolve(null)
-    : fetch(`${def.folder}/route_track_trip${def.trip || 1}.geojson`)
+    : fetch(`${def.folder}/route_track_trip${def.trip || 1}${def.osm ? '.osm' : ''}.geojson`)
       .then(r => (r.ok ? r.json() : null))
       .then(gj => {
         const f = gj?.features?.find(x => x.geometry?.type === 'LineString');

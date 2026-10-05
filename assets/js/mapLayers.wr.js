@@ -93,7 +93,7 @@ async function ensureWrLayer(id){
         // Si se desmarcó mientras esperaba turno, no descargar nada
         if (wr._wanted?.get(id) === false) return null;
         return buildWikiroutesLayer(String(id), def.folder,
-          { color: colorToUse, trip: def.trip, stopPane: PANES.stop, formal: isCorrLikeWrId(id) });
+          { color: colorToUse, trip: def.trip, osm: def.osm, stopPane: PANES.stop, formal: isCorrLikeWrId(id) });
       });
 
       // Nombre del paradero al pasar el mouse

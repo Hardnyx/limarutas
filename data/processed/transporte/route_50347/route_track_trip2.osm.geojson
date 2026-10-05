@@ -1,0 +1,1 @@
+{"type":"FeatureCollection","features":[{"type":"Feature","properties":{"fuente":"OpenStreetMap (recorrido.py)","pasos":[{"accion":"inicio","via":"Avenida Pedro de Osma","m":430}],"sin_calle":0},"geometry":{"type":"LineString","coordinates":[[-77.021907,-12.150367],[-77.022208,-12.151145],[-77.023221,-12.154046],[-77.023217,-12.154176],[-77.022904,-12.155156]]}}]}

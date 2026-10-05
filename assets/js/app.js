@@ -324,6 +324,9 @@ function buildWrUiAndDefsFromWrMap(wrMap){
       folder,
       color: softenColor(conf.color || '#00008C'),
       trip: conf.trip,
+      // Recorrido por las calles de OSM (build_recorridos.py): se carga en
+      // vez del dibujo de Wikiroutes
+      osm: !!conf.osm,
       name: conf.name || `Ruta ${rid}`
     });
   }

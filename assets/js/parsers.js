@@ -682,6 +682,8 @@ export async function buildWikiroutesLayer(id, folderPath, opts = {}) {
 
   const [lineRaw, ptsRaw] = await Promise.all([
     firstJSON([
+      // El recorrido por las calles de OSM, si lo hay (build_recorridos.py)
+      ...(trip && opts.osm ? [`route_track_trip${trip}.osm.geojson`] : []),
       ...(trip ? [`route_track_trip${trip}.geojson`] : []),
       'route_track.geojson',
       'line_approx.geojson'

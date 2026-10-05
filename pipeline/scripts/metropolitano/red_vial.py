@@ -52,6 +52,7 @@ class Red:
         s, w, n, e = bbox
         self.pos: dict[int, tuple[float, float]] = {}
         self.adj: dict[int, list] = defaultdict(list)
+        self.way: dict[tuple[int, int], tuple] = {}     # (u, v) → (id de la vía, nombre, es rotonda)
         red = self
 
         class H(osmium.SimpleHandler):
@@ -75,13 +76,17 @@ class Red:
                     pts.reverse()
                 oneway = ow in ('yes', 'true', '1', '-1')
                 k = COST[hw]
+                # De qué vía es cada tramo (para las indicaciones: "por Av. X")
+                info = (way.id, t.get('name') or '', t.get('junction') in ('roundabout', 'circular'))
                 for (a, la, lo), (b, lb, lob) in zip(pts, pts[1:]):
                     red.pos[a] = (la, lo)
                     red.pos[b] = (lb, lob)
                     m = _d((la, lo), (lb, lob)) * k
                     red.adj[a].append((b, m))
+                    red.way[a, b] = info
                     if not oneway:
                         red.adj[b].append((a, m))
+                        red.way[b, a] = info
 
         H().apply_file(str(PBF), locations=True)
         self.grid = defaultdict(list)

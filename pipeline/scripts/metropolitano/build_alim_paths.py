@@ -58,9 +58,12 @@ import math
 import re
 import unicodedata
 from collections import defaultdict
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(ROOT / 'pipeline' / 'scripts' / 'osm'))
+from recorrido import Recorridos  # noqa: E402
 MET = ROOT / 'data' / 'processed' / 'metropolitano'
 OUT = MET / 'alimentadores_paths.json'
 WR_STOPS = ROOT / 'pipeline' / 'output' / 'wr_stops_index.json'
@@ -77,6 +80,7 @@ WR_ALONG_M = 30      # trazado sin lista oficial: paraderos de Wikiroutes hasta 
 WR_GAP_M = 250       # ...y uno cada esto como mínimo (los de enfrente o de la misma cuadra se juntan)
 STREET_M = 35        # paradero oficial sin paradero de Wikiroutes: el cruce con la calle de su nombre, hasta esto
 LOOP_CUT_M = 250     # rulos más cortos que esto (cadenas de OSM mal unidas, puntos de paso a un costado) se cortan
+LOOP_AREA_M2 = 150    # un rulo que encierra más que esto (la vuelta a un óvalo) no se corta
 ANCHOR_M = 1200      # trazado de un mapa QR: un paradero oficial que está fuera, hasta esto, lo corrige
 DETOUR_M = 150       # ...si no alarga el trazado más que esto o que lo que está fuera
 
@@ -192,6 +196,14 @@ def same_name(official, wr):
     return bool(official) and (official <= wr or (wr and wr <= official and max(map(len, wr)) > 3))
 
 
+def loop_area(pts):
+    """Área (m²) del polígono que encierra el rulo."""
+    lat0 = pts[0][0]
+    k = math.cos(math.radians(lat0))
+    xy = [((p[1] - pts[0][1]) * 111_320 * k, (p[0] - lat0) * 110_574) for p in pts]
+    return abs(sum(x1 * y2 - x2 * y1 for (x1, y1), (x2, y2) in zip(xy, xy[1:] + xy[:1]))) / 2
+
+
 def clean(path):
     """Sin rulos cortos: el camino que vuelve a pasar a menos de 15 m de un
     punto tras recorrer menos de LOOP_CUT_M (dos ways de OSM unidos al revés
@@ -210,6 +222,11 @@ def clean(path):
                 if run > LOOP_CUT_M:
                     break
                 if run > 30 and dist(path[i], path[j]) < 15 and cum[j] < total - 60:
+                    # Una vuelta que encierra superficie (dar la vuelta a un
+                    # óvalo) es del recorrido; un ir y volver por la misma
+                    # calle (área casi nula) es el rulo que sobra
+                    if loop_area(path[i:j + 1]) > LOOP_AREA_M2:
+                        break
                     i = j
                     break
         i += 1
@@ -516,17 +533,12 @@ def anchored(red, way, names):
     return path, names
 
 
-def trazados(stations, oficiales):
+def trazados(stations, oficiales, red):
     """Alimentadores de config/alim_trazados.json, por la red vial."""
     cfg = {k: v for k, v in json.loads(TRAZADOS.read_text(encoding='utf-8')).items()
            if not k.startswith('_')}
     if not cfg:
         return {}
-    from red_vial import Red
-    pts = [p for c in cfg.values() for p in c['ida'] + c.get('vuelta', [])]
-    pad = 0.01
-    red = Red((min(p[0] for p in pts) - pad, min(p[1] for p in pts) - pad,
-               max(p[0] for p in pts) + pad, max(p[1] for p in pts) + pad))
     by_id = {s['id']: s for s in stations}
     out = {}
     for ref, c in cfg.items():
@@ -568,9 +580,20 @@ def main() -> None:
     rels, stops = load()
     oficiales = {k: v for k, v in json.loads(OFFICIAL.read_text(encoding='utf-8')).items()
                  if not k.startswith('_')}
+    # La red de calles de toda la zona de los alimentadores: los dibujos de OSM
+    # se pegan a ella (recorrido.py) y los de los mapas QR se trazan por ella
+    allpts = [q for r in rels.values() for x in r.values() for part in x['parts'] for q in part]
+    allpts += [tuple(p[:2]) for c in json.loads(TRAZADOS.read_text(encoding='utf-8')).values()
+               if isinstance(c, dict) for p in c.get('ida', []) + c.get('vuelta', [])]
+    R = Recorridos((min(p[0] for p in allpts) - 0.01, min(p[1] for p in allpts) - 0.01,
+                    max(p[0] for p in allpts) + 0.01, max(p[1] for p in allpts) + 0.01))
+    on_net = lambda path: [tuple(p) for p in R.geometry(R.match(path))]
+
     out = {}
     for ref in sorted(rels):
-        paths = [clean(chain(r['parts'])) for r in rels[ref].values()]
+        # El dibujo de la relación de OSM, pegado nodo a nodo a sus calles
+        # (entra al óvalo por el anillo); sin rulos cortos de ways unidos al revés
+        paths = [clean(on_net(chain(r['parts']))) for r in rels[ref].values()]
         paths = [p for p in paths if len(p) > 1]
         if not paths:
             continue
@@ -584,6 +607,10 @@ def main() -> None:
         loops = [p for p in paths if dist(p[0], p[-1]) < LOOP_M]
         if loops:
             loop = max(loops, key=lambda p: len(p))
+            # Extremos que no coinciden (la relación empieza y termina en las
+            # dos entradas de un óvalo): se cierra por la red, no en recta
+            if dist(loop[0], loop[-1]) >= 1:
+                loop = loop + R.join(loop[-1], loop[0]) + [loop[0]]
             start = min(range(len(loop)), key=lambda i: dist(loop[i], tpt))
             ring = rotate(loop, start)
             far = max(range(len(ring)), key=lambda i: dist(ring[i], tpt))
@@ -628,7 +655,19 @@ def main() -> None:
         out[ref]['vuelta']['to'] = term['name']
 
     # Los de los mapas QR reemplazan al de OSM del mismo código
-    out.update(trazados(stations, oficiales))
+    out.update(trazados(stations, oficiales, R.red))
+
+    # Los pasos de cada sentido ("por Av. X 420 m, a la derecha en Av. Y, en
+    # el óvalo toma la 2.ª salida…"), para leer y corregir el recorrido; y
+    # cuántos tramos del dibujo quedaron sin calle
+    for svc in out.values():
+        for key in ('ida', 'vuelta'):
+            if not svc.get(key):
+                continue
+            rec = R.match(svc[key]['coords'])
+            svc[key]['pasos'] = R.steps(rec)
+            if rec['sueltos']:
+                svc[key]['sin_calle'] = len(rec['sueltos'])
 
     OUT.write_text(json.dumps({'updated': dt.date.today().isoformat(), 'services': out},
                               ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
