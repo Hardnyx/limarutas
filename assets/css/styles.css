@@ -1115,13 +1115,77 @@ html.beta .suggest {
   background: var(--fill);
 }
 
-/* En el mapa (N) + Limpiar */
+/* En el mapa (N) + Quitar todas, y debajo cuáles son */
 .on-map {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 2px 4px 2px 8px;
+  font-size: 12px;
+}
+
+.on-map-bar {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 2px 4px 2px 8px;
-  font-size: 12px;
+}
+
+.on-map-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.on-map-chev {
+  display: inline-flex;
+  transition: transform 120ms ease;
+}
+
+.on-map-chev svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.on-map-toggle[aria-expanded="true"] .on-map-chev {
+  transform: rotate(90deg);
+}
+
+/* El desglose no empuja todo hacia abajo: tiene su propio scroll */
+.on-map-list {
+  max-height: 38vh;
+  overflow-y: auto;
+  margin: 0 -4px 0 -8px;
+}
+
+.on-map-list[hidden] {
+  display: none;
+}
+
+/* Filas compactas: el nombre y su recorrido, sin la segunda línea */
+.on-map-list .left .sub + .sub {
+  display: none;
+}
+
+.on-map-go {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.on-map-group {
+  font-weight: 600;
+  color: var(--text-main);
 }
 
 .on-map[hidden] {
@@ -1142,7 +1206,7 @@ html.beta .suggest {
   text-align: center;
 }
 
-.on-map .btn {
+.on-map-bar .btn {
   margin-left: auto;
 }
 
@@ -2729,6 +2793,31 @@ html.beta .on-map-label {
 html.beta .on-map-count {
   background: var(--accent);
   color: var(--on-accent);
+}
+
+/* Lista larga abierta (Transporte público): su título y su filtro quedan
+   arriba al bajar, para cerrarla o filtrar sin volver al inicio */
+html.beta .panel {
+  overflow: clip;
+}
+
+html.beta #panels section.panel.open > .panel-head {
+  position: sticky;
+  top: 0;
+  z-index: 4;
+  background: var(--surface);
+}
+
+html.beta #panels section.panel.open section.panel.open > .panel-head {
+  top: 52px;
+  z-index: 3;
+}
+
+html.beta #panels section.panel.open .list-filter {
+  position: sticky;
+  top: 58px;
+  z-index: 3;
+  box-shadow: 0 0 0 6px var(--surface);   /* tapa las filas que pasan por detrás */
 }
 
 html.beta .list-filter {

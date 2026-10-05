@@ -2,8 +2,13 @@
 // Panel "Rutas recientes": las últimas rutas que el usuario marcó una a una
 // (en la lista o desde el buscador), para volver a marcarlas o desmarcarlas
 // rápido. Las casillas de grupo no agregan rutas aquí.
+//
+// En la nueva interfaz (betaLayout.js) hay además "En el mapa": el desglose
+// de las rutas marcadas ahora, con las mismas filas. Ahí Recientes es el
+// historial: solo las que ya no están en el mapa.
 import { SYSTEM_LABELS } from './config.js';
-import { $, el } from './utils.js';
+import { $, $$, el } from './utils.js';
+import { toggleLeaf } from './leafToggle.js';
 
 const MAX_RECENTS = 8;
 const STORAGE_KEY = 'limarutas.recents';
@@ -87,7 +92,7 @@ function syncRow(row){
   });
 }
 
-function makeRow(entry, leaf){
+function makeRow(entry, leaf, { onMap = false } = {}){
   const item = leaf.closest('.item');
   const name = item?.querySelector('.item-head .name')?.textContent || entry.id;
 
@@ -106,21 +111,29 @@ function makeRow(entry, leaf){
   const btnRemove = el('button', {
     type: 'button',
     class: 'recent-remove',
-    title: 'Quitar de recientes y del mapa',
-    'aria-label': `Quitar ${name} de recientes y del mapa`
+    title: onMap ? 'Quitar del mapa' : 'Quitar de recientes y del mapa',
+    'aria-label': onMap ? `Quitar ${name} del mapa` : `Quitar ${name} de recientes y del mapa`
   }, '×');
   btnRemove.addEventListener('click', () => {
     if (leaf.checked){
       reordering = false;
       try { leaf.click(); } finally { reordering = true; }
     }
+    // En "En el mapa", × la quita del mapa y pasa al historial
+    if (onMap) return;
     recents = recents.filter(e => !(e.system === entry.system && e.id === entry.id));
     save();
     renderRecents();
   });
 
-  const head = el('label', { class: 'recent-row item-head', title: SYSTEM_LABELS[entry.system] || '' },
-    cloneLeft(item, entry), chk);
+  // En "En el mapa" no hace falta la casilla (todas están marcadas): tocar la
+  // fila lleva el mapa a la ruta
+  const head = onMap
+    ? el('button', { type: 'button', class: 'recent-row item-head on-map-go', title: `Ir a ${name} en el mapa` },
+      cloneLeft(item, entry))
+    : el('label', { class: 'recent-row item-head', title: SYSTEM_LABELS[entry.system] || '' },
+      cloneLeft(item, entry), chk);
+  if (onMap) head.addEventListener('click', () => toggleLeaf(leaf, true, { fit: true }));
 
   const row = el('div', { class: 'recent-item' },
     el('div', { class: 'recent-top' }, head, btnRemove));
@@ -138,9 +151,10 @@ export function renderRecents(){
   if (!panel || !list) return;
 
   list.innerHTML = '';
+  const split = !!$('#onMapList');     // nueva interfaz: las del mapa van en "En el mapa"
   for (const entry of recents){
     const leaf = findLeaf(entry);
-    if (leaf) list.appendChild(makeRow(entry, leaf));
+    if (leaf && !(split && leaf.checked)) list.appendChild(makeRow(entry, leaf));
   }
   panel.hidden = !list.children.length;
   syncClearButton();
@@ -150,6 +164,69 @@ export function renderRecents(){
 function syncClearButton(){
   const btn = $('#btnClearRecents');
   if (btn) btn.hidden = !recents.some(e => findLeaf(e) && !findLeaf(e).checked);
+}
+
+/* =========================
+   En el mapa (nueva interfaz)
+   ========================= */
+
+// Más rutas que esto marcadas de un mismo grupo (todo el Metropolitano, un
+// corredor entero): una fila por el grupo
+const GROUP_ROW_MIN = 6;
+const LEAF = '.item .item-head input[type="checkbox"][data-system][data-id]';
+
+// Las casillas del menú principal (no las copias de Recientes ni de En el mapa)
+const mainLeaves = () => $$(`#panels ${LEAF}`).filter(c => !c.closest('#p-recent'));
+
+// Fila de un grupo entero: su nombre, cuántas rutas y × para quitarlas
+function groupRow(section, n){
+  const head = section.querySelector(':scope > .panel-head');
+  const title = head?.querySelector('.title')?.firstChild?.textContent?.trim() || 'Grupo';
+  const chk = head?.querySelector(':scope > input[type="checkbox"]');
+  const btnRemove = el('button', {
+    type: 'button', class: 'recent-remove', title: 'Quitar del mapa', 'aria-label': `Quitar ${title} del mapa`
+  }, '×');
+  btnRemove.addEventListener('click', () => { if (chk?.checked || chk?.indeterminate) chk.click(); if (chk?.checked) chk.click(); });
+  const go = el('button', { type: 'button', class: 'recent-row item-head on-map-go', title: `Ver ${title}` },
+    el('div', { class: 'left' }, el('span', { class: 'on-map-group' }, title),
+      el('span', { class: 'sub' }, `${n} rutas`)));
+  go.addEventListener('click', () => {
+    if (!section.classList.contains('open')) head?.click();
+    head?.scrollIntoView({ block: 'start' });
+  });
+  return el('div', { class: 'recent-item on-map-item is-group' }, el('div', { class: 'recent-top' }, go, btnRemove));
+}
+
+// Desglose de lo que está en el mapa: una fila por ruta (con su sentido y ×)
+// o, si un grupo entero está marcado, una por el grupo
+export function renderOnMap(){
+  const list = $('#onMapList');
+  if (!list) return;
+  const on = mainLeaves().filter(c => c.checked);
+  const rows = [];
+  const done = new Set();
+  // Grupos enteros primero (de afuera hacia adentro: Metropolitano antes que
+  // sus servicios)
+  for (const section of $$('#panels section.panel')){
+    if (section.id === 'p-recent') continue;
+    const leaves = [...section.querySelectorAll(LEAF)];
+    if (leaves.length < GROUP_ROW_MIN || leaves.some(c => !c.checked || done.has(c))) continue;
+    leaves.forEach(c => done.add(c));
+    rows.push(groupRow(section, leaves.length));
+  }
+  for (const leaf of on){
+    if (done.has(leaf)) continue;
+    const entry = { system: leaf.dataset.system, id: leaf.dataset.id };
+    rows.push(Object.assign(makeRow(entry, leaf, { onMap: true }), { className: 'recent-item on-map-item' }));
+  }
+  list.replaceChildren(...rows);
+}
+
+// Tras cualquier cambio de casillas: el desglose y el historial
+export function refreshOnMap(){
+  if (!$('#onMapList')) return;
+  renderOnMap();
+  renderRecents();
 }
 
 // Refleja en el panel el estado actual de las casillas originales

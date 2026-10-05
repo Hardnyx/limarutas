@@ -14,8 +14,10 @@ import { wireMobileSheet } from './mobileSheet.js';
 import { wireTripUi } from './tripUi.js';
 import { closeRouteInspector } from './routeInspector.js';
 import { icon } from './icons.js';
+import { refreshOnMap } from './recents.js';
 
 const LEAF_SEL = '.item .item-head input[type="checkbox"]';
+const ON_MAP_KEY = 'limarutas.onMapOpen';
 
 // Orden de las secciones (del transporte más estructurado al menos) y el
 // elemento que identifica a cada una
@@ -46,6 +48,7 @@ export function applyBetaLayout(){
 
   buildTabs(sidebar, panels);
   reorderSections(panels);
+  keepClosedHeadInView(panels);
   buildMapSettings(panels);
   wireMobileSheet();
 }
@@ -78,17 +81,40 @@ function buildTabs(sidebar, panels){
     routesPane.appendChild(search);
   }
 
-  // "En el mapa (N)" + Limpiar (el mismo #btnClearAll)
-  const onMap = el('div', { class: 'on-map', id: 'onMap', hidden: '' },
-    el('span', { class: 'on-map-label' }, 'En el mapa'),
-    el('span', { class: 'on-map-count', id: 'onMapCount' }, '0'));
+  // "En el mapa (N)" + Quitar todas (el mismo #btnClearAll); al tocarlo se
+  // despliega cuáles son (recents.js: una fila por ruta, con su sentido y ×)
+  const toggle = el('button', {
+    type: 'button', class: 'on-map-toggle', id: 'onMapToggle',
+    'aria-expanded': 'true', 'aria-controls': 'onMapList', title: 'Ver las rutas que están en el mapa'
+  },
+  el('span', { class: 'on-map-chev', 'aria-hidden': 'true' }, icon('chevron')),
+  el('span', { class: 'on-map-label' }, 'En el mapa'),
+  el('span', { class: 'on-map-count', id: 'onMapCount' }, '0'));
+  const bar = el('div', { class: 'on-map-bar' }, toggle);
   const btnClearAll = $('#btnClearAll');
   if (btnClearAll){
-    btnClearAll.textContent = 'Limpiar';
+    btnClearAll.textContent = 'Quitar todas';
     btnClearAll.classList.add('small');
     btnClearAll.title = 'Quitar todas las rutas del mapa';
-    onMap.appendChild(btnClearAll);
+    bar.appendChild(btnClearAll);
   }
+  const onMapList = el('div', { class: 'on-map-list recent-list', id: 'onMapList' });
+  const onMap = el('div', { class: 'on-map', id: 'onMap', hidden: '' }, bar, onMapList);
+  // Abierto o cerrado, como lo dejó la persona; la primera vez, abierto en
+  // escritorio y cerrado en el celular (la hoja es chica)
+  let open = !window.matchMedia?.('(max-width: 700px)').matches;
+  try {
+    const saved = localStorage.getItem(ON_MAP_KEY);
+    if (saved !== null) open = saved !== '0';
+  } catch {}
+  const setOpen = (v) => {
+    open = v;
+    toggle.setAttribute('aria-expanded', String(v));
+    onMapList.hidden = !v;
+    try { localStorage.setItem(ON_MAP_KEY, v ? '1' : '0'); } catch {}
+  };
+  setOpen(open);
+  toggle.addEventListener('click', () => setOpen(!open));
   routesPane.append(onMap, panels);
 
   const header = sidebar.querySelector('.header');
@@ -118,6 +144,21 @@ function buildTabs(sidebar, panels){
   });
   // Se abre en "Cómo llegar": ir de A a B es lo que más se busca
   select('trip');
+}
+
+// Al cerrar una sección larga desde su título fijo, la lista vuelve a ese
+// título (si no, quedaría a mitad de la sección siguiente)
+function keepClosedHeadInView(panels){
+  panels.addEventListener('click', (e) => {
+    const head = e.target.closest('.panel-head');
+    if (!head || e.target.closest('input[type="checkbox"]')) return;
+    setTimeout(() => {
+      const section = head.closest('section.panel');
+      if (!section || section.classList.contains('open')) return;
+      const top = panels.getBoundingClientRect().top;
+      if (head.getBoundingClientRect().top < top) head.scrollIntoView({ block: 'start' });
+    }, 0);
+  });
 }
 
 function reorderSections(panels){
@@ -225,6 +266,7 @@ function updateCounts(){
     onMap.hidden = n === 0;
     $('#onMapCount').textContent = String(n);
   }
+  refreshOnMap();
 
   // Secciones y subgrupos (Corredor Amarillo › Principales…): cuántas rutas
   // tienen y cuántas están en el mapa

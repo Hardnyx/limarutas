@@ -39,6 +39,51 @@ test.describe('nueva interfaz', () => {
     expect(await app.visibleWr()).toEqual([]);
   });
 
+  test('"En el mapa" desglosa las rutas marcadas: ir a una, quitarla, un grupo entero en una fila', async ({ app, page }) => {
+    await app.search('1240');
+    await page.keyboard.press('Enter');
+    await app.search('1255');
+    await page.keyboard.press('Enter');
+    const rows = page.locator('#onMapList .recent-item');
+    await expect(rows).toHaveCount(2);
+    // Recientes no las repite: están en el mapa
+    await expect(page.locator('#p-recent')).toBeHidden();
+    // Se pliega y despliega
+    await page.click('#onMapToggle');
+    await expect(page.locator('#onMapList')).toBeHidden();
+    await page.click('#onMapToggle');
+    await expect(rows).toHaveCount(2);
+    // Tocar la fila lleva el mapa a la ruta
+    await app.settle();
+    await app.setView(-12.3, -76.8, 15);
+    await rows.filter({ hasText: '1240' }).locator('.on-map-go').click();
+    await expect.poll(() => app.state(s => s.map.getBounds().intersects(s.systems.wr.bounds.get('1240-ida')))).toBe(true);
+    // × la quita del mapa y pasa al historial
+    await rows.filter({ hasText: '1255' }).locator('.recent-remove').click();
+    await expect(app.leaf('wr', '1255')).not.toBeChecked();
+    await expect(page.locator('#p-recent-list .recent-item', { hasText: '1255' })).toHaveCount(1);
+    // Todo el Metropolitano: una sola fila
+    await page.evaluate(() => document.getElementById('chk-met').click());
+    await expect(page.locator('#onMapList .is-group')).toHaveCount(1);
+    await expect(page.locator('#onMapList .is-group')).toContainText('Metropolitano');
+    await page.locator('#onMapList .is-group .recent-remove').click();
+    await expect(page.locator('#onMapList .is-group')).toHaveCount(0);
+    await expect(rows).toHaveCount(1);
+  });
+
+  test('lista larga abierta: su título queda arriba al bajar y al cerrarla vuelve a él', async ({ page }) => {
+    await page.click('.panel-head:has(#chk-wr) .title');
+    const head = page.locator('#panels > section.panel:has(> .panel-head #chk-wr) > .panel-head');
+    await page.locator('#panels').evaluate(n => { n.scrollTop = 4000; });
+    await page.waitForTimeout(200);
+    const [p, h] = await Promise.all([page.locator('#panels').boundingBox(), head.boundingBox()]);
+    expect(Math.abs(h.y - p.y)).toBeLessThan(3);
+    await head.locator('.title').click();
+    await expect(page.locator('#p-wr-body')).toBeHidden();
+    const h2 = await head.boundingBox();
+    expect(h2.y).toBeGreaterThanOrEqual(p.y - 1);
+  });
+
   test('filtro de lista: por empresa, sin desmarcar las ocultas; el grupo solo marca las visibles', async ({ app, page }) => {
     await app.search('1255');
     await page.keyboard.press('Enter');

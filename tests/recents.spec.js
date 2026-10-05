@@ -3,12 +3,17 @@
 // (incluido Ida/Vuelta) y se recuerdan al recargar.
 import { test, expect } from './fixtures.js';
 
+// En la nueva interfaz las rutas que están en el mapa se listan en "En el
+// mapa" (sin casilla: × las quita) y Recientes es el historial
+const onMapRow = (page, beta) => page.locator(beta ? '#onMapList .recent-item' : '#p-recent-list .recent-item');
+
 test('una ruta buscada aparece en recientes con sus controles de sentido', async ({ app, page }) => {
+  const beta = await app.isBeta();
   await app.search('1240');
   await page.keyboard.press('Enter');
-  const row = page.locator('#p-recent-list .recent-item').first();
+  const row = onMapRow(page, beta).first();
   await expect(row).toContainText('1240');
-  await expect(row.locator('.recent-row input')).toBeChecked();
+  if (!beta) await expect(row.locator('.recent-row input')).toBeChecked();
   await expect(row.locator('.dir-mini .segbtn-mini')).toHaveText(['Ida', 'Vuelta']);
 
   // Vuelta desde recientes cambia la ruta real, sincroniza el menú y no mueve la vista
@@ -23,15 +28,18 @@ test('una ruta buscada aparece en recientes con sus controles de sentido', async
     c.closest('.item').querySelector('.segbtn-mini.active').dataset.dir);
   expect(mainActive).toBe('vuelta');
 
-  // Desmarcar desde recientes quita la ruta
-  await row.locator('.recent-row input').uncheck();
+  // Desmarcar desde recientes (× en "En el mapa") quita la ruta
+  if (beta) await row.locator('.recent-remove').click();
+  else await row.locator('.recent-row input').uncheck();
   await expect(app.leaf('wr', '1240')).not.toBeChecked();
+  // ...y en la nueva interfaz pasa al historial
+  if (beta) await expect(page.locator('#p-recent-list .recent-item', { hasText: '1240' })).toHaveCount(1);
 });
 
 test('recientes se recuerdan al recargar, desmarcadas', async ({ app, page }) => {
   await app.search('1255');
   await page.keyboard.press('Enter');
-  await expect(page.locator('#p-recent-list .recent-item')).toHaveCount(1);
+  await expect(onMapRow(page, await app.isBeta())).toHaveCount(1);
   await page.reload();
   await expect(page.locator('#status')).toHaveText('Listo', { timeout: 90_000 });
   const row = page.locator('#p-recent-list .recent-item').first();
@@ -40,14 +48,22 @@ test('recientes se recuerdan al recargar, desmarcadas', async ({ app, page }) =>
 });
 
 test('× quita la fila y también la ruta del mapa', async ({ app, page }) => {
+  const beta = await app.isBeta();
   await app.search('1240');
   await page.keyboard.press('Enter');
   await expect(app.leaf('wr', '1240')).toBeChecked();
-  await page.locator('#p-recent-list .recent-item', { hasText: '1240' }).locator('.recent-remove').click();
+  await onMapRow(page, beta).filter({ hasText: '1240' }).locator('.recent-remove').click();
   await expect(app.leaf('wr', '1240')).not.toBeChecked();
-  await expect(page.locator('#p-recent-list .recent-item', { hasText: '1240' })).toHaveCount(0);
+  await expect(onMapRow(page, beta).filter({ hasText: '1240' })).toHaveCount(0);
   await app.settle();
   expect(await app.visibleWr()).toEqual([]);
+  if (beta){
+    // Sale del mapa pero queda en el historial; su × la borra de ahí
+    const hist = page.locator('#p-recent-list .recent-item', { hasText: '1240' });
+    await expect(hist).toHaveCount(1);
+    await hist.locator('.recent-remove').click();
+    await expect(hist).toHaveCount(0);
+  }
 });
 
 test('Limpiar borra el historial pero deja las rutas que están en el mapa', async ({ app, page }) => {
@@ -58,11 +74,15 @@ test('Limpiar borra el historial pero deja las rutas que están en el mapa', asy
   // Con todas en el mapa, no hay historial que limpiar
   await expect(page.locator('#btnClearRecents')).toBeHidden();
 
-  await page.locator('#p-recent-list .recent-item', { hasText: '1255' }).locator('.recent-row input').uncheck();
+  const beta = await app.isBeta();
+  if (beta) await onMapRow(page, beta).filter({ hasText: '1255' }).locator('.recent-remove').click();
+  else await page.locator('#p-recent-list .recent-item', { hasText: '1255' }).locator('.recent-row input').uncheck();
   await expect(page.locator('#btnClearRecents')).toBeVisible();
   await page.click('#btnClearRecents');
-  const rows = page.locator('#p-recent-list .recent-item');
+  // Queda solo la que está en el mapa (en la nueva interfaz, en "En el mapa")
+  const rows = beta ? page.locator('#onMapList .recent-item') : page.locator('#p-recent-list .recent-item');
   await expect(rows).toHaveCount(1);
   await expect(rows.first()).toContainText('1240');
+  if (beta) await expect(page.locator('#p-recent')).toBeHidden();
   await expect(app.leaf('wr', '1240')).toBeChecked();
 });

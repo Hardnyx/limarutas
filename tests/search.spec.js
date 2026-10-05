@@ -102,7 +102,10 @@ test('elegir una ruta ya marcada lleva el mapa a ella y la sube en recientes', a
   expect(await app.view()).not.toEqual(before);
   const inView = await app.state(s => s.map.getBounds().intersects(s.systems.wr.bounds.get('1240-ida')));
   expect(inView).toBe(true);
-  await expect(page.locator('#p-recent-list .recent-item').first()).toContainText('1240');
+  // Sube en recientes (en la nueva interfaz, está en "En el mapa")
+  const list = (await app.isBeta()) ? '#onMapList' : '#p-recent-list';
+  await expect(page.locator(`${list} .recent-item`, { hasText: '1240' })).toHaveCount(1);
+  if (!(await app.isBeta())) await expect(page.locator('#p-recent-list .recent-item').first()).toContainText('1240');
 });
 
 test('paraderos del mismo nombre se distinguen por su cruce; buscar el cruce trae ese', async ({ app, page }) => {
