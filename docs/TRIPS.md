@@ -128,6 +128,21 @@ pedir un camino por cada combinación sería miles de consultas.
    viaje en ellos, siempre aparece (le hace lugar el transbordo más caro,
    nunca una ruta única).
 
+**Congestión.** `config/congestion.json` lista las avenidas donde el bus va
+más lento que el promedio (Abancay a 11 km/h según la ATU, Grau, Alfonso
+Ugarte, Javier Prado de la Vía Expresa a la Universidad de Lima,
+Universitaria, Túpac Amaru, Próceres de la Independencia, Carretera Central,
+las Panamericanas y la Vía de Evitamiento), cada una con su tramo crítico y
+cuánto más dura en hora punta. `build_trip_graph.py` (`congestion.py`) da a
+cada tramo entre paraderos su % extra (`slow`) según cuánto de él va por esas
+avenidas; el planificador lo aplica completo en hora punta de lunes a viernes
+(6:00–9:30 y 17:00–21:00), la mitad el resto del día, 0,4 los sábados, 0,2
+los domingos y nada de noche. No aplica al Metropolitano ni al Metro.
+
+**Estación más lejana.** Si el tramo a pie lleva a una estación del
+Metropolitano y hay otra más cerca donde ese servicio no para, el paso lo
+dice («El Expreso 2 no para en Canaval y Moreyra, que está más cerca»).
+
 Minutos estimados: caminata 75 m/min con 30 % de rodeo, bus 250 m/min
 (~15 km/h), Metro y Metropolitano 500 m/min, 3 min por transbordo (bajar
 y cruzar). El tramo se dibuja por el trazo de Wikiroutes; el Metropolitano, por su

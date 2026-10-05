@@ -59,7 +59,8 @@ function plan(page, from, to, opts = {}){
 }
 
 test('viaje directo: opciones hacia adelante, cerca de A y B y con rutas alternativas', async ({ app, page }) => {
-  const r = await plan(page, PUENTE_NUEVO, PLAZA_SAN_MARTIN);
+  // De noche, sin congestión (con tráfico, el directo por Abancay deja de ser cómodo)
+  const r = await plan(page, PUENTE_NUEVO, PLAZA_SAN_MARTIN, { at: { day: 2, min: 22 * 60 + 30 } });
   expect(r.walkOnly).toBe(false);
   expect(r.options.length).toBeGreaterThan(0);
   expect(r.options.length).toBeLessThanOrEqual(6);
@@ -77,6 +78,29 @@ test('viaje directo: opciones hacia adelante, cerca de A y B y con rutas alterna
   // Primero una ruta única (hay una con poca caminata) y sin repetir la misma ruta como principal
   expect(r.options[0].transfers).toBe(0);
   expect(new Set(r.options.map(o => o.services.join('>'))).size).toBe(r.options.length);
+});
+
+test('congestión: en hora punta el tramo por Abancay y Grau dura más; de noche, no', async ({ app, page }) => {
+  const r = await page.evaluate(async () => {
+    const { loadTripGraph } = await import('/assets/js/tripData.js');
+    const { planTrip, congestionWeight } = await import('/assets/js/tripPlanner.js');
+    const g = await loadTripGraph();
+    const ride = at => {
+      const res = planTrip(g, { lat: -12.0433, lon: -77.0126 }, { lat: -12.0515, lon: -77.0347 }, { at });
+      return Math.min(...res.options.filter(o => !o.transfers).map(o => o.minutes));
+    };
+    const r1481 = g.routes.find(x => x.key === '1481-ida');
+    return {
+      w: [congestionWeight({ day: 2, min: 7 * 60 + 30 }), congestionWeight({ day: 2, min: 12 * 60 }),
+          congestionWeight({ day: 0, min: 12 * 60 }), congestionWeight({ day: 2, min: 23 * 60 })],
+      // La 1481 baja por Grau y sube por Abancay: esos tramos llevan % extra
+      slowMax: Math.max(...(r1481.slow || [0])),
+      peak: ride({ day: 2, min: 7 * 60 + 30 }), night: ride({ day: 2, min: 22 * 60 + 30 })
+    };
+  });
+  expect(r.w).toEqual([1, 0.5, 0.2, 0]);
+  expect(r.slowMax).toBeGreaterThanOrEqual(30);
+  expect(r.peak).toBeGreaterThan(r.night);
 });
 
 test('lejos: los transbordos no repiten rutas que ya van directo', async ({ app, page }) => {
@@ -488,5 +512,24 @@ test.describe('pestaña Cómo llegar', () => {
     await page.click('.trip-field[data-end="to"] .trip-clear');
     await expect(page.locator('#tripResults')).toBeEmpty();
     await expect(page.locator('.trip-pin-to')).toHaveCount(0);
+  });
+});
+
+test.describe('Cómo llegar en hora punta de la tarde', () => {
+  // Martes 18:30 en Lima: circula el Expreso 2, que no para en Canaval y Moreyra
+  test.use({ startTab: 'default', clockAt: '2026-09-29T23:30:00Z' });
+
+  test('si se camina a una estación más lejana, el paso dice por qué', async ({ app, page }) => {
+    test.skip(!(await app.isBeta()), 'solo en la nueva interfaz');
+    await page.click('#tabTrip');
+    await page.evaluate(async () => {
+      const m = await import('/assets/js/tripUi.js');
+      // Centro Financiero de San Isidro (a 200 m de Canaval y Moreyra) → Naranjal
+      await m.setTripEnds({ lat: -12.0957, lon: -77.0262, label: 'A' }, { lat: -11.9821, lon: -77.0587, label: 'B' });
+    });
+    const card = page.locator('.trip-card', { has: page.locator('.trip-name', { hasText: 'Expreso 2' }) }).first();
+    await expect(card).toBeVisible();
+    await card.click();
+    await expect(card.locator('.trip-why')).toHaveText('El Expreso 2 no para en Canaval y Moreyra, que está más cerca');
   });
 });

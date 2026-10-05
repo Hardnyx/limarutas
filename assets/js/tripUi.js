@@ -3,7 +3,7 @@
 // en el mapa), opciones de viaje (tripPlanner.js) y su dibujo en el mapa.
 import { state } from './config.js';
 import { $, el } from './utils.js';
-import { loadTripGraph } from './tripData.js';
+import { loadTripGraph, distM } from './tripData.js';
 import { planTrip, oldWouldHelp, offHoursHelp } from './tripPlanner.js';
 import { limaTime, scheduleText, nextStart, DAY_NAMES } from './metSchedule.js';
 import { fitTo } from './mapFit.js';
@@ -420,6 +420,36 @@ const headsign = r => {
   return (m && state.systems.alim.paths?.[m[1]]?.[m[2]]?.to) || stopName(r.stops[r.stops.length - 1]);
 };
 
+// Estaciones del Metropolitano (nodos del grafo), para explicar por qué se
+// camina a una más lejana
+let metNodes = null;
+function metStations(){
+  if (!metNodes){
+    metNodes = new Set();
+    for (const r of graph.routes) if (r.group === 'metropolitano') r.stops.forEach(i => metNodes.add(i));
+  }
+  return metNodes;
+}
+
+// "El Expreso 2 no para en Canaval y Moreyra, que está más cerca": cuando la
+// estación de subida no es la más cercana al punto de partida del tramo a pie
+function skippedNearer(from, ride){
+  if (ride?.type !== 'ride' || ride.route.group !== 'metropolitano') return null;
+  const r = ride.route;
+  const board = r.stops[ride.from];
+  const { lat, lon } = graph.stops;
+  const d = i => distM(from[0], from[1], lat[i], lon[i]);
+  const own = new Set(r.stops);
+  let best = null;
+  for (const i of metStations()){
+    if (own.has(i) || stopName(i) === stopName(board)) continue;
+    if (d(i) + 150 < d(board) && (!best || d(i) < d(best))) best = i;
+  }
+  if (best == null) return null;
+  const name = routeName(r).replace(/^Metropolitano · /, '');
+  return `${/^Ruta\b/.test(name) ? 'La' : 'El'} ${name} no para en ${stopName(best)}, que está más cerca`;
+}
+
 function stepsOf(opt){
   const steps = [];
   opt.legs.forEach((leg, k) => {
@@ -428,9 +458,12 @@ function stepsOf(opt){
       const where = k === 0 ? `hasta ${stopName(leg.to)}`
         : k === opt.legs.length - 1 ? 'hasta tu destino'
           : `hasta ${stopName(leg.to)} para el transbordo`;
+      const start = leg.from != null ? [graph.stops.lat[leg.from], graph.stops.lon[leg.from]] : [ends.from.lat, ends.from.lon];
+      const why = k < opt.legs.length - 1 && skippedNearer(start, opt.legs[k + 1]);
       steps.push(el('li', { class: 'trip-step trip-step-walk' },
         el('span', { class: 'trip-step-ico' }, icon('walk')),
-        el('span', {}, `Camina ${fmtM(leg.m)} ${where}`, el('span', { class: 'trip-sub' }, ` · ${walkMinOf(leg.m)} min`))));
+        el('span', {}, `Camina ${fmtM(leg.m)} ${where}`, el('span', { class: 'trip-sub' }, ` · ${walkMinOf(leg.m)} min`),
+          why ? el('div', { class: 'trip-sub trip-why' }, why) : '')));
     } else {
       const r = leg.route;
       const n = leg.to - leg.from;

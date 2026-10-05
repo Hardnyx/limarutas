@@ -59,10 +59,27 @@ const DOMINATED_SAVING_MIN = 10; // un transbordo con una ruta que ya va directo
 
 const walkMin = m => (m * DETOUR) / WALK_M_PER_MIN;
 
-// Minutos del tramo k → k+1 de una ruta (se calculan una vez por ruta)
+// Congestión: cuánto pesa el % extra de las avenidas congestionadas
+// (route.slow) según la hora de salida. Hora punta de lunes a viernes
+// (6:00–9:30 y 17:00–21:00): todo; el resto del día, la mitad; sábado, 0,4;
+// domingo, 0,2; de noche, nada. Sin hora: la mitad.
+export function congestionWeight(at){
+  if (!at) return 0.5;
+  const { day, min } = at;
+  if (min < 5 * 60 + 30 || min >= 22 * 60) return 0;
+  if (day === 0) return 0.2;
+  if (day === 6) return 0.4;
+  const peak = (min >= 6 * 60 && min < 9 * 60 + 30) || (min >= 17 * 60 && min < 21 * 60);
+  return peak ? 1 : 0.5;
+}
+let congestionW = 0.5;
+
+// Minutos del tramo k → k+1 de una ruta (se calculan una vez por ruta y
+// peso de congestión)
 const legCache = new WeakMap();
 function legMin(g, r, k){
-  let legs = legCache.get(r);
+  let entry = legCache.get(r);
+  let legs = entry && entry.w === congestionW ? entry.legs : null;
   if (!legs){
     const { lat, lon } = g.stops;
     const speed = (r.group === 'metro' || r.group === 'metropolitano') ? FAST_M_PER_MIN : BUS_M_PER_MIN;
@@ -71,9 +88,9 @@ function legMin(g, r, k){
       const a = r.stops[i], b = r.stops[i + 1];
       // Por la vía si se conoce (Metropolitano); si no, en línea recta
       const m = r.segM?.[i] ?? distM(lat[a], lon[a], lat[b], lon[b]);
-      legs[i] = m / speed;
+      legs[i] = (m / speed) * (1 + congestionW * (r.slow?.[i] || 0) / 100);
     }
-    legCache.set(r, legs);
+    legCache.set(r, { w: congestionW, legs });
   }
   return legs[k];
 }
@@ -125,6 +142,7 @@ export function planTrip(g, from, to, { includeOld = false, at = null } = {}){
   const out = { walkOnly: direct <= WALK_ONLY_M, meters: direct, options: [] };
   if (out.walkOnly) return out;
 
+  congestionW = congestionWeight(at);
   const active = new Set(g.activeRoutes({ includeOld, at }));
   const isActive = i => active.has(g.routes[i]);
 

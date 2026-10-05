@@ -39,8 +39,10 @@ Formato de salida (compacto, se carga al abrir "Cómo llegar"):
              "metro:L1:0": [...], "metro:L1:1": [...]},
   "segM":   {"met:A:ns": [metros, ...]},         # por la vía entre paraderos
                                                 # consecutivos (sin esto, en recta)
-  "headway": {"1240-ida": 5, ...}               # minutos entre buses según la
-}                                               # ficha técnica del PRR (prr_fichas.json)
+  "headway": {"1240-ida": 5, ...},              # minutos entre buses según la
+                                                # ficha técnica del PRR (prr_fichas.json)
+  "slow":   {"1240-ida": [0, 40, 12, ...]}      # % extra de cada tramo en hora punta
+}                                               # por avenidas congestionadas (congestion.py)
 
 Uso:
     python pipeline/scripts/trips/build_trip_graph.py
@@ -56,8 +58,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT / 'pipeline' / 'scripts' / 'wikiroutes'))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 from distritos import Distritos  # noqa: E402
 from name_fixes import fix_stop_name  # noqa: E402
+from congestion import Congestion  # noqa: E402
 
 WR_MAP = ROOT / 'pipeline' / 'output' / 'wr_map.json'
 FICHAS = ROOT / 'pipeline' / 'output' / 'prr_fichas.json'
@@ -255,14 +259,25 @@ def main() -> None:
         rows.append([round(lat, 6), round(lon, 6), name, d_index[d]])
 
     headway = headways(routes)
+    # Congestión (config/congestion.json): el Metropolitano y el Metro van
+    # por vía exclusiva
+    cong = Congestion()
+    slow = {}
+    for key, seq in routes.items():
+        if key.startswith(('met:', 'metro:')):
+            continue
+        pct = cong.route([stops.coords[i] for i in seq])
+        if pct:
+            slow[key] = pct
     out = {'version': 1, 'districts': districts, 'stops': rows, 'routes': routes, 'segM': seg_m,
-           'headway': headway}
+           'headway': headway, 'slow': slow}
     OUT.write_text(json.dumps(out, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
 
     wr = sum(1 for k in routes if ':' not in k)
     print(f'Wikiroutes: {wr} de {n_layers} capas con paraderos ({missing} sin archivo)')
     print(f'Metropolitano: {n_met} servicios · Alimentadores: {n_alim} sentidos · Metro: {n_metro} líneas (ambos sentidos)')
     print(f'Intervalo de paso (fichas del PRR): {len(headway)} capas')
+    print(f'Congestión (config/congestion.json): {len(slow)} rutas pasan por avenidas congestionadas')
     print(f'Paraderos: {len(rows)} · {OUT.relative_to(ROOT)}: {OUT.stat().st_size / 1e6:.2f} MB')
 
 

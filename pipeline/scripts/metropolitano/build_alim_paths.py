@@ -65,6 +65,7 @@ MET = ROOT / 'data' / 'processed' / 'metropolitano'
 OUT = MET / 'alimentadores_paths.json'
 WR_STOPS = ROOT / 'pipeline' / 'output' / 'wr_stops_index.json'
 OFFICIAL = ROOT / 'config' / 'alim_paraderos.json'
+OSM_ZIP = ROOT / 'data' / 'raw' / 'osm' / 'transporte.zip'
 TRAZADOS = ROOT / 'config' / 'alim_trazados.json'
 
 LOOP_M = 80          # extremos a menos de esto: es un circuito
@@ -74,6 +75,8 @@ NAME_M = 150         # nombre del paradero: el de Wikiroutes más cercano, hasta
 OFFICIAL_M = 150     # paradero oficial: el de Wikiroutes de su nombre, hasta esto del trazado
 WR_ALONG_M = 30      # trazado sin lista oficial: paraderos de Wikiroutes hasta esto del trazado
 WR_GAP_M = 250       # ...y uno cada esto como mínimo (los de enfrente o de la misma cuadra se juntan)
+STREET_M = 35        # paradero oficial sin paradero de Wikiroutes: el cruce con la calle de su nombre, hasta esto
+LOOP_CUT_M = 250     # rulos más cortos que esto (cadenas de OSM mal unidas, puntos de paso a un costado) se cortan
 ANCHOR_M = 1200      # trazado de un mapa QR: un paradero oficial que está fuera, hasta esto, lo corrige
 
 M_LAT = 110_574
@@ -171,8 +174,8 @@ class Namer:
         return best[2] if dist((lat, lon), (best[0], best[1])) <= NAME_M else ''
 
 
-STOPWORDS = {'av', 'avenida', 'jr', 'ca', 'ovalo', 'parque', 'la', 'el', 'los', 'las',
-             'de', 'del', 'y', 'd'}
+STOPWORDS = {'av', 'avenida', 'jr', 'jiron', 'ca', 'calle', 'pasaje', 'prolongacion', 'ovalo', 'parque',
+             'la', 'el', 'los', 'las', 'de', 'del', 'y', 'd'}
 
 
 def tokens(name):
@@ -186,6 +189,67 @@ def same_name(official, wr):
     """Todas las palabras del oficial en el de Wikiroutes ('Plaza Vea' →
     'Plaza Vea (Alameda Sur)'), o al revés si no es una sola letra."""
     return bool(official) and (official <= wr or (wr and wr <= official and max(map(len, wr)) > 3))
+
+
+def clean(path):
+    """Sin rulos cortos: el camino que vuelve a pasar a menos de 15 m de un
+    punto tras recorrer menos de LOOP_CUT_M (dos ways de OSM unidos al revés
+    en una rotonda, un punto de paso a un costado de la calle) sigue de largo.
+    Los extremos (la vuelta en el terminal o al final del barrio) se dejan."""
+    if len(path) < 4:
+        return path
+    cum = cumulative(path)
+    total = cum[-1]
+    out, i = [], 0
+    while i < len(path):
+        out.append(path[i])
+        if 60 < cum[i] < total - 60:
+            for j in range(i + 2, len(path)):
+                run = cum[j] - cum[i]
+                if run > LOOP_CUT_M:
+                    break
+                if run > 30 and dist(path[i], path[j]) < 15 and cum[j] < total - 60:
+                    i = j
+                    break
+        i += 1
+    return out
+
+
+STREETS = None
+
+
+def streets():
+    """Calles con nombre de OSM (los ways de transporte.zip): [(tokens, puntos)]."""
+    global STREETS
+    if STREETS is None:
+        import zipfile
+        with zipfile.ZipFile(OSM_ZIP) as z:
+            osm = json.loads(z.read('transporte.json'))
+        STREETS = [(tokens(e['tags']['name']), [(g['lat'], g['lon']) for g in e['geometry']])
+                   for e in osm['elements']
+                   if e['type'] == 'way' and 'geometry' in e and e.get('tags', {}).get('name')]
+    return STREETS
+
+
+def on_street(path, cum, want, lo, hi):
+    """Dónde cruza (o toca) el trazado la calle del nombre del paradero, entre
+    lo y hi metros: (m, lat, lon) o None."""
+    if not want:
+        return None
+    lats = [p[0] for p in path]
+    lons = [p[1] for p in path]
+    s0, n0, w0, e0 = min(lats) - 0.002, max(lats) + 0.002, min(lons) - 0.002, max(lons) + 0.002
+    best = None
+    for toks, pts in streets():
+        if not same_name(want, toks):
+            continue
+        for q in pts:
+            if not (s0 <= q[0] <= n0 and w0 <= q[1] <= e0):
+                continue
+            d, m, _ = project(path, cum, q)
+            if d <= STREET_M and lo - 30 <= m <= hi + 30 and (best is None or m < best[0]):
+                best = (m, q[0], q[1])
+    return best
 
 
 def official(path, names, notes, dir_ref, first=None, last=None):
@@ -218,7 +282,19 @@ def official(path, names, notes, dir_ref, first=None, last=None):
         if hit:
             last_m = hit[1]
         placed.append(hit)
-    # Sin paradero de Wikiroutes: repartidos entre sus vecinos; al empezar la
+    # Sin paradero de Wikiroutes: el cruce con la calle de su nombre (los
+    # paraderos se llaman como la transversal: "Pacasmayo", "Alcides Vigo")
+    street = [False] * len(placed)
+    for i, hit in enumerate(placed):
+        if hit:
+            continue
+        lo = max((c[1] for c in placed[:i] if c), default=0.0)
+        hi = min((c[1] for c in placed[i + 1:] if c), default=cum[-1])
+        found = on_street(path, cum, wants[i], lo, hi)
+        if found:
+            placed[i] = (wants[i], found[0], found[1], found[2])
+            street[i] = True
+    # Sin calle tampoco: repartidos entre sus vecinos; al empezar la
     # vuelta, en el punto de vuelta; al terminar la ida, en su final
     ms = [c[1] if c else None for c in placed]
     i = 0
@@ -247,6 +323,8 @@ def official(path, names, notes, dir_ref, first=None, last=None):
         s = {'id': f'alim:{dir_ref}:{n}', 'name': name, 'lat': lat, 'lon': lon, '_m': m}
         if not hit:
             s['aprox'] = True
+        elif street[n]:
+            s['calle'] = True
         if name in notes:
             s['horario'] = notes[name]
         stops.append(s)
@@ -275,6 +353,17 @@ def merge_stops(items):
     return out
 
 
+def point_at(path, cum, m):
+    """Punto del trazado a m metros del inicio."""
+    for i in range(1, len(cum)):
+        if cum[i] >= m:
+            seg = cum[i] - cum[i - 1]
+            t = 0.0 if seg == 0 else (m - cum[i - 1]) / seg
+            a, b = path[i - 1], path[i]
+            return a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t
+    return path[-1]
+
+
 def direction(path, stops, first=None, last=None):
     """Trazado y paraderos de un sentido; first/last: estación del terminal."""
     cum = cumulative(path)
@@ -299,7 +388,13 @@ def direction(path, stops, first=None, last=None):
         at = min(range(len(cum)), key=lambda i: abs(cum[i] - m))
         if out and out[-1]['at'] > at:
             at = out[-1]['at']
-        out.append({**s, 'at': at, 'm': round(m)})
+        s = {**s, 'at': at, 'm': round(m)}
+        # Sobre la línea: el paradero de Wikiroutes está en la vereda y el
+        # dibujo queda mejor con el punto encima del trazado (las estaciones
+        # del Metropolitano quedan donde están)
+        if not str(s['id']).startswith('met:'):
+            s['lat'], s['lon'] = (round(v, 6) for v in point_at(path, cum, m))
+        out.append(s)
     return {'coords': [[round(lat, 6), round(lon, 6)] for lat, lon in path], 'stops': out}
 
 
@@ -439,6 +534,7 @@ def trazados(stations, oficiales):
         for key, first, last in (('ida', tstop, None), ('vuelta', None, tstop)):
             way = c.get(key) or (c['ida'][::-1] if key == 'vuelta' else None)
             path, names = anchored(red, way, of[key] if of else [])
+            path = clean(path)
             if of:
                 st = official(path, names, of.get('notas', {}), f'{ref}:{key}', first, last)
             else:
@@ -468,7 +564,7 @@ def main() -> None:
                  if not k.startswith('_')}
     out = {}
     for ref in sorted(rels):
-        paths = [chain(r['parts']) for r in rels[ref].values()]
+        paths = [clean(chain(r['parts'])) for r in rels[ref].values()]
         paths = [p for p in paths if len(p) > 1]
         if not paths:
             continue

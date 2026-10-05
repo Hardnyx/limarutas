@@ -125,6 +125,9 @@ export function buildTripGraph(raw){
       segM: raw.segM?.[key] || null,
       // Minutos entre buses según la ficha técnica del PRR (sin horario)
       headway: raw.headway?.[key] ?? null,
+      // % extra de cada tramo en hora punta por avenidas congestionadas
+      // (config/congestion.json); el Metropolitano y el Metro no tienen
+      slow: raw.slow?.[key] || null,
       stops: Int32Array.from(seq)
     });
   }

@@ -1,0 +1,21 @@
+{
+  "_fuente": "Avenidas donde el bus de transporte público va más lento que el promedio (~15 km/h, BUS_M_PER_MIN del planificador). 'factor': cuántas veces más dura el tramo en hora punta (15 km/h / velocidad medida o estimada). 'nombres': el nombre exacto del way en OSM (data/raw/osm/transporte.zip); 'bbox' [sur, oeste, norte, este]: solo el tramo congestionado (hay una Av. Grau o una Túpac Amaru en otros distritos). Fuera de hora punta pesa menos (tripPlanner.js). No aplica al Metropolitano ni al Metro (vía exclusiva). build_trip_graph.py lo lleva a trip_graph.json ('slow').",
+  "_referencias": [
+    "ATU: transporte público a 11 km/h en los 1,18 km de la Av. Abancay; ~10 km/h en el cruce Abancay-Grau (Gestión, Panamericana, Perú21, 2025: carril exclusivo de la Av. Abancay)",
+    "TomTom Traffic Index 2025: Lima a 13,9 km/h en hora punta de la mañana y 11,7 km/h de la tarde (Forbes Perú, Energiminas, 2026-01)",
+    "Puntos críticos reportados: Javier Prado de la Vía Expresa al óvalo de la Universidad de Lima, Grau de la Plaza Grau a Aviación, Universitaria, Túpac Amaru (Naranjal), Próceres de la Independencia (SJL), Carretera Central (Santa Clara, Vitarte, Santa Anita), Panamericana Sur desde el km 10, Vía de Evitamiento y Panamericana Norte (La República, Infobae, RPP, 2025)"
+  ],
+  "avenidas": [
+    {"nombre": "Abancay", "nombres": ["Avenida Abancay"], "bbox": [-12.066, -77.034, -12.040, -77.024], "factor": 1.4},
+    {"nombre": "Grau (Plaza Grau a Aviación)", "nombres": ["Avenida Almirante Miguel Grau", "Avenida Miguel Grau"], "bbox": [-12.068, -77.040, -12.052, -77.020], "factor": 1.4},
+    {"nombre": "Alfonso Ugarte", "nombres": ["Avenida Alfonso Ugarte"], "bbox": [-12.062, -77.046, -12.040, -77.034], "factor": 1.3},
+    {"nombre": "Javier Prado (Vía Expresa a la Universidad de Lima)", "nombres": ["Avenida Javier Prado Este"], "bbox": [-12.096, -77.026, -12.076, -76.968], "factor": 1.4},
+    {"nombre": "Universitaria", "nombres": ["Avenida Universitaria"], "bbox": [-12.090, -77.100, -11.880, -77.020], "factor": 1.25},
+    {"nombre": "Túpac Amaru", "nombres": ["Avenida Túpac Amaru"], "bbox": [-12.010, -77.070, -11.840, -76.990], "factor": 1.25},
+    {"nombre": "Próceres de la Independencia (San Juan de Lurigancho)", "nombres": ["Avenida Próceres de la Independencia"], "bbox": [-12.040, -77.020, -11.930, -76.960], "factor": 1.25},
+    {"nombre": "Carretera Central", "nombres": ["Carretera Central"], "bbox": [-12.075, -76.990, -11.980, -76.850], "factor": 1.3},
+    {"nombre": "Panamericana Sur (desde el km 10)", "nombres": ["Avenida Panamericana Sur", "Carretera Panamericana Sur"], "bbox": [-12.320, -77.000, -12.150, -76.880], "factor": 1.2},
+    {"nombre": "Panamericana Norte", "nombres": ["Avenida Panamericana Norte", "Carretera Panamericana Norte"], "bbox": [-12.020, -77.100, -11.850, -77.040], "factor": 1.2},
+    {"nombre": "Vía de Evitamiento", "nombres": ["Vía de Evitamiento"], "bbox": [-12.130, -77.040, -12.000, -76.950], "factor": 1.2}
+  ]
+}

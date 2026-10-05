@@ -64,3 +64,6 @@ Licencia: ODbL; el mapa ya muestra "© OpenStreetMap".
 - Ampliación norte del Metropolitano (Chimpu Ocllo – Naranjal) en el export de
   OSM de la vía (`metropolitano.json`): hoy esos tramos usan la macroruta.
 - Fotos referenciales (`config/route_photos.json`, vacío): desde una máquina con acceso a Wikimedia Commons, correr `python pipeline/scripts/photos/commons_photos.py --buscar` (categorías «Ruta <código>» de Commons) o agregar un archivo por enlace con `--ruta 1244 --archivo <enlace de Commons>`. Solo licencias libres o permiso del autor con su enlace; el CI lo valida con `--check`.
+- Metropolitano frente a la base de paraderos de la ATU (`data/raw/atu/BASE_PARADEROS_ATU.xlsx`): coinciden salvo el Expreso 9 (la base le da también un sentido norte → sur: UNI, Caquetá, Canadá, Canaval y Moreyra, Angamos, Benavides; falta su horario) y el Súper Expreso Norte (la base solo le da Naranjal y Estación Central de norte a sur; el mapa tiene además 2 de Mayo, Quilca y España). Confirmar con sus mapas QR.
+- Paraderos de alimentadores sin paradero de Wikiroutes con su nombre: se buscan en el cruce con la calle de su nombre, pero el export de OSM solo trae las calles por donde pasan buses (7 de 115); con las calles de OSM completas se ubicarían casi todos.
+
