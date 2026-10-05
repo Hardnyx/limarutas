@@ -102,3 +102,13 @@ test('elegir una ruta ya marcada lleva el mapa a ella y la sube en recientes', a
   expect(inView).toBe(true);
   await expect(page.locator('#p-recent-list .recent-item').first()).toContainText('1240');
 });
+
+test('paraderos del mismo nombre se distinguen por su cruce; buscar el cruce trae ese', async ({ app, page }) => {
+  // "Universitaria" está en decenas de cruces: cada uno con el suyo
+  const items = await app.search('universitaria');
+  const labels = await items.locator('.s-label').allTextContents();
+  expect(labels.filter(l => /^Universitaria con /.test(l)).length).toBeGreaterThanOrEqual(5);
+  // Nombre y cruce: los paraderos de ese cruce primero (se llamen como una u otra calle)
+  const one = await app.search('universitaria naranjal');
+  await expect(one.first().locator('.s-label')).toHaveText(/^(Universitaria con Naranjal|Naranjal con Universitaria)$/);
+});

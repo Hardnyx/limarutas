@@ -107,6 +107,30 @@ test('congestión: en hora punta el tramo por Abancay y Grau dura más; de noche
   expect(r.peak).toBeGreaterThan(r.night);
 });
 
+test('Metropolitano con cambio de servicio y luego un bus (Habich → San Rodolfo: B › Expreso 1 a Matellini › 1087)', async ({ app, page }) => {
+  const r = await plan(page, { lat: -12.0233, lon: -77.0498 }, { lat: -12.1888, lon: -77.0132 }, { at: { day: 2, min: 11 * 60 + 33 } });
+  const first = r.options[0];
+  expect(first.groups).toEqual(['metropolitano', 'metropolitano', 'atu']);
+  expect(first.codes[2]).toBe('1087');
+  expect(first.transfers).toBe(2);
+});
+
+test('hora punta de la tarde: el bus por la pista tarda bastante más; el Metropolitano no', async ({ app, page }) => {
+  const r = await page.evaluate(async () => {
+    const { busPeakFactor } = await import('/assets/js/tripPlanner.js');
+    return [busPeakFactor({ day: 2, min: 17 * 60 + 15 }), busPeakFactor({ day: 2, min: 7 * 60 + 30 }),
+            busPeakFactor({ day: 2, min: 11 * 60 }), busPeakFactor({ day: 0, min: 18 * 60 })];
+  });
+  expect(r).toEqual([1.8, 1.5, 1, 1]);
+  // Saga Falabella Las Begonias → Amazonas en la 1056
+  const ride = async min => {
+    const res = await plan(page, { lat: -12.0944, lon: -77.0252 }, { lat: -12.0451, lon: -77.0252 }, { at: { day: 2, min } });
+    return res.options.find(o => o.codes.join() === '1056')?.minutes;
+  };
+  const midday = await ride(11 * 60 + 33), peak = await ride(17 * 60 + 15);
+  expect(peak).toBeGreaterThan(midday * 1.6);
+});
+
 test('lejos: los transbordos no repiten rutas que ya van directo', async ({ app, page }) => {
   const r = await plan(page, VES, COMAS);
   expect(r.options.length).toBeGreaterThan(0);
@@ -286,9 +310,10 @@ test.describe('pestaña Cómo llegar', () => {
 
   test('origen y destino por paradero: opciones, pasos y el viaje en el mapa', async ({ app, page }) => {
     await pickStop(page, '#tripFrom', 'acho');
-    await expect(page.locator('#tripFrom')).toHaveValue('Acho · Rímac');
+    // Con su cruce, para distinguirlo de otros del mismo nombre
+    await expect(page.locator('#tripFrom')).toHaveValue(/^Acho · .+ · Rímac$/);
     await pickStop(page, '#tripTo', 'ovalo higuereta');   // el paradero se llama "Higuereta"
-    await expect(page.locator('#tripTo')).toHaveValue('Higuereta · Santiago de Surco');
+    await expect(page.locator('#tripTo')).toHaveValue(/^Higuereta.* · Santiago de Surco$/);
 
     const cards = page.locator('.trip-card');
     await expect(cards.first()).toBeVisible();

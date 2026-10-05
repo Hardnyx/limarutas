@@ -23,6 +23,8 @@ const FAST_M_PER_MIN = 500;     // Metro (vía exclusiva)
 const BRT_M_PER_MIN = 425;      // Metropolitano: 25,5 km/h de velocidad operacional (Global BRTData)
 const DETOUR = 1.3;             // la caminata real es más larga que la recta
 const TRANSFER_MIN = 3;         // bajar y cruzar hasta el otro paradero
+const MET_SWITCH_MIN = 2;       // cambiar de servicio del Metropolitano en la misma estación…
+const MET_SWITCH_PENALTY = 4;   // …es cambiar de andén: molesta menos que un transbordo integrado
 const MAX_OPTIONS = 6;
 
 // Para ordenar (no se muestran como minutos)
@@ -75,12 +77,30 @@ export function congestionWeight(at){
 }
 let congestionW = 0.5;
 
+// Hora punta para todos los buses que van por la pista (no el Metropolitano
+// ni el Metro): cuántas veces más dura el viaje que a media mañana. De un
+// viaje real: la 1056 de Las Begonias (San Isidro) a Amazonas (Cercado), un
+// martes a las 17:15, ~65 min a bordo frente a los ~27 a las 11:30 (×2,4,
+// con su parte por avenidas congestionadas en route.slow); TomTom 2025 da la
+// tarde como la franja más lenta de Lima
+export function busPeakFactor(at){
+  if (!at) return 1.15;
+  const { day, min } = at;
+  if (day === 0) return 1;
+  if (day === 6) return min >= 11 * 60 && min < 20 * 60 ? 1.1 : 1;
+  if (min >= 17 * 60 && min < 20 * 60 + 30) return 1.8;
+  if (min >= 6 * 60 + 30 && min < 9 * 60 + 30) return 1.5;
+  if (min >= 12 * 60 + 30 && min < 14 * 60 + 30) return 1.1;
+  return 1;
+}
+let busPeak = 1.15;
+
 // Minutos del tramo k → k+1 de una ruta (se calculan una vez por ruta y
 // peso de congestión)
 const legCache = new WeakMap();
 function legMin(g, r, k){
   let entry = legCache.get(r);
-  let legs = entry && entry.w === congestionW ? entry.legs : null;
+  let legs = entry && entry.w === congestionW && entry.peak === busPeak ? entry.legs : null;
   if (!legs){
     const { lat, lon } = g.stops;
     const speed = r.group === 'metro' ? FAST_M_PER_MIN : r.group === 'metropolitano' ? BRT_M_PER_MIN : BUS_M_PER_MIN;
@@ -89,9 +109,10 @@ function legMin(g, r, k){
       const a = r.stops[i], b = r.stops[i + 1];
       // Por la vía si se conoce (Metropolitano); si no, en línea recta
       const m = r.segM?.[i] ?? distM(lat[a], lon[a], lat[b], lon[b]);
-      legs[i] = (m / speed) * (1 + congestionW * (r.slow?.[i] || 0) / 100);
+      const road = r.group !== 'metro' && r.group !== 'metropolitano';
+      legs[i] = (m / speed) * (road ? busPeak : 1) * (1 + congestionW * (r.slow?.[i] || 0) / 100);
     }
-    legCache.set(r, { w: congestionW, legs });
+    legCache.set(r, { w: congestionW, peak: busPeak, legs });
   }
   return legs[k];
 }
@@ -103,6 +124,8 @@ function legsOf(g, c){
     { type: 'walk', m: c.walkA, to: c.o },
     { type: 'ride', route: r1, from: c.p, to: c.k }
   ];
+  // Cambio de servicio dentro del Metropolitano, en la misma estación
+  if (c.chain) legs.push({ type: 'ride', route: g.routes[c.chain.r], from: c.chain.p, to: c.chain.k });
   if (c.transfers){
     if (c.walkT > 0) legs.push({ type: 'walk', m: c.walkT, from: c.x, to: c.y });
     const r2 = g.routes[c.r2];
@@ -144,6 +167,7 @@ export function planTrip(g, from, to, { includeOld = false, at = null } = {}){
   if (out.walkOnly) return out;
 
   congestionW = congestionWeight(at);
+  busPeak = busPeakFactor(at);
   const active = new Set(g.activeRoutes({ includeOld, at }));
   const isActive = i => active.has(g.routes[i]);
 
@@ -179,6 +203,25 @@ export function planTrip(g, from, to, { includeOld = false, at = null } = {}){
     if (!cur || cand.minutes < cur.minutes) best.set(key, cand);
   };
 
+  // Transbordo desde x (en el mismo paradero o caminando a uno cercano) a una
+  // ruta que llega cerca del destino
+  const transferFrom = (x, before, fields, rides, keyHead, transfers, accept = () => true) => {
+    const hops = [[x, 0], ...g.walkFrom(x)];
+    for (const [y, walkT] of hops){
+      const ends = toDest.get(y);
+      if (!ends) continue;
+      const base = before + walkMin(walkT) + TRANSFER_MIN;
+      for (const [r2Idx, e] of ends){
+        const r2 = g.routes[r2Idx];
+        if (!accept(r2) || rides.some(r => sameService(r2, r))) continue;
+        keep(`${keyHead}>${r2Idx}`, {
+          ...fields, transfers, minutes: base + e.min, walkM: fields.walkA + walkT + e.walkB,
+          x, y, walkT, r2: r2Idx, e
+        });
+      }
+    }
+  };
+
   for (const [o, walkA] of origins){
     const head = walkMin(walkA);
     for (const [rIdx, p] of g.atStop[o]){
@@ -202,17 +245,21 @@ export function planTrip(g, from, to, { includeOld = false, at = null } = {}){
         // Un transbordo: en el mismo paradero o caminando a uno cercano
         // (solo si al inicio se camina lo de siempre)
         if (walkA > ACCESS_MAX_M) continue;
-        const hops = [[x, 0], ...g.walkFrom(x)];
-        for (const [y, walkT] of hops){
-          const ends = toDest.get(y);
-          if (!ends) continue;
-          const base = head + ride1 + walkMin(walkT) + TRANSFER_MIN;
-          for (const [r2Idx, e] of ends){
-            if (sameService(g.routes[r2Idx], r1)) continue;
-            keep(`${rIdx}>${r2Idx}`, {
-              transfers: 1, minutes: base + e.min, walkM: walkA + walkT + e.walkB,
-              r1: rIdx, o, p, k, walkA, x, y, walkT, r2: r2Idx, e
-            });
+        transferFrom(x, head + ride1, { r1: rIdx, o, p, k, walkA }, [r1], `${rIdx}`, 1);
+
+        // Metropolitano: seguir en otro servicio en la misma estación (5 › C)
+        // y de ahí el transbordo a un bus. Cambiar de servicio no es salir
+        // del sistema: cuenta como transbordo integrado
+        if (r1.group !== 'metropolitano') continue;
+        for (const [rbIdx, pb] of g.atStop[x]){
+          const rb = g.routes[rbIdx];
+          if (rb.group !== 'metropolitano' || !isActive(rbIdx) || sameService(rb, r1)) continue;
+          let ride2 = 0;
+          for (let kb = pb + 1; kb < rb.stops.length; kb++){
+            ride2 += legMin(g, rb, kb - 1);
+            transferFrom(rb.stops[kb], head + ride1 + MET_SWITCH_MIN + ride2,
+              { r1: rIdx, o, p, k, walkA, chain: { r: rbIdx, p: pb, k: kb } }, [r1, rb], `${rIdx}+${rbIdx}`, 2,
+              r => r.group !== 'metropolitano');
           }
         }
       }
@@ -240,7 +287,9 @@ export function planTrip(g, from, to, { includeOld = false, at = null } = {}){
     return { ...c, legs, mass: massSaving > 0, massShare: rideMin ? massMin / rideMin : 0, integrated,
       base: c.minutes - massSaving + walkMin(c.walkM) * (WALK_WEIGHT - 1)
         + walkMin(c.walkT || 0) * TRANSFER_WALK_EXTRA
-        + c.transfers * (integrated ? INTEGRATED_TRANSFER_PENALTY : TRANSFER_PENALTY) };
+        // El cambio de servicio dentro del Metropolitano es integrado (no se sale del sistema)
+        + (c.chain ? MET_SWITCH_PENALTY + TRANSFER_PENALTY
+          : c.transfers * (integrated ? INTEGRATED_TRANSFER_PENALTY : TRANSFER_PENALTY)) };
   });
   cands.sort((a, b) => a.base - b.base);
 
@@ -257,7 +306,7 @@ export function planTrip(g, from, to, { includeOld = false, at = null } = {}){
     if (!c.transfers) return true;
     // Un tramo de 1 o 2 paraderos no compensa el transbordo: mejor caminar
     if (c.legs.some(l => l.type === 'ride' && l.to - l.from < MIN_LEG_STOPS)) return false;
-    return [g.routes[c.r1], g.routes[c.r2]].every(r => {
+    return [g.routes[c.r1], c.chain && g.routes[c.chain.r], g.routes[c.r2]].filter(Boolean).every(r => {
       const d = directBase.get(svc(r));
       return d == null || c.base < d - DOMINATED_SAVING_MIN;
     });

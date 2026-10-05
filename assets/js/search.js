@@ -312,9 +312,13 @@ function loadStopsIndex(){
       if (!r.ok) throw new Error(`HTTP ${r.status}`);
       return r.json();
     })
-    .then(({ routes, stops }) => stops.map(([name, lat, lon, idx, district, neighbor]) => ({
+    .then(({ routes, stops }) => stops.map(([name, lat, lon, idx, district, neighbor, cross]) => ({
       name,
+      // Cómo se muestra al buscar: con su cruce ("Universitaria con Colonial",
+      // wr_stops_cruces.py); en el mapa y en los pasos sigue siendo el nombre
+      label: cross || name,
       key: norm(name).replace(/[^a-z0-9]+/g, ' ').trim(),
+      labelKey: norm(cross || name).replace(/[^a-z0-9]+/g, ' ').trim(),
       lat,
       lon,
       folderIds: idx.map(i => routes[i]),
@@ -333,11 +337,13 @@ function findStops(stops, query){
   if (q.length < STOP_MIN_CHARS) return [];
   const words = q.split(' ');
   const hits = [];
+  // Por el nombre o por el cruce: "universitaria" trae todos los
+  // Universitaria; "universitaria colonial", el de ese cruce
+  const rankOf = k => k === q ? 0 : k.startsWith(q) ? 1 : (` ${k}`).includes(` ${q}`) ? 2 : 3;
   for (const st of stops){
-    if (!words.every(w => st.key.includes(w))) continue;
-    const rank = st.key === q ? 0
-      : st.key.startsWith(q) ? 1
-      : (` ${st.key}`).includes(` ${q}`) ? 2 : 3;
+    if (!words.every(w => st.labelKey.includes(w))) continue;
+    const rank = words.every(w => st.key.includes(w)) ? Math.min(rankOf(st.key), rankOf(st.labelKey))
+      : rankOf(st.labelKey);
     hits.push({ st, rank });
   }
   hits.sort((a, b) => a.rank - b.rank || b.st.folderIds.length - a.st.folderIds.length);
@@ -367,14 +373,15 @@ function stopDoc(st, { withNeighbor = false } = {}){
   const n = entriesForFolders(st.folderIds).length;
   const parts = ['Paradero'];
   if (st.district) parts.push(st.district);
-  if (withNeighbor && st.neighbor) parts.push(`cerca de ${st.neighbor}`);
+  // Con cruce ya se distingue; si no, el paradero vecino
+  if (withNeighbor && st.neighbor && st.label === st.name) parts.push(`cerca de ${st.neighbor}`);
   parts.push(`${n} ${n === 1 ? 'ruta' : 'rutas'}`);
   return {
     key: `stop:${st.key}:${st.lat},${st.lon}`,
     system: 'stop',
     id: st.key,
     type: 'stop',
-    label: st.name,
+    label: st.label,
     sub: parts.join(' · '),
     stop: st
   };

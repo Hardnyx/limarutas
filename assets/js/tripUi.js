@@ -50,14 +50,17 @@ function choices(){
   if (stopChoices.has(includeOld)) return stopChoices.get(includeOld);
   const usable = r => r.group !== 'antigua' || r.verified || includeOld;
   const byKey = new Map();
-  const { name, district, lat, lon } = graph.stops;
+  const { name, district, cross, lat, lon } = graph.stops;
   for (let i = 0; i < graph.stops.count; i++){
     if (!name[i]) continue;
     const n = new Set(graph.atStop[i].filter(([ri]) => usable(graph.routes[ri])).map(([ri]) => graph.routes[ri].leaf)).size;
     if (!n) continue;
-    const key = `${norm(name[i])}|${district[i]}`;
+    // Un lugar por cruce ("Universitaria con Colonial", "… con Izaguirre"):
+    // buscar "universitaria" los trae a todos; "universitaria colonial", ese
+    const label = cross[i] || name[i];
+    const key = `${norm(label)}|${district[i]}`;
     const cur = byKey.get(key);
-    if (!cur || n > cur.n) byKey.set(key, { i, n, name: name[i], district: district[i], lat: lat[i], lon: lon[i], q: norm(name[i]) });
+    if (!cur || n > cur.n) byKey.set(key, { i, n, name: label, district: district[i], lat: lat[i], lon: lon[i], q: norm(label) });
   }
   const list = Array.from(byKey.values()).sort((a, b) => b.n - a.n);
   stopChoices.set(includeOld, list);
@@ -556,7 +559,8 @@ function stripOf(opt){
 function card(opt, k){
   const rides = opt.legs.filter(l => l.type === 'ride');
   const isOpen = k === selected;
-  const where = opt.transfers ? `1 transbordo en ${stopName(rides[1].route.stops[rides[1].from])}` : 'Sin transbordo';
+  const where = !opt.transfers ? 'Sin transbordo'
+    : `${opt.transfers} transbordo${opt.transfers > 1 ? 's' : ''} en ${rides.slice(1).map(l => stopName(l.route.stops[l.from])).join(' y ')}`;
   const names = rides.map(l => cardName(l.route)).filter(Boolean).join(', luego ');
   const head = el('div', { class: 'trip-card-head' },
     el('div', { class: 'trip-legs' }, stripOf(opt), el('div', { class: 'trip-name' }, names)),

@@ -159,6 +159,19 @@ los domingos y nada de noche. El Metropolitano (425 m/min, 25,5 km/h según
 Global BRTData) y el Metro (500 m/min) van por vía exclusiva y tienen su
 propia velocidad.
 
+**Hora punta.** Además, todo bus que va por la pista (no el Metropolitano ni
+el Metro) tarda más según la hora (`busPeakFactor`): ×1,8 de lunes a viernes
+de 17:00 a 20:30, ×1,5 de 6:30 a 9:30, ×1,1 al mediodía (12:30–14:30) y los
+sábados de día; ×1 el resto. Calibrado con un viaje real: la 1056 de Las
+Begonias (San Isidro) a Amazonas (Cercado) un martes a las 17:15 tomó ~65
+min a bordo, frente a ~27 a media mañana.
+
+**Metropolitano con cambio de servicio.** El primer tramo en el
+Metropolitano puede seguir en otro servicio en la misma estación (B › Expreso
+1 en Central) y de ahí hacer un transbordo a un bus: Habich → San Rodolfo va
+en Metropolitano hasta Matellini y la 1087. Cambiar de servicio no es salir
+del sistema: suma 2 min y una molestia menor que un transbordo integrado.
+
 **Estación más lejana.** Si el tramo a pie lleva a una estación del
 Metropolitano y hay otra más cerca donde ese servicio no para, el paso lo
 dice («El Expreso 2 no para en Canaval y Moreyra, que está más cerca»).

@@ -33,7 +33,7 @@ Formato de salida (compacto, se carga al abrir "Cómo llegar"):
 {
   "version": 1,
   "districts": ["Ate", ...],
-  "stops":  [[lat, lon, nombre, i_distrito], ...],
+  "stops":  [[lat, lon, nombre, i_distrito, cruce?], ...],   # cruce: "Universitaria con Colonial" (cruces.py), solo para buscar
   "routes": {"1240-ida": [i_paradero, ...],        # capa Wikiroutes
              "met:A:ns": [...], "met:A:sn": [...],  # servicio y sentido
              "metro:L1:0": [...], "metro:L1:1": [...]},
@@ -62,6 +62,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from distritos import Distritos  # noqa: E402
 from name_fixes import fix_stop_name  # noqa: E402
 from congestion import Congestion  # noqa: E402
+sys.path.insert(0, str(ROOT / 'pipeline' / 'scripts'))
+from cruces import Cruces, label  # noqa: E402
 
 WR_MAP = ROOT / 'pipeline' / 'output' / 'wr_map.json'
 FICHAS = ROOT / 'pipeline' / 'output' / 'prr_fichas.json'
@@ -247,6 +249,7 @@ def main() -> None:
     n_metro = metro(stops, routes)
 
     dist = Distritos()
+    cruces = Cruces()
     districts: list[str] = []
     d_index: dict[str, int] = {}
     rows = []
@@ -256,7 +259,10 @@ def main() -> None:
             d_index[d] = len(districts)
             districts.append(d)
         name = names.most_common(1)[0][0] if names else ''
-        rows.append([round(lat, 6), round(lon, 6), name, d_index[d]])
+        # Cruce para distinguir paraderos del mismo nombre en las sugerencias
+        # ("Universitaria con Colonial"); el nombre del paradero no cambia
+        cr = label(name, cruces.of(name, lat, lon)) if name else None
+        rows.append([round(lat, 6), round(lon, 6), name, d_index[d]] + ([cr] if cr else []))
 
     headway = headways(routes)
     # Congestión (config/congestion.json): el Metropolitano y el Metro van

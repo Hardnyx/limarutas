@@ -174,3 +174,5 @@ Orden de las secciones: Metro, Metropolitano, Corredores, Transporte público
 5. Cada fila de Recientes muestra la misma casilla y el mismo sentido que su ruta.
 6. Nunca hay dos diálogos abiertos.
 7. No hay errores de JavaScript.
+- **Paraderos con el mismo nombre** (hay decenas de «Universitaria»): en el buscador y en las sugerencias de «Cómo llegar» se muestran con su cruce («Universitaria con Colonial», «Trébol Caquetá con Evitamiento», «Plaza Norte · Alfredo Mendiola»), de las calles de OSM (`pipeline/scripts/cruces.py`); buscar el nombre los trae a todos y el nombre con el cruce, ese. En el mapa y en los pasos del viaje el paradero sigue llamándose como se llama.
+
