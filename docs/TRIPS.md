@@ -129,11 +129,16 @@ pedir un camino por cada combinación sería miles de consultas.
    nunca una ruta única).
 
 **Congestión.** `config/congestion.json` lista las avenidas donde el bus va
-más lento que el promedio (Abancay a 11 km/h según la ATU, Grau, Alfonso
-Ugarte, Javier Prado de la Vía Expresa a la Universidad de Lima,
-Universitaria, Túpac Amaru, Próceres de la Independencia, Carretera Central,
-las Panamericanas y la Vía de Evitamiento), cada una con su tramo crítico y
-cuánto más dura en hora punta. `build_trip_graph.py` (`congestion.py`) da a
+más lento que el promedio (Abancay y Grau, a ~10–11 km/h según la ATU;
+Aviación en Gamarra, Huánuco, Huanta, La Marina, Angamos, Venezuela,
+Samuel Alcázar, Alfonso Ugarte, Universitaria, Túpac Amaru, Próceres de la
+Independencia, Carretera Central, las Panamericanas y la Vía de
+Evitamiento), cada una con su tramo crítico y cuánto más dura en hora punta.
+Quedan fuera las avenidas con carril exclusivo por donde solo pasa un
+corredor: Javier Prado (Corredor Rojo) y Arequipa (Corredor Azul); y Brasil
+y Tomás Marsano, que ya tienen carril segregado. Abancay
+se queda: su carril segregado (desde enero de 2026) lo comparten muchas
+rutas y lo invaden autos y taxis. `build_trip_graph.py` (`congestion.py`) da a
 cada tramo entre paraderos su % extra (`slow`) según cuánto de él va por esas
 avenidas; el planificador lo aplica completo en hora punta de lunes a viernes
 (6:00–9:30 y 17:00–21:00), la mitad el resto del día, 0,4 los sábados, 0,2
