@@ -54,11 +54,11 @@ test('Limpiar búsqueda vacía el campo y las sugerencias', async ({ app, page }
   await expect(page.locator('.suggest-item')).toHaveCount(0);
 });
 
-test('paradero con nombre único: primero el paradero y debajo sus rutas', async ({ app, page }) => {
+test('paradero con nombre único: primero el grupo Paraderos; al elegirlo, sus rutas', async ({ app, page }) => {
   const items = await app.search('puente nuevo');
+  await expect(page.locator('.suggest-head').first()).toHaveText('Paraderos');
   await expect(items.first()).toContainText('Puente Nuevo');
   await expect(items.first().locator('.s-sub')).toHaveText(/^Paradero · El Agustino · \d+ rutas$/);
-  await expect(items.nth(1).locator('.s-sub')).toHaveText('Para en Puente Nuevo');
 
   await items.first().click();
   await expect(page.locator('.ri-title')).toHaveText('Paradero Puente Nuevo · El Agustino');
@@ -81,8 +81,10 @@ test('nombre repetido: lista cada lugar con su distrito', async ({ app, page }) 
   const districts = new Set(subs.map(s => s.split(' · ')[1]));
   expect(districts.size).toBeGreaterThanOrEqual(3);
   expect(districts).toContain('Villa El Salvador');
-  // Varios en un mismo distrito se distinguen por el paradero vecino
-  expect(subs.some(s => s.includes('cerca de'))).toBe(true);
+  // Varios en un mismo distrito se distinguen por su cruce o el paradero vecino
+  const labels = await stops.locator('.s-label').allTextContents();
+  const shown = labels.map((l, k) => `${l} | ${subs[k]}`);
+  expect(new Set(shown).size).toBe(shown.length);
 });
 
 test('elegir una ruta ya marcada lleva el mapa a ella y la sube en recientes', async ({ app, page }) => {
@@ -111,4 +113,57 @@ test('paraderos del mismo nombre se distinguen por su cruce; buscar el cruce tra
   // Nombre y cruce: los paraderos de ese cruce primero (se llamen como una u otra calle)
   const one = await app.search('universitaria naranjal');
   await expect(one.first().locator('.s-label')).toHaveText(/^(Universitaria con Naranjal|Naranjal con Universitaria)$/);
+});
+
+test('resultados en grupos: un código va primero a Rutas, un lugar a Paraderos', async ({ app, page }) => {
+  await app.search('1240');
+  await expect(page.locator('.suggest-head').first()).toHaveText('Rutas');
+  await app.search('universitaria');
+  await expect(page.locator('.suggest-head').first()).toHaveText('Paraderos');
+  await expect(page.locator('.suggest-head')).toHaveText(['Paraderos', 'Rutas']);
+});
+
+test('con las flechas, la lista baja con el elegido y salta los títulos', async ({ app, page }) => {
+  await app.search('universitaria');
+  const box = page.locator('#searchSuggest');
+  for (let k = 0; k < 14; k++) await page.keyboard.press('ArrowDown');
+  const sel = page.locator('#searchSuggest .suggest-item.selected');
+  await expect(sel).toHaveCount(1);
+  const [b, r] = await Promise.all([box.boundingBox(), sel.boundingBox()]);
+  expect(r.y).toBeGreaterThanOrEqual(b.y - 1);
+  expect(r.y + r.height).toBeLessThanOrEqual(b.y + b.height + 1);
+  expect(await box.evaluate(n => n.scrollTop)).toBeGreaterThan(0);
+});
+
+test('el cruce se encuentra por cualquiera de sus calles y se muestra empezando por la buscada', async ({ app, page }) => {
+  const items = await app.search('javier prado brasil');
+  await expect(items.first().locator('.s-label')).toHaveText('Javier Prado con Brasil');
+  // Los dos paraderos del cruce (Brasil y Javier Prado) son un solo resultado
+  const labels = await items.locator('.s-label').allTextContents();
+  expect(labels.filter(l => /Javier Prado con Brasil|Brasil con Javier Prado/.test(l)).length).toBe(1);
+  const other = await app.search('brasil javier prado');
+  await expect(other.first().locator('.s-label')).toHaveText('Brasil con Javier Prado');
+});
+
+test('nombres con que se conoce: tréboles, bypasses, Colonial, Wilson y el 22', async ({ app, page }) => {
+  // El nombre propio del cruce
+  const tre = await app.search('trebol de javier prado');
+  await expect(tre.first().locator('.s-label')).toHaveText(/^Trébol /);
+  await expect(tre.first().locator('.s-sub')).toContainText('Trébol de Javier Prado');
+  // Paso a desnivel
+  const byp = await app.search('bypass javier prado');
+  await expect(byp.first().locator('.s-label')).toHaveText(/^Bypass .*Javier Prado|^Bypass Javier Prado/);
+  // Colonial, no "Colonial con Óscar R. Benavides" (es la misma avenida); se
+  // encuentra también por su nombre oficial
+  const col = await app.search('colonial');
+  const labels = await col.locator('.s-label').allTextContents();
+  expect(labels.some(l => /Benavides/.test(l) && /Colonial/.test(l))).toBe(false);
+  const ofi = await app.search('oscar benavides');
+  await expect(ofi.filter({ hasText: 'Colonial' }).first()).toBeVisible();
+  // Wilson y Colmena, como se las conoce en el Centro
+  const wil = await app.search('wilson colmena');
+  await expect(wil.first().locator('.s-label')).toHaveText(/Wilson con Colmena|Colmena con Wilson/);
+  // "22": el Kilómetro 22 de Túpac Amaru
+  await app.search('22');
+  await expect(page.locator('.suggest-item', { hasText: 'Kilómetro 22' }).first()).toBeVisible();
 });

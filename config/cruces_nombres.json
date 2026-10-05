@@ -1,0 +1,69 @@
+{
+  "_fuente": "Cruces con nombre propio de uso común (pipeline/scripts/cruces.py): el paradero a menos de 'radio' metros (350 si falta) lo lleva y se puede buscar por él. 'calles': las dos vías de OSM que se cruzan (nombre exacto en data/raw/osm/Lima.osm.pbf), se ubica donde pasan más cerca; 'osm': el nombre de una vía de OSM; 'punto': [lat, lon]. 'tipo': trebol o bypass.",
+  "_referencias": [
+    "Trébol de Javier Prado: Javier Prado con la Panamericana Sur / Vía de Evitamiento (El Comercio, Gestión); Bypass Las Torres (Andina, 2026-01); paso a desnivel del Óvalo Monitor (Peru21, Panamericana); Trébol de Caquetá, Trébol Celima, Intercambio Vial El Derby: así en OSM"
+  ],
+  "cruces": [
+    {
+      "nombre": "Trébol de Javier Prado",
+      "tipo": "trebol",
+      "calles": [
+        "Avenida Javier Prado Este",
+        "Vía de Evitamiento"
+      ],
+      "radio": 450
+    },
+    {
+      "nombre": "Trébol de Caquetá",
+      "tipo": "trebol",
+      "calles": [
+        "Avenida Caquetá",
+        "Vía de Evitamiento"
+      ]
+    },
+    {
+      "nombre": "Trébol Celima",
+      "tipo": "trebol",
+      "punto": [
+        -12.0142,
+        -77.0619
+      ]
+    },
+    {
+      "nombre": "Intercambio Vial El Derby",
+      "tipo": "trebol",
+      "osm": "Intercambio Vial El Derby"
+    },
+    {
+      "nombre": "Bypass Las Torres",
+      "tipo": "bypass",
+      "osm": "Bypass Las Torres",
+      "radio": 500
+    },
+    {
+      "nombre": "Bypass del Óvalo Monitor",
+      "tipo": "bypass",
+      "calles": [
+        "Avenida Javier Prado Este",
+        "Avenida La Molina"
+      ],
+      "radio": 300
+    },
+    {
+      "nombre": "Puente Atocongo",
+      "calles": [
+        "Avenida Los Héroes",
+        "Avenida Panamericana Sur"
+      ],
+      "radio": 400
+    },
+    {
+      "nombre": "Puente Primavera",
+      "calles": [
+        "Avenida Primavera",
+        "Carretera Panamericana Sur"
+      ],
+      "radio": 400
+    }
+  ]
+}

@@ -266,6 +266,14 @@ test.describe('pestaña Cómo llegar', () => {
     await page.keyboard.press('Enter');
   };
 
+  test('sugerencias: el cruce se muestra empezando por la calle buscada', async ({ page }) => {
+    await page.fill('#tripFrom', 'javier prado brasil');
+    const first = page.locator('.trip-field:has(#tripFrom) .suggest-item .s-label').first();
+    await expect(first).toHaveText('Javier Prado con Brasil');
+    await page.fill('#tripFrom', 'brasil javier prado');
+    await expect(first).toHaveText('Brasil con Javier Prado');
+  });
+
   test('sin A y B se explica cómo empezar; un texto sin paraderos lo dice', async ({ app, page }) => {
     await expect(page.locator('.trip-help')).toBeVisible();
     await expect(page.locator('.trip-help .ico-pin')).toBeVisible();

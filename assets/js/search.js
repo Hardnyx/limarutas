@@ -296,11 +296,10 @@ async function buildSearchIndex(){
    ========================= */
 
 const STOP_MIN_CHARS = 3;
-const MAX_STOPS = 3;
+const MAX_STOPS = 5;
 // Un mismo nombre puede estar en varios lugares (hay "Separadora Industrial"
 // en Santa Anita, Ate, La Molina, Villa El Salvador...): se listan todos
 const MAX_SAME_NAME = 10;
-const MAX_STOP_ROUTES = 20;
 
 let stopsIndexPromise = null;
 
@@ -312,13 +311,20 @@ function loadStopsIndex(){
       if (!r.ok) throw new Error(`HTTP ${r.status}`);
       return r.json();
     })
-    .then(({ routes, stops }) => stops.map(([name, lat, lon, idx, district, neighbor, cross]) => ({
+    .then(({ routes, stops }) => stops.map(([name, lat, lon, idx, district, neighbor, cross, swap, alias]) => ({
       name,
       // Cómo se muestra al buscar: con su cruce ("Universitaria con Colonial",
-      // wr_stops_cruces.py); en el mapa y en los pasos sigue siendo el nombre
+      // wr_stops_cruces.py); en el mapa y en los pasos sigue siendo el nombre.
+      // swap: el mismo cruce empezando por la otra calle ("Colonial con
+      // Universitaria"), para quien busca esa; alias: otros nombres ("Trébol
+      // de Javier Prado", "Óscar R. Benavides", "Km 22")
       label: cross || name,
-      key: norm(name).replace(/[^a-z0-9]+/g, ' ').trim(),
-      labelKey: norm(cross || name).replace(/[^a-z0-9]+/g, ' ').trim(),
+      swap: swap || null,
+      alias: alias || '',
+      key: keyOf(name),
+      labelKey: keyOf(cross || name),
+      swapKey: swap ? keyOf(swap) : '',
+      aliasKeys: alias ? alias.split(' · ').map(keyOf) : [],
       lat,
       lon,
       folderIds: idx.map(i => routes[i]),
@@ -332,33 +338,74 @@ function loadStopsIndex(){
   return stopsIndexPromise;
 }
 
+const keyOf = t => norm(t).replace(/[^a-z0-9]+/g, ' ').trim();
+// Sin "con" (nadie lo escribe al buscar "javier prado brasil")
+const bare = k => k.replace(/(^| )con( |$)/g, ' ').replace(/ +/g, ' ').trim();
+
+// Qué tan bien coincide k con q: 0 igual, 1 empieza así, 2 una palabra
+// empieza así, 3 lo contiene
+const rankOf = (k, q) => k === q ? 0 : k.startsWith(q) ? 1 : (` ${k}`).includes(` ${q}`) ? 2 : 3;
+
 function findStops(stops, query){
-  const q = norm(query).replace(/[^a-z0-9]+/g, ' ').trim();
-  if (q.length < STOP_MIN_CHARS) return [];
+  const q = keyOf(query);
+  if (!q) return [];
+  // Muy corto ("22"): solo un alias exacto (el paradero "22" de Túpac Amaru)
+  const short = q.length < STOP_MIN_CHARS;
   const words = q.split(' ');
   const hits = [];
-  // Por el nombre o por el cruce: "universitaria" trae todos los
-  // Universitaria; "universitaria colonial", el de ese cruce
-  const rankOf = k => k === q ? 0 : k.startsWith(q) ? 1 : (` ${k}`).includes(` ${q}`) ? 2 : 3;
+  // Por el nombre, el cruce (en cualquier orden) o un alias: "universitaria"
+  // trae todos los Universitaria; "universitaria colonial", el de ese cruce;
+  // "javier prado" también el paradero Brasil de Javier Prado con Brasil
   for (const st of stops){
-    if (!words.every(w => st.labelKey.includes(w))) continue;
-    const rank = words.every(w => st.key.includes(w)) ? Math.min(rankOf(st.key), rankOf(st.labelKey))
-      : rankOf(st.labelKey);
-    hits.push({ st, rank });
+    if (short){
+      const i = st.aliasKeys.indexOf(q);
+      if (i < 0) continue;
+      hits.push({ st, rank: 0, swap: false, via: st.alias.split(' · ')[i] });
+      continue;
+    }
+    const hay = [st.labelKey, st.swapKey, ...st.aliasKeys].join(' | ');
+    if (!words.every(w => hay.includes(w))) continue;
+    const rName = words.every(w => st.key.includes(w)) ? rankOf(st.key, q) : 9;
+    const rLabel = rankOf(bare(st.labelKey), q);
+    const rSwap = st.swapKey ? rankOf(bare(st.swapKey), q) : 9;
+    const aRanks = st.aliasKeys.map(k => words.every(w => k.includes(w)) ? rankOf(k, q) : 9);
+    const rAlias = Math.min(9, ...aRanks);
+    // Se muestra empezando por la calle que se buscó
+    const swap = rSwap < Math.min(rName, rLabel);
+    // Encontrado por otro nombre ("Trébol de Javier Prado"): se dice cuál
+    const via = rAlias < Math.min(rName, rLabel, rSwap) ? st.alias.split(' · ')[aRanks.indexOf(rAlias)] : '';
+    hits.push({ st, rank: Math.min(rName, rLabel, rSwap, rAlias), swap, via });
   }
   hits.sort((a, b) => a.rank - b.rank || b.st.folderIds.length - a.st.folderIds.length);
   // Paraderos cuyas rutas no están en ninguna lista del sidebar no sirven
   const out = [];
-  for (const { st, rank } of hits){
+  for (const { st, rank, swap, via } of hits){
     if (!entriesForFolders(st.folderIds).length) continue;
+    const shown = swap ? { ...st, label: st.swap } : st;
+    // El mismo cruce con dos paraderos ("Brasil" y "Javier Prado" en Javier
+    // Prado con Brasil): uno solo, con las rutas de los dos
+    const twin = out.find(o => sameCrossing(o, shown));
+    if (twin){
+      twin.folderIds = [...new Set([...twin.folderIds, ...shown.folderIds])];
+      continue;
+    }
     // Coincidencia clara: el nombre completo, o su inicio con 5+ letras
-    st.strong = rank === 0 || (rank === 1 && q.length >= 5);
-    out.push(st);
+    out.push({ ...shown, via, strong: rank === 0 || (rank === 1 && q.length >= 5) });
     // Si el mejor nombre se repite en varios lugares, se muestran todos
     const sameName = out.filter(x => x.key === out[0].key).length;
     if (out.length >= MAX_STOPS && (sameName < out.length || sameName >= MAX_SAME_NAME)) break;
   }
   return out;
+}
+
+// Dos paraderos del mismo cruce: las mismas calles (en cualquier orden) y a
+// menos de 200 m
+function sameCrossing(a, b){
+  const set = l => new Set(keyOf(l).split(' ').filter(w => w !== 'con' && w !== 'trebol' && w !== 'bypass'));
+  const x = set(a.label), y = set(b.label);
+  if (x.size !== y.size || [...x].some(w => !y.has(w))) return false;
+  const k = Math.cos(a.lat * Math.PI / 180);
+  return Math.hypot((a.lat - b.lat) * 110_574, (a.lon - b.lon) * 111_320 * k) < 200;
 }
 
 // Lugares con el mismo nombre que el mejor resultado
@@ -372,6 +419,7 @@ function stopDoc(st, { withNeighbor = false } = {}){
   // Rutas elegibles en el sidebar (sin duplicados de Wikiroutes)
   const n = entriesForFolders(st.folderIds).length;
   const parts = ['Paradero'];
+  if (st.via) parts.push(st.via);
   if (st.district) parts.push(st.district);
   // Con cruce ya se distingue; si no, el paradero vecino
   if (withNeighbor && st.neighbor && st.label === st.name) parts.push(`cerca de ${st.neighbor}`);
@@ -395,25 +443,6 @@ function sameNameDocs(stops){
     .map(st => ({ st, n: entriesForFolders(st.folderIds).length }))
     .sort((a, b) => b.n - a.n)
     .map(({ st }) => stopDoc(st, { withNeighbor: perDistrict[st.district] > 1 }));
-}
-
-// Rutas que paran en el paradero, como resultados normales del buscador
-// Transporte público primero; rutas antiguas (semiformal) al final
-const STOP_ROUTE_ORDER = { wr: 0, corr: 1, wrAero: 2, wrOtros: 3, wrSemi: 4 };
-
-function stopRouteDocs(st){
-  const entries = entriesForFolders(st.folderIds).sort((a, b) =>
-    (STOP_ROUTE_ORDER[a.leaf.dataset.system] ?? 9) - (STOP_ROUTE_ORDER[b.leaf.dataset.system] ?? 9));
-  return entries.slice(0, MAX_STOP_ROUTES).map(e => ({
-    key: `${e.leaf.dataset.system}:${e.leaf.dataset.id}`,
-    system: e.leaf.dataset.system,
-    id: e.leaf.dataset.id,
-    type: e.leaf.dataset.system,
-    label: e.title || e.code,
-    sub: `Para en ${st.name}`,
-    color: e.color,
-    display_id: e.code
-  }));
 }
 
 /* =========================
@@ -471,8 +500,16 @@ function renderResults(resultsBox, docs, selectedIndex){
 
   const frag = document.createDocumentFragment();
   docs.forEach((doc, idx) => {
+    if (doc.type === 'header'){
+      frag.appendChild(el('div', { class: 'suggest-head', role: 'presentation' }, doc.label));
+      return;
+    }
     const item = el('div', {
       class: 'suggest-item' + (idx === selectedIndex ? ' selected' : ''),
+      id: `sg-${idx}`,
+      role: 'option',
+      'aria-selected': idx === selectedIndex ? 'true' : 'false',
+      'data-idx': String(idx),
       'data-system': doc.system,
       'data-id': String(doc.id)
     });
@@ -494,6 +531,42 @@ function renderResults(resultsBox, docs, selectedIndex){
 
   resultsBox.appendChild(frag);
   resultsBox.classList.add('open');
+}
+
+// El siguiente resultado elegible desde i (los títulos no se eligen)
+function nextItem(docs, i, step){
+  const n = docs.length;
+  for (let k = 1; k <= n; k++){
+    const j = ((i + step * k) % n + n) % n;
+    if (docs[j].type !== 'header') return j;
+  }
+  return -1;
+}
+
+// Marca el elegido con el teclado y lo deja a la vista (la lista se desplaza)
+function markSelected(resultsBox, idx){
+  const input = $('#searchInput');
+  resultsBox.querySelectorAll('.suggest-item.selected').forEach(n => {
+    n.classList.remove('selected');
+    n.setAttribute('aria-selected', 'false');
+  });
+  const item = resultsBox.querySelector(`[data-idx="${idx}"]`);
+  if (!item) return;
+  item.classList.add('selected');
+  item.setAttribute('aria-selected', 'true');
+  input?.setAttribute('aria-activedescendant', item.id);
+  // El título del grupo también a la vista si es el primero
+  const head = item.previousElementSibling;
+  (head?.classList.contains('suggest-head') ? head : item).scrollIntoView({ block: 'nearest' });
+  item.scrollIntoView({ block: 'nearest' });
+}
+
+// ¿Parece el código o el alias de una ruta? "1240", "la 36", "an-19", "ex9",
+// "expreso 5", "corredor rojo", "linea 1"
+function looksLikeRoute(q){
+  const t = norm(q).trim();
+  return /^\d{1,4}[a-z]?$/.test(t) || /^(la|el)\s+\d/.test(t) || /^(an|as)[\s-]?\d/.test(t)
+    || /^(ex|expreso|sx|sxn|corredor|linea|l)\s*\d/.test(t) || /^(corredor|metropolitano|metro|alimentador)/.test(t);
 }
 
 /* =========================
@@ -571,43 +644,43 @@ export function setupSearch(){
     const routeHits = rankDocs(index, q);
 
     // Paraderos que coinciden y, debajo, las rutas que paran en el primero
-    const stops = q.trim().length >= STOP_MIN_CHARS ? findStops(await loadStopsIndex(), q) : [];
+    const stops = findStops(await loadStopsIndex(), q);
     if (seq !== querySeq) return;   // llegó otra búsqueda mientras cargaba
 
-    let hits = routeHits.slice(0, 25);
-    const same = stops.length ? sameNameStops(stops) : [];
-    if (same.length > 1 && stops[0].strong){
-      // Nombre ambiguo: cada lugar con su distrito, sin asumir cuál es
-      const others = routeHits.slice(0, 8);
-      hits = [...sameNameDocs(same.slice(0, MAX_SAME_NAME)), ...others];
-    } else if (stops.length && stops[0].strong){
-      // Coincide con un paradero: primero él y las rutas que paran ahí
-      const viaStop = stopRouteDocs(stops[0]);
-      const seen = new Set(viaStop.map(d => `${d.system}:${d.id}`));
-      const others = routeHits.filter(d => !seen.has(`${d.system}:${d.id}`)).slice(0, 8);
-      hits = [stopDoc(stops[0]), ...viaStop, ...stops.slice(1).map(st => stopDoc(st)), ...others];
-    } else if (stops.length){
-      // Búsqueda ambigua: rutas primero, paraderos al final
-      hits = [...routeHits.slice(0, 15), ...stops.map(st => stopDoc(st))];
+    // Resultados en dos grupos, cada uno con su título: Paraderos y Rutas.
+    // Primero el que parece buscarse: un código o el alias de una ruta ("1240",
+    // "la 36", "AN-19") va a Rutas; el nombre de un lugar, a Paraderos
+    const stopDocs = stops.length
+      ? (sameNameStops(stops).length > 1 && stops[0].strong
+        ? sameNameDocs(sameNameStops(stops).slice(0, MAX_SAME_NAME))
+        : stops.map(st => stopDoc(st)))
+      : [];
+    const routeFirst = routeHits.length && (looksLikeRoute(q) || !stops.length || !stops[0].strong);
+    const routeDocs = routeHits.slice(0, stopDocs.length ? (routeFirst ? 10 : 6) : 25);
+    const groups = [
+      ['Rutas', routeDocs],
+      ['Paraderos', stopDocs]
+    ];
+    if (!routeFirst) groups.reverse();
+    let hits = [];
+    for (const [title, docs] of groups){
+      if (!docs.length) continue;
+      hits.push({ type: 'header', label: title, key: `h:${title}` }, ...docs);
     }
     currentDocs = hits;
-    selectedIndex = hits.length ? 0 : -1;
+    selectedIndex = nextItem(hits, -1, 1);
     renderResults(resultsBox, hits, selectedIndex);
   });
 
   input.addEventListener('keydown', e => {
     if (!currentDocs.length) return;
-    if (e.key === 'ArrowDown'){
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp'){
       e.preventDefault();
-      selectedIndex = (selectedIndex + 1) % currentDocs.length;
-      renderResults(resultsBox, currentDocs, selectedIndex);
-    } else if (e.key === 'ArrowUp'){
-      e.preventDefault();
-      selectedIndex = (selectedIndex - 1 + currentDocs.length) % currentDocs.length;
-      renderResults(resultsBox, currentDocs, selectedIndex);
+      selectedIndex = nextItem(currentDocs, selectedIndex, e.key === 'ArrowDown' ? 1 : -1);
+      markSelected(resultsBox, selectedIndex);
     } else if (e.key === 'Enter'){
       e.preventDefault();
-      const doc = currentDocs[selectedIndex] || currentDocs[0];
+      const doc = currentDocs[selectedIndex] || currentDocs[nextItem(currentDocs, -1, 1)];
       clearResults(resultsBox);
       selectedIndex = -1;
       selectDoc(doc);
@@ -623,8 +696,7 @@ export function setupSearch(){
   resultsBox.addEventListener('click', e => {
     const item = e.target.closest('.suggest-item');
     if (!item) return;
-    const idx = Array.from(resultsBox.querySelectorAll('.suggest-item')).indexOf(item);
-    const doc = currentDocs[idx];
+    const doc = currentDocs[Number(item.dataset.idx)];
     clearResults(resultsBox);
     selectedIndex = -1;
     if (doc) selectDoc(doc);

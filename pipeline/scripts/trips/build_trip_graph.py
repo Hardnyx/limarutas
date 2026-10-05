@@ -33,7 +33,8 @@ Formato de salida (compacto, se carga al abrir "Cómo llegar"):
 {
   "version": 1,
   "districts": ["Ate", ...],
-  "stops":  [[lat, lon, nombre, i_distrito, cruce?], ...],   # cruce: "Universitaria con Colonial" (cruces.py), solo para buscar
+  "stops":  [[lat, lon, nombre, i_distrito, cruce?, al_revés?, i_alias?], ...],   # cruces.py, solo para buscar: "Universitaria con Colonial", "Colonial con Universitaria", aliases[i]
+  "aliases": ["Trébol de Javier Prado · Javier Prado Este · …", ...],
   "routes": {"1240-ida": [i_paradero, ...],        # capa Wikiroutes
              "met:A:ns": [...], "met:A:sn": [...],  # servicio y sentido
              "metro:L1:0": [...], "metro:L1:1": [...]},
@@ -63,7 +64,7 @@ from distritos import Distritos  # noqa: E402
 from name_fixes import fix_stop_name  # noqa: E402
 from congestion import Congestion  # noqa: E402
 sys.path.insert(0, str(ROOT / 'pipeline' / 'scripts'))
-from cruces import Cruces, label  # noqa: E402
+from cruces import Cruces, label, search_alias, swapped  # noqa: E402
 
 WR_MAP = ROOT / 'pipeline' / 'output' / 'wr_map.json'
 FICHAS = ROOT / 'pipeline' / 'output' / 'prr_fichas.json'
@@ -252,6 +253,8 @@ def main() -> None:
     cruces = Cruces()
     districts: list[str] = []
     d_index: dict[str, int] = {}
+    aliases: list[str] = []          # otros nombres para buscar, cada uno una vez
+    a_index: dict[str, int] = {}
     rows = []
     for (lat, lon), names in zip(stops.coords, stops.names):
         d = dist.at(lat, lon)
@@ -261,8 +264,17 @@ def main() -> None:
         name = names.most_common(1)[0][0] if names else ''
         # Cruce para distinguir paraderos del mismo nombre en las sugerencias
         # ("Universitaria con Colonial"); el nombre del paradero no cambia
-        cr = label(name, cruces.of(name, lat, lon)) if name else None
-        rows.append([round(lat, 6), round(lon, 6), name, d_index[d]] + ([cr] if cr else []))
+        c = cruces.of(name, lat, lon) if name else None
+        al = search_alias(c)
+        if al is not None:
+            if al not in a_index:
+                a_index[al] = len(aliases)
+                aliases.append(al)
+            al = a_index[al]
+        extra = [label(name, c), swapped(name, c), al]
+        while extra and extra[-1] is None:
+            extra.pop()
+        rows.append([round(lat, 6), round(lon, 6), name, d_index[d]] + extra)
 
     headway = headways(routes)
     # Congestión (config/congestion.json): el Metropolitano y el Metro van
@@ -275,7 +287,7 @@ def main() -> None:
         pct = cong.route([stops.coords[i] for i in seq])
         if pct:
             slow[key] = pct
-    out = {'version': 1, 'districts': districts, 'stops': rows, 'routes': routes, 'segM': seg_m,
+    out = {'version': 1, 'districts': districts, 'aliases': aliases, 'stops': rows, 'routes': routes, 'segM': seg_m,
            'headway': headway, 'slow': slow}
     OUT.write_text(json.dumps(out, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
 

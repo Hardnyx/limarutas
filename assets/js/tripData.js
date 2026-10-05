@@ -98,10 +98,15 @@ export function buildTripGraph(raw){
   const lon = new Float64Array(n);
   const name = new Array(n);
   const district = new Array(n);
-  // Cruce para buscar ("Universitaria con Colonial"); el nombre no cambia
+  // Cruce para buscar ("Universitaria con Colonial"), el mismo empezando por
+  // la otra calle ("Colonial con Universitaria") y otros nombres ("Trébol de
+  // Javier Prado", "Óscar R. Benavides"); el nombre no cambia
   const cross = new Array(n);
-  raw.stops.forEach(([a, b, nm, d, cr], i) => {
-    lat[i] = a; lon[i] = b; name[i] = nm; district[i] = raw.districts[d] || ''; cross[i] = cr || '';
+  const swap = new Array(n);
+  const alias = new Array(n);
+  raw.stops.forEach(([a, b, nm, d, cr, sw, al], i) => {
+    lat[i] = a; lon[i] = b; name[i] = nm; district[i] = raw.districts[d] || '';
+    cross[i] = cr || ''; swap[i] = sw || ''; alias[i] = al != null ? (raw.aliases?.[al] || '') : '';
   });
 
   // Rutas que están en el sidebar
@@ -167,7 +172,7 @@ export function buildTripGraph(raw){
   const walkCache = new Map();
 
   return {
-    stops: { lat, lon, name, district, cross, count: n },
+    stops: { lat, lon, name, district, cross, swap, alias, count: n },
     routes,
     atStop,
 

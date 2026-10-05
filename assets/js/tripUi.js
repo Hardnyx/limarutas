@@ -50,17 +50,22 @@ function choices(){
   if (stopChoices.has(includeOld)) return stopChoices.get(includeOld);
   const usable = r => r.group !== 'antigua' || r.verified || includeOld;
   const byKey = new Map();
-  const { name, district, cross, lat, lon } = graph.stops;
+  const { name, district, cross, swap, alias, lat, lon } = graph.stops;
   for (let i = 0; i < graph.stops.count; i++){
     if (!name[i]) continue;
     const n = new Set(graph.atStop[i].filter(([ri]) => usable(graph.routes[ri])).map(([ri]) => graph.routes[ri].leaf)).size;
     if (!n) continue;
     // Un lugar por cruce ("Universitaria con Colonial", "… con Izaguirre"):
-    // buscar "universitaria" los trae a todos; "universitaria colonial", ese
+    // buscar "universitaria" los trae a todos; "universitaria colonial", ese.
+    // Los dos paraderos de un cruce (Brasil y Javier Prado), uno solo
     const label = cross[i] || name[i];
-    const key = `${norm(label)}|${district[i]}`;
+    const crossKey = norm(label).split(/\s+/).filter(w => w !== 'con').sort().join(' ');
+    const key = `${crossKey}|${district[i]}`;
     const cur = byKey.get(key);
-    if (!cur || n > cur.n) byKey.set(key, { i, n, name: label, district: district[i], lat: lat[i], lon: lon[i], q: norm(label) });
+    if (!cur || n > cur.n){
+      byKey.set(key, { i, n, name: label, swap: swap[i], district: district[i], lat: lat[i], lon: lon[i],
+        q: norm(label), qs: norm(swap[i]), qa: norm(alias[i]), alias: alias[i] });
+    }
   }
   const list = Array.from(byKey.values()).sort((a, b) => b.n - a.n);
   stopChoices.set(includeOld, list);
@@ -75,9 +80,10 @@ function suggestStops(text){
   const all = [];
   const some = [];
   for (const c of choices()){
-    const hit = words.filter(w => c.q.includes(w));
+    const hay = `${c.q} | ${c.qs} | ${c.qa}`;
+    const hit = words.filter(w => hay.includes(w));
     if (hit.length === words.length){
-      all.push(c);
+      all.push(shown(c, words));
       if (all.length >= MAX_SUGGEST) return all;
     } else if (hit.some(w => w.length >= 4)){
       // Cuánto del texto coincide: "higuereta" pesa más que "ovalo"
@@ -85,7 +91,17 @@ function suggestStops(text){
     }
   }
   if (all.length) return all;
-  return some.sort((x, y) => y[0] - x[0] || y[1].n - x[1].n).slice(0, MAX_SUGGEST).map(x => x[1]);
+  return some.sort((x, y) => y[0] - x[0] || y[1].n - x[1].n).slice(0, MAX_SUGGEST).map(x => shown(x[1], words));
+}
+
+// Cómo se muestra: empezando por la calle que se buscó ("javier prado" →
+// "Javier Prado con Brasil"); si se encontró por otro nombre, cuál
+function shown(c, words){
+  const first = words[0];
+  const swapIt = c.swap && !c.q.startsWith(first) && c.qs.startsWith(first);
+  const via = !c.q.includes(first) && !c.qs.includes(first)
+    ? (c.alias.split(' · ').find(a => norm(a).includes(first)) || '') : '';
+  return { ...c, name: swapIt ? c.swap : c.name, via };
 }
 
 /* =========================
@@ -127,11 +143,13 @@ function field(end, letter, placeholder){
     items.forEach((c, k) => {
       const row = el('div', { class: `suggest-item${k === active ? ' selected' : ''}`, role: 'option' },
         el('span', { class: 's-ico s-ico-stop' }, '●'),
-        el('div', {}, el('div', { class: 's-label' }, c.name), el('div', { class: 's-sub' }, `${c.district} · ${c.n} rutas`)));
+        el('div', {}, el('div', { class: 's-label' }, c.name), el('div', { class: 's-sub' }, [c.via, c.district, `${c.n} rutas`].filter(Boolean).join(' · '))));
       row.addEventListener('mousedown', (e) => { e.preventDefault(); choose(c); });
       list.appendChild(row);
     });
     list.classList.toggle('open', items.length > 0);
+    // El elegido con las flechas, a la vista
+    list.querySelector('.suggest-item.selected')?.scrollIntoView({ block: 'nearest' });
   };
 
   input.addEventListener('focus', () => { void ensureGraph(); });

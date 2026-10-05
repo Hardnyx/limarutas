@@ -1,0 +1,36 @@
+{
+  "_fuente": "Nombres con que se conoce cada calle (pipeline/scripts/cruces.py): 'nombre' es como se muestra en el buscador; 'alias', los nombres oficiales u otros con que también se busca (se comparan sin tildes, sin 'Avenida', 'Jirón', 'de', 'la'...). 'bbox' [sur, oeste, norte, este]: solo en ese tramo (hay un Garcilaso de la Vega o un Piérola en otros distritos). 'mostrar': false, solo para buscar (el nombre oficial se sigue mostrando). El nombre del paradero en el mapa y en los pasos del viaje no cambia.",
+  "_referencias": [
+    "Wilson = Av. Inca Garcilaso de la Vega (Infobae, 2022-10-15); Colmena = Av. Nicolás de Piérola; Colonial = Av. Óscar R. Benavides (Wikipedia; El Comercio); Huaylas = Av. Defensores del Morro, Chorrillos; Pista Nueva = Av. Defensores de Lima, la que sigue a la Av. Alfredo Benavides; Sánchez Carrión = ex Pershing (RPP)"
+  ],
+  "calles": [
+    {"nombre": "Riva Agüero", "alias": ["José de la Riva Agüero", "José de la Riva-Agüero", "Riva Aguero"]},
+    {"nombre": "Sucre", "alias": ["Antonio José de Sucre", "Mariscal Antonio José de Sucre", "General José Antonio de Sucre", "José de Sucre", "Mariscal Sucre"]},
+    {"nombre": "Larco", "alias": ["José Larco"]},
+    {"nombre": "Colonial", "alias": ["Óscar Raimundo Benavides", "Óscar R. Benavides", "Oscar R. Benavides", "Óscar Benavides"], "bbox": [-12.07, -77.15, -12.03, -77.03]},
+    {"nombre": "Wilson", "alias": ["Inca Garcilaso de la Vega", "Garcilaso de la Vega", "Inca Garcilaso", "Garcilaso", "Garcilazo de la Vega"], "bbox": [-12.066, -77.046, -12.044, -77.032]},
+    {"nombre": "Colmena", "alias": ["Nicolás de Piérola", "Piérola", "La Colmena"], "bbox": [-12.062, -77.046, -12.044, -77.024]},
+    {"nombre": "Huaylas", "alias": ["Defensores del Morro"], "bbox": [-12.23, -77.05, -12.15, -76.98]},
+    {"nombre": "Pista Nueva", "alias": ["Defensores de Lima"], "mostrar": false},
+    {"nombre": "Sánchez Carrión", "alias": ["Faustino Sánchez Carrión", "Faustino Sanchez Carrión", "Pershing"]},
+    {"nombre": "Javier Prado", "alias": ["Javier Prado Este", "Javier Prado Oeste"]},
+    {"nombre": "Benavides", "alias": ["Alfredo Benavides"]},
+    {"nombre": "Vía Expresa", "alias": ["Expresa Luis Fernán Bedoya Reyes", "Vía Expresa Luis Fernán Bedoya Reyes", "Vía Expresa Paseo de la República", "Zanjón"]},
+    {"nombre": "Vía Expresa Grau", "alias": ["Expresa Almirante Miguel Grau", "Vía Expresa Almirante Miguel Grau"]},
+    {"nombre": "Faucett", "alias": ["Elmer Faucett", "Expresa Elmer Faucett"]},
+    {"nombre": "Izaguirre", "alias": ["Carlos Alberto Izaguirre", "Carlos Izaguirre"]},
+    {"nombre": "Antúnez de Mayolo", "alias": ["Santiago Antúnez de Mayolo"]},
+    {"nombre": "Habich", "alias": ["Eduardo de Habich"]},
+    {"nombre": "Chimpu Ocllo", "alias": ["Isabel Chimpu Ocllo"]},
+    {"nombre": "La Mar", "alias": ["Mariscal José de la Mar", "José de la Mar"]},
+    {"nombre": "Canaval y Moreyra", "alias": ["Enrique Canaval y Moreyra", "Enrique Canaval Moreyra"]},
+    {"nombre": "Aramburú", "alias": ["Andrés Aramburú"]},
+    {"nombre": "Pérez Araníbar", "alias": ["Augusto Pérez Araníbar"]},
+    {"nombre": "Gálvez Barrenechea", "alias": ["José Gálvez Barrenechea"]},
+    {"nombre": "Tomás Marsano", "alias": ["Tomás Marsano Gutiérrez"]},
+    {"nombre": "Evitamiento", "alias": ["Vía de Evitamiento"]}
+  ],
+  "paraderos": [
+    {"nombre": "Kilómetro 22 (Túpac Amaru)", "alias": ["22", "El 22", "Km 22", "Kilómetro 22", "Paradero 22"]}
+  ]
+}
