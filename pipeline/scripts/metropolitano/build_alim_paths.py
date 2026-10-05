@@ -78,6 +78,7 @@ WR_GAP_M = 250       # ...y uno cada esto como mínimo (los de enfrente o de la 
 STREET_M = 35        # paradero oficial sin paradero de Wikiroutes: el cruce con la calle de su nombre, hasta esto
 LOOP_CUT_M = 250     # rulos más cortos que esto (cadenas de OSM mal unidas, puntos de paso a un costado) se cortan
 ANCHOR_M = 1200      # trazado de un mapa QR: un paradero oficial que está fuera, hasta esto, lo corrige
+DETOUR_M = 150       # ...si no alarga el trazado más que esto o que lo que está fuera
 
 M_LAT = 110_574
 M_LON = 111_320 * math.cos(math.radians(-12.05))
@@ -505,8 +506,13 @@ def anchored(red, way, names):
         except ValueError:
             continue
         h = hits(cand)
-        if h > base:
+        # Si alarga el trazado más que lo que el paradero está fuera (ir y
+        # volver: un homónimo junto a otra avenida), tiene que calzar alguno
+        # más además de él; corregir suele ser pasar a la calle de al lado
+        longer = cumulative(cand)[-1] - cum[-1] > max(DETOUR_M, d)
+        if h > base + longer:
             marks, path, base = trial, cand, h
+            cum = cumulative(path)
     return path, names
 
 

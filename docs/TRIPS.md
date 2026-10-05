@@ -78,12 +78,21 @@ bus de la principal no para en la auxiliar y puede haber un separador),
 
 **Caminatas.** Entre paraderos a 400 m o menos en línea recta
 (`WALK_MAX_M`), calculadas en el navegador con una grilla.
-En el mapa, cada tramo a pie del viaje elegido se dibuja por las calles,
-veredas, escaleras y puentes peatonales de OpenStreetMap (`walkRoute.js`:
-OSRM con perfil peatonal, servidor público de FOSSGIS, para todo el mundo).
-Sin respuesta en 6 s, o si el camino da más de 4 veces la recta (otra orilla
-de un río, un cruce sin mapear), queda en línea recta. El cálculo no lo usa:
-pedir un camino por cada combinación sería miles de consultas.
+En el mapa, cada tramo a pie del viaje elegido se dibuja por la red peatonal
+propia (`walkRoute.js`), armada desde OpenStreetMap por
+`pipeline/scripts/osm/build_walk_graph.py` (`data/processed/caminata/`, en
+cuadrículas de 0,02°; el navegador carga solo las de la zona del tramo):
+veredas, cruces, escaleras, puentes peatonales y calles. No va por las
+ciclovías (salvo que también sean peatonales), ni por la vía del
+Metropolitano, ni por dentro de las estaciones (andenes y pasillos a menos de
+20 m de la vía: sería entrar a la zona paga), ni por autopistas o donde OSM
+dice `foot=no`. OSM no une siempre la esquina con su vereda ni con la otra
+calzada de la avenida: cada esquina se une a la vereda más cercana (hasta
+20 m) y a la calle paralela más cercana (la otra calzada o la auxiliar, hasta
+30 m); las veredas que terminan sueltas, al nodo más cercano (hasta 12 m); las
+islas sueltas (veredas de un parque sin salida mapeada), fuera. Si no hay
+camino o da más de 4 veces la recta (otra orilla de un río), queda en línea
+recta. El cálculo del viaje no lo usa: sigue con la recta y su factor.
 
 ## Cálculo (`planTrip`)
 

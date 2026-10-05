@@ -61,3 +61,4 @@ pipeline/input/lista_rutas.csv
 node_modules/
 test-results/
 playwright-report/
+data/raw/osm/Lima.osm.pbf

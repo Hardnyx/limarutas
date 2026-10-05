@@ -340,19 +340,37 @@ test.describe('pestaña Cómo llegar', () => {
     await expect(page.locator('#onMapCount')).not.toHaveText('0');
   });
 
-  test('los tramos a pie van por las calles (ruteador peatonal), no en línea recta', async ({ app, page }) => {
+  test('los tramos a pie van por las calles (red peatonal de OSM), no en línea recta', async ({ app, page }) => {
+    const tiles = [];
+    page.on('request', r => { if (r.url().includes('/data/processed/caminata/t/')) tiles.push(r.url()); });
     await page.evaluate(async () => {
       const m = await import('/assets/js/tripUi.js');
       await m.setTripEnds({ lat: -12.0225, lon: -77.0516, label: 'A' }, { lat: -12.058, lon: -76.9395, label: 'B' });
     });
     await expect(page.locator('.trip-card').first()).toBeVisible();
-    // El stub de fixtures.js devuelve una "L": el tramo tiene la esquina
+    // Por las calles: el tramo tiene esquinas
     await expect.poll(() => app.state(state => {
       const walks = [];
       state.map.eachLayer(l => { if (l instanceof L.Polyline && l.options.dashArray === '2 8') walks.push(l.getLatLngs().length); });
       return walks.length > 0 && walks.every(n => n >= 4);
     })).toBe(true);
-    await expect(page.locator('.leaflet-control-attribution')).toContainText('OSRM');
+    expect(tiles.length).toBeGreaterThan(0);
+  });
+
+  test('a pie: sin pasar por dentro de una estación del Metropolitano', async ({ page }) => {
+    // De un lado al otro de la Vía Expresa junto a Canaval y Moreyra: por el
+    // puente, no por los pasillos de la estación (que dan a la vía exclusiva)
+    const r = await page.evaluate(async () => {
+      const { walkRoute } = await import('/assets/js/walkRoute.js');
+      const w = await walkRoute([-12.0968, -77.0244], [-12.0971, -77.0258]);
+      // Pasillos cubiertos de la estación (OSM 1554653641, 1554653643)
+      const inside = [[-12.096988, -77.025109], [-12.096648, -77.024986]];
+      const near = (p, q) => Math.hypot((p[0] - q[0]) * 110574, (p[1] - q[1]) * 108900) < 4;
+      return w && { n: w.coords.length, inStation: w.coords.some(p => inside.some(q => near(p, q))) };
+    });
+    expect(r).not.toBeNull();
+    expect(r.n).toBeGreaterThan(4);
+    expect(r.inStation).toBe(false);
   });
 
   test('elegir en el mapa no abre el panel de rutas; Esc cancela', async ({ app, page }) => {
