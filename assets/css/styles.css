@@ -2076,7 +2076,8 @@ html.beta .panel-head:hover { background: var(--hover); }
 .trip-summary-edit { flex: none; color: var(--accent); font-weight: 600; font-size: 12px; }
 
 /* Foto referencial de una ruta (config/route_photos.json) */
-.wr-photo-btn {
+.wr-photo-btn,
+.route-steps-btn {
   margin-top: 3px;
   padding: 1px 8px;
   font: inherit;
@@ -2088,7 +2089,8 @@ html.beta .panel-head:hover { background: var(--hover); }
   opacity: .75;
   cursor: pointer;
 }
-.wr-photo-btn[aria-expanded="true"] { opacity: 1; }
+.wr-photo-btn[aria-expanded="true"],
+.route-steps-btn[aria-expanded="true"] { opacity: 1; }
 .wr-photos {
   display: flex;
   gap: 8px;

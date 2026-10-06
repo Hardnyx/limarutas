@@ -46,7 +46,7 @@ export function stepsToggle(getSections){
   const box = el('div', { class: 'route-steps-box', hidden: '' });
   const btn = el('button', {
     type: 'button',
-    class: 'wr-photo-btn route-steps-btn',
+    class: 'route-steps-btn',
     'aria-expanded': 'false',
     title: 'Por qué calles va, paso a paso'
   }, 'Recorrido');

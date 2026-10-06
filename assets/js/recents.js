@@ -45,10 +45,15 @@ function load(){
 }
 
 // Copia del bloque de texto del ítem original (título y subtítulos del
-// sentido que está seleccionado)
+// sentido que está seleccionado), sin sus botones de Foto y Recorrido (que
+// abren cajas del ítem original)
 function cloneLeft(item, entry){
   const left = item?.querySelector('.item-head .left');
-  if (left) return left.cloneNode(true);
+  if (left){
+    const copy = left.cloneNode(true);
+    copy.querySelectorAll('.wr-photo-btn, .route-steps-btn').forEach(b => b.remove());
+    return copy;
+  }
   return el('div', { class: 'left' }, el('span', { class: 'tag' }, entry.id));
 }
 

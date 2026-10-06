@@ -320,9 +320,11 @@ test('recorrido paso a paso: el del sentido elegido, por las calles de OSM', asy
   await item.locator('.segbtn-mini[data-dir="vuelta"]').click();
   await expect.poll(async () => (await steps.allTextContents()).join('|')).not.toBe(ida.join('|'));
   await expect(steps.first()).toContainText(/^Por /);
-  // Cerrar
-  await btn.click();
-  await expect(box).toBeHidden();
+  // En Rutas recientes (la vuelta la marcó) no se copia el botón
+  await expect(page.locator('#p-recent-list .route-steps-btn')).toHaveCount(0);
+  // Cerrar (la lista quedó plegada al abrirse Recientes)
+  await btn.dispatchEvent('click');
+  await expect(btn).toHaveAttribute('aria-expanded', 'false');
 });
 
 test('alimentadores: recorrido del sentido elegido; con los dos, ida y vuelta por separado', async ({ app, page }) => {
