@@ -303,7 +303,8 @@ test('paraderos formales: sólidos del color de la ruta; al tocarlos, sus alimen
 
 test('recorrido paso a paso: el del sentido elegido, por las calles de OSM', async ({ app, page }) => {
   await page.click('.panel-head[data-target="p-wr-body"]');
-  const item = page.locator('#p-wr .item:has(> .item-head input[data-id="1087"])');
+  // Directo al ítem (un :has() sobre cientos de rutas tarda segundos por consulta)
+  const item = page.locator('#p-wr .item-head input[data-id="1087"]').locator('xpath=ancestor::div[contains(concat(" ", @class, " "), " item ")][1]');
   const btn = item.locator('.route-steps-btn');
   await expect(btn).toHaveText('Recorrido');
   const box = item.locator('.route-steps-box');
