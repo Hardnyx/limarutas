@@ -3159,3 +3159,35 @@ html.beta .ri-actions .btn {
 .tag.ri-chip {
   text-transform: none;
 }
+
+/* Indicaciones de una ruta: botón "Recorrido" y sus pasos (routeSteps.js) */
+.route-steps-btn + .wr-photo-btn,
+.wr-photo-btn + .route-steps-btn { margin-left: 6px; }
+.route-steps-box { padding: 4px 0 2px; }
+.route-steps-box[hidden] { display: none; }
+.route-steps {
+  margin: 0;
+  padding: 0 0 0 22px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+.route-step { padding: 2px 0; }
+.route-step::after { content: ""; display: block; clear: both; }
+.route-step::marker { color: var(--text-muted); font-size: 11px; }
+.route-step-m {
+  float: right;
+  margin-left: 8px;
+  color: var(--text-muted);
+  font-size: 11px;
+  white-space: nowrap;
+}
+.route-steps-title {
+  margin: 4px 0 2px;
+  font-size: 11.5px;
+  font-weight: 600;
+}
+.route-steps-note {
+  margin-top: 3px;
+  font-size: 10.5px;
+  opacity: .7;
+}

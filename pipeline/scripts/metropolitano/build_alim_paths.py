@@ -63,13 +63,14 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT / 'pipeline' / 'scripts' / 'osm'))
-from recorrido import Recorridos  # noqa: E402
+from recorrido import CorreccionError, Recorridos  # noqa: E402
 MET = ROOT / 'data' / 'processed' / 'metropolitano'
 OUT = MET / 'alimentadores_paths.json'
 WR_STOPS = ROOT / 'pipeline' / 'output' / 'wr_stops_index.json'
 OFFICIAL = ROOT / 'config' / 'alim_paraderos.json'
 OSM_ZIP = ROOT / 'data' / 'raw' / 'osm' / 'transporte.zip'
 TRAZADOS = ROOT / 'config' / 'alim_trazados.json'
+CORR = ROOT / 'config' / 'recorridos_correcciones.json'
 
 LOOP_M = 80          # extremos a menos de esto: es un circuito
 MERGE_STOP_M = 40    # "stop" y "platform" de OSM del mismo paradero
@@ -371,6 +372,27 @@ def merge_stops(items):
     return out
 
 
+def replace_path(direc, path):
+    """El sentido con otro trazado (una corrección): sus paraderos, en el
+    mismo orden, sobre el nuevo; los que quedan lejos (el bus ya no pasa por
+    ahí) se quitan."""
+    cum = cumulative(path)
+    stops, last = [], 0.0
+    for s in direc['stops']:
+        met = str(s['id']).startswith('met:')
+        d, m, _ = project(path, cum, (s['lat'], s['lon']))
+        if d > MAX_STOP_M and not met:
+            continue
+        m = max(m, last)
+        last = m
+        at = min(range(len(cum)), key=lambda i: abs(cum[i] - m))
+        s = {**s, 'at': at, 'm': round(m)}
+        if not met:
+            s['lat'], s['lon'] = (round(v, 6) for v in point_at(path, cum, m))
+        stops.append(s)
+    return {'coords': [[round(a, 6), round(b, 6)] for a, b in path], 'stops': stops}
+
+
 def point_at(path, cum, m):
     """Punto del trazado a m metros del inicio."""
     for i in range(1, len(cum)):
@@ -659,15 +681,31 @@ def main() -> None:
 
     # Los pasos de cada sentido ("por Av. X 420 m, a la derecha en Av. Y, en
     # el óvalo toma la 2.ª salida…"), para leer y corregir el recorrido; y
-    # cuántos tramos del dibujo quedaron sin calle
-    for svc in out.values():
+    # cuántos tramos del dibujo quedaron sin calle. Los pasos corregidos a
+    # mano (config/recorridos_correcciones.json, «AS-04-ida») rehacen ese
+    # pedazo del trazado
+    corrs = defaultdict(list)
+    if CORR.exists():
+        for c in json.loads(CORR.read_text(encoding='utf-8')).get('alimentadores', []):
+            corrs[c['ruta']].append(c)
+    for ref, svc in out.items():
         for key in ('ida', 'vuelta'):
             if not svc.get(key):
                 continue
             rec = R.match(svc[key]['coords'])
+            for c in corrs.pop(f'{ref}-{key}', []):
+                try:
+                    rec = R.corregir(rec, c)
+                except CorreccionError as e:
+                    print(f"  {ref}-{key}: corrección que no calza ({c.get('nota') or c}): {e}")
+                    continue
+                path = [tuple(p) for p in R.geometry(rec)]
+                svc[key] = {**svc[key], **replace_path(svc[key], path)}
             svc[key]['pasos'] = R.steps(rec)
             if rec['sueltos']:
                 svc[key]['sin_calle'] = len(rec['sueltos'])
+    for name in corrs:
+        print(f'  correcciones de un alimentador que no existe: {name}')
 
     OUT.write_text(json.dumps({'updated': dt.date.today().isoformat(), 'services': out},
                               ensure_ascii=False, separators=(',', ':')), encoding='utf-8')

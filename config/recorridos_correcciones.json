@@ -1,0 +1,19 @@
+{
+  "_doc": [
+    "Pasos corregidos a mano de los recorridos por la red de calles de OSM (docs/RECORRIDOS.md).",
+    "Cada corrección rehace un pedazo del recorrido: desde el final del paso «desde» hasta el comienzo del paso «hasta», pasando en orden por lo que diga «por».",
+    "desde / hasta: el número del paso (1, 2, …, como sale en la ficha de la ruta) o el nombre de su calle («Av. Brasil»: la primera vez que aparece; «desde_vez»: 2 para la segunda). Sin «desde», desde el comienzo; sin «hasta», hasta el final.",
+    "por: calles («Av. Z», recorrida al menos 100 m seguidos, o {\"calle\": \"Av. Z\", \"m\": 300}) y puntos [lat, lon] por donde pasa, en orden. Vacío: el camino más corto por la red.",
+    "rutas: las de Wikiroutes, por su clave de pipeline/output/wr_map.json («1087-ida»); alimentadores: «AS-04-ida», «AS-04-vuelta».",
+    "Después: python pipeline/scripts/osm/build_recorridos.py <rutas> (Wikiroutes) o python pipeline/scripts/metropolitano/build_alim_paths.py (alimentadores)."
+  ],
+  "_ejemplo": {
+    "ruta": "1087-ida",
+    "desde": "Alameda Sur",
+    "hasta": "Defensores del Morro",
+    "por": ["Alameda San Marcos", "Santa Anita"],
+    "nota": "por qué: lo que se vio en la calle, en el mapa QR, etc."
+  },
+  "rutas": [],
+  "alimentadores": []
+}

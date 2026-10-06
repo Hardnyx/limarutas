@@ -5,6 +5,7 @@ import { $, el } from './utils.js';
 import { syncTriFromLeaf } from './uiSidebar.hierarchy.js';
 import { toggleLeaf, refreshLeafDirection } from './leafToggle.js';
 import { directionsOf, scheduleText } from './metSchedule.js';
+import { stepsToggle } from './routeSteps.js';
 
 const labelForSvc = (s) =>
   s.kind === 'regular' ? 'Ruta' : (s.kind === 'expreso' ? 'Expreso' : 'Servicio');
@@ -137,17 +138,32 @@ function makeServiceItemAlim(svc){
     style:`background:${bg}`
   }, code);
 
-  const left = el('div',{class:'left'},
-    tag,
-    el('div',{},
-      el('div',{class:'name'}, svc.name || `Alimentador ${code}`),
-      el('div',{class:'sub met-trip'}, alimTripText(svc), alimHours(svc), alimAprox(svc))
-    )
+  const textBlock = el('div',{},
+    el('div',{class:'name'}, svc.name || `Alimentador ${code}`),
+    el('div',{class:'sub met-trip'}, alimTripText(svc), alimHours(svc), alimAprox(svc))
   );
+  const left = el('div',{class:'left'}, tag, textBlock);
 
   const chk  = el('input',{type:'checkbox','data-id':svc.id,'data-system':'alim'});
   const head = el('div',{class:'item-head'}, left, chk);
-  const body = el('div',{class:'item'}, head, miniDir('alim', svc));
+  const dirs = miniDir('alim', svc);
+  const body = el('div',{class:'item'}, head, dirs);
+
+  // Indicaciones del sentido elegido (o de los dos)
+  const p = state.systems.alim.paths?.[svc.id];
+  if (p?.ida?.pasos || p?.vuelta?.pasos){
+    const { btn, box, refresh } = stepsToggle(async () => {
+      const dir = getDirFor('alim', svc.id);
+      const ida = { title: `Ida · hacia ${p.ida?.to || ''}`, pasos: p.ida?.pasos };
+      const vta = { title: `Vuelta · hacia ${p.vuelta?.to || ''}`, pasos: p.vuelta?.pasos };
+      if (dir === 'sur') return [{ pasos: ida.pasos }];
+      if (dir === 'norte') return [{ pasos: vta.pasos }];
+      return [ida, vta];
+    });
+    textBlock.append(btn);
+    body.append(box);
+    dirs.addEventListener('click', () => setTimeout(refresh));
+  }
 
   chk.addEventListener('change', () => {
     if (!state.bulk) {

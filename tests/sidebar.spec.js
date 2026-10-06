@@ -300,3 +300,38 @@ test('paraderos formales: sólidos del color de la ruta; al tocarlos, sus alimen
   await expect(page.locator('.ri-title')).toHaveText(/^Paradero /);
   await expect(page.locator('.ri-chip', { hasText: 'AN-19' })).toHaveCount(1);
 });
+
+test('recorrido paso a paso: el del sentido elegido, por las calles de OSM', async ({ app, page }) => {
+  await page.click('.panel-head[data-target="p-wr-body"]');
+  const item = page.locator('#p-wr .item:has(> .item-head input[data-id="1087"])');
+  const btn = item.locator('.route-steps-btn');
+  await expect(btn).toHaveText('Recorrido');
+  const box = item.locator('.route-steps-box');
+  await expect(box).toBeHidden();
+  await btn.click();
+  await expect(btn).toHaveAttribute('aria-expanded', 'true');
+  const steps = box.locator('.route-step');
+  await expect(steps.first()).toContainText(/^Por /);
+  expect(await steps.count()).toBeGreaterThan(5);
+  await expect(steps.first().locator('.route-step-m')).toHaveText(/^\d+(,\d)? (m|km)$/);
+  await expect(box.locator('.route-steps-note')).toHaveText('Calles de OpenStreetMap');
+  // Otro sentido: sus pasos (el primero de la ida no es el de la vuelta)
+  const ida = await steps.allTextContents();
+  await item.locator('.segbtn-mini[data-dir="vuelta"]').click();
+  await expect.poll(async () => (await steps.allTextContents()).join('|')).not.toBe(ida.join('|'));
+  await expect(steps.first()).toContainText(/^Por /);
+  // Cerrar
+  await btn.click();
+  await expect(box).toBeHidden();
+});
+
+test('alimentadores: recorrido del sentido elegido; con los dos, ida y vuelta por separado', async ({ app, page }) => {
+  const sel = '#p-met-alim .item:has(input[data-id="AN-19"])';
+  const item = page.locator(sel);
+  await page.evaluate(sel => document.querySelector(`${sel} .route-steps-btn`).click(), sel);
+  const box = item.locator('.route-steps-box');
+  await expect(box.locator('.route-step').first()).toHaveText(/^Por Avenida Túpac Amaru/);
+  await expect(box.locator('.route-steps-title')).toHaveCount(0);
+  await page.evaluate(sel => document.querySelector(`${sel} .segbtn-mini[data-dir="ambas"]`).click(), sel);
+  await expect(box.locator('.route-steps-title')).toHaveText(['Ida · hacia Izaguirre', 'Vuelta · hacia Naranjal']);
+});

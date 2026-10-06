@@ -9,6 +9,7 @@ import { toggleLeaf, refreshLeafDirection } from './leafToggle.js';
 import { wrCanonicalCode, loadWrListaMeta, loadWrExtremes, wrFilterRoutesByGroup, loadRoutePhotos } from './wrData.js';
 import { wrIsPlaceholder, wrBuildTituloPrincipal, wrParseBaseStops, wrStopsFromExtremesForRoute } from './wrTexts.js';
 import { wrIsDefaultColor } from './uiSidebar.wrColorFilter.js';
+import { stepsToggle, wrSteps } from './routeSteps.js';
 
 /* =========================
    Ítem WR: Ida / Vuelta
@@ -160,6 +161,23 @@ function attachWrPhotos(body, textBlock, code){
   });
 }
 
+// Botón "Recorrido": las indicaciones del sentido elegido, si la ruta va por
+// las calles de OSM
+function attachWrSteps(body, textBlock, chk){
+  const defs = state.systems.wr.routeDefs;
+  const pair = !!chk.dataset.ida;
+  const rids = pair ? [chk.dataset.ida, chk.dataset.vuelta] : [chk.dataset.layer];
+  if (!rids.some(r => defs?.get(String(r))?.osm)) return;
+  const { btn, box, refresh } = stepsToggle(async () => {
+    const rid = pair ? (chk.dataset.sel === 'vuelta' ? chk.dataset.vuelta : chk.dataset.ida) : chk.dataset.layer;
+    const pasos = await wrSteps(defs.get(String(rid)));
+    return pasos ? [{ pasos }] : null;
+  });
+  textBlock.append(btn);
+  body.append(box);
+  body.querySelector('.dir-mini')?.addEventListener('click', () => setTimeout(refresh));
+}
+
 function makeWrItem(rt, metaByCodigo, routesById, extremes, systemId='wr'){
   const labelId = (rt.display_id || String(rt.id)).toUpperCase();
   const tagColor = (rt && rt.color) ? rt.color : '#64748b';
@@ -268,6 +286,7 @@ function makeWrItem(rt, metaByCodigo, routesById, extremes, systemId='wr'){
 
   const initialDir = hasBothDirs ? (chk.dataset.sel || 'ida') : 'ida';
   applyWrTextsToWrItem(body, initialDir);
+  attachWrSteps(body, textBlock, chk);
   attachWrPhotos(body, textBlock, key);
 
   chk.addEventListener('change', () => {

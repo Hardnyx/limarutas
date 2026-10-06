@@ -53,6 +53,7 @@ class Red:
         self.pos: dict[int, tuple[float, float]] = {}
         self.adj: dict[int, list] = defaultdict(list)
         self.way: dict[tuple[int, int], tuple] = {}     # (u, v) → (id de la vía, nombre, es rotonda)
+        self.way_nodes: dict[int, list[int]] = {}       # id de la vía → sus nodos, en el orden de OSM
         red = self
 
         class H(osmium.SimpleHandler):
@@ -69,6 +70,7 @@ class Red:
                     return
                 if not any(s <= la <= n and w <= lo <= e for _, la, lo in pts):
                     return
+                red.way_nodes[way.id] = [r for r, _, _ in pts]
                 ow = t.get('oneway')
                 if t.get('junction') in ('roundabout', 'circular') and ow is None:
                     ow = 'yes'
@@ -89,6 +91,10 @@ class Red:
                         red.way[b, a] = info
 
         H().apply_file(str(PBF), locations=True)
+        # Fecha del extracto: los ids de vías y nodos de un recorrido guardado son de esta versión
+        r = osmium.io.Reader(str(PBF), osmium.osm.osm_entity_bits.NOTHING)
+        self.fecha = (r.header().get('osmosis_replication_timestamp') or '')[:10]
+        r.close()
         self.grid = defaultdict(list)
         for nid, p in self.pos.items():
             if nid in self.adj:          # solo nodos desde los que se puede salir
