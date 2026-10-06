@@ -38,6 +38,7 @@ SIGMA = 10.0           # qué tan lejos de la calle suele estar el dibujo
 BETA = 25.0            # diferencia aceptable entre el camino y la recta
 DETOUR_K, DETOUR_M = 2.0, 60
 SHORT_M = 25           # un paso más corto que esto se junta con el siguiente
+TINY_RB_M = 20         # una «rotonda» más corta (un pedazo de anillo en un cruce), también
 UNNAMED_M = 120        # un paso sin nombre más corto que esto (un enlace, una oreja), también
 ON_STREET_M = 100      # corrección «por Av. Z»: al menos esto seguido por ella
 CELL = 50
@@ -354,8 +355,9 @@ class Recorridos:
         merged = []
         for s in out:
             last = merged[-1] if merged else None
-            if last and last['accion'] != 'rotonda' and len(merged) > 1 and (
-                    last['m'] < SHORT_M or (not last['via'] and last['m'] < UNNAMED_M)):
+            if last and len(merged) > 1 and (
+                    (last['accion'] == 'rotonda' and last['m'] < TINY_RB_M)
+                    or (last['accion'] != 'rotonda' and (last['m'] < SHORT_M or (not last['via'] and last['m'] < UNNAMED_M)))):
                 gone = merged.pop()
                 s = {**s, 'm': s['m'] + gone['m'], '_a': gone['_a']}
             # Otra vez la misma calle (se pasó a la otra calzada, o el pedazo

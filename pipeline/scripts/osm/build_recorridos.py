@@ -186,8 +186,12 @@ def main(argv):
     used = sum(1 for s in report.values() if s.get('usa'))
     print(f'{used} de {len(report)} trazados por la red de OSM · {time.time() - t:.0f} s · '
           f'{REPORT.relative_to(ROOT)}')
-    for key in [k for k in keys if k in report and report[k].get('origen') not in (None, 'vias')]:
-        print(f"  {key}: pegada de nuevo desde el dibujo ({report[key]['origen']})")
+    redo = [k for k in keys if report.get(k, {}).get('origen') in ('dibujo', 'osm cambió')]
+    if redo:
+        changed = [k for k in redo if report[k]['origen'] == 'osm cambió']
+        print(f'  {len(redo)} pegadas desde el dibujo'
+              + (f" ({len(changed)} porque OSM cambió: {', '.join(changed[:20])}{'…' if len(changed) > 20 else ''})"
+                 if changed else ''))
     for key in [k for k in keys if report.get(k, {}).get('errores')]:
         for e in report[key]['errores']:
             print(f'  {key}: corrección que no calza: {e}')
