@@ -65,7 +65,10 @@ menos de 25 m se juntan con el siguiente.
 Los que vienen de una relación de OSM se pegan a la red así (antes, un rulo
 corto se cortaba en recta y cruzaba el óvalo: ahora solo se corta un ir y
 volver por la misma calle, sin área; una vuelta a un óvalo se queda). Un
-circuito cuyos extremos no coinciden se cierra por la red, no en recta. Los
+circuito cuyos extremos no coinciden se cierra por la red, no en recta; y
+uno que va más contra el sentido de las calles de un solo sentido que a
+favor (la relación lo lista al revés: pasaba con el AN-02) se da vuelta. Al
+correr el script se avisan los sentidos con más de 1 km contra el sentido. Los
 de los mapas QR ya se trazan por la red (`config/alim_trazados.json`). Cada
 sentido guarda sus `pasos` y, si los hay, cuántos tramos quedaron
 `sin_calle`, en `alimentadores_paths.json`.

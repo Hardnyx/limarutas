@@ -1,0 +1,600 @@
+# Recorridos: para revisar
+
+Generado por `pipeline/scripts/osm/build_recorridos.py` (docs/RECORRIDOS.md). Cada punto enlaza a OpenStreetMap en el lugar. Se corrige con un paso en `config/recorridos_correcciones.json`, o en OSM si la calle falta o tiene mal el sentido.
+
+## Siguen con su dibujo (3)
+
+- `52727-vuelta` 52727 · Calle Augusto Tamayo → Pablo Carriquiry (Express Mañana: por la red mide 0.85 del dibujo
+- `CH01-ida` CH01 · Playa Yaya → Centro Comercial Municipal: casi todo fuera de la red de Lima
+- `CH01-vuelta` CH01 · Centro Comercial Municipal → Playa Yaya: casi todo fuera de la red de Lima
+
+## Contra el sentido (294 lugares, 1243 rutas)
+
+- **Vía Expresa Elmer Faucett** · 540 m · [mapa](https://www.openstreetmap.org/?mlat=-12.025684&mlon=-77.104259#map=18/-12.025684/-77.104259) · 122 rutas: `1007-ida`, `1007_70834-ida`, `1030-vuelta`, `1030_69324-vuelta`, `1139-ida`, `1142-ida`, `1151-ida`, `1152-ida`, `1153-ida`, `1154-ida`, `1157-vuelta`, `1158-ida` y 110 más
+- **Avenida Elmer Faucett** · 502 m · [mapa](https://www.openstreetmap.org/?mlat=-12.040635&mlon=-77.099015#map=18/-12.040635/-77.099015) · 85 rutas: `1030-vuelta`, `1030_69324-vuelta`, `1139-ida`, `1152-ida`, `1154-ida`, `1157-vuelta`, `1162-ida`, `1163-ida`, `1165-ida`, `1167-ida`, `1173-ida`, `1203-vuelta` y 73 más
+- **Avenida Elmer Faucett** · 798 m · [mapa](https://www.openstreetmap.org/?mlat=-12.001009&mlon=-77.116923#map=18/-12.001009/-77.116923) · 82 rutas: `1039-ida`, `1039_70267-ida`, `1142-vuelta`, `1151-vuelta`, `1152-vuelta`, `1157-ida`, `1158-vuelta`, `1163-vuelta`, `1169-vuelta`, `1172-ida`, `1257-vuelta`, `1257_69856-vuelta` y 70 más
+- **Avenida Separadora Industrial** · 106 m · [mapa](https://www.openstreetmap.org/?mlat=-12.044934&mlon=-76.93788#map=18/-12.044934/-76.93788) · 79 rutas: `089p-ida`, `1041-ida`, `1064_70170-vuelta`, `1068-vuelta`, `1068_69491-vuelta`, `1069-vuelta`, `1069_69643-vuelta`, `1072-vuelta`, `1072_71278-vuelta`, `1073-vuelta`, `1073_54745-vuelta`, `1074_71109-vuelta` y 67 más
+- **Avenida Nicolás Arriola** · 61 m · [mapa](https://www.openstreetmap.org/?mlat=-12.06448&mlon=-76.989547#map=18/-12.06448/-76.989547) · 78 rutas: `102-vuelta`, `1041-ida`, `1064_70170-vuelta`, `1066-vuelta`, `1066_69645-vuelta`, `1068-vuelta`, `1068_69491-vuelta`, `1069-vuelta`, `1069_69643-vuelta`, `1085_69634-ida`, `1099_69493-ida`, `1192_69426-ida` y 66 más
+- **Avenida Elmer Faucett** · 489 m · [mapa](https://www.openstreetmap.org/?mlat=-12.013297&mlon=-77.110609#map=18/-12.013297/-77.110609) · 73 rutas: `1030-vuelta`, `1030_69324-vuelta`, `1039-vuelta`, `1039_70267-vuelta`, `1142-ida`, `1151-ida`, `1152-ida`, `1157-vuelta`, `1158-ida`, `1163-ida`, `1169-ida`, `1257-ida` y 61 más
+- **Avenida Elmer Faucett** · 1480 m · [mapa](https://www.openstreetmap.org/?mlat=-12.040208&mlon=-77.099244#map=18/-12.040208/-77.099244) · 69 rutas: `107-vuelta`, `1139-vuelta`, `1142-vuelta`, `1152-vuelta`, `1153-vuelta`, `1157-ida`, `1162-vuelta`, `1165-vuelta`, `1167-vuelta`, `1265-vuelta`, `1266-vuelta`, `1275-vuelta` y 57 más
+- **Avenida Elmer Faucett** · 407 m · [mapa](https://www.openstreetmap.org/?mlat=-12.008977&mlon=-77.112442#map=18/-12.008977/-77.112442) · 68 rutas: `1030-vuelta`, `1030_69324-vuelta`, `1039-vuelta`, `1142-ida`, `1151-ida`, `1152-ida`, `1157-vuelta`, `1158-ida`, `1163-ida`, `1169-ida`, `1257-ida`, `1257_69856-ida` y 56 más
+- **Vía Expresa Elmer Faucett** · 336 m · [mapa](https://www.openstreetmap.org/?mlat=-12.030347&mlon=-77.101598#map=18/-12.030347/-77.101598) · 67 rutas: `1007-vuelta`, `1007_70834-vuelta`, `1030-ida`, `1030_69324-ida`, `1151-vuelta`, `1154-vuelta`, `1158-vuelta`, `1163-vuelta`, `1169-vuelta`, `1173-vuelta`, `1257-vuelta`, `1257_69856-vuelta` y 55 más
+- **Avenida República de Venezuela** · 447 m · [mapa](https://www.openstreetmap.org/?mlat=-12.059667&mlon=-77.077123#map=18/-12.059667/-77.077123) · 64 rutas: `1007-ida`, `1007_70834-ida`, `1140-ida`, `1148-ida`, `1149-ida`, `1150-ida`, `1155-ida`, `1218-vuelta`, `1218_69695-vuelta`, `1222_70182-vuelta`, `1223-ida`, `1223_69146-ida` y 52 más
+- **Avenida República de Venezuela** · 280 m · [mapa](https://www.openstreetmap.org/?mlat=-12.056228&mlon=-77.060633#map=18/-12.056228/-77.060633) · 64 rutas: `1007_70834-ida`, `1023_152324-ida`, `1140-ida`, `1155-ida`, `1187-ida`, `1187_70649-vuelta`, `1214-vuelta`, `1214_84563-ida`, `1218-vuelta`, `1222_70182-vuelta`, `1224_70177-vuelta`, `1233-vuelta` y 52 más
+- **Avenida República de Venezuela** · 106 m · [mapa](https://www.openstreetmap.org/?mlat=-12.057766&mlon=-77.068668#map=18/-12.057766/-77.068668) · 59 rutas: `1007-ida`, `1007_70834-ida`, `1140-ida`, `1148-ida`, `1149-ida`, `1150-ida`, `1155-ida`, `1214-vuelta`, `1214_84563-ida`, `1218-vuelta`, `1218_69695-vuelta`, `1251-vuelta` y 47 más
+- **Avenida Carlos Alberto Izaguirre** · 49 m · [mapa](https://www.openstreetmap.org/?mlat=-11.989979&mlon=-77.063203#map=18/-11.989979/-77.063203) · 52 rutas: `1005-vuelta`, `1005_63118-vuelta`, `101-vuelta`, `1017-vuelta`, `1017_70830-vuelta`, `102_89202-vuelta`, `108-ida`, `109-vuelta`, `113-vuelta`, `1175-vuelta`, `1177-vuelta`, `1177_68997-vuelta` y 40 más
+- **calle sin nombre** · 58 m · [mapa](https://www.openstreetmap.org/?mlat=-11.860531&mlon=-77.079499#map=18/-11.860531/-77.079499) · 49 rutas: `090p-vuelta`, `110-vuelta`, `113-vuelta`, `1131-vuelta`, `1131_68809-vuelta`, `1160-vuelta`, `1168-vuelta`, `1175-vuelta`, `1175_98767-vuelta`, `1179-vuelta`, `1179_46521-vuelta`, `1238-ida` y 37 más
+- **Vía de Evitamiento** · 141 m · [mapa](https://www.openstreetmap.org/?mlat=-12.032972&mlon=-77.00701#map=18/-12.032972/-77.00701) · 48 rutas: `089p-ida`, `109-ida`, `110-ida`, `111-ida`, `114-ida`, `1175-ida`, `1232-vuelta`, `1232_69495-vuelta`, `1305_84815-ida`, `1401_84885-ida`, `1408_84884-ida`, `156463-ida` y 36 más
+- **Avenida República de Venezuela** · 224 m · [mapa](https://www.openstreetmap.org/?mlat=-12.056126&mlon=-77.060133#map=18/-12.056126/-77.060133) · 41 rutas: `1007-ida`, `1023-ida`, `1148-ida`, `1149-ida`, `1150-ida`, `1218_69695-vuelta`, `1251-vuelta`, `1251_69149-vuelta`, `1254-vuelta`, `1280-ida`, `1305-vuelta`, `1311-ida` y 29 más
+- **Avenida José Carlos Mariátegui** · 510 m · [mapa](https://www.openstreetmap.org/?mlat=-12.006537&mlon=-76.835232#map=18/-12.006537/-76.835232) · 29 rutas: `1068-vuelta`, `1077-vuelta`, `1077_70488-vuelta`, `1080-vuelta`, `1080_70490-vuelta`, `1081_71277-vuelta`, `1083-vuelta`, `1083_89553-vuelta`, `1260-ida`, `1260_44955-ida`, `1277-vuelta`, `1292-ida` y 17 más
+- **Avenida Faustino Sanchez Carrión** · 64 m · [mapa](https://www.openstreetmap.org/?mlat=-12.092832&mlon=-77.053707#map=18/-12.092832/-77.053707) · 28 rutas: `1301-vuelta`, `203-vuelta`, `205_88560-vuelta`, `206_96734-vuelta`, `207-vuelta`, `4103-vuelta`, `4104-vuelta`, `8902-vuelta`, `90-vuelta`, `9402-ida`, `C49m-vuelta`, `ECR13-vuelta` y 16 más
+- **Avenida Pachacútec** · 63 m · [mapa](https://www.openstreetmap.org/?mlat=-12.181985&mlon=-76.942581#map=18/-12.181985/-76.942581) · 27 rutas: `021p-ida`, `1056-ida`, `1056_86188-ida`, `1061-ida`, `1061_71074-ida`, `1062_71039-ida`, `1125_71474-vuelta`, `1236-vuelta`, `1236_41953-vuelta`, `1247-vuelta`, `1247_69430-vuelta`, `1406-vuelta` y 15 más
+- **Via Expresa Sur** · 91 m · [mapa](https://www.openstreetmap.org/?mlat=-12.13639&mlon=-77.016999#map=18/-12.13639/-77.016999) · 26 rutas: `1053-vuelta`, `1053_71040-vuelta`, `1056-vuelta`, `1056_86188-vuelta`, `1092-ida`, `1092_69436-ida`, `1113_69742-ida`, `1123-ida`, `1123_45223-ida`, `170_89950-vuelta`, `7201-ida`, `72_96884-ida` y 14 más
+- **Avenida Víctor Raúl Haya de la Torre** · 1067 m · [mapa](https://www.openstreetmap.org/?mlat=-11.861911&mlon=-77.128234#map=18/-11.861911/-77.128234) · 25 rutas: `1445-ida`, `9402-ida`, `9404-ida`, `9505-ida`, `CR19-ida`, `CR24-ida`, `CR35-ida`, `CR35-vuelta`, `CR41-ida`, `CR66-vuelta`, `ICR15-vuelta`, `IM20-ida` y 13 más
+- **Calle El Trabajo** · 135 m · [mapa](https://www.openstreetmap.org/?mlat=-12.024299&mlon=-76.914862#map=18/-12.024299/-76.914862) · 25 rutas: `1072-vuelta`, `1072_71278-vuelta`, `1073-vuelta`, `1073_54745-vuelta`, `1078-vuelta`, `1078_69696-vuelta`, `1079-vuelta`, `1079_71279-vuelta`, `1359_71068-vuelta`, `1360-vuelta`, `1360_69002-vuelta`, `1371-vuelta` y 13 más
+- **Carretera Panamericana Norte** · 17490 m · [mapa](https://www.openstreetmap.org/?mlat=-11.604809&mlon=-77.195005#map=18/-11.604809/-77.195005) · 22 rutas: `153624-vuelta`, `153787-vuelta`, `154043-vuelta`, `155873-vuelta`, `155897-vuelta`, `155902-vuelta`, `155923-vuelta`, `156062-vuelta`, `156191-vuelta`, `156220-vuelta`, `51441-vuelta`, `80521-vuelta` y 10 más
+- **Avenida Pacasmayo** · 143 m · [mapa](https://www.openstreetmap.org/?mlat=-12.042217&mlon=-77.047239#map=18/-12.042217/-77.047239) · 21 rutas: `1028-ida`, `1028_70485-ida`, `1066-vuelta`, `1066_69645-vuelta`, `1067-ida`, `1067-vuelta`, `1067_71116-vuelta`, `1068-vuelta`, `1068_69491-vuelta`, `1507-ida`, `183-ida`, `2503-ida` y 9 más
+- **calle sin nombre** · 635 m · [mapa](https://www.openstreetmap.org/?mlat=-12.044934&mlon=-76.93788#map=18/-12.044934/-76.93788) · 18 rutas: `1041-vuelta`, `1068-ida`, `1068_69491-ida`, `1069-ida`, `1069_69643-ida`, `1077_70488-ida`, `1080_70490-ida`, `1081_71277-ida`, `1085_69634-vuelta`, `1353_69750-vuelta`, `1369-ida`, `2402-vuelta` y 6 más
+- **Avenida José Carlos Mariátegui** · 1311 m · [mapa](https://www.openstreetmap.org/?mlat=-12.026124&mlon=-76.912768#map=18/-12.026124/-76.912768) · 18 rutas: `1099_69493-vuelta`, `1221_85176-ida`, `1261_69419-vuelta`, `1279-ida`, `2402-vuelta`, `2410-vuelta`, `3402-vuelta`, `4104-ida`, `4403-vuelta`, `4606-ida`, `C142m-vuelta`, `ECR37-vuelta` y 6 más
+- **Óvalo 26 de Noviembre** · 251 m · [mapa](https://www.openstreetmap.org/?mlat=-12.180426&mlon=-76.943729#map=18/-12.180426/-76.943729) · 18 rutas: `1056_86188-ida`, `1061-ida`, `1061_71074-ida`, `1125_71474-vuelta`, `1247-vuelta`, `1247_69430-vuelta`, `1406-vuelta`, `1409-vuelta`, `1472-ida`, `1472_68847-ida`, `152-vuelta`, `153-vuelta` y 6 más
+- **Auxiliar Avenida Carlos Izaguirre** · 910 m · [mapa](https://www.openstreetmap.org/?mlat=-11.989173&mlon=-77.106017#map=18/-11.989173/-77.106017) · 17 rutas: `1031_69745-vuelta`, `1134-vuelta`, `1159-vuelta`, `1189-vuelta`, `1189_70648-vuelta`, `1191-vuelta`, `1191_69418-vuelta`, `1261-vuelta`, `1261_69419-vuelta`, `1275-vuelta`, `2410-vuelta`, `2508-vuelta` y 5 más
+- **Avenida 5 de Setiembre** · 224 m · [mapa](https://www.openstreetmap.org/?mlat=-11.923795&mlon=-76.663088#map=18/-11.923795/-76.663088) · 14 rutas: `1218_69695-vuelta`, `1319-vuelta`, `1479-vuelta`, `1480-vuelta`, `1480_68042-vuelta`, `4508-vuelta`, `C0003a-vuelta`, `C1m-ida`, `EM11-vuelta`, `EO29-vuelta`, `EO53-vuelta`, `EO55-vuelta` y 2 más
+- **Avenida España** · 1023 m · [mapa](https://www.openstreetmap.org/?mlat=-12.057849&mlon=-77.038076#map=18/-12.057849/-77.038076) · 14 rutas: `303-ida`, `44953-ida`, `45220-vuelta`, `45221-ida`, `51041-ida`, `EX11-ida`, `EX2-ida`, `EX3-ida`, `EX4-ida`, `EX5-ida`, `EX6-ida`, `EX7-ida` y 2 más
+- **Avenida España** · 45 m · [mapa](https://www.openstreetmap.org/?mlat=-12.058074&mlon=-77.041885#map=18/-12.058074/-77.041885) · 14 rutas: `44953-ida`, `45220-vuelta`, `45221-ida`, `51041-ida`, `60955-ida`, `EX11-ida`, `EX2-ida`, `EX3-ida`, `EX4-ida`, `EX5-ida`, `EX6-ida`, `EX7-ida` y 2 más
+- **Avenida 1 de Mayo** · 58 m · [mapa](https://www.openstreetmap.org/?mlat=-12.039764&mlon=-76.988867#map=18/-12.039764/-76.988867) · 12 rutas: `1067-vuelta`, `1067_71116-vuelta`, `1189-ida`, `1189_70648-ida`, `1191-ida`, `1191_69418-ida`, `1193-ida`, `1193_69320-ida`, `C24m-vuelta`, `ECR16-vuelta`, `IO86-ida`, `NO32-ida`
+- **Avenida Gerardo Unger** · 109 m · [mapa](https://www.openstreetmap.org/?mlat=-11.937418&mlon=-77.067958#map=18/-11.937418/-77.067958) · 12 rutas: `1020-ida`, `1020_69509-ida`, `1335-ida`, `1335_57854-ida`, `163-vuelta`, `184-vuelta`, `185-vuelta`, `2101-vuelta`, `NCR10-vuelta`, `NH12-ida`, `NO37-ida`, `SO21-vuelta`
+- **Avenida José Carlos Mariátegui** · 158 m · [mapa](https://www.openstreetmap.org/?mlat=-12.133557&mlon=-76.940014#map=18/-12.133557/-76.940014) · 12 rutas: `1200_69550-vuelta`, `1246-ida`, `1246_69556-ida`, `1401-ida`, `1413-ida`, `1413_71633-ida`, `1463-ida`, `1486-ida`, `1487-ida`, `3817-vuelta`, `8624-ida`, `SO49a-ida`
+- **Avenida Nicolás Ayllón** · 94 m · [mapa](https://www.openstreetmap.org/?mlat=-12.059339&mlon=-76.975468#map=18/-12.059339/-76.975468) · 12 rutas: `089p-ida`, `1177-ida`, `1177_68997-ida`, `1225_69433-vuelta`, `1235_45214-vuelta`, `4202-vuelta`, `4207-vuelta`, `4208-vuelta`, `4209-vuelta`, `4912-vuelta`, `IO01-ida`, `NH12-ida`
+- **Avenida Paseo de la República** · 52 m · [mapa](https://www.openstreetmap.org/?mlat=-12.139705&mlon=-77.006611#map=18/-12.139705/-77.006611) · 12 rutas: `1123-ida`, `1231-vuelta`, `1231_68846-vuelta`, `2704-ida`, `548-ida`, `6701-vuelta`, `8301-ida`, `8517-ida`, `EO07-vuelta`, `NM38-vuelta`, `SO06-ida`, `SO35-vuelta`
+- **Jirón Comandante Ladislao Espinar** · 209 m · [mapa](https://www.openstreetmap.org/?mlat=-12.06126&mlon=-77.130697#map=18/-12.06126/-77.130697) · 12 rutas: `1264-vuelta`, `3903-ida`, `3904-ida`, `9403-vuelta`, `CR02-vuelta`, `CR31-vuelta`, `CR38-vuelta`, `CR39-vuelta`, `IO11-ida`, `IO43-vuelta`, `IO53-vuelta`, `IO88-ida`
+- **Avenida San Felipe** · 101 m · [mapa](https://www.openstreetmap.org/?mlat=-11.900314&mlon=-77.041186#map=18/-11.900314/-77.041186) · 11 rutas: `1326_54549-vuelta`, `1425-vuelta`, `CR27-ida`, `CR34-vuelta`, `IO09-vuelta`, `IO38b-ida`, `IO40-vuelta`, `IPC06-ida`, `IPC06-vuelta`, `NM07-vuelta`, `NO06-ida`
+- **calle sin nombre** · 70 m · [mapa](https://www.openstreetmap.org/?mlat=-11.872393&mlon=-77.06966#map=18/-11.872393/-77.06966) · 10 rutas: `102_89202-ida`, `105-ida`, `108-vuelta`, `110-ida`, `1707-ida`, `4103-vuelta`, `C21m-ida`, `EO39-vuelta`, `IO34-ida`, `SO94-vuelta`
+- **Jirón Enrique Barrón** · 46 m · [mapa](https://www.openstreetmap.org/?mlat=-12.141496&mlon=-77.018024#map=18/-12.141496/-77.018024) · 10 rutas: `170_89950-ida`, `1_89999-ida`, `45317-ida`, `72_96884-vuelta`, `84071-ida`, `C10m-ida`, `ECR19-ida`, `EO113-ida`, `EX1-ida`, `NH93-vuelta`
+- **Jirón Guardia Civil Sur** · 603 m · [mapa](https://www.openstreetmap.org/?mlat=-12.166465&mlon=-76.990523#map=18/-12.166465/-76.990523) · 10 rutas: `1088_71367-vuelta`, `5701-ida`, `6701-ida`, `AS08-vuelta`, `EO26-ida`, `NM17-ida`, `NM34-ida`, `NO87-ida`, `SM12-vuelta`, `SO48-vuelta`
+- **Puente Ñaña** · 359 m · [mapa](https://www.openstreetmap.org/?mlat=-11.98614&mlon=-76.819961#map=18/-11.98614/-76.819961) · 10 rutas: `1041-vuelta`, `1331-vuelta`, `1356-vuelta`, `1356_69729-vuelta`, `1365-vuelta`, `1488-ida`, `3404-vuelta`, `555-vuelta`, `556-ida`, `ZE001-vuelta`
+- **Avenida El Sol** · 62 m · [mapa](https://www.openstreetmap.org/?mlat=-11.987661&mlon=-76.998939#map=18/-11.987661/-76.998939) · 9 rutas: `2301-ida`, `3503-vuelta`, `3514-vuelta`, `3515-vuelta`, `465-vuelta`, `5302-ida`, `8301-ida`, `NO56-vuelta`, `OO08-ida`
+- **Avenida José Pardo** · 94 m · [mapa](https://www.openstreetmap.org/?mlat=-12.176529&mlon=-76.945988#map=18/-12.176529/-76.945988) · 9 rutas: `1056_86188-ida`, `1127-vuelta`, `1127_69962-vuelta`, `1280-ida`, `1414-vuelta`, `1472-ida`, `1472_68847-ida`, `IM06-ida`, `SCR18-ida`
+- **Avenida República de Venezuela** · 316 m · [mapa](https://www.openstreetmap.org/?mlat=-12.059607&mlon=-77.075814#map=18/-12.059607/-77.075814) · 9 rutas: `1214-vuelta`, `1214_84563-ida`, `1305-vuelta`, `504-ida`, `IM25-ida`, `IO02-ida`, `IO63-ida`, `OO20-ida`, `SO06-vuelta`
+- **Calle 4** · 67 m · [mapa](https://www.openstreetmap.org/?mlat=-12.028738&mlon=-76.924059#map=18/-12.028738/-76.924059) · 9 rutas: `1078_69696-ida`, `1221_85176-ida`, `1224_70177-ida`, `1356_69729-vuelta`, `4514-ida`, `EM13-vuelta`, `EO100-ida`, `IM51-vuelta`, `IM55-vuelta`
+- **Vía Expresa Luis Fernán Bedoya Reyes** · 1902 m · [mapa](https://www.openstreetmap.org/?mlat=-12.06016&mlon=-77.035403#map=18/-12.06016/-77.035403) · 9 rutas: `51041-ida`, `EX2-ida`, `EX3-ida`, `EX4-ida`, `EX5-ida`, `EX6-ida`, `EX7-ida`, `EX8-ida`, `EX9-ida`
+- **calle sin nombre** · 41 m · [mapa](https://www.openstreetmap.org/?mlat=-11.900006&mlon=-77.039644#map=18/-11.900006/-77.039644) · 8 rutas: `CR27-vuelta`, `CR34-ida`, `IO09-ida`, `IO38b-vuelta`, `IPC06-ida`, `IPC06-vuelta`, `NM07-ida`, `NO06-vuelta`
+- **Avenida 9 de Octubre** · 714 m · [mapa](https://www.openstreetmap.org/?mlat=-12.040287&mlon=-77.017836#map=18/-12.040287/-77.017836) · 8 rutas: `3201-vuelta`, `3402-vuelta`, `403-vuelta`, `551-vuelta`, `8301-ida`, `C11m-ida`, `IM10-ida`, `OO17-ida`
+- **Avenida 9 de Octubre** · 393 m · [mapa](https://www.openstreetmap.org/?mlat=-12.035584&mlon=-77.012924#map=18/-12.035584/-77.012924) · 8 rutas: `3201-vuelta`, `3402-vuelta`, `403-vuelta`, `551-vuelta`, `8301-ida`, `C11m-ida`, `IM10-ida`, `OO17-ida`
+- **Vía Expresa Elmer Faucett** · 600 m · [mapa](https://www.openstreetmap.org/?mlat=-12.025218&mlon=-77.104533#map=18/-12.025218/-77.104533) · 8 rutas: `107-ida`, `1167-ida`, `9402-ida`, `AD-N-ida`, `CR49-ida`, `IM41-ida`, `NO55-ida`, `OM42-ida`
+- **calle sin nombre** · 848 m · [mapa](https://www.openstreetmap.org/?mlat=-12.040559&mlon=-77.100291#map=18/-12.040559/-77.100291) · 7 rutas: `1263-vuelta`, `1263_68802-vuelta`, `1273-ida`, `1274-ida`, `1292-ida`, `CR57-ida`, `CR58-ida`
+- **calle sin nombre** · 40 m · [mapa](https://www.openstreetmap.org/?mlat=-12.036735&mlon=-76.930507#map=18/-12.036735/-76.930507) · 7 rutas: `1360-vuelta`, `1360_69002-vuelta`, `1370-vuelta`, `4412-vuelta`, `ECR23-vuelta`, `EM41A-ida`, `IO70-vuelta`
+- **Avenida Coronel Fransisco Bolognesi** · 502 m · [mapa](https://www.openstreetmap.org/?mlat=-12.146297&mlon=-77.019458#map=18/-12.146297/-77.019458) · 7 rutas: `2_90310-ida`, `45317-ida`, `72_96884-vuelta`, `84071-ida`, `ECR19-ida`, `EX1-ida`, `NH93-vuelta`
+- **Avenida Prolongación Parinacochas** · 172 m · [mapa](https://www.openstreetmap.org/?mlat=-12.061634&mlon=-77.017957#map=18/-12.061634/-77.017957) · 7 rutas: `1064-vuelta`, `1207-ida`, `1207_70964-ida`, `3510-ida`, `7302-vuelta`, `EM16-ida`, `SO28-vuelta`
+- **Calle Cora Cora** · 236 m · [mapa](https://www.openstreetmap.org/?mlat=-12.012369&mlon=-76.900432#map=18/-12.012369/-76.900432) · 7 rutas: `1353-ida`, `1356-vuelta`, `1364-ida`, `4301-ida`, `555-vuelta`, `ECR24-ida`, `EO103-vuelta`
+- **Avenida Garcilaso de la Vega** · 98 m · [mapa](https://www.openstreetmap.org/?mlat=-12.064259&mlon=-77.037641#map=18/-12.064259/-77.037641) · 6 rutas: `255_98087-vuelta`, `C49m-vuelta`, `ECR01-ida`, `EM29-ida`, `NM17-vuelta`, `SO21-ida`
+- **Avenida Mateo Pumacahua** · 237 m · [mapa](https://www.openstreetmap.org/?mlat=-12.192551&mlon=-76.96082#map=18/-12.192551/-76.96082) · 6 rutas: `1052_68805-ida`, `3812-ida`, `6801-ida`, `EM05-ida`, `EO07-ida`, `NM36-ida`
+- **Avenida Pachacútec** · 150 m · [mapa](https://www.openstreetmap.org/?mlat=-12.202699&mlon=-76.929837#map=18/-12.202699/-76.929837) · 6 rutas: `1389-ida`, `1419-vuelta`, `8620-vuelta`, `9803-ida`, `IO96-ida`, `ZS003-vuelta`
+- **Óvalo 26 de Noviembre** · 214 m · [mapa](https://www.openstreetmap.org/?mlat=-12.180288&mlon=-76.943486#map=18/-12.180288/-76.943486) · 6 rutas: `021p-ida`, `1062_71039-ida`, `1236-vuelta`, `1236_41953-vuelta`, `SM40-vuelta`, `SO22-vuelta`
+- **calle sin nombre** · 41 m · [mapa](https://www.openstreetmap.org/?mlat=-12.057458&mlon=-76.97164#map=18/-12.057458/-76.97164) · 5 rutas: `1072-ida`, `1224_70177-ida`, `1369-ida`, `2402-vuelta`, `EM62a-ida`
+- **calle sin nombre** · 59 m · [mapa](https://www.openstreetmap.org/?mlat=-11.933069&mlon=-77.055166#map=18/-11.933069/-77.055166) · 5 rutas: `1303_84886-vuelta`, `C151m-vuelta`, `C16m-vuelta`, `NCR09-ida`, `NM26-ida`
+- **calle sin nombre** · 43 m · [mapa](https://www.openstreetmap.org/?mlat=-11.906996&mlon=-77.043022#map=18/-11.906996/-77.043022) · 5 rutas: `1510-vuelta`, `4105-ida`, `8101-ida`, `EM01-ida`, `EO54-ida`
+- **calle sin nombre** · 124 m · [mapa](https://www.openstreetmap.org/?mlat=-12.055652&mlon=-77.035399#map=18/-12.055652/-77.035399) · 5 rutas: `44813-ida`, `45317-ida`, `84071-ida`, `89905-vuelta`, `EX10-ida`
+- **Antigua Panamericana Sur** · 424 m · [mapa](https://www.openstreetmap.org/?mlat=-12.356354&mlon=-76.803541#map=18/-12.356354/-76.803541) · 5 rutas: `1415-vuelta`, `81098-ida`, `90617-vuelta`, `C86m-ida`, `IH126-ida`
+- **Antigua Panamericana Sur** · 158 m · [mapa](https://www.openstreetmap.org/?mlat=-12.361367&mlon=-76.797248#map=18/-12.361367/-76.797248) · 5 rutas: `1415-vuelta`, `81098-ida`, `90617-vuelta`, `C86m-ida`, `IH126-ida`
+- **Antigua Panamericana Sur** · 57 m · [mapa](https://www.openstreetmap.org/?mlat=-12.364321&mlon=-76.79491#map=18/-12.364321/-76.79491) · 5 rutas: `1415-vuelta`, `81098-ida`, `90617-vuelta`, `C86m-ida`, `IH126-ida`
+- **Avenida Emancipación** · 1530 m · [mapa](https://www.openstreetmap.org/?mlat=-12.04628&mlon=-77.037534#map=18/-12.04628/-77.037534) · 5 rutas: `44813-ida`, `45317-ida`, `84071-ida`, `89905-vuelta`, `EX10-ida`
+- **Avenida Gerardo Unger** · 821 m · [mapa](https://www.openstreetmap.org/?mlat=-11.93785&mlon=-77.067637#map=18/-11.93785/-77.067637) · 5 rutas: `010p-ida`, `018p-ida`, `1005-ida`, `1005_63118-ida`, `SH24a-ida`
+- **Avenida Paucartambo** · 88 m · [mapa](https://www.openstreetmap.org/?mlat=-11.92696&mlon=-77.082264#map=18/-11.92696/-77.082264) · 5 rutas: `1327-vuelta`, `1327_55063-vuelta`, `163-ida`, `NCR09-vuelta`, `NM15-vuelta`
+- **Avenida San Juan** · 128 m · [mapa](https://www.openstreetmap.org/?mlat=-12.157874&mlon=-76.973239#map=18/-12.157874/-76.973239) · 5 rutas: `9803-vuelta`, `IO05-vuelta`, `IO96-vuelta`, `IOM19-vuelta`, `IOM21-vuelta`
+- **Avenida Túpac Amaru** · 75 m · [mapa](https://www.openstreetmap.org/?mlat=-11.869461&mlon=-77.013267#map=18/-11.869461/-77.013267) · 5 rutas: `1162-ida`, `1178-ida`, `1178_94758-ida`, `1330_63005-ida`, `1803-ida`
+- **Avenida Óscar Raimundo Benavides** · 483 m · [mapa](https://www.openstreetmap.org/?mlat=-12.05432&mlon=-77.101416#map=18/-12.05432/-77.101416) · 5 rutas: `1133-vuelta`, `1135-vuelta`, `1146-vuelta`, `CR04-vuelta`, `CR45-vuelta`
+- **Calle Alfredo Icaza** · 350 m · [mapa](https://www.openstreetmap.org/?mlat=-12.14629&mlon=-76.994838#map=18/-12.14629/-76.994838) · 5 rutas: `4702-ida`, `6701-ida`, `EM53-ida`, `NM34-ida`, `SM12-vuelta`
+- **Jirón Angaraes** · 368 m · [mapa](https://www.openstreetmap.org/?mlat=-12.044721&mlon=-77.040413#map=18/-12.044721/-77.040413) · 5 rutas: `44813-ida`, `45317-ida`, `84071-ida`, `89905-vuelta`, `EX10-ida`
+- **Óvalo de Miraflores** · 44 m · [mapa](https://www.openstreetmap.org/?mlat=-12.119444&mlon=-77.028956#map=18/-12.119444/-77.028956) · 5 rutas: `352-ida`, `353-ida`, `EM02-ida`, `NH17-vuelta`, `NH27p-vuelta`
+- **calle sin nombre** · 61 m · [mapa](https://www.openstreetmap.org/?mlat=-11.936509&mlon=-77.05734#map=18/-11.936509/-77.05734) · 4 rutas: `184-ida`, `185-ida`, `2101-ida`, `NCR10-ida`
+- **Avenida Hurin Cusco** · 105 m · [mapa](https://www.openstreetmap.org/?mlat=-11.979544&mlon=-77.056752#map=18/-11.979544/-77.056752) · 4 rutas: `1192-vuelta`, `1192_69426-ida`, `CR53-vuelta`, `IM08-vuelta`
+- **Avenida Las Gaviotas** · 543 m · [mapa](https://www.openstreetmap.org/?mlat=-12.184006&mlon=-77.007992#map=18/-12.184006/-77.007992) · 4 rutas: `AS02-ida`, `AS04-vuelta`, `AS07-vuelta`, `AS08-vuelta`
+- **Avenida Lima Polo** · 431 m · [mapa](https://www.openstreetmap.org/?mlat=-12.100139&mlon=-76.965492#map=18/-12.100139/-76.965492) · 4 rutas: `1407_85831-vuelta`, `71-ida`, `C72m-ida`, `OM05-vuelta`
+- **Avenida Los Cedros** · 122 m · [mapa](https://www.openstreetmap.org/?mlat=-12.204925&mlon=-76.923835#map=18/-12.204925/-76.923835) · 4 rutas: `1117-vuelta`, `1117_71481-vuelta`, `IM06-ida`, `SO51a-vuelta`
+- **Avenida Los Próceres de Huandoy** · 43 m · [mapa](https://www.openstreetmap.org/?mlat=-11.937418&mlon=-77.067958#map=18/-11.937418/-77.067958) · 4 rutas: `1327_55063-vuelta`, `163-ida`, `NH12-vuelta`, `SO21-ida`
+- **Avenida Prolongación Paseo de la República** · 259 m · [mapa](https://www.openstreetmap.org/?mlat=-12.179377&mlon=-77.009314#map=18/-12.179377/-77.009314) · 4 rutas: `AS02-vuelta`, `AS04-ida`, `AS07-ida`, `AS08-ida`
+- **Avenida Óscar Raimundo Benavides** · 69 m · [mapa](https://www.openstreetmap.org/?mlat=-12.053884&mlon=-77.097076#map=18/-12.053884/-77.097076) · 4 rutas: `1135-ida`, `CR09-ida`, `IOM39-ida`, `OM44-ida`
+- **Jirón Cusco** · 199 m · [mapa](https://www.openstreetmap.org/?mlat=-12.051713&mlon=-77.028853#map=18/-12.051713/-77.028853) · 4 rutas: `156463-vuelta`, `20-vuelta`, `37-vuelta`, `C125m-vuelta`
+- **Jirón Junín** · 259 m · [mapa](https://www.openstreetmap.org/?mlat=-12.047675&mlon=-77.026721#map=18/-12.047675/-77.026721) · 4 rutas: `10a-vuelta`, `63-ida`, `C10m-ida`, `SM12-vuelta`
+- **calle sin nombre** · 678 m · [mapa](https://www.openstreetmap.org/?mlat=-12.177017&mlon=-76.945691#map=18/-12.177017/-76.945691) · 3 rutas: `1056-ida`, `8623-vuelta`, `SM19b-vuelta`
+- **calle sin nombre** · 77 m · [mapa](https://www.openstreetmap.org/?mlat=-12.064758&mlon=-77.038524#map=18/-12.064758/-77.038524) · 3 rutas: `1109_87800-ida`, `1244_52206-ida`, `9901-ida`
+- **calle sin nombre** · 57 m · [mapa](https://www.openstreetmap.org/?mlat=-12.041908&mlon=-77.021934#map=18/-12.041908/-77.021934) · 3 rutas: `1175_98767-vuelta`, `NCR12-vuelta`, `NH24-ida`
+- **calle sin nombre** · 42 m · [mapa](https://www.openstreetmap.org/?mlat=-12.040564&mlon=-77.087617#map=18/-12.040564/-77.087617) · 3 rutas: `1256_70181-ida`, `1263_68802-ida`, `IM53-ida`
+- **calle sin nombre** · 50 m · [mapa](https://www.openstreetmap.org/?mlat=-11.93414&mlon=-77.056163#map=18/-11.93414/-77.056163) · 3 rutas: `1410_84812-ida`, `8101-vuelta`, `IO44a-vuelta`
+- **Avenida Alejandro Bertello** · 50 m · [mapa](https://www.openstreetmap.org/?mlat=-11.974002&mlon=-77.117967#map=18/-11.974002/-77.117967) · 3 rutas: `1039-ida`, `1424-vuelta`, `CR28-vuelta`
+- **Avenida Fiori** · 145 m · [mapa](https://www.openstreetmap.org/?mlat=-12.008167&mlon=-77.058823#map=18/-12.008167/-77.058823) · 3 rutas: `80974-vuelta`, `85682-vuelta`, `85760-vuelta`
+- **Avenida Garcilaso de la Vega** · 241 m · [mapa](https://www.openstreetmap.org/?mlat=-12.060045&mlon=-77.037925#map=18/-12.060045/-77.037925) · 3 rutas: `C16m-ida`, `EO04-vuelta`, `NO09-ida`
+- **Avenida José Carlos Mariátegui** · 682 m · [mapa](https://www.openstreetmap.org/?mlat=-12.026689&mlon=-76.917343#map=18/-12.026689/-76.917343) · 3 rutas: `2402-vuelta`, `2410-vuelta`, `4606-ida`
+- **Avenida Los Álamos** · 79 m · [mapa](https://www.openstreetmap.org/?mlat=-12.162336&mlon=-76.982034#map=18/-12.162336/-76.982034) · 3 rutas: `1397-vuelta`, `SCR01-vuelta`, `SCR01a-vuelta`
+- **Avenida Nicolás de Ayllón** · 42 m · [mapa](https://www.openstreetmap.org/?mlat=-12.046439&mlon=-76.944011#map=18/-12.046439/-76.944011) · 3 rutas: `1072-ida`, `1072_71278-ida`, `1371-ida`
+- **Avenida Nicolás de Ayllón** · 84 m · [mapa](https://www.openstreetmap.org/?mlat=-12.028798&mlon=-76.923992#map=18/-12.028798/-76.923992) · 3 rutas: `571-ida`, `574-ida`, `IO88-ida`
+- **Avenida Paseo de la República** · 424 m · [mapa](https://www.openstreetmap.org/?mlat=-12.149553&mlon=-76.991371#map=18/-12.149553/-76.991371) · 3 rutas: `6701-ida`, `NM34-ida`, `SM08-vuelta`
+- **Avenida República de Argentina** · 66 m · [mapa](https://www.openstreetmap.org/?mlat=-12.05097&mlon=-77.126779#map=18/-12.05097/-77.126779) · 3 rutas: `156463-ida`, `3904-ida`, `OM27-vuelta`
+- **Calle 28 de Julio** · 146 m · [mapa](https://www.openstreetmap.org/?mlat=-12.078184&mlon=-77.108733#map=18/-12.078184/-77.108733) · 3 rutas: `IO78b-ida`, `SO16-ida`, `SO41-vuelta`
+- **Calle Virrey Conde de Lemos** · 191 m · [mapa](https://www.openstreetmap.org/?mlat=-12.049764&mlon=-77.098433#map=18/-12.049764/-77.098433) · 3 rutas: `IM08-vuelta`, `IOM39-vuelta`, `OM39-vuelta`
+- **Jirón Brasil** · 336 m · [mapa](https://www.openstreetmap.org/?mlat=-11.938681&mlon=-76.69381#map=18/-11.938681/-76.69381) · 3 rutas: `1354-ida`, `1354_70489-vuelta`, `EM42-vuelta`
+- **Jirón Huarochirí** · 46 m · [mapa](https://www.openstreetmap.org/?mlat=-12.047147&mlon=-77.044131#map=18/-12.047147/-77.044131) · 3 rutas: `1467-ida`, `1507-ida`, `CR35-ida`
+- **Los Tumbos** · 85 m · [mapa](https://www.openstreetmap.org/?mlat=-11.996568&mlon=-77.055004#map=18/-11.996568/-77.055004) · 3 rutas: `2202-vuelta`, `NCR08-vuelta`, `NCR11-vuelta`
+- **Prolongación Avenida Paseo de la República** · 85 m · [mapa](https://www.openstreetmap.org/?mlat=-12.168069&mlon=-77.019117#map=18/-12.168069/-77.019117) · 3 rutas: `45317-vuelta`, `84071-vuelta`, `EX1-vuelta`
+- **Prolongación Javier Prado Este** · 238 m · [mapa](https://www.openstreetmap.org/?mlat=-12.043634&mlon=-76.93047#map=18/-12.043634/-76.93047) · 3 rutas: `ECR07-ida`, `ECR34-vuelta`, `EO52-vuelta`
+- **Vía Expresa Elmer Faucett** · 772 m · [mapa](https://www.openstreetmap.org/?mlat=-12.035754&mlon=-77.099479#map=18/-12.035754/-77.099479) · 3 rutas: `AD-N-vuelta`, `IM01-ida`, `IM12-vuelta`
+- **calle sin nombre** · 263 m · [mapa](https://www.openstreetmap.org/?mlat=-11.867629&mlon=-77.128165#map=18/-11.867629/-77.128165) · 2 rutas: `1267-vuelta`, `1332-ida`
+- **calle sin nombre** · 347 m · [mapa](https://www.openstreetmap.org/?mlat=-11.85921&mlon=-77.130364#map=18/-11.85921/-77.130364) · 2 rutas: `1267-vuelta`, `1332-ida`
+- **calle sin nombre** · 55 m · [mapa](https://www.openstreetmap.org/?mlat=-11.960699&mlon=-77.061369#map=18/-11.960699/-77.061369) · 2 rutas: `1407_85831-vuelta`, `EO123-ida`
+- **calle sin nombre** · 270 m · [mapa](https://www.openstreetmap.org/?mlat=-12.219554&mlon=-76.975781#map=18/-12.219554/-76.975781) · 2 rutas: `1471-ida`, `1471_44807-ida`
+- **calle sin nombre** · 100 m · [mapa](https://www.openstreetmap.org/?mlat=-12.154813&mlon=-76.98385#map=18/-12.154813/-76.98385) · 2 rutas: `3811-ida`, `EO25-ida`
+- **calle sin nombre** · 131 m · [mapa](https://www.openstreetmap.org/?mlat=-11.96123&mlon=-77.062416#map=18/-11.96123/-77.062416) · 2 rutas: `45221-ida`, `EX11-ida`
+- **calle sin nombre** · 99 m · [mapa](https://www.openstreetmap.org/?mlat=-12.084112&mlon=-77.099851#map=18/-12.084112/-77.099851) · 2 rutas: `C24m-vuelta`, `C24m_76639-ida`
+- **calle sin nombre** · 54 m · [mapa](https://www.openstreetmap.org/?mlat=-11.855575&mlon=-77.085704#map=18/-11.855575/-77.085704) · 2 rutas: `CR66-vuelta`, `OM22-vuelta`
+- **calle sin nombre** · 58 m · [mapa](https://www.openstreetmap.org/?mlat=-11.914241&mlon=-77.047627#map=18/-11.914241/-77.047627) · 2 rutas: `EO50-vuelta`, `IO44a-vuelta`
+- **Avenida 9 de Octubre** · 87 m · [mapa](https://www.openstreetmap.org/?mlat=-12.036947&mlon=-77.013262#map=18/-12.036947/-77.013262) · 2 rutas: `7302-vuelta`, `IO46-vuelta`
+- **Avenida Alfredo Benavides** · 113 m · [mapa](https://www.openstreetmap.org/?mlat=-12.128217&mlon=-77.00518#map=18/-12.128217/-77.00518) · 2 rutas: `1309-vuelta`, `NM17-vuelta`
+- **Avenida Angamos Este** · 86 m · [mapa](https://www.openstreetmap.org/?mlat=-12.113602&mlon=-77.026521#map=18/-12.113602/-77.026521) · 2 rutas: `1043-vuelta`, `1043_70965-vuelta`
+- **Avenida Balta** · 237 m · [mapa](https://www.openstreetmap.org/?mlat=-12.143186&mlon=-77.016106#map=18/-12.143186/-77.016106) · 2 rutas: `1_89999-vuelta`, `2_90310-vuelta`
+- **Avenida Edgardo Rebagliati** · 69 m · [mapa](https://www.openstreetmap.org/?mlat=-12.079995&mlon=-77.039096#map=18/-12.079995/-77.039096) · 2 rutas: `IM57-ida`, `OM15-ida`
+- **Avenida Elmer Faucett** · 73 m · [mapa](https://www.openstreetmap.org/?mlat=-12.042457&mlon=-77.099157#map=18/-12.042457/-77.099157) · 2 rutas: `156463-ida`, `IM01-ida`
+- **Avenida Ferrocarril** · 136 m · [mapa](https://www.openstreetmap.org/?mlat=-12.036714&mlon=-76.989354#map=18/-12.036714/-76.989354) · 2 rutas: `SM08-vuelta`, `SO31-vuelta`
+- **Avenida Gerardo Unger** · 42 m · [mapa](https://www.openstreetmap.org/?mlat=-11.944793&mlon=-77.066517#map=18/-11.944793/-77.066517) · 2 rutas: `156062-vuelta`, `169-vuelta`
+- **Avenida Jaime Zubieta Calderón** · 43 m · [mapa](https://www.openstreetmap.org/?mlat=-12.011807&mlon=-76.839958#map=18/-12.011807/-76.839958) · 2 rutas: `1366-vuelta`, `ZE002-vuelta`
+- **Avenida José Carlos Mariátegui** · 715 m · [mapa](https://www.openstreetmap.org/?mlat=-12.004836&mlon=-76.835956#map=18/-12.004836/-76.835956) · 2 rutas: `1081-vuelta`, `557-ida`
+- **Avenida José de la Riva Aguero** · 63 m · [mapa](https://www.openstreetmap.org/?mlat=-12.058736&mlon=-77.007354#map=18/-12.058736/-77.007354) · 2 rutas: `1205-vuelta`, `1205_84878-vuelta`
+- **Avenida Las Acacias** · 68 m · [mapa](https://www.openstreetmap.org/?mlat=-11.934347&mlon=-77.09601#map=18/-11.934347/-77.09601) · 2 rutas: `1181_69326-vuelta`, `NO87-vuelta`
+- **Avenida Los Alisos** · 58 m · [mapa](https://www.openstreetmap.org/?mlat=-11.972775&mlon=-77.11863#map=18/-11.972775/-77.11863) · 2 rutas: `1159-vuelta`, `IM21-vuelta`
+- **Avenida Los Héroes** · 199 m · [mapa](https://www.openstreetmap.org/?mlat=-12.156859&mlon=-76.964471#map=18/-12.156859/-76.964471) · 2 rutas: `152-ida`, `7808-vuelta`
+- **Avenida Los Jazmines** · 44 m · [mapa](https://www.openstreetmap.org/?mlat=-12.001682&mlon=-77.054972#map=18/-12.001682/-77.054972) · 2 rutas: `IM47-vuelta`, `NM09-ida`
+- **Avenida Los Álamos** · 322 m · [mapa](https://www.openstreetmap.org/?mlat=-12.167806&mlon=-76.980826#map=18/-12.167806/-76.980826) · 2 rutas: `1398-vuelta`, `SCR01a-vuelta`
+- **Avenida Pachacútec** · 54 m · [mapa](https://www.openstreetmap.org/?mlat=-12.201948&mlon=-76.930313#map=18/-12.201948/-76.930313) · 2 rutas: `1237-vuelta`, `1237_50830-vuelta`
+- **Avenida San Nicolas** · 256 m · [mapa](https://www.openstreetmap.org/?mlat=-11.959942&mlon=-77.105088#map=18/-11.959942/-77.105088) · 2 rutas: `8305-vuelta`, `SO15-vuelta`
+- **Avenida Santiago Antúnez de Mayolo** · 454 m · [mapa](https://www.openstreetmap.org/?mlat=-11.996692&mlon=-77.08678#map=18/-11.996692/-77.08678) · 2 rutas: `1519-ida`, `SO15-vuelta`
+- **Avenida Santiago Antúnez de Mayolo** · 178 m · [mapa](https://www.openstreetmap.org/?mlat=-11.999778&mlon=-77.090377#map=18/-11.999778/-77.090377) · 2 rutas: `1519-ida`, `SO15-vuelta`
+- **Avenida Túpac Amaru** · 238 m · [mapa](https://www.openstreetmap.org/?mlat=-11.977048&mlon=-77.059501#map=18/-11.977048/-77.059501) · 2 rutas: `45221-ida`, `EX11-ida`
+- **Calle 16** · 146 m · [mapa](https://www.openstreetmap.org/?mlat=-12.082043&mlon=-77.097904#map=18/-12.082043/-77.097904) · 2 rutas: `1012_69847-ida`, `NO57-ida`
+- **Calle Manco Capac** · 261 m · [mapa](https://www.openstreetmap.org/?mlat=-12.053554&mlon=-77.142199#map=18/-12.053554/-77.142199) · 2 rutas: `4910-vuelta`, `IO72-vuelta`
+- **Calle Reflexion** · 564 m · [mapa](https://www.openstreetmap.org/?mlat=-11.936142&mlon=-77.076644#map=18/-11.936142/-77.076644) · 2 rutas: `163-vuelta`, `NM28-ida`
+- **Jirón Andahuaylas** · 45 m · [mapa](https://www.openstreetmap.org/?mlat=-12.051994&mlon=-77.026332#map=18/-12.051994/-77.026332) · 2 rutas: `63-vuelta`, `SM08-ida`
+- **Jirón Azángaro** · 505 m · [mapa](https://www.openstreetmap.org/?mlat=-12.057064&mlon=-77.034778#map=18/-12.057064/-77.034778) · 2 rutas: `66-ida`, `71-ida`
+- **Jirón Huiracocha** · 121 m · [mapa](https://www.openstreetmap.org/?mlat=-12.083099&mlon=-77.05215#map=18/-12.083099/-77.05215) · 2 rutas: `48-vuelta`, `IO53-vuelta`
+- **Jirón Lloque Yupanqui** · 458 m · [mapa](https://www.openstreetmap.org/?mlat=-11.985048&mlon=-77.055156#map=18/-11.985048/-77.055156) · 2 rutas: `CR53-vuelta`, `IM08-vuelta`
+- **Jirón Soledad** · 100 m · [mapa](https://www.openstreetmap.org/?mlat=-12.090085&mlon=-77.029605#map=18/-12.090085/-77.029605) · 2 rutas: `IO05-vuelta`, `IO23-vuelta`
+- **Jirón Tiahuanaco** · 67 m · [mapa](https://www.openstreetmap.org/?mlat=-12.026963&mlon=-77.007939#map=18/-12.026963/-77.007939) · 2 rutas: `468-vuelta`, `469-vuelta`
+- **Jirón Zamora** · 177 m · [mapa](https://www.openstreetmap.org/?mlat=-12.046205&mlon=-77.043135#map=18/-12.046205/-77.043135) · 2 rutas: `1135-vuelta`, `CR09-vuelta`
+- **Prolongación Javier Prado Este** · 380 m · [mapa](https://www.openstreetmap.org/?mlat=-12.034985&mlon=-76.925307#map=18/-12.034985/-76.925307) · 2 rutas: `4103-ida`, `EO39-ida`
+- **Vía Expresa Elmer Faucett** · 62 m · [mapa](https://www.openstreetmap.org/?mlat=-12.02325&mlon=-77.105412#map=18/-12.02325/-77.105412) · 2 rutas: `C16m-vuelta`, `OM22-vuelta`
+- **calle sin nombre** · 102 m · [mapa](https://www.openstreetmap.org/?mlat=-12.032056&mlon=-77.0123#map=18/-12.032056/-77.0123) · 1 ruta: `1-vuelta`
+- **calle sin nombre** · 47 m · [mapa](https://www.openstreetmap.org/?mlat=-12.148832&mlon=-76.983934#map=18/-12.148832/-76.983934) · 1 ruta: `1-vuelta`
+- **calle sin nombre** · 46 m · [mapa](https://www.openstreetmap.org/?mlat=-12.149962&mlon=-76.981934#map=18/-12.149962/-76.981934) · 1 ruta: `1-vuelta`
+- **calle sin nombre** · 341 m · [mapa](https://www.openstreetmap.org/?mlat=-12.149943&mlon=-76.981121#map=18/-12.149943/-76.981121) · 1 ruta: `1-vuelta`
+- **calle sin nombre** · 62 m · [mapa](https://www.openstreetmap.org/?mlat=-11.860299&mlon=-77.01211#map=18/-11.860299/-77.01211) · 1 ruta: `1005-vuelta`
+- **calle sin nombre** · 201 m · [mapa](https://www.openstreetmap.org/?mlat=-12.085226&mlon=-77.097007#map=18/-12.085226/-77.097007) · 1 ruta: `1029_70904-vuelta`
+- **calle sin nombre** · 44 m · [mapa](https://www.openstreetmap.org/?mlat=-12.045718&mlon=-76.9436#map=18/-12.045718/-76.9436) · 1 ruta: `1079_71279-ida`
+- **calle sin nombre** · 59 m · [mapa](https://www.openstreetmap.org/?mlat=-12.048657&mlon=-77.06497#map=18/-12.048657/-77.06497) · 1 ruta: `1138-ida`
+- **calle sin nombre** · 42 m · [mapa](https://www.openstreetmap.org/?mlat=-12.049058&mlon=-77.070928#map=18/-12.049058/-77.070928) · 1 ruta: `1147-vuelta`
+- **calle sin nombre** · 55 m · [mapa](https://www.openstreetmap.org/?mlat=-11.901506&mlon=-77.03995#map=18/-11.901506/-77.03995) · 1 ruta: `1410_84812-vuelta`
+- **calle sin nombre** · 64 m · [mapa](https://www.openstreetmap.org/?mlat=-12.054281&mlon=-76.964665#map=18/-12.054281/-76.964665) · 1 ruta: `2402-vuelta`
+- **calle sin nombre** · 216 m · [mapa](https://www.openstreetmap.org/?mlat=-12.040287&mlon=-77.017836#map=18/-12.040287/-77.017836) · 1 ruta: `405-ida`
+- **calle sin nombre** · 41 m · [mapa](https://www.openstreetmap.org/?mlat=-12.026498&mlon=-77.075315#map=18/-12.026498/-77.075315) · 1 ruta: `4105-ida`
+- **calle sin nombre** · 108 m · [mapa](https://www.openstreetmap.org/?mlat=-12.102845&mlon=-76.948812#map=18/-12.102845/-76.948812) · 1 ruta: `4201-ida`
+- **calle sin nombre** · 108 m · [mapa](https://www.openstreetmap.org/?mlat=-12.044693&mlon=-77.021434#map=18/-12.044693/-77.021434) · 1 ruta: `42099-ida`
+- **calle sin nombre** · 694 m · [mapa](https://www.openstreetmap.org/?mlat=-12.024337&mlon=-77.104965#map=18/-12.024337/-77.104965) · 1 ruta: `49482-ida`
+- **calle sin nombre** · 142 m · [mapa](https://www.openstreetmap.org/?mlat=-12.042676&mlon=-76.93615#map=18/-12.042676/-76.93615) · 1 ruta: `510-vuelta`
+- **calle sin nombre** · 41 m · [mapa](https://www.openstreetmap.org/?mlat=-12.146563&mlon=-76.987951#map=18/-12.146563/-76.987951) · 1 ruta: `8405-vuelta`
+- **calle sin nombre** · 612 m · [mapa](https://www.openstreetmap.org/?mlat=-12.10259&mlon=-77.065305#map=18/-12.10259/-77.065305) · 1 ruta: `AN24-vuelta`
+- **calle sin nombre** · 243 m · [mapa](https://www.openstreetmap.org/?mlat=-12.084412&mlon=-77.099003#map=18/-12.084412/-77.099003) · 1 ruta: `NO57-vuelta`
+- **calle sin nombre** · 48 m · [mapa](https://www.openstreetmap.org/?mlat=-11.935736&mlon=-77.056511#map=18/-11.935736/-77.056511) · 1 ruta: `NO59-ida`
+- **calle sin nombre** · 67 m · [mapa](https://www.openstreetmap.org/?mlat=-11.844029&mlon=-77.124383#map=18/-11.844029/-77.124383) · 1 ruta: `OM77-vuelta`
+- **Autopista Ramiro Prialé** · 70 m · [mapa](https://www.openstreetmap.org/?mlat=-12.019609&mlon=-76.948519#map=18/-12.019609/-76.948519) · 1 ruta: `NH93-ida`
+- **Avenida 25 de Enero** · 75 m · [mapa](https://www.openstreetmap.org/?mlat=-11.944796&mlon=-77.066748#map=18/-11.944796/-77.066748) · 1 ruta: `168-vuelta`
+- **Avenida 3** · 127 m · [mapa](https://www.openstreetmap.org/?mlat=-11.864056&mlon=-77.041401#map=18/-11.864056/-77.041401) · 1 ruta: `TVE16-ida`
+- **Avenida 9 de Octubre** · 671 m · [mapa](https://www.openstreetmap.org/?mlat=-12.040084&mlon=-77.0175#map=18/-12.040084/-77.0175) · 1 ruta: `1304_84959-vuelta`
+- **Avenida Abancay** · 235 m · [mapa](https://www.openstreetmap.org/?mlat=-12.054585&mlon=-77.030198#map=18/-12.054585/-77.030198) · 1 ruta: `8301-vuelta`
+- **Avenida Alfredo Mendiola** · 915 m · [mapa](https://www.openstreetmap.org/?mlat=-11.937584&mlon=-77.072178#map=18/-11.937584/-77.072178) · 1 ruta: `ZN004-vuelta`
+- **Avenida Alfredo Palacios** · 102 m · [mapa](https://www.openstreetmap.org/?mlat=-12.055471&mlon=-77.12199#map=18/-12.055471/-77.12199) · 1 ruta: `1481-vuelta`
+- **Avenida Andrés Avelino Cáceres** · 185 m · [mapa](https://www.openstreetmap.org/?mlat=-12.020909&mlon=-76.815059#map=18/-12.020909/-76.815059) · 1 ruta: `4485-vuelta`
+- **Avenida Andrés Belaúnde Este** · 68 m · [mapa](https://www.openstreetmap.org/?mlat=-11.943676&mlon=-77.032787#map=18/-11.943676/-77.032787) · 1 ruta: `EO115-vuelta`
+- **Avenida Aviación** · 103 m · [mapa](https://www.openstreetmap.org/?mlat=-12.092507&mlon=-77.003024#map=18/-12.092507/-77.003024) · 1 ruta: `SO35-vuelta`
+- **Avenida Bocanegra** · 334 m · [mapa](https://www.openstreetmap.org/?mlat=-12.010064&mlon=-77.106205#map=18/-12.010064/-77.106205) · 1 ruta: `C98m-ida`
+- **Avenida Bolivia** · 191 m · [mapa](https://www.openstreetmap.org/?mlat=-11.831587&mlon=-77.129321#map=18/-11.831587/-77.129321) · 1 ruta: `IO47-vuelta`
+- **Avenida Canta Callao** · 317 m · [mapa](https://www.openstreetmap.org/?mlat=-11.982649&mlon=-77.098544#map=18/-11.982649/-77.098544) · 1 ruta: `1025_68804-ida`
+- **Avenida Canta Callao** · 338 m · [mapa](https://www.openstreetmap.org/?mlat=-11.987986&mlon=-77.1045#map=18/-11.987986/-77.1045) · 1 ruta: `IO11-vuelta`
+- **Avenida Canta Callao** · 48 m · [mapa](https://www.openstreetmap.org/?mlat=-11.996939&mlon=-77.113178#map=18/-11.996939/-77.113178) · 1 ruta: `IO28a-ida`
+- **Avenida Carlos Alberto Izaguirre** · 71 m · [mapa](https://www.openstreetmap.org/?mlat=-11.99046&mlon=-77.09612#map=18/-11.99046/-77.09612) · 1 ruta: `2509-vuelta`
+- **Avenida Contisuyo** · 152 m · [mapa](https://www.openstreetmap.org/?mlat=-11.981561&mlon=-77.058294#map=18/-11.981561/-77.058294) · 1 ruta: `1192_69426-ida`
+- **Avenida Coronel Fransisco Bolognesi** · 184 m · [mapa](https://www.openstreetmap.org/?mlat=-12.141904&mlon=-77.017809#map=18/-12.141904/-77.017809) · 1 ruta: `EX1-ida`
+- **Avenida Del Ejército** · 202 m · [mapa](https://www.openstreetmap.org/?mlat=-12.11099&mlon=-77.05069#map=18/-12.11099/-77.05069) · 1 ruta: `1182-ida`
+- **Avenida El Polo** · 87 m · [mapa](https://www.openstreetmap.org/?mlat=-12.110045&mlon=-76.974982#map=18/-12.110045/-76.974982) · 1 ruta: `SO42-ida`
+- **Avenida Elmer Faucett** · 183 m · [mapa](https://www.openstreetmap.org/?mlat=-12.010998&mlon=-77.111586#map=18/-12.010998/-77.111586) · 1 ruta: `C98m-ida`
+- **Avenida Elmer Faucett** · 51 m · [mapa](https://www.openstreetmap.org/?mlat=-12.044693&mlon=-77.098637#map=18/-12.044693/-77.098637) · 1 ruta: `NO06-ida`
+- **Avenida Elmer Faucett** · 447 m · [mapa](https://www.openstreetmap.org/?mlat=-11.999983&mlon=-77.118878#map=18/-11.999983/-77.118878) · 1 ruta: `UCL01-vuelta`
+- **Avenida Ferrocarril** · 911 m · [mapa](https://www.openstreetmap.org/?mlat=-12.037998&mlon=-77.005729#map=18/-12.037998/-77.005729) · 1 ruta: `42099-ida`
+- **Avenida Ferrocarril** · 295 m · [mapa](https://www.openstreetmap.org/?mlat=-12.210753&mlon=-76.903466#map=18/-12.210753/-76.903466) · 1 ruta: `OM14-vuelta`
+- **Avenida Francisco Bolognesi** · 70 m · [mapa](https://www.openstreetmap.org/?mlat=-12.019241&mlon=-76.952885#map=18/-12.019241/-76.952885) · 1 ruta: `ECR31-vuelta`
+- **Avenida García Naranjo** · 106 m · [mapa](https://www.openstreetmap.org/?mlat=-12.060482&mlon=-77.019109#map=18/-12.060482/-77.019109) · 1 ruta: `3407-ida`
+- **Avenida Gerardo Unger** · 338 m · [mapa](https://www.openstreetmap.org/?mlat=-11.942137&mlon=-77.066818#map=18/-11.942137/-77.066818) · 1 ruta: `262-ida`
+- **Avenida Gran Chimú** · 1931 m · [mapa](https://www.openstreetmap.org/?mlat=-12.024483&mlon=-76.99617#map=18/-12.024483/-76.99617) · 1 ruta: `48-vuelta`
+- **Avenida Guardia Peruana** · 227 m · [mapa](https://www.openstreetmap.org/?mlat=-12.182753&mlon=-76.999415#map=18/-12.182753/-76.999415) · 1 ruta: `1482-ida`
+- **Avenida Guillermo Dansey** · 143 m · [mapa](https://www.openstreetmap.org/?mlat=-12.045132&mlon=-77.044324#map=18/-12.045132/-77.044324) · 1 ruta: `1507-ida`
+- **Avenida Guillermo de la Fuente** · 360 m · [mapa](https://www.openstreetmap.org/?mlat=-11.942176&mlon=-77.067013#map=18/-11.942176/-77.067013) · 1 ruta: `SH24a-ida`
+- **Avenida Industrial** · 60 m · [mapa](https://www.openstreetmap.org/?mlat=-12.300395&mlon=-76.844039#map=18/-12.300395/-76.844039) · 1 ruta: `1488-ida`
+- **Avenida Isabel La Católica** · 66 m · [mapa](https://www.openstreetmap.org/?mlat=-12.070516&mlon=-77.031194#map=18/-12.070516/-77.031194) · 1 ruta: `NM26-vuelta`
+- **Avenida José Carlos Mariátegui** · 1142 m · [mapa](https://www.openstreetmap.org/?mlat=-12.026322&mlon=-76.914308#map=18/-12.026322/-76.914308) · 1 ruta: `NM09-vuelta`
+- **Avenida José Larco** · 437 m · [mapa](https://www.openstreetmap.org/?mlat=-12.122939&mlon=-77.029178#map=18/-12.122939/-77.029178) · 1 ruta: `49482-ida`
+- **Avenida José Paredes Roncal** · 434 m · [mapa](https://www.openstreetmap.org/?mlat=-11.77192&mlon=-77.170169#map=18/-11.77192/-77.170169) · 1 ruta: `1605-vuelta`
+- **Avenida José de la Riva Agüero** · 145 m · [mapa](https://www.openstreetmap.org/?mlat=-12.088161&mlon=-77.087618#map=18/-12.088161/-77.087618) · 1 ruta: `IO51-vuelta`
+- **Avenida Lecaros** · 126 m · [mapa](https://www.openstreetmap.org/?mlat=-11.864535&mlon=-77.074543#map=18/-11.864535/-77.074543) · 1 ruta: `ZN003-vuelta`
+- **Avenida Locumba** · 41 m · [mapa](https://www.openstreetmap.org/?mlat=-12.047477&mlon=-77.009465#map=18/-12.047477/-77.009465) · 1 ruta: `1-ida`
+- **Avenida Los Alisos** · 227 m · [mapa](https://www.openstreetmap.org/?mlat=-11.983846&mlon=-77.072354#map=18/-11.983846/-77.072354) · 1 ruta: `AN16-ida`
+- **Avenida Los Héroes** · 71 m · [mapa](https://www.openstreetmap.org/?mlat=-12.153774&mlon=-76.972033#map=18/-12.153774/-76.972033) · 1 ruta: `1-vuelta`
+- **Avenida Los Pinos** · 83 m · [mapa](https://www.openstreetmap.org/?mlat=-11.997732&mlon=-77.053291#map=18/-11.997732/-77.053291) · 1 ruta: `83-vuelta`
+- **Avenida Los Pinos** · 66 m · [mapa](https://www.openstreetmap.org/?mlat=-11.99773&mlon=-77.055159#map=18/-11.99773/-77.055159) · 1 ruta: `EO52-ida`
+- **Avenida Los Tusilagos Este** · 71 m · [mapa](https://www.openstreetmap.org/?mlat=-12.011103&mlon=-76.997655#map=18/-12.011103/-76.997655) · 1 ruta: `NH109-vuelta`
+- **Avenida Lurigancho** · 91 m · [mapa](https://www.openstreetmap.org/?mlat=-12.016806&mlon=-76.99522#map=18/-12.016806/-76.99522) · 1 ruta: `1063-vuelta`
+- **Avenida Lurigancho** · 40 m · [mapa](https://www.openstreetmap.org/?mlat=-12.018101&mlon=-77.002161#map=18/-12.018101/-77.002161) · 1 ruta: `C11m-ida`
+- **Avenida Lurigancho** · 134 m · [mapa](https://www.openstreetmap.org/?mlat=-12.016697&mlon=-76.994393#map=18/-12.016697/-76.994393) · 1 ruta: `OM17-vuelta`
+- **Avenida Malecón Manco Cápac** · 814 m · [mapa](https://www.openstreetmap.org/?mlat=-11.975789&mlon=-76.773248#map=18/-11.975789/-76.773248) · 1 ruta: `42099-ida`
+- **Avenida Marginal** · 43 m · [mapa](https://www.openstreetmap.org/?mlat=-12.076416&mlon=-76.975623#map=18/-12.076416/-76.975623) · 1 ruta: `71-ida`
+- **Avenida Naranjal** · 75 m · [mapa](https://www.openstreetmap.org/?mlat=-11.976491&mlon=-77.059641#map=18/-11.976491/-77.059641) · 1 ruta: `2101-vuelta`
+- **Avenida Naranjal** · 65 m · [mapa](https://www.openstreetmap.org/?mlat=-11.977048&mlon=-77.059501#map=18/-11.977048/-77.059501) · 1 ruta: `NO94-ida`
+- **Avenida Nicolás Arriola** · 399 m · [mapa](https://www.openstreetmap.org/?mlat=-12.069982&mlon=-76.999148#map=18/-12.069982/-76.999148) · 1 ruta: `262-vuelta`
+- **Avenida Nicolás Dueñas** · 161 m · [mapa](https://www.openstreetmap.org/?mlat=-12.043971&mlon=-77.065427#map=18/-12.043971/-77.065427) · 1 ruta: `IM28-vuelta`
+- **Avenida Nicolás de Ayllón** · 64 m · [mapa](https://www.openstreetmap.org/?mlat=-12.054804&mlon=-76.965009#map=18/-12.054804/-76.965009) · 1 ruta: `2-vuelta`
+- **Avenida Pacasmayo** · 61 m · [mapa](https://www.openstreetmap.org/?mlat=-11.97262&mlon=-77.102483#map=18/-11.97262/-77.102483) · 1 ruta: `1025-vuelta`
+- **Avenida Pachacútec** · 488 m · [mapa](https://www.openstreetmap.org/?mlat=-12.171211&mlon=-76.949333#map=18/-12.171211/-76.949333) · 1 ruta: `1-ida`
+- **Avenida Pachacútec** · 1120 m · [mapa](https://www.openstreetmap.org/?mlat=-12.167074&mlon=-76.951845#map=18/-12.167074/-76.951845) · 1 ruta: `1-ida`
+- **Avenida Paseo de la República** · 64 m · [mapa](https://www.openstreetmap.org/?mlat=-12.097683&mlon=-77.025794#map=18/-12.097683/-77.025794) · 1 ruta: `8301-vuelta`
+- **Avenida Paseo de la República** · 223 m · [mapa](https://www.openstreetmap.org/?mlat=-12.14707&mlon=-76.993651#map=18/-12.14707/-76.993651) · 1 ruta: `SM08-vuelta`
+- **Avenida Paseo de la República** · 78 m · [mapa](https://www.openstreetmap.org/?mlat=-12.152073&mlon=-76.989791#map=18/-12.152073/-76.989791) · 1 ruta: `SM12-vuelta`
+- **Avenida Paucartambo** · 260 m · [mapa](https://www.openstreetmap.org/?mlat=-11.924993&mlon=-77.081366#map=18/-11.924993/-77.081366) · 1 ruta: `ZN004-vuelta`
+- **Avenida Pedro Ruiz Gallo** · 614 m · [mapa](https://www.openstreetmap.org/?mlat=-12.01598&mlon=-76.890974#map=18/-12.01598/-76.890974) · 1 ruta: `42099-ida`
+- **Avenida Perú** · 82 m · [mapa](https://www.openstreetmap.org/?mlat=-12.03049&mlon=-77.090276#map=18/-12.03049/-77.090276) · 1 ruta: `SO01-vuelta`
+- **Avenida Principal** · 502 m · [mapa](https://www.openstreetmap.org/?mlat=-11.982059&mlon=-76.797163#map=18/-11.982059/-76.797163) · 1 ruta: `42099-ida`
+- **Avenida Ramon Herrera** · 130 m · [mapa](https://www.openstreetmap.org/?mlat=-12.051345&mlon=-77.078078#map=18/-12.051345/-77.078078) · 1 ruta: `71-vuelta`
+- **Avenida República de Panamá** · 349 m · [mapa](https://www.openstreetmap.org/?mlat=-12.138989&mlon=-77.017766#map=18/-12.138989/-77.017766) · 1 ruta: `EX1-vuelta`
+- **Avenida San José** · 116 m · [mapa](https://www.openstreetmap.org/?mlat=-12.155464&mlon=-76.936285#map=18/-12.155464/-76.936285) · 1 ruta: `1118_70169-vuelta`
+- **Avenida Santa María** · 67 m · [mapa](https://www.openstreetmap.org/?mlat=-12.027692&mlon=-76.923735#map=18/-12.027692/-76.923735) · 1 ruta: `574-vuelta`
+- **Avenida Santa Rosa** · 267 m · [mapa](https://www.openstreetmap.org/?mlat=-11.826186&mlon=-76.61999#map=18/-11.826186/-76.61999) · 1 ruta: `PNH02-vuelta`
+- **Avenida Santiago de Surco** · 209 m · [mapa](https://www.openstreetmap.org/?mlat=-12.147766&mlon=-76.985996#map=18/-12.147766/-76.985996) · 1 ruta: `1-vuelta`
+- **Avenida Túpac Amaru** · 88 m · [mapa](https://www.openstreetmap.org/?mlat=-11.904556&mlon=-77.030921#map=18/-11.904556/-77.030921) · 1 ruta: `020p-vuelta`
+- **Avenida Túpac Amaru** · 84 m · [mapa](https://www.openstreetmap.org/?mlat=-11.945366&mlon=-77.050359#map=18/-11.945366/-77.050359) · 1 ruta: `C116m-ida`
+- **Avenida Túpac Amaru** · 61 m · [mapa](https://www.openstreetmap.org/?mlat=-11.914919&mlon=-77.040376#map=18/-11.914919/-77.040376) · 1 ruta: `CR84-vuelta`
+- **Avenida Túpac Amaru** · 205 m · [mapa](https://www.openstreetmap.org/?mlat=-11.962052&mlon=-77.054593#map=18/-11.962052/-77.054593) · 1 ruta: `IM47-ida`
+- **Avenida Túpac Amaru** · 63 m · [mapa](https://www.openstreetmap.org/?mlat=-11.875082&mlon=-77.016543#map=18/-11.875082/-77.016543) · 1 ruta: `NH112-vuelta`
+- **Avenida Universitaria** · 196 m · [mapa](https://www.openstreetmap.org/?mlat=-12.241105&mlon=-76.930033#map=18/-12.241105/-76.930033) · 1 ruta: `1410-vuelta`
+- **Avenida Universitaria** · 303 m · [mapa](https://www.openstreetmap.org/?mlat=-12.029399&mlon=-77.076608#map=18/-12.029399/-77.076608) · 1 ruta: `280-ida`
+- **Avenida Víctor Raúl Haya de la Torre** · 181 m · [mapa](https://www.openstreetmap.org/?mlat=-11.862618&mlon=-77.128218#map=18/-11.862618/-77.128218) · 1 ruta: `OM10-vuelta`
+- **Calle 16** · 385 m · [mapa](https://www.openstreetmap.org/?mlat=-12.08323&mlon=-77.098481#map=18/-12.08323/-77.098481) · 1 ruta: `1012_69847-vuelta`
+- **Calle 22** · 220 m · [mapa](https://www.openstreetmap.org/?mlat=-11.830118&mlon=-77.12541#map=18/-11.830118/-77.12541) · 1 ruta: `IO47-vuelta`
+- **Calle 3** · 256 m · [mapa](https://www.openstreetmap.org/?mlat=-11.91643&mlon=-77.075806#map=18/-11.91643/-77.075806) · 1 ruta: `167-vuelta`
+- **Calle General José Rufino Echenique Benavente** · 146 m · [mapa](https://www.openstreetmap.org/?mlat=-12.07897&mlon=-77.104614#map=18/-12.07897/-77.104614) · 1 ruta: `IM32-ida`
+- **Calle Los Aymaras** · 228 m · [mapa](https://www.openstreetmap.org/?mlat=-12.075022&mlon=-76.988367#map=18/-12.075022/-76.988367) · 1 ruta: `71-vuelta`
+- **Calle Manco Capac** · 193 m · [mapa](https://www.openstreetmap.org/?mlat=-12.052847&mlon=-77.141723#map=18/-12.052847/-77.141723) · 1 ruta: `IO67-ida`
+- **Calle Manco III** · 65 m · [mapa](https://www.openstreetmap.org/?mlat=-11.97688&mlon=-77.036368#map=18/-11.97688/-77.036368) · 1 ruta: `2610-ida`
+- **Canta Lima** · 397 m · [mapa](https://www.openstreetmap.org/?mlat=-11.933031&mlon=-77.073071#map=18/-11.933031/-77.073071) · 1 ruta: `NCR24b-vuelta`
+- **Carretera Central** · 255 m · [mapa](https://www.openstreetmap.org/?mlat=-12.001862&mlon=-76.841114#map=18/-12.001862/-76.841114) · 1 ruta: `42099-ida`
+- **Carretera Central** · 60 m · [mapa](https://www.openstreetmap.org/?mlat=-12.000189&mlon=-76.839161#map=18/-12.000189/-76.839161) · 1 ruta: `42099-ida`
+- **Carretera Central** · 46 m · [mapa](https://www.openstreetmap.org/?mlat=-11.911463&mlon=-76.583445#map=18/-11.911463/-76.583445) · 1 ruta: `42099-vuelta`
+- **Jirón 28 de Julio** · 46 m · [mapa](https://www.openstreetmap.org/?mlat=-12.150318&mlon=-77.020062#map=18/-12.150318/-77.020062) · 1 ruta: `IO51-ida`
+- **Jirón Amazonas** · 246 m · [mapa](https://www.openstreetmap.org/?mlat=-12.044693&mlon=-77.021434#map=18/-12.044693/-77.021434) · 1 ruta: `42099-vuelta`
+- **Jirón Azángaro** · 578 m · [mapa](https://www.openstreetmap.org/?mlat=-12.053236&mlon=-77.032106#map=18/-12.053236/-77.032106) · 1 ruta: `10b-ida`
+- **Jirón Cailloma** · 255 m · [mapa](https://www.openstreetmap.org/?mlat=-12.04488&mlon=-77.033374#map=18/-12.04488/-77.033374) · 1 ruta: `10b-vuelta`
+- **Jirón Chavín** · 429 m · [mapa](https://www.openstreetmap.org/?mlat=-11.972615&mlon=-77.081499#map=18/-11.972615/-77.081499) · 1 ruta: `170-ida`
+- **Jirón Chiclayo** · 591 m · [mapa](https://www.openstreetmap.org/?mlat=-12.042697&mlon=-77.028613#map=18/-12.042697/-77.028613) · 1 ruta: `10a-vuelta`
+- **Jirón Guardia Civil Sur** · 601 m · [mapa](https://www.openstreetmap.org/?mlat=-12.166544&mlon=-76.990343#map=18/-12.166544/-76.990343) · 1 ruta: `1095_99392-vuelta`
+- **Jirón Huayna Cápac** · 103 m · [mapa](https://www.openstreetmap.org/?mlat=-12.176134&mlon=-76.949058#map=18/-12.176134/-76.949058) · 1 ruta: `1390-ida`
+- **Jirón Huánuco** · 315 m · [mapa](https://www.openstreetmap.org/?mlat=-12.065489&mlon=-77.014992#map=18/-12.065489/-77.014992) · 1 ruta: `1200_69550-vuelta`
+- **Jirón Lorenzo de Vidaurre** · 302 m · [mapa](https://www.openstreetmap.org/?mlat=-12.055202&mlon=-77.013715#map=18/-12.055202/-77.013715) · 1 ruta: `10a-vuelta`
+- **Jirón Manoa** · 55 m · [mapa](https://www.openstreetmap.org/?mlat=-12.052537&mlon=-77.054291#map=18/-12.052537/-77.054291) · 1 ruta: `NO100-ida`
+- **Jirón Manoa** · 94 m · [mapa](https://www.openstreetmap.org/?mlat=-12.051778&mlon=-77.05391#map=18/-12.051778/-77.05391) · 1 ruta: `NO100-vuelta`
+- **Jirón Mariscal William Miller** · 120 m · [mapa](https://www.openstreetmap.org/?mlat=-12.081086&mlon=-77.037416#map=18/-12.081086/-77.037416) · 1 ruta: `76-vuelta`
+- **Jirón Roberto Thorndike Galup** · 132 m · [mapa](https://www.openstreetmap.org/?mlat=-12.057233&mlon=-77.068506#map=18/-12.057233/-77.068506) · 1 ruta: `IM13-vuelta`
+- **Jirón Sicaya** · 141 m · [mapa](https://www.openstreetmap.org/?mlat=-12.062706&mlon=-76.989411#map=18/-12.062706/-76.989411) · 1 ruta: `IM40-vuelta`
+- **Jirón Tarata** · 81 m · [mapa](https://www.openstreetmap.org/?mlat=-12.056359&mlon=-77.017841#map=18/-12.056359/-77.017841) · 1 ruta: `1490_74604-ida`
+- **Jirón Virú** · 71 m · [mapa](https://www.openstreetmap.org/?mlat=-12.035684&mlon=-77.038231#map=18/-12.035684/-77.038231) · 1 ruta: `262-ida`
+- **Jirón Áncash** · 187 m · [mapa](https://www.openstreetmap.org/?mlat=-12.041767&mlon=-77.004957#map=18/-12.041767/-77.004957) · 1 ruta: `1063-vuelta`
+- **Los Aravicus** · 476 m · [mapa](https://www.openstreetmap.org/?mlat=-11.987751&mlon=-77.057046#map=18/-11.987751/-77.057046) · 1 ruta: `5201-ida`
+- **Manuel Villar** · 139 m · [mapa](https://www.openstreetmap.org/?mlat=-12.026252&mlon=-77.056357#map=18/-12.026252/-77.056357) · 1 ruta: `NM12-ida`
+- **Pasaje Gould** · 143 m · [mapa](https://www.openstreetmap.org/?mlat=-12.047147&mlon=-77.044131#map=18/-12.047147/-77.044131) · 1 ruta: `1507-vuelta`
+- **Pasaje Miramar** · 177 m · [mapa](https://www.openstreetmap.org/?mlat=-12.045421&mlon=-77.103622#map=18/-12.045421/-77.103622) · 1 ruta: `IO66-ida`
+- **Prolongación Tacna** · 241 m · [mapa](https://www.openstreetmap.org/?mlat=-12.043577&mlon=-77.031004#map=18/-12.043577/-77.031004) · 1 ruta: `1_89999-ida`
+- **Vía Expresa Luis Fernán Bedoya Reyes** · 2111 m · [mapa](https://www.openstreetmap.org/?mlat=-12.109591&mlon=-77.026159#map=18/-12.109591/-77.026159) · 1 ruta: `51041-ida`
+- **Vía Expresa Luis Fernán Bedoya Reyes** · 409 m · [mapa](https://www.openstreetmap.org/?mlat=-12.11274&mlon=-77.026097#map=18/-12.11274/-77.026097) · 1 ruta: `51041-vuelta`
+- **Vía Expresa Luis Fernán Bedoya Reyes** · 724 m · [mapa](https://www.openstreetmap.org/?mlat=-12.12982&mlon=-77.022567#map=18/-12.12982/-77.022567) · 1 ruta: `EX1-ida`
+- **Vía Expresa Luis Fernán Bedoya Reyes** · 3479 m · [mapa](https://www.openstreetmap.org/?mlat=-12.083774&mlon=-77.02588#map=18/-12.083774/-77.02588) · 1 ruta: `EX9-ida`
+- **Vía de Evitamiento** · 512 m · [mapa](https://www.openstreetmap.org/?mlat=-12.041881&mlon=-77.032131#map=18/-12.041881/-77.032131) · 1 ruta: `107-vuelta`
+- **Vía de Evitamiento** · 127 m · [mapa](https://www.openstreetmap.org/?mlat=-12.083206&mlon=-76.980568#map=18/-12.083206/-76.980568) · 1 ruta: `3704-ida`
+- **Óvalo Los Cabitos** · 640 m · [mapa](https://www.openstreetmap.org/?mlat=-12.128329&mlon=-77.001091#map=18/-12.128329/-77.001091) · 1 ruta: `1-vuelta`
+- **Óvalo de Arriola** · 68 m · [mapa](https://www.openstreetmap.org/?mlat=-12.07721&mlon=-77.010908#map=18/-12.07721/-77.010908) · 1 ruta: `1-ida`
+- **Óvalo de Arriola** · 50 m · [mapa](https://www.openstreetmap.org/?mlat=-12.077914&mlon=-77.010405#map=18/-12.077914/-77.010405) · 1 ruta: `1-vuelta`
+
+## Vueltas en U (136 lugares, 607 rutas)
+
+- **Avenida Nicolás de Ayllón** · [mapa](https://www.openstreetmap.org/?mlat=-12.04641&mlon=-76.944265#map=18/-12.04641/-76.944265) · 63 rutas: `089p-ida`, `1041-ida`, `1064_70170-vuelta`, `1068-vuelta`, `1068_69491-vuelta`, `1069-vuelta`, `1069_69643-vuelta`, `1072-vuelta`, `1072_71278-vuelta`, `1076_70486-vuelta`, `1077_70488-vuelta`, `1079_71279-vuelta` y 51 más
+- **Avenida Nicolás de Ayllón** · [mapa](https://www.openstreetmap.org/?mlat=-12.040519&mlon=-76.93374#map=18/-12.040519/-76.93374) · 56 rutas: `089p-ida`, `1041-ida`, `1068-vuelta`, `1068_69491-vuelta`, `1069-vuelta`, `1069_69643-vuelta`, `1073-vuelta`, `1073_54745-vuelta`, `1076_70486-vuelta`, `1077_70488-vuelta`, `1079_71279-vuelta`, `1080_70490-vuelta` y 44 más
+- **Vía Expresa Elmer Faucett** · [mapa](https://www.openstreetmap.org/?mlat=-12.030266&mlon=-77.101801#map=18/-12.030266/-77.101801) · 56 rutas: `1030-ida`, `1030_69324-ida`, `1151-vuelta`, `1154-vuelta`, `1158-vuelta`, `1163-vuelta`, `1257-vuelta`, `1257_69856-vuelta`, `1273-vuelta`, `1274-vuelta`, `1286-vuelta`, `1292-vuelta` y 44 más
+- **Avenida Carlos Alberto Izaguirre** · [mapa](https://www.openstreetmap.org/?mlat=-11.989979&mlon=-77.063203#map=18/-11.989979/-77.063203) · 52 rutas: `1005-vuelta`, `1005_63118-vuelta`, `101-vuelta`, `1017-vuelta`, `1017_70830-vuelta`, `102_89202-vuelta`, `108-ida`, `109-vuelta`, `113-vuelta`, `1175-vuelta`, `1177-vuelta`, `1177_68997-vuelta` y 40 más
+- **Avenida Nicolás de Ayllón** · [mapa](https://www.openstreetmap.org/?mlat=-12.033959&mlon=-76.928502#map=18/-12.033959/-76.928502) · 51 rutas: `1066_69645-ida`, `1074-ida`, `1099_69493-vuelta`, `1296-vuelta`, `1362-ida`, `1362_90485-ida`, `1479-ida`, `1488-vuelta`, `209-ida`, `4104-ida`, `4207-ida`, `4414-ida` y 39 más
+- **Carretera Panamericana Norte** · [mapa](https://www.openstreetmap.org/?mlat=-11.860531&mlon=-77.079499#map=18/-11.860531/-77.079499) · 49 rutas: `090p-vuelta`, `110-vuelta`, `113-vuelta`, `1131-vuelta`, `1131_68809-vuelta`, `1160-vuelta`, `1168-vuelta`, `1175-vuelta`, `1175_98767-vuelta`, `1179-vuelta`, `1179_46521-vuelta`, `1238-ida` y 37 más
+- **Vía de Evitamiento** · [mapa](https://www.openstreetmap.org/?mlat=-12.032972&mlon=-77.00701#map=18/-12.032972/-77.00701) · 48 rutas: `089p-ida`, `109-ida`, `110-ida`, `111-ida`, `114-ida`, `1175-ida`, `1232-vuelta`, `1232_69495-vuelta`, `1305_84815-ida`, `1401_84885-ida`, `1408_84884-ida`, `156463-ida` y 36 más
+- **Vía de Evitamiento** · [mapa](https://www.openstreetmap.org/?mlat=-12.033637&mlon=-77.00811#map=18/-12.033637/-77.00811) · 48 rutas: `089p-ida`, `109-ida`, `110-ida`, `111-ida`, `114-ida`, `1175-ida`, `1232-vuelta`, `1232_69495-vuelta`, `1305_84815-ida`, `1401_84885-ida`, `1408_84884-ida`, `156463-ida` y 36 más
+- **Avenida Óscar Raimundo Benavides** · [mapa](https://www.openstreetmap.org/?mlat=-12.054001&mlon=-77.100998#map=18/-12.054001/-77.100998) · 30 rutas: `1002-vuelta`, `1101-vuelta`, `1147-vuelta`, `1223_69146-ida`, `1226-ida`, `1226_69392-ida`, `1281-ida`, `1305-ida`, `1346-ida`, `1346_71075-ida`, `56-vuelta`, `63-ida` y 18 más
+- **Avenida Faustino Sanchez Carrión** · [mapa](https://www.openstreetmap.org/?mlat=-12.092832&mlon=-77.053707#map=18/-12.092832/-77.053707) · 28 rutas: `1301-vuelta`, `203-vuelta`, `205_88560-vuelta`, `206_96734-vuelta`, `207-vuelta`, `4103-vuelta`, `4104-vuelta`, `8902-vuelta`, `90-vuelta`, `9402-ida`, `C49m-vuelta`, `ECR13-vuelta` y 16 más
+- **Avenida Nicolás de Ayllón** · [mapa](https://www.openstreetmap.org/?mlat=-12.030086&mlon=-76.924812#map=18/-12.030086/-76.924812) · 18 rutas: `1073-vuelta`, `1073_54745-vuelta`, `1374-vuelta`, `1374_94873-vuelta`, `1407_85831-ida`, `4912-vuelta`, `512-vuelta`, `579-ida`, `581-ida`, `C24m_76639-ida`, `ECR11-vuelta`, `ECR23-vuelta` y 6 más
+- **Carretera Central** · [mapa](https://www.openstreetmap.org/?mlat=-11.91867&mlon=-76.562806#map=18/-11.91867/-76.562806) · 17 rutas: `CCH22-ida`, `CH02a-ida`, `CH02a-vuelta`, `CH04a-ida`, `CH16-ida`, `CH16-vuelta`, `CH37-vuelta`, `RTUM01-ida`, `RTUM01-vuelta`, `TCH07-ida`, `TRI01-ida`, `TRI01-vuelta` y 5 más
+- **Carretera Central** · [mapa](https://www.openstreetmap.org/?mlat=-11.918795&mlon=-76.562265#map=18/-11.918795/-76.562265) · 17 rutas: `CCH22-ida`, `CH02a-ida`, `CH02a-vuelta`, `CH04a-ida`, `CH16-ida`, `CH16-vuelta`, `CH37-vuelta`, `RTUM01-ida`, `RTUM01-vuelta`, `TCH07-ida`, `TRI01-ida`, `TRI01-vuelta` y 5 más
+- **Avenida Gerardo Unger** · [mapa](https://www.openstreetmap.org/?mlat=-11.940765&mlon=-77.067103#map=18/-11.940765/-77.067103) · 16 rutas: `1327_55063-ida`, `1328_62791-ida`, `1329-ida`, `1329_62792-ida`, `1339_70826-ida`, `1340-vuelta`, `1340_70822-ida`, `2207-ida`, `NCR09-ida`, `NCR18-vuelta`, `NCR31-ida`, `NH26a-vuelta` y 4 más
+- **Víctor Raúl Haya de la Torre** · [mapa](https://www.openstreetmap.org/?mlat=-12.030126&mlon=-76.925115#map=18/-12.030126/-76.925115) · 16 rutas: `089p-vuelta`, `1364-ida`, `1395_68913-vuelta`, `1407_85831-vuelta`, `1488-vuelta`, `3402-vuelta`, `4104-ida`, `4209-ida`, `4414-ida`, `4606-ida`, `4621-ida`, `502-ida` y 4 más
+- **calle sin nombre** · [mapa](https://www.openstreetmap.org/?mlat=-11.923721&mlon=-76.660999#map=18/-11.923721/-76.660999) · 9 rutas: `1218-vuelta`, `1218_69695-vuelta`, `1480-vuelta`, `1480_68042-vuelta`, `4508-vuelta`, `EO29-vuelta`, `EO53-vuelta`, `EO55-vuelta`, `TRI20-ida`
+- **Avenida El Sol** · [mapa](https://www.openstreetmap.org/?mlat=-11.987661&mlon=-76.998939#map=18/-11.987661/-76.998939) · 9 rutas: `2301-ida`, `3503-vuelta`, `3514-vuelta`, `3515-vuelta`, `465-vuelta`, `5302-ida`, `8301-ida`, `NO56-vuelta`, `OO08-ida`
+- **Avenida Santiago de Surco** · [mapa](https://www.openstreetmap.org/?mlat=-12.131155&mlon=-76.999679#map=18/-12.131155/-76.999679) · 9 rutas: `1199-ida`, `1199_69053-ida`, `1468-ida`, `1468_68808-ida`, `3808-ida`, `NM17-ida`, `SO19-vuelta`, `SO30-vuelta`, `SO31-vuelta`
+- **Simón Bolívar** · [mapa](https://www.openstreetmap.org/?mlat=-11.923721&mlon=-76.660999#map=18/-11.923721/-76.660999) · 9 rutas: `1218_69695-ida`, `1479-ida`, `1480_68042-ida`, `4508-ida`, `EM11-ida`, `EO29-ida`, `EO53-ida`, `EO55-ida`, `TRI20-vuelta`
+- **Avenida Bocanegra** · [mapa](https://www.openstreetmap.org/?mlat=-12.008977&mlon=-77.112442#map=18/-12.008977/-77.112442) · 8 rutas: `107-ida`, `1286-ida`, `1292-ida`, `1312-ida`, `DA01a-ida`, `IM26-ida`, `OM22-ida`, `OM75-ida`
+- **Avenida Universitaria** · [mapa](https://www.openstreetmap.org/?mlat=-11.900006&mlon=-77.039644#map=18/-11.900006/-77.039644) · 8 rutas: `CR27-vuelta`, `CR34-ida`, `IO09-ida`, `IO38b-vuelta`, `IPC06-ida`, `IPC06-vuelta`, `NM07-ida`, `NO06-vuelta`
+- **Vía Privada A Areopueto** · [mapa](https://www.openstreetmap.org/?mlat=-12.014422&mlon=-77.109908#map=18/-12.014422/-77.109908) · 8 rutas: `107-ida`, `1286-ida`, `1292-ida`, `1312-ida`, `DA01a-ida`, `IM26-ida`, `OM22-ida`, `OM75-ida`
+- **Avenida Nicolás de Ayllón** · [mapa](https://www.openstreetmap.org/?mlat=-12.036735&mlon=-76.930507#map=18/-12.036735/-76.930507) · 7 rutas: `1360-vuelta`, `1360_69002-vuelta`, `1370-vuelta`, `4412-vuelta`, `ECR23-vuelta`, `EM41A-ida`, `IO70-vuelta`
+- **Avenida Carlos Alberto Izaguirre** · [mapa](https://www.openstreetmap.org/?mlat=-11.988713&mlon=-77.056839#map=18/-11.988713/-77.056839) · 6 rutas: `1025-vuelta`, `1025_68804-vuelta`, `2205-vuelta`, `2302-vuelta`, `6201-ida`, `NO22-vuelta`
+- **calle sin nombre** · [mapa](https://www.openstreetmap.org/?mlat=-11.972252&mlon=-77.102068#map=18/-11.972252/-77.102068) · 5 rutas: `1025-vuelta`, `1033-ida`, `1033_61125-ida`, `NM39a-ida`, `NM39b-ida`
+- **Avenida Andrés Avelino Cáceres** · [mapa](https://www.openstreetmap.org/?mlat=-12.016744&mlon=-76.817134#map=18/-12.016744/-76.817134) · 5 rutas: `1080_70490-ida`, `1083_89553-ida`, `4485-vuelta`, `560-ida`, `EO56-ida`
+- **Avenida Morales Duarez** · [mapa](https://www.openstreetmap.org/?mlat=-12.041977&mlon=-77.107679#map=18/-12.041977/-77.107679) · 5 rutas: `1273-ida`, `1274-ida`, `1292-ida`, `CR57-ida`, `CR58-ida`
+- **Avenida Nicolás de Ayllón** · [mapa](https://www.openstreetmap.org/?mlat=-12.057341&mlon=-76.971683#map=18/-12.057341/-76.971683) · 5 rutas: `1072-ida`, `1224_70177-ida`, `1369-ida`, `2402-vuelta`, `EM62a-ida`
+- **Avenida San Marcos** · [mapa](https://www.openstreetmap.org/?mlat=-12.01686&mlon=-76.817148#map=18/-12.01686/-76.817148) · 5 rutas: `1080_70490-ida`, `1083_89553-ida`, `4485-vuelta`, `560-ida`, `EO56-ida`
+- **Avenida Túpac Amaru** · [mapa](https://www.openstreetmap.org/?mlat=-11.869461&mlon=-77.013267#map=18/-11.869461/-77.013267) · 5 rutas: `1162-ida`, `1178-ida`, `1178_94758-ida`, `1330_63005-ida`, `1803-ida`
+- **Avenida Universitaria** · [mapa](https://www.openstreetmap.org/?mlat=-11.933069&mlon=-77.055166#map=18/-11.933069/-77.055166) · 5 rutas: `1303_84886-vuelta`, `C151m-vuelta`, `C16m-vuelta`, `NCR09-ida`, `NM26-ida`
+- **Avenida Universitaria** · [mapa](https://www.openstreetmap.org/?mlat=-11.906996&mlon=-77.043022#map=18/-11.906996/-77.043022) · 5 rutas: `1510-vuelta`, `4105-ida`, `8101-ida`, `EM01-ida`, `EO54-ida`
+- **Carretera Panamericana Norte** · [mapa](https://www.openstreetmap.org/?mlat=-11.872245&mlon=-77.069607#map=18/-11.872245/-77.069607) · 5 rutas: `102_89202-ida`, `108-vuelta`, `110-ida`, `C21m-ida`, `SO94-vuelta`
+- **calle sin nombre** · [mapa](https://www.openstreetmap.org/?mlat=-11.972875&mlon=-77.10272#map=18/-11.972875/-77.10272) · 4 rutas: `1033-ida`, `1033_61125-ida`, `NM39a-ida`, `NM39b-ida`
+- **calle sin nombre** · [mapa](https://www.openstreetmap.org/?mlat=-12.170891&mlon=-76.992043#map=18/-12.170891/-76.992043) · 4 rutas: `5701-ida`, `EO26-ida`, `NM17-ida`, `SO48-vuelta`
+- **calle sin nombre** · [mapa](https://www.openstreetmap.org/?mlat=-12.171516&mlon=-76.991961#map=18/-12.171516/-76.991961) · 4 rutas: `5701-ida`, `EO26-ida`, `NM17-ida`, `SO48-vuelta`
+- **Avenida Los Héroes** · [mapa](https://www.openstreetmap.org/?mlat=-12.155674&mlon=-76.967428#map=18/-12.155674/-76.967428) · 4 rutas: `1127-ida`, `1127_69962-ida`, `1472-vuelta`, `1472_68847-vuelta`
+- **Avenida Túpac Amaru** · [mapa](https://www.openstreetmap.org/?mlat=-11.94068&mlon=-77.050363#map=18/-11.94068/-77.050363) · 4 rutas: `72-ida`, `AN07-ida`, `C116m-ida`, `EO115-vuelta`
+- **Avenida Universitaria** · [mapa](https://www.openstreetmap.org/?mlat=-11.936509&mlon=-77.05734#map=18/-11.936509/-77.05734) · 4 rutas: `184-ida`, `185-ida`, `2101-ida`, `NCR10-ida`
+- **Avenida Universitaria** · [mapa](https://www.openstreetmap.org/?mlat=-11.913899&mlon=-77.04705#map=18/-11.913899/-77.04705) · 4 rutas: `4105-ida`, `8101-ida`, `EM01-ida`, `EO54-ida`
+- **Vista Alegre** · [mapa](https://www.openstreetmap.org/?mlat=-12.037804&mlon=-76.931532#map=18/-12.037804/-76.931532) · 4 rutas: `208-vuelta`, `4103-vuelta`, `EO24-vuelta`, `EO39-vuelta`
+- **calle sin nombre** · [mapa](https://www.openstreetmap.org/?mlat=-11.932727&mlon=-76.687399#map=18/-11.932727/-76.687399) · 3 rutas: `1354-ida`, `1354_70489-vuelta`, `EM42-vuelta`
+- **Avenida 28 de Julio** · [mapa](https://www.openstreetmap.org/?mlat=-12.064758&mlon=-77.038524#map=18/-12.064758/-77.038524) · 3 rutas: `1109_87800-ida`, `1244_52206-ida`, `9901-ida`
+- **Avenida 9 de Octubre** · [mapa](https://www.openstreetmap.org/?mlat=-12.041908&mlon=-77.021934#map=18/-12.041908/-77.021934) · 3 rutas: `1175_98767-vuelta`, `NCR12-vuelta`, `NH24-ida`
+- **Avenida Alfredo Benavides** · [mapa](https://www.openstreetmap.org/?mlat=-12.128179&mlon=-76.992664#map=18/-12.128179/-76.992664) · 3 rutas: `1231-ida`, `1231_68846-ida`, `SO35-ida`
+- **Avenida Fernando Terán** · [mapa](https://www.openstreetmap.org/?mlat=-12.167893&mlon=-77.019098#map=18/-12.167893/-77.019098) · 3 rutas: `45317-vuelta`, `84071-vuelta`, `EX1-vuelta`
+- **Avenida José Carlos Mariátegui** · [mapa](https://www.openstreetmap.org/?mlat=-12.026558&mlon=-76.920101#map=18/-12.026558/-76.920101) · 3 rutas: `2402-vuelta`, `2410-vuelta`, `4606-ida`
+- **Avenida José Carlos Mariátegui** · [mapa](https://www.openstreetmap.org/?mlat=-12.026689&mlon=-76.917343#map=18/-12.026689/-76.917343) · 3 rutas: `2402-vuelta`, `2410-vuelta`, `4606-ida`
+- **Avenida República de Argentina** · [mapa](https://www.openstreetmap.org/?mlat=-12.05097&mlon=-77.126779#map=18/-12.05097/-77.126779) · 3 rutas: `156463-ida`, `3904-ida`, `OM27-vuelta`
+- **Avenida Universitaria** · [mapa](https://www.openstreetmap.org/?mlat=-11.93414&mlon=-77.056163#map=18/-11.93414/-77.056163) · 3 rutas: `1410_84812-ida`, `8101-vuelta`, `IO44a-vuelta`
+- **Calle Mariscal Castilla** · [mapa](https://www.openstreetmap.org/?mlat=-11.932727&mlon=-76.687399#map=18/-11.932727/-76.687399) · 3 rutas: `1354-vuelta`, `1354_70489-ida`, `EM42-ida`
+- **calle sin nombre** · [mapa](https://www.openstreetmap.org/?mlat=-11.872585&mlon=-77.138526#map=18/-11.872585/-77.138526) · 2 rutas: `IO55-ida`, `IO82-ida`
+- **Avenida 9 de Octubre** · [mapa](https://www.openstreetmap.org/?mlat=-12.036947&mlon=-77.013262#map=18/-12.036947/-77.013262) · 2 rutas: `7302-vuelta`, `IO46-vuelta`
+- **Avenida Alfredo Benavides** · [mapa](https://www.openstreetmap.org/?mlat=-12.128217&mlon=-77.00518#map=18/-12.128217/-77.00518) · 2 rutas: `1309-vuelta`, `NM17-vuelta`
+- **Avenida Alfredo Benavides** · [mapa](https://www.openstreetmap.org/?mlat=-12.128368&mlon=-77.004151#map=18/-12.128368/-77.004151) · 2 rutas: `1309-vuelta`, `NM17-vuelta`
+- **Avenida Angamos Este** · [mapa](https://www.openstreetmap.org/?mlat=-12.113602&mlon=-77.026521#map=18/-12.113602/-77.026521) · 2 rutas: `1043-vuelta`, `1043_70965-vuelta`
+- **Avenida Los Héroes** · [mapa](https://www.openstreetmap.org/?mlat=-12.156859&mlon=-76.964471#map=18/-12.156859/-76.964471) · 2 rutas: `152-ida`, `7808-vuelta`
+- **Avenida Los Héroes** · [mapa](https://www.openstreetmap.org/?mlat=-12.157556&mlon=-76.962785#map=18/-12.157556/-76.962785) · 2 rutas: `152-ida`, `7808-vuelta`
+- **Avenida Los Jazmines** · [mapa](https://www.openstreetmap.org/?mlat=-12.001682&mlon=-77.054972#map=18/-12.001682/-77.054972) · 2 rutas: `IM47-vuelta`, `NM09-ida`
+- **Avenida Panamericana Sur** · [mapa](https://www.openstreetmap.org/?mlat=-12.154813&mlon=-76.98385#map=18/-12.154813/-76.98385) · 2 rutas: `3811-ida`, `EO25-ida`
+- **Avenida Santa Rosa** · [mapa](https://www.openstreetmap.org/?mlat=-11.832319&mlon=-77.170447#map=18/-11.832319/-77.170447) · 2 rutas: `CR66-ida`, `CR66-vuelta`
+- **Avenida Universitaria** · [mapa](https://www.openstreetmap.org/?mlat=-11.960699&mlon=-77.061369#map=18/-11.960699/-77.061369) · 2 rutas: `1407_85831-vuelta`, `EO123-ida`
+- **Avenida Universitaria** · [mapa](https://www.openstreetmap.org/?mlat=-11.914241&mlon=-77.047627#map=18/-11.914241/-77.047627) · 2 rutas: `EO50-vuelta`, `IO44a-vuelta`
+- **Avenida Óscar Raimundo Benavides** · [mapa](https://www.openstreetmap.org/?mlat=-12.056625&mlon=-77.112899#map=18/-12.056625/-77.112899) · 2 rutas: `9302-ida`, `IM52-ida`
+- **Carretera Panamericana Norte** · [mapa](https://www.openstreetmap.org/?mlat=-11.855575&mlon=-77.085704#map=18/-11.855575/-77.085704) · 2 rutas: `CR66-vuelta`, `OM22-vuelta`
+- **Vía Expresa Elmer Faucett** · [mapa](https://www.openstreetmap.org/?mlat=-12.02325&mlon=-77.105412#map=18/-12.02325/-77.105412) · 2 rutas: `C16m-vuelta`, `OM22-vuelta`
+- **Vía Expresa Elmer Faucett** · [mapa](https://www.openstreetmap.org/?mlat=-12.023756&mlon=-77.105166#map=18/-12.023756/-77.105166) · 2 rutas: `C16m-vuelta`, `OM22-vuelta`
+- **calle sin nombre** · [mapa](https://www.openstreetmap.org/?mlat=-11.979982&mlon=-77.005078#map=18/-11.979982/-77.005078) · 1 ruta: `1-ida`
+- **calle sin nombre** · [mapa](https://www.openstreetmap.org/?mlat=-11.860299&mlon=-77.01211#map=18/-11.860299/-77.01211) · 1 ruta: `1005-vuelta`
+- **calle sin nombre** · [mapa](https://www.openstreetmap.org/?mlat=-12.10259&mlon=-77.065305#map=18/-12.10259/-77.065305) · 1 ruta: `AN24-vuelta`
+- **calle sin nombre** · [mapa](https://www.openstreetmap.org/?mlat=-12.042566&mlon=-76.936385#map=18/-12.042566/-76.936385) · 1 ruta: `IO67-ida`
+- **calle sin nombre** · [mapa](https://www.openstreetmap.org/?mlat=-11.722895&mlon=-76.588543#map=18/-11.722895/-76.588543) · 1 ruta: `TSE10-vuelta`
+- **Alameda del Corregidor** · [mapa](https://www.openstreetmap.org/?mlat=-12.103569&mlon=-76.948233#map=18/-12.103569/-76.948233) · 1 ruta: `4201-ida`
+- **Antigua Panamericana Sur** · [mapa](https://www.openstreetmap.org/?mlat=-12.384347&mlon=-76.77377#map=18/-12.384347/-76.77377) · 1 ruta: `1415-vuelta`
+- **Autopista Ramiro Prialé** · [mapa](https://www.openstreetmap.org/?mlat=-12.019609&mlon=-76.948519#map=18/-12.019609/-76.948519) · 1 ruta: `NH93-ida`
+- **Avenida 9 de Octubre** · [mapa](https://www.openstreetmap.org/?mlat=-12.040084&mlon=-77.0175#map=18/-12.040084/-77.0175) · 1 ruta: `1304_84959-vuelta`
+- **Avenida Andres Avelino Cáceres** · [mapa](https://www.openstreetmap.org/?mlat=-11.873871&mlon=-77.137425#map=18/-11.873871/-77.137425) · 1 ruta: `IO55-ida`
+- **Avenida Aviación** · [mapa](https://www.openstreetmap.org/?mlat=-12.091583&mlon=-77.00316#map=18/-12.091583/-77.00316) · 1 ruta: `SO35-vuelta`
+- **Avenida Canadá** · [mapa](https://www.openstreetmap.org/?mlat=-12.081865&mlon=-77.023433#map=18/-12.081865/-77.023433) · 1 ruta: `7302-vuelta`
+- **Avenida Canta Callao** · [mapa](https://www.openstreetmap.org/?mlat=-11.982649&mlon=-77.098544#map=18/-11.982649/-77.098544) · 1 ruta: `1025_68804-ida`
+- **Avenida Canta Callao** · [mapa](https://www.openstreetmap.org/?mlat=-11.980708&mlon=-77.096406#map=18/-11.980708/-77.096406) · 1 ruta: `1025_68804-ida`
+- **Avenida Canta Callao** · [mapa](https://www.openstreetmap.org/?mlat=-11.987986&mlon=-77.1045#map=18/-11.987986/-77.1045) · 1 ruta: `IO11-vuelta`
+- **Avenida Canta Callao** · [mapa](https://www.openstreetmap.org/?mlat=-11.985929&mlon=-77.102206#map=18/-11.985929/-77.102206) · 1 ruta: `IO11-vuelta`
+- **Avenida Coronel Néstor Gambetta** · [mapa](https://www.openstreetmap.org/?mlat=-11.97237&mlon=-77.125007#map=18/-11.97237/-77.125007) · 1 ruta: `1039-ida`
+- **Avenida El Bosque** · [mapa](https://www.openstreetmap.org/?mlat=-11.979506&mlon=-77.004858#map=18/-11.979506/-77.004858) · 1 ruta: `1-ida`
+- **Avenida La Paz** · [mapa](https://www.openstreetmap.org/?mlat=-12.082859&mlon=-77.099319#map=18/-12.082859/-77.099319) · 1 ruta: `IO78b-vuelta`
+- **Avenida Los Dominicos** · [mapa](https://www.openstreetmap.org/?mlat=-11.99413&mlon=-77.105159#map=18/-11.99413/-77.105159) · 1 ruta: `UCL01-ida`
+- **Avenida Los Héroes** · [mapa](https://www.openstreetmap.org/?mlat=-11.876147&mlon=-77.135489#map=18/-11.876147/-77.135489) · 1 ruta: `IO55-ida`
+- **Avenida Los Tusilagos Este** · [mapa](https://www.openstreetmap.org/?mlat=-12.011103&mlon=-76.997655#map=18/-12.011103/-76.997655) · 1 ruta: `NH109-vuelta`
+- **Avenida Malecón Chillón** · [mapa](https://www.openstreetmap.org/?mlat=-11.935595&mlon=-77.083261#map=18/-11.935595/-77.083261) · 1 ruta: `AN13-ida`
+- **Avenida Nicolás Dueñas** · [mapa](https://www.openstreetmap.org/?mlat=-12.043971&mlon=-77.065427#map=18/-12.043971/-77.065427) · 1 ruta: `IM28-vuelta`
+- **Avenida Nicolás de Ayllón** · [mapa](https://www.openstreetmap.org/?mlat=-12.052498&mlon=-76.959319#map=18/-12.052498/-76.959319) · 1 ruta: `1372-vuelta`
+- **Avenida Nicolás de Ayllón** · [mapa](https://www.openstreetmap.org/?mlat=-12.054281&mlon=-76.964665#map=18/-12.054281/-76.964665) · 1 ruta: `2402-vuelta`
+- **Avenida Nicolás de Ayllón** · [mapa](https://www.openstreetmap.org/?mlat=-12.03475&mlon=-76.928778#map=18/-12.03475/-76.928778) · 1 ruta: `ECR18-vuelta`
+- **Avenida Paseo de la República** · [mapa](https://www.openstreetmap.org/?mlat=-12.097683&mlon=-77.025794#map=18/-12.097683/-77.025794) · 1 ruta: `8301-vuelta`
+- **Avenida Paseo de la República** · [mapa](https://www.openstreetmap.org/?mlat=-12.097155&mlon=-77.02555#map=18/-12.097155/-77.02555) · 1 ruta: `8301-vuelta`
+- **Avenida Perú** · [mapa](https://www.openstreetmap.org/?mlat=-12.03049&mlon=-77.090276#map=18/-12.03049/-77.090276) · 1 ruta: `SO01-vuelta`
+- **Avenida Perú** · [mapa](https://www.openstreetmap.org/?mlat=-12.030402&mlon=-77.091028#map=18/-12.030402/-77.091028) · 1 ruta: `SO01-vuelta`
+- **Avenida Primavera** · [mapa](https://www.openstreetmap.org/?mlat=-12.109869&mlon=-76.974326#map=18/-12.109869/-76.974326) · 1 ruta: `SO42-ida`
+- **Avenida San Bernardo** · [mapa](https://www.openstreetmap.org/?mlat=-11.952607&mlon=-77.066234#map=18/-11.952607/-77.066234) · 1 ruta: `156062-ida`
+- **Avenida Santiago de Surco** · [mapa](https://www.openstreetmap.org/?mlat=-12.146563&mlon=-76.987951#map=18/-12.146563/-76.987951) · 1 ruta: `8405-vuelta`
+- **Avenida Simón Bolivar** · [mapa](https://www.openstreetmap.org/?mlat=-12.042987&mlon=-76.936307#map=18/-12.042987/-76.936307) · 1 ruta: `IO67-ida`
+- **Avenida Túpac Amaru** · [mapa](https://www.openstreetmap.org/?mlat=-11.904556&mlon=-77.030921#map=18/-11.904556/-77.030921) · 1 ruta: `020p-vuelta`
+- **Avenida Túpac Amaru** · [mapa](https://www.openstreetmap.org/?mlat=-11.945366&mlon=-77.050359#map=18/-11.945366/-77.050359) · 1 ruta: `C116m-ida`
+- **Avenida Túpac Amaru** · [mapa](https://www.openstreetmap.org/?mlat=-11.944627&mlon=-77.050537#map=18/-11.944627/-77.050537) · 1 ruta: `C116m-ida`
+- **Avenida Túpac Amaru** · [mapa](https://www.openstreetmap.org/?mlat=-11.914919&mlon=-77.040376#map=18/-11.914919/-77.040376) · 1 ruta: `CR84-vuelta`
+- **Avenida Túpac Amaru** · [mapa](https://www.openstreetmap.org/?mlat=-11.914436&mlon=-77.040106#map=18/-11.914436/-77.040106) · 1 ruta: `CR84-vuelta`
+- **Avenida Túpac Amaru** · [mapa](https://www.openstreetmap.org/?mlat=-11.962052&mlon=-77.054593#map=18/-11.962052/-77.054593) · 1 ruta: `IM47-ida`
+- **Avenida Túpac Amaru** · [mapa](https://www.openstreetmap.org/?mlat=-11.960293&mlon=-77.054#map=18/-11.960293/-77.054) · 1 ruta: `IM47-ida`
+- **Avenida Túpac Amaru** · [mapa](https://www.openstreetmap.org/?mlat=-11.875082&mlon=-77.016543#map=18/-11.875082/-77.016543) · 1 ruta: `NH112-vuelta`
+- **Avenida Universitaria** · [mapa](https://www.openstreetmap.org/?mlat=-11.901506&mlon=-77.03995#map=18/-11.901506/-77.03995) · 1 ruta: `1410_84812-vuelta`
+- **Avenida Universitaria** · [mapa](https://www.openstreetmap.org/?mlat=-12.026498&mlon=-77.075442#map=18/-12.026498/-77.075442) · 1 ruta: `4105-ida`
+- **Avenida Universitaria** · [mapa](https://www.openstreetmap.org/?mlat=-11.935736&mlon=-77.056511#map=18/-11.935736/-77.056511) · 1 ruta: `NO59-ida`
+- **Avenida Víctor Raúl Haya de la Torre** · [mapa](https://www.openstreetmap.org/?mlat=-11.862618&mlon=-77.128218#map=18/-11.862618/-77.128218) · 1 ruta: `OM10-vuelta`
+- **Avenida Víctor Raúl Haya de la Torre** · [mapa](https://www.openstreetmap.org/?mlat=-11.864256&mlon=-77.128183#map=18/-11.864256/-77.128183) · 1 ruta: `OM10-vuelta`
+- **Avenida Óscar Raimundo Benavides** · [mapa](https://www.openstreetmap.org/?mlat=-12.049058&mlon=-77.070928#map=18/-12.049058/-77.070928) · 1 ruta: `1147-vuelta`
+- **Callao** · [mapa](https://www.openstreetmap.org/?mlat=-12.03094&mlon=-77.086334#map=18/-12.03094/-77.086334) · 1 ruta: `SO01-vuelta`
+- **Calle 4** · [mapa](https://www.openstreetmap.org/?mlat=-12.028738&mlon=-76.924059#map=18/-12.028738/-76.924059) · 1 ruta: `4603-vuelta`
+- **Calle Baltazar La Torre** · [mapa](https://www.openstreetmap.org/?mlat=-12.10388&mlon=-77.057541#map=18/-12.10388/-77.057541) · 1 ruta: `1182-ida`
+- **Calle M** · [mapa](https://www.openstreetmap.org/?mlat=-11.847666&mlon=-77.001618#map=18/-11.847666/-77.001618) · 1 ruta: `NM10-ida`
+- **Carretera Central** · [mapa](https://www.openstreetmap.org/?mlat=-11.968362&mlon=-76.745667#map=18/-11.968362/-76.745667) · 1 ruta: `42099-vuelta`
+- **Cusco** · [mapa](https://www.openstreetmap.org/?mlat=-11.994878&mlon=-77.118412#map=18/-11.994878/-77.118412) · 1 ruta: `IO28a-vuelta`
+- **Jirón Antonio Raimondi** · [mapa](https://www.openstreetmap.org/?mlat=-12.057972&mlon=-77.014062#map=18/-12.057972/-77.014062) · 1 ruta: `1-vuelta`
+- **Jirón Huánuco** · [mapa](https://www.openstreetmap.org/?mlat=-12.065489&mlon=-77.014992#map=18/-12.065489/-77.014992) · 1 ruta: `1200_69550-vuelta`
+- **Jirón Huánuco** · [mapa](https://www.openstreetmap.org/?mlat=-12.068313&mlon=-77.014609#map=18/-12.068313/-77.014609) · 1 ruta: `1200_69550-vuelta`
+- **Jirón La Punta** · [mapa](https://www.openstreetmap.org/?mlat=-12.084606&mlon=-76.900327#map=18/-12.084606/-76.900327) · 1 ruta: `12c-ida`
+- **Jirón La Punta** · [mapa](https://www.openstreetmap.org/?mlat=-12.083809&mlon=-76.900393#map=18/-12.083809/-76.900393) · 1 ruta: `12c-ida`
+- **Jirón Libertad** · [mapa](https://www.openstreetmap.org/?mlat=-12.024722&mlon=-76.916419#map=18/-12.024722/-76.916419) · 1 ruta: `4603-vuelta`
+- **Jirón Virú** · [mapa](https://www.openstreetmap.org/?mlat=-12.035684&mlon=-77.038231#map=18/-12.035684/-77.038231) · 1 ruta: `262-ida`
+- **Jirón Virú** · [mapa](https://www.openstreetmap.org/?mlat=-12.035257&mlon=-77.03872#map=18/-12.035257/-77.03872) · 1 ruta: `262-ida`
+- **Jirón Áncash** · [mapa](https://www.openstreetmap.org/?mlat=-12.041767&mlon=-77.004957#map=18/-12.041767/-77.004957) · 1 ruta: `1063-vuelta`
+- **Jirón Áncash** · [mapa](https://www.openstreetmap.org/?mlat=-12.042306&mlon=-77.006585#map=18/-12.042306/-77.006585) · 1 ruta: `1063-vuelta`
+- **Paradero** · [mapa](https://www.openstreetmap.org/?mlat=-12.110508&mlon=-76.978146#map=18/-12.110508/-76.978146) · 1 ruta: `OM05-ida`
+- **Vía de Evitamiento** · [mapa](https://www.openstreetmap.org/?mlat=-12.083206&mlon=-76.980568#map=18/-12.083206/-76.980568) · 1 ruta: `3704-ida`
+- **Vía de Evitamiento** · [mapa](https://www.openstreetmap.org/?mlat=-12.082432&mlon=-76.979709#map=18/-12.082432/-76.979709) · 1 ruta: `3704-ida`
+- **Víctor Raúl Haya de la Torre** · [mapa](https://www.openstreetmap.org/?mlat=-12.034876&mlon=-76.929155#map=18/-12.034876/-76.929155) · 1 ruta: `EO44-ida`
+
+## Salidas raras de un óvalo (26 lugares, 77 rutas)
+
+- **Avenida José Pardo** · gira 327° · [mapa](https://www.openstreetmap.org/?mlat=-12.11892&mlon=-77.042505#map=18/-12.11892/-77.042505) · 9 rutas: `1094_69274-vuelta`, `1109-vuelta`, `1113-vuelta`, `1113_69742-vuelta`, `1116-vuelta`, `1116_69539-vuelta`, `1119-vuelta`, `1119_71480-vuelta`, `351-ida`
+- **Avenida 9 de Diciembre** · gira 318° · [mapa](https://www.openstreetmap.org/?mlat=-12.060045&mlon=-77.041031#map=18/-12.060045/-77.041031) · 7 rutas: `1463-vuelta`, `1466-vuelta`, `506-vuelta`, `SCR21-vuelta`, `SH27ap-vuelta`, `SM22-vuelta`, `SM28-vuelta`
+- **Avenida Óscar Raimundo Benavides** · gira 313° · [mapa](https://www.openstreetmap.org/?mlat=-12.04658&mlon=-77.043129#map=18/-12.04658/-77.043129) · 7 rutas: `1133-vuelta`, `1146-vuelta`, `1147-vuelta`, `1169-vuelta`, `CR04-vuelta`, `CR45-vuelta`, `CR46-vuelta`
+- **Avenida Santa Cruz** · gira 356° · [mapa](https://www.openstreetmap.org/?mlat=-12.118716&mlon=-77.042657#map=18/-12.118716/-77.042657) · 6 rutas: `601-vuelta`, `7602-vuelta`, `8610-vuelta`, `EM55-vuelta`, `NO15-vuelta`, `SM20-vuelta`
+- **Avenida Andrés Avelino Cáceres** · gira 426° · [mapa](https://www.openstreetmap.org/?mlat=-12.015345&mlon=-76.818735#map=18/-12.015345/-76.818735) · 5 rutas: `1080_70490-ida`, `4485-vuelta`, `516-vuelta`, `560-ida`, `EO56-ida`
+- **Avenida Guzmán Blanco** · gira 328° · [mapa](https://www.openstreetmap.org/?mlat=-12.060678&mlon=-77.041225#map=18/-12.060678/-77.041225) · 5 rutas: `103-vuelta`, `106-vuelta`, `1142-vuelta`, `CR32-vuelta`, `SM47-vuelta`
+- **Avenida San Juan** · gira 357° · [mapa](https://www.openstreetmap.org/?mlat=-12.077287&mlon=-77.010214#map=18/-12.077287/-77.010214) · 5 rutas: `1049-vuelta`, `3611-vuelta`, `ECR06-vuelta`, `ECR06a-vuelta`, `NO56-vuelta`
+- **Avenida República de Venezuela** · gira 317° · [mapa](https://www.openstreetmap.org/?mlat=-12.06514&mlon=-77.118816#map=18/-12.06514/-77.118816) · 4 rutas: `1228-vuelta`, `1228_153599-vuelta`, `1319-vuelta`, `CR42-vuelta`
+- **Avenida Antonio José de Sucre** · gira 312° · [mapa](https://www.openstreetmap.org/?mlat=-12.090156&mlon=-77.070003#map=18/-12.090156/-77.070003) · 3 rutas: `206_96734-vuelta`, `90-vuelta`, `NM48-vuelta`
+- **Avenida República de Argentina** · gira 316° · [mapa](https://www.openstreetmap.org/?mlat=-12.0517&mlon=-77.134517#map=18/-12.0517/-77.134517) · 3 rutas: `1270-ida`, `CR39-ida`, `OM36-ida`
+- **Jirón Vigil** · gira 349° · [mapa](https://www.openstreetmap.org/?mlat=-12.068166&mlon=-77.133066#map=18/-12.068166/-77.133066) · 3 rutas: `IO44b-ida`, `IO44b-vuelta`, `IO78b-vuelta`
+- **Avenida 26 de Noviembre** · gira 513° · [mapa](https://www.openstreetmap.org/?mlat=-12.180426&mlon=-76.943729#map=18/-12.180426/-76.943729) · 2 rutas: `1126-vuelta`, `1466-vuelta`
+- **Avenida Alfonso Ugarte** · gira 311° · [mapa](https://www.openstreetmap.org/?mlat=-12.059757&mlon=-77.041808#map=18/-12.059757/-77.041808) · 2 rutas: `NCR05-vuelta`, `NM02-vuelta`
+- **Avenida Comandante Espinar** · gira 330° · [mapa](https://www.openstreetmap.org/?mlat=-12.110705&mlon=-77.036812#map=18/-12.110705/-77.036812) · 2 rutas: `1090-vuelta`, `1090_68992-vuelta`
+- **Avenida José Carlos Mariátegui** · gira 534° · [mapa](https://www.openstreetmap.org/?mlat=-12.015345&mlon=-76.818735#map=18/-12.015345/-76.818735) · 2 rutas: `1083_89553-ida`, `IM30-vuelta`
+- **Avenida José Pardo** · gira 329° · [mapa](https://www.openstreetmap.org/?mlat=-12.119196&mlon=-77.029255#map=18/-12.119196/-77.029255) · 2 rutas: `1022-vuelta`, `1022_151772-vuelta`
+- **Avenida Mario Vargas Llosa** · gira 320° · [mapa](https://www.openstreetmap.org/?mlat=-12.088973&mlon=-76.868864#map=18/-12.088973/-76.868864) · 2 rutas: `1376-vuelta`, `1376_68918-vuelta`
+- **Avenida Alfonso Ugarte** · gira 308° · [mapa](https://www.openstreetmap.org/?mlat=-12.04304&mlon=-77.043346#map=18/-12.04304/-77.043346) · 1 ruta: `ECR17-vuelta`
+- **Avenida Alfredo Benavides** · gira 305° · [mapa](https://www.openstreetmap.org/?mlat=-12.129041&mlon=-77.00154#map=18/-12.129041/-77.00154) · 1 ruta: `1047_71042-vuelta`
+- **Avenida Brasil** · gira 325° · [mapa](https://www.openstreetmap.org/?mlat=-12.060732&mlon=-77.04178#map=18/-12.060732/-77.04178) · 1 ruta: `SCR08-vuelta`
+- **Avenida César Vallejo** · gira 302° · [mapa](https://www.openstreetmap.org/?mlat=-12.039971&mlon=-76.99744#map=18/-12.039971/-76.99744) · 1 ruta: `72-vuelta`
+- **Avenida Del Ejército** · gira 339° · [mapa](https://www.openstreetmap.org/?mlat=-12.118804&mlon=-77.043034#map=18/-12.118804/-77.043034) · 1 ruta: `3601-vuelta`
+- **Avenida Mariano Cornejo** · gira 331° · [mapa](https://www.openstreetmap.org/?mlat=-12.067281&mlon=-77.060514#map=18/-12.067281/-77.060514) · 1 ruta: `356-vuelta`
+- **Avenida Ricardo Palma** · gira 315° · [mapa](https://www.openstreetmap.org/?mlat=-12.119036&mlon=-77.028914#map=18/-12.119036/-77.028914) · 1 ruta: `6701-ida`
+- **Avenida Santa Rosa** · gira 312° · [mapa](https://www.openstreetmap.org/?mlat=-12.065842&mlon=-77.119141#map=18/-12.065842/-77.119141) · 1 ruta: `CR37-ida`
+- **Avenida Universitaria** · gira 303° · [mapa](https://www.openstreetmap.org/?mlat=-12.035929&mlon=-77.077598#map=18/-12.035929/-77.077598) · 1 ruta: `1130_70180-vuelta`
+
+## Pedazos sin calle (123 lugares, 752 rutas)
+
+- **calle sin nombre** · 125 m · [mapa](https://www.openstreetmap.org/?mlat=-12.059761&mlon=-77.03711#map=18/-12.059761/-77.03711) · 299 rutas: `1051-ida`, `1051-vuelta`, `1065-ida`, `1065-vuelta`, `1065_71070-ida`, `1065_71070-vuelta`, `1066-ida`, `1066-vuelta`, `1066_69645-ida`, `1066_69645-vuelta`, `1068-ida`, `1068-vuelta` y 287 más
+- **calle sin nombre** · 75 m · [mapa](https://www.openstreetmap.org/?mlat=-12.058444&mlon=-77.047707#map=18/-12.058444/-77.047707) · 207 rutas: `1023-ida`, `1023-vuelta`, `1023_152324-ida`, `1023_152324-vuelta`, `1187-ida`, `1187-vuelta`, `1187_70649-ida`, `1187_70649-vuelta`, `1205-ida`, `1205-vuelta`, `1205_84878-ida`, `1205_84878-vuelta` y 195 más
+- **calle sin nombre** · 75 m · [mapa](https://www.openstreetmap.org/?mlat=-12.05749&mlon=-77.051011#map=18/-12.05749/-77.051011) · 185 rutas: `1023-ida`, `1023-vuelta`, `1023_152324-ida`, `1023_152324-vuelta`, `1187-ida`, `1187-vuelta`, `1187_70649-ida`, `1187_70649-vuelta`, `1205-vuelta`, `1205_84878-vuelta`, `1214-ida`, `1214-vuelta` y 173 más
+- **calle sin nombre** · 75 m · [mapa](https://www.openstreetmap.org/?mlat=-12.05781&mlon=-77.049911#map=18/-12.05781/-77.049911) · 125 rutas: `1023-ida`, `1187-ida`, `1205-ida`, `1205_84878-ida`, `1214-ida`, `1218_69695-ida`, `1222_70182-ida`, `1233_69494-ida`, `1251-ida`, `1251-vuelta`, `1251_69149-ida`, `1251_69149-vuelta` y 113 más
+- **calle sin nombre** · 75 m · [mapa](https://www.openstreetmap.org/?mlat=-12.012489&mlon=-77.110681#map=18/-12.012489/-77.110681) · 51 rutas: `1039-ida`, `1039_70267-ida`, `1142-vuelta`, `1151-vuelta`, `1157-ida`, `1163-vuelta`, `1169-vuelta`, `1257-vuelta`, `1257_69856-vuelta`, `1266-vuelta`, `1273-vuelta`, `1274-vuelta` y 39 más
+- **calle sin nombre** · 75 m · [mapa](https://www.openstreetmap.org/?mlat=-12.056965&mlon=-77.052624#map=18/-12.056965/-77.052624) · 44 rutas: `1010-vuelta`, `1010_69317-vuelta`, `1140-ida`, `1155-ida`, `1205-vuelta`, `1205_84878-vuelta`, `1214_84563-ida`, `1222_70182-vuelta`, `1224_70177-vuelta`, `1233-vuelta`, `1233_69494-vuelta`, `1254_44810-vuelta` y 32 más
+- **calle sin nombre** · 200 m · [mapa](https://www.openstreetmap.org/?mlat=-12.067898&mlon=-77.010614#map=18/-12.067898/-77.010614) · 38 rutas: `1053-ida`, `1053-vuelta`, `1053_71040-ida`, `1053_71040-vuelta`, `1092_69436-ida`, `1092_69436-vuelta`, `1204-ida`, `1204-vuelta`, `1204_70646-ida`, `1204_70646-vuelta`, `1220-ida`, `1220-vuelta` y 26 más
+- **calle sin nombre** · 75 m · [mapa](https://www.openstreetmap.org/?mlat=-12.040874&mlon=-77.024101#map=18/-12.040874/-77.024101) · 35 rutas: `014pa-vuelta`, `031p-ida`, `1304_84959-vuelta`, `1305_84815-vuelta`, `189_90605-ida`, `205-ida`, `2302-vuelta`, `2402-vuelta`, `2610-vuelta`, `262-vuelta`, `2704-vuelta`, `2_90310-ida` y 23 más
+- **calle sin nombre** · 75 m · [mapa](https://www.openstreetmap.org/?mlat=-12.012556&mlon=-77.110675#map=18/-12.012556/-77.110675) · 34 rutas: `1030-ida`, `1030_69324-ida`, `107-vuelta`, `1152-vuelta`, `1158-vuelta`, `1269-vuelta`, `1280-vuelta`, `1286-vuelta`, `1297-vuelta`, `1300-vuelta`, `1423-ida`, `1426-vuelta` y 22 más
+- **calle sin nombre** · 75 m · [mapa](https://www.openstreetmap.org/?mlat=-12.064303&mlon=-76.991054#map=18/-12.064303/-76.991054) · 24 rutas: `1064-vuelta`, `1064_70170-vuelta`, `1066-vuelta`, `1066_69645-vuelta`, `1085-vuelta`, `1099_69493-ida`, `1192-vuelta`, `1192_69426-ida`, `1227-vuelta`, `1227_71198-vuelta`, `5-ida`, `501-vuelta` y 12 más
+- **calle sin nombre** · 400 m · [mapa](https://www.openstreetmap.org/?mlat=-12.296776&mlon=-76.776998#map=18/-12.296776/-76.776998) · 22 rutas: `1120-ida`, `1120-vuelta`, `86819-ida`, `86819-vuelta`, `NH25-ida`, `NH25-vuelta`, `PSH13-ida`, `PSH13-vuelta`, `R01-ida`, `R01-vuelta`, `RA02-ida`, `RA02-vuelta` y 10 más
+- **calle sin nombre** · 75 m · [mapa](https://www.openstreetmap.org/?mlat=-12.060874&mlon=-77.01156#map=18/-12.060874/-77.01156) · 18 rutas: `1061-vuelta`, `1061_71074-vuelta`, `1062-vuelta`, `1067-vuelta`, `1067_71116-vuelta`, `1078-vuelta`, `1078_69696-vuelta`, `1193-ida`, `1193-vuelta`, `1193_69320-ida`, `3608-ida`, `3608-vuelta` y 6 más
+- **calle sin nombre** · 150 m · [mapa](https://www.openstreetmap.org/?mlat=-11.948227&mlon=-77.092624#map=18/-11.948227/-77.092624) · 18 rutas: `2602-ida`, `2602-vuelta`, `2606-ida`, `2606-vuelta`, `ECR29-ida`, `ECR29-vuelta`, `NCR24a-ida`, `NCR24a-vuelta`, `NM39-ida`, `NM39-vuelta`, `NO105-ida`, `NO105-vuelta` y 6 más
+- **calle sin nombre** · 648 m · [mapa](https://www.openstreetmap.org/?mlat=-12.302353&mlon=-76.783201#map=18/-12.302353/-76.783201) · 18 rutas: `86819-ida`, `86819-vuelta`, `PSH13-ida`, `PSH13-vuelta`, `R01-ida`, `R01-vuelta`, `RA02-ida`, `RA02-vuelta`, `RA03-ida`, `RA03-vuelta`, `SDO01-ida`, `SDO01-vuelta` y 6 más
+- **calle sin nombre** · 75 m · [mapa](https://www.openstreetmap.org/?mlat=-12.056706&mlon=-77.053561#map=18/-12.056706/-77.053561) · 16 rutas: `1214-vuelta`, `1218-vuelta`, `1297-ida`, `1302-vuelta`, `1467-vuelta`, `1475_69547-vuelta`, `2501-ida`, `2802-vuelta`, `354-vuelta`, `CR05-ida`, `IM16-ida`, `IO52-ida` y 4 más
+- **calle sin nombre** · 100 m · [mapa](https://www.openstreetmap.org/?mlat=-12.048218&mlon=-77.111773#map=18/-12.048218/-77.111773) · 14 rutas: `1222_70182-vuelta`, `1224_70177-vuelta`, `1272-ida`, `1281-vuelta`, `4903-vuelta`, `CR54-ida`, `EO09-vuelta`, `ICR05-ida`, `IM11-ida`, `IM16-ida`, `IM49-vuelta`, `IM51-ida` y 2 más
+- **calle sin nombre** · 125 m · [mapa](https://www.openstreetmap.org/?mlat=-12.299529&mlon=-76.781947#map=18/-12.299529/-76.781947) · 11 rutas: `1120-ida`, `86819-ida`, `NH25-vuelta`, `PSH13-ida`, `R01-ida`, `RA02-ida`, `RA03-vuelta`, `SDO01-vuelta`, `SH24-vuelta`, `SH27ap-ida`, `TMA09-ida`
+- **calle sin nombre** · 150 m · [mapa](https://www.openstreetmap.org/?mlat=-12.299499&mlon=-76.781902#map=18/-12.299499/-76.781902) · 11 rutas: `1120-vuelta`, `86819-vuelta`, `NH25-ida`, `PSH13-vuelta`, `R01-vuelta`, `RA02-vuelta`, `RA03-ida`, `SDO01-ida`, `SH24-ida`, `SH27ap-vuelta`, `TMA09-vuelta`
+- **calle sin nombre** · 97 m · [mapa](https://www.openstreetmap.org/?mlat=-11.783293&mlon=-76.619686#map=18/-11.783293/-76.619686) · 10 rutas: `PCH09-ida`, `PCH09-vuelta`, `PCH11-ida`, `PCH11-vuelta`, `PNH04-ida`, `PNH04-vuelta`, `PNH05-ida`, `PNH05-vuelta`, `TSE10-ida`, `TSE10-vuelta`
+- **calle sin nombre** · 225 m · [mapa](https://www.openstreetmap.org/?mlat=-11.910235&mlon=-76.948262#map=18/-11.910235/-76.948262) · 8 rutas: `TVE20-ida`, `TVE20-vuelta`, `TVE30-ida`, `TVE30-vuelta`, `TVE51-ida`, `TVE51-vuelta`, `TVE62-ida`, `TVE62-vuelta`
+- **calle sin nombre** · 74 m · [mapa](https://www.openstreetmap.org/?mlat=-12.156751&mlon=-76.984135#map=18/-12.156751/-76.984135) · 7 rutas: `153697-ida`, `92929-ida`, `94022-ida`, `94022-vuelta`, `94985-ida`, `94985-vuelta`, `95368-vuelta`
+- **calle sin nombre** · 573 m · [mapa](https://www.openstreetmap.org/?mlat=-11.911752&mlon=-76.987605#map=18/-11.911752/-76.987605) · 6 rutas: `TVE16-ida`, `TVE16-vuelta`, `TVE19a-ida`, `TVE19a-vuelta`, `TVE52-ida`, `TVE52-vuelta`
+- **calle sin nombre** · 375 m · [mapa](https://www.openstreetmap.org/?mlat=-11.910595&mlon=-76.983167#map=18/-11.910595/-76.983167) · 6 rutas: `TVE16-ida`, `TVE16-vuelta`, `TVE19a-ida`, `TVE19a-vuelta`, `TVE52-ida`, `TVE52-vuelta`
+- **calle sin nombre** · 149 m · [mapa](https://www.openstreetmap.org/?mlat=-11.910101&mlon=-76.980015#map=18/-11.910101/-76.980015) · 6 rutas: `TVE16-ida`, `TVE16-vuelta`, `TVE19a-ida`, `TVE19a-vuelta`, `TVE52-ida`, `TVE52-vuelta`
+- **calle sin nombre** · 75 m · [mapa](https://www.openstreetmap.org/?mlat=-12.047135&mlon=-77.03413#map=18/-12.047135/-77.03413) · 5 rutas: `10b-vuelta`, `156463-ida`, `63-vuelta`, `C125m-ida`, `SM08-ida`
+- **calle sin nombre** · 174 m · [mapa](https://www.openstreetmap.org/?mlat=-12.038515&mlon=-77.112849#map=18/-12.038515/-77.112849) · 5 rutas: `1326_154923-vuelta`, `AD-C-vuelta`, `AD-N-vuelta`, `AD-S-ida`, `AD-S-vuelta`
+- **calle sin nombre** · 75 m · [mapa](https://www.openstreetmap.org/?mlat=-11.922779&mlon=-76.63089#map=18/-11.922779/-76.63089) · 5 rutas: `CCH20-vuelta`, `CCH25-vuelta`, `CH10a-vuelta`, `CH37-ida`, `PCH13-vuelta`
+- **calle sin nombre** · 325 m · [mapa](https://www.openstreetmap.org/?mlat=-11.861786&mlon=-77.129246#map=18/-11.861786/-77.129246) · 4 rutas: `1267-ida`, `1267-vuelta`, `1332-ida`, `1332-vuelta`
+- **calle sin nombre** · 123 m · [mapa](https://www.openstreetmap.org/?mlat=-12.120058&mlon=-76.81031#map=18/-12.120058/-76.81031) · 4 rutas: `1394-ida`, `1394-vuelta`, `SM41-ida`, `SM41-vuelta`
+- **calle sin nombre** · 225 m · [mapa](https://www.openstreetmap.org/?mlat=-12.064879&mlon=-77.010926#map=18/-12.064879/-77.010926) · 4 rutas: `502-ida`, `513-ida`, `514-ida`, `515-ida`
+- **calle sin nombre** · 75 m · [mapa](https://www.openstreetmap.org/?mlat=-12.039789&mlon=-77.02432#map=18/-12.039789/-77.02432) · 4 rutas: `6201-ida`, `NO41-vuelta`, `NO60b-vuelta`, `SO39-ida`
+- **calle sin nombre** · 346 m · [mapa](https://www.openstreetmap.org/?mlat=-11.739659&mlon=-76.611751#map=18/-11.739659/-76.611751) · 4 rutas: `PCH11-vuelta`, `PNH04-ida`, `PNH05-ida`, `TSE10-ida`
+- **calle sin nombre** · 174 m · [mapa](https://www.openstreetmap.org/?mlat=-12.038387&mlon=-77.112889#map=18/-12.038387/-77.112889) · 3 rutas: `1326_154923-ida`, `AD-C-ida`, `AD-N-ida`
+- **calle sin nombre** · 225 m · [mapa](https://www.openstreetmap.org/?mlat=-12.069352&mlon=-77.013337#map=18/-12.069352/-77.013337) · 3 rutas: `3407-vuelta`, `IO74-vuelta`, `NH112-ida`
+- **calle sin nombre** · 350 m · [mapa](https://www.openstreetmap.org/?mlat=-12.034226&mlon=-77.011898#map=18/-12.034226/-77.011898) · 2 rutas: `1-ida`, `1-vuelta`
+- **calle sin nombre** · 75 m · [mapa](https://www.openstreetmap.org/?mlat=-12.060867&mlon=-77.0115#map=18/-12.060867/-77.0115) · 2 rutas: `1062_71039-vuelta`, `50-ida`
+- **calle sin nombre** · 242 m · [mapa](https://www.openstreetmap.org/?mlat=-12.04465&mlon=-77.028977#map=18/-12.04465/-77.028977) · 2 rutas: `10a-vuelta`, `1_89999-ida`
+- **calle sin nombre** · 75 m · [mapa](https://www.openstreetmap.org/?mlat=-12.047951&mlon=-77.030637#map=18/-12.047951/-77.030637) · 2 rutas: `10b-ida`, `SM08-vuelta`
+- **calle sin nombre** · 200 m · [mapa](https://www.openstreetmap.org/?mlat=-12.047085&mlon=-77.031982#map=18/-12.047085/-77.031982) · 2 rutas: `10b-ida`, `SM08-vuelta`
+- **calle sin nombre** · 100 m · [mapa](https://www.openstreetmap.org/?mlat=-12.046126&mlon=-77.033539#map=18/-12.046126/-77.033539) · 2 rutas: `10b-ida`, `SM08-vuelta`
+- **calle sin nombre** · 75 m · [mapa](https://www.openstreetmap.org/?mlat=-12.045401&mlon=-77.034703#map=18/-12.045401/-77.034703) · 2 rutas: `10b-ida`, `SM08-vuelta`
+- **calle sin nombre** · 75 m · [mapa](https://www.openstreetmap.org/?mlat=-12.044797&mlon=-77.035674#map=18/-12.044797/-77.035674) · 2 rutas: `10b-ida`, `SM08-vuelta`
+- **calle sin nombre** · 200 m · [mapa](https://www.openstreetmap.org/?mlat=-11.86431&mlon=-77.128673#map=18/-11.86431/-77.128673) · 2 rutas: `1267-vuelta`, `1332-ida`
+- **calle sin nombre** · 225 m · [mapa](https://www.openstreetmap.org/?mlat=-12.044283&mlon=-77.026027#map=18/-12.044283/-77.026027) · 2 rutas: `42099-ida`, `42099-vuelta`
+- **calle sin nombre** · 100 m · [mapa](https://www.openstreetmap.org/?mlat=-12.044354&mlon=-77.024191#map=18/-12.044354/-77.024191) · 2 rutas: `42099-ida`, `42099-vuelta`
+- **calle sin nombre** · 75 m · [mapa](https://www.openstreetmap.org/?mlat=-12.044522&mlon=-77.019832#map=18/-12.044522/-77.019832) · 2 rutas: `42099-ida`, `42099-vuelta`
+- **calle sin nombre** · 575 m · [mapa](https://www.openstreetmap.org/?mlat=-12.043834&mlon=-77.016543#map=18/-12.043834/-77.016543) · 2 rutas: `42099-ida`, `42099-vuelta`
+- **calle sin nombre** · 100 m · [mapa](https://www.openstreetmap.org/?mlat=-12.041938&mlon=-77.013688#map=18/-12.041938/-77.013688) · 2 rutas: `42099-ida`, `42099-vuelta`
+- **calle sin nombre** · 75 m · [mapa](https://www.openstreetmap.org/?mlat=-11.977074&mlon=-76.779059#map=18/-11.977074/-76.779059) · 2 rutas: `42099-ida`, `42099-vuelta`
+- **calle sin nombre** · 150 m · [mapa](https://www.openstreetmap.org/?mlat=-11.976716&mlon=-76.777731#map=18/-11.976716/-76.777731) · 2 rutas: `42099-ida`, `42099-vuelta`
+- **calle sin nombre** · 100 m · [mapa](https://www.openstreetmap.org/?mlat=-11.972958&mlon=-76.763778#map=18/-11.972958/-76.763778) · 2 rutas: `42099-ida`, `42099-vuelta`
+- **calle sin nombre** · 125 m · [mapa](https://www.openstreetmap.org/?mlat=-11.972541&mlon=-76.762228#map=18/-11.972541/-76.762228) · 2 rutas: `42099-ida`, `42099-vuelta`
+- **calle sin nombre** · 100 m · [mapa](https://www.openstreetmap.org/?mlat=-11.970931&mlon=-76.756249#map=18/-11.970931/-76.756249) · 2 rutas: `42099-ida`, `42099-vuelta`
+- **calle sin nombre** · 150 m · [mapa](https://www.openstreetmap.org/?mlat=-11.969499&mlon=-76.750934#map=18/-11.969499/-76.750934) · 2 rutas: `42099-ida`, `42099-vuelta`
+- **calle sin nombre** · 175 m · [mapa](https://www.openstreetmap.org/?mlat=-11.967157&mlon=-76.742787#map=18/-11.967157/-76.742787) · 2 rutas: `42099-ida`, `42099-vuelta`
+- **calle sin nombre** · 675 m · [mapa](https://www.openstreetmap.org/?mlat=-11.953157&mlon=-76.724287#map=18/-11.953157/-76.724287) · 2 rutas: `42099-ida`, `42099-vuelta`
+- **calle sin nombre** · 75 m · [mapa](https://www.openstreetmap.org/?mlat=-11.9498&mlon=-76.71701#map=18/-11.9498/-76.71701) · 2 rutas: `42099-ida`, `42099-vuelta`
+- **calle sin nombre** · 150 m · [mapa](https://www.openstreetmap.org/?mlat=-11.948361&mlon=-76.713891#map=18/-11.948361/-76.713891) · 2 rutas: `42099-ida`, `42099-vuelta`
+- **calle sin nombre** · 350 m · [mapa](https://www.openstreetmap.org/?mlat=-11.947306&mlon=-76.711604#map=18/-11.947306/-76.711604) · 2 rutas: `42099-ida`, `42099-vuelta`
+- **calle sin nombre** · 150 m · [mapa](https://www.openstreetmap.org/?mlat=-11.946156&mlon=-76.709109#map=18/-11.946156/-76.709109) · 2 rutas: `42099-ida`, `42099-vuelta`
+- **calle sin nombre** · 499 m · [mapa](https://www.openstreetmap.org/?mlat=-11.944902&mlon=-76.702982#map=18/-11.944902/-76.702982) · 2 rutas: `42099-ida`, `42099-vuelta`
+- **calle sin nombre** · 75 m · [mapa](https://www.openstreetmap.org/?mlat=-11.938394&mlon=-76.695341#map=18/-11.938394/-76.695341) · 2 rutas: `42099-ida`, `42099-vuelta`
+- **calle sin nombre** · 250 m · [mapa](https://www.openstreetmap.org/?mlat=-11.936768&mlon=-76.693431#map=18/-11.936768/-76.693431) · 2 rutas: `42099-ida`, `42099-vuelta`
+- **calle sin nombre** · 75 m · [mapa](https://www.openstreetmap.org/?mlat=-11.928137&mlon=-76.68468#map=18/-11.928137/-76.68468) · 2 rutas: `42099-ida`, `42099-vuelta`
+- **calle sin nombre** · 100 m · [mapa](https://www.openstreetmap.org/?mlat=-11.924726&mlon=-76.677301#map=18/-11.924726/-76.677301) · 2 rutas: `42099-ida`, `42099-vuelta`
+- **calle sin nombre** · 650 m · [mapa](https://www.openstreetmap.org/?mlat=-11.924524&mlon=-76.668349#map=18/-11.924524/-76.668349) · 2 rutas: `42099-ida`, `42099-vuelta`
+- **calle sin nombre** · 125 m · [mapa](https://www.openstreetmap.org/?mlat=-11.924434&mlon=-76.664217#map=18/-11.924434/-76.664217) · 2 rutas: `42099-ida`, `42099-vuelta`
+- **calle sin nombre** · 125 m · [mapa](https://www.openstreetmap.org/?mlat=-11.924378&mlon=-76.661693#map=18/-11.924378/-76.661693) · 2 rutas: `42099-ida`, `42099-vuelta`
+- **calle sin nombre** · 100 m · [mapa](https://www.openstreetmap.org/?mlat=-11.924708&mlon=-76.656899#map=18/-11.924708/-76.656899) · 2 rutas: `42099-ida`, `42099-vuelta`
+- **calle sin nombre** · 200 m · [mapa](https://www.openstreetmap.org/?mlat=-11.925708&mlon=-76.654092#map=18/-11.925708/-76.654092) · 2 rutas: `42099-ida`, `42099-vuelta`
+- **calle sin nombre** · 300 m · [mapa](https://www.openstreetmap.org/?mlat=-11.926787&mlon=-76.64714#map=18/-11.926787/-76.64714) · 2 rutas: `42099-ida`, `42099-vuelta`
+- **calle sin nombre** · 125 m · [mapa](https://www.openstreetmap.org/?mlat=-11.925786&mlon=-76.642209#map=18/-11.925786/-76.642209) · 2 rutas: `42099-ida`, `42099-vuelta`
+- **calle sin nombre** · 225 m · [mapa](https://www.openstreetmap.org/?mlat=-11.923363&mlon=-76.632648#map=18/-11.923363/-76.632648) · 2 rutas: `42099-ida`, `42099-vuelta`
+- **calle sin nombre** · 250 m · [mapa](https://www.openstreetmap.org/?mlat=-11.922011&mlon=-76.627312#map=18/-11.922011/-76.627312) · 2 rutas: `42099-ida`, `42099-vuelta`
+- **calle sin nombre** · 750 m · [mapa](https://www.openstreetmap.org/?mlat=-11.916254&mlon=-76.615675#map=18/-11.916254/-76.615675) · 2 rutas: `42099-ida`, `42099-vuelta`
+- **calle sin nombre** · 75 m · [mapa](https://www.openstreetmap.org/?mlat=-11.914051&mlon=-76.609978#map=18/-11.914051/-76.609978) · 2 rutas: `42099-ida`, `42099-vuelta`
+- **calle sin nombre** · 275 m · [mapa](https://www.openstreetmap.org/?mlat=-11.913726&mlon=-76.608171#map=18/-11.913726/-76.608171) · 2 rutas: `42099-ida`, `42099-vuelta`
+- **calle sin nombre** · 125 m · [mapa](https://www.openstreetmap.org/?mlat=-11.911354&mlon=-76.598226#map=18/-11.911354/-76.598226) · 2 rutas: `42099-ida`, `42099-vuelta`
+- **calle sin nombre** · 199 m · [mapa](https://www.openstreetmap.org/?mlat=-11.909328&mlon=-76.593699#map=18/-11.909328/-76.593699) · 2 rutas: `42099-ida`, `42099-vuelta`
+- **calle sin nombre** · 75 m · [mapa](https://www.openstreetmap.org/?mlat=-11.909432&mlon=-76.591642#map=18/-11.909432/-76.591642) · 2 rutas: `42099-ida`, `42099-vuelta`
+- **calle sin nombre** · 1125 m · [mapa](https://www.openstreetmap.org/?mlat=-11.91066&mlon=-76.577234#map=18/-11.91066/-76.577234) · 2 rutas: `42099-ida`, `42099-vuelta`
+- **calle sin nombre** · 200 m · [mapa](https://www.openstreetmap.org/?mlat=-11.91702&mlon=-76.564959#map=18/-11.91702/-76.564959) · 2 rutas: `42099-ida`, `42099-vuelta`
+- **calle sin nombre** · 200 m · [mapa](https://www.openstreetmap.org/?mlat=-12.066211&mlon=-77.010802#map=18/-12.066211/-77.010802) · 2 rutas: `4603-ida`, `ECR20-ida`
+- **calle sin nombre** · 336 m · [mapa](https://www.openstreetmap.org/?mlat=-12.066457&mlon=-77.010435#map=18/-12.066457/-77.010435) · 2 rutas: `4603-vuelta`, `ECR20-vuelta`
+- **calle sin nombre** · 75 m · [mapa](https://www.openstreetmap.org/?mlat=-11.998751&mlon=-77.121668#map=18/-11.998751/-77.121668) · 2 rutas: `IM30-vuelta`, `OM75-vuelta`
+- **calle sin nombre** · 75 m · [mapa](https://www.openstreetmap.org/?mlat=-12.047107&mlon=-77.111805#map=18/-12.047107/-77.111805) · 2 rutas: `IM54-ida`, `OM30-vuelta`
+- **calle sin nombre** · 75 m · [mapa](https://www.openstreetmap.org/?mlat=-12.040146&mlon=-77.012847#map=18/-12.040146/-77.012847) · 1 ruta: `1-ida`
+- **calle sin nombre** · 75 m · [mapa](https://www.openstreetmap.org/?mlat=-12.14958&mlon=-76.982291#map=18/-12.14958/-76.982291) · 1 ruta: `1-vuelta`
+- **calle sin nombre** · 100 m · [mapa](https://www.openstreetmap.org/?mlat=-12.044584&mlon=-77.03028#map=18/-12.044584/-77.03028) · 1 ruta: `10b-vuelta`
+- **calle sin nombre** · 75 m · [mapa](https://www.openstreetmap.org/?mlat=-11.86081&mlon=-77.129945#map=18/-11.86081/-77.129945) · 1 ruta: `1332-vuelta`
+- **calle sin nombre** · 250 m · [mapa](https://www.openstreetmap.org/?mlat=-11.960522&mlon=-76.733675#map=18/-11.960522/-76.733675) · 1 ruta: `42099-ida`
+- **calle sin nombre** · 600 m · [mapa](https://www.openstreetmap.org/?mlat=-11.956274&mlon=-76.729552#map=18/-11.956274/-76.729552) · 1 ruta: `42099-ida`
+- **calle sin nombre** · 75 m · [mapa](https://www.openstreetmap.org/?mlat=-11.934993&mlon=-76.691347#map=18/-11.934993/-76.691347) · 1 ruta: `42099-ida`
+- **calle sin nombre** · 75 m · [mapa](https://www.openstreetmap.org/?mlat=-11.92682&mlon=-76.683421#map=18/-11.92682/-76.683421) · 1 ruta: `42099-ida`
+- **calle sin nombre** · 75 m · [mapa](https://www.openstreetmap.org/?mlat=-11.924403&mlon=-76.66284#map=18/-11.924403/-76.66284) · 1 ruta: `42099-ida`
+- **calle sin nombre** · 100 m · [mapa](https://www.openstreetmap.org/?mlat=-11.924501&mlon=-76.658487#map=18/-11.924501/-76.658487) · 1 ruta: `42099-ida`
+- **calle sin nombre** · 150 m · [mapa](https://www.openstreetmap.org/?mlat=-11.926349&mlon=-76.644433#map=18/-11.926349/-76.644433) · 1 ruta: `42099-ida`
+- **calle sin nombre** · 150 m · [mapa](https://www.openstreetmap.org/?mlat=-11.924096&mlon=-76.635539#map=18/-11.924096/-76.635539) · 1 ruta: `42099-ida`
+- **calle sin nombre** · 100 m · [mapa](https://www.openstreetmap.org/?mlat=-11.912556&mlon=-76.569517#map=18/-11.912556/-76.569517) · 1 ruta: `42099-ida`
+- **calle sin nombre** · 275 m · [mapa](https://www.openstreetmap.org/?mlat=-11.915586&mlon=-76.566424#map=18/-11.915586/-76.566424) · 1 ruta: `42099-ida`
+- **calle sin nombre** · 175 m · [mapa](https://www.openstreetmap.org/?mlat=-11.918323&mlon=-76.562371#map=18/-11.918323/-76.562371) · 1 ruta: `42099-ida`
+- **calle sin nombre** · 175 m · [mapa](https://www.openstreetmap.org/?mlat=-11.91828&mlon=-76.562512#map=18/-11.91828/-76.562512) · 1 ruta: `42099-vuelta`
+- **calle sin nombre** · 250 m · [mapa](https://www.openstreetmap.org/?mlat=-11.915483&mlon=-76.566529#map=18/-11.915483/-76.566529) · 1 ruta: `42099-vuelta`
+- **calle sin nombre** · 125 m · [mapa](https://www.openstreetmap.org/?mlat=-11.912454&mlon=-76.569622#map=18/-11.912454/-76.569622) · 1 ruta: `42099-vuelta`
+- **calle sin nombre** · 150 m · [mapa](https://www.openstreetmap.org/?mlat=-11.924075&mlon=-76.63546#map=18/-11.924075/-76.63546) · 1 ruta: `42099-vuelta`
+- **calle sin nombre** · 125 m · [mapa](https://www.openstreetmap.org/?mlat=-11.926386&mlon=-76.644576#map=18/-11.926386/-76.644576) · 1 ruta: `42099-vuelta`
+- **calle sin nombre** · 125 m · [mapa](https://www.openstreetmap.org/?mlat=-11.924487&mlon=-76.658634#map=18/-11.924487/-76.658634) · 1 ruta: `42099-vuelta`
+- **calle sin nombre** · 75 m · [mapa](https://www.openstreetmap.org/?mlat=-11.937306&mlon=-76.694064#map=18/-11.937306/-76.694064) · 1 ruta: `42099-vuelta`
+- **calle sin nombre** · 75 m · [mapa](https://www.openstreetmap.org/?mlat=-11.945506&mlon=-76.705686#map=18/-11.945506/-76.705686) · 1 ruta: `42099-vuelta`
+- **calle sin nombre** · 600 m · [mapa](https://www.openstreetmap.org/?mlat=-11.956213&mlon=-76.729498#map=18/-11.956213/-76.729498) · 1 ruta: `42099-vuelta`
+- **calle sin nombre** · 250 m · [mapa](https://www.openstreetmap.org/?mlat=-11.960464&mlon=-76.733618#map=18/-11.960464/-76.733618) · 1 ruta: `42099-vuelta`
+- **calle sin nombre** · 75 m · [mapa](https://www.openstreetmap.org/?mlat=-12.197423&mlon=-76.976538#map=18/-12.197423/-76.976538) · 1 ruta: `7808-ida`
+- **calle sin nombre** · 75 m · [mapa](https://www.openstreetmap.org/?mlat=-12.197163&mlon=-76.976475#map=18/-12.197163/-76.976475) · 1 ruta: `7808-vuelta`
+- **calle sin nombre** · 92 m · [mapa](https://www.openstreetmap.org/?mlat=-12.064347&mlon=-77.033028#map=18/-12.064347/-77.033028) · 1 ruta: `80303-vuelta`
+- **calle sin nombre** · 200 m · [mapa](https://www.openstreetmap.org/?mlat=-12.066798&mlon=-77.010674#map=18/-12.066798/-77.010674) · 1 ruta: `NCR24a-ida`
+- **calle sin nombre** · 75 m · [mapa](https://www.openstreetmap.org/?mlat=-12.297736&mlon=-76.779091#map=18/-12.297736/-76.779091) · 1 ruta: `NH25-ida`
+- **calle sin nombre** · 145 m · [mapa](https://www.openstreetmap.org/?mlat=-12.069125&mlon=-77.013804#map=18/-12.069125/-77.013804) · 1 ruta: `OCR07-vuelta`
+- **calle sin nombre** · 69 m · [mapa](https://www.openstreetmap.org/?mlat=-11.738505&mlon=-76.611523#map=18/-11.738505/-76.611523) · 1 ruta: `PCH09-ida`
+- **calle sin nombre** · 73 m · [mapa](https://www.openstreetmap.org/?mlat=-11.738293&mlon=-76.611519#map=18/-11.738293/-76.611519) · 1 ruta: `PCH09-vuelta`
+- **calle sin nombre** · 75 m · [mapa](https://www.openstreetmap.org/?mlat=-11.709767&mlon=-76.578328#map=18/-11.709767/-76.578328) · 1 ruta: `PNH04-vuelta`
+- **calle sin nombre** · 225 m · [mapa](https://www.openstreetmap.org/?mlat=-12.067878&mlon=-77.010482#map=18/-12.067878/-77.010482) · 1 ruta: `SM38-ida`
+- **calle sin nombre** · 223 m · [mapa](https://www.openstreetmap.org/?mlat=-11.917524&mlon=-76.99216#map=18/-11.917524/-76.99216) · 1 ruta: `TVE36-ida`
+- **calle sin nombre** · 223 m · [mapa](https://www.openstreetmap.org/?mlat=-11.917303&mlon=-76.992225#map=18/-11.917303/-76.992225) · 1 ruta: `TVE36-vuelta`

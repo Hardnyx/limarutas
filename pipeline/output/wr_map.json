@@ -7382,13 +7382,15 @@
       "folder": "data/processed/transporte/route_153534",
       "trip": 1,
       "color": "#FFC900",
-      "name": "1321 · Plaza Vea (Puente Piedra) → Canta"
+      "name": "1321 · Plaza Vea (Puente Piedra) → Canta",
+      "osm": true
     },
     "1321-vuelta": {
       "folder": "data/processed/transporte/route_153534",
       "trip": 2,
       "color": "#FFC900",
-      "name": "1321 · Canta → Plaza Vea (Puente Piedra)"
+      "name": "1321 · Canta → Plaza Vea (Puente Piedra)",
+      "osm": true
     },
     "1322-ida": {
       "folder": "data/processed/transporte/route_153560",
@@ -12644,13 +12646,15 @@
       "folder": "data/processed/transporte/route_42099",
       "trip": 1,
       "color": "#888888",
-      "name": "42099 · Desamparados → Huancayo"
+      "name": "42099 · Desamparados → Huancayo",
+      "osm": true
     },
     "42099-vuelta": {
       "folder": "data/processed/transporte/route_42099",
       "trip": 2,
       "color": "#888888",
-      "name": "42099 · Huancayo → Desamparados"
+      "name": "42099 · Huancayo → Desamparados",
+      "osm": true
     },
     "44813-ida": {
       "folder": "data/processed/transporte/route_44813",
@@ -12782,13 +12786,15 @@
       "folder": "data/processed/transporte/route_51441",
       "trip": 1,
       "color": "#888888",
-      "name": "51441 · Terminal Transportes Línea → Terminal Línea"
+      "name": "51441 · Terminal Transportes Línea → Terminal Línea",
+      "osm": true
     },
     "51441-vuelta": {
       "folder": "data/processed/transporte/route_51441",
       "trip": 2,
       "color": "#888888",
-      "name": "51441 · Terminal Línea → Terminal Transportes Línea (Con entrada en Plaza Norte)"
+      "name": "51441 · Terminal Línea → Terminal Transportes Línea (Con entrada en Plaza Norte)",
+      "osm": true
     },
     "52727-ida": {
       "folder": "data/processed/transporte/route_52727",
@@ -12801,20 +12807,21 @@
       "folder": "data/processed/transporte/route_52727",
       "trip": 2,
       "color": "#888888",
-      "name": "52727 · Calle Augusto Tamayo → Pablo Carriquiry (Express Mañana",
-      "osm": true
+      "name": "52727 · Calle Augusto Tamayo → Pablo Carriquiry (Express Mañana"
     },
     "55402-ida": {
       "folder": "data/processed/transporte/route_55402",
       "trip": 1,
       "color": "#888888",
-      "name": "55402 · Terminal de Cercanías Soyuz → Terminal de Cercanías Perú Bus"
+      "name": "55402 · Terminal de Cercanías Soyuz → Terminal de Cercanías Perú Bus",
+      "osm": true
     },
     "55402-vuelta": {
       "folder": "data/processed/transporte/route_55402",
       "trip": 2,
       "color": "#888888",
-      "name": "55402 · Terminal de Cercanías Perú Bus → Terminal de Cercanías Soyuz (Servicio Estándar"
+      "name": "55402 · Terminal de Cercanías Perú Bus → Terminal de Cercanías Soyuz (Servicio Estándar",
+      "osm": true
     },
     "60955-ida": {
       "folder": "data/processed/transporte/route_60955",
@@ -12834,91 +12841,106 @@
       "folder": "data/processed/transporte/route_80303",
       "trip": 1,
       "color": "#888888",
-      "name": "80303 · Terminal Flores → Terminal Privado Flores Hermanos S.R.L. (Arequipa)"
+      "name": "80303 · Terminal Flores → Terminal Privado Flores Hermanos S.R.L. (Arequipa)",
+      "osm": true
     },
     "80303-vuelta": {
       "folder": "data/processed/transporte/route_80303",
       "trip": 2,
       "color": "#888888",
-      "name": "80303 · Terminal Privado Flores Hermanos Dorado VIP (Arequipa) → Terminal Flores"
+      "name": "80303 · Terminal Privado Flores Hermanos Dorado VIP (Arequipa) → Terminal Flores",
+      "osm": true
     },
     "80521-ida": {
       "folder": "data/processed/transporte/route_80521",
       "trip": 1,
       "color": "#888888",
-      "name": "80521 · Agencia Megabus La Victoria → Yauya"
+      "name": "80521 · Agencia Megabus La Victoria → Yauya",
+      "osm": true
     },
     "80521-vuelta": {
       "folder": "data/processed/transporte/route_80521",
       "trip": 2,
       "color": "#888888",
-      "name": "80521 · Yauya → Agencia Megabus La Victoria"
+      "name": "80521 · Yauya → Agencia Megabus La Victoria",
+      "osm": true
     },
     "80822-ida": {
       "folder": "data/processed/transporte/route_80822",
       "trip": 1,
       "color": "#888888",
-      "name": "80822 · Terminal Terrestre Atocongo → Terminal Terrestre Marcona"
+      "name": "80822 · Terminal Terrestre Atocongo → Terminal Terrestre Marcona",
+      "osm": true
     },
     "80822-vuelta": {
       "folder": "data/processed/transporte/route_80822",
       "trip": 2,
       "color": "#888888",
-      "name": "80822 · Terminal Terrestre Marcona → Terminal Terrestre Atocongo"
+      "name": "80822 · Terminal Terrestre Marcona → Terminal Terrestre Atocongo",
+      "osm": true
     },
     "80974-ida": {
       "folder": "data/processed/transporte/route_80974",
       "trip": 1,
       "color": "#888888",
-      "name": "80974 · Terminal Fiori → Terminal Cajatambo"
+      "name": "80974 · Terminal Fiori → Terminal Cajatambo",
+      "osm": true
     },
     "80974-vuelta": {
       "folder": "data/processed/transporte/route_80974",
       "trip": 2,
       "color": "#888888",
-      "name": "80974 · Terminal Cajatambo → Terminal Fiori"
+      "name": "80974 · Terminal Cajatambo → Terminal Fiori",
+      "osm": true
     },
     "81098-ida": {
       "folder": "data/processed/transporte/route_81098",
       "trip": 1,
       "color": "#888888",
-      "name": "81098 · Terminal Flores → Terminal Terrestre de Moquegua"
+      "name": "81098 · Terminal Flores → Terminal Terrestre de Moquegua",
+      "osm": true
     },
     "81098-vuelta": {
       "folder": "data/processed/transporte/route_81098",
       "trip": 2,
       "color": "#888888",
-      "name": "81098 · Terminal Terrestre de Moquegua → Terminal Flores"
+      "name": "81098 · Terminal Terrestre de Moquegua → Terminal Flores",
+      "osm": true
     },
     "81332-ida": {
       "folder": "data/processed/transporte/route_81332",
       "trip": 1,
       "color": "#888888",
-      "name": "81332 · Terminal Ronco Perú → Terminal Ferreñafe"
+      "name": "81332 · Terminal Ronco Perú → Terminal Ferreñafe",
+      "osm": true
     },
     "81332-vuelta": {
       "folder": "data/processed/transporte/route_81332",
       "trip": 2,
       "color": "#888888",
-      "name": "81332 · Terminal Ferreñafe → Terminal Ronco Perú"
+      "name": "81332 · Terminal Ferreñafe → Terminal Ronco Perú",
+      "osm": true
     },
     "82172-ida": {
       "folder": "data/processed/transporte/route_82172",
       "trip": 1,
       "color": "#888888",
-      "name": "82172 · Terminal Privado Perú Hop → Terminal Terrestre Atocongo"
+      "name": "82172 · Terminal Privado Perú Hop → Terminal Terrestre Atocongo",
+      "osm": true
     },
     "82649-ida": {
       "folder": "data/processed/transporte/route_82649",
       "trip": 1,
       "color": "#888888",
-      "name": "82649 · Transportes Dora → Transportes Dora"
+      "name": "82649 · Transportes Dora → Transportes Dora",
+      "osm": true
     },
     "82649-vuelta": {
       "folder": "data/processed/transporte/route_82649",
       "trip": 2,
       "color": "#888888",
-      "name": "82649 · Transportes Dora → Transportes Dora"
+      "name": "82649 · Transportes Dora → Transportes Dora",
+      "osm": true
     },
     "84071-ida": {
       "folder": "data/processed/transporte/route_84071",
@@ -12938,25 +12960,29 @@
       "folder": "data/processed/transporte/route_85682",
       "trip": 1,
       "color": "#888888",
-      "name": "85682 · Terminal Fiori → Socosbamba"
+      "name": "85682 · Terminal Fiori → Socosbamba",
+      "osm": true
     },
     "85682-vuelta": {
       "folder": "data/processed/transporte/route_85682",
       "trip": 2,
       "color": "#888888",
-      "name": "85682 · Socosbamba → Terminal Fiori"
+      "name": "85682 · Socosbamba → Terminal Fiori",
+      "osm": true
     },
     "85760-ida": {
       "folder": "data/processed/transporte/route_85760",
       "trip": 1,
       "color": "#888888",
-      "name": "85760 · Terminal Fiori → Terminal Terrestre Tayabamba"
+      "name": "85760 · Terminal Fiori → Terminal Terrestre Tayabamba",
+      "osm": true
     },
     "85760-vuelta": {
       "folder": "data/processed/transporte/route_85760",
       "trip": 2,
       "color": "#888888",
-      "name": "85760 · Terminal Terrestre Tayabamba → Terminal Fiori"
+      "name": "85760 · Terminal Terrestre Tayabamba → Terminal Fiori",
+      "osm": true
     },
     "86819-ida": {
       "folder": "data/processed/transporte/route_86819",
@@ -12976,13 +13002,15 @@
       "folder": "data/processed/transporte/route_88077",
       "trip": 1,
       "color": "#888888",
-      "name": "88077 · Terminal Turismo Tacna → Terminal Turismo Tacna (Tumbes) (Todas las Escalas)"
+      "name": "88077 · Terminal Turismo Tacna → Terminal Turismo Tacna (Tumbes) (Todas las Escalas)",
+      "osm": true
     },
     "88077-vuelta": {
       "folder": "data/processed/transporte/route_88077",
       "trip": 2,
       "color": "#888888",
-      "name": "88077 · Terminal Turismo Tacna (Tumbes) → Terminal Turismo Tacna"
+      "name": "88077 · Terminal Turismo Tacna (Tumbes) → Terminal Turismo Tacna",
+      "osm": true
     },
     "89905-ida": {
       "folder": "data/processed/transporte/route_89905",
@@ -13002,169 +13030,197 @@
       "folder": "data/processed/transporte/route_90617",
       "trip": 1,
       "color": "#888888",
-      "name": "90617 · Terrapuerto Internacional de Arequipa → Terminal de Cercanías"
+      "name": "90617 · Terrapuerto Internacional de Arequipa → Terminal de Cercanías",
+      "osm": true
     },
     "90617-vuelta": {
       "folder": "data/processed/transporte/route_90617",
       "trip": 2,
       "color": "#888888",
-      "name": "90617 · Terminal de Cercanías → Terrapuerto Internacional de Arequipa"
+      "name": "90617 · Terminal de Cercanías → Terrapuerto Internacional de Arequipa",
+      "osm": true
     },
     "92068-ida": {
       "folder": "data/processed/transporte/route_92068",
       "trip": 1,
       "color": "#888888",
-      "name": "92068 · Rodoviária Novo Rio → Terminal Terrestre Atocongo"
+      "name": "92068 · Rodoviária Novo Rio → Terminal Terrestre Atocongo",
+      "osm": true
     },
     "92068-vuelta": {
       "folder": "data/processed/transporte/route_92068",
       "trip": 2,
       "color": "#888888",
-      "name": "92068 · Terminal Terrestre Atocongo → Rodoviária Novo Rio"
+      "name": "92068 · Terminal Terrestre Atocongo → Rodoviária Novo Rio",
+      "osm": true
     },
     "92929-ida": {
       "folder": "data/processed/transporte/route_92929",
       "trip": 1,
       "color": "#888888",
-      "name": "92929 · Terminal Terrestre de Cotahuasi → Agencia Don Abraham (Paseo de la República)"
+      "name": "92929 · Terminal Terrestre de Cotahuasi → Agencia Don Abraham (Paseo de la República)",
+      "osm": true
     },
     "92929-vuelta": {
       "folder": "data/processed/transporte/route_92929",
       "trip": 2,
       "color": "#888888",
-      "name": "92929 · Agencia Don Abraham (Paseo de la República) → Terminal Terrestre de Cotahuasi"
+      "name": "92929 · Agencia Don Abraham (Paseo de la República) → Terminal Terrestre de Cotahuasi",
+      "osm": true
     },
     "93203-ida": {
       "folder": "data/processed/transporte/route_93203",
       "trip": 1,
       "color": "#888888",
-      "name": "93203 · Terminal Terrestre de Yerbateros → Terminal Expreso Molina Unión (Andahuaylas)"
+      "name": "93203 · Terminal Terrestre de Yerbateros → Terminal Expreso Molina Unión (Andahuaylas)",
+      "osm": true
     },
     "93203-vuelta": {
       "folder": "data/processed/transporte/route_93203",
       "trip": 2,
       "color": "#888888",
-      "name": "93203 · Terminal Expreso Molina Unión (Andahuaylas) → Terminal Terrestre de Yerbateros"
+      "name": "93203 · Terminal Expreso Molina Unión (Andahuaylas) → Terminal Terrestre de Yerbateros",
+      "osm": true
     },
     "94022-ida": {
       "folder": "data/processed/transporte/route_94022",
       "trip": 1,
       "color": "#888888",
-      "name": "94022 · Terminal CIVA → Terminal Terrestre de Arequipa"
+      "name": "94022 · Terminal CIVA → Terminal Terrestre de Arequipa",
+      "osm": true
     },
     "94022-vuelta": {
       "folder": "data/processed/transporte/route_94022",
       "trip": 2,
       "color": "#888888",
-      "name": "94022 · Terminal Terrestre de Arequipa → Terminal CIVA"
+      "name": "94022 · Terminal Terrestre de Arequipa → Terminal CIVA",
+      "osm": true
     },
     "94406-ida": {
       "folder": "data/processed/transporte/route_94406",
       "trip": 1,
       "color": "#888888",
-      "name": "94406 · Terminal Terrestre (Manco Cápac) → Terminal Terrestre de Huancayo"
+      "name": "94406 · Terminal Terrestre (Manco Cápac) → Terminal Terrestre de Huancayo",
+      "osm": true
     },
     "94406-vuelta": {
       "folder": "data/processed/transporte/route_94406",
       "trip": 2,
       "color": "#888888",
-      "name": "94406 · Terminal Terrestre de Huancayo → Terminal Terrestre (Manco Cápac)"
+      "name": "94406 · Terminal Terrestre de Huancayo → Terminal Terrestre (Manco Cápac)",
+      "osm": true
     },
     "94608-ida": {
       "folder": "data/processed/transporte/route_94608",
       "trip": 1,
       "color": "#888888",
-      "name": "94608 · Terminal Fiori → Terminal Terrestre (Jirón Puno)"
+      "name": "94608 · Terminal Fiori → Terminal Terrestre (Jirón Puno)",
+      "osm": true
     },
     "94608-vuelta": {
       "folder": "data/processed/transporte/route_94608",
       "trip": 2,
       "color": "#888888",
-      "name": "94608 · Terminal Terrestre (Jirón Puno) → Terminal Fiori"
+      "name": "94608 · Terminal Terrestre (Jirón Puno) → Terminal Fiori",
+      "osm": true
     },
     "94961-ida": {
       "folder": "data/processed/transporte/route_94961",
       "trip": 1,
       "color": "#888888",
-      "name": "94961 · Agencia Turismo del Norte (Lima) → Terminal Terrestre de Celendín"
+      "name": "94961 · Agencia Turismo del Norte (Lima) → Terminal Terrestre de Celendín",
+      "osm": true
     },
     "94961-vuelta": {
       "folder": "data/processed/transporte/route_94961",
       "trip": 2,
       "color": "#888888",
-      "name": "94961 · Terminal Terrestre de Celendín → Agencia Turismo del Norte (Lima)"
+      "name": "94961 · Terminal Terrestre de Celendín → Agencia Turismo del Norte (Lima)",
+      "osm": true
     },
     "94962-ida": {
       "folder": "data/processed/transporte/route_94962",
       "trip": 1,
       "color": "#888888",
-      "name": "94962 · Terminal Emtrafesa → Terminal Terrestre El Chimbador"
+      "name": "94962 · Terminal Emtrafesa → Terminal Terrestre El Chimbador",
+      "osm": true
     },
     "94962-vuelta": {
       "folder": "data/processed/transporte/route_94962",
       "trip": 2,
       "color": "#888888",
-      "name": "94962 · Terminal Terrestre El Chimbador → Terminal Emtrafesa"
+      "name": "94962 · Terminal Terrestre El Chimbador → Terminal Emtrafesa",
+      "osm": true
     },
     "94985-ida": {
       "folder": "data/processed/transporte/route_94985",
       "trip": 1,
       "color": "#888888",
-      "name": "94985 · Terminal Palomino (Luna Pizarro) → Terminal Terrestre de Nazca"
+      "name": "94985 · Terminal Palomino (Luna Pizarro) → Terminal Terrestre de Nazca",
+      "osm": true
     },
     "94985-vuelta": {
       "folder": "data/processed/transporte/route_94985",
       "trip": 2,
       "color": "#888888",
-      "name": "94985 · Terminal Terrestre de Nazca → Terminal Palomino (Luna Pizarro)"
+      "name": "94985 · Terminal Terrestre de Nazca → Terminal Palomino (Luna Pizarro)",
+      "osm": true
     },
     "95368-ida": {
       "folder": "data/processed/transporte/route_95368",
       "trip": 1,
       "color": "#888888",
-      "name": "95368 · Terminal Palomino (Luna Pizarro) → Terrapuerto Grupo Palomino (Cusco) (Escala en Ica y Nazca)"
+      "name": "95368 · Terminal Palomino (Luna Pizarro) → Terrapuerto Grupo Palomino (Cusco) (Escala en Ica y Nazca)",
+      "osm": true
     },
     "95368-vuelta": {
       "folder": "data/processed/transporte/route_95368",
       "trip": 2,
       "color": "#888888",
-      "name": "95368 · Terminal Palomino (Luna Pizarro) → Terrapuerto Grupo Palomino (Cusco) (Escala en Ica, Ancahuasi y Anta)"
+      "name": "95368 · Terminal Palomino (Luna Pizarro) → Terrapuerto Grupo Palomino (Cusco) (Escala en Ica, Ancahuasi y Anta)",
+      "osm": true
     },
     "95629-ida": {
       "folder": "data/processed/transporte/route_95629",
       "trip": 1,
       "color": "#888888",
-      "name": "95629 · Terrapuerto Internacional de Arequipa → Terminal Terrestre Plaza Norte"
+      "name": "95629 · Terrapuerto Internacional de Arequipa → Terminal Terrestre Plaza Norte",
+      "osm": true
     },
     "95629-vuelta": {
       "folder": "data/processed/transporte/route_95629",
       "trip": 2,
       "color": "#888888",
-      "name": "95629 · Terrapuerto Internacional de Arequipa → Terrapuerto Cruz del Sur (Lima) (ESCALA EN CAMANÁ, NASCA E ICA)"
+      "name": "95629 · Terrapuerto Internacional de Arequipa → Terrapuerto Cruz del Sur (Lima) (ESCALA EN CAMANÁ, NASCA E ICA)",
+      "osm": true
     },
     "95743-ida": {
       "folder": "data/processed/transporte/route_95743",
       "trip": 1,
       "color": "#888888",
-      "name": "95743 · Terminal Cruzero Express → Cruzero Express Yanahuanca"
+      "name": "95743 · Terminal Cruzero Express → Cruzero Express Yanahuanca",
+      "osm": true
     },
     "95743-vuelta": {
       "folder": "data/processed/transporte/route_95743",
       "trip": 2,
       "color": "#888888",
-      "name": "95743 · Cruzero Express Yanahuanca → Terminal Cruzero Express"
+      "name": "95743 · Cruzero Express Yanahuanca → Terminal Cruzero Express",
+      "osm": true
     },
     "96193-ida": {
       "folder": "data/processed/transporte/route_96193",
       "trip": 1,
       "color": "#888888",
-      "name": "96193 · Terminal Cavassa → Terminal Terrestre Madrid"
+      "name": "96193 · Terminal Cavassa → Terminal Terrestre Madrid",
+      "osm": true
     },
     "96193-vuelta": {
       "folder": "data/processed/transporte/route_96193",
       "trip": 2,
       "color": "#888888",
-      "name": "96193 · Terminal Terrestre Madrid → Terminal Cavassa"
+      "name": "96193 · Terminal Terrestre Madrid → Terminal Cavassa",
+      "osm": true
     },
     "97458-ida": {
       "folder": "data/processed/transporte/route_97458",
@@ -13184,145 +13240,169 @@
       "folder": "data/processed/transporte/route_108666",
       "trip": 1,
       "color": "#888888",
-      "name": "108666 · Terminal Móvil Bus → Estrella Polar"
+      "name": "108666 · Terminal Móvil Bus → Estrella Polar",
+      "osm": true
     },
     "108666-vuelta": {
       "folder": "data/processed/transporte/route_108666",
       "trip": 2,
       "color": "#888888",
-      "name": "108666 · Estrella Polar → Terminal Móvil Bus"
+      "name": "108666 · Estrella Polar → Terminal Móvil Bus",
+      "osm": true
     },
     "153624-ida": {
       "folder": "data/processed/transporte/route_153624",
       "trip": 1,
       "color": "#888888",
-      "name": "153624 · Terminal Ittsa Bus → Terminal Ittsa Bus"
+      "name": "153624 · Terminal Ittsa Bus → Terminal Ittsa Bus",
+      "osm": true
     },
     "153624-vuelta": {
       "folder": "data/processed/transporte/route_153624",
       "trip": 2,
       "color": "#888888",
-      "name": "153624 · Terminal Ittsa Bus → Terminal Ittsa Bus"
+      "name": "153624 · Terminal Ittsa Bus → Terminal Ittsa Bus",
+      "osm": true
     },
     "153697-ida": {
       "folder": "data/processed/transporte/route_153697",
       "trip": 1,
       "color": "#888888",
-      "name": "153697 · Terminal Terrestre Plaza Norte → Terminal Terrestre Desaguadero"
+      "name": "153697 · Terminal Terrestre Plaza Norte → Terminal Terrestre Desaguadero",
+      "osm": true
     },
     "153697-vuelta": {
       "folder": "data/processed/transporte/route_153697",
       "trip": 2,
       "color": "#888888",
-      "name": "153697 · Terminal Terrestre Desaguadero → Terminal CIVA"
+      "name": "153697 · Terminal Terrestre Desaguadero → Terminal CIVA",
+      "osm": true
     },
     "153787-ida": {
       "folder": "data/processed/transporte/route_153787",
       "trip": 1,
       "color": "#888888",
-      "name": "153787 · Terminal Ittsa Bus → Terminal Terrestre El Chimbador (Con escala en Plaza Norte)"
+      "name": "153787 · Terminal Ittsa Bus → Terminal Terrestre El Chimbador (Con escala en Plaza Norte)",
+      "osm": true
     },
     "153787-vuelta": {
       "folder": "data/processed/transporte/route_153787",
       "trip": 2,
       "color": "#888888",
-      "name": "153787 · Terminal Terrestre El Chimbador → Terminal Ittsa Bus"
+      "name": "153787 · Terminal Terrestre El Chimbador → Terminal Ittsa Bus",
+      "osm": true
     },
     "154043-ida": {
       "folder": "data/processed/transporte/route_154043",
       "trip": 1,
       "color": "#888888",
-      "name": "154043 · Terminal OLTURSA → Terminal OLTURSA"
+      "name": "154043 · Terminal OLTURSA → Terminal OLTURSA",
+      "osm": true
     },
     "154043-vuelta": {
       "folder": "data/processed/transporte/route_154043",
       "trip": 2,
       "color": "#888888",
-      "name": "154043 · Terminal OLTURSA → Terminal OLTURSA"
+      "name": "154043 · Terminal OLTURSA → Terminal OLTURSA",
+      "osm": true
     },
     "155873-ida": {
       "folder": "data/processed/transporte/route_155873",
       "trip": 1,
       "color": "#888888",
-      "name": "155873 · América Express → Terminal Terrestre El Chimbador (Con escala en Plaza Norte)"
+      "name": "155873 · América Express → Terminal Terrestre El Chimbador (Con escala en Plaza Norte)",
+      "osm": true
     },
     "155873-vuelta": {
       "folder": "data/processed/transporte/route_155873",
       "trip": 2,
       "color": "#888888",
-      "name": "155873 · Terminal Terrestre El Chimbador → América Express"
+      "name": "155873 · Terminal Terrestre El Chimbador → América Express",
+      "osm": true
     },
     "155897-ida": {
       "folder": "data/processed/transporte/route_155897",
       "trip": 1,
       "color": "#888888",
-      "name": "155897 · Terminal Transportes Línea → Terminal Terrestre El Chimbador"
+      "name": "155897 · Terminal Transportes Línea → Terminal Terrestre El Chimbador",
+      "osm": true
     },
     "155897-vuelta": {
       "folder": "data/processed/transporte/route_155897",
       "trip": 2,
       "color": "#888888",
-      "name": "155897 · Terminal Terrestre El Chimbador → Terminal Transportes Línea"
+      "name": "155897 · Terminal Terrestre El Chimbador → Terminal Transportes Línea",
+      "osm": true
     },
     "155902-ida": {
       "folder": "data/processed/transporte/route_155902",
       "trip": 1,
       "color": "#888888",
-      "name": "155902 · Terminal Transportes Línea → Terminal Línea"
+      "name": "155902 · Terminal Transportes Línea → Terminal Línea",
+      "osm": true
     },
     "155902-vuelta": {
       "folder": "data/processed/transporte/route_155902",
       "trip": 2,
       "color": "#888888",
-      "name": "155902 · Terminal Línea → Terminal Transportes Línea"
+      "name": "155902 · Terminal Línea → Terminal Transportes Línea",
+      "osm": true
     },
     "155923-ida": {
       "folder": "data/processed/transporte/route_155923",
       "trip": 1,
       "color": "#888888",
-      "name": "155923 · Terminal Ittsa Bus → Terminal Ittsa Bus"
+      "name": "155923 · Terminal Ittsa Bus → Terminal Ittsa Bus",
+      "osm": true
     },
     "155923-vuelta": {
       "folder": "data/processed/transporte/route_155923",
       "trip": 2,
       "color": "#888888",
-      "name": "155923 · Terminal Ittsa Bus → Terminal Ittsa Bus"
+      "name": "155923 · Terminal Ittsa Bus → Terminal Ittsa Bus",
+      "osm": true
     },
     "156062-ida": {
       "folder": "data/processed/transporte/route_156062",
       "trip": 1,
       "color": "#888888",
-      "name": "156062 · Terminal Julio César → Terminal Terrestre de Huari"
+      "name": "156062 · Terminal Julio César → Terminal Terrestre de Huari",
+      "osm": true
     },
     "156062-vuelta": {
       "folder": "data/processed/transporte/route_156062",
       "trip": 2,
       "color": "#888888",
-      "name": "156062 · Terminal Terrestre de Huari → Terminal Julio César"
+      "name": "156062 · Terminal Terrestre de Huari → Terminal Julio César",
+      "osm": true
     },
     "156191-ida": {
       "folder": "data/processed/transporte/route_156191",
       "trip": 1,
       "color": "#888888",
-      "name": "156191 · Terminal Ittsa Bus → Ittsa Bus (Chiclayo) (Con escala en Plaza Norte)"
+      "name": "156191 · Terminal Ittsa Bus → Ittsa Bus (Chiclayo) (Con escala en Plaza Norte)",
+      "osm": true
     },
     "156191-vuelta": {
       "folder": "data/processed/transporte/route_156191",
       "trip": 2,
       "color": "#888888",
-      "name": "156191 · Ittsa Bus (Chiclayo) → Terminal Ittsa Bus"
+      "name": "156191 · Ittsa Bus (Chiclayo) → Terminal Ittsa Bus",
+      "osm": true
     },
     "156220-ida": {
       "folder": "data/processed/transporte/route_156220",
       "trip": 1,
       "color": "#888888",
-      "name": "156220 · Terminal Ittsa Bus → Terminal Terrestre Madrid"
+      "name": "156220 · Terminal Ittsa Bus → Terminal Terrestre Madrid",
+      "osm": true
     },
     "156220-vuelta": {
       "folder": "data/processed/transporte/route_156220",
       "trip": 2,
       "color": "#888888",
-      "name": "156220 · Terminal Terrestre Madrid → Terminal Ittsa Bus"
+      "name": "156220 · Terminal Terrestre Madrid → Terminal Ittsa Bus",
+      "osm": true
     },
     "156365-ida": {
       "folder": "data/processed/transporte/route_156365",
@@ -13356,13 +13436,15 @@
       "folder": "data/processed/transporte/route_156661",
       "trip": 1,
       "color": "#888888",
-      "name": "156661 · Terminal de Cercanías Soyuz → Terminal de Cercanías Perú Bus"
+      "name": "156661 · Terminal de Cercanías Soyuz → Terminal de Cercanías Perú Bus",
+      "osm": true
     },
     "156661-vuelta": {
       "folder": "data/processed/transporte/route_156661",
       "trip": 2,
       "color": "#888888",
-      "name": "156661 · Terminal de Cercanías Perú Bus → Terminal de Cercanías Soyuz (Servicio Estándar Chinchano -Vuelta)"
+      "name": "156661 · Terminal de Cercanías Perú Bus → Terminal de Cercanías Soyuz (Servicio Estándar Chinchano -Vuelta)",
+      "osm": true
     },
     "AC01-ida": {
       "folder": "data/processed/transporte/route_41890",
@@ -13732,13 +13814,15 @@
       "folder": "data/processed/transporte/route_76495",
       "trip": 1,
       "color": "#888888",
-      "name": "CCH11 · Mercado Modelo Principal → Arica"
+      "name": "CCH11 · Mercado Modelo Principal → Arica",
+      "osm": true
     },
     "CCH11-vuelta": {
       "folder": "data/processed/transporte/route_76495",
       "trip": 2,
       "color": "#888888",
-      "name": "CCH11 · Arica → Mercado Modelo Principal"
+      "name": "CCH11 · Arica → Mercado Modelo Principal",
+      "osm": true
     },
     "CCH18-ida": {
       "folder": "data/processed/transporte/route_90364",
@@ -13758,49 +13842,57 @@
       "folder": "data/processed/transporte/route_76494",
       "trip": 1,
       "color": "#888888",
-      "name": "CCH20 · Mercado Modelo Principal → Carretera Central"
+      "name": "CCH20 · Mercado Modelo Principal → Carretera Central",
+      "osm": true
     },
     "CCH20-vuelta": {
       "folder": "data/processed/transporte/route_76494",
       "trip": 2,
       "color": "#888888",
-      "name": "CCH20 · Carretera Central → Mercado Modelo Principal"
+      "name": "CCH20 · Carretera Central → Mercado Modelo Principal",
+      "osm": true
     },
     "CCH22-ida": {
       "folder": "data/processed/transporte/route_90273",
       "trip": 1,
       "color": "#888888",
-      "name": "CCH22 · Centro Poblado de Masipa → Trujillo Sur"
+      "name": "CCH22 · Centro Poblado de Masipa → Trujillo Sur",
+      "osm": true
     },
     "CCH22-vuelta": {
       "folder": "data/processed/transporte/route_90273",
       "trip": 2,
       "color": "#888888",
-      "name": "CCH22 · Trujillo Sur → Centro Poblado de Masipa"
+      "name": "CCH22 · Trujillo Sur → Centro Poblado de Masipa",
+      "osm": true
     },
     "CCH25-ida": {
       "folder": "data/processed/transporte/route_76415",
       "trip": 1,
       "color": "#888888",
-      "name": "CCH25 · Mercado Modelo Principal → Trujillo"
+      "name": "CCH25 · Mercado Modelo Principal → Trujillo",
+      "osm": true
     },
     "CCH25-vuelta": {
       "folder": "data/processed/transporte/route_76415",
       "trip": 2,
       "color": "#888888",
-      "name": "CCH25 · Trujillo → Mercado Modelo Principal"
+      "name": "CCH25 · Trujillo → Mercado Modelo Principal",
+      "osm": true
     },
     "CCH30-ida": {
       "folder": "data/processed/transporte/route_76493",
       "trip": 1,
       "color": "#888888",
-      "name": "CCH30 · San Bartolome → Trujillo Sur"
+      "name": "CCH30 · San Bartolome → Trujillo Sur",
+      "osm": true
     },
     "CCH30-vuelta": {
       "folder": "data/processed/transporte/route_76493",
       "trip": 2,
       "color": "#888888",
-      "name": "CCH30 · Trujillo Sur → San Bartolome"
+      "name": "CCH30 · Trujillo Sur → San Bartolome",
+      "osm": true
     },
     "CH01-ida": {
       "folder": "data/processed/transporte/route_74136",
@@ -13832,25 +13924,29 @@
       "folder": "data/processed/transporte/route_90170",
       "trip": 1,
       "color": "#888888",
-      "name": "CH16 · Terminal Rutas de Huarochirí → San Jerónimo de Surco"
+      "name": "CH16 · Terminal Rutas de Huarochirí → San Jerónimo de Surco",
+      "osm": true
     },
     "CH16-vuelta": {
       "folder": "data/processed/transporte/route_90170",
       "trip": 2,
       "color": "#888888",
-      "name": "CH16 · San Jerónimo de Surco → Terminal Rutas de Huarochirí"
+      "name": "CH16 · San Jerónimo de Surco → Terminal Rutas de Huarochirí",
+      "osm": true
     },
     "CH37-ida": {
       "folder": "data/processed/transporte/route_84326",
       "trip": 1,
       "color": "#888888",
-      "name": "CH37 · Terminal Rutas de Huarochirí → Plaza Grau"
+      "name": "CH37 · Terminal Rutas de Huarochirí → Plaza Grau",
+      "osm": true
     },
     "CH37-vuelta": {
       "folder": "data/processed/transporte/route_84326",
       "trip": 2,
       "color": "#888888",
-      "name": "CH37 · Plaza de Armas → Terminal Rutas de Huarochirí"
+      "name": "CH37 · Plaza de Armas → Terminal Rutas de Huarochirí",
+      "osm": true
     },
     "CH39-ida": {
       "folder": "data/processed/transporte/route_77880",
@@ -13870,13 +13966,15 @@
       "folder": "data/processed/transporte/route_77879",
       "trip": 1,
       "color": "#888888",
-      "name": "CH40 · Anexo de Cacachaqui → Terminal Rutas de Huarochirí"
+      "name": "CH40 · Anexo de Cacachaqui → Terminal Rutas de Huarochirí",
+      "osm": true
     },
     "CH40-vuelta": {
       "folder": "data/processed/transporte/route_77879",
       "trip": 2,
       "color": "#888888",
-      "name": "CH40 · Terminal Rutas de Huarochirí → Anexo de Cacachaqui"
+      "name": "CH40 · Terminal Rutas de Huarochirí → Anexo de Cacachaqui",
+      "osm": true
     },
     "CR02-ida": {
       "folder": "data/processed/transporte/route_71652",
@@ -19930,13 +20028,15 @@
       "folder": "data/processed/transporte/route_90272",
       "trip": 1,
       "color": "#888888",
-      "name": "PCH09 · Trujillo Sur → Plaza de Santiago de Carampoma"
+      "name": "PCH09 · Trujillo Sur → Plaza de Santiago de Carampoma",
+      "osm": true
     },
     "PCH09-vuelta": {
       "folder": "data/processed/transporte/route_90272",
       "trip": 2,
       "color": "#888888",
-      "name": "PCH09 · Plaza de Santiago de Carampoma → Trujillo Sur"
+      "name": "PCH09 · Plaza de Santiago de Carampoma → Trujillo Sur",
+      "osm": true
     },
     "PCH11-ida": {
       "folder": "data/processed/transporte/route_90363",
@@ -19956,13 +20056,15 @@
       "folder": "data/processed/transporte/route_83034",
       "trip": 1,
       "color": "#888888",
-      "name": "PCH13 · Santa Rosa de Canchacalla → Terminal Rutas de Huarochirí"
+      "name": "PCH13 · Santa Rosa de Canchacalla → Terminal Rutas de Huarochirí",
+      "osm": true
     },
     "PCH13-vuelta": {
       "folder": "data/processed/transporte/route_83034",
       "trip": 2,
       "color": "#888888",
-      "name": "PCH13 · Terminal Rutas de Huarochirí → Santa Rosa de Canchacalla"
+      "name": "PCH13 · Terminal Rutas de Huarochirí → Santa Rosa de Canchacalla",
+      "osm": true
     },
     "PNH01-ida": {
       "folder": "data/processed/transporte/route_76522",
@@ -20136,13 +20238,15 @@
       "folder": "data/processed/transporte/route_96570",
       "trip": 1,
       "color": "#888888",
-      "name": "RTUM01 · Hospital San Juan de Matucana → Terminal Rutas de Huarochirí"
+      "name": "RTUM01 · Hospital San Juan de Matucana → Terminal Rutas de Huarochirí",
+      "osm": true
     },
     "RTUM01-vuelta": {
       "folder": "data/processed/transporte/route_96570",
       "trip": 2,
       "color": "#888888",
-      "name": "RTUM01 · Terminal Rutas de Huarochirí → Hospital San Juan de Matucana"
+      "name": "RTUM01 · Terminal Rutas de Huarochirí → Hospital San Juan de Matucana",
+      "osm": true
     },
     "SCR01-ida": {
       "folder": "data/processed/transporte/route_89439",
@@ -21485,13 +21589,15 @@
       "folder": "data/processed/transporte/route_90288",
       "trip": 1,
       "color": "#888888",
-      "name": "TCH07 · Paradero Embarcadero → Arica"
+      "name": "TCH07 · Paradero Embarcadero → Arica",
+      "osm": true
     },
     "TCH07-vuelta": {
       "folder": "data/processed/transporte/route_90288",
       "trip": 2,
       "color": "#888888",
-      "name": "TCH07 · Arica → Paradero Embarcadero"
+      "name": "TCH07 · Arica → Paradero Embarcadero",
+      "osm": true
     },
     "TH04-ida": {
       "folder": "data/processed/transporte/route_79959",
@@ -21581,25 +21687,29 @@
       "folder": "data/processed/transporte/route_90582",
       "trip": 1,
       "color": "#888888",
-      "name": "TLU02 · San Juan de Lahuaytambo → Santa Rosa de Chontay"
+      "name": "TLU02 · San Juan de Lahuaytambo → Santa Rosa de Chontay",
+      "osm": true
     },
     "TLU02-vuelta": {
       "folder": "data/processed/transporte/route_90582",
       "trip": 2,
       "color": "#888888",
-      "name": "TLU02 · Santa Rosa de Chontay → San Juan de Lahuaytambo"
+      "name": "TLU02 · Santa Rosa de Chontay → San Juan de Lahuaytambo",
+      "osm": true
     },
     "TLU05-ida": {
       "folder": "data/processed/transporte/route_90583",
       "trip": 1,
       "color": "#888888",
-      "name": "TLU05 · Plaza Central de Mariatana → Santa Rosa de Chontay"
+      "name": "TLU05 · Plaza Central de Mariatana → Santa Rosa de Chontay",
+      "osm": true
     },
     "TLU05-vuelta": {
       "folder": "data/processed/transporte/route_90583",
       "trip": 2,
       "color": "#888888",
-      "name": "TLU05 · Santa Rosa de Chontay → Plaza Central de Mariatana"
+      "name": "TLU05 · Santa Rosa de Chontay → Plaza Central de Mariatana",
+      "osm": true
     },
     "TMA09-ida": {
       "folder": "data/processed/transporte/route_74442",
@@ -21619,61 +21729,71 @@
       "folder": "data/processed/transporte/route_83993",
       "trip": 1,
       "color": "#888888",
-      "name": "TRI01 · Carretera Central → Mercado Modelo Principal"
+      "name": "TRI01 · Carretera Central → Mercado Modelo Principal",
+      "osm": true
     },
     "TRI01-vuelta": {
       "folder": "data/processed/transporte/route_83993",
       "trip": 2,
       "color": "#888888",
-      "name": "TRI01 · Mercado Modelo Principal → Carretera Central"
+      "name": "TRI01 · Mercado Modelo Principal → Carretera Central",
+      "osm": true
     },
     "TRI02-ida": {
       "folder": "data/processed/transporte/route_76293",
       "trip": 1,
       "color": "#888888",
-      "name": "TRI02 · Lima → Trujillo Sur"
+      "name": "TRI02 · Lima → Trujillo Sur",
+      "osm": true
     },
     "TRI02-vuelta": {
       "folder": "data/processed/transporte/route_76293",
       "trip": 2,
       "color": "#888888",
-      "name": "TRI02 · Trujillo Sur → Lima"
+      "name": "TRI02 · Trujillo Sur → Lima",
+      "osm": true
     },
     "TRI04-ida": {
       "folder": "data/processed/transporte/route_90304",
       "trip": 1,
       "color": "#888888",
-      "name": "TRI04 · San Damián de Checa → Carretera Central"
+      "name": "TRI04 · San Damián de Checa → Carretera Central",
+      "osm": true
     },
     "TRI04-vuelta": {
       "folder": "data/processed/transporte/route_90304",
       "trip": 2,
       "color": "#888888",
-      "name": "TRI04 · Carretera Central → San Damián de Checa"
+      "name": "TRI04 · Carretera Central → San Damián de Checa",
+      "osm": true
     },
     "TRI05-ida": {
       "folder": "data/processed/transporte/route_79223",
       "trip": 1,
       "color": "#888888",
-      "name": "TRI05 · Hospital San Juan de Matucana → Terminal Rutas de Huarochirí"
+      "name": "TRI05 · Hospital San Juan de Matucana → Terminal Rutas de Huarochirí",
+      "osm": true
     },
     "TRI05-vuelta": {
       "folder": "data/processed/transporte/route_79223",
       "trip": 2,
       "color": "#888888",
-      "name": "TRI05 · Terminal Rutas de Huarochirí → Hospital San Juan de Matucana"
+      "name": "TRI05 · Terminal Rutas de Huarochirí → Hospital San Juan de Matucana",
+      "osm": true
     },
     "TRI06-ida": {
       "folder": "data/processed/transporte/route_81014",
       "trip": 1,
       "color": "#888888",
-      "name": "TRI06 · Terminal Rutas de Huarochirí → Plaza Grau"
+      "name": "TRI06 · Terminal Rutas de Huarochirí → Plaza Grau",
+      "osm": true
     },
     "TRI06-vuelta": {
       "folder": "data/processed/transporte/route_81014",
       "trip": 2,
       "color": "#888888",
-      "name": "TRI06 · Plaza de Armas → Terminal Rutas de Huarochirí"
+      "name": "TRI06 · Plaza de Armas → Terminal Rutas de Huarochirí",
+      "osm": true
     },
     "TRI20-ida": {
       "folder": "data/processed/transporte/route_79157",
@@ -21693,13 +21813,15 @@
       "folder": "data/processed/transporte/route_90507",
       "trip": 1,
       "color": "#888888",
-      "name": "TRI29 · Santa Cruz de Lucumaní → Terminal Rutas de Huarochirí"
+      "name": "TRI29 · Santa Cruz de Lucumaní → Terminal Rutas de Huarochirí",
+      "osm": true
     },
     "TRI29-vuelta": {
       "folder": "data/processed/transporte/route_90507",
       "trip": 2,
       "color": "#888888",
-      "name": "TRI29 · Terminal Rutas de Huarochirí → Santa Cruz de Lucumaní"
+      "name": "TRI29 · Terminal Rutas de Huarochirí → Santa Cruz de Lucumaní",
+      "osm": true
     },
     "TSE10-ida": {
       "folder": "data/processed/transporte/route_90303",
@@ -22517,13 +22639,15 @@
       "folder": "data/processed/transporte/route_77878",
       "trip": 1,
       "color": "#888888",
-      "name": "015p · San Bartolome → Terminal Rutas de Huarochirí"
+      "name": "015p · San Bartolome → Terminal Rutas de Huarochirí",
+      "osm": true
     },
     "015p-vuelta": {
       "folder": "data/processed/transporte/route_77878",
       "trip": 2,
       "color": "#888888",
-      "name": "015p · Terminal Rutas de Huarochirí → San Bartolome"
+      "name": "015p · Terminal Rutas de Huarochirí → San Bartolome",
+      "osm": true
     },
     "018p-ida": {
       "folder": "data/processed/transporte/route_75062",
@@ -25525,13 +25649,15 @@
       "folder": "data/processed/transporte/route_56974",
       "trip": 1,
       "color": "#FFC900",
-      "name": "1321 · Plaza Vea (Puente Piedra) → Canta"
+      "name": "1321 · Plaza Vea (Puente Piedra) → Canta",
+      "osm": true
     },
     "1321_56974-vuelta": {
       "folder": "data/processed/transporte/route_56974",
       "trip": 2,
       "color": "#FFC900",
-      "name": "1321 · Canta → Plaza Vea (Puente Piedra)"
+      "name": "1321 · Canta → Plaza Vea (Puente Piedra)",
+      "osm": true
     },
     "1322_77853-ida": {
       "folder": "data/processed/transporte/route_77853",
@@ -27063,37 +27189,43 @@
       "folder": "data/processed/transporte/route_84327",
       "trip": 1,
       "color": "#888888",
-      "name": "CH02a · Mercado Modelo Principal → Carretera Central"
+      "name": "CH02a · Mercado Modelo Principal → Carretera Central",
+      "osm": true
     },
     "CH02a-vuelta": {
       "folder": "data/processed/transporte/route_84327",
       "trip": 2,
       "color": "#888888",
-      "name": "CH02a · Carretera Central → Mercado Modelo Principal"
+      "name": "CH02a · Carretera Central → Mercado Modelo Principal",
+      "osm": true
     },
     "CH04a-ida": {
       "folder": "data/processed/transporte/route_83033",
       "trip": 1,
       "color": "#888888",
-      "name": "CH04a · Hospital San Juan de Matucana → Terminal Rutas de Huarochirí"
+      "name": "CH04a · Hospital San Juan de Matucana → Terminal Rutas de Huarochirí",
+      "osm": true
     },
     "CH04a-vuelta": {
       "folder": "data/processed/transporte/route_83033",
       "trip": 2,
       "color": "#888888",
-      "name": "CH04a · Terminal Rutas de Huarochirí → Hospital San Juan de Matucana"
+      "name": "CH04a · Terminal Rutas de Huarochirí → Hospital San Juan de Matucana",
+      "osm": true
     },
     "CH10a-ida": {
       "folder": "data/processed/transporte/route_76291",
       "trip": 1,
       "color": "#888888",
-      "name": "CH10a · Anexo de Cacachaqui → Terminal Rutas de Huarochirí"
+      "name": "CH10a · Anexo de Cacachaqui → Terminal Rutas de Huarochirí",
+      "osm": true
     },
     "CH10a-vuelta": {
       "folder": "data/processed/transporte/route_76291",
       "trip": 2,
       "color": "#888888",
-      "name": "CH10a · Terminal Rutas de Huarochirí → Anexo de Cacachaqui"
+      "name": "CH10a · Terminal Rutas de Huarochirí → Anexo de Cacachaqui",
+      "osm": true
     },
     "DA01a-ida": {
       "folder": "data/processed/transporte/route_74205",
@@ -28135,13 +28267,15 @@
       "folder": "data/processed/transporte/route_79324",
       "trip": 1,
       "color": "#888888",
-      "name": "NO88a · Kilómetro 22 (Túpac Amaru) → Canta"
+      "name": "NO88a · Kilómetro 22 (Túpac Amaru) → Canta",
+      "osm": true
     },
     "NO88a-vuelta": {
       "folder": "data/processed/transporte/route_79324",
       "trip": 2,
       "color": "#888888",
-      "name": "NO88a · Canta → Kilómetro 22 (Túpac Amaru)"
+      "name": "NO88a · Canta → Kilómetro 22 (Túpac Amaru)",
+      "osm": true
     },
     "SCR01a-ida": {
       "folder": "data/processed/transporte/route_89530",

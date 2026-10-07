@@ -118,14 +118,18 @@ def work(item):
     rec, errors = apply_corrections(rec, corrs)
     geom = R.geometry(rec)
     lo, ln = length(line), length(geom)
-    gap = sum(length(s) for s in rec['sueltos'])
+    # Pedazos sin calle: dentro de Lima (falta la calle en OSM) o fuera (la
+    # ruta sale de la red y vuelve)
+    gaps_in = [g for g in rec['sueltos'] if R.inside(g)]
+    gap = sum(length(g) for g in gaps_in)
+    gap_out = sum(length(g) for g in rec['sueltos']) - gap
     # Fuera de la red de Lima (antes del primer tramo y después del último): el dibujo
     out = [round(length(rec.get(k, []))) for k in ('antes', 'despues')]
-    on_street = ln - gap - sum(out)
+    on_street = ln - gap - gap_out - sum(out)
     stats = {'m': round(lo), 'm_osm': round(ln), 'ratio': round(ln / lo, 3) if lo else 0,
-             'sin_calle': len(rec['sueltos']), 'm_sin_calle': round(gap), 'origen': origen}
-    if any(out):
-        stats['m_fuera'] = out
+             'sin_calle': len(gaps_in), 'm_sin_calle': round(gap), 'origen': origen}
+    if any(out) or gap_out:
+        stats['m_fuera'] = out + ([round(gap_out)] if gap_out else [])
     steps = R.steps(rec, idx=True)
     review = R.revisar(rec, steps)
     if review:
@@ -136,14 +140,14 @@ def work(item):
         stats['errores'] = errors
     # Corregida a mano: el largo puede cambiar respecto del dibujo
     ok = (lo > 0 and (bool(corrs) or MIN_RATIO <= ln / lo <= MAX_RATIO)
-          and gap <= MAX_GAP * (lo - sum(out)) and on_street >= MIN_STREET_M)
+          and gap <= MAX_GAP * (lo - sum(out) - gap_out) and on_street >= MIN_STREET_M)
     stats['usa'] = ok
     if ok:
         fc = {'type': 'FeatureCollection', 'features': [{
             'type': 'Feature',
             'properties': {'fuente': f'OpenStreetMap {R.red.fecha} (recorrido.py)',
                            'pasos': [{k: v for k, v in st.items() if not k.startswith('_')} for st in steps],
-                           'sin_calle': len(rec['sueltos']),
+                           'sin_calle': len(gaps_in),
                            **({'fuera': out} if any(out) else {})},
             'geometry': {'type': 'LineString', 'coordinates': [[lon, lat] for lat, lon in geom]}}]}
         text = json.dumps(fc, ensure_ascii=False, separators=(',', ':'))
@@ -215,7 +219,7 @@ def main(argv):
         print(f"  correcciones de rutas que no existen: {', '.join(unknown)}")
     counts = Counter(x['tipo'] for k, v in report.items() if v.get('usa') for x in v.get('revisar', []))
     if counts:
-        print('  para revisar: ' + ' · '.join(f'{n} {TIPOS[t]}' for t, n in counts.most_common())
+        print('  para revisar (en rutas): ' + ' · '.join(f'{n} {TIPOS[t]}' for t, n in counts.most_common())
               + f' · {REVIEW.relative_to(ROOT)}')
     write_review(report, routes)
 
@@ -251,20 +255,33 @@ def write_review(report, routes):
             lines.append(f"- `{k}` {routes.get(k, {}).get('name', '')}: {why}")
         lines.append('')
     for tipo, title in TIPOS.items():
-        rows = [(k, x) for k, v in sorted(report.items()) if v.get('usa')
-                for x in v.get('revisar', []) if x['tipo'] == tipo]
-        if not rows:
+        # Por lugar: un error de OSM (un sentido mal puesto, una calle que
+        # falta) sale en todas las rutas que pasan por ahí; primero los que
+        # tocan más rutas
+        groups = {}
+        for k, v in sorted(report.items()):
+            if not v.get('usa'):
+                continue
+            for x in v.get('revisar', []):
+                if x['tipo'] != tipo:
+                    continue
+                g = groups.setdefault((x.get('via') or '', round(x['lat'], 3), round(x['lon'], 3)),
+                                      {'x': x, 'rutas': []})
+                if k not in g['rutas']:
+                    g['rutas'].append(k)
+        if not groups:
             continue
-        lines += [f'## {title[0].upper()}{title[1:]} ({len(rows)})', '']
-        for k, x in rows:
-            bits = [x.get('via') or 'calle sin nombre']
-            if 'paso' in x:
-                bits.append(f"paso {x['paso']}")
-            if 'salida' in x:
-                bits.append(f"{x['salida']}.ª salida")
+        n_routes = len({k for g in groups.values() for k in g['rutas']})
+        lines += [f'## {title[0].upper()}{title[1:]} ({len(groups)} lugares, {n_routes} rutas)', '']
+        for g in sorted(groups.values(), key=lambda g: (-len(g['rutas']), g['x'].get('via') or '')):
+            x, rutas = g['x'], g['rutas']
+            bits = [f"**{x.get('via') or 'calle sin nombre'}**"]
             if 'm' in x:
                 bits.append(f"{x['m']} m")
-            lines.append(f"- `{k}` {' · '.join(bits)} · [mapa]({osm_link(x)})")
+            if 'giro' in x:
+                bits.append(f"gira {x['giro']}°")
+            names = ', '.join(f'`{k}`' for k in rutas[:12]) + (f' y {len(rutas) - 12} más' if len(rutas) > 12 else '')
+            lines.append(f"- {' · '.join(bits)} · [mapa]({osm_link(x)}) · {len(rutas)} {'ruta' if len(rutas) == 1 else 'rutas'}: {names}")
         lines.append('')
     REVIEW.write_text('\n'.join(lines), encoding='utf-8')
 

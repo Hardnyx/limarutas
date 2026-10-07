@@ -339,3 +339,18 @@ test('alimentadores: recorrido del sentido elegido; con los dos, ida y vuelta po
   await page.evaluate(sel => document.querySelector(`${sel} .segbtn-mini[data-dir="ambas"]`).click(), sel);
   await expect(box.locator('.route-steps-title')).toHaveText(['Ida · hacia Izaguirre', 'Vuelta · hacia Naranjal']);
 });
+
+test('recorrido de una ruta que sale de Lima: avisa los km fuera, sin indicaciones', async ({ app, page }) => {
+  await page.click('.panel-head[data-target="p-wr-body"]');
+  const item = page.locator('#p-wr .item-head input[data-id="1321"]').locator('xpath=ancestor::div[contains(concat(" ", @class, " "), " item ")][1]');
+  await item.locator('.route-steps-btn').click();
+  const box = item.locator('.route-steps-box');
+  await expect(box.locator('.route-step').first()).toContainText(/^Por /);
+  // Puente Piedra → Canta: lo último va por la carretera a Canta, fuera de la red de Lima
+  await expect(box.locator('.route-steps-out')).toHaveText(/^Sigue fuera de Lima: \d+(,\d)? km sin indicaciones$/);
+});
+
+test('el mapa atribuye OpenStreetMap con enlace a su licencia', async ({ app, page }) => {
+  const link = page.locator('.leaflet-control-attribution a[href="https://www.openstreetmap.org/copyright"]');
+  await expect(link).toHaveText('colaboradores de OpenStreetMap');
+});

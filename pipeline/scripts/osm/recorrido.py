@@ -41,7 +41,7 @@ SHORT_M = 25           # un paso más corto que esto se junta con el siguiente
 TINY_RB_M = 20         # una «rotonda» más corta (un pedazo de anillo en un cruce), también
 UNNAMED_M = 120        # un paso sin nombre más corto que esto (un enlace, una oreja), también
 CONTRA_M = 40          # revisión: tanto seguido contra el sentido de una vía
-RB_EXIT = 5            # revisión: salir de un óvalo por esta salida o más
+RB_TURN = 300          # revisión: girar esto o más en un óvalo (casi una vuelta entera)
 GAP_M = 60             # revisión: un pedazo sin calle de al menos esto
 WRONG_WAY_M = 25       # pegado: lo que «aleja» un tramo de sentido único recorrido al revés
 SPUR_M = 60            # limpieza: un rulo de ida y vuelta más corto que esto se quita
@@ -79,6 +79,7 @@ def _heading(a, b):
 
 class Recorridos:
     def __init__(self, bbox):
+        self.bbox = bbox
         self.red = red = Red(bbox)
         self.pos = red.pos
         # Sin sentido de circulación (ver arriba)
@@ -101,6 +102,11 @@ class Recorridos:
                 n = max(1, int(_d(a, b) // 25))
                 for c in {cell(a[0] + (b[0] - a[0]) * k / n, a[1] + (b[1] - a[1]) * k / n) for k in range(n + 1)}:
                     self.grid[c].append(i)
+
+    def inside(self, pts):
+        """¿La mayor parte de estos puntos está dentro de la red?"""
+        s, w, n, e = self.bbox
+        return sum(1 for la, lo in pts if s <= la <= n and w <= lo <= e) * 2 > len(pts)
 
     # ---------- de qué vía es un tramo ----------
     def way(self, u, v):
@@ -363,11 +369,14 @@ class Recorridos:
                 m = round(sum(_d(self.pos[a], self.pos[b]) for a, b in zip(g['nodes'], g['nodes'][1:])))
                 span = {'_a': (ti, g['i0']), '_b': (ti, g['i0'] + len(g['nodes']) - 1)}
                 if g['rb']:
-                    # Salidas que se pasan: nodos de la rotonda con otra calle
+                    # Salidas que se pasan: nodos de la rotonda de donde sale
+                    # otra calle (no las que solo entran: una avenida de dos
+                    # calzadas llega por un nodo y sale por otro)
                     exits = sum(1 for x in g['nodes'][1:-1]
-                                if any(not self.way(x, y)[2] for y in self.adj[x]))
+                                if any(not self.way(x, y)[2] for y, _w in self.red.adj.get(x, ())))
                     nxt = groups[n + 1]['name'] if n + 1 < len(groups) else ''
-                    out.append({'accion': 'rotonda', 'salida': exits + 1, 'via': nxt, 'm': m, **span})
+                    out.append({'accion': 'rotonda', 'salida': exits + 1, 'via': nxt, 'm': m,
+                                '_giro': self._turned(g['nodes']), **span})
                     continue
                 if out and out[-1]['accion'] == 'rotonda':
                     out.append({'accion': 'sigue', 'via': g['name'], 'm': m, **span})
@@ -411,6 +420,11 @@ class Recorridos:
         if not idx:
             merged = [{k: v for k, v in s.items() if not k.startswith('_')} for s in merged]
         return merged
+
+    def _turned(self, nodes):
+        """Grados que gira el camino por estos nodos (con signo)."""
+        hs = [_heading(self.pos[a], self.pos[b]) for a, b in zip(nodes, nodes[1:]) if self.pos[a] != self.pos[b]]
+        return round(math.degrees(sum((b - a + math.pi) % (2 * math.pi) - math.pi for a, b in zip(hs, hs[1:]))))
 
     # ---------- el recorrido guardado: vías de OSM ----------
     def _base(self, w):
@@ -742,6 +756,17 @@ class Recorridos:
                     heapq.heappush(heap, (ng, v))
         return None
 
+    def sentido(self, rec):
+        """(metros a favor, metros en contra) de las vías de un solo sentido."""
+        fav = con = 0.0
+        for t in rec['tramos']:
+            for a, b in zip(t['nodos'], t['nodos'][1:]):
+                if self._against(a, b):
+                    con += _d(self.pos[a], self.pos[b])
+                elif self._against(b, a):
+                    fav += _d(self.pos[a], self.pos[b])
+        return fav, con
+
     # ---------- revisión ----------
     def revisar(self, rec, steps=None):
         """Lo que conviene mirar de un recorrido: [{'tipo', 'via', 'm'?, 'paso'?,
@@ -751,9 +776,10 @@ class Recorridos:
                           por la calzada equivocada)
           vuelta_u        da la vuelta en media calle (vuelve por el mismo
                           tramo) o un paso «da la vuelta»
-          rotonda         sale de un óvalo por la salida RB_EXIT o más (casi
-                          una vuelta entera)
-          sin_calle       un pedazo donde el dibujo no tenía calle en OSM"""
+          rotonda         da casi una vuelta entera a un óvalo (gira RB_TURN
+                          grados o más)
+          sin_calle       un pedazo dentro de la red donde el dibujo no tenía
+                          calle en OSM (no uno que sale de Lima y vuelve)"""
         out = []
         oneway_against = self._against
 
@@ -779,11 +805,12 @@ class Recorridos:
             where = _at(self.pos[rec['tramos'][ti]['nodos'][i]])
             if st['accion'] == 'vuelta':
                 out.append({'tipo': 'vuelta_u', 'via': st['via'], 'paso': n, **where})
-            if st['accion'] == 'rotonda' and st['salida'] >= RB_EXIT:
-                out.append({'tipo': 'rotonda', 'via': st['via'], 'paso': n, 'salida': st['salida'], **where})
+            if st['accion'] == 'rotonda' and abs(st.get('_giro', 0)) >= RB_TURN:
+                out.append({'tipo': 'rotonda', 'via': st['via'], 'paso': n, 'salida': st['salida'],
+                            'giro': abs(st['_giro']), **where})
         for gap in rec['sueltos']:
             m = sum(_d(a, b) for a, b in zip(gap, gap[1:]))
-            if m >= GAP_M:
+            if m >= GAP_M and self.inside(gap):
                 out.append({'tipo': 'sin_calle', 'via': '', 'm': round(m), **_at(gap[len(gap) // 2])})
         return out
 

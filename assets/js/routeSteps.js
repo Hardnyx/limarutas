@@ -6,10 +6,9 @@
 // pasos se piden al abrirlo, del sentido elegido.
 import { el } from './utils.js';
 
-const km = new Intl.NumberFormat('es-PE', { maximumFractionDigits: 1 });
-
+// Como en Cómo llegar (tripUi.js): "3,2 km", "420 m"
 export function fmtMeters(m){
-  if (m >= 1000) return `${km.format(m / 1000)} km`;
+  if (m >= 1000) return `${(m / 1000).toFixed(1).replace('.', ',').replace(/,0$/, '')} km`;
   return `${Math.max(10, Math.round(m / 10) * 10)} m`;
 }
 

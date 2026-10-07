@@ -633,6 +633,12 @@ def main() -> None:
             # dos entradas de un óvalo): se cierra por la red, no en recta
             if dist(loop[0], loop[-1]) >= 1:
                 loop = loop + R.join(loop[-1], loop[0]) + [loop[0]]
+            # Un circuito dibujado al revés (la relación de OSM lo lista en el
+            # otro sentido) va casi todo contra las calles de un solo sentido:
+            # se da vuelta
+            fav, con = R.sentido(R.match(loop))
+            if con > fav:
+                loop = loop[::-1]
             start = min(range(len(loop)), key=lambda i: dist(loop[i], tpt))
             ring = rotate(loop, start)
             far = max(range(len(ring)), key=lambda i: dist(ring[i], tpt))
@@ -704,6 +710,11 @@ def main() -> None:
             svc[key]['pasos'] = R.steps(rec)
             if rec['sueltos']:
                 svc[key]['sin_calle'] = len(rec['sueltos'])
+            # Revisión (docs/RECORRIDOS.md): lo que va contra el sentido de las calles
+            fav, con = R.sentido(rec)
+            if con > 1000:
+                print(f'  {ref}-{key}: {con / 1000:.1f} km contra el sentido de vías de un solo sentido '
+                      f'({fav / 1000:.1f} km a favor)')
     for name in corrs:
         print(f'  correcciones de un alimentador que no existe: {name}')
 
