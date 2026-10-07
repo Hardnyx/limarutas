@@ -30,18 +30,41 @@ export function stepText(step){
   return `${VERB[step.accion] || 'Sigue por'} ${via}`;
 }
 
-function renderSection({ title, pasos }){
+// Lo que el recorrido no cubre: los km fuera de Lima (una interprovincial,
+// las playas del sur) y los pedazos sin calle en OSM, donde la línea sigue
+// el dibujo
+const outNote = (text) => el('div', { class: 'route-steps-out' }, text);
+
+function renderSection({ title, pasos, fuera = [], sinCalle = 0 }){
   const list = el('ol', { class: 'route-steps' });
   pasos.forEach(s => {
     list.appendChild(el('li', { class: `route-step route-step-${s.accion}` },
       el('span', { class: 'route-step-text' }, stepText(s)),
       s.accion === 'rotonda' ? '' : el('span', { class: 'route-step-m' }, fmtMeters(s.m))));
   });
-  return title ? el('div', { class: 'route-steps-section' }, el('div', { class: 'route-steps-title' }, title), list) : list;
+  const [before = 0, after = 0] = fuera || [];
+  const parts = [
+    title ? el('div', { class: 'route-steps-title' }, title) : '',
+    before >= 500 ? outNote(`Viene de fuera de Lima: ${fmtMeters(before)} sin indicaciones`) : '',
+    list,
+    after >= 500 ? outNote(`Sigue fuera de Lima: ${fmtMeters(after)} sin indicaciones`) : '',
+    sinCalle ? outNote(sinCalle === 1
+      ? 'Un pedazo no tiene calle en OpenStreetMap: ahí la línea sigue el dibujo'
+      : `${sinCalle} pedazos no tienen calle en OpenStreetMap: ahí la línea sigue el dibujo`) : ''
+  ].filter(Boolean);
+  return el('div', { class: 'route-steps-section' }, ...parts);
+}
+
+// Atribución de los datos (ODbL)
+function osmCredit(){
+  return el('div', { class: 'route-steps-note' }, 'Calles: © ',
+    el('a', { href: 'https://www.openstreetmap.org/copyright', target: '_blank', rel: 'noopener' },
+      'colaboradores de OpenStreetMap'));
 }
 
 // Botón y caja de las indicaciones. getSections() → Promise de
-// [{ title?, pasos: [...] }] (un sentido o los dos) o null si no hay.
+// [{ title?, pasos: [...], fuera?: [m antes, m después], sinCalle? }] (un
+// sentido o los dos) o null si no hay.
 export function stepsToggle(getSections){
   const box = el('div', { class: 'route-steps-box', hidden: '' });
   const btn = el('button', {
@@ -61,7 +84,7 @@ export function stepsToggle(getSections){
     sections = (sections || []).filter(s => s?.pasos?.length);
     box.replaceChildren(...(sections.length
       ? [...sections.map(renderSection),
-        el('div', { class: 'route-steps-note' }, 'Calles de OpenStreetMap')]
+        osmCredit()]
       : [el('div', { class: 'route-steps-note' }, 'Sin indicaciones para este sentido')]));
   }
 
@@ -76,7 +99,8 @@ export function stepsToggle(getSections){
   return { btn, box, refresh };
 }
 
-// Pasos de una ruta de Wikiroutes ("1087-ida"): de su .osm.geojson
+// Indicaciones de una ruta de Wikiroutes ("1087-ida"): de su .osm.geojson,
+// { pasos, fuera, sinCalle } o null
 const wrCache = new Map();
 export function wrSteps(def){
   if (!def?.osm) return Promise.resolve(null);
@@ -84,7 +108,10 @@ export function wrSteps(def){
   if (!wrCache.has(url)){
     wrCache.set(url, fetch(url)
       .then(r => (r.ok ? r.json() : null))
-      .then(gj => gj?.features?.[0]?.properties?.pasos || null)
+      .then(gj => {
+        const pr = gj?.features?.[0]?.properties;
+        return pr?.pasos ? { pasos: pr.pasos, fuera: pr.fuera || [], sinCalle: pr.sin_calle || 0 } : null;
+      })
       .catch(() => null));
   }
   return wrCache.get(url);

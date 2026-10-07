@@ -154,11 +154,11 @@ function makeServiceItemAlim(svc){
   if (p?.ida?.pasos || p?.vuelta?.pasos){
     const { btn, box, refresh } = stepsToggle(async () => {
       const dir = getDirFor('alim', svc.id);
-      const ida = { title: `Ida · hacia ${p.ida?.to || ''}`, pasos: p.ida?.pasos };
-      const vta = { title: `Vuelta · hacia ${p.vuelta?.to || ''}`, pasos: p.vuelta?.pasos };
-      if (dir === 'sur') return [{ pasos: ida.pasos }];
-      if (dir === 'norte') return [{ pasos: vta.pasos }];
-      return [ida, vta];
+      const ida = { pasos: p.ida?.pasos, sinCalle: p.ida?.sin_calle || 0 };
+      const vta = { pasos: p.vuelta?.pasos, sinCalle: p.vuelta?.sin_calle || 0 };
+      if (dir === 'sur') return [ida];
+      if (dir === 'norte') return [vta];
+      return [{ ...ida, title: `Ida · hacia ${p.ida?.to || ''}` }, { ...vta, title: `Vuelta · hacia ${p.vuelta?.to || ''}` }];
     });
     textBlock.append(btn);
     body.append(box);

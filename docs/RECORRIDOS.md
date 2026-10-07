@@ -34,14 +34,24 @@ va la ruta. *Map matching* (modelo oculto de Markov, Viterbi):
 2. Se elige la secuencia de tramos que mejor sigue al dibujo (cerca de cada
    punto) y en la que puntos seguidos están unidos por un camino de la red
    de largo parecido a la recta.
-3. Para pegar un dibujo a la calle no se mira el sentido de circulación (el
-   bus va por ahí: carril en contraflujo, o el sentido de OSM no es el de
-   hoy). Con sentidos, un dibujo correcto daba vueltas de kilómetros (la
-   1123 pasaba de 27 a 43 km).
+3. El sentido de circulación no se exige (el bus va por ahí: carril en
+   contraflujo, o el sentido de OSM no es el de hoy; exigiéndolo, un dibujo
+   correcto daba vueltas de kilómetros: la 1123 pasaba de 27 a 43 km), pero
+   un tramo de sentido único que el dibujo recorrería al revés cuenta como
+   25 m más lejos. Así, cuando el dibujo va por el medio de una avenida de
+   dos calzadas, gana la que va en el sentido del bus (en la 1 ida, lo
+   recorrido contra el sentido bajó de 15 km a 1,8 km).
 4. Si no hay calle cerca, o dos puntos solo se unen con un rodeo de más del
    doble de la recta (+ 60 m) —una vía nueva, un carril exclusivo, una calle
    que falta en OSM—, se corta y ahí queda el dibujo original («sin calle»).
-5. La geometría es la de los nodos, simplificada a 1,5 m como el resto del
+   Antes del primer tramo y después del último (una ruta que sale de Lima:
+   interprovinciales, playas del sur, Canta, Chosica) también queda el
+   dibujo, «fuera de Lima».
+5. Limpieza: se quita un rulo de ida y vuelta de menos de 60 m (el dibujo
+   se pasó de la esquina) y un tramo de más de 40 m contra el sentido se
+   cambia por la otra calzada si está pegada (a menos de 45 m) y no es más
+   larga que 1,3 veces + 150 m.
+6. La geometría es la de los nodos, simplificada a 1,5 m como el resto del
    sitio.
 
 Los **pasos** se arman de los tramos elegidos: los consecutivos de una misma
@@ -80,9 +90,11 @@ vuelve a pegar desde el dibujo, sola, y el reporte lo dice
 (`"origen": "osm cambió"`).
 
 Se usa el recorrido solo si se parece al dibujo (largo entre 0,85 y 1,15 del
-original, a lo más el 30 % sin calle; con correcciones, solo lo segundo); si
-no, la ruta sigue con su dibujo y queda en
-`pipeline/output/recorridos_reporte.json` para revisarla. Las que lo usan van
+original; a lo más el 30 % de lo que está dentro de Lima sin calle; al menos
+500 m por calles; con correcciones, el largo no cuenta); si no, la ruta sigue
+con su dibujo. Lo de fuera de Lima no se guarda en `.vias.json` (una
+interprovincial tiene cientos de km): solo dónde corta el dibujo, y se rehace
+de él. Las que lo usan van
 marcadas `"osm": true` en `wr_map.json`, y el mapa y «Cómo llegar» cargan ese
 archivo.
 
@@ -128,8 +140,31 @@ corre el script; una que ya no calza (cambió el paso al que apunta) se salta
 y se avisa. Las de los alimentadores van en `"alimentadores"`
 (`"AS-04-ida"`) y se aplican en `build_alim_paths.py`.
 
-## Pendiente
+## Revisión (`pipeline/output/recorridos_revision.md`)
 
-- Revisión automática: contra el sentido de una vía de un solo sentido,
-  vueltas en U, salidas raras de un óvalo, tramos sin calle; y las rutas que
-  no se pudieron pegar.
+Cada corrida revisa los recorridos y escribe una lista, con un enlace a
+OpenStreetMap en el lugar, de lo que conviene mirar:
+
+| Tipo | Qué es |
+| --- | --- |
+| Contra el sentido | Más de 40 m seguidos contra una vía de un solo sentido (que no se pudo cambiar a la otra calzada): un carril en contraflujo real, o el dibujo va por otra calle. |
+| Vueltas en U | Vuelve por el mismo tramo, o un paso «da la vuelta». |
+| Salidas raras de un óvalo | Sale por la 5.ª salida o más (casi una vuelta entera). |
+| Pedazos sin calle | Al menos 60 m donde OSM no tiene la calle: la línea sigue el dibujo. |
+
+Arriba van las rutas que siguen con su dibujo y por qué (casi todas, casi
+enteras fuera de Lima). El mismo detalle está en `recorridos_reporte.json`
+(`revisar`). Se corrige con un paso en `config/recorridos_correcciones.json`,
+o en OSM si la calle falta o tiene mal el sentido (se ve en la siguiente
+descarga del extracto).
+
+En la ficha, el botón «Recorrido» avisa los km fuera de Lima (sin
+indicaciones) y los pedazos sin calle.
+
+## Licencia
+
+Las calles son de OpenStreetMap, © colaboradores de OpenStreetMap, con
+licencia ODbL (https://www.openstreetmap.org/copyright). El mapa lo dice en
+su atribución (con enlace) y en las indicaciones de cada ruta. Los
+recorridos que salen de ahí (`.vias.json`, `.osm.geojson`, los pasos) son
+una base de datos derivada: quedan bajo la misma licencia.

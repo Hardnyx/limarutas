@@ -315,7 +315,8 @@ test('recorrido paso a paso: el del sentido elegido, por las calles de OSM', asy
   await expect(steps.first()).toContainText(/^Por /);
   expect(await steps.count()).toBeGreaterThan(5);
   await expect(steps.first().locator('.route-step-m')).toHaveText(/^\d+(,\d)? (m|km)$/);
-  await expect(box.locator('.route-steps-note')).toHaveText('Calles de OpenStreetMap');
+  await expect(box.locator('.route-steps-note')).toHaveText('Calles: © colaboradores de OpenStreetMap');
+  await expect(box.locator('.route-steps-note a')).toHaveAttribute('href', 'https://www.openstreetmap.org/copyright');
   // Otro sentido: sus pasos (el primero de la ida no es el de la vuelta)
   const ida = await steps.allTextContents();
   await item.locator('.segbtn-mini[data-dir="vuelta"]').click();

@@ -31,6 +31,10 @@ const MAX_BOUNDS = L.latLngBounds(
 const SHOW_BOUNDS_RECT = false;
 let maxBoundsRect = null;
 
+// Mapa de fondo y calles de las rutas: OpenStreetMap (ODbL) y CARTO
+const ATTRIBUTION = '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">colaboradores de OpenStreetMap</a>'
+  + ' &copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>';
+
 // Sin key (desarrollo local) CARTO sirve los tiles con marca de agua
 const CARTO_KEY_QS = CARTO_API_KEY && !CARTO_API_KEY.startsWith('__')
   ? `?key=${encodeURIComponent(CARTO_API_KEY)}`
@@ -47,12 +51,12 @@ export function initMap(){
 
   const light = L.tileLayer(
     `https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png${CARTO_KEY_QS}`,
-    { attribution: '&copy; OpenStreetMap & CARTO', maxZoom: MAX_ZOOM }
+    { attribution: ATTRIBUTION, maxZoom: MAX_ZOOM }
   ).addTo(map);
 
   const dark = L.tileLayer(
     `https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png${CARTO_KEY_QS}`,
-    { attribution: '&copy; OpenStreetMap & CARTO', maxZoom: MAX_ZOOM }
+    { attribution: ATTRIBUTION, maxZoom: MAX_ZOOM }
   );
 
   map.fitBounds(LIMA_BOUNDS);

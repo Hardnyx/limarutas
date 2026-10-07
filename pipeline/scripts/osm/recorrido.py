@@ -40,6 +40,13 @@ DETOUR_K, DETOUR_M = 2.0, 60
 SHORT_M = 25           # un paso más corto que esto se junta con el siguiente
 TINY_RB_M = 20         # una «rotonda» más corta (un pedazo de anillo en un cruce), también
 UNNAMED_M = 120        # un paso sin nombre más corto que esto (un enlace, una oreja), también
+CONTRA_M = 40          # revisión: tanto seguido contra el sentido de una vía
+RB_EXIT = 5            # revisión: salir de un óvalo por esta salida o más
+GAP_M = 60             # revisión: un pedazo sin calle de al menos esto
+WRONG_WAY_M = 25       # pegado: lo que «aleja» un tramo de sentido único recorrido al revés
+SPUR_M = 60            # limpieza: un rulo de ida y vuelta más corto que esto se quita
+CALZADA_K, CALZADA_M = 1.3, 150   # limpieza: la otra calzada, si no es más larga que esto
+CALZADA_D = 45         # limpieza: … y a lo más a esto de la calzada pegada
 ON_STREET_M = 100      # corrección «por Av. Z»: al menos esto seguido por ella
 CELL = 50
 
@@ -121,6 +128,30 @@ class Recorridos:
                         out.append((d, i, t))
         out.sort()
         return out[:MAX_CAND]
+
+    def _oriented(self, pts, k, cands):
+        """Un tramo de sentido único que el dibujo recorrería al revés queda
+        WRONG_WAY_M más lejos: entre las dos calzadas de una avenida (el
+        dibujo suele ir por el medio) gana la que va en el sentido del bus.
+        No lo prohíbe: si es la única calle cerca, se usa igual."""
+        if not cands:
+            return cands
+        a, b = pts[max(0, k - 1)], pts[min(len(pts) - 1, k + 1)]
+        if a == b:
+            return cands
+        h = _heading(a, b)
+        out = []
+        for d, i, t in cands:
+            u, v, _L = self.edges[i]
+            fwd = any(x == v for x, _w in self.red.adj.get(u, ()))
+            back = any(x == u for x, _w in self.red.adj.get(v, ()))
+            if fwd != back:
+                e = _heading(self.pos[u], self.pos[v]) if fwd else _heading(self.pos[v], self.pos[u])
+                if math.cos(h - e) < -0.5:
+                    d += WRONG_WAY_M
+            out.append((d, i, t))
+        out.sort()
+        return out
 
     def dists_from(self, node, limit):
         dist = {node: 0.0}
@@ -242,12 +273,15 @@ class Recorridos:
                         best = (L, p)
         return best[1] if best else None
 
-    def match(self, line):
+    def match(self, line, ends=False):
         """{'tramos': [{'nodos': [...], 'desde': p, 'hasta': q}, ...],
-            'sueltos': [[puntos del dibujo entre tramos], ...]}"""
+            'sueltos': [[puntos del dibujo entre tramos], ...]}
+        Con ends, también 'antes' y 'despues': el dibujo antes del primer
+        tramo y después del último (una ruta que sale de la red: las
+        interprovinciales, las que van a las playas del sur)."""
         line = [tuple(p) for p in line]
         pts = resample(line)
-        layers = [self.candidates(p) for p in pts]
+        layers = [self._oriented(pts, k, self.candidates(p)) for k, p in enumerate(pts)]
         runs, seg = [], []
         for k, cands in enumerate(layers):
             if cands:
@@ -272,7 +306,13 @@ class Recorridos:
             tramos.append({'nodos': nodes, 'desde': self._point(layers, *run[0]),
                            'hasta': self._point(layers, *run[-1])})
             prev_k = run[-1][0]
-        return {'tramos': tramos, 'sueltos': sueltos}
+        rec = {'tramos': tramos, 'sueltos': sueltos}
+        if ends:
+            first = runs[0][0][0] if runs else len(pts)
+            last = runs[-1][-1][0] if runs else len(pts) - 1
+            rec['corte'] = [first, last + 1, len(pts)]
+            rec.update(_ends(pts, rec['corte']))
+        return rec
 
     def join(self, a, b):
         """Puntos por la red de a a b (sin a ni b): para cerrar un circuito
@@ -291,13 +331,14 @@ class Recorridos:
 
     # ---------- geometría y pasos ----------
     def geometry(self, rec):
-        out = []
+        out = [tuple(p) for p in rec.get('antes', [])]
         for n, t in enumerate(rec['tramos']):
             if n and n - 1 < len(rec['sueltos']):
                 out += [tuple(p) for p in rec['sueltos'][n - 1]]
             out.append(t['desde'])
             out += [self.pos[x] for x in t['nodos']]
             out.append(t['hasta'])
+        out += [tuple(p) for p in rec.get('despues', [])]
         return [[round(la, 6), round(lo, 6)] for la, lo in simplify(out)]
 
     def steps(self, rec, idx=False):
@@ -426,8 +467,13 @@ class Recorridos:
             item['nodo'] = nodes[0]
             item['vias'] = vias
             tramos.append(item)
-        return {'osm': self.red.fecha, 'tramos': tramos,
-                'sueltos': [[[round(x, 6) for x in p] for p in s] for s in rec['sueltos']]}
+        out = {'osm': self.red.fecha, 'tramos': tramos,
+               'sueltos': [[[round(x, 6) for x in p] for p in s] for s in rec['sueltos']]}
+        # De los extremos fuera de la red, solo dónde cortan el dibujo (una
+        # interprovincial tiene cientos de km fuera): se rehacen de él
+        if rec.get('corte'):
+            out['corte'] = rec['corte']
+        return out
 
     def _walk(self, a, vias):
         """Nodos desde a por las vías [[vía, k], …], o None si no se puede.
@@ -462,10 +508,11 @@ class Recorridos:
             out += part[1:]
         return out
 
-    def decode(self, data):
+    def decode(self, data, line=None):
         """El recorrido guardado (encode) con la red actual; None si alguna vía
-        o nodo ya no está o dejó de unirse (OSM cambió): hay que volver a
-        pegar el dibujo."""
+        o nodo ya no está o dejó de unirse (OSM cambió), o si el dibujo
+        (line, de donde salen los extremos fuera de la red) cambió: hay que
+        volver a pegarlo."""
         tramos = []
         for item in data['tramos']:
             if 'vias' not in item:
@@ -475,7 +522,16 @@ class Recorridos:
                 if nodes is None or any(b not in self.adj.get(a, ()) for a, b in zip(nodes, nodes[1:])):
                     return None
             tramos.append({'nodos': nodes, 'desde': tuple(item['desde']), 'hasta': tuple(item['hasta'])})
-        return {'tramos': tramos, 'sueltos': [[list(p) for p in s] for s in data.get('sueltos', [])]}
+        rec = {'tramos': tramos, 'sueltos': [[list(p) for p in s] for s in data.get('sueltos', [])]}
+        if data.get('corte'):
+            if line is None:
+                return None
+            pts = resample([tuple(p) for p in line])
+            if len(pts) != data['corte'][2]:
+                return None
+            rec['corte'] = data['corte']
+            rec.update(_ends(pts, data['corte']))
+        return rec
 
     # ---------- correcciones ----------
     def corregir(self, rec, corr):
@@ -527,7 +583,7 @@ class Recorridos:
                   'nodos': tramos[t1]['nodos'][:j1] + path + tramos[t2]['nodos'][j2 + 1:]}
         # Entre los tramos t y t+1 está el suelto t
         sueltos = rec['sueltos'][:t1] + rec['sueltos'][t2:]
-        return {'tramos': tramos[:t1] + [joined] + tramos[t2 + 1:], 'sueltos': sueltos}
+        return {**rec, 'tramos': tramos[:t1] + [joined] + tramos[t2 + 1:], 'sueltos': sueltos}
 
     def via(self, a, b, por):
         """Nodos del camino de a a b que pasa, en orden, por cada elemento de
@@ -593,6 +649,167 @@ class Recorridos:
                     out.append(prev[out[-1]])
                 return [n for n, _, _ in reversed(out)]
         return None
+
+
+    # ---------- limpieza del recorrido pegado ----------
+    def limpiar(self, rec):
+        """Arregla dos errores típicos de pegar un dibujo: un rulo corto (entra
+        unos metros a una calle y vuelve: el dibujo se pasó de la esquina) y
+        la calzada equivocada (el dibujo va por el medio de una avenida de dos
+        calzadas y quedó en la que va en contra)."""
+        tramos = []
+        for t in rec['tramos']:
+            nodes = t['nodos']
+            if len(nodes) > 2:
+                nodes = self._calzada(self._sin_rulos(nodes))
+            tramos.append({**t, 'nodos': nodes})
+        return {**rec, 'tramos': tramos}
+
+    def _sin_rulos(self, nodes):
+        changed = True
+        while changed:
+            changed = False
+            for i in range(1, len(nodes) - 1):
+                if nodes[i - 1] != nodes[i + 1]:
+                    continue
+                k, m = 1, _d(self.pos[nodes[i - 1]], self.pos[nodes[i]])
+                while (i - k - 1 >= 0 and i + k + 1 < len(nodes) and nodes[i - k - 1] == nodes[i + k + 1]
+                       and m + _d(self.pos[nodes[i - k - 1]], self.pos[nodes[i - k]]) <= SPUR_M):
+                    m += _d(self.pos[nodes[i - k - 1]], self.pos[nodes[i - k]])
+                    k += 1
+                if m <= SPUR_M:
+                    nodes = nodes[:i - k + 1] + nodes[i + k + 1:]
+                    changed = True
+                    break
+        return nodes
+
+    def _against(self, u, v):
+        fu = {x for x, _w in self.red.adj.get(u, ())}
+        return v not in fu and u in {x for x, _w in self.red.adj.get(v, ())}
+
+    def _calzada(self, nodes):
+        """Cada tramo seguido contra el sentido (más de CONTRA_M) se cambia
+        por el camino en el sentido correcto entre sus extremos, si es
+        parecido (la otra calzada, cruzando en las esquinas)."""
+        out, i = [], 0
+        while i < len(nodes) - 1:
+            if not self._against(nodes[i], nodes[i + 1]):
+                out.append(nodes[i])
+                i += 1
+                continue
+            j, m = i, 0.0
+            while j < len(nodes) - 1 and self._against(nodes[j], nodes[j + 1]):
+                m += _d(self.pos[nodes[j]], self.pos[nodes[j + 1]])
+                j += 1
+            alt = self._directed(nodes[i], nodes[j], CALZADA_K * m + CALZADA_M) if m >= CONTRA_M else None
+            # Solo la otra calzada, pegada a esta: no una calle paralela (un
+            # bus que sí va en contraflujo por su carril se queda donde está)
+            if alt and not self._near([self.pos[x] for x in nodes[i:j + 1]], alt):
+                alt = None
+            if alt:
+                out += alt[:-1]
+            else:
+                out += nodes[i:j]
+            i = j
+        out.append(nodes[-1])
+        return out
+
+    def _near(self, line, nodes):
+        for x in nodes:
+            p = self.pos[x]
+            if min(_seg_d(p, a, b) for a, b in zip(line, line[1:])) > CALZADA_D:
+                return False
+        return True
+
+    def _directed(self, a, b, limit):
+        """Nodos del camino más corto en metros de a a b respetando los
+        sentidos, hasta limit metros; None si no hay."""
+        dist, prev = {a: 0.0}, {}
+        heap = [(0.0, a)]
+        while heap:
+            g, u = heapq.heappop(heap)
+            if u == b:
+                out = [b]
+                while out[-1] != a:
+                    out.append(prev[out[-1]])
+                return out[::-1]
+            if g > dist[u] or g > limit:
+                continue
+            for v, _w in self.red.adj.get(u, ()):
+                ng = g + _d(self.pos[u], self.pos[v])
+                if ng < dist.get(v, math.inf):
+                    dist[v], prev[v] = ng, u
+                    heapq.heappush(heap, (ng, v))
+        return None
+
+    # ---------- revisión ----------
+    def revisar(self, rec, steps=None):
+        """Lo que conviene mirar de un recorrido: [{'tipo', 'via', 'm'?, 'paso'?,
+        'lat', 'lon'}]. Tipos:
+          contra_sentido  más de CONTRA_M seguidos contra una vía de un solo
+                          sentido (un carril en contraflujo, o el dibujo va
+                          por la calzada equivocada)
+          vuelta_u        da la vuelta en media calle (vuelve por el mismo
+                          tramo) o un paso «da la vuelta»
+          rotonda         sale de un óvalo por la salida RB_EXIT o más (casi
+                          una vuelta entera)
+          sin_calle       un pedazo donde el dibujo no tenía calle en OSM"""
+        out = []
+        oneway_against = self._against
+
+        for t in rec['tramos']:
+            nodes = t['nodos']
+            run, run_m, run_via = None, 0.0, ''
+            for a, b in zip(nodes, nodes[1:]):
+                if oneway_against(a, b):
+                    if run is None:
+                        run, run_m, run_via = a, 0.0, self.way(a, b)[1]
+                    run_m += _d(self.pos[a], self.pos[b])
+                    continue
+                if run is not None and run_m >= CONTRA_M:
+                    out.append({'tipo': 'contra_sentido', 'via': run_via, 'm': round(run_m), **_at(self.pos[run])})
+                run = None
+            if run is not None and run_m >= CONTRA_M:
+                out.append({'tipo': 'contra_sentido', 'via': run_via, 'm': round(run_m), **_at(self.pos[run])})
+            for a, b, c in zip(nodes, nodes[1:], nodes[2:]):
+                if a == c:
+                    out.append({'tipo': 'vuelta_u', 'via': self.way(a, b)[1], **_at(self.pos[b])})
+        for n, st in enumerate(steps if steps is not None else self.steps(rec, idx=True), 1):
+            ti, i = st['_a']
+            where = _at(self.pos[rec['tramos'][ti]['nodos'][i]])
+            if st['accion'] == 'vuelta':
+                out.append({'tipo': 'vuelta_u', 'via': st['via'], 'paso': n, **where})
+            if st['accion'] == 'rotonda' and st['salida'] >= RB_EXIT:
+                out.append({'tipo': 'rotonda', 'via': st['via'], 'paso': n, 'salida': st['salida'], **where})
+        for gap in rec['sueltos']:
+            m = sum(_d(a, b) for a, b in zip(gap, gap[1:]))
+            if m >= GAP_M:
+                out.append({'tipo': 'sin_calle', 'via': '', 'm': round(m), **_at(gap[len(gap) // 2])})
+        return out
+
+
+def _ends(pts, corte):
+    """Los extremos del dibujo fuera de la red (simplificados)."""
+    first, after, _n = corte
+    out = {}
+    if first > 0:
+        out['antes'] = [list(p) for p in simplify(pts[:first])]
+    if after < len(pts):
+        out['despues'] = [list(p) for p in simplify(pts[after:])]
+    return out
+
+
+def _seg_d(p, a, b):
+    ax, ay = (a[1] - p[1]) * M_LON, (a[0] - p[0]) * M_LAT
+    bx, by = (b[1] - p[1]) * M_LON, (b[0] - p[0]) * M_LAT
+    dx, dy = bx - ax, by - ay
+    l2 = dx * dx + dy * dy
+    t = 0.0 if l2 == 0 else max(0.0, min(1.0, -(ax * dx + ay * dy) / l2))
+    return math.hypot(ax + t * dx, ay + t * dy)
+
+
+def _at(p):
+    return {'lat': round(p[0], 6), 'lon': round(p[1], 6)}
 
 
 class CorreccionError(ValueError):

@@ -170,8 +170,8 @@ function attachWrSteps(body, textBlock, chk){
   if (!rids.some(r => defs?.get(String(r))?.osm)) return;
   const { btn, box, refresh } = stepsToggle(async () => {
     const rid = pair ? (chk.dataset.sel === 'vuelta' ? chk.dataset.vuelta : chk.dataset.ida) : chk.dataset.layer;
-    const pasos = await wrSteps(defs.get(String(rid)));
-    return pasos ? [{ pasos }] : null;
+    const section = await wrSteps(defs.get(String(rid)));
+    return section ? [section] : null;
   });
   textBlock.append(btn);
   body.append(box);

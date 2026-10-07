@@ -32,6 +32,7 @@ import math
 import multiprocessing as mp
 import sys
 import time
+from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -41,10 +42,12 @@ from recorrido import CorreccionError, Recorridos  # noqa: E402
 WR_MAP = ROOT / 'pipeline' / 'output' / 'wr_map.json'
 REPORT = ROOT / 'pipeline' / 'output' / 'recorridos_reporte.json'
 CORR = ROOT / 'config' / 'recorridos_correcciones.json'
+REVIEW = ROOT / 'pipeline' / 'output' / 'recorridos_revision.md'
 LIMA = (-12.42, -77.26, -11.70, -76.56)
 
 MIN_RATIO, MAX_RATIO = 0.85, 1.15
-MAX_GAP = 0.30
+MAX_GAP = 0.30        # del largo dentro de Lima
+MIN_STREET_M = 500    # por calles de la red, al menos (si no, casi todo es dibujo)
 
 M_LAT = 110_574
 M_LON = 111_320 * math.cos(math.radians(-12.05))
@@ -105,10 +108,10 @@ def work(item):
         return key, {'error': 'dibujo vacío'}
     rec, origen = None, 'vias'
     if vias.exists() and not REHACER:
-        rec = R.decode(json.loads(vias.read_text(encoding='utf-8')))
+        rec = R.decode(json.loads(vias.read_text(encoding='utf-8')), line)
         origen = 'vias' if rec else 'osm cambió'
     if rec is None:
-        rec = R.match(line)
+        rec = R.limpiar(R.match(line, ends=True))
         vias.write_text(json.dumps(R.encode(rec), separators=(',', ':')), encoding='utf-8')
         origen = 'dibujo' if origen == 'vias' else origen
     corrs = CORRECCIONES.get(key, [])
@@ -116,20 +119,32 @@ def work(item):
     geom = R.geometry(rec)
     lo, ln = length(line), length(geom)
     gap = sum(length(s) for s in rec['sueltos'])
+    # Fuera de la red de Lima (antes del primer tramo y después del último): el dibujo
+    out = [round(length(rec.get(k, []))) for k in ('antes', 'despues')]
+    on_street = ln - gap - sum(out)
     stats = {'m': round(lo), 'm_osm': round(ln), 'ratio': round(ln / lo, 3) if lo else 0,
              'sin_calle': len(rec['sueltos']), 'm_sin_calle': round(gap), 'origen': origen}
+    if any(out):
+        stats['m_fuera'] = out
+    steps = R.steps(rec, idx=True)
+    review = R.revisar(rec, steps)
+    if review:
+        stats['revisar'] = review
     if corrs:
         stats['correcciones'] = len(corrs) - len(errors)
     if errors:
         stats['errores'] = errors
     # Corregida a mano: el largo puede cambiar respecto del dibujo
-    ok = lo > 0 and (bool(corrs) or MIN_RATIO <= ln / lo <= MAX_RATIO) and gap <= MAX_GAP * lo
+    ok = (lo > 0 and (bool(corrs) or MIN_RATIO <= ln / lo <= MAX_RATIO)
+          and gap <= MAX_GAP * (lo - sum(out)) and on_street >= MIN_STREET_M)
     stats['usa'] = ok
     if ok:
         fc = {'type': 'FeatureCollection', 'features': [{
             'type': 'Feature',
-            'properties': {'fuente': f'OpenStreetMap {R.red.fecha} (recorrido.py)', 'pasos': R.steps(rec),
-                           'sin_calle': len(rec['sueltos'])},
+            'properties': {'fuente': f'OpenStreetMap {R.red.fecha} (recorrido.py)',
+                           'pasos': [{k: v for k, v in st.items() if not k.startswith('_')} for st in steps],
+                           'sin_calle': len(rec['sueltos']),
+                           **({'fuera': out} if any(out) else {})},
             'geometry': {'type': 'LineString', 'coordinates': [[lon, lat] for lat, lon in geom]}}]}
         text = json.dumps(fc, ensure_ascii=False, separators=(',', ':'))
         if not dst.exists() or dst.read_text(encoding='utf-8') != text:
@@ -198,6 +213,60 @@ def main(argv):
     unknown = sorted(set(CORRECCIONES) - set(routes))
     if unknown:
         print(f"  correcciones de rutas que no existen: {', '.join(unknown)}")
+    counts = Counter(x['tipo'] for k, v in report.items() if v.get('usa') for x in v.get('revisar', []))
+    if counts:
+        print('  para revisar: ' + ' · '.join(f'{n} {TIPOS[t]}' for t, n in counts.most_common())
+              + f' · {REVIEW.relative_to(ROOT)}')
+    write_review(report, routes)
+
+
+TIPOS = {'contra_sentido': 'contra el sentido', 'vuelta_u': 'vueltas en U',
+         'rotonda': 'salidas raras de un óvalo', 'sin_calle': 'pedazos sin calle'}
+
+
+def osm_link(x):
+    return f"https://www.openstreetmap.org/?mlat={x['lat']}&mlon={x['lon']}#map=18/{x['lat']}/{x['lon']}"
+
+
+def write_review(report, routes):
+    """pipeline/output/recorridos_revision.md: lo que conviene mirar de cada
+    ruta (R.revisar), con un enlace a OSM en el lugar; y las que siguen con
+    su dibujo y por qué."""
+    lines = ['# Recorridos: para revisar', '',
+             'Generado por `pipeline/scripts/osm/build_recorridos.py` (docs/RECORRIDOS.md). '
+             'Cada punto enlaza a OpenStreetMap en el lugar. Se corrige con un paso en '
+             '`config/recorridos_correcciones.json`, o en OSM si la calle falta o tiene mal el sentido.', '']
+    rejected = {k: v for k, v in report.items() if not v.get('usa')}
+    if rejected:
+        lines += [f'## Siguen con su dibujo ({len(rejected)})', '']
+        for k, v in sorted(rejected.items()):
+            if 'error' in v:
+                why = v['error']
+            elif not MIN_RATIO <= v['ratio'] <= MAX_RATIO:
+                why = f"por la red mide {v['ratio']:.2f} del dibujo"
+            elif v.get('m_sin_calle'):
+                why = f"{v['m_sin_calle']} m sin calle de {v['m']} m"
+            else:
+                why = 'casi todo fuera de la red de Lima'
+            lines.append(f"- `{k}` {routes.get(k, {}).get('name', '')}: {why}")
+        lines.append('')
+    for tipo, title in TIPOS.items():
+        rows = [(k, x) for k, v in sorted(report.items()) if v.get('usa')
+                for x in v.get('revisar', []) if x['tipo'] == tipo]
+        if not rows:
+            continue
+        lines += [f'## {title[0].upper()}{title[1:]} ({len(rows)})', '']
+        for k, x in rows:
+            bits = [x.get('via') or 'calle sin nombre']
+            if 'paso' in x:
+                bits.append(f"paso {x['paso']}")
+            if 'salida' in x:
+                bits.append(f"{x['salida']}.ª salida")
+            if 'm' in x:
+                bits.append(f"{x['m']} m")
+            lines.append(f"- `{k}` {' · '.join(bits)} · [mapa]({osm_link(x)})")
+        lines.append('')
+    REVIEW.write_text('\n'.join(lines), encoding='utf-8')
 
 
 if __name__ == '__main__':
