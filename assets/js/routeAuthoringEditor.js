@@ -4,6 +4,7 @@ import { RouteEditorState } from './routeAuthoringState.js';
 const $ = id => document.getElementById(id);
 const api = new RouteAuthoringClient(), state = new RouteEditorState();
 let online = false, busy = false, mode = '', range = null, waypoints = [], pendingPath = false, viewportTimer, viewportVersion = 0;
+let updateBundle = null, updateProposal = null, updateChoices = {};
 const map = L.map('editorMap', { zoomControl: false }).setView([-12.055, -77.035], 15);
 map.createPane('streetPane').style.zIndex = 390;
 map.createPane('originalPane').style.zIndex = 395;
@@ -13,6 +14,7 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
 }).addTo(map);
 const streets = L.layerGroup().addTo(map), original = L.layerGroup().addTo(map), track = L.layerGroup().addTo(map), markers = L.layerGroup().addTo(map);
 const anchorMarkers = L.layerGroup().addTo(map);
+const incomingSource = L.layerGroup().addTo(map);
 const latlng = point => [point[1], point[0]];
 const point = ll => [ll.lng, ll.lat];
 const reserved = edge => ['separate_busway', 'restricted_bus_road'].includes(edge.facility);
@@ -20,9 +22,11 @@ const reserved = edge => ['separate_busway', 'restricted_bus_road'].includes(edg
 function node(tag, text, className){ const el = document.createElement(tag); if (text != null) el.textContent = text; if (className) el.className = className; return el; }
 function message(text, error = false){ $('editorMessage').textContent = text; $('editorMessage').dataset.error = String(error); }
 function controls(){
-  const pack = state.pack, disabled = busy || !online;
+  const pack = state.pack, disabled = busy || !online || !!updateBundle;
   $('connection').textContent = busy ? 'Procesando…' : online ? 'Motor conectado' : 'Motor desconectado';
   $('routeTools').inert = busy;
+  for (const panel of document.querySelectorAll('[data-panel="path"],[data-panel="stops"]')) panel.inert = !!updateBundle;
+  $('reviewNotes').disabled = disabled;
   $('routeTools').hidden = !pack; $('offlineHelp').hidden = online;
   for (const id of ['newRoute','importFile','routeQuery']) $(id).disabled = disabled;
   for (const id of ['saveDraft','exportPreview','addWaypoint','addStop','selectRange','serviceMode','serviceSystem']) $(id).disabled = disabled || !pack;
@@ -33,12 +37,15 @@ function controls(){
   $('acceptRoute').disabled = disabled || pendingPath || !pack?.validation.ready;
   $('exportRoute').disabled = disabled || pendingPath || state.dirty || !pack?.route.review.accepted;
   $('applyPath').disabled = disabled || (!range && waypoints.length < 2) || (range && range.end == null);
+  $('sourceUpdateFile').disabled = disabled || state.dirty || pendingPath || !state.persistedRevision || pack?.route.source.kind !== 'wikiroutes';
+  $('applySourceUpdate').disabled = busy || !online || !updateProposal?.canApply;
+  $('cancelSourceUpdate').disabled = busy || !updateBundle;
   $('editStatus').textContent = !pack ? 'Sin ruta abierta' : pendingPath ? 'Recorrido pendiente de aplicar' : state.dirty ? 'Cambios sin guardar' : pack.route.review.accepted ? 'Recorrido aceptado' : `Borrador · revisión ${state.persistedRevision}`;
 }
 async function run(fn){ if (busy) return; busy = true; controls(); try { await fn(); } catch (error){ message(error.message, true); } finally { busy = false; controls(); } }
 async function connect(){ await run(async () => { await api.call('health'); online = true; message('Selecciona una ruta o importa un archivo con trazado y paraderos.'); await loadStreets(); }); }
 function canSwitch(){ if (!state.dirty && !pendingPath) return true; message('Guarda el borrador o cancela sus cambios antes de abrir otra ruta.', true); return false; }
-function open(pack){ state.load(pack); mode = ''; range = null; pendingPath = false; waypoints = structuredClone(pack.route.anchors || []); $('routeEntry').open = false; render(true); }
+function open(pack){ clearSourceUpdate(); state.load(pack); mode = ''; range = null; pendingPath = false; waypoints = structuredClone(pack.route.anchors || []); $('routeEntry').open = false; render(true); }
 function change(pack){ state.change(pack); render(); }
 function switchTab(tab){ for (const button of document.querySelectorAll('[data-tab]')) button.setAttribute('aria-pressed', String(button.dataset.tab === tab)); for (const panel of document.querySelectorAll('[data-panel]')) panel.hidden = panel.dataset.panel !== tab; if (tab === 'stops') map.removeLayer(anchorMarkers); else anchorMarkers.addTo(map); }
 
@@ -63,7 +70,7 @@ async function loadStreets(){
 map.on('moveend', () => { clearTimeout(viewportTimer); viewportTimer = setTimeout(loadStreets, 180); });
 
 async function chooseStreet(eid, location){
-  if (!state.pack || !['waypoint','stop'].includes(mode)) return;
+  if (updateBundle || !state.pack || !['waypoint','stop'].includes(mode)) return;
   const result = await api.call('resolve', { query: { kind: 'point', coordinates: point(location) } });
   const candidate = result.candidates.find(c => c.edge === eid);
   if (!candidate) throw new Error('No se pudo localizar el punto en la calle seleccionada.');
@@ -91,7 +98,7 @@ function renderWaypoints(){
     button.addEventListener('click', () => { waypoints.splice(index, 1); pendingPath = true; renderWaypoints(); controls(); });
     $('waypointList').append(li);
     if (anchor.coordinates){
-      const marker = L.marker(latlng(anchor.coordinates), {draggable:true,icon:L.divIcon({className:'anchor-marker',iconSize:[22,22],iconAnchor:[11,11]})}).addTo(anchorMarkers);
+      const marker = L.marker(latlng(anchor.coordinates), {draggable:!updateBundle,icon:L.divIcon({className:'anchor-marker',iconSize:[22,22],iconAnchor:[11,11]})}).addTo(anchorMarkers);
       marker.on('dragend', () => run(async () => {
         const result = await api.call('resolve',{query:{kind:'point',coordinates:point(marker.getLatLng())}});
         const options = node('div'); options.append(node('p','Selecciona la calzada para este paso:'));
@@ -123,6 +130,7 @@ function render(fit = false){
     const layer = L.polyline(segment.coordinates.map(latlng), { color: selected ? '#e5a21e' : segment.type === 'gap' ? '#d24b35' : '#1260cc', weight: selected ? 7 : 4, opacity: .95 });
     layer.on('click', event => {
       L.DomEvent.stopPropagation(event);
+      if (updateBundle || busy) return;
       if (mode === 'rangeStart' && segment.type === 'street'){ range = { start: segment.index, end: null }; waypoints = []; mode = 'rangeEnd'; render(); message('Selecciona el final del tramo que quieres sustituir.'); }
       else if (mode === 'rangeEnd' && segment.type === 'street'){
         if (segment.index < range.start){ message('El final debe ir después del inicio seleccionado.', true); return; }
@@ -132,7 +140,7 @@ function render(fit = false){
     layer.addTo(track); layer.getElement()?.setAttribute('data-path-index', segment.index);
   }
   route.stops.forEach((stop, index) => {
-    const marker = L.marker(latlng(stop.coordinates), { draggable: true, icon: L.divIcon({ className: 'stop-marker', iconSize: [14,14], iconAnchor: [7,7] }) });
+    const marker = L.marker(latlng(stop.coordinates), { draggable: !updateBundle, icon: L.divIcon({ className: 'stop-marker', iconSize: [14,14], iconAnchor: [7,7] }) });
     marker.bindTooltip(node('span', `${index+1}. ${stop.name}`));
     marker.on('dragend', () => run(async () => { const edited = state.requestRoute(); edited.stops[index].coordinates = point(marker.getLatLng()); change(await api.call('validate', { route: edited })); }));
     marker.addTo(markers); marker.getElement()?.setAttribute('data-stop-id', stop.id);
@@ -184,7 +192,8 @@ $('newRouteForm').addEventListener('submit', event => { event.preventDefault(); 
 $('importFile').addEventListener('change', event => run(async () => {
   if (!canSwitch()) return; const file = event.target.files[0]; if (!file) return;
   const data = JSON.parse(await file.text());
-  const pack = data.files ? await api.call('validate', { route: Object.values(data.files).find(v => v.version === 1 && v.path && v.stops) }) : data.route ? await api.call('validate', { route: data.route }) : data.version === 1 && data.path ? await api.call('validate', { route: data }) : await api.call('import', { bundle: data });
+  const draft = data.files ? Object.values(data.files).find(v => v.version === 1 && v.path && v.stops) : data.route || (data.version === 1 && data.path ? data : null);
+  const pack = draft ? await api.call('restore', {route:draft}) : await api.call('import', { bundle: data });
   open(pack); message('Archivo importado. La fuente original se conserva.'); event.target.value = '';
 }));
 $('matchSource').addEventListener('click', () => run(async () => { change(await api.call('match', { route: state.requestRoute() })); message('Ajuste preparado. Revisa los avisos y compáralo con la fuente.'); }));
@@ -204,11 +213,49 @@ $('undo').addEventListener('click', () => { state.undo(); pendingPath = false; r
 $('redo').addEventListener('click', () => { state.redo(); pendingPath = false; range = null; waypoints = structuredClone(state.pack.route.anchors || []); render(); });
 $('cancelChanges').addEventListener('click', () => { state.cancel(); pendingPath = false; range = null; mode = ''; waypoints = structuredClone(state.pack.route.anchors || []); render(); message('Cambios locales cancelados.'); });
 async function save(accept){ const route = state.requestRoute(); route.review.notes = $('reviewNotes').value; const pack = await api.call(accept ? 'accept' : 'save', { route, expectedRevision: state.persistedRevision }); state.markSaved(pack); render(); message(accept ? 'Recorrido aceptado para exportar.' : 'Borrador guardado. El sitio publicado no se modifica.'); }
+$('reviewNotes').addEventListener('change',()=>run(async()=>{const route=state.requestRoute();route.review.notes=$('reviewNotes').value;change(await api.call('validate',{route}));}));
 $('saveDraft').addEventListener('click', () => run(() => save(false)));
 $('acceptRoute').addEventListener('click', () => run(() => save(true)));
 async function download(preview){ const data = await api.call('export', { route: state.requestRoute(), preview }); const url = URL.createObjectURL(new Blob([JSON.stringify(data,null,2)], { type: 'application/json' })); const link = node('a'); link.href = url; link.download = `${state.pack.route.id.replace(/[^a-z0-9_-]/gi,'_')}${preview ? '-preview' : ''}.bundle.json`; link.click(); setTimeout(() => URL.revokeObjectURL(url), 1000); }
 $('exportPreview').addEventListener('click', () => run(() => download(true)));
 $('exportRoute').addEventListener('click', () => run(() => download(false)));
+function clearSourceUpdate(){
+  updateBundle = null; updateProposal = null; updateChoices = {};
+  incomingSource.clearLayers(); $('incomingLegend').hidden = true;
+  $('sourceUpdateFile').value = ''; $('sourceUpdateSummary').textContent = ''; $('sourceConflicts').replaceChildren();
+}
+async function compareSourceUpdate(){
+  updateProposal = await api.call('propose-update', {routeId:state.pack.route.id,bundle:updateBundle,choices:updateChoices});
+  const unresolved = updateProposal.conflicts.filter(c => !c.resolution).length;
+  $('sourceUpdateSummary').textContent = `${updateProposal.sourceChanged ? 'Fuente nueva' : 'Fuente sin cambios'} · ${unresolved} conflictos pendientes · ${updateProposal.preview.validation.issues.length} avisos tras combinar.`;
+  $('sourceConflicts').replaceChildren();
+  for (const conflict of updateProposal.conflicts){
+    const label = node('label', `Conflicto: ${conflict.key}`), select = node('select');
+    select.setAttribute('aria-label',`Resolver ${conflict.key}`);
+    for(const [value,text] of [['','Selecciona una decisión'],['local','Conservar mi edición'],['incoming','Usar la nueva fuente']]){const option=node('option',text);option.value=value;select.append(option);}
+    select.value = conflict.resolution || '';
+    const values = node('pre', `Mi edición: ${JSON.stringify(conflict.local)}\nNueva fuente: ${JSON.stringify(conflict.incoming)}`);
+    values.style.cssText = 'white-space:pre-wrap;overflow-wrap:anywhere;max-height:150px;overflow:auto;font-size:11px';
+    select.addEventListener('change', () => run(async () => { if(select.value) updateChoices[conflict.key]=select.value;else delete updateChoices[conflict.key];updateProposal=null;await compareSourceUpdate(); }));
+    label.append(select); $('sourceConflicts').append(label,values);
+  }
+  incomingSource.clearLayers();
+  L.geoJSON(updateBundle.track,{pane:'originalPane',style:{color:'#e18016',weight:5,dashArray:'3 6',opacity:.8},interactive:false}).addTo(incomingSource);
+  $('incomingLegend').hidden = false; render();
+}
+$('sourceUpdateFile').addEventListener('change',event => run(async () => {
+  const file = event.target.files[0]; if(!file) return;
+  const data = JSON.parse(await file.text());
+  if(!data.track || !data.stops) throw new Error('El archivo debe incluir el trazado y los paraderos de la fuente nueva.');
+  updateBundle = data; updateChoices = {}; updateProposal = null;
+  try { await compareSourceUpdate();message('Propuesta preparada. Tus cambios guardados siguen intactos.'); }
+  catch(error){clearSourceUpdate();render();throw error;}
+}));
+$('cancelSourceUpdate').addEventListener('click',()=>{clearSourceUpdate();render();message('Propuesta descartada. Se conserva el borrador guardado.');});
+$('applySourceUpdate').addEventListener('click',()=>run(async()=>{
+  const pack = await api.call('apply-update',{routeId:state.pack.route.id,bundle:updateBundle,choices:updateChoices,expectedRevision:state.persistedRevision,proposalHash:updateProposal.proposalHash});
+  open(pack); message('Fuente actualizada. Revisa el recorrido antes de volver a aceptarlo.');
+}));
 $('reconnect').addEventListener('click', connect);
 window.addEventListener('beforeunload', event => { if (state.dirty || pendingPath){ event.preventDefault(); event.returnValue = ''; } });
 controls(); connect();

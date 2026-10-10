@@ -145,3 +145,61 @@ test('opening the static editor without a service leaves all editing actions dis
   await expect(page.locator('#saveDraft')).toBeDisabled();
   await expect(page.locator('#editorMessage')).toContainText('Abre el editor desde el servicio local');
 });
+
+test('a refreshed source requires conflict choices and preserves the saved edits until applied',async({page},info)=>{
+  const data=await openFixture(page,`-refresh-${info.project.name}`);
+  await page.getByRole('button',{name:'Paraderos',exact:true}).click();
+  await page.getByLabel('Nombre del paradero 1',{exact:true}).fill('Mi nombre');
+  await page.getByLabel('Nombre del paradero 1',{exact:true}).press('Tab');
+  await page.getByRole('button',{name:'Guardar borrador',exact:true}).click();
+  await expect(page.locator('#editStatus')).toContainText('revisión 1');
+  await page.getByRole('button',{name:'Revisión',exact:true}).click();
+  await page.getByText('Actualizar desde una nueva fuente',{exact:true}).click();
+  data.stops.features[0].properties.name='Nombre descargado';
+  await page.locator('#sourceUpdateFile').setInputFiles({name:'update.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(data))});
+  await expect(page.locator('#sourceUpdateSummary')).toContainText('1 conflictos pendientes');
+  await expect(page.locator('#applySourceUpdate')).toBeDisabled();
+  await expect(page.locator('#saveDraft')).toBeDisabled();
+  await page.getByLabel('Resolver stop:1#1.name',{exact:true}).selectOption('local');
+  await expect(page.locator('#sourceUpdateSummary')).toContainText('0 conflictos pendientes');
+  await page.getByRole('button',{name:'Aplicar actualización',exact:true}).click();
+  await expect(page.locator('#editStatus')).toContainText('revisión 2');
+  await page.getByRole('button',{name:'Paraderos',exact:true}).click();
+  await expect(page.getByLabel('Nombre del paradero 1',{exact:true})).toHaveValue('Mi nombre');
+  const downloaded=page.waitForEvent('download');
+  await page.getByRole('button',{name:'Exportar vista previa',exact:true}).click();
+  const exported=JSON.parse(await fs.readFile(await (await downloaded).path(),'utf8'));
+  const route=exported.files['route_track_trip1.route.json'];
+  expect(route.source.stops.features[0].properties.name).toBe('Nombre descargado');
+  expect(route.stops[0].name).toBe('Mi nombre');
+  expect(route.review.accepted).toBe(false);
+});
+
+test('dragging a route waypoint requests a real carriageway and waits for applying the path',async({page},info)=>{
+  await openFixture(page,'-anchor-position');
+  await page.getByText('Abrir o crear ruta',{exact:true}).click();
+  await page.getByRole('button',{name:'Nueva ruta',exact:true}).click();
+  await page.locator('#newId').fill(`anchors-${info.project.name}-${runId}`);
+  await page.locator('#newName').fill('Pasos editables');
+  await page.getByRole('button',{name:'Crear borrador',exact:true}).click();
+  await expect(page.locator('#routeName')).toHaveText('Pasos editables');
+  for(const edge of ['1:0','3:0']){
+    const center=await page.locator(`path[data-edge="${edge}"]`).evaluate(el=>{const b=el.getBoundingClientRect();return{x:b.x+b.width/2,y:b.y+b.height/2};});
+    await page.mouse.click(center.x,center.y);
+    await expect(page.locator('#connection')).toHaveText('Motor conectado');
+  }
+  await page.getByRole('button',{name:'Aplicar recorrido',exact:true}).click();
+  await expect(page.locator('#editorMessage')).toContainText('Recorrido actualizado');
+  const box=await page.locator('[data-anchor-index="0"]').boundingBox();
+  await page.mouse.move(box.x+box.width/2,box.y+box.height/2);
+  await page.mouse.down();
+  await page.mouse.move(box.x+box.width/2+8,box.y+box.height/2+2,{steps:5});
+  await page.mouse.up();
+  await expect(page.locator('.leaflet-popup')).toContainText('Selecciona la calzada');
+  await page.locator('.leaflet-popup button').filter({hasText:'1:0'}).click();
+  await expect(page.locator('#editStatus')).toHaveText('Recorrido pendiente de aplicar');
+  await expect(page.locator('#saveDraft')).toBeDisabled();
+  await page.getByRole('button',{name:'Aplicar recorrido',exact:true}).click();
+  await expect(page.locator('#editorMessage')).toContainText('Recorrido actualizado');
+  await expect(page.locator('#saveDraft')).toBeEnabled();
+});

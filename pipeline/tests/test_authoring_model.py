@@ -1,6 +1,6 @@
 import copy
 import unittest
-from pipeline.authoring.model import attach_stops, geometry, new_route, validate
+from pipeline.authoring.model import attach_stops, digest, geometry, new_route, validate
 from test_authoring_network import fixture_network
 
 
@@ -14,6 +14,10 @@ def fixture_route():
 
 
 class RouteModelTest(unittest.TestCase):
+    def test_hashes_survive_browser_number_serialization(self):
+        self.assertEqual(digest({'coordinates': [0.0, -12.0], 'fraction': 1.0}),
+                         digest({'coordinates': [0, -12], 'fraction': 1}))
+        self.assertNotEqual(digest([1.01]), digest([1.02]))
     def test_curve_nodes_and_source_stops_survive(self):
         net, route = fixture_route()
         self.assertEqual(geometry(route, net), [net.nodes[i] for i in range(1, 6)])

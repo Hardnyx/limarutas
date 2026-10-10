@@ -28,7 +28,7 @@ def server(service, host='127.0.0.1', port=8081):
                 return
             if path == '/':
                 path = '/editor.html'
-            permitted = (path == '/editor.html' or path.startswith('/assets/js/routeAuthoring')
+            permitted = (path in ('/editor.html', '/docs/ROUTE_AUTHORING.md') or path.startswith('/assets/js/routeAuthoring')
                          or path == '/assets/css/route-editor.css'
                          or path.startswith('/node_modules/leaflet/dist/'))
             file = (service.root / path.lstrip('/')).resolve()

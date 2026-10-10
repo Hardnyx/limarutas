@@ -68,7 +68,8 @@ def import_bundle(engine, route_id, name, direction, track, stops, vias=None, ma
         route['path'] = [{'type': 'gap', 'coordinates': part, 'reason': 'Fuente pendiente de ajuste'} for part in parts]
     route['source']['importWarnings'] = warnings
     route['importWarnings'] = list(warnings)
-    return attach_stops(route, engine.network)
+    from .reconcile import seal_source
+    return seal_source(attach_stops(route, engine.network))
 
 
 def import_existing(root, key, engine):

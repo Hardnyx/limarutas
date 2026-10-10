@@ -39,12 +39,14 @@
           <button id="addStop">Ubicar paradero en el mapa</button>
           <ol id="stopList" class="stop-list"></ol>
         </div>
-        <div data-panel="review" hidden><p id="reviewSummary"></p><ul id="issueList"></ul><label for="reviewNotes">Notas de revisión</label><textarea id="reviewNotes" rows="3"></textarea><button id="acceptRoute" disabled>Aceptar recorrido validado</button></div>
+        <div data-panel="review" hidden><p id="reviewSummary"></p><ul id="issueList"></ul><label for="reviewNotes">Notas de revisión</label><textarea id="reviewNotes" rows="3"></textarea><button id="acceptRoute" disabled>Aceptar recorrido validado</button>
+          <details><summary>Actualizar desde una nueva fuente</summary><p>Guarda tus cambios antes de comparar otra descarga de esta misma ruta.</p><label class="file-button">Comparar archivo de ruta<input id="sourceUpdateFile" type="file" accept="application/json,.json"></label><p id="sourceUpdateSummary" role="status"></p><div id="sourceConflicts"></div><div class="input-row"><button id="applySourceUpdate" disabled>Aplicar actualización</button><button id="cancelSourceUpdate" disabled>Descartar propuesta</button></div></details>
+        </div>
       </section>
       <section id="offlineHelp" hidden><h2>Motor desconectado</h2><p>Para editar sobre la red de calles, abre este editor desde el servicio local del proyecto.</p><p>Las instrucciones están en <a href="docs/ROUTE_AUTHORING.md">la documentación de recorridos</a>.</p><button id="reconnect">Reintentar conexión</button></section>
       <p id="editorMessage" role="status" aria-live="polite"></p>
     </aside>
-    <section class="editor-canvas" aria-label="Mapa de edición"><div id="editorMap"></div><div class="map-legend"><span class="original">Original</span><span class="adjusted">Ajustado</span><span class="reserved">Calzada reservada</span><span class="pending">Pendiente</span></div><div id="mapHint">Abre una ruta o crea un borrador para empezar.</div></section>
+    <section class="editor-canvas" aria-label="Mapa de edición"><div id="editorMap"></div><div class="map-legend"><span class="original">Original</span><span class="adjusted">Ajustado</span><span class="reserved">Calzada reservada</span><span class="pending">Pendiente</span><span id="incomingLegend" hidden>Nueva fuente (naranja)</span></div><div id="mapHint">Abre una ruta o crea un borrador para empezar.</div></section>
   </main>
   <footer class="editor-toolbar"><span id="editStatus">Sin ruta abierta</span><div><button id="undo" disabled>Deshacer</button><button id="redo" disabled>Rehacer</button><button id="cancelChanges" disabled>Cancelar cambios</button><button id="saveDraft" disabled>Guardar borrador</button><button id="exportPreview" disabled>Exportar vista previa</button><button id="exportRoute" disabled>Exportar aprobado</button></div></footer>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>

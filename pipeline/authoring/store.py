@@ -33,14 +33,14 @@ class Store:
         return [{k: r[k] for k in ('id', 'name', 'direction', 'revision')} for p in sorted(self.directory.glob('*.json'))
                 for r in [json.loads(p.read_text())]]
 
-    def save(self, route, expected_revision, accept=False):
+    def save(self, route, expected_revision, accept=False, source_update=False):
         with self.lock:
             path = self.path(route['id'])
             previous = self.get(route['id']) if path.exists() else None
             revision = previous['revision'] if previous else 0
             if type(expected_revision) is not int or expected_revision != revision:
                 raise RevisionConflict('El borrador cambió; vuelve a cargarlo antes de guardar')
-            if previous and previous['source'] != route['source']:
+            if previous and previous['source'] != route['source'] and not source_update:
                 raise ValueError('La fuente es inmutable; importa su actualización como propuesta separada')
             saved = copy.deepcopy(route)
             saved['revision'] = revision + 1

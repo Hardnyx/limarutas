@@ -9,7 +9,8 @@ from pathlib import Path
 from .engine import Engine
 from .exporter import bundle
 from .importer import import_bundle, import_existing, track_coordinates
-from .model import attach_stops, geometry, new_route, path_parts, validate
+from .model import attach_stops, digest, geometry, new_route, path_parts, validate
+from .reconcile import propose
 from .network import Network
 from .resolver import Resolver
 from .store import Store
@@ -70,6 +71,31 @@ class Service:
             return self.pack(self.engine.build(self.resolver.build_request(request['request'])))
         if operation == 'get':
             return self.pack(self.store.get(request['routeId']))
+        if operation == 'restore':
+            route = copy.deepcopy(request['route'])
+            if self.store.path(route['id']).exists():
+                raise ValueError('Ya existe un borrador con este identificador; ábrelo desde el catálogo')
+            route.pop('exported', None)
+            route['revision'], route['review']['accepted'] = 0, False
+            return self.pack(route)
+        if operation in ('propose-update', 'apply-update'):
+            # Always read the saved revision; callers cannot forge a proposal or its new source.
+            current = self.store.get(request['routeId'])
+            data = request['bundle']
+            incoming = import_bundle(self.engine, data['id'], data['name'], data['direction'],
+                                     data['track'], data['stops'], data.get('vias'), data.get('matched'),
+                                     data.get('corrections'), data.get('provenance'))
+            proposal = propose(current, incoming, request.get('choices'))
+            if operation == 'propose-update':
+                return {**proposal, 'proposalHash': digest(proposal), 'preview': self.pack(proposal['route'])}
+            if not proposal['canApply']:
+                raise ValueError('Resuelve los conflictos de la actualización antes de aplicarla')
+            if request.get('proposalHash') != digest(proposal):
+                from .store import RevisionConflict
+                raise RevisionConflict('La propuesta cambió; vuelve a revisarla antes de aplicar')
+            packed = self.pack(proposal['route'])
+            saved = self.store.save(packed['route'], request['expectedRevision'], source_update=True)
+            return self.pack(saved)
         if operation in ('match', 'validate', 'save', 'accept', 'export', 'rebuild', 'replace'):
             route = copy.deepcopy(request['route']) if 'route' in request else self.store.get(request['routeId'])
             if operation == 'match':
@@ -102,6 +128,10 @@ class Service:
             if operation == 'validate':
                 return self.pack(route)
             if operation == 'export':
+                if not request.get('preview', False):
+                    saved = self.store.get(route['id'])
+                    if digest(saved) != digest(route) or not saved.get('review', {}).get('accepted'):
+                        raise ValueError('Guarda y acepta esta revisión antes de exportarla para publicación')
                 return bundle(route, self.network, request.get('preview', False), request.get('trip'))
             packed = self.pack(route)
             if operation == 'accept' and not packed['validation']['ready']:

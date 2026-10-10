@@ -10,7 +10,16 @@ from .network import metres, profile_allows
 
 
 def digest(value):
-    return hashlib.sha256(json.dumps(value, ensure_ascii=False, sort_keys=True,
+    # JSON/browser round trips turn 0.0 into 0. They represent the same coordinate.
+    def normalized(item):
+        if isinstance(item, dict):
+            return {key: normalized(value) for key, value in item.items()}
+        if isinstance(item, (list, tuple)):
+            return [normalized(value) for value in item]
+        if type(item) is float and math.isfinite(item) and item.is_integer():
+            return int(item)
+        return item
+    return hashlib.sha256(json.dumps(normalized(value), ensure_ascii=False, sort_keys=True,
                                      separators=(',', ':'), allow_nan=False).encode()).hexdigest()
 
 
@@ -174,6 +183,8 @@ def validate(route, network):
         if not isinstance(stop.get('id'), str) or not stop['id'] or not isinstance(stop.get('name'), str) or not stop['name'].strip():
             raise ValueError('Paradero sin identidad o nombre')
         occurrence = (stop['id'], stop.get('occurrence', 1))
+        if type(occurrence[1]) is not int or occurrence[1] < 1:
+            raise ValueError('El número de visita del paradero debe ser un entero positivo')
         if occurrence in ids:
             raise ValueError('Paradero repetido sin número de visita distinto')
         ids.add(occurrence)

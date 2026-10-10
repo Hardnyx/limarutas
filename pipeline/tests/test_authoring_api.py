@@ -54,3 +54,22 @@ class RouteApiTest(unittest.TestCase):
         self.assertEqual(self.service.store.get(self.route['id'])['revision'], 1)
         with self.assertRaises(urllib.error.HTTPError):
             self.post({'operation': 'nonexistent'})
+
+    def test_unsaved_geometry_cannot_claim_to_be_an_accepted_export(self):
+        self.post({'operation': 'accept', 'route': self.route, 'expectedRevision': 0})
+        changed = self.service.store.get(self.route['id'])
+        changed['stops'][0]['name'] = 'Not reviewed'
+        with self.assertRaises(urllib.error.HTTPError):
+            self.post({'operation': 'export', 'route': changed})
+        self.assertTrue(self.post({'operation': 'export', 'route': changed, 'preview': True})['result']['preview'])
+
+    def test_restoring_an_export_requires_new_review_and_never_overwrites_a_saved_draft(self):
+        self.route['revision'] = 12
+        self.route['review']['accepted'] = True
+        restored = self.post({'operation': 'restore', 'route': self.route})['result']['route']
+        self.assertEqual(restored['revision'], 0)
+        self.assertFalse(restored['review']['accepted'])
+        self.post({'operation': 'save', 'route': restored, 'expectedRevision': 0})
+        with self.assertRaises(urllib.error.HTTPError):
+            self.post({'operation': 'restore', 'route': self.route})
+        self.assertEqual(self.service.store.get(self.route['id'])['revision'], 1)
