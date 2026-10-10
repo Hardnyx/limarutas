@@ -9,7 +9,7 @@ from pathlib import Path
 from .engine import Engine
 from .exporter import bundle
 from .importer import import_bundle, import_existing, track_coordinates
-from .model import attach_stops, geometry, new_route, validate
+from .model import attach_stops, geometry, new_route, path_parts, validate
 from .network import Network
 from .resolver import Resolver
 from .store import Store
@@ -27,7 +27,13 @@ class Service:
 
     def pack(self, route):
         route = attach_stops(route, self.network)
-        return {'route': route, 'validation': validate(route, self.network), 'coordinates': geometry(route, self.network)}
+        segments = []
+        for index, (ref, points) in enumerate(zip(route['path'], path_parts(route, self.network))):
+            edge = self.network.edges.get(ref.get('edge'), {})
+            segments.append({'index': index, 'type': ref['type'], 'coordinates': points,
+                             'name': edge.get('name', ''), 'facility': edge.get('facility', 'mixed')})
+        return {'route': route, 'validation': validate(route, self.network),
+                'coordinates': geometry(route, self.network), 'segments': segments}
 
     def call(self, request):
         if not isinstance(request, dict):
@@ -64,7 +70,7 @@ class Service:
             return self.pack(self.engine.build(self.resolver.build_request(request['request'])))
         if operation == 'get':
             return self.pack(self.store.get(request['routeId']))
-        if operation in ('match', 'validate', 'save', 'accept', 'export', 'rebuild'):
+        if operation in ('match', 'validate', 'save', 'accept', 'export', 'rebuild', 'replace'):
             route = copy.deepcopy(request['route']) if 'route' in request else self.store.get(request['routeId'])
             if operation == 'match':
                 parts = track_coordinates(route['source']['track'])
@@ -76,6 +82,23 @@ class Service:
                 rebuilt = self.engine.build(specification)
                 rebuilt['revision'] = route['revision']
                 return self.pack(rebuilt)
+            if operation == 'replace':
+                start, end = request['fromPathIndex'], request['toPathIndex']
+                if type(start) is not int or type(end) is not int or not 0 <= start <= end < len(route['path']):
+                    raise ValueError('Selecciona un intervalo válido del recorrido')
+                first, last = route['path'][start], route['path'][end]
+                if first['type'] != 'street' or last['type'] != 'street':
+                    raise ValueError('Los extremos de la corrección deben estar sobre calles identificadas')
+                anchors = [{'edge': first['edge'], 'fraction': first.get('start', 0)},
+                           *request.get('viaAnchors', []),
+                           {'edge': last['edge'], 'fraction': last.get('end', 1)}]
+                path = []
+                for a, b in zip(anchors, anchors[1:]):
+                    path.extend(self.engine.connect(a, b, profile=route.get('profile')))
+                route['path'][start:end+1] = path
+                route['review']['accepted'] = False
+                route.pop('anchors', None)
+                return self.pack(route)
             if operation == 'validate':
                 return self.pack(route)
             if operation == 'export':

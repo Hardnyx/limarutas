@@ -25,10 +25,15 @@ export default defineConfig({
     { name: 'beta', use: { ...devices['Desktop Chrome'], viewport: { width: 1600, height: 900 }, entry: '/index.html?beta=1&debug=1' } }
   ],
   // Sitio estático: basta un servidor de archivos
-  webServer: {
+  webServer: [{
     command: `python3 -m http.server ${PORT}`,
     url: `http://localhost:${PORT}/index.html`,
     reuseExistingServer: !process.env.CI,
     timeout: 30_000
-  }
+  }, {
+    command: 'python3 pipeline/tests/serve_authoring_fixture.py',
+    url: 'http://127.0.0.1:8777/api/v1/health',
+    reuseExistingServer: !process.env.CI,
+    timeout: 30_000
+  }]
 });

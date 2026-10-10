@@ -43,6 +43,8 @@ class Engine:
         edge, t = self.network.edges[anchor['edge']], anchor.get('fraction', .5)
         if type(t) not in (int, float) or not math.isfinite(t) or not 0 <= t <= 1:
             raise ValueError('Posición sobre la calle inválida')
+        if t in (0, 1):
+            return [(edge['nodes'][int(t)], [], 0)]
         result = []
         for direction in (1, -1):
             if not edge['forward' if direction == 1 else 'backward']:

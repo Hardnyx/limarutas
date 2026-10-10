@@ -82,7 +82,12 @@ def attach_stops(route, network, radius=80):
             if distance <= radius:
                 choices.append({'pathIndex': index, 'fraction': t, 'distanceM': round(distance, 2),
                                 'alongM': round(base + t*length, 3), 'coordinates': projected})
-        layers.append(sorted(choices, key=lambda c: (c['distanceM'], c['alongM']))[:30])
+        choices.sort(key=lambda c: (c['distanceM'], c['alongM']))
+        # Ordering must not move a stop to a substantially farther section just to pass validation.
+        if choices:
+            best = choices[0]['distanceM']
+            choices = [c for c in choices if c['distanceM'] <= best + 3]
+        layers.append(choices[:30])
     # Missing or inconsistent projections are explicit; source locations never move.
     if not layers or any(not layer for layer in layers):
         for stop, layer in zip(route['stops'], layers):

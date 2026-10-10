@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Editor de recorridos · LimaRutas</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="assets/css/route-editor.css">
+</head>
+<body>
+  <header class="editor-header"><div><strong>LimaRutas</strong><span>Editor de recorridos</span></div><span id="connection" role="status">Conectando…</span></header>
+  <main class="editor-layout">
+    <aside class="editor-panel" aria-label="Herramientas de edición">
+      <section><details id="routeEntry" open><summary>Abrir o crear ruta</summary><h1>Una ruta, calles reales</h1><p>Revisa el trazado y sus paraderos. Los cambios se guardan como borradores.</p>
+        <form id="routeSearch"><label for="routeQuery">Buscar ruta existente</label><div class="input-row"><input id="routeQuery" placeholder="Código o nombre"><button>Buscar</button></div></form>
+        <div id="routeCandidates" class="candidate-list"></div>
+        <div class="input-row"><button id="newRoute" type="button">Nueva ruta</button><label class="file-button">Abrir archivo<input id="importFile" type="file" accept="application/json,.json,.geojson"></label></div>
+        <form id="newRouteForm" hidden>
+          <label for="newId">Identificador</label><input id="newId" required placeholder="ruta-nueva-ida">
+          <label for="newName">Nombre</label><input id="newName" required>
+          <label for="newDirection">Sentido</label><select id="newDirection"><option value="ida">Ida</option><option value="vuelta">Vuelta</option></select>
+          <button>Crear borrador</button>
+        </form>
+      </details></section>
+      <section id="routeTools" hidden>
+        <div class="route-heading"><h2 id="routeName"></h2><span id="revision"></span></div>
+        <nav class="editor-tabs" aria-label="Secciones del editor"><button data-tab="path" aria-pressed="true">Recorrido</button><button data-tab="stops" aria-pressed="false">Paraderos</button><button data-tab="review" aria-pressed="false">Revisión</button></nav>
+        <div data-panel="path">
+          <label for="serviceMode">Tipo de servicio</label><select id="serviceMode"><option value="mixed">Bus en tránsito mixto</option><option value="brt">BRT</option><option value="corridor">Corredor</option></select>
+          <label for="serviceSystem">Sistema de las calzadas reservadas</label><input id="serviceSystem" placeholder="Ej.: Metropolitano">
+          <div class="input-row"><button id="matchSource">Ajustar fuente</button><button id="selectRange">Seleccionar tramo</button></div>
+          <button id="addWaypoint">Añadir paso por una calle</button>
+          <p id="pathHint" class="hint">Selecciona un tramo para corregirlo conservando el resto del recorrido.</p>
+          <ol id="waypointList"></ol><button id="applyPath" disabled>Aplicar recorrido</button>
+        </div>
+        <div data-panel="stops" hidden>
+          <form id="stopSearch"><label for="stopQuery">Buscar paradero del catálogo</label><div class="input-row"><input id="stopQuery" placeholder="Nombre del paradero"><button>Buscar</button></div></form>
+          <div id="stopCandidates" class="candidate-list"></div>
+          <label for="stopName">Nombre del nuevo paradero</label><input id="stopName" placeholder="Nombre verificado">
+          <button id="addStop">Ubicar paradero en el mapa</button>
+          <ol id="stopList" class="stop-list"></ol>
+        </div>
+        <div data-panel="review" hidden><p id="reviewSummary"></p><ul id="issueList"></ul><label for="reviewNotes">Notas de revisión</label><textarea id="reviewNotes" rows="3"></textarea><button id="acceptRoute" disabled>Aceptar recorrido validado</button></div>
+      </section>
+      <section id="offlineHelp" hidden><h2>Motor desconectado</h2><p>Para editar sobre la red de calles, abre este editor desde el servicio local del proyecto.</p><p>Las instrucciones están en <a href="docs/ROUTE_AUTHORING.md">la documentación de recorridos</a>.</p><button id="reconnect">Reintentar conexión</button></section>
+      <p id="editorMessage" role="status" aria-live="polite"></p>
+    </aside>
+    <section class="editor-canvas" aria-label="Mapa de edición"><div id="editorMap"></div><div class="map-legend"><span class="original">Original</span><span class="adjusted">Ajustado</span><span class="reserved">Calzada reservada</span><span class="pending">Pendiente</span></div><div id="mapHint">Abre una ruta o crea un borrador para empezar.</div></section>
+  </main>
+  <footer class="editor-toolbar"><span id="editStatus">Sin ruta abierta</span><div><button id="undo" disabled>Deshacer</button><button id="redo" disabled>Rehacer</button><button id="cancelChanges" disabled>Cancelar cambios</button><button id="saveDraft" disabled>Guardar borrador</button><button id="exportPreview" disabled>Exportar vista previa</button><button id="exportRoute" disabled>Exportar aprobado</button></div></footer>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script type="module" src="assets/js/routeAuthoringEditor.js"></script>
+</body>
+</html>

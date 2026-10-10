@@ -1,0 +1,117 @@
+{
+  "id": "fixture",
+  "name": "Ruta de prueba",
+  "direction": "ida",
+  "track": {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "properties": {
+          "source": "test"
+        },
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              -77,
+              -12
+            ],
+            [
+              -76.99985,
+              -12.00015
+            ],
+            [
+              -76.9997,
+              -12.0003
+            ]
+          ]
+        }
+      }
+    ]
+  },
+  "stops": {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "properties": {
+          "stop_id": "1",
+          "seq": 1,
+          "name": "1",
+          "custom": "preserve"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -77,
+            -12
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "stop_id": "3",
+          "seq": 2,
+          "name": "3",
+          "custom": "preserve"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -76.99985,
+            -12.00015
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "stop_id": "5",
+          "seq": 3,
+          "name": "5",
+          "custom": "preserve"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -76.9997,
+            -12.0003
+          ]
+        }
+      }
+    ]
+  },
+  "vias": {
+    "osm": "2026-10-02",
+    "tramos": [
+      {
+        "nodo": 1,
+        "vias": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ]
+        ],
+        "desde": [
+          -12,
+          -77
+        ],
+        "hasta": [
+          -12.0003,
+          -76.9997
+        ]
+      }
+    ],
+    "sueltos": []
+  }
+}
