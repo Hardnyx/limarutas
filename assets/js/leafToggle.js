@@ -4,13 +4,16 @@
 // clics en la lista, las casillas de grupo, el cambio de sentido y el
 // buscador.
 import { onToggleService, setWikiroutesVisible } from './mapLayers.js';
+import { routeSelection } from './selectionState.js';
+import { getDirFor } from './config.js';
+import { leafForService, isProjectingSelection } from './routeControls.js';
 
 // Tipos de hoja, según sus data-*:
 //   data-ida + data-vuelta  → par Wikiroutes; se ve el sentido de data-sel
 //   data-layer              → Wikiroutes de un solo sentido (id de la capa)
 //   corr con id numérico    → capa Wikiroutes con ese id
 //   resto                   → servicio del sistema (met, alim, metro, corr)
-export function toggleLeaf(leaf, visible, { fit = false } = {}){
+function renderLeaf(leaf, visible, { fit = false } = {}){
   if (!leaf) return;
   const { system, id, ida, vuelta, layer } = leaf.dataset;
 
@@ -45,6 +48,19 @@ export function toggleLeaf(leaf, visible, { fit = false } = {}){
 
   onToggleService(system, id, visible, { silentFit: !fit });
 }
+
+// The existing controls and bulk actions feed the same observable state.
+export function toggleLeaf(leaf, visible, { fit = false } = {}){
+  if (!leaf || isProjectingSelection(leaf)) return;
+  const { system, id } = leaf.dataset;
+  const direction = leaf.dataset.sel || getDirFor(system, id);
+  const changed = routeSelection.update(system, id, { selected: visible, direction }, { source: 'control', fit, leaf });
+  if (!changed && fit) renderLeaf(leaf, visible, { fit });
+}
+routeSelection.subscribe(({ before, after, context }) => {
+  if (!before.selected && !after.selected) return;
+  renderLeaf(context.leaf || leafForService(after.system, after.id), after.selected, { fit: !!context.fit });
+});
 
 // ¿La hoja dibuja una capa Wikiroutes? (con sus paraderos: las que pesan)
 export function isWrLeaf(leaf){

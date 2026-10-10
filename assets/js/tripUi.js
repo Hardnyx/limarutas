@@ -1,3 +1,4 @@
+import { setControlSelected } from './routeControls.js';
 import { leafForService } from './routeControls.js';
 // tripUi.js
 // Pestaña "Cómo llegar" (nueva interfaz): origen y destino (paradero o punto
@@ -585,7 +586,7 @@ function card(opt, k){
     show.title = 'Marca estas rutas y abre la pestaña Rutas';
     show.addEventListener('click', (e) => {
       e.stopPropagation();
-      rides.forEach(l => { const leaf = leafForService(l.route.system, l.route.id); if (leaf && !leaf.checked) leaf.click(); });
+      rides.forEach(l => { const leaf = leafForService(l.route.system, l.route.id); if (leaf && !leaf.checked) setControlSelected(leaf, true); });
       $('#tabRoutes')?.click();
     });
     const share = el('button', { type: 'button', class: 'btn small btn-ghost trip-share' }, 'Compartir');

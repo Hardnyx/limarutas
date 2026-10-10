@@ -37,7 +37,7 @@ export function createServiceCatalog({ systems, catalog = {}, corridors = [], me
       paths: system === 'alim' ? systems.alim.paths?.[id] : null,
       pair: ida && vuelta ? { ida, vuelta } : null,
       layer: isWr && !(ida && vuelta) ? ida || id : null,
-      defaultDirection: source.defaultDir || (system === 'alim' ? 'sur' : isWr || system === 'corr' ? 'ida' : 'ambas')
+      defaultDirection: source.defaultDir || (system === 'alim' ? 'sur' : isWr || (system === 'corr' && ida && vuelta) ? 'ida' : 'ambas')
     };
     services.set(serviceId, entry);
     if (entry.pair) for (const layer of [ida, vuelta]) if (!byLayer.has(layer)) byLayer.set(layer, entry);

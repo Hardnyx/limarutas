@@ -1,4 +1,5 @@
 // config.js
+import { routeSelection, selectionKey } from './selectionState.js';
 // API key de CARTO Basemaps. El placeholder lo reemplaza el workflow de
 // GitHub Pages con el secreto CARTO_API_KEY; no escribir la key aquí.
 export const CARTO_API_KEY = '__CARTO_API_KEY__';
@@ -61,9 +62,6 @@ export const state = {
 
   // Catálogo
   catalog: null,
-
-  // Dirección por ruta
-  routeDir: new Map(),
 
   systems: {
     met:   {
@@ -133,15 +131,14 @@ export const state = {
   _searchIndex: []
 };
 
-export const keyFor = (systemId, id) =>
-  `${systemId}:${String(id).toUpperCase()}`;
+export const keyFor = selectionKey;
 
 // Alimentadores: por defecto solo la ida (de la estación al barrio); la
 // vuelta va casi por las mismas calles y dibujar las dos solo ensucia el mapa
 export const defaultDirFor = (systemId) => systemId === 'alim' ? 'sur' : 'ambas';
 
 export const getDirFor = (systemId, id) =>
-  state.routeDir.get(keyFor(systemId, id)) || defaultDirFor(systemId);
+  routeSelection.get(systemId, id).direction;
 
 export const setDirFor = (systemId, id, dir) =>
-  state.routeDir.set(keyFor(systemId, id), dir);
+  routeSelection.update(systemId, id, { direction: dir }, { source: 'control' });

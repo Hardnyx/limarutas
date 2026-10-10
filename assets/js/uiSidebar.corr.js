@@ -1,3 +1,4 @@
+import { setControlSelected } from './routeControls.js';
 import { createCorridorPolicy, corrCanonical, corrServiceCodeOf, CORR_KEY_LABEL, CORR_GROUP_ORDER } from './corridorPolicy.js';
 // uiSidebar.corr.js
 import { PATHS, state } from './config.js';
@@ -273,7 +274,7 @@ function makeCorrDirPairControls(chk){
 
     // Elegir sentido en una ruta sin marcar la muestra (como marcarla);
     // si ya está marcada, cambia de sentido sin mover la vista
-    if (!chk.checked) chk.click();
+    if (!chk.checked) setControlSelected(chk, true);
     else refreshLeafDirection(chk);
   });
 

@@ -37,3 +37,22 @@ test('rebuilding the graph does not depend on the mounted sidebar', async ({ app
   });
   expect(equal).toBe(true);
 });
+
+test('commands, checkboxes and clear-all agree on selected services', async ({ app, page }) => {
+  await page.evaluate(async () => {
+    const { setRouteSelected } = await import('/assets/js/routeControls.js');
+    setRouteSelected('met', 'A', true, { fit: false });
+  });
+  await expect(app.leaf('met', 'A')).toBeChecked();
+  await app.leaf('met', 'A').evaluate(c => c.click());
+  expect(await page.evaluate(async () => {
+    const { routeSelection } = await import('/assets/js/selectionState.js');
+    return routeSelection.get('met', 'A').selected;
+  })).toBe(false);
+  await app.leaf('metro', 'L1').evaluate(c => c.click());
+  await page.locator('#btnClearAll').click();
+  expect(await page.evaluate(async () => {
+    const { routeSelection } = await import('/assets/js/selectionState.js');
+    return routeSelection.selected();
+  })).toEqual([]);
+});

@@ -1,3 +1,4 @@
+import { routeSelection } from './selectionState.js';
 // mapLayers.wr.js
 // Capas de Wikiroutes: carga diferida (con límite de concurrencia),
 // visibilidad por subcapa (ida/vuelta) y paraderos.
@@ -183,41 +184,14 @@ function showWrSub(id, fit){
   }));
 }
 
-// Resolver ida/vuelta desde el DOM si existe, con fallback por convención
+// Resolve pairs from the shared catalog, independently of rendered controls.
 function resolveWrPair(id){
-  const wr = state.systems.wr;
-  const root = document.getElementById('p-wr');
-
-  const hasPairData = (el) => !!(el && (el.dataset.ida || el.dataset.vuelta));
-
   const s = String(id);
   const base = wrBaseId(s);
-
-  if (root) {
-    const pick = (pid) =>
-      root.querySelector(`.item input[type="checkbox"][data-id="${pid}"]`);
-
-    const leafExact = pick(s);
-    if (hasPairData(leafExact)) {
-      return {
-        parentId: s,
-        ida: leafExact.dataset.ida || null,
-        vuelta: leafExact.dataset.vuelta || null,
-        sel: leafExact.dataset.sel || 'ida',
-        leaf: leafExact
-      };
-    }
-
-    const leafBase = pick(base);
-    if (hasPairData(leafBase)) {
-      return {
-        parentId: base,
-        ida: leafBase.dataset.ida || null,
-        vuelta: leafBase.dataset.vuelta || null,
-        sel: leafBase.dataset.sel || 'ida',
-        leaf: leafBase
-      };
-    }
+  const service = state.serviceCatalog?.get('wr', s) || state.serviceCatalog?.get('wr', base);
+  if (service?.pair){
+    return { parentId: service.id, ...service.pair,
+      sel: routeSelection.get('wr', service.id).direction };
   }
 
   // Si el id no tiene sufijo ida/vuelta, buscar si existe -ida o -vuelta directamente

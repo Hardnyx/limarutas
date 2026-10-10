@@ -1,3 +1,4 @@
+import { setControlSelected } from './routeControls.js';
 // uiSidebar.systems.js
 import { PATHS, COLOR_AN, COLOR_AS, state, getDirFor, setDirFor } from './config.js';
 import { isLightColor } from './mapColors.js';
@@ -51,7 +52,7 @@ function miniDir(systemId, svc){
     const chk = wrap.parentElement.querySelector('.item-head input[type="checkbox"]');
     if (chk){
       // Igual que en Wikiroutes: sin marcar, elegir dirección la muestra
-      if (!chk.checked) chk.click();
+      if (!chk.checked) setControlSelected(chk, true);
       else refreshLeafDirection(chk);
     }
   });

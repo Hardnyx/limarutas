@@ -1,3 +1,5 @@
+import { loadServiceCatalog } from './catalogRepository.js';
+import { registerRouteControls } from './routeControls.js';
 // app.js (punto de entrada)
 import './flags.js';   // marca html.beta / html.debug antes que nada
 import { PATHS, state, COLOR_AN, COLOR_AS } from './config.js';
@@ -496,6 +498,7 @@ async function init(){
   setStatus('Clasificando corredores desde Wikiroutes...');
   await loadCorrFromWikiroutes();
 
+  state.serviceCatalog = await loadServiceCatalog();
   await buildUI();
 
   syncAllTri();
@@ -553,6 +556,7 @@ async function buildUI(){
   if (state.systems.wr.ui.listAero)  await fillAeroList();
   if (state.systems.wr.ui.listOtros) await fillOtrosList();
 
+  registerRouteControls();
   wireHierarchy();
   wireWrColorFilter();
 

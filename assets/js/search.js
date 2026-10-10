@@ -1,3 +1,4 @@
+import { setControlSelected } from './routeControls.js';
 import { loadStopsIndex, keyOf } from './stopRepository.js';
 export { stopsNear } from './stopRepository.js';
 // search.js
@@ -571,7 +572,7 @@ function selectDoc(doc){
 
   if (chk){
     if (!chk.checked){
-      chk.click();
+      setControlSelected(chk, true);
     } else {
       // Ya estaba en el mapa: elegirla es "ir a ella" y pasa a ser la reciente
       toggleLeaf(chk, true, { fit: true });

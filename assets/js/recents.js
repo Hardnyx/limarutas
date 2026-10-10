@@ -1,3 +1,4 @@
+import { setControlSelected } from './routeControls.js';
 // recents.js
 // Panel "Rutas recientes": las últimas rutas que el usuario marcó una a una
 // (en la lista o desde el buscador), para volver a marcarlas o desmarcarlas
@@ -106,7 +107,7 @@ function makeRow(entry, leaf, { onMap = false } = {}){
   chk.addEventListener('change', () => {
     // Delegar en la casilla original: dispara su lógica (mapa, zoom, tri-state)
     reordering = false;
-    try { if (leaf.checked !== chk.checked) leaf.click(); }
+    try { if (leaf.checked !== chk.checked) setControlSelected(leaf, chk.checked); }
     finally { reordering = true; }
     chk.checked = leaf.checked;
   });
@@ -122,7 +123,7 @@ function makeRow(entry, leaf, { onMap = false } = {}){
   btnRemove.addEventListener('click', () => {
     if (leaf.checked){
       reordering = false;
-      try { leaf.click(); } finally { reordering = true; }
+      try { setControlSelected(leaf, false); } finally { reordering = true; }
     }
     // En "En el mapa", × la quita del mapa y pasa al historial
     if (onMap) return;

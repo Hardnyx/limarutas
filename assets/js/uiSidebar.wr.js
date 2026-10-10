@@ -1,3 +1,4 @@
+import { setControlSelected } from './routeControls.js';
 // uiSidebar.wr.js
 // Ítems y listas de Wikiroutes en el sidebar (Transporte público,
 // AeroDirecto, Otros, Semiformal).
@@ -123,7 +124,7 @@ function makeWrDirPairControls(chk){
 
     // Elegir sentido en una ruta sin marcar la muestra (como marcarla);
     // si ya está marcada, cambia de sentido sin mover la vista
-    if (!chk.checked) chk.click();
+    if (!chk.checked) setControlSelected(chk, true);
     else refreshLeafDirection(chk);
   });
 

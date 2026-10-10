@@ -1,3 +1,4 @@
+import { setControlSelected } from './routeControls.js';
 // routeInspector.js
 // Panel "Rutas en este punto": muestra como chips de color todas las líneas
 // que pasan bajo el cursor (no solo la de arriba) y, al pasar sobre un chip,
@@ -195,7 +196,7 @@ export function wireRouteInspector(){
         const btnShow = el('button', { type: 'button', class: 'btn small' },
           entry.leaf.checked ? 'Ocultar' : 'Mostrar');
         btnShow.addEventListener('click', () => {
-          entry.leaf.click();
+          setControlSelected(entry.leaf, !entry.leaf.checked);
           btnShow.textContent = entry.leaf.checked ? 'Ocultar' : 'Mostrar';
           markOnMap();
           setHint();
@@ -207,7 +208,7 @@ export function wireRouteInspector(){
         const leaf = entry.leaf;
         clearHighlight();
         $('#btnClearAll')?.click();
-        if (!leaf.checked) leaf.click();
+        if (!leaf.checked) setControlSelected(leaf, true);
         hide();
       });
       actions.append(btnRecent, btnOnly);
@@ -275,7 +276,7 @@ export function wireRouteInspector(){
       // En un paradero, tocar el chip muestra u oculta la ruta (un paso, no dos)
       chip.addEventListener('click', () => {
         if (stopMode && entry.leaf){
-          entry.leaf.click();
+          setControlSelected(entry.leaf, !entry.leaf.checked);
           markOnMap();
           setHint();
         }
