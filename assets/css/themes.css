@@ -1,0 +1,74 @@
+/* Shared light and dark theme tokens. */
+:root {
+  /* Tema claro (por defecto), al estilo de las apps de mapas: superficies
+     blancas, texto casi negro, un solo acento azul y sombras suaves */
+  --bg: #e8eaed;
+  --surface: #ffffff;           /* paneles, tarjetas, menús */
+  --surface-2: #f3f6fb;         /* campos, tarjetas dentro del panel */
+  --fill: #e9eef6;              /* chips y botones secundarios */
+  --hover: #f1f4f9;
+  --line: #e1e5eb;
+  --line-strong: #c4cbd5;
+  --text-main: #1b1c1f;
+  --text-muted: #5e6470;
+  --accent: #0b57d0;
+  --accent-soft: #d8e5fb;
+  --accent-text: #0842a0;       /* texto sobre --accent-soft */
+  --on-accent: #ffffff;
+  --focus: #0b57d0;
+  --warn: #a15c00;
+  --warn-soft: #fff6e0;
+  --warn-line: #f1c26b;
+  --good-bg: #dff3e6;
+  --good-fg: #0f6a33;
+  --scrim: rgba(32, 33, 36, 0.35);
+  --shadow-1: 0 1px 2px rgba(60, 64, 67, 0.22), 0 2px 8px rgba(60, 64, 67, 0.14);
+  --shadow-soft: 0 2px 6px rgba(60, 64, 67, 0.18), 0 12px 32px rgba(60, 64, 67, 0.18);
+  --danger: #c5221f;
+
+  /* Nombres anteriores */
+  --bg-sidebar: var(--surface);
+  --bg-panel: var(--surface);
+  --bg-panel-soft: var(--surface-2);
+  --border-soft: var(--line);
+  --accent-strong: var(--accent);
+  --shadow-light: var(--shadow-1);
+
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-sm: 999px;
+  --blur: 12px;
+  --sidebar-width: 400px;
+  --font: "Google Sans Text", "Google Sans", Roboto, "SF Pro Text", -apple-system,
+    BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  color-scheme: light;
+}
+
+/* Tema oscuro: con "Mapa oscuro" todo el panel acompaña al mapa */
+html.theme-dark {
+  --bg: #0f1114;
+  --surface: #1f2226;
+  --surface-2: #2a2e33;
+  --fill: #33373d;
+  --hover: #2a2e33;
+  --line: #3a3f45;
+  --line-strong: #585e66;
+  --text-main: #e8eaed;
+  --text-muted: #a0a6ae;
+  --accent: #8ab4f8;
+  --accent-soft: #233a5e;
+  --accent-text: #d2e3fc;
+  --on-accent: #0b1b33;
+  --focus: #8ab4f8;
+  --warn: #f5c451;
+  --warn-soft: #3a3020;
+  --warn-line: #7a6330;
+  --good-bg: #1d3a28;
+  --good-fg: #81c995;
+  --scrim: rgba(0, 0, 0, 0.5);
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.35);
+  --shadow-soft: 0 2px 6px rgba(0, 0, 0, 0.45), 0 12px 32px rgba(0, 0, 0, 0.45);
+  --danger: #f28b82;
+  color-scheme: dark;
+}
+

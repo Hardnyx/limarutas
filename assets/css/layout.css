@@ -1,0 +1,454 @@
+/* =========================
+   Main layout (mainLayout.js); legacy rules are in base.css
+   ========================= */
+
+html.beta #sidebar {
+  top: 18px;
+}
+
+html.beta #sidebar .header {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* Depuración de color solo con ?debug=1 */
+html.beta:not(.debug) #wrColorFilter {
+  display: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Pestañas Cómo llegar | Rutas */
+.side-tabs {
+  display: flex;
+  gap: 4px;
+  padding: 3px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+
+.side-tab {
+  flex: 1;
+  border: none;
+  border-radius: 999px;
+  padding: 6px 10px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.side-tab[aria-selected="true"] {
+  background: var(--accent-strong);
+  color: var(--text-main);
+}
+
+.side-tab:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 1px;
+}
+
+.side-pane {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  min-height: 0;
+}
+
+.side-pane[hidden] {
+  display: none;
+}
+
+/* Buscador dentro del sidebar */
+html.beta #sidebar .search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+html.beta #sidebar .loupe {
+  position: absolute;
+  
+  font-size: 13px;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+html.beta #searchInput {
+  
+  box-sizing: border-box;
+  
+}
+
+html.beta .suggest {
+  top: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 10;
+  
+}
+
+.search-clear {
+  position: absolute;
+  right: 6px;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 17px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.search-clear:hover , .search-clear:focus-visible {
+  color: var(--text-main);
+  background: var(--fill);
+}
+
+/* En el mapa (N) + Quitar todas, y debajo cuáles son */
+.on-map {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 2px 4px 2px 8px;
+  font-size: 12px;
+}
+
+.on-map-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.on-map-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.on-map-chev {
+  display: inline-flex;
+  transition: transform 120ms ease;
+}
+
+.on-map-chev svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.on-map-toggle[aria-expanded="true"] .on-map-chev {
+  transform: rotate(90deg);
+}
+
+/* El desglose no empuja todo hacia abajo: tiene su propio scroll */
+.on-map-list {
+  max-height: 38vh;
+  overflow-y: auto;
+  margin: 0 -4px 0 -8px;
+}
+
+.on-map-list[hidden] {
+  display: none;
+}
+
+/* Filas compactas: el nombre y su recorrido, sin la segunda línea */
+.on-map-list .left .sub + .sub {
+  display: none;
+}
+
+.on-map-go {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.on-map-group {
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.on-map[hidden] {
+  display: none;
+}
+
+.on-map-label {
+  color: var(--text-muted);
+}
+
+.on-map-count {
+  min-width: 20px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--text-main);
+  font-weight: 700;
+  text-align: center;
+}
+
+.on-map-bar .btn {
+  margin-left: auto;
+}
+
+/* Secciones: subtítulo y cantidad de rutas */
+.panel-sub {
+  display: block;
+  margin-top: 1px;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.panel-count {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.panel-count.has-on {
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+/* Filtro de listas largas */
+.list-filter {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 2px 0 6px;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  background: var(--surface-2);
+  color: var(--text-main);
+  font-size: 12px;
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+
+.list-filter:focus {
+  box-shadow: inset 0 0 0 1px var(--accent-strong);
+}
+
+.list-filter-empty[hidden] , .item.is-text-filtered {
+  display: none;
+}
+
+/* Ajustes del mapa (control de Leaflet) */
+.map-settings {
+  position: relative;
+}
+
+.map-settings-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  color: var(--text-main);
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+}
+
+.map-settings-btn:hover , .map-settings-btn[aria-expanded="true"] {
+  border-color: var(--accent-strong);
+}
+
+.map-settings-panel {
+  position: absolute;
+  top: 46px;
+  right: 0;
+  width: 240px;
+  padding: 12px 14px 6px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  color: var(--text-main);
+  box-shadow: var(--shadow-soft);
+  z-index: 1100;
+}
+
+.map-settings-panel[hidden] {
+  display: none;
+}
+
+.map-settings-title {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.map-settings-panel .label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* El panel "Rutas en este punto" queda debajo del botón de ajustes */
+html.beta .route-inspector {
+  top: 64px;
+}
+
+/* =========================
+   Pantallas angostas
+   ========================= */
+
+/* Interfaz actual: que el sidebar y el buscador no se salgan de la pantalla */
+@media (max-width: 700px) {
+  html:not(.beta) #sidebar {
+    left: 8px;
+    width: auto;
+    right: 8px;
+    top: 64px;
+    bottom: 8px;
+  }
+  html:not(.beta) #topbar {
+    top: 10px;
+    left: 8px;
+    right: 8px;
+    transform: none;
+    padding: 6px 8px;
+  }
+  html:not(.beta) #topbar .search {
+    flex: 1;
+    min-width: 0;
+  }
+  html:not(.beta) #searchInput {
+    width: 100%;
+    min-width: 0;
+  }
+  html:not(.beta) .suggest {
+    width: calc(100vw - 16px);
+    left: -30px;
+  }
+  html:not(.beta) #btnClearSearch {
+    flex: none;
+    font-size: 0;
+    padding: 6px 10px;
+  }
+  html:not(.beta) #btnClearSearch::before {
+    content: "×";
+    font-size: 14px;
+  }
+}
+
+/* Nueva interfaz: hoja inferior (mobileSheet.js) */
+.sheet-handle {
+  display: none;
+}
+
+html.sheet #sidebar {
+  box-sizing: border-box;   /* la altura que fija mobileSheet.js es la que tapa */
+  top: auto;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: auto;
+  padding: 0 12px 8px;
+  gap: 8px;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  border-bottom: none;
+  transition: height 180ms ease;
+  overflow: hidden;
+}
+
+html.sheet #sidebar.sheet-dragging {
+  transition: none;
+}
+
+html.sheet .sheet-handle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: none;
+  height: 22px;
+  margin: 0 -12px;
+  border: none;
+  background: transparent;
+  cursor: grab;
+  touch-action: none;
+}
+
+html.sheet .sheet-handle:focus-visible .sheet-grip {
+  background: var(--accent);
+}
+
+.sheet-grip {
+  width: 40px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--line-strong);
+}
+
+html.sheet #sidebar .header {
+  display: none;
+}
+
+/* Casillas y botones un poco más grandes para el dedo */
+html.sheet .item-head input[type="checkbox"] , html.sheet .panel-head > input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+}
+
+html.sheet .panel-head {
+  padding: 9px 10px;
+}
+
+html.sheet #searchInput , html.sheet .list-filter {
+  font-size: 16px;   /* evita el zoom automático de iOS al enfocar */
+}
+
+html.sheet .suggest {
+  max-height: 50vh;
+  background: var(--bg-sidebar);
+}
+
+/* Con la hoja completa no caben: zoom y créditos vuelven al bajarla */
+html.sheet[data-sheet="full"] .leaflet-bottom {
+  visibility: hidden;
+}
+
+/* Controles de Leaflet y panel de rutas por encima de la hoja */
+html.sheet .leaflet-bottom {
+  bottom: var(--sheet-h, 0px);
+  transition: bottom 180ms ease;
+}
+
+html.sheet .route-inspector {
+  top: auto;
+  bottom: calc(var(--sheet-h, 0px) + 8px);
+  max-height: min(40vh, calc(100vh - var(--sheet-h, 0px) - 90px));
+}
+
+html.sheet .map-settings-panel {
+  width: min(240px, calc(100vw - 32px));
+}
+

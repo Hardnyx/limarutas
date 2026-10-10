@@ -1,0 +1,591 @@
+/* =========================
+   Cómo llegar (tripUi.js)
+   ========================= */
+
+#tripPane {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.trip-field > * {
+  min-width: 0;
+}
+
+.trip-form {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.trip-field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  
+}
+
+.trip-dot {
+  flex: none;
+  
+  
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  
+  font-weight: 800;
+  color: #fff;
+}
+
+.trip-dot-from , .trip-pin-from { background: #16a34a; }
+.trip-dot-to , .trip-pin-to { background: #dc2626; }
+
+.trip-input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  
+  
+  
+  
+  color: var(--text-main);
+  
+}
+
+.trip-clear {
+  position: absolute;
+  
+  
+  
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.trip-pick {
+  flex: none;
+  
+  
+  
+  
+  
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.trip-pick:hover , html.trip-picking .trip-pick {
+  border-color: var(--accent-strong);
+}
+
+html.trip-picking #map {
+  cursor: crosshair;
+}
+
+html .suggest.trip-suggest {
+  top: 100%;
+  
+  
+  width: auto;
+  z-index: 20;
+  
+  
+}
+
+.trip-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 2px 2px 0 28px;
+}
+
+.trip-old {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.trip-status:empty {
+  display: none;
+}
+
+.trip-results {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.trip-card {
+  
+  
+  
+  
+  cursor: pointer;
+}
+
+.trip-card.selected {
+  border-color: var(--accent-strong);
+}
+
+.trip-card:focus-visible {
+  outline: 2px solid var(--focus);
+  
+}
+
+.tag.trip-chip {
+  
+  min-width: 0;
+  
+  box-shadow: none;
+}
+
+.trip-arrow {
+  width: 100%;
+  padding-left: 16px;
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+.trip-meta {
+  
+  
+  color: var(--text-muted);
+}
+
+.trip-warn {
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 11px;
+  color: var(--warn);
+}
+
+.trip-steps {
+  list-style: none;
+  
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  
+  
+  
+}
+
+.trip-step {
+  display: flex;
+  
+  position: relative;
+  
+}/* Línea de tiempo: trazo del color de la ruta; punteado al caminar */
+.trip-step::before {
+  content: "";
+  position: absolute;
+  
+  
+  
+  border-left: 2px dotted var(--line-strong);
+}
+.trip-step-ride::before {
+  
+  border-left: 4px solid var(--c, #3b82f6);
+  border-radius: 2px;
+}
+.trip-step:last-child::before { display: none; }
+.trip-step-ico {
+  position: relative;
+  z-index: 1;
+}
+
+.trip-step .tag.trip-chip {
+  
+  padding: 0 6px;
+  
+  vertical-align: middle;
+}
+
+.trip-step-ico {
+  flex: none;
+  
+  text-align: center;
+}
+
+.trip-empty {
+  padding: 8px 4px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.trip-empty-hint {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-start;
+}
+
+.trip-help {
+  display: none;
+  margin: 10px 4px 0;
+  
+  
+  
+}
+.trip-help p { margin: 0 0 6px; }
+#tripResults:empty + .trip-help { display: block; }
+
+.suggest-empty {
+  padding: 10px 12px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* Salida: Ahora o día y hora (el Metropolitano tiene horarios) */
+.trip-when {
+  justify-content: flex-start;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.trip-when select , .trip-when input[type="time"] {
+  
+  
+  
+  color-scheme: dark;
+  
+  border-radius: 8px;
+  box-shadow: inset 0 0 0 1px var(--line);
+  padding: 3px 6px;
+}
+.trip-when input[hidden] { display: none; }
+
+.trip-hours {
+  margin-top: 2px;
+  
+  color: var(--text-muted);
+}
+
+.trip-offhours {
+  display: grid;
+  gap: 4px;
+  margin: 6px 0;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.trip-offhours-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 6px;
+  align-items: center;
+  text-align: left;
+  padding: 6px 8px;
+  border-radius: 10px;
+  border: 1px dashed var(--line-strong);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+.trip-offhours-item:hover { border-color: var(--accent-strong); }
+.trip-offhours-item .trip-sub { grid-column: 2; }
+
+/* Recorrido y horario de cada servicio del Metropolitano */
+.item .sub.met-trip {
+  font-size: 11px;
+}
+.item .sub.met-trip + .sub.met-trip { margin-top: 3px; }
+.met-hours {
+  display: block;
+  opacity: 0.75;
+}
+
+/* Pines A y B */
+.leaflet-marker-icon.trip-pin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid #fff;
+  border-radius: 999px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+  box-sizing: border-box;
+}
+
+html.sheet .trip-input {
+  font-size: 16px;
+}
+
+/* Cada pestaña muestra lo suyo: en "Cómo llegar", el viaje; en "Rutas", las
+   rutas marcadas (siguen marcadas mientras tanto) */
+html.trip-mode .leaflet-overlay-pane , html.trip-mode .leaflet-alimLine-pane , html.trip-mode .leaflet-corrLine-pane , html.trip-mode .leaflet-metroLine-pane , html.trip-mode .leaflet-metLine-pane , html.trip-mode .leaflet-metTopLine-pane , html.trip-mode .leaflet-stop-pane , html.trip-mode .leaflet-metTopStop-pane , html.trip-mode .leaflet-tooltip.stop-tip , html:not(.trip-mode) .leaflet-tripLine-pane , html:not(.trip-mode) .leaflet-tripMark-pane {
+  display: none;
+}
+
+.trip-leg {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  width: 100%;
+}
+
+.trip-leg-route {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.trip-leg-route .trip-or {
+  width: 10px;
+  text-align: right;
+}
+
+.trip-name {
+  font-size: 12px;
+  color: var(--text-main);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+.trip-more {
+  padding-left: 16px;
+}
+
+.trip-or , .trip-more {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.trip-also {
+  display: block;
+  
+  
+}
+
+/* Tarjetas de viaje compactas: un tramo por línea y el tiempo a la derecha */
+.trip-card-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  flex-wrap: nowrap;
+}
+
+.trip-legs {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.trip-leg-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+.trip-leg-row .trip-chip { flex: none; }
+.trip-leg-row .trip-name { flex: 1; }
+.trip-or-alts {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 11px;
+  color: var(--text-muted);
+  cursor: help;
+}
+.tag.trip-chip.trip-chip-sm { font-size: 10px; padding: 1px 6px; min-width: 0; }
+.trip-badge {
+  display: inline-block;
+  
+  
+  border-radius: 999px;
+  
+  
+  color: var(--good-fg);
+  background: var(--good-bg);
+}
+
+.trip-leg-row + .trip-leg-row::before {
+  content: "›";
+  color: var(--text-muted);
+  margin-right: -2px;
+}
+
+.trip-plus {
+  flex: none;
+  padding: 0 6px;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  font-size: 11px;
+  color: var(--text-muted);
+  cursor: help;
+}
+
+.trip-time {
+  flex: none;
+  
+  
+  
+}
+
+.trip-time small {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.trip-sub {
+  color: var(--text-muted);
+}
+
+.trip-also {
+  margin-top: 3px;
+  color: var(--text-muted);
+}
+
+.trip-actions {
+  display: flex;
+  flex-wrap: wrap;
+  
+}
+
+.ri-trip {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+/* Caminata larga (más de 1 km) en una opción */
+.trip-walk-long {
+  color: var(--warn);
+}
+
+/* Panel de rutas en un punto: separador de las rutas antiguas */
+.ri-chips .ri-group {
+  flex-basis: 100%;
+  margin: 6px 0 2px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* Tarjeta de viaje: tira de tramos, nombres, duración y llegada */
+.trip-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  
+  min-width: 0;
+}
+.trip-seg-walk {
+  display: inline-flex;
+  align-items: center;
+  
+  
+  color: var(--text-muted);
+}
+.trip-walk-ico { font-size: 12px; }
+.trip-seg-ride {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.trip-sep {
+  color: var(--text-muted);
+  
+}
+.trip-card .trip-legs > .trip-name {
+  display: block;
+  
+  
+  
+}
+.trip-time {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+.trip-time .trip-arrive {
+  
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+/* Opciones del viaje: una fila de chips del mismo estilo */
+.trip-opts {
+  display: flex;
+  flex-wrap: wrap;
+  
+  
+}
+.trip-opt {
+  
+  
+  
+  
+  
+  
+  
+  
+  box-shadow: inset 0 0 0 1px var(--line);
+  
+  
+  
+  cursor: pointer;
+}
+.trip-opt:hover { box-shadow: inset 0 0 0 1px var(--accent-strong); }
+.trip-opt input[type="checkbox"] { margin: 0; accent-color: var(--accent); }
+.trip-opts .trip-when select , .trip-opts .trip-when input[type="time"] {
+  box-shadow: none;
+  background: transparent;
+  padding: 0;
+  font-size: 12px;
+}
+.trip-opt-ico { font-size: 12px; }
+.trip-opt-icon {    font-size: 14px; }
+
+/* Nueva interfaz: secciones planas (sin degradados), como en una app */
+html.beta .panel {
+  
+  border-color: var(--line);
+}
+html.beta .panel.nested {
+  background: transparent;
+  border-color: var(--line);
+}
+html.beta .panel-head:hover { background: var(--hover); }
+
+/* Celular con resultados: el formulario resumido en una línea */
+.trip-summary { display: none; }
+#tripPane.trip-compact .trip-form { display: none; }
+#tripPane.trip-compact .trip-summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  margin: 2px 0 8px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: inset 0 0 0 1px var(--line);
+  color: var(--text-main);
+  font: inherit;
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+}
+.trip-summary-text { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.trip-summary-edit { flex: none; color: var(--accent); font-weight: 600; font-size: 12px; }
+

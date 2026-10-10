@@ -1,0 +1,901 @@
+/* Layout base */
+
+html , body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text-main);
+  overflow: hidden;
+}
+
+#app {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Mapa full screen */
+
+#map {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* Topbar flotante */
+
+#topbar {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--surface);
+  border-radius: 999px;
+  padding: 8px 14px;
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(var(--blur));
+}
+
+#topbar .search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+#topbar .loupe {
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+#searchInput {
+  width: 320px;
+  border: none;
+  outline: none;
+  background: var(--surface);
+  border-radius: 999px;
+  padding: 7px 12px;
+  font-size: 14px;
+  color: var(--text-main);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+
+#searchInput::placeholder {
+  color: var(--text-muted);
+}
+
+/* Sugerencias de búsqueda */
+
+.suggest {
+  position: absolute;
+  top: 120%;
+  left: 0;
+  width: 360px;
+  max-height: 360px;
+  overflow-y: auto;
+  background: var(--surface);
+  border-radius: 16px;
+  box-shadow: var(--shadow-light);
+  padding: 6px 0;
+  margin-top: 4px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition: opacity 120ms ease, transform 120ms ease;
+}
+
+.suggest.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.suggest-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.suggest-item:hover {
+  background: var(--accent-soft);
+}
+
+.s-ico {
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  background: var(--surface);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-main);
+  overflow: hidden;
+}
+
+.s-ico img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.s-label {
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.s-sub {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* Botones generales */
+
+.btn {
+  
+  
+  
+  
+  
+  
+  
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 120ms ease, border-color 120ms ease, transform 80ms ease;
+  
+}
+
+.btn-ghost {
+  background: transparent;
+  border-color: var(--line-strong);
+  box-shadow: none;
+}
+
+.btn:hover {
+  
+  
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+/* Sidebar flotante */
+
+#sidebar {
+  position: absolute;
+  top: 70px;
+  left: 18px;
+  bottom: 18px;
+  width: var(--sidebar-width);
+  z-index: 900;
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  padding: 14px 14px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(var(--blur));
+  border: 1px solid var(--line);
+}
+
+#sidebar .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 2px 2px 4px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+#sidebar h1 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+}
+
+/* Paneles y listas */
+
+#panels {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 4px;
+  padding-top: 4px;
+}
+
+.panel {
+  border-radius: var(--radius-md);
+  margin-bottom: 6px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.panel.nested {
+  background: var(--surface);
+  border-color: var(--line);
+}
+
+.panel-head {
+  width: 100%;
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  cursor: pointer;
+  color: var(--text-main);
+  font-size: 13px;
+}
+
+.panel-head .title {
+  flex: 1;
+  text-align: left;
+  font-weight: 600;
+}
+
+.panel-head .right {
+  margin-left: auto;
+}
+
+.panel-body {
+  padding: 6px 9px 8px;
+  border-top: 1px solid var(--line);
+}
+
+.panel-body.list {
+  padding: 4px 4px 6px;
+}
+
+/* Triangulito */
+
+.chev {
+  display: inline-block;
+  font-size: 11px;
+  width: 14px;
+  text-align: center;
+  transform-origin: center;
+  transition: transform 120ms ease;
+}
+
+.panel.open > .panel-head .chev {
+  transform: rotate(90deg);
+}
+
+/* Items de lista de rutas */
+
+.list .item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 5px 7px;
+  margin-bottom: 3px;
+  border-radius: 10px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+
+.list .item:last-child {
+  margin-bottom: 0;
+}
+
+.item-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.item-head .left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.item-head .name {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.item-head .sub {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.item-head .sub.wr-flag {
+  color: var(--warn);
+}
+
+.item-head .sub.wr-flag:empty {
+  display: none;
+}
+
+.item-head input[type="checkbox"] {
+  margin-left: auto;
+}
+
+/* Badges, tags e iconos */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 26px;
+  
+  white-space: nowrap;
+  border-radius: 999px;
+  
+  color: var(--text-main);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  
+  
+}.tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  
+  
+  white-space: nowrap;
+  
+  
+  
+  
+  
+  text-transform: uppercase;
+  
+  
+}
+
+.badge {
+  padding: 0;
+  overflow: hidden;
+}
+
+.badge img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Botoncitos de dirección mini */
+
+.dir-mini {
+  display: inline-flex;
+  gap: 4px;
+  margin-left: 36px;
+  margin-top: 2px;
+}
+
+.segbtn-mini {
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-size: 10px;
+  padding: 2px 7px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.segbtn-mini.active {
+  background: var(--accent-strong);
+  color: var(--on-accent);
+  border-color: var(--accent);
+}
+
+/* Opciones varias */
+
+.group {
+  margin-bottom: 8px;
+}
+
+.label {
+  font-size: 12px;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 3px;
+}
+
+.radios {
+  display: flex;
+  gap: 10px;
+  font-size: 12px;
+}
+
+.radios label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.row {
+  display: flex;
+  gap: 8px;
+}
+
+/* Estado y textos auxiliares */
+
+.status {
+  margin-top: 6px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.muted {
+  font-size: 12px;
+  color: var(--text-muted);
+  padding: 4px 6px;
+}
+
+/* Stack genérico para secciones anidadas */
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Pin de paradero en el mapa */
+
+.stop-pin {
+  width: 16px;
+  height: 16px;
+  background: radial-gradient(circle at 50% 35%, #ffffff 0 28%, #d22 29% 30%, #f44 31% 100%);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  border: 1px solid #b00;
+  box-shadow: var(--shadow-1);
+}
+
+/* Scrollbar ligera */
+
+#panels::-webkit-scrollbar {
+  width: 6px;
+}
+
+#panels::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#panels::-webkit-scrollbar-thumb {
+  background: var(--line-strong);
+  border-radius: 999px;
+}
+
+/* Search: título de cada grupo (Rutas, Paraderos) */
+.suggest-head {
+  padding: 8px 12px 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.suggest-head:not(:first-child) {
+  margin-top: 4px;
+  border-top: 1px solid var(--line);
+  padding-top: 10px;
+}
+
+/* Search: item seleccionado con teclado */
+.suggest-item.selected {
+  background: var(--accent-soft);
+}
+
+.suggest-item .s-label {
+  font-weight: 600;
+  color: var(--text-main);
+  font-size: 13px;
+}
+
+.suggest-item .s-sub {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* Depuración: filtro por color de ruta (Transporte público) */
+.item.is-color-filtered {
+  display: none;
+}
+
+.wr-debug {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 6px 7px;
+  margin-bottom: 4px;
+  border-radius: 10px;
+  border: 1px dashed var(--warn-line);
+  background: var(--warn-soft);
+}
+
+.wr-debug-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--warn);
+}
+
+.wr-debug-seg {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.wr-debug-seg .segbtn-mini span {
+  opacity: 0.75;
+}
+
+/* Rutas recientes */
+.recent-panel[hidden] {
+  display: none;
+}
+
+.recent-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  font-size: 13px;
+  color: var(--text-main);
+}
+
+.recent-head .title {
+  flex: 1;
+  font-weight: 600;
+}
+
+.recent-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 4px 4px 6px;
+  border-top: 1px solid var(--line);
+}
+
+.recent-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 5px 4px 5px 7px;
+  border-radius: 10px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+
+.recent-top {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.recent-row {
+  flex: 1;
+  min-width: 0;
+  cursor: pointer;
+}
+
+.recent-row .left {
+  min-width: 0;
+}
+
+.recent-remove {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.recent-remove:hover , .recent-remove:focus-visible {
+  color: var(--text-main);
+  background: var(--fill);
+}
+
+/* Rutas en este punto (routeInspector.js) */
+.route-inspector {
+  position: fixed;
+  top: 84px;
+  right: 16px;
+  z-index: 1000;
+  width: 320px;
+  max-width: calc(100vw - 32px);
+  max-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  backdrop-filter: blur(var(--blur));
+  color: var(--text-main);
+  box-shadow: var(--shadow-soft);
+}
+
+.route-inspector[hidden] {
+  display: none;
+}
+
+.route-inspector.pinned {
+  border-color: var(--accent-strong);
+}
+
+.ri-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 6px 6px 12px;
+}
+
+.ri-title {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.ri-count {
+  flex: 1;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.ri-btn {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.ri-btn:hover , .ri-btn:focus-visible {
+  color: var(--text-main);
+  background: var(--fill);
+}
+
+.ri-body {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  border-top: 1px solid var(--line);
+}
+
+.route-inspector.collapsed .ri-body {
+  display: none;
+}
+
+.ri-hint {
+  padding: 5px 12px 0;
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.ri-hint:empty {
+  display: none;
+}
+
+.ri-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 8px 10px;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.tag.ri-chip {
+  min-width: 0;
+  height: 20px;
+  padding: 0 7px;
+  font-size: 11px;
+  box-shadow: none;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #fff;
+  cursor: pointer;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.tag.ri-chip.active , .tag.ri-chip:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 1px;
+}
+
+.ri-detail {
+  flex: none;
+  padding: 8px 12px 10px;
+  border-top: 1px solid var(--line);
+}
+
+.ri-placeholder {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.ri-placeholder:empty {
+  display: none;
+}
+
+.ri-detail-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.ri-detail-tag {
+  flex: none;
+  height: 22px;
+  font-size: 12px;
+  color: #fff;
+}
+
+.ri-detail-text {
+  min-width: 0;
+}
+
+.ri-detail-title {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.ri-detail-sub , .ri-detail-sys {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.ri-detail-sys {
+  opacity: 0.8;
+}
+
+.ri-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.ri-actions .btn[disabled] {
+  opacity: 0.6;
+  cursor: default;
+}
+
+/* Celular: hoja inferior en vez de panel lateral */
+@media (max-width: 700px) {
+  .route-inspector {
+    top: auto;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    width: auto;
+    max-width: none;
+    max-height: 45vh;
+  }
+}
+
+.btn[hidden] {
+  display: none;
+}
+
+.tag.on-light , .tag.ri-chip.on-light , .tag.ri-detail-tag.on-light , .tag.trip-chip.on-light {
+  
+  text-shadow: none;
+}
+
+/* Buscador: resultado de paradero */
+.s-ico.s-ico-stop {
+  background: #f59e0b;
+  color: #0b1020;
+  border-radius: 999px;
+}
+
+/* Nombre del paradero (stopHover.js) */
+.leaflet-tooltip.stop-tip {
+  padding: 4px 8px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text-main);
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: var(--shadow-soft);
+}
+
+.leaflet-tooltip.stop-tip::before {
+  display: none;
+}
+
+/* Diálogo propio de la página (uiDialog.js) */
+.ui-dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: var(--scrim);
+  backdrop-filter: blur(2px);
+}
+
+.ui-dialog {
+  width: 100%;
+  max-width: 420px;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--bg-sidebar);
+  color: var(--text-main);
+  box-shadow: var(--shadow-soft);
+}
+
+.ui-dialog-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.ui-dialog-msg {
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+
+.ui-dialog-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.btn.ui-dialog-btn {
+  box-shadow: none;
+}
+
+.btn.ui-dialog-btn.primary , .btn.ui-dialog-btn.primary:hover {
+  background: var(--accent-strong);
+  border-color: var(--accent);
+  color: var(--on-accent);
+  font-weight: 600;
+}
+
+.btn.ui-dialog-btn:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+@media (max-width: 700px) {
+  .ui-dialog-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+  .btn.ui-dialog-btn {
+    justify-content: center;
+  }
+}/* Botón de opción activa (tema del mapa) */
+
