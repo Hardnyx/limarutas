@@ -3,6 +3,8 @@ import { test, expect } from './fixtures.js';
 test('route metadata agrees with the visible catalog in both interfaces', async ({ app, page }) => {
   const result = await page.evaluate(async () => {
     const { loadTripGraph } = await import('/assets/js/tripData.js');
+    const { loadServiceCatalog } = await import('/assets/js/catalogRepository.js');
+    const catalog = await loadServiceCatalog();
     const { wrChipName } = await import('/assets/js/wrTexts.js');
     const graph = await loadTripGraph();
     return graph.routes.map(route => {
@@ -10,7 +12,9 @@ test('route metadata agrees with the visible catalog in both interfaces', async 
         `#panels .item .item-head input[data-system="${route.system}"][data-id="${CSS.escape(route.id)}"]`);
       const item = leaf?.closest('.item');
       const code = item?.querySelector('.item-head .left .tag, .item-head .left .badge')?.textContent?.trim();
+      const service = catalog.routeFor(route.key);
       return {
+        catalog: !!service && service.system === leaf?.dataset.system && service.id === leaf?.dataset.id && service.code === route.code && service.alias === route.alias && service.verified === route.verified,
         key: route.key,
         found: !!leaf,
         code: route.code === (code || leaf?.dataset.id || route.key),
@@ -20,5 +24,5 @@ test('route metadata agrees with the visible catalog in both interfaces', async 
     });
   });
   expect(result.length).toBeGreaterThan(1000);
-  expect(result.filter(r => !r.found || !r.code || !r.alias || !r.id)).toEqual([]);
+  expect(result.filter(r => !r.catalog || !r.found || !r.code || !r.alias || !r.id)).toEqual([]);
 });
