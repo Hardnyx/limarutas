@@ -180,8 +180,8 @@ export function createTripForm(model, { ensureGraph, setEnd, removePin, addPin, 
     summary.addEventListener('click', () => setCompact(false));
     pane.append(summary,
       el('div', { class: 'trip-form' },
-        field('from', 'A', '¿Desde dónde sales?'),
-        field('to', 'B', '¿A dónde vas?'),
+        field('from', 'A', 'Paradero o cruce de origen'),
+        field('to', 'B', 'Paradero o cruce de destino'),
         // Opciones en una fila de chips: salida, invertir, rutas antiguas
         el('div', { class: 'trip-opts' },
           whenRow(),

@@ -8,6 +8,7 @@
 // tramo trae esas rutas alternativas: basta tomar la primera que pase.
 import { runsAt } from './metSchedule.js';
 import { distM } from './geo.js';
+import { explainRecommendation } from './tripRecommendation.js';
 
 // Hasta cuánto se camina al inicio y al final del viaje
 export const ACCESS_MAX_M = 800;
@@ -422,6 +423,9 @@ export function planTrip(g, from, to, { includeOld = false, at = null } = {}){
       minutes: Math.round(c.minutes),
       walkM: Math.round(c.walkM),
       cost: Math.round(c.cost),
+      recommendationReason: c === picked[0] ? explainRecommendation(c, {
+        directReference: refDirect, savingThreshold: mustSave, winningIntegrated: integratedWins(c)
+      }) : '',
       mass: c.mass,
       old: rideLegs(c).some(l => l.route.group === 'antigua')
     });

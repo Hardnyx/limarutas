@@ -143,6 +143,7 @@ export function createTripMapRenderer(model, { state, pickedPoint, syncInputs, r
       const r = leg.route;
       const coords = rideCoords(r, leg, pt);
       const color = colorOf(r);
+      tripLayer.addLayer(L.polyline(coords, { pane: LINE_PANE, className: 'trip-route-outline', color: '#334155', weight: 12, opacity: 0.8, interactive: false }));
       tripLayer.addLayer(L.polyline(coords, { pane: LINE_PANE, color: '#fff', weight: 10, opacity: 0.9, interactive: false }));
       tripLayer.addLayer(L.polyline(coords, { pane: LINE_PANE, color, weight: 6, interactive: false }));
       // Cada paradero del tramo, con su nombre; los de subida y bajada más grandes

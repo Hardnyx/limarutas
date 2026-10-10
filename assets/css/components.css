@@ -388,7 +388,7 @@ html.beta .trip-sep {
 }
 
 html.beta .trip-time {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
   letter-spacing: -0.01em;
 }
@@ -417,6 +417,9 @@ html.beta .trip-badge {
   font-weight: 700;
   vertical-align: 1px;
 }
+
+.trip-card-label { margin-bottom: 6px; }
+.trip-reason { margin-top: 7px; color: var(--text-muted); font-size: 12px; line-height: 1.45; }
 
 /* Pasos: línea de tiempo con íconos */
 html.beta .trip-steps {

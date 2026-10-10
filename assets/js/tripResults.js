@@ -179,8 +179,10 @@ export function createTripResults(model, { setCompact, departure, setDeparture, 
         el('small', { class: 'trip-arrive' }, `llegas ~${arrivalText(opt.minutes)}`)));
     const badge = badges?.get(opt);
     const body = el('div', { class: 'trip-card', role: 'button', tabindex: '0', 'aria-expanded': String(isOpen) },
-      head, el('div', { class: 'trip-meta' }, badge ? el('span', { class: 'trip-badge' }, badge) : '', `${where} · `,
+      badge ? el('div', { class: 'trip-card-label' }, el('span', { class: 'trip-badge' }, badge)) : '',
+      head, el('div', { class: 'trip-meta' }, `${where} · `,
         el('span', { class: opt.walkM > 1000 ? 'trip-walk-long' : '' }, opt.walkM < 15 ? 'sin caminar' : `${fmtM(opt.walkM)} a pie`)));
+    if (opt.recommendationReason) body.append(el('div', { class: 'trip-reason' }, opt.recommendationReason));
     if (opt.old) body.append(el('div', { class: 'trip-warn' }, 'Usa una ruta antigua: podría no circular'));
     if (isOpen){
       body.classList.add('selected');
@@ -199,7 +201,7 @@ export function createTripResults(model, { setCompact, departure, setDeparture, 
     }
     const pickCard = () => onSelect(k);
     body.addEventListener('click', pickCard);
-    body.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); pickCard(); } });
+    body.addEventListener('keydown', (e) => { if (e.target === body && (e.key === 'Enter' || e.key === ' ')){ e.preventDefault(); pickCard(); } });
     return body;
   }
 
