@@ -3,7 +3,8 @@ from pipeline.authoring.network import Network, bus_access
 
 
 def fixture_network():
-    return Network({'version': 1, 'source': {'sha256': 'fixture'}, 'edges': [
+    return Network({'version': 1, 'source': {'sha256': 'fixture', 'timestamp': '2026-10-02'},
+                    'bbox': [-77.01, -12.01, -76.99, -11.99], 'edges': [
         {'id': '1:0', 'way': 1, 'nodes': [1, 2], 'coordinates': [[-77, -12], [-76.9999, -12.00005]],
          'name': 'Avenida Curva', 'forward': True, 'backward': False},
         {'id': '1:1', 'way': 1, 'nodes': [2, 3], 'coordinates': [[-76.9999, -12.00005], [-76.99985, -12.00015]],

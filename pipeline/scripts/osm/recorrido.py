@@ -78,9 +78,9 @@ def _heading(a, b):
 
 
 class Recorridos:
-    def __init__(self, bbox):
+    def __init__(self, bbox, red=None):
         self.bbox = bbox
-        self.red = red = Red(bbox)
+        self.red = red = Red(bbox) if red is None else red
         self.pos = red.pos
         # Sin sentido de circulación (ver arriba)
         self.adj = defaultdict(set)
