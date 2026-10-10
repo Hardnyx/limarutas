@@ -1,4 +1,4 @@
-name: Pruebas (Playwright)
+name: Pruebas (dominio, datos y Playwright)
 
 # En main las corre el workflow de Pages antes de publicar (workflow_call)
 on:
@@ -32,6 +32,11 @@ jobs:
       - name: Validar fotos de rutas (autor y licencia libre)
         run: python3 pipeline/scripts/photos/commons_photos.py --check
 
+      - name: Validar contratos de datos
+        run: |
+          python3 -m unittest discover -s pipeline/tests
+          python3 pipeline/run.py validate --manifest pipeline-inventory.json
+
       - name: Correr pruebas
         run: npm test
         env:
@@ -45,4 +50,11 @@ jobs:
           path: |
             playwright-report/
             test-results/
+          retention-days: 7
+
+      - name: Guardar inventario de datos validados
+        uses: actions/upload-artifact@v4
+        with:
+          name: pipeline-inventory
+          path: pipeline-inventory.json
           retention-days: 7

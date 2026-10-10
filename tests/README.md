@@ -4,7 +4,7 @@ Pruebas de humo en Chromium con [Playwright](https://playwright.dev). No usan
 la red: Leaflet se sirve desde `node_modules` y los tiles de CARTO se bloquean.
 
 ```bash
-npm install                      # primera vez
+npm ci                           # primera vez
 npx playwright install chromium  # primera vez (navegador)
 npm test                         # todas las pruebas, en las dos interfaces
 npx playwright test tests/search.spec.js   # un archivo
@@ -41,3 +41,14 @@ lo cambia.
 
 En GitHub Actions corren en cada push y PR (`.github/workflows/tests.yml`), y el
 despliegue a Pages (`pages.yml`) solo publica si pasan.
+
+## Contratos de arquitectura y datos
+
+- `npm run test:unit`: catálogo, identidad entre sentidos, estado con suscripción,
+  grafo espacial, cálculo sin navegador y límites de imports de dominio.
+- `npm run test:data`: rechaza referencias rotas, valores no finitos y segmentos
+  inconsistentes; valida los archivos estáticos que consume el sitio.
+- `architecture.spec.js`: compara el catálogo con las dos interfaces,
+  reconstruye el grafo sin sidebar y comprueba selección y «Quitar todas».
+- `style-contract.spec.js`: referencias de estilos computados en dos anchos y
+  ambos temas. Actualizar snapshots únicamente ante cambios visuales previstos.
