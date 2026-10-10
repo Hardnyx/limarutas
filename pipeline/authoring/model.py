@@ -119,7 +119,9 @@ def validate(route, network):
         raise ValueError('Identidad de ruta incompleta')
     if type(route.get('revision')) is not int or route['revision'] < 0:
         raise ValueError('Revisión de ruta inválida')
-    issues, previous, incoming, current_node, distance = [], None, None, None, 0
+    issues = [{'code': 'sourceReview', 'message': warning}
+              for warning in route.get('source', {}).get('importWarnings', [])]
+    previous, incoming, current_node, distance = None, None, None, 0
     used_ways = set()
     for i, item in enumerate(route['path']):
         if item.get('type') == 'street':
