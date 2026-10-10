@@ -62,3 +62,6 @@ node_modules/
 test-results/
 playwright-report/
 data/raw/osm/Lima.osm.pbf
+pipeline-inventory.json
+
+.venv/

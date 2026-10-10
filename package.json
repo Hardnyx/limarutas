@@ -5,7 +5,8 @@
   "scripts": {
     "test": "npm run test:unit && playwright test",
     "test:ui": "playwright test --ui",
-    "test:unit": "node --test tests-node/*.test.mjs"
+    "test:unit": "node --test tests-node/*.test.mjs",
+    "test:data": "python3 -m unittest discover -s pipeline/tests && python3 pipeline/run.py validate"
   },
   "devDependencies": {
     "@playwright/test": "1.56.1",
