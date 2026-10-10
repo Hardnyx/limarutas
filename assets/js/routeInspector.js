@@ -13,7 +13,7 @@ import { $, el } from './utils.js';
 import { addRecent } from './recents.js';
 import { bulk, setLeafChecked, syncAllTri, ROUTES_CHANGED } from './uiSidebar.hierarchy.js';
 import { isOverStop, setFormalStopHandler } from './stopHover.js';
-import { stopsNear } from './search.js';
+import { stopsNear } from './stopRepository.js';
 import { confirmManyRoutes } from './stopsGuard.js';
 import { findUnderPoint, entriesForFolders, feederEntriesNear, corridorEntriesFor } from './routeEntries.js';
 import { centerOn } from './mapFit.js';

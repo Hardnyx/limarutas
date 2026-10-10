@@ -1,3 +1,5 @@
+import { loadStopsIndex, keyOf } from './stopRepository.js';
+export { stopsNear } from './stopRepository.js';
 // search.js
 import { state } from './config.js';
 import { $, el } from './utils.js';
@@ -301,44 +303,6 @@ const MAX_STOPS = 5;
 // en Santa Anita, Ate, La Molina, Villa El Salvador...): se listan todos
 const MAX_SAME_NAME = 10;
 
-let stopsIndexPromise = null;
-
-// Se carga recién al buscar algo que pueda ser un paradero
-function loadStopsIndex(){
-  if (stopsIndexPromise) return stopsIndexPromise;
-  stopsIndexPromise = fetch('pipeline/output/wr_stops_index.json')
-    .then(r => {
-      if (!r.ok) throw new Error(`HTTP ${r.status}`);
-      return r.json();
-    })
-    .then(({ routes, stops }) => stops.map(([name, lat, lon, idx, district, neighbor, cross, swap, alias]) => ({
-      name,
-      // Cómo se muestra al buscar: con su cruce ("Universitaria con Colonial",
-      // wr_stops_cruces.py); en el mapa y en los pasos sigue siendo el nombre.
-      // swap: el mismo cruce empezando por la otra calle ("Colonial con
-      // Universitaria"), para quien busca esa; alias: otros nombres ("Trébol
-      // de Javier Prado", "Óscar R. Benavides", "Km 22")
-      label: cross || name,
-      swap: swap || null,
-      alias: alias || '',
-      key: keyOf(name),
-      labelKey: keyOf(cross || name),
-      swapKey: swap ? keyOf(swap) : '',
-      aliasKeys: alias ? alias.split(' · ').map(keyOf) : [],
-      lat,
-      lon,
-      folderIds: idx.map(i => routes[i]),
-      district: district || '',
-      neighbor: neighbor || ''
-    })))
-    .catch(err => {
-      console.warn('[search] Sin índice de paraderos:', err.message);
-      return [];
-    });
-  return stopsIndexPromise;
-}
-
-const keyOf = t => norm(t).replace(/[^a-z0-9]+/g, ' ').trim();
 // Sin "con" (nadie lo escribe al buscar "javier prado brasil")
 const bare = k => k.replace(/(^| )con( |$)/g, ' ').replace(/ +/g, ' ').trim();
 
@@ -400,16 +364,6 @@ function findStops(stops, query){
 
 // Paraderos de Wikiroutes a menos de m metros de un punto (el más cercano
 // primero): para saber qué rutas paran en un paradero tocado en el mapa
-export async function stopsNear(lat, lon, m = 40){
-  const stops = await loadStopsIndex();
-  const k = Math.cos(lat * Math.PI / 180);
-  return stops
-    .map(st => [st, Math.hypot((st.lat - lat) * 110_574, (st.lon - lon) * 111_320 * k)])
-    .filter(([, d]) => d <= m)
-    .sort((a, b) => a[1] - b[1])
-    .map(([st]) => st);
-}
-
 // Dos paraderos del mismo cruce: las mismas calles (en cualquier orden) y a
 // menos de 200 m
 function sameCrossing(a, b){
