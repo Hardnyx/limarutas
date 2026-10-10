@@ -1,3 +1,4 @@
+import { leafForService } from './routeControls.js';
 // tripUi.js
 // Pestaña "Cómo llegar" (nueva interfaz): origen y destino (paradero o punto
 // en el mapa), opciones de viaje (tripPlanner.js) y su dibujo en el mapa.
@@ -53,7 +54,7 @@ function choices(){
   const { name, district, cross, swap, alias, lat, lon } = graph.stops;
   for (let i = 0; i < graph.stops.count; i++){
     if (!name[i]) continue;
-    const n = new Set(graph.atStop[i].filter(([ri]) => usable(graph.routes[ri])).map(([ri]) => graph.routes[ri].leaf)).size;
+    const n = new Set(graph.atStop[i].filter(([ri]) => usable(graph.routes[ri])).map(([ri]) => graph.routes[ri].serviceId)).size;
     if (!n) continue;
     // Un lugar por cruce ("Universitaria con Colonial", "… con Izaguirre"):
     // buscar "universitaria" los trae a todos; "universitaria colonial", ese.
@@ -371,38 +372,16 @@ function clearResults(){
   if (tripLayer) tripLayer.clearLayers();
 }
 
-function colorOf(route){
-  const tag = route.leaf.closest('.item')?.querySelector('.item-head .left .tag');
-  if (tag?.style.background) return tag.style.background;
-  const svc = state.systems[route.system]?.services?.find(s => String(s.id) === route.leaf.dataset.id);
-  return svc?.color || '#3b82f6';
-}
-
-// Nombre por el que se conoce la ruta: empresa y alias ("Unidos de Pasajeros ·
-// La 73-1"), el que muestra su fila en la pestaña Rutas
+const colorOf = route => route.color || '#3b82f6';
 function routeName(route){
-  const item = route.leaf.closest('.item');
-  let name = item?.querySelector('.item-head .name')?.textContent?.trim() || '';
-  if (route.group === 'corredor'){
-    // "Servicio 205" no dice nada: el corredor sí ("Corredor Rojo")
-    const titles = [];
-    for (let p = item?.closest('section.panel'); p; p = p.parentElement?.closest('section.panel')){
-      const t = p.querySelector(':scope > .panel-head .title')?.firstChild?.textContent?.trim();
-      if (t) titles.push(t);
-    }
-    return titles.find(t => /^Corredor\b/i.test(t)) || 'Corredor';
-  }
+  const name = route.name || '';
+  if (route.group === 'corredor') return route.corridorName || 'Corredor';
   if (route.group === 'metropolitano') return `Metropolitano · ${name || route.code}`;
-  if (route.group === 'alimentador'){
-    const m = route.key.match(/^alim:(.+):(ida|vuelta)$/);
-    const to = m && state.systems.alim.paths?.[m[1]]?.[m[2]]?.to;
-    return `Alimentador ${route.code}${to ? ` · hacia ${to}` : ''}`;
-  }
+  if (route.group === 'alimentador') return `Alimentador ${route.code}${route.headsign ? ` · hacia ${route.headsign}` : ''}`;
   if (route.group === 'metro') return `Metro de Lima · ${name.replace(/^Línea\s+L/i, 'Línea ') || route.code}`;
   if (name && name !== route.code) return titleCase(name);
-  const m = item?.__wrMeta;
-  const known = titleCase([m?.empresa_operadora, m?.alias].filter(Boolean).join(' · '));
-  return known || (route.group === 'antigua' ? 'Ruta antigua' : '');
+  const meta = route.metadata;
+  return titleCase([meta?.empresa_operadora, meta?.alias].filter(Boolean).join(' · ')) || (route.group === 'antigua' ? 'Ruta antigua' : '');
 }
 
 // "HOLDING REAL EXPRESS" → "Holding Real Express" (siglas cortas y "La 6" quedan igual)
@@ -606,7 +585,7 @@ function card(opt, k){
     show.title = 'Marca estas rutas y abre la pestaña Rutas';
     show.addEventListener('click', (e) => {
       e.stopPropagation();
-      rides.forEach(l => { if (!l.route.leaf.checked) l.route.leaf.click(); });
+      rides.forEach(l => { const leaf = leafForService(l.route.system, l.route.id); if (leaf && !leaf.checked) leaf.click(); });
       $('#tabRoutes')?.click();
     });
     const share = el('button', { type: 'button', class: 'btn small btn-ghost trip-share' }, 'Compartir');

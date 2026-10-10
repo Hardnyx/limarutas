@@ -60,7 +60,7 @@ test('solo entran las rutas que están en el sidebar, con su grupo', async ({ ap
     const leaves = document.querySelectorAll('#panels .item .item-head input[data-system]');
     return {
       groups,
-      allHaveLeaf: g.routes.every(x => x.leaf && x.leaf.isConnected),
+      allHaveLeaf: g.routes.every(x => document.querySelector(`#panels .item .item-head input[data-system="${x.system}"][data-id="${CSS.escape(x.id)}"]`)),
       alim: g.routes.filter(x => x.system === 'alim').map(x => x.key),
       codeOf1240: g.routes.find(x => x.key === '1240-ida').code,
       leaves: leaves.length
@@ -94,7 +94,7 @@ test('rutas antiguas: fuera por defecto salvo las verificadas', async ({ app, pa
     state.catalog.semiformal.verificadas = [c];
     const { loadTripGraph } = await import('/assets/js/tripData.js');
     const g = await loadTripGraph({ force: true });
-    return g.activeRoutes().filter(x => x.group === 'antigua').map(x => x.leaf.dataset.id);
+    return g.activeRoutes().filter(x => x.group === 'antigua').map(x => x.id);
   }, code);
   expect(after.length).toBeGreaterThan(0);
   expect(new Set(after)).toEqual(new Set([code]));

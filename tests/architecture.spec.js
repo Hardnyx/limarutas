@@ -26,3 +26,14 @@ test('route metadata agrees with the visible catalog in both interfaces', async 
   expect(result.length).toBeGreaterThan(1000);
   expect(result.filter(r => !r.catalog || !r.found || !r.code || !r.alias || !r.id)).toEqual([]);
 });
+
+test('rebuilding the graph does not depend on the mounted sidebar', async ({ app, page }) => {
+  const equal = await page.evaluate(async () => {
+    const { loadTripGraph } = await import('/assets/js/tripData.js');
+    const before = (await loadTripGraph()).routes.map(r => r.key);
+    document.querySelector('#panels').remove();
+    const after = (await loadTripGraph({ force: true })).routes;
+    return JSON.stringify(before) === JSON.stringify(after.map(r => r.key)) && after.every(r => !('leaf' in r));
+  });
+  expect(equal).toBe(true);
+});

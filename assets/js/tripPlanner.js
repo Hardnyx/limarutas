@@ -7,7 +7,7 @@
 // conservador) y es menor cuando varias rutas hacen el mismo tramo. Cada
 // tramo trae esas rutas alternativas: basta tomar la primera que pase.
 import { runsAt } from './metSchedule.js';
-import { distM } from './tripData.js';
+import { distM } from './geo.js';
 
 // Hasta cuánto se camina al inicio y al final del viaje
 export const ACCESS_MAX_M = 800;
@@ -151,7 +151,7 @@ function waitMin(routes){
 }
 
 // Mismo servicio (ida y vuelta de una ruta, o sus dos sentidos)
-const sameService = (a, b) => a.leaf === b.leaf;
+const sameService = (a, b) => a.serviceId === b.serviceId;
 
 /**
  * Planifica un viaje.
@@ -297,7 +297,7 @@ export function planTrip(g, from, to, { includeOld = false, at = null } = {}){
 
   // Un transbordo no tiene sentido si una de sus rutas ya te lleva directo
   // (salvo que ahorre bastante): mejor quedarse en el mismo bus
-  const svc = r => r.leaf;
+  const svc = r => r.serviceId;
   const directBase = new Map();
   for (const c of cands){
     if (c.transfers) continue;
@@ -320,13 +320,13 @@ export function planTrip(g, from, to, { includeOld = false, at = null } = {}){
   for (const c of top){
     let wait = 0;
     let prev = null;
-    const mains = c.legs.filter(l => l.type === 'ride').map(l => l.route.leaf);
+    const mains = c.legs.filter(l => l.type === 'ride').map(l => l.route.serviceId);
     for (const leg of c.legs){
       if (leg.type !== 'ride') continue;
       // Sin repetir en un tramo la ruta de otro tramo ("1057 › 1057"), y en
       // un transbordo sin las que ya van directo (esas son su propia opción)
       leg.alts = alternativesFor(g, leg, isActive).filter(a =>
-        !mains.includes(a.route.leaf) && !(c.transfers && directBase.has(svc(a.route))));
+        !mains.includes(a.route.serviceId) && !(c.transfers && directBase.has(svc(a.route))));
       leg.wait = waitMin([leg.route, ...leg.alts.map(a => a.route)]);
       const fromMet = prev?.group === 'metropolitano';
       // De un servicio del Metropolitano a otro: la espera no baja de 5 min
@@ -447,12 +447,12 @@ function alternativesFor(g, leg, isActive){
     for (const [ri, pos] of g.atStop[b]){
       if (!isActive(ri)) continue;
       const ar = g.routes[ri];
-      if (sameService(ar, r) || found.has(ar.leaf)) continue;
+      if (sameService(ar, r) || found.has(ar.serviceId)) continue;
       let m = 0;
       for (let k = pos + 1; k < ar.stops.length; k++){
         m += legMin(g, ar, k - 1);
         if (m > limit) break;
-        if (alights.has(ar.stops[k])){ found.set(ar.leaf, { route: ar, from: pos, to: k, min: m }); break; }
+        if (alights.has(ar.stops[k])){ found.set(ar.serviceId, { route: ar, from: pos, to: k, min: m }); break; }
       }
     }
   }
@@ -474,7 +474,7 @@ export function offHoursHelp(g, from, to, { includeOld = false, at = null } = {}
   const found = new Map();
   anyTime.options.forEach(o => o.legs.forEach(l => {
     const r = l.route;
-    if (l.type === 'ride' && r.schedule && !runsAt(r.schedule, at) && !found.has(r.leaf)) found.set(r.leaf, r);
+    if (l.type === 'ride' && r.schedule && !runsAt(r.schedule, at) && !found.has(r.serviceId)) found.set(r.serviceId, r);
   }));
   return Array.from(found.values());
 }
