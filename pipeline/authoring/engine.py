@@ -202,6 +202,7 @@ class Engine:
         record = self.matcher.limpiar(self.matcher.match(line, ends=True))
         route = copy.deepcopy(route)
         route['path'] = self.from_record(record)
+        route['importWarnings'] = []
         route['review'] = {'accepted': False, 'notes': ''}
         return attach_stops(route, self.network)
 

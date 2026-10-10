@@ -1,0 +1,92 @@
+"""One JSON operation boundary shared by command-line and HTTP clients."""
+from __future__ import annotations
+
+import copy
+import json
+import threading
+from pathlib import Path
+
+from .engine import Engine
+from .exporter import bundle
+from .importer import import_bundle, import_existing, track_coordinates
+from .model import attach_stops, geometry, new_route, validate
+from .network import Network
+from .resolver import Resolver
+from .store import Store
+
+
+class Service:
+    def __init__(self, network, root, workspace):
+        self.network, self.root = network, Path(root).resolve()
+        self.engine = Engine(network)
+        self.resolver = Resolver.from_repository(self.engine, self.root)
+        self.store = Store(Path(workspace) / 'routes')
+        self.lock = threading.RLock()
+        catalog = self.root / 'pipeline/output/wr_map.json'
+        self.catalog = json.loads(catalog.read_text())['routes'] if catalog.exists() else {}
+
+    def pack(self, route):
+        route = attach_stops(route, self.network)
+        return {'route': route, 'validation': validate(route, self.network), 'coordinates': geometry(route, self.network)}
+
+    def call(self, request):
+        if not isinstance(request, dict):
+            raise ValueError('La solicitud debe ser un objeto JSON')
+        with self.lock:
+            return {'version': 1, 'result': self._call(request)}
+
+    def _call(self, request):
+        operation = request.get('operation')
+        if operation == 'health':
+            return {'network': self.network.id, 'source': self.network.data['source'],
+                    'segments': len(self.network.edges), 'workspace': 'isolated-drafts'}
+        if operation == 'catalog':
+            query = request.get('query', '').casefold()
+            return {'published': [{'id': key, 'name': v.get('name', key)} for key, v in self.catalog.items()
+                                  if query in (key + ' ' + v.get('name', '')).casefold()][:100], 'drafts': self.store.list()}
+        if operation == 'streets':
+            edges, truncated = self.network.viewport(request['bbox'])
+            return {'edges': edges, 'truncated': truncated}
+        if operation == 'resolve':
+            return {'candidates': self.resolver.resolve(request['query'])}
+        if operation == 'import-existing':
+            return self.pack(import_existing(self.root, request['routeId'], self.engine))
+        if operation == 'import':
+            data = request['bundle']
+            return self.pack(import_bundle(self.engine, data['id'], data['name'], data['direction'],
+                                          data['track'], data['stops'], data.get('vias'), data.get('matched'),
+                                          data.get('corrections'), data.get('provenance')))
+        if operation == 'new':
+            route = new_route(request['id'], request['name'], request['direction'], self.network)
+            route['profile'] = copy.deepcopy(request.get('profile', {'mode': 'mixed'}))
+            return self.pack(route)
+        if operation == 'build':
+            return self.pack(self.engine.build(self.resolver.build_request(request['request'])))
+        if operation == 'get':
+            return self.pack(self.store.get(request['routeId']))
+        if operation in ('match', 'validate', 'save', 'accept', 'export', 'rebuild'):
+            route = copy.deepcopy(request['route']) if 'route' in request else self.store.get(request['routeId'])
+            if operation == 'match':
+                parts = track_coordinates(route['source']['track'])
+                return self.pack(self.engine.match(route, [c for part in parts for c in part]))
+            if operation == 'rebuild':
+                specification = {'id': route['id'], 'name': route['name'], 'direction': route['direction'],
+                                 'anchors': request['anchors'], 'stops': route['stops'], 'source': route['source'],
+                                 'profile': route.get('profile', {'mode': 'mixed'}), **route.get('constraints', {})}
+                rebuilt = self.engine.build(specification)
+                rebuilt['revision'] = route['revision']
+                return self.pack(rebuilt)
+            if operation == 'validate':
+                return self.pack(route)
+            if operation == 'export':
+                return bundle(route, self.network, request.get('preview', False), request.get('trip'))
+            packed = self.pack(route)
+            if operation == 'accept' and not packed['validation']['ready']:
+                raise ValueError('Resuelve los avisos del recorrido antes de aceptarlo')
+            saved = self.store.save(packed['route'], request['expectedRevision'], accept=operation == 'accept')
+            return self.pack(saved)
+        raise ValueError('Operación no compatible')
+
+
+def load_service(network_file, root, workspace):
+    return Service(Network(json.loads(Path(network_file).read_text())), root, workspace)
