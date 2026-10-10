@@ -7,11 +7,37 @@ import json
 import os
 import tempfile
 import threading
+from contextlib import contextmanager
 from pathlib import Path
 
 
 class RevisionConflict(ValueError):
     pass
+
+
+@contextmanager
+def writer_lock(path):
+    """Serialize CLI and HTTP writers too, not just threads in one server."""
+    with open(path, 'a+b') as stream:
+        if os.name == 'nt':
+            import msvcrt
+            stream.seek(0, os.SEEK_END)
+            if stream.tell() == 0:
+                stream.write(b'\0')
+                stream.flush()
+            stream.seek(0)
+            msvcrt.locking(stream.fileno(), msvcrt.LK_LOCK, 1)
+        else:
+            import fcntl
+            fcntl.flock(stream.fileno(), fcntl.LOCK_EX)
+        try:
+            yield
+        finally:
+            if os.name == 'nt':
+                stream.seek(0)
+                msvcrt.locking(stream.fileno(), msvcrt.LK_UNLCK, 1)
+            else:
+                fcntl.flock(stream.fileno(), fcntl.LOCK_UN)
 
 
 class Store:
@@ -34,7 +60,7 @@ class Store:
                 for r in [json.loads(p.read_text())]]
 
     def save(self, route, expected_revision, accept=False, source_update=False):
-        with self.lock:
+        with self.lock, writer_lock(self.directory / '.writer.lock'):
             path = self.path(route['id'])
             previous = self.get(route['id']) if path.exists() else None
             revision = previous['revision'] if previous else 0

@@ -49,3 +49,14 @@ class RouteModelTest(unittest.TestCase):
         route['stops'].append(copy.deepcopy(route['stops'][1]))
         with self.assertRaises(ValueError):
             validate(route, net)
+
+    def test_overlapping_coordinates_do_not_connect_separate_osm_levels(self):
+        net, route = fixture_route()
+        data = copy.deepcopy(net.data)
+        edge = next(edge for edge in data['edges'] if edge['id'] == '3:0')
+        edge['nodes'][0] = 99  # same coordinates, distinct node on an overpass
+        edge['layer'] = '1'
+        disconnected = type(net)(data)
+        result = validate(attach_stops(route, disconnected), disconnected)
+        self.assertIn('topologyGap', [issue['code'] for issue in result['issues']])
+        self.assertFalse(result['accepted'])

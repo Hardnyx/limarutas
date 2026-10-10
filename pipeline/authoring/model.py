@@ -152,6 +152,12 @@ def validate(route, network):
             if not edge['forward' if end > start else 'backward']:
                 issues.append({'code': 'wrongDirection', 'pathIndex': i, 'message': 'Tramo contra el sentido permitido'})
             entry_node = edge['nodes'][0 if end > start else 1] if start in (0, 1) else None
+            if i and route['path'][i-1]['type'] == 'street':
+                before = route['path'][i-1]
+                same_segment = before['edge'] == item['edge'] and abs(before.get('end', 1)-start) < 1e-9
+                if not same_segment and (current_node is None or entry_node is None or current_node != entry_node):
+                    issues.append({'code': 'topologyGap', 'pathIndex': i,
+                                   'message': 'Los tramos se acercan en el mapa pero no conectan en la red OSM'})
             if current_node is not None and entry_node == current_node and not network.turn_allowed(current_node, incoming, item['edge']):
                 issues.append({'code': 'restrictedTurn', 'pathIndex': i, 'message': 'Giro restringido para buses'})
             current_node = edge['nodes'][1 if end > start else 0] if end in (0, 1) else None

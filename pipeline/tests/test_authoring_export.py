@@ -1,5 +1,6 @@
 import copy
 import tempfile
+import multiprocessing
 import unittest
 from pathlib import Path
 from pipeline.authoring.exporter import bundle, write_bundle
@@ -7,7 +8,37 @@ from pipeline.authoring.store import RevisionConflict, Store
 from test_authoring_model import fixture_route
 
 
+def concurrent_writer(directory, route, barrier, queue):
+    barrier.wait(timeout=10)
+    try:
+        Store(directory).save(route, 1)
+        queue.put('saved')
+    except RevisionConflict:
+        queue.put('conflict')
+
+
 class ExportAndStoreTest(unittest.TestCase):
+    def test_cli_and_server_processes_cannot_overwrite_the_same_revision(self):
+        _, route = fixture_route()
+        with tempfile.TemporaryDirectory() as directory:
+            first = Store(directory).save(route, 0)
+            ctx = multiprocessing.get_context('spawn')
+            barrier, queue = ctx.Barrier(2), ctx.Queue()
+            writers = []
+            for name in ('writer one', 'writer two'):
+                edited = copy.deepcopy(first)
+                edited['name'] = name
+                process = ctx.Process(target=concurrent_writer, args=(directory, edited, barrier, queue))
+                process.start()
+                writers.append(process)
+            for process in writers:
+                process.join(timeout=10)
+                if process.is_alive():
+                    process.terminate()
+                    process.join()
+                self.assertEqual(process.exitcode, 0)
+            self.assertEqual(sorted([queue.get(timeout=2), queue.get(timeout=2)]), ['conflict', 'saved'])
+            self.assertEqual(Store(directory).get(route['id'])['revision'], 2)
     def test_export_is_deterministic_and_requires_acceptance(self):
         net, route = fixture_route()
         with self.assertRaises(ValueError):
