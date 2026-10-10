@@ -11,6 +11,11 @@ from .store import RevisionConflict
 
 
 def server(service, host='127.0.0.1', port=8081):
+    assets = {'/editor.html', '/docs/ROUTE_AUTHORING.md', '/assets/css/route-editor.css',
+              *{f'/assets/js/{name}.js' for name in ('routeAuthoringClient', 'routeAuthoringEditor', 'routeAuthoringState')},
+              *{f'/node_modules/leaflet/dist/{name}' for name in ('leaflet.js', 'leaflet.css',
+                'images/layers.png', 'images/layers-2x.png', 'images/marker-icon.png',
+                'images/marker-icon-2x.png', 'images/marker-shadow.png')}}
     class Handler(BaseHTTPRequestHandler):
         def respond(self, status, payload):
             raw = json.dumps(payload, ensure_ascii=False, allow_nan=False).encode()
@@ -28,11 +33,8 @@ def server(service, host='127.0.0.1', port=8081):
                 return
             if path == '/':
                 path = '/editor.html'
-            permitted = (path in ('/editor.html', '/docs/ROUTE_AUTHORING.md') or path.startswith('/assets/js/routeAuthoring')
-                         or path == '/assets/css/route-editor.css'
-                         or path.startswith('/node_modules/leaflet/dist/'))
             file = (service.root / path.lstrip('/')).resolve()
-            if not permitted or not file.is_relative_to(service.root) or not file.is_file():
+            if path not in assets or not file.is_relative_to(service.root) or not file.is_file():
                 self.respond(404, {'error': 'Recurso no encontrado'})
                 return
             content = file.read_bytes()

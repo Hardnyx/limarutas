@@ -73,3 +73,17 @@ class RouteApiTest(unittest.TestCase):
         with self.assertRaises(urllib.error.HTTPError):
             self.post({'operation': 'restore', 'route': self.route})
         self.assertEqual(self.service.store.get(self.route['id'])['revision'], 1)
+
+    def test_static_routes_allow_only_the_editor_assets_even_with_encoded_traversal(self):
+        private = self.service.root / '.git/config'
+        private.parent.mkdir()
+        private.write_text('private repository config')
+        editor = self.service.root / 'editor.html'
+        editor.write_text('<html>Editor</html>')
+        origin = self.url.removesuffix('/api/v1/operations')
+        self.assertEqual(urllib.request.urlopen(origin+'/editor.html').read(), b'<html>Editor</html>')
+        for path in ('/.git/config', '/assets/js/routeAuthoring%2f..%2f..%2f..%2f.git%2fconfig',
+                     '/node_modules/leaflet/dist/%2e%2e/%2e%2e/%2e%2e/.git/config'):
+            with self.assertRaises(urllib.error.HTTPError) as error:
+                urllib.request.urlopen(origin+path)
+            self.assertEqual(error.exception.code, 404)
