@@ -77,6 +77,14 @@ def validate_site(root):
         local_file(root, f'{folder}/stops_trip{trip}.geojson')
         suffix = '.osm' if definition.get('osm') else ''
         local_file(root, f'{folder}/route_track_trip{trip}{suffix}.geojson')
+        sidecar = root / folder / f'route_track_trip{trip}.route.json'
+        if sidecar.exists():
+            from pipeline.authoring.published import verify_published
+            require(definition.get('osm') is True, f'{key}: accepted route is not active')
+            verify_published(read_json(sidecar),
+                             read_json(local_file(root, f'{folder}/route_track_trip{trip}.osm.geojson')),
+                             read_json(local_file(root, f'{folder}/route_track_trip{trip}.geojson')),
+                             read_json(local_file(root, f'{folder}/stops_trip{trip}.geojson')), trip, key)
     for key in graph['routes']:
         require(key.startswith(('met:', 'metro:', 'alim:')) or key in wr,
                 f'{key}: graph references an unknown Wikiroutes layer')

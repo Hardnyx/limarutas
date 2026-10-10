@@ -37,7 +37,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+sys.path.insert(0, str(ROOT))
 from recorrido import CorreccionError, Recorridos  # noqa: E402
+from pipeline.authoring.published import preflight, verify_published  # noqa: E402
 
 WR_MAP = ROOT / 'pipeline' / 'output' / 'wr_map.json'
 REPORT = ROOT / 'pipeline' / 'output' / 'recorridos_reporte.json'
@@ -55,6 +57,7 @@ M_LON = 111_320 * math.cos(math.radians(-12.05))
 R = None          # la red, compartida por los procesos (fork)
 REHACER = False
 CORRECCIONES = {}  # ruta → [corrección, …]
+AUTHORING_EXPORTS = {}  # aprobados y validados antes de modificar archivos
 
 
 def length(c):
@@ -101,6 +104,15 @@ def work(item):
     src = ROOT / folder / f'route_track_trip{trip}.geojson'
     dst = ROOT / folder / f'route_track_trip{trip}.osm.geojson'
     vias = ROOT / folder / f'route_track_trip{trip}.vias.json'
+    if key in AUTHORING_EXPORTS:
+        exported = AUTHORING_EXPORTS[key]
+        track = exported['files'][f'route_track_trip{trip}.osm.geojson']
+        dst.write_text(json.dumps(track, ensure_ascii=False, separators=(',', ':'))+'\n', encoding='utf-8')
+        coordinates = track['features'][0]['geometry']['coordinates']
+        return key, {'usa': True, 'origen': 'route-authoring', 'revision': exported['revision'],
+                     'm': round(length(track_of(src))),
+                     'm_osm': round(length([(lat, lon) for lon, lat in coordinates])),
+                     'sin_calle': 0, 'm_sin_calle': 0, 'ratio': 1}
     if not src.exists():
         return key, {'error': 'sin dibujo'}
     line = track_of(src)
@@ -163,10 +175,21 @@ def mark_only():
     wr_map con los scripts de Wikiroutes), sin recalcular nada."""
     wr = json.loads(WR_MAP.read_text(encoding='utf-8'))
     report = json.loads(REPORT.read_text(encoding='utf-8'))
+    authored = set()
+    # Validate every sidecar before changing even one catalog flag.
+    for key, conf in wr['routes'].items():
+        folder, trip = ROOT / conf['folder'], conf.get('trip', 1)
+        sidecar = folder / f'route_track_trip{trip}.route.json'
+        if sidecar.exists():
+            verify_published(json.loads(sidecar.read_text()),
+                             json.loads((folder / f'route_track_trip{trip}.osm.geojson').read_text()),
+                             json.loads((folder / f'route_track_trip{trip}.geojson').read_text()),
+                             json.loads((folder / f'stops_trip{trip}.geojson').read_text()), trip, key)
+            authored.add(key)
     n = 0
     for key, conf in wr['routes'].items():
         f = ROOT / conf['folder'] / f"route_track_trip{conf.get('trip', 1)}.osm.geojson"
-        if report.get(key, {}).get('usa') and f.exists():
+        if (key in authored or report.get(key, {}).get('usa')) and f.exists():
             conf['osm'] = True
             n += 1
         else:
@@ -176,7 +199,7 @@ def mark_only():
 
 
 def main(argv):
-    global R, REHACER, CORRECCIONES
+    global R, REHACER, CORRECCIONES, AUTHORING_EXPORTS
     if argv[:1] == ['--marcar']:
         return mark_only()
     if argv[:1] == ['--rehacer']:
@@ -186,9 +209,11 @@ def main(argv):
     routes = wr['routes']
     keys = argv or sorted(routes)
     items = [(k, routes[k]['folder'], routes[k].get('trip', 1)) for k in keys if k in routes]
+    AUTHORING_EXPORTS = preflight(ROOT, items)
     t = time.time()
-    R = Recorridos(LIMA)
-    print(f'Red de Lima: {len(R.edges)} tramos · {time.time() - t:.0f} s', flush=True)
+    if any(key not in AUTHORING_EXPORTS for key, _, _ in items):
+        R = Recorridos(LIMA)
+        print(f'Red de Lima: {len(R.edges)} tramos · {time.time() - t:.0f} s', flush=True)
     t = time.time()
     report = json.loads(REPORT.read_text(encoding='utf-8')) if REPORT.exists() and argv else {}
     with mp.get_context('fork').Pool(4) as pool:

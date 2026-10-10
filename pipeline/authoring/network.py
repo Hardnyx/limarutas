@@ -255,7 +255,7 @@ def save_network(path, output):
     output.write_text(json.dumps(data, ensure_ascii=False, separators=(',', ':')) + '\n')
     lengths = sorted(metres(*edge['coordinates']) for edge in data['edges'])
     from collections import Counter
-    return {'source': data['source'], 'segments': len(lengths), 'turnRestrictions': len(data['turns']),
+    return {'source': data['source'], 'policy': data['policy'], 'segments': len(lengths), 'turnRestrictions': len(data['turns']),
             'facilities': dict(Counter(edge['facility'] for edge in data['edges'])),
             'unresolvedRestrictions': len(data['unresolvedRestrictions']),
             'segmentLengthM': {'median': round(lengths[len(lengths)//2], 2),

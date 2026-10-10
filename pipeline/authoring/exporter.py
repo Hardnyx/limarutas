@@ -54,8 +54,14 @@ def bundle(route, network, preview=False, trip=None):
         properties.update(name=stop['name'], stop_id=stop['id'], seq=i+1)
         stop_features.append({'type': 'Feature', 'properties': properties,
                               'geometry': {'type': 'Point', 'coordinates': stop['coordinates']}})
+    stops = {'type': 'FeatureCollection', 'features': stop_features}
+    route['exported'] = {'trip': trip, 'preview': bool(preview),
+                         'geometryHash': digest(track['features'][0]['geometry']), 'stopsHash': digest(stops),
+                         'sourceSha256': network.data['source']['sha256'],
+                         'policy': network.data.get('policy', 'fixture')}
+    track['features'][0]['properties']['authoring']['routeHash'] = digest(route)
     files = {f'route_track_trip{trip}.osm.geojson': track,
-             f'stops_trip{trip}.geojson': {'type': 'FeatureCollection', 'features': stop_features},
+             f'stops_trip{trip}.geojson': stops,
              f'route_track_trip{trip}.route.json': route}
     # Existing original files must retain their exact bytes. The sidecar carries a copy for review.
     if route['source'].get('kind') != 'wikiroutes':

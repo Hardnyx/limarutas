@@ -720,7 +720,8 @@ export async function buildWikiroutesLayer(id, folderPath, opts = {}) {
     const style = f => ({
       color,
       weight: f?.properties?.weight || 5,
-      opacity: f?.properties?.opacity ?? 0.9
+      opacity: f?.properties?.opacity ?? 0.9,
+      ...(f?.properties?.authoring ? { smoothFactor: 0 } : {})
     });
 
     // Sin eventos: el panel "Rutas en este punto" hace su propio hit-test

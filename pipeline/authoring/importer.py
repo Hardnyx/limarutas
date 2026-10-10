@@ -81,6 +81,17 @@ def import_existing(root, key, engine):
     if not folder.is_relative_to(root):
         raise ValueError('Carpeta de ruta fuera del repositorio')
     trip = definition.get('trip', 1)
+    sidecar = folder / f'route_track_trip{trip}.route.json'
+    if sidecar.exists():
+        from .published import verify_published
+        route = json.loads(sidecar.read_text())
+        verify_published(route, json.loads((folder / f'route_track_trip{trip}.osm.geojson').read_text()),
+                         json.loads((folder / f'route_track_trip{trip}.geojson').read_text()),
+                         json.loads((folder / f'stops_trip{trip}.geojson').read_text()), trip, key)
+        # Reopen the accepted operational path, never infer it again from the old drawing.
+        route.pop('exported', None)
+        route['revision'], route['review']['accepted'] = 0, False
+        return attach_stops(route, engine.network)
     files = {'track': folder / f'route_track_trip{trip}.geojson',
              'stops': folder / f'stops_trip{trip}.geojson',
              'vias': folder / f'route_track_trip{trip}.vias.json',
