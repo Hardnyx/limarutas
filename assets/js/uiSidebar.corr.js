@@ -4,7 +4,7 @@ import { createCorridorPolicy, corrCanonical, corrServiceCodeOf, CORR_KEY_LABEL,
 import { PATHS, state } from './config.js';
 import { isLightColor } from './mapColors.js';
 import { $, el } from './utils.js';
-import { syncTriFromLeaf, syncAllTri } from './uiSidebar.hierarchy.js';
+import { syncTriFromLeaf } from './uiSidebar.hierarchy.js';
 import { toggleLeaf, refreshLeafDirection } from './leafToggle.js';
 
 /* =========================
@@ -383,20 +383,14 @@ function buildCorrTabSection(parentBody, groupKey, tabKey, label){
   return { chk, body };
 }
 
-export function fillCorrList(){
+export async function fillCorrList(){
+  await loadCorrTipos();
   const sys = state.systems.corr;
   const container = sys.ui.list;
   const empty = $('#p-corr-empty');
 
   container.innerHTML = '';
   sys.ui.groups.clear();
-
-  if (!corrTiposPromise){
-    loadCorrTipos().finally(() => {
-      fillCorrList();
-      syncAllTri();
-    });
-  }
 
   const baseSrc = (state.corrWr && Array.isArray(state.corrWr.services) && state.corrWr.services.length)
     ? state.corrWr.services

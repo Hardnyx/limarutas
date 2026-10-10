@@ -37,8 +37,6 @@ export const test = base.extend({
     if (clockAt) await page.clock.install({ time: new Date(clockAt) });
     await page.goto(entry);
     await expect(page.locator('#status')).toHaveText('Listo', { timeout: 90_000 });
-    // Corredores se reconstruye al cargar sus tipos
-    await page.waitForTimeout(1500);
     if (startTab === 'routes' && await page.locator('#tabRoutes').count()) await page.click('#tabRoutes');
 
     await use(new App(page));

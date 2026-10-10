@@ -23,5 +23,3 @@ export const FLAGS = {
   debug: params.get('debug') === '1'
 };
 
-document.documentElement.classList.toggle('beta', FLAGS.beta);
-document.documentElement.classList.toggle('debug', FLAGS.debug);

@@ -36,7 +36,8 @@ import { wireRecents } from './recents.js';
 import { wireStopHover } from './stopHover.js';
 import { confirmShowStops, setShowStops, showStopsNeedsConfirm } from './stopsGuard.js';
 import { wireRouteInspector, closeRouteInspector } from './routeInspector.js';
-import { applyBetaLayout, finishBetaLayout } from './betaLayout.js';
+import { mountLayout } from './layout.js';
+let layout;
 
 /* ===========================
    Helpers UI de carga
@@ -464,7 +465,7 @@ async function loadCorrFromWikiroutes(){
 
 async function init(){
   initMap();
-  applyBetaLayout();
+  layout = mountLayout();
 
   disableSidebarChecks(true);
   setSidebarLoading(true, 'Cargando rutas y paraderos...');
@@ -548,7 +549,7 @@ async function buildUI(){
 
   fillMetList();
   fillAlimList();
-  fillCorrList();
+  await fillCorrList();
   if (state.systems.wr.ui.listSemi) await fillSemiformalList();
   fillMetroList();
 
@@ -610,7 +611,7 @@ async function buildUI(){
   wireRecents();
   wireRouteInspector();
   wireStopHover();
-  finishBetaLayout();
+  layout.ready();
 }
 
 // Lanzar
