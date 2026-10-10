@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "routes": {
+    "1087-ida": {
+      "folder": "data/processed/transporte/route_153189",
+      "trip": 1,
+      "color": "#90323B",
+      "name": "1087 · Villa Nicolasa → Plaza Jorge Chávez",
+      "osm": true
+    },
+    "1087-vuelta": {
+      "folder": "data/processed/transporte/route_153189",
+      "trip": 2,
+      "color": "#90323B",
+      "name": "1087 · Plaza Jorge Chávez → Villa Nicolasa",
+      "osm": true
+    },
+    "303-ida": {
+      "folder": "data/processed/transporte/route_41836",
+      "trip": 1,
+      "color": "#888888",
+      "name": "303 · Las Flores → Dos de Mayo",
+      "osm": true
+    },
+    "303-vuelta": {
+      "folder": "data/processed/transporte/route_41836",
+      "trip": 2,
+      "color": "#888888",
+      "name": "303 · Angamos → Próceres",
+      "osm": true
+    },
+    "206-ida": {
+      "folder": "data/processed/transporte/route_41892",
+      "trip": 1,
+      "color": "#888888",
+      "name": "206 · Santa María → San Marcos",
+      "osm": true
+    },
+    "206-vuelta": {
+      "folder": "data/processed/transporte/route_41892",
+      "trip": 2,
+      "color": "#888888",
+      "name": "206 · San Marcos → Santa María",
+      "osm": true
+    }
+  },
+  "sha256": {
+    "data/processed/transporte/route_153189/route_track_trip1.geojson": "4ed8c4b52eba119ec0bbcdd9c17c3dce297b9cc7c80b90cbddc075c12bf2e7b0",
+    "data/processed/transporte/route_153189/route_track_trip1.osm.geojson": "5052df64bc60d47194e490ae96efd93f6f2e423220fc0b2101efa8bab3346d22",
+    "data/processed/transporte/route_153189/route_track_trip1.vias.json": "09a1b7e15fd6a4af59632f68fae5794cdeced7b37733923557fa88ec24f80f78",
+    "data/processed/transporte/route_153189/stops_trip1.geojson": "344245423ca50bf8ed6b1c93b36e8f26efe95691dafdeca96c6ae5f3e62182a6",
+    "data/processed/transporte/route_153189/route_track_trip2.geojson": "213004118e1af1bd8e17d1cee7956057a420ca6c7401bf2776b86caf93554ae0",
+    "data/processed/transporte/route_153189/route_track_trip2.osm.geojson": "6ef4f5e3db5b15d9e14131e5b490b95249aad9542523ed0582cb1a5c193737d5",
+    "data/processed/transporte/route_153189/route_track_trip2.vias.json": "4eed9ecc34a4fc2d36b6a1e4eef21440225f67deb1f99c7004976c1bb25ce44c",
+    "data/processed/transporte/route_153189/stops_trip2.geojson": "48536957ed432256656ef07b457885576eef43d0e405b18940cfa75f7d7da69c",
+    "data/processed/transporte/route_41836/route_track_trip1.geojson": "653beb2305239de76b0504563033d594c1fb873272777810361f8e2d7d07db4c",
+    "data/processed/transporte/route_41836/route_track_trip1.osm.geojson": "dc6725018f7384ce55f7c39a04a7d8c1622493bb0bfce21767152bc0e110ffaa",
+    "data/processed/transporte/route_41836/route_track_trip1.vias.json": "a6d8af89be01cd900f800854ac6e0b7140bf027303e41ec459ed83765f773f39",
+    "data/processed/transporte/route_41836/stops_trip1.geojson": "6a90c1756d6c30f6d59bf83f80f3ffa977249b1fd4603a9370ebc76d41429d7b",
+    "data/processed/transporte/route_41836/route_track_trip2.geojson": "c8120428fc674a53c37478077c6afd75bd3e9a8950bcb6fce5e374517bc136af",
+    "data/processed/transporte/route_41836/route_track_trip2.osm.geojson": "0903edeb2e84077ca2761620120ff43fcc10e7cc46d88053cdf62adde17987b5",
+    "data/processed/transporte/route_41836/route_track_trip2.vias.json": "36e4da98a3b1be602e9cbe1dd9777c287a96a8b77eb46148b571cd7e0e782465",
+    "data/processed/transporte/route_41836/stops_trip2.geojson": "8382512f0180eaa323a3d64eef813b1912c861d81ecd71210f7378ffda521e86",
+    "data/processed/transporte/route_41892/route_track_trip1.geojson": "3de67c324e7a9e1419071242b0a44147285818bc6a7039ccd2063a05b5c6727f",
+    "data/processed/transporte/route_41892/route_track_trip1.osm.geojson": "1c23fdd519823247d5dfbed5598dd59eec5096e7ecf22333e0e5a1685f68cada",
+    "data/processed/transporte/route_41892/route_track_trip1.vias.json": "c0c667b349492c650c3c3f807c6e0fe90cd745a0e6b1eaded810c5bb40b01cec",
+    "data/processed/transporte/route_41892/stops_trip1.geojson": "5468af65eade07b05b2885beb2cbed6f6289ca54bd99046297de2cccd6f1ab08",
+    "data/processed/transporte/route_41892/route_track_trip2.geojson": "4fe7e86a5634142c7d838e94677fd7db0871b2520d433d6c9fe11e590ac58465",
+    "data/processed/transporte/route_41892/route_track_trip2.osm.geojson": "aa1509374c431d6204eb21ac84e77d6667b818f702c98fddb4f2c1275da63853",
+    "data/processed/transporte/route_41892/route_track_trip2.vias.json": "ab5bc59911aee2c63879b04e335388656987672257484ff813e64655cfac28ca",
+    "data/processed/transporte/route_41892/stops_trip2.geojson": "b0067ab312fd7a8363ba93f42da4c8aaefc63bc38b677dbf28441e0094742b97"
+  }
+}
