@@ -1,5 +1,5 @@
 import unittest
-from pipeline.authoring.network import Network, bus_access, facility, profile_allows
+from pipeline.authoring.network import Network, bus_access, bus_directions, facility, profile_allows
 
 
 def fixture_network():
@@ -38,6 +38,13 @@ class StreetNetworkTest(unittest.TestCase):
         self.assertFalse(profile_allows(edge))
         self.assertTrue(profile_allows(edge, {'mode': 'brt', 'system': 'Metropolitano'}))
         self.assertFalse(profile_allows(edge, {'mode': 'corridor', 'system': 'Corredor Rojo'}))
+        self.assertEqual(facility({'highway': 'primary', 'bus:lanes': 'yes|yes'})[0], 'mixed')
+
+    def test_bus_specific_direction_and_contraflow(self):
+        self.assertEqual(bus_directions({'highway': 'primary', 'oneway': 'yes', 'busway': 'opposite_lane'}), (True, True))
+        self.assertEqual(bus_directions({'oneway': 'yes', 'oneway:bus': 'yes', 'busway': 'opposite_lane'}), (True, False))
+        self.assertEqual(bus_directions({'oneway': '-1'}), (False, True))
+        self.assertEqual(bus_directions({'junction': 'roundabout'}), (True, False))
 
     def test_turn_restriction_is_enforced(self):
         net = fixture_network()

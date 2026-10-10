@@ -10,8 +10,8 @@
   "segments": 699118,
   "turnRestrictions": 1026,
   "facilities": {
-    "mixed": 695668,
-    "bus_lane": 811,
+    "mixed": 695846,
+    "bus_lane": 633,
     "restricted_bus_road": 1046,
     "separate_busway": 1593
   },

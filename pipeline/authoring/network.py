@@ -11,6 +11,7 @@ from pathlib import Path
 HIGHWAYS = {'motorway', 'trunk', 'primary', 'secondary', 'tertiary', 'unclassified',
             'residential', 'living_street', 'service', 'busway', 'bus_guideway'}
 HIGHWAYS |= {h + '_link' for h in ('motorway', 'trunk', 'primary', 'secondary', 'tertiary')}
+POLICY = 'bus-v3'
 
 
 def normal(value):
@@ -55,6 +56,26 @@ def facility(tags):
     else:
         kind = 'mixed'
     return kind, lane_tags
+
+
+def bus_directions(tags):
+    one = tags.get('oneway:bus', tags.get('oneway:psv', tags.get('oneway')))
+    if one is None and (tags.get('junction') in ('roundabout', 'circular') or tags.get('highway') == 'motorway'):
+        one = 'yes'
+    forward, backward = one != '-1', one not in ('yes', 'true', '1')
+    # Lane tags authorize contraflow only when no more specific one-way override exists.
+    if not any(key in tags for key in ('oneway:bus', 'oneway:psv')):
+        if any(value.startswith('opposite') for key, value in tags.items() if key.startswith('busway')):
+            backward = True
+        if any(v in ('yes', 'designated', 'only') for v in tags.get('bus:lanes:backward', tags.get('psv:lanes:backward', '')).split('|')):
+            backward = True
+        if any(tags.get(key, '0').isdigit() and int(tags.get(key, '0')) > 0 for key in ('lanes:bus:backward', 'lanes:psv:backward')):
+            backward = True
+    if tags.get('bus:forward') == 'no':
+        forward = False
+    if tags.get('bus:backward') == 'no':
+        backward = False
+    return forward, backward
 
 
 def profile_allows(edge, profile=None):
@@ -174,9 +195,7 @@ def from_pbf(path, bbox=(-77.26, -12.42, -76.56, -11.70)):
                 return
             if not any(w <= p[0] <= e and s <= p[1] <= n for _, p in pts):
                 return
-            one = tags.get('oneway:bus', tags.get('oneway:psv', tags.get('oneway')))
-            if one is None and tags.get('junction') in ('roundabout', 'circular'):
-                one = 'yes'
+            forward, backward = bus_directions(tags)
             aliases = [v.strip() for k in ('alt_name', 'official_name', 'short_name', 'name:es')
                        for v in tags.get(k, '').split(';') if v.strip()]
             conditional = {k: v for k, v in tags.items() if ':conditional' in k}
@@ -186,8 +205,8 @@ def from_pbf(path, bbox=(-77.26, -12.42, -76.56, -11.70)):
                     continue
                 edges.append({'id': f'{way.id}:{i}', 'way': way.id, 'nodes': [a, b],
                               'coordinates': [pa, pb], 'name': tags.get('name', ''), 'aliases': aliases,
-                              'highway': tags['highway'], 'junction': tags.get('junction', ''), 'forward': one != '-1',
-                              'backward': one not in ('yes', 'true', '1'), 'conditional': conditional,
+                              'highway': tags['highway'], 'junction': tags.get('junction', ''), 'forward': forward,
+                              'backward': backward, 'conditional': conditional,
                               'facility': kind, 'laneTags': lane_tags,
                               'layer': tags.get('layer', '0'), 'bridge': tags.get('bridge', ''),
                               'tunnel': tags.get('tunnel', '')})
@@ -225,7 +244,7 @@ def from_pbf(path, bbox=(-77.26, -12.42, -76.56, -11.70)):
     reader.close()
     for edge in edges:
         edge['transitSystems'] = sorted(transit.get(edge['way'], []))
-    return {'version': 1, 'policy': 'bus-v2', 'source': source, 'bbox': list(bbox), 'edges': edges,
+    return {'version': 1, 'policy': POLICY, 'source': source, 'bbox': list(bbox), 'edges': edges,
             'turns': turns, 'unresolvedRestrictions': unresolved}
 
 
