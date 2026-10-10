@@ -18,7 +18,9 @@ def provenance(root, counts):
     files = [*root.glob('config/*.json'), *root.glob('pipeline/output/*.json'),
              *root.glob('pipeline/output/*.csv'), *root.glob('data/processed/metropolitano/*.json'),
              *root.glob('data/processed/**/*.geojson'), *root.glob('data/processed/caminata/**/*.json'),
-             *root.glob('pipeline/scripts/**/*.py'), *root.glob('assets/js/*.js'), *root.glob('assets/css/*.css')]
+             *root.glob('data/processed/**/route_track_trip*.route.json'),
+             *root.glob('pipeline/scripts/**/*.py'), *root.glob('pipeline/authoring/*.py'),
+             *root.glob('assets/js/*.js'), *root.glob('assets/css/*.css')]
     files = set(files)
     records = {}
     for path in sorted(files):
