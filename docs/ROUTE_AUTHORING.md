@@ -16,7 +16,7 @@ python3 -m pipeline.authoring.network
 La red utiliza coordenadas GeoJSON `[longitud, latitud]`, conserva todos los
 nodos geométricos y referencia cada segmento por `id_vía:índice`. Estos
 identificadores pertenecen a una versión de red, identificada por SHA-256
-del extracto. No son identificadores permanentes entre distintas versiones
+del extracto y la versión de la política de interpretación. No son identificadores permanentes entre distintas versiones
 de OSM. Los tramos compartidos conservan exactamente sus coordenadas.
 
 La política del motor permite vías exclusivas de buses y excepciones de
@@ -24,6 +24,16 @@ acceso explícitas. Respeta sentidos para buses y restricciones de giro con
 nodo intermedio. Las restricciones condicionales o con vías intermedias
 se conservan como pendientes de interpretación: un recorrido que las
 atraviese necesita revisión y no debe aprobarse automáticamente.
+
+Las calzadas separadas (`highway=busway`) mantienen su geometría propia.
+Las vías de acceso reservado se distinguen de los carriles señalizados
+dentro de una calzada (`busway:*`, `bus:lanes`, `lanes:bus`, y variantes PSV).
+Estas últimas etiquetas no aportan una geometría independiente del carril:
+se conservan sin fabricar desplazamientos laterales. Un bus convencional
+no puede construir un recorrido por una calzada reservada salvo que se
+indique una autorización explícita por vía. Los perfiles BRT/corredor
+requieren identificar el sistema correspondiente; el nombre comercial de
+una ruta por sí solo no autoriza el uso de una infraestructura reservada.
 
 `docs/osm/authoring_network.json` registra el extracto verificado y las
 medidas obtenidas durante su preparación. La distribución de longitudes

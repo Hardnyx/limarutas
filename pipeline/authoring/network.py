@@ -27,6 +27,8 @@ def metres(a, b):
 def bus_access(tags):
     if tags.get('highway') not in HIGHWAYS or tags.get('area') == 'yes':
         return False
+    if tags['highway'] in ('busway', 'bus_guideway') and 'bus' not in tags:
+        tags = {**tags, 'bus': 'designated'}
     for key in ('bus', 'psv', 'motor_vehicle', 'vehicle', 'access'):
         value = tags.get(key)
         if value in ('no', 'private'):
@@ -36,12 +38,42 @@ def bus_access(tags):
     return True
 
 
+def facility(tags):
+    lane_tags = {k: v for k, v in tags.items()
+                 if k.startswith(('busway', 'bus:lanes', 'psv:lanes', 'lanes:bus', 'lanes:psv'))
+                 or k in ('lanes', 'width', 'motor_vehicle:lanes', 'vehicle:lanes')}
+    if tags.get('highway') in ('busway', 'bus_guideway'):
+        kind = 'separate_busway'
+    elif tags.get('psv') == 'only' or (any(tags.get(k) in ('no', 'private') for k in ('access', 'vehicle', 'motor_vehicle'))
+                                    and any(tags.get(k) in ('yes', 'designated', 'only') for k in ('bus', 'psv'))):
+        kind = 'restricted_bus_road'
+    elif any((k.startswith('busway') and v not in ('no', 'none', 'separate'))
+             or (k.startswith(('bus:lanes', 'psv:lanes')) and any(p in ('designated', 'only') for p in v.split('|')))
+             or (k.startswith(('lanes:bus', 'lanes:psv')) and v.isdigit() and int(v) > 0)
+             for k, v in lane_tags.items()):
+        kind = 'bus_lane'
+    else:
+        kind = 'mixed'
+    return kind, lane_tags
+
+
+def profile_allows(edge, profile=None):
+    profile = profile or {'mode': 'mixed'}
+    if edge.get('facility', 'mixed') not in ('separate_busway', 'restricted_bus_road'):
+        return True
+    if edge['way'] in profile.get('reservedWays', []):
+        return True
+    system = normal(profile.get('system', ''))
+    return (profile.get('mode') in ('brt', 'corridor') and bool(system)
+            and system in {normal(edge['name']), *[normal(v) for v in edge.get('transitSystems', [])]})
+
+
 class Network:
     def __init__(self, data):
         if data.get('version') != 1 or not data.get('source', {}).get('sha256'):
             raise ValueError('Unsupported or unversioned street network')
         self.data = data
-        self.id = 'osm:' + data['source']['sha256']
+        self.id = 'osm:' + data['source']['sha256'] + ':' + data.get('policy', 'fixture')
         self.edges = {e['id']: e for e in data['edges']}
         self.nodes, self.adj, self.grid = {}, defaultdict(list), defaultdict(list)
         self.ways, self.names = defaultdict(list), defaultdict(set)
@@ -128,7 +160,7 @@ def from_pbf(path, bbox=(-77.26, -12.42, -76.56, -11.70)):
     source = {'sha256': hashlib.sha256(path.read_bytes()).hexdigest(), 'bytes': path.stat().st_size,
               'url': 'https://download.bbbike.org/osm/bbbike/Lima/Lima.osm.pbf',
               'attribution': '© OpenStreetMap contributors', 'license': 'ODbL-1.0'}
-    edges, turns, unresolved = [], [], []
+    edges, turns, unresolved, transit = [], [], [], defaultdict(set)
     w, s, e, n = bbox
 
     class Handler(osmium.SimpleHandler):
@@ -148,17 +180,30 @@ def from_pbf(path, bbox=(-77.26, -12.42, -76.56, -11.70)):
             aliases = [v.strip() for k in ('alt_name', 'official_name', 'short_name', 'name:es')
                        for v in tags.get(k, '').split(';') if v.strip()]
             conditional = {k: v for k, v in tags.items() if ':conditional' in k}
+            kind, lane_tags = facility(tags)
             for i, ((a, pa), (b, pb)) in enumerate(zip(pts, pts[1:])):
                 if a == b or pa == pb:
                     continue
                 edges.append({'id': f'{way.id}:{i}', 'way': way.id, 'nodes': [a, b],
                               'coordinates': [pa, pb], 'name': tags.get('name', ''), 'aliases': aliases,
                               'highway': tags['highway'], 'junction': tags.get('junction', ''), 'forward': one != '-1',
-                              'backward': one not in ('yes', 'true', '1'), 'conditional': conditional})
+                              'backward': one not in ('yes', 'true', '1'), 'conditional': conditional,
+                              'facility': kind, 'laneTags': lane_tags,
+                              'layer': tags.get('layer', '0'), 'bridge': tags.get('bridge', ''),
+                              'tunnel': tags.get('tunnel', '')})
 
         def relation(self, rel):
             tags = dict(rel.tags)
+            if tags.get('type') == 'route' and tags.get('route') in ('bus', 'trolleybus'):
+                system = tags.get('network') or tags.get('operator') or ''
+                if system:
+                    for member in rel.members:
+                        if member.type == 'w':
+                            transit[member.ref].add(system)
             if tags.get('type') != 'restriction':
+                return
+            if not any(k in tags for k in ('restriction', 'restriction:bus', 'restriction:psv',
+                                           'restriction:conditional', 'restriction:bus:conditional', 'restriction:psv:conditional')):
                 return
             specific = tags.get('restriction:bus', tags.get('restriction:psv'))
             if specific is None and {'bus', 'psv'} & set(tags.get('except', '').split(';')):
@@ -178,7 +223,9 @@ def from_pbf(path, bbox=(-77.26, -12.42, -76.56, -11.70)):
     reader = osmium.io.Reader(str(path), osmium.osm.osm_entity_bits.NOTHING)
     source['timestamp'] = reader.header().get('osmosis_replication_timestamp') or ''
     reader.close()
-    return {'version': 1, 'source': source, 'bbox': list(bbox), 'edges': edges,
+    for edge in edges:
+        edge['transitSystems'] = sorted(transit.get(edge['way'], []))
+    return {'version': 1, 'policy': 'bus-v2', 'source': source, 'bbox': list(bbox), 'edges': edges,
             'turns': turns, 'unresolvedRestrictions': unresolved}
 
 
@@ -188,7 +235,9 @@ def save_network(path, output):
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(data, ensure_ascii=False, separators=(',', ':')) + '\n')
     lengths = sorted(metres(*edge['coordinates']) for edge in data['edges'])
+    from collections import Counter
     return {'source': data['source'], 'segments': len(lengths), 'turnRestrictions': len(data['turns']),
+            'facilities': dict(Counter(edge['facility'] for edge in data['edges'])),
             'unresolvedRestrictions': len(data['unresolvedRestrictions']),
             'segmentLengthM': {'median': round(lengths[len(lengths)//2], 2),
                                'p95': round(lengths[int(len(lengths)*.95)], 2), 'max': round(lengths[-1], 2)}}

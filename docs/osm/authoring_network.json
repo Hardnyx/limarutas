@@ -7,12 +7,18 @@
     "license": "ODbL-1.0",
     "timestamp": "2026-10-02T23:00:00Z"
   },
-  "segments": 699004,
+  "segments": 699118,
   "turnRestrictions": 1026,
+  "facilities": {
+    "mixed": 695668,
+    "bus_lane": 811,
+    "restricted_bus_road": 1046,
+    "separate_busway": 1593
+  },
   "unresolvedRestrictions": 412,
   "segmentLengthM": {
     "median": 17.79,
-    "p95": 102.41,
+    "p95": 102.42,
     "max": 3616.8
   }
 }

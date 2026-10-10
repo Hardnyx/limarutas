@@ -2,6 +2,7 @@ import unittest
 from pipeline.authoring.engine import Engine
 from pipeline.authoring.model import geometry, validate
 from test_authoring_network import fixture_network
+from pipeline.authoring.network import Network
 
 
 class RouteEngineTest(unittest.TestCase):
@@ -44,3 +45,13 @@ class RouteEngineTest(unittest.TestCase):
         record = self.engine.matcher.decode(saved)
         self.assertEqual(record['tramos'][0]['nodos'], [1, 2, 3, 4, 5])
         self.assertEqual([r['edge'] for r in self.engine.from_record(record)], ['1:0', '1:1', '2:0', '3:0'])
+
+    def test_conventional_bus_does_not_take_reserved_shortcut(self):
+        data = self.net.data
+        data['edges'].append({'id': '4:0', 'way': 4, 'nodes': [1, 5],
+            'coordinates': [self.net.nodes[1], self.net.nodes[5]], 'name': 'Metropolitano',
+            'forward': True, 'backward': True, 'facility': 'separate_busway'})
+        engine = Engine(Network(data))
+        self.assertEqual(len(engine.connect({'node': 1}, {'node': 5})), 4)
+        reserved = engine.connect({'node': 1}, {'node': 5}, profile={'mode': 'brt', 'system': 'Metropolitano'})
+        self.assertEqual(reserved[0]['edge'], '4:0')

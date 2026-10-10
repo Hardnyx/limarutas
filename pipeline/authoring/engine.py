@@ -7,7 +7,7 @@ import math
 from collections import defaultdict
 
 from .model import attach_stops, coordinate, new_route, projection, validate
-from .network import metres
+from .network import metres, profile_allows
 
 
 class Engine:
@@ -54,7 +54,7 @@ class Engine:
             result.append((node, refs, metres(*edge['coordinates']) * abs(stop-start)))
         return result
 
-    def shortest(self, start, end, incoming=None, final=None, allowed=None, via=None):
+    def shortest(self, start, end, incoming=None, final=None, allowed=None, via=None, profile=None):
         """Directed Dijkstra with turn state and ordered required street groups."""
         via = via or []
         initial = (start, incoming, 0)
@@ -78,6 +78,8 @@ class Engine:
                 return list(reversed(refs)), cost
             for neighbor, eid, sign in self.network.adj.get(node, []):
                 edge = self.network.edges[eid]
+                if not profile_allows(edge, profile):
+                    continue
                 if allowed is not None and edge['way'] not in allowed:
                     continue
                 if not self.network.turn_allowed(node, prev_edge, eid):
@@ -92,21 +94,23 @@ class Engine:
                     heapq.heappush(heap, (total, serial, nxt))
         return None
 
-    def connect(self, a, b, incoming=None, allowed=None, via=None):
+    def connect(self, a, b, incoming=None, allowed=None, via=None, profile=None):
         choices = []
         # A partial traversal within one physical segment must not detour via its endpoints.
         if a.get('edge') and a.get('edge') == b.get('edge') and not via:
             edge = self.network.edges[a['edge']]
             x, y = a.get('fraction', .5), b.get('fraction', .5)
-            if x != y and edge['forward' if y > x else 'backward'] and (allowed is None or edge['way'] in allowed):
+            if x != y and profile_allows(edge, profile) and edge['forward' if y > x else 'backward'] and (allowed is None or edge['way'] in allowed):
                 choices.append((metres(*edge['coordinates']) * abs(y-x),
                                 [{'type': 'street', 'edge': edge['id'], 'start': x, 'end': y}]))
         for start, prefix, c1 in self.anchor(a, True):
             for end, suffix, c2 in self.anchor(b, False):
+                if any(not profile_allows(self.network.edges[r['edge']], profile) for r in prefix + suffix):
+                    continue
                 if allowed is not None and any(self.network.edges[r['edge']]['way'] not in allowed for r in prefix + suffix):
                     continue
                 prior = prefix[-1]['edge'] if prefix else incoming
-                path = self.shortest(start, end, prior, suffix[0]['edge'] if suffix else None, allowed, via)
+                path = self.shortest(start, end, prior, suffix[0]['edge'] if suffix else None, allowed, via, profile)
                 if path is not None:
                     refs, cost = path
                     choices.append((c1 + cost + c2, prefix + refs + suffix))
@@ -122,11 +126,12 @@ class Engine:
                           request.get('source', {'kind': 'authored', 'request': copy.deepcopy(request)}))
         allowed = set(request['allowedWays']) if request.get('allowedWays') else None
         via = [set(group) for group in request.get('viaWays', [])]
+        route['profile'] = copy.deepcopy(request.get('profile', {'mode': 'mixed'}))
         if via and len(anchors) != 2:
             raise ValueError('Divide el itinerario en etapas para combinar varios puntos y vías obligatorias')
         for a, b in zip(anchors, anchors[1:]):
             incoming = route['path'][-1]['edge'] if route['path'] else None
-            route['path'].extend(self.connect(a, b, incoming, allowed, via))
+            route['path'].extend(self.connect(a, b, incoming, allowed, via, route['profile']))
         route['stops'] = copy.deepcopy(request.get('stops', []))
         route['anchors'] = copy.deepcopy(anchors)
         route['constraints'] = {k: copy.deepcopy(request[k]) for k in ('allowedWays', 'viaWays') if k in request}

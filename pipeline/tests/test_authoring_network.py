@@ -1,5 +1,5 @@
 import unittest
-from pipeline.authoring.network import Network, bus_access
+from pipeline.authoring.network import Network, bus_access, facility, profile_allows
 
 
 def fixture_network():
@@ -27,6 +27,17 @@ class StreetNetworkTest(unittest.TestCase):
         self.assertTrue(bus_access({'highway': 'busway', 'access': 'no', 'bus': 'designated'}))
         self.assertFalse(bus_access({'highway': 'primary', 'access': 'yes', 'bus': 'no'}))
         self.assertFalse(bus_access({'highway': 'footway'}))
+        self.assertTrue(bus_access({'highway': 'busway', 'access': 'no'}))
+
+    def test_separate_busways_and_lane_tags_are_distinct(self):
+        self.assertEqual(facility({'highway': 'busway'})[0], 'separate_busway')
+        kind, tags = facility({'highway': 'primary', 'bus:lanes': 'yes|yes|designated'})
+        self.assertEqual(kind, 'bus_lane')
+        self.assertEqual(tags['bus:lanes'], 'yes|yes|designated')
+        edge = {'facility': 'separate_busway', 'way': 10, 'name': 'Metropolitano'}
+        self.assertFalse(profile_allows(edge))
+        self.assertTrue(profile_allows(edge, {'mode': 'brt', 'system': 'Metropolitano'}))
+        self.assertFalse(profile_allows(edge, {'mode': 'corridor', 'system': 'Corredor Rojo'}))
 
     def test_turn_restriction_is_enforced(self):
         net = fixture_network()

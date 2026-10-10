@@ -6,7 +6,7 @@ import hashlib
 import json
 import math
 
-from .network import metres
+from .network import metres, profile_allows
 
 
 def digest(value):
@@ -132,6 +132,9 @@ def validate(route, network):
                 raise ValueError('Fracciones de tramo inválidas')
             edge = network.edges[item['edge']]
             used_ways.add(edge['way'])
+            if not profile_allows(edge, route.get('profile')):
+                issues.append({'code': 'reservedRoad', 'pathIndex': i,
+                               'message': 'Calzada reservada ajena al perfil de este servicio'})
             if not edge['forward' if end > start else 'backward']:
                 issues.append({'code': 'wrongDirection', 'pathIndex': i, 'message': 'Tramo contra el sentido permitido'})
             entry_node = edge['nodes'][0 if end > start else 1] if start in (0, 1) else None
