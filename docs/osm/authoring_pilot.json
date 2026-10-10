@@ -1,0 +1,95 @@
+{
+  "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v3",
+  "kind": "read-only-pilot",
+  "publishedFilesChanged": false,
+  "routes": {
+    "1087-ida": {
+      "segments": 783,
+      "stops": 67,
+      "issues": {
+        "wrongDirection": 1,
+        "unsupportedRestriction": 16
+      },
+      "ready": false,
+      "accepted": false,
+      "sourceStopsPreserved": true
+    },
+    "1087-vuelta": {
+      "segments": 800,
+      "stops": 67,
+      "issues": {
+        "unsupportedRestriction": 18
+      },
+      "ready": false,
+      "accepted": false,
+      "sourceStopsPreserved": true
+    },
+    "303-ida": {
+      "segments": 417,
+      "stops": 17,
+      "issues": {
+        "restrictedTurn": 1,
+        "wrongDirection": 22,
+        "unsupportedRestriction": 7
+      },
+      "ready": false,
+      "accepted": false,
+      "sourceStopsPreserved": true
+    },
+    "303-vuelta": {
+      "segments": 408,
+      "stops": 16,
+      "issues": {
+        "wrongDirection": 2,
+        "unsupportedRestriction": 6
+      },
+      "ready": false,
+      "accepted": false,
+      "sourceStopsPreserved": true
+    },
+    "206-ida": {
+      "segments": 882,
+      "stops": 31,
+      "issues": {
+        "unsupportedRestriction": 14
+      },
+      "ready": false,
+      "accepted": false,
+      "sourceStopsPreserved": true
+    },
+    "206-vuelta": {
+      "segments": 812,
+      "stops": 34,
+      "issues": {
+        "unsupportedRestriction": 15,
+        "stopOffRoute": 1
+      },
+      "ready": false,
+      "accepted": false,
+      "sourceStopsPreserved": true
+    }
+  },
+  "sharedSegments": [
+    {
+      "routes": [
+        "1087-ida",
+        "1087-vuelta"
+      ],
+      "canonicalSegments": 64
+    },
+    {
+      "routes": [
+        "303-ida",
+        "303-vuelta"
+      ],
+      "canonicalSegments": 20
+    }
+  ],
+  "buswayCheck": {
+    "edge": "123815466:0",
+    "name": "Metropolitano",
+    "facility": "separate_busway",
+    "brtUsesActualGeometry": true,
+    "mixedBusRejected": true
+  }
+}
