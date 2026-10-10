@@ -1,0 +1,18 @@
+{
+  "source": {
+    "sha256": "8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300",
+    "bytes": 30269591,
+    "url": "https://download.bbbike.org/osm/bbbike/Lima/Lima.osm.pbf",
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "timestamp": "2026-10-02T23:00:00Z"
+  },
+  "segments": 699004,
+  "turnRestrictions": 1026,
+  "unresolvedRestrictions": 412,
+  "segmentLengthM": {
+    "median": 17.79,
+    "p95": 102.41,
+    "max": 3616.8
+  }
+}
