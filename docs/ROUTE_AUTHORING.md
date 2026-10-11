@@ -222,7 +222,7 @@ python3 -m pipeline.authoring.inventory --report docs/osm/route_migration.json
 
 `legacy-osm` identifica un ajuste anterior y no equivale a `accepted`.
 Los trazados propios del Metropolitano y los alimentadores se registran
-aparte porque requieren adaptar su contrato de datos. El Metro se excluye
+aparte y se importan mediante su adaptador nativo. El Metro se excluye
 de la red vial para buses.
 
 ```sh
@@ -263,15 +263,60 @@ falla, revierte las que haya realizado en ese lote. No admite publicar sobre
 una definición ya aceptada: las futuras modificaciones usan el editor y su
 proceso de revisión.
 
-En esta migración, 784 de los 4098 sentidos Wikiroutes están publicados con
-definición canónica; 3314 siguen pendientes por incidencias registradas por
-sentido en `docs/osm/route_migration.json`. El piloto publica `1087-vuelta` y
-`206-ida`. `1087-ida`, ambos sentidos de `303` y `206-vuelta` necesitan revisión
-de sus fuentes. Se mantienen separados los 83 sentidos propios del
-Metropolitano y alimentadores que requieren adaptar su contrato. La aceptación
-comprueba el itinerario existente; no certifica la vigencia comercial del
-servicio. Los contratos del planificador, índices y catálogo permanecen
-sin cambios porque se conservaron todos los paraderos.
+Con la política `bus-v5`, 802 de los 4098 sentidos Wikiroutes están
+validados y publicados con definición canónica. Otros 11 conservan su
+aprobación histórica, pero la nueva auditoría detecta restricciones sin
+resolver y los registra como `blocked-revalidation`. Los 3285 restantes
+requieren revisar incidencias de fuente, sentidos, giros o paraderos.
+`docs/osm/route_migration.json` registra el estado por sentido. Las fuentes,
+los paraderos y las referencias legacy conservan sus bytes originales.
+
+La política incorpora miembros de relaciones BRT OSM para identificar
+conexiones de servicio sin nombre, como el túnel de Estación Central.
+La evidencia de esas relaciones queda registrada por vía; no habilita la
+calzada para buses de tránsito mixto ni ignora prohibiciones explícitas de bus.
+Las restricciones con vías y nodos intermedios se resuelven conjuntamente;
+los movimientos ambiguos siguen bloqueados. Para revalidar la misma
+geometría cuando cambia la política, sin cambiar el extracto:
+
+```sh
+python3 -m pipeline.authoring.policy
+python3 -m pipeline.authoring.policy --publish
+python3 -m pipeline.authoring.audit_all
+python3 -m pipeline.authoring.native
+```
+
+El adaptador permite abrir los 83 sentidos nativos en el editor/API.
+Los 31 sentidos del Metropolitano están validados sobre macrorrutas
+compartidas; los 52 alimentadores conservan sus trazados fuente y requieren
+revisión de geometría y restricciones. `docs/osm/native_bus_audit.json`
+registra sus incidencias. Esta validación no certifica la vigencia comercial
+de los servicios.
+
+### Macrorrutas del Metropolitano
+
+El generador construye cuatro trazados continuos OSM: A/B en ambos sentidos.
+Cada servicio regular o expreso es un recorte de ese trazado común; omitir
+estaciones no omite curvas ni crea rectas entre paraderos. La rama se elige
+por sentido: B por defecto, A si hay paradas en Ramón Castilla, Tacna,
+Jirón de la Unión o Colmena, o una definición explícita de itinerario.
+Las estaciones se proyectan para obtener índices y distancias, pero no
+arrastran la calzada hacia sus marcadores. Esto evita las diagonales
+artificiales alrededor de Estación Central. El mapa y el planificador
+conservan todos los vértices del trazado, sin simplificación de Leaflet.
+
+```sh
+python3 pipeline/scripts/metropolitano/build_met_paths.py
+# Revisar y publicar los dos JSON preparados en pipeline/temp/authoring/met-macros.
+python3 pipeline/scripts/trips/build_trip_graph.py --met-only
+```
+
+`metropolitano_backbones.json` conserva referencias OSM, geometría y hashes;
+`metropolitano_paths.json` identifica el recorte exacto usado por cada sentido.
+`docs/osm/metropolitano_macros.json` registra la cobertura de los 31 sentidos.
+Las guías GeoJSON anteriores siguen siendo fuentes y no se dibujan como
+respaldo de una calzada. Los pines de estación mantienen su estilo anterior,
+rojo con centro blanco, comprobado en claro y oscuro.
 
 ### Tema de la interfaz
 

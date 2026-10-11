@@ -1,0 +1,171 @@
+{
+  "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5",
+  "sourceGuides": {
+    "data/processed/metropolitano/trayectos-macro/A-mid.geojson": "4a2b00a7d124ccce4d217a35f1078d542235437b0a3d222c6372a2de2840f02f",
+    "data/processed/metropolitano/trayectos-macro/B-mid.geojson": "65395dd98f5ed29f49cbc6ea9391f2bbde94b65def7f12e1526e396b50276861"
+  },
+  "policy": "B por defecto en cada sentido; A solo con estaciones de su rama o definición explícita",
+  "stopsChangeGeometry": false,
+  "directions": {
+    "A:ns": {
+      "macro": "A",
+      "backboneHash": "bb76e4d7abe20da2c54ad59a927541ff4cd2c8254d6b4faa594928e0e5e414aa",
+      "vertices": 332
+    },
+    "A:sn": {
+      "macro": "A",
+      "backboneHash": "c2862960a907a1123ee3459575c007c475af656e9ce206921ff013759e61f45b",
+      "vertices": 319
+    },
+    "B:ns": {
+      "macro": "B",
+      "backboneHash": "ace01c288822f214183bed9a05ca3a994293a110b725012ea2538e607651b22b",
+      "vertices": 509
+    },
+    "B:sn": {
+      "macro": "B",
+      "backboneHash": "fc5855b9e17305bccef657a90ec4935aa8a009d0d76e43330d3c5855d227d41a",
+      "vertices": 529
+    },
+    "C:ns": {
+      "macro": "A",
+      "backboneHash": "bb76e4d7abe20da2c54ad59a927541ff4cd2c8254d6b4faa594928e0e5e414aa",
+      "vertices": 430
+    },
+    "C:sn": {
+      "macro": "A",
+      "backboneHash": "c2862960a907a1123ee3459575c007c475af656e9ce206921ff013759e61f45b",
+      "vertices": 417
+    },
+    "1:ns": {
+      "macro": "B",
+      "backboneHash": "ace01c288822f214183bed9a05ca3a994293a110b725012ea2538e607651b22b",
+      "vertices": 358
+    },
+    "1:sn": {
+      "macro": "B",
+      "backboneHash": "fc5855b9e17305bccef657a90ec4935aa8a009d0d76e43330d3c5855d227d41a",
+      "vertices": 340
+    },
+    "2:ns": {
+      "macro": "B",
+      "backboneHash": "ace01c288822f214183bed9a05ca3a994293a110b725012ea2538e607651b22b",
+      "vertices": 474
+    },
+    "2:sn": {
+      "macro": "B",
+      "backboneHash": "fc5855b9e17305bccef657a90ec4935aa8a009d0d76e43330d3c5855d227d41a",
+      "vertices": 440
+    },
+    "3:sn": {
+      "macro": "B",
+      "backboneHash": "fc5855b9e17305bccef657a90ec4935aa8a009d0d76e43330d3c5855d227d41a",
+      "vertices": 452
+    },
+    "5:ns": {
+      "macro": "B",
+      "backboneHash": "ace01c288822f214183bed9a05ca3a994293a110b725012ea2538e607651b22b",
+      "vertices": 498
+    },
+    "5:sn": {
+      "macro": "B",
+      "backboneHash": "fc5855b9e17305bccef657a90ec4935aa8a009d0d76e43330d3c5855d227d41a",
+      "vertices": 479
+    },
+    "6:ns": {
+      "macro": "B",
+      "backboneHash": "ace01c288822f214183bed9a05ca3a994293a110b725012ea2538e607651b22b",
+      "vertices": 435
+    },
+    "7:ns": {
+      "macro": "B",
+      "backboneHash": "ace01c288822f214183bed9a05ca3a994293a110b725012ea2538e607651b22b",
+      "vertices": 346
+    },
+    "8:ns": {
+      "macro": "B",
+      "backboneHash": "ace01c288822f214183bed9a05ca3a994293a110b725012ea2538e607651b22b",
+      "vertices": 466
+    },
+    "8:sn": {
+      "macro": "B",
+      "backboneHash": "fc5855b9e17305bccef657a90ec4935aa8a009d0d76e43330d3c5855d227d41a",
+      "vertices": 451
+    },
+    "9:sn": {
+      "macro": "B",
+      "backboneHash": "fc5855b9e17305bccef657a90ec4935aa8a009d0d76e43330d3c5855d227d41a",
+      "vertices": 317
+    },
+    "10:ns": {
+      "macro": "A",
+      "backboneHash": "bb76e4d7abe20da2c54ad59a927541ff4cd2c8254d6b4faa594928e0e5e414aa",
+      "vertices": 332
+    },
+    "11:ns": {
+      "macro": "B",
+      "backboneHash": "ace01c288822f214183bed9a05ca3a994293a110b725012ea2538e607651b22b",
+      "vertices": 477
+    },
+    "11:sn": {
+      "macro": "B",
+      "backboneHash": "fc5855b9e17305bccef657a90ec4935aa8a009d0d76e43330d3c5855d227d41a",
+      "vertices": 495
+    },
+    "12:ns": {
+      "macro": "B",
+      "backboneHash": "ace01c288822f214183bed9a05ca3a994293a110b725012ea2538e607651b22b",
+      "vertices": 173
+    },
+    "13:ns": {
+      "macro": "B",
+      "backboneHash": "ace01c288822f214183bed9a05ca3a994293a110b725012ea2538e607651b22b",
+      "vertices": 509
+    },
+    "13:sn": {
+      "macro": "B",
+      "backboneHash": "fc5855b9e17305bccef657a90ec4935aa8a009d0d76e43330d3c5855d227d41a",
+      "vertices": 529
+    },
+    "L:ns": {
+      "macro": "A",
+      "backboneHash": "bb76e4d7abe20da2c54ad59a927541ff4cd2c8254d6b4faa594928e0e5e414aa",
+      "vertices": 675
+    },
+    "L:sn": {
+      "macro": "A",
+      "backboneHash": "c2862960a907a1123ee3459575c007c475af656e9ce206921ff013759e61f45b",
+      "vertices": 658
+    },
+    "SX:ns": {
+      "macro": "B",
+      "backboneHash": "ace01c288822f214183bed9a05ca3a994293a110b725012ea2538e607651b22b",
+      "vertices": 474
+    },
+    "SX:sn": {
+      "macro": "B",
+      "backboneHash": "fc5855b9e17305bccef657a90ec4935aa8a009d0d76e43330d3c5855d227d41a",
+      "vertices": 407
+    },
+    "SXN:ns": {
+      "macro": "B",
+      "backboneHash": "ace01c288822f214183bed9a05ca3a994293a110b725012ea2538e607651b22b",
+      "vertices": 295
+    },
+    "SXN:sn": {
+      "macro": "B",
+      "backboneHash": "fc5855b9e17305bccef657a90ec4935aa8a009d0d76e43330d3c5855d227d41a",
+      "vertices": 305
+    },
+    "SXN-22:ns": {
+      "macro": "B",
+      "backboneHash": "ace01c288822f214183bed9a05ca3a994293a110b725012ea2538e607651b22b",
+      "vertices": 391
+    }
+  },
+  "summary": {
+    "directions": 31,
+    "continuousDirectedBackbones": 4,
+    "sourceStopsPreserved": true
+  }
+}

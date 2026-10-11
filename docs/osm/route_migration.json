@@ -7,13 +7,18 @@
     "wikiroutes": 4098,
     "nativeBusDirections": 83,
     "geometry": {
-      "legacy-osm": 3311,
-      "canonical": 784,
+      "legacy-osm": 3282,
+      "canonical": 813,
       "original": 3
     },
     "migration": {
-      "blocked-validation": 3314,
-      "accepted": 784
+      "blocked-validation": 3285,
+      "accepted": 802,
+      "blocked-revalidation": 11
+    },
+    "nativeValidation": {
+      "blocked": 52,
+      "ready": 31
     }
   },
   "routes": {
@@ -455,8 +460,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 4,
-          "unsupportedRestriction": 1
+          "wrongDirection": 4
         }
       }
     },
@@ -1339,8 +1343,7 @@
         "ready": false,
         "issues": {
           "unmatched": 8,
-          "wrongDirection": 4,
-          "unsupportedRestriction": 1
+          "wrongDirection": 4
         }
       }
     },
@@ -1481,8 +1484,7 @@
         "ready": false,
         "issues": {
           "restrictedTurn": 1,
-          "unmatched": 6,
-          "unsupportedRestriction": 1
+          "unmatched": 6
         }
       }
     },
@@ -1920,8 +1922,7 @@
         "issues": {
           "wrongDirection": 65,
           "unmatched": 11,
-          "restrictedTurn": 2,
-          "unsupportedRestriction": 1
+          "restrictedTurn": 2
         }
       }
     },
@@ -1948,8 +1949,7 @@
         "issues": {
           "wrongDirection": 63,
           "unmatched": 11,
-          "restrictedTurn": 2,
-          "unsupportedRestriction": 1
+          "restrictedTurn": 2
         }
       }
     },
@@ -2470,7 +2470,8 @@
         "issues": {
           "wrongDirection": 51,
           "unmatched": 11,
-          "restrictedTurn": 1
+          "restrictedTurn": 1,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -2523,7 +2524,7 @@
         "ready": false,
         "issues": {
           "wrongDirection": 9,
-          "unsupportedRestriction": 3
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -2549,7 +2550,7 @@
         "ready": false,
         "issues": {
           "wrongDirection": 9,
-          "unsupportedRestriction": 3
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -2706,8 +2707,7 @@
         "issues": {
           "restrictedTurn": 1,
           "unmatched": 3,
-          "wrongDirection": 1,
-          "unsupportedRestriction": 1
+          "wrongDirection": 1
         }
       }
     },
@@ -3197,8 +3197,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 5,
-          "unsupportedRestriction": 1
+          "wrongDirection": 5
         }
       }
     },
@@ -3519,7 +3518,8 @@
         "ready": false,
         "issues": {
           "unmatched": 4,
-          "wrongDirection": 3
+          "wrongDirection": 3,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -3546,7 +3546,8 @@
         "ready": false,
         "issues": {
           "unmatched": 3,
-          "wrongDirection": 1
+          "wrongDirection": 1,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -3587,7 +3588,7 @@
           "restrictedTurn": 1,
           "unmatched": 3,
           "wrongDirection": 1,
-          "unsupportedRestriction": 2
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -3615,7 +3616,7 @@
           "wrongDirection": 1,
           "unmatched": 5,
           "restrictedTurn": 1,
-          "unsupportedRestriction": 2
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -3629,7 +3630,8 @@
         "issues": {
           "wrongDirection": 1,
           "unmatched": 7,
-          "restrictedTurn": 1
+          "restrictedTurn": 1,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -3656,7 +3658,8 @@
         "issues": {
           "wrongDirection": 3,
           "unmatched": 6,
-          "restrictedTurn": 1
+          "restrictedTurn": 1,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -3735,7 +3738,8 @@
         "issues": {
           "wrongDirection": 23,
           "unmatched": 16,
-          "restrictedTurn": 1
+          "restrictedTurn": 1,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -3762,7 +3766,8 @@
         "issues": {
           "wrongDirection": 19,
           "unmatched": 10,
-          "restrictedTurn": 1
+          "restrictedTurn": 1,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -3789,7 +3794,8 @@
         "issues": {
           "wrongDirection": 20,
           "unmatched": 12,
-          "restrictedTurn": 1
+          "restrictedTurn": 1,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -3816,7 +3822,8 @@
         "issues": {
           "wrongDirection": 20,
           "unmatched": 9,
-          "restrictedTurn": 2
+          "restrictedTurn": 2,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -3906,13 +3913,16 @@
     },
     "1071-ida": {
       "geometry": "canonical",
-      "migration": "accepted",
+      "migration": "blocked-revalidation",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": true,
-        "issues": {}
-      }
+        "ready": false,
+        "issues": {
+          "unsupportedRestriction": 1
+        }
+      },
+      "validatedNetwork": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v4"
     },
     "1071-vuelta": {
       "geometry": "canonical",
@@ -3932,7 +3942,8 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 2
+          "wrongDirection": 2,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -3956,7 +3967,8 @@
         "issues": {
           "wrongDirection": 22,
           "unmatched": 6,
-          "restrictedTurn": 2
+          "restrictedTurn": 2,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -3982,7 +3994,8 @@
         "issues": {
           "wrongDirection": 11,
           "unmatched": 6,
-          "restrictedTurn": 1
+          "restrictedTurn": 1,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -4018,8 +4031,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 12,
-          "unsupportedRestriction": 2
+          "wrongDirection": 12
         }
       }
     },
@@ -4045,8 +4057,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 13,
-          "unsupportedRestriction": 2
+          "wrongDirection": 13
         }
       }
     },
@@ -4072,8 +4083,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 2,
-          "unsupportedRestriction": 2
+          "wrongDirection": 2
         }
       }
     },
@@ -4099,8 +4109,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 9,
-          "unsupportedRestriction": 2
+          "wrongDirection": 9
         }
       }
     },
@@ -4158,13 +4167,16 @@
     },
     "1076-ida": {
       "geometry": "canonical",
-      "migration": "accepted",
+      "migration": "blocked-revalidation",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": true,
-        "issues": {}
-      }
+        "ready": false,
+        "issues": {
+          "unsupportedRestriction": 1
+        }
+      },
+      "validatedNetwork": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v4"
     },
     "1076-vuelta": {
       "geometry": "canonical",
@@ -4211,6 +4223,7 @@
         "ready": false,
         "issues": {
           "wrongDirection": 2,
+          "unsupportedRestriction": 1,
           "stopOrder": 1
         }
       }
@@ -4238,6 +4251,7 @@
           "wrongDirection": 22,
           "unmatched": 3,
           "restrictedTurn": 1,
+          "unsupportedRestriction": 1,
           "stopOrder": 1
         }
       }
@@ -4308,13 +4322,16 @@
     },
     "1079-ida": {
       "geometry": "canonical",
-      "migration": "accepted",
+      "migration": "blocked-revalidation",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": true,
-        "issues": {}
-      }
+        "ready": false,
+        "issues": {
+          "unsupportedRestriction": 1
+        }
+      },
+      "validatedNetwork": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v4"
     },
     "1079-vuelta": {
       "geometry": "legacy-osm",
@@ -4388,7 +4405,8 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 3
+          "wrongDirection": 3,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -4413,7 +4431,8 @@
         "ready": false,
         "issues": {
           "wrongDirection": 23,
-          "unmatched": 3
+          "unmatched": 3,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -4432,13 +4451,16 @@
     },
     "1081-ida": {
       "geometry": "canonical",
-      "migration": "accepted",
+      "migration": "blocked-revalidation",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": true,
-        "issues": {}
-      }
+        "ready": false,
+        "issues": {
+          "unsupportedRestriction": 1
+        }
+      },
+      "validatedNetwork": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v4"
     },
     "1081-vuelta": {
       "geometry": "legacy-osm",
@@ -4493,15 +4515,13 @@
       }
     },
     "1082-vuelta": {
-      "geometry": "legacy-osm",
-      "migration": "blocked-validation",
+      "geometry": "canonical",
+      "migration": "accepted",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": false,
-        "issues": {
-          "unsupportedRestriction": 2
-        }
+        "ready": true,
+        "issues": {}
       }
     },
     "1082_71276-ida": {
@@ -4526,21 +4546,18 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 1,
-          "unsupportedRestriction": 2
+          "wrongDirection": 1
         }
       }
     },
     "1083-ida": {
-      "geometry": "legacy-osm",
-      "migration": "blocked-validation",
+      "geometry": "canonical",
+      "migration": "accepted",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": false,
-        "issues": {
-          "unsupportedRestriction": 1
-        }
+        "ready": true,
+        "issues": {}
       }
     },
     "1083-vuelta": {
@@ -4563,8 +4580,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "restrictedTurn": 1,
-          "unsupportedRestriction": 1
+          "restrictedTurn": 1
         }
       }
     },
@@ -4605,7 +4621,7 @@
           "wrongDirection": 5,
           "unmatched": 4,
           "restrictedTurn": 2,
-          "unsupportedRestriction": 2
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -4633,7 +4649,7 @@
         "issues": {
           "unmatched": 3,
           "restrictedTurn": 1,
-          "unsupportedRestriction": 2
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -4646,7 +4662,8 @@
         "ready": false,
         "issues": {
           "wrongDirection": 4,
-          "unmatched": 9
+          "unmatched": 9,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -4685,7 +4702,8 @@
         "issues": {
           "wrongDirection": 20,
           "unmatched": 9,
-          "restrictedTurn": 2
+          "restrictedTurn": 2,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -5253,8 +5271,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 1,
-          "unsupportedRestriction": 1
+          "wrongDirection": 1
         }
       }
     },
@@ -5279,8 +5296,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 1,
-          "unsupportedRestriction": 1
+          "wrongDirection": 1
         }
       }
     },
@@ -5548,8 +5564,7 @@
         "ready": false,
         "issues": {
           "restrictedTurn": 2,
-          "wrongDirection": 3,
-          "unsupportedRestriction": 1
+          "wrongDirection": 3
         }
       }
     },
@@ -6841,15 +6856,13 @@
       }
     },
     "1132-ida": {
-      "geometry": "legacy-osm",
-      "migration": "blocked-validation",
+      "geometry": "canonical",
+      "migration": "accepted",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": false,
-        "issues": {
-          "unsupportedRestriction": 1
-        }
+        "ready": true,
+        "issues": {}
       }
     },
     "1132-vuelta": {
@@ -6863,15 +6876,13 @@
       }
     },
     "1132_151463-ida": {
-      "geometry": "legacy-osm",
-      "migration": "blocked-validation",
+      "geometry": "canonical",
+      "migration": "accepted",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": false,
-        "issues": {
-          "unsupportedRestriction": 1
-        }
+        "ready": true,
+        "issues": {}
       }
     },
     "1132_151463-vuelta": {
@@ -7768,8 +7779,7 @@
         "ready": false,
         "issues": {
           "restrictedTurn": 1,
-          "unmatched": 6,
-          "unsupportedRestriction": 1
+          "unmatched": 6
         }
       }
     },
@@ -8155,7 +8165,8 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 5
+          "wrongDirection": 5,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -8180,7 +8191,8 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 7
+          "wrongDirection": 7,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -8259,8 +8271,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 9,
-          "unsupportedRestriction": 1
+          "wrongDirection": 9
         }
       }
     },
@@ -8285,8 +8296,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 9,
-          "unsupportedRestriction": 1
+          "wrongDirection": 9
         }
       }
     },
@@ -8411,7 +8421,7 @@
         "ready": false,
         "issues": {
           "wrongDirection": 16,
-          "unsupportedRestriction": 3
+          "unsupportedRestriction": 2
         }
       }
     },
@@ -8437,7 +8447,7 @@
         "ready": false,
         "issues": {
           "wrongDirection": 16,
-          "unsupportedRestriction": 3
+          "unsupportedRestriction": 2
         }
       }
     },
@@ -8771,7 +8781,8 @@
       "validation": {
         "ready": false,
         "issues": {
-          "unmatched": 4
+          "unmatched": 4,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -8809,7 +8820,8 @@
       "validation": {
         "ready": false,
         "issues": {
-          "unmatched": 4
+          "unmatched": 4,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -8834,7 +8846,8 @@
       "validation": {
         "ready": false,
         "issues": {
-          "unmatched": 7
+          "unmatched": 7,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -8859,7 +8872,8 @@
       "validation": {
         "ready": false,
         "issues": {
-          "unmatched": 7
+          "unmatched": 7,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -9583,7 +9597,8 @@
         "ready": false,
         "issues": {
           "wrongDirection": 5,
-          "unmatched": 35
+          "unmatched": 35,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -9650,8 +9665,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "unmatched": 3,
-          "unsupportedRestriction": 1
+          "unmatched": 3
         }
       }
     },
@@ -9677,8 +9691,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "unmatched": 3,
-          "unsupportedRestriction": 1
+          "unmatched": 3
         }
       }
     },
@@ -9900,7 +9913,8 @@
         "ready": false,
         "issues": {
           "unmatched": 3,
-          "restrictedTurn": 1
+          "restrictedTurn": 1,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -9927,7 +9941,8 @@
         "issues": {
           "wrongDirection": 16,
           "unmatched": 34,
-          "restrictedTurn": 1
+          "restrictedTurn": 1,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -9947,13 +9962,16 @@
     },
     "1225-ida": {
       "geometry": "canonical",
-      "migration": "accepted",
+      "migration": "blocked-revalidation",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": true,
-        "issues": {}
-      }
+        "ready": false,
+        "issues": {
+          "unsupportedRestriction": 1
+        }
+      },
+      "validatedNetwork": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v4"
     },
     "1225-vuelta": {
       "geometry": "legacy-osm",
@@ -10053,7 +10071,8 @@
         "issues": {
           "unmatched": 4,
           "restrictedTurn": 1,
-          "wrongDirection": 1
+          "wrongDirection": 1,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -10139,15 +10158,13 @@
       }
     },
     "1229-ida": {
-      "geometry": "legacy-osm",
-      "migration": "blocked-validation",
+      "geometry": "canonical",
+      "migration": "accepted",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": false,
-        "issues": {
-          "unsupportedRestriction": 1
-        }
+        "ready": true,
+        "issues": {}
       }
     },
     "1229-vuelta": {
@@ -10170,8 +10187,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 1,
-          "unsupportedRestriction": 1
+          "wrongDirection": 1
         }
       }
     },
@@ -10258,8 +10274,7 @@
         "issues": {
           "restrictedTurn": 3,
           "unmatched": 8,
-          "wrongDirection": 5,
-          "unsupportedRestriction": 1
+          "wrongDirection": 5
         }
       }
     },
@@ -10286,8 +10301,7 @@
         "issues": {
           "restrictedTurn": 3,
           "unmatched": 8,
-          "wrongDirection": 5,
-          "unsupportedRestriction": 1
+          "wrongDirection": 5
         }
       }
     },
@@ -10519,8 +10533,7 @@
         "issues": {
           "restrictedTurn": 1,
           "unmatched": 6,
-          "wrongDirection": 29,
-          "unsupportedRestriction": 1
+          "wrongDirection": 29
         }
       }
     },
@@ -10546,8 +10559,7 @@
         "issues": {
           "restrictedTurn": 1,
           "unmatched": 6,
-          "wrongDirection": 29,
-          "unsupportedRestriction": 1
+          "wrongDirection": 29
         }
       }
     },
@@ -11910,8 +11922,7 @@
         "issues": {
           "unmatched": 3,
           "restrictedTurn": 3,
-          "wrongDirection": 20,
-          "unsupportedRestriction": 1
+          "wrongDirection": 20
         }
       }
     },
@@ -11938,8 +11949,7 @@
         "issues": {
           "unmatched": 9,
           "restrictedTurn": 2,
-          "wrongDirection": 22,
-          "unsupportedRestriction": 1
+          "wrongDirection": 22
         }
       }
     },
@@ -12044,7 +12054,8 @@
         "ready": false,
         "issues": {
           "wrongDirection": 42,
-          "unmatched": 25
+          "unmatched": 25,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -12060,13 +12071,16 @@
     },
     "1268-vuelta": {
       "geometry": "canonical",
-      "migration": "accepted",
+      "migration": "blocked-revalidation",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": true,
-        "issues": {}
-      }
+        "ready": false,
+        "issues": {
+          "unsupportedRestriction": 1
+        }
+      },
+      "validatedNetwork": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v4"
     },
     "1269-ida": {
       "geometry": "legacy-osm",
@@ -12078,8 +12092,7 @@
         "issues": {
           "wrongDirection": 41,
           "unmatched": 14,
-          "restrictedTurn": 2,
-          "unsupportedRestriction": 1
+          "restrictedTurn": 2
         }
       }
     },
@@ -12138,7 +12151,8 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 15
+          "wrongDirection": 15,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -12151,8 +12165,7 @@
         "ready": false,
         "issues": {
           "unmatched": 8,
-          "restrictedTurn": 1,
-          "unsupportedRestriction": 3
+          "restrictedTurn": 1
         }
       }
     },
@@ -12178,8 +12191,7 @@
         "ready": false,
         "issues": {
           "wrongDirection": 70,
-          "unmatched": 12,
-          "unsupportedRestriction": 1
+          "unmatched": 12
         }
       }
     },
@@ -12205,8 +12217,7 @@
         "ready": false,
         "issues": {
           "wrongDirection": 59,
-          "unmatched": 12,
-          "unsupportedRestriction": 1
+          "unmatched": 12
         }
       }
     },
@@ -12219,7 +12230,8 @@
         "ready": false,
         "issues": {
           "unmatched": 12,
-          "wrongDirection": 34
+          "wrongDirection": 34,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -12288,7 +12300,8 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 6
+          "wrongDirection": 6,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -12514,8 +12527,7 @@
         "ready": false,
         "issues": {
           "wrongDirection": 8,
-          "unmatched": 9,
-          "unsupportedRestriction": 1
+          "unmatched": 9
         }
       }
     },
@@ -12581,7 +12593,8 @@
         "ready": false,
         "issues": {
           "unmatched": 27,
-          "wrongDirection": 5
+          "wrongDirection": 5,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -12631,7 +12644,8 @@
         "ready": false,
         "issues": {
           "restrictedTurn": 1,
-          "wrongDirection": 2
+          "wrongDirection": 2,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -12672,8 +12686,7 @@
         "ready": false,
         "issues": {
           "unmatched": 6,
-          "wrongDirection": 44,
-          "unsupportedRestriction": 1
+          "wrongDirection": 44
         }
       }
     },
@@ -12686,7 +12699,8 @@
         "ready": false,
         "issues": {
           "wrongDirection": 37,
-          "unmatched": 15
+          "unmatched": 15,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -13074,7 +13088,8 @@
         "ready": false,
         "issues": {
           "wrongDirection": 31,
-          "unmatched": 24
+          "unmatched": 24,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -13253,7 +13268,8 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 2
+          "wrongDirection": 2,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -13520,7 +13536,8 @@
         "issues": {
           "unmatched": 30,
           "restrictedTurn": 1,
-          "wrongDirection": 6
+          "wrongDirection": 6,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -13559,8 +13576,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "restrictedTurn": 1,
-          "unsupportedRestriction": 1
+          "restrictedTurn": 1
         }
       }
     },
@@ -13585,8 +13601,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "restrictedTurn": 1,
-          "unsupportedRestriction": 1
+          "restrictedTurn": 1
         }
       }
     },
@@ -14154,8 +14169,7 @@
         "issues": {
           "unmatched": 6,
           "wrongDirection": 12,
-          "restrictedTurn": 1,
-          "unsupportedRestriction": 1
+          "restrictedTurn": 1
         }
       }
     },
@@ -14182,8 +14196,7 @@
         "issues": {
           "unmatched": 6,
           "wrongDirection": 12,
-          "restrictedTurn": 1,
-          "unsupportedRestriction": 1
+          "restrictedTurn": 1
         }
       }
     },
@@ -14777,15 +14790,13 @@
       }
     },
     "1348-ida": {
-      "geometry": "legacy-osm",
-      "migration": "blocked-validation",
+      "geometry": "canonical",
+      "migration": "accepted",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": false,
-        "issues": {
-          "unsupportedRestriction": 1
-        }
+        "ready": true,
+        "issues": {}
       }
     },
     "1348-vuelta": {
@@ -14806,8 +14817,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 2,
-          "unsupportedRestriction": 1
+          "wrongDirection": 2
         }
       }
     },
@@ -14822,15 +14832,13 @@
       }
     },
     "1349-ida": {
-      "geometry": "legacy-osm",
-      "migration": "blocked-validation",
+      "geometry": "canonical",
+      "migration": "accepted",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": false,
-        "issues": {
-          "unsupportedRestriction": 1
-        }
+        "ready": true,
+        "issues": {}
       }
     },
     "1349-vuelta": {
@@ -14844,15 +14852,13 @@
       }
     },
     "1349_71071-ida": {
-      "geometry": "legacy-osm",
-      "migration": "blocked-validation",
+      "geometry": "canonical",
+      "migration": "accepted",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": false,
-        "issues": {
-          "unsupportedRestriction": 1
-        }
+        "ready": true,
+        "issues": {}
       }
     },
     "1349_71071-vuelta": {
@@ -14866,15 +14872,13 @@
       }
     },
     "1350-ida": {
-      "geometry": "legacy-osm",
-      "migration": "blocked-validation",
+      "geometry": "canonical",
+      "migration": "accepted",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": false,
-        "issues": {
-          "unsupportedRestriction": 1
-        }
+        "ready": true,
+        "issues": {}
       }
     },
     "1350-vuelta": {
@@ -14888,15 +14892,13 @@
       }
     },
     "1350_54433-ida": {
-      "geometry": "legacy-osm",
-      "migration": "blocked-validation",
+      "geometry": "canonical",
+      "migration": "accepted",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": false,
-        "issues": {
-          "unsupportedRestriction": 1
-        }
+        "ready": true,
+        "issues": {}
       }
     },
     "1350_54433-vuelta": {
@@ -14917,8 +14919,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "unmatched": 2,
-          "unsupportedRestriction": 1
+          "unmatched": 2
         }
       }
     },
@@ -14942,8 +14943,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "unmatched": 2,
-          "unsupportedRestriction": 1
+          "unmatched": 2
         }
       }
     },
@@ -15045,7 +15045,8 @@
         "issues": {
           "wrongDirection": 20,
           "unmatched": 3,
-          "restrictedTurn": 1
+          "restrictedTurn": 1,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -15422,7 +15423,8 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 1
+          "wrongDirection": 1,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -15446,7 +15448,8 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 1
+          "wrongDirection": 1,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -15464,13 +15467,16 @@
     },
     "1363-ida": {
       "geometry": "canonical",
-      "migration": "accepted",
+      "migration": "blocked-revalidation",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": true,
-        "issues": {}
-      }
+        "ready": false,
+        "issues": {
+          "unsupportedRestriction": 1
+        }
+      },
+      "validatedNetwork": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v4"
     },
     "1363-vuelta": {
       "geometry": "canonical",
@@ -15580,7 +15586,8 @@
       "validation": {
         "ready": false,
         "issues": {
-          "restrictedTurn": 1
+          "restrictedTurn": 1,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -15605,7 +15612,8 @@
         "ready": false,
         "issues": {
           "wrongDirection": 27,
-          "restrictedTurn": 1
+          "restrictedTurn": 1,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -15629,7 +15637,8 @@
       "validation": {
         "ready": false,
         "issues": {
-          "restrictedTurn": 1
+          "restrictedTurn": 1,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -15656,7 +15665,8 @@
         "issues": {
           "wrongDirection": 14,
           "unmatched": 6,
-          "restrictedTurn": 2
+          "restrictedTurn": 2,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -16521,8 +16531,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "restrictedTurn": 1,
-          "unsupportedRestriction": 1
+          "restrictedTurn": 1
         }
       }
     },
@@ -16658,8 +16667,7 @@
         "issues": {
           "restrictedTurn": 2,
           "unmatched": 6,
-          "wrongDirection": 1,
-          "unsupportedRestriction": 2
+          "wrongDirection": 1
         }
       }
     },
@@ -16896,15 +16904,13 @@
       }
     },
     "1415-ida": {
-      "geometry": "legacy-osm",
-      "migration": "blocked-validation",
+      "geometry": "canonical",
+      "migration": "accepted",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": false,
-        "issues": {
-          "wrongDirection": 14
-        }
+        "ready": true,
+        "issues": {}
       }
     },
     "1415-vuelta": {
@@ -17300,15 +17306,13 @@
       }
     },
     "1462-vuelta": {
-      "geometry": "legacy-osm",
-      "migration": "blocked-validation",
+      "geometry": "canonical",
+      "migration": "accepted",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": false,
-        "issues": {
-          "unsupportedRestriction": 1
-        }
+        "ready": true,
+        "issues": {}
       }
     },
     "1462_54364-ida": {
@@ -17320,8 +17324,7 @@
         "ready": false,
         "issues": {
           "restrictedTurn": 3,
-          "unmatched": 6,
-          "unsupportedRestriction": 1
+          "unmatched": 6
         }
       }
     },
@@ -17916,7 +17919,8 @@
         "issues": {
           "wrongDirection": 3,
           "unmatched": 28,
-          "restrictedTurn": 1
+          "restrictedTurn": 1,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -17944,7 +17948,8 @@
         "issues": {
           "unmatched": 30,
           "restrictedTurn": 1,
-          "wrongDirection": 7
+          "wrongDirection": 7,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -18215,7 +18220,8 @@
         "ready": false,
         "issues": {
           "restrictedTurn": 2,
-          "unmatched": 2
+          "unmatched": 2,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -19307,8 +19313,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 1,
-          "unsupportedRestriction": 1
+          "wrongDirection": 1
         }
       }
     },
@@ -19628,7 +19633,7 @@
         "ready": false,
         "issues": {
           "wrongDirection": 6,
-          "unsupportedRestriction": 2
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -20199,13 +20204,16 @@
     },
     "2-ida": {
       "geometry": "canonical",
-      "migration": "accepted",
+      "migration": "blocked-revalidation",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": true,
-        "issues": {}
-      }
+        "ready": false,
+        "issues": {
+          "unsupportedRestriction": 1
+        }
+      },
+      "validatedNetwork": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v4"
     },
     "2-vuelta": {
       "geometry": "legacy-osm",
@@ -20852,15 +20860,13 @@
       }
     },
     "2401-vuelta": {
-      "geometry": "legacy-osm",
-      "migration": "blocked-validation",
+      "geometry": "canonical",
+      "migration": "accepted",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": false,
-        "issues": {
-          "unsupportedRestriction": 1
-        }
+        "ready": true,
+        "issues": {}
       }
     },
     "2402-ida": {
@@ -20935,7 +20941,8 @@
         "ready": false,
         "issues": {
           "wrongDirection": 39,
-          "unmatched": 3
+          "unmatched": 3,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -21308,15 +21315,13 @@
       }
     },
     "256-ida": {
-      "geometry": "legacy-osm",
-      "migration": "blocked-validation",
+      "geometry": "canonical",
+      "migration": "accepted",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": false,
-        "issues": {
-          "unsupportedRestriction": 2
-        }
+        "ready": true,
+        "issues": {}
       }
     },
     "256-vuelta": {
@@ -22096,8 +22101,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "unmatched": 3,
-          "unsupportedRestriction": 1
+          "unmatched": 3
         }
       }
     },
@@ -22151,7 +22155,8 @@
         "issues": {
           "wrongDirection": 51,
           "unmatched": 11,
-          "restrictedTurn": 1
+          "restrictedTurn": 1,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -22270,15 +22275,13 @@
       }
     },
     "3411-vuelta": {
-      "geometry": "legacy-osm",
-      "migration": "blocked-validation",
+      "geometry": "canonical",
+      "migration": "accepted",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": false,
-        "issues": {
-          "unsupportedRestriction": 1
-        }
+        "ready": true,
+        "issues": {}
       }
     },
     "3501-ida": {
@@ -22327,8 +22330,7 @@
         "ready": false,
         "issues": {
           "wrongDirection": 3,
-          "unmatched": 2,
-          "unsupportedRestriction": 1
+          "unmatched": 2
         }
       }
     },
@@ -22403,7 +22405,6 @@
         "ready": false,
         "issues": {
           "wrongDirection": 1,
-          "unsupportedRestriction": 1,
           "stopOffRoute": 1
         }
       }
@@ -23495,8 +23496,7 @@
         "issues": {
           "wrongDirection": 2,
           "unmatched": 3,
-          "restrictedTurn": 1,
-          "unsupportedRestriction": 1
+          "restrictedTurn": 1
         }
       }
     },
@@ -23651,8 +23651,7 @@
         "ready": false,
         "issues": {
           "wrongDirection": 9,
-          "unmatched": 3,
-          "unsupportedRestriction": 1
+          "unmatched": 3
         }
       }
     },
@@ -23727,8 +23726,7 @@
         "ready": false,
         "issues": {
           "wrongDirection": 1,
-          "unmatched": 3,
-          "unsupportedRestriction": 1
+          "unmatched": 3
         }
       }
     },
@@ -23802,8 +23800,7 @@
         "ready": false,
         "issues": {
           "wrongDirection": 1,
-          "unmatched": 4,
-          "unsupportedRestriction": 1
+          "unmatched": 4
         }
       }
     },
@@ -23829,8 +23826,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "unmatched": 3,
-          "unsupportedRestriction": 1
+          "unmatched": 3
         }
       }
     },
@@ -23880,8 +23876,7 @@
         "ready": false,
         "issues": {
           "wrongDirection": 1,
-          "unmatched": 3,
-          "unsupportedRestriction": 1
+          "unmatched": 3
         }
       }
     },
@@ -24017,8 +24012,7 @@
         "ready": false,
         "issues": {
           "wrongDirection": 16,
-          "unmatched": 3,
-          "unsupportedRestriction": 1
+          "unmatched": 3
         }
       }
     },
@@ -24194,8 +24188,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "restrictedTurn": 1,
-          "unsupportedRestriction": 1
+          "restrictedTurn": 1
         }
       }
     },
@@ -24219,7 +24212,8 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 1
+          "wrongDirection": 1,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -24321,8 +24315,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 15,
-          "unsupportedRestriction": 1
+          "wrongDirection": 15
         }
       }
     },
@@ -24339,15 +24332,13 @@
       }
     },
     "4305-ida": {
-      "geometry": "legacy-osm",
-      "migration": "blocked-validation",
+      "geometry": "canonical",
+      "migration": "accepted",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": false,
-        "issues": {
-          "unsupportedRestriction": 1
-        }
+        "ready": true,
+        "issues": {}
       }
     },
     "4305-vuelta": {
@@ -24370,8 +24361,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 1,
-          "unsupportedRestriction": 1
+          "wrongDirection": 1
         }
       }
     },
@@ -24405,7 +24395,8 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 24
+          "wrongDirection": 24,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -24417,8 +24408,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 6,
-          "unsupportedRestriction": 2
+          "wrongDirection": 6
         }
       }
     },
@@ -24431,7 +24421,6 @@
         "ready": false,
         "issues": {
           "wrongDirection": 2,
-          "unsupportedRestriction": 2,
           "stopOrder": 2
         }
       }
@@ -24615,7 +24604,8 @@
         "issues": {
           "wrongDirection": 20,
           "unmatched": 9,
-          "restrictedTurn": 2
+          "restrictedTurn": 2,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -24685,15 +24675,13 @@
       }
     },
     "4514-vuelta": {
-      "geometry": "legacy-osm",
-      "migration": "blocked-validation",
+      "geometry": "canonical",
+      "migration": "accepted",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": false,
-        "issues": {
-          "wrongDirection": 8
-        }
+        "ready": true,
+        "issues": {}
       }
     },
     "4515-ida": {
@@ -25048,7 +25036,8 @@
         "issues": {
           "wrongDirection": 18,
           "unmatched": 3,
-          "restrictedTurn": 1
+          "restrictedTurn": 1,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -25121,7 +25110,8 @@
         "issues": {
           "wrongDirection": 24,
           "unmatched": 3,
-          "restrictedTurn": 1
+          "restrictedTurn": 1,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -25382,8 +25372,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 2,
-          "unsupportedRestriction": 2
+          "wrongDirection": 2
         }
       }
     },
@@ -25589,8 +25578,7 @@
         "ready": false,
         "issues": {
           "unmatched": 32,
-          "wrongDirection": 1,
-          "unsupportedRestriction": 1
+          "wrongDirection": 1
         }
       }
     },
@@ -25722,8 +25710,7 @@
         "ready": false,
         "issues": {
           "unmatched": 9,
-          "wrongDirection": 4,
-          "unsupportedRestriction": 1
+          "wrongDirection": 4
         }
       }
     },
@@ -25736,7 +25723,8 @@
         "ready": false,
         "issues": {
           "wrongDirection": 1,
-          "unmatched": 4
+          "unmatched": 4,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -25775,7 +25763,8 @@
         "ready": false,
         "issues": {
           "wrongDirection": 5,
-          "unmatched": 38
+          "unmatched": 38,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -25802,7 +25791,8 @@
         "ready": false,
         "issues": {
           "wrongDirection": 1,
-          "unmatched": 3
+          "unmatched": 3,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -25905,7 +25895,8 @@
         "ready": false,
         "issues": {
           "wrongDirection": 3,
-          "unmatched": 38
+          "unmatched": 38,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -25933,7 +25924,8 @@
         "issues": {
           "wrongDirection": 1,
           "unmatched": 7,
-          "restrictedTurn": 1
+          "restrictedTurn": 1,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -26014,7 +26006,8 @@
         "ready": false,
         "issues": {
           "wrongDirection": 1,
-          "unmatched": 6
+          "unmatched": 6,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -26041,7 +26034,8 @@
         "ready": false,
         "issues": {
           "wrongDirection": 4,
-          "unmatched": 38
+          "unmatched": 38,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -26118,7 +26112,8 @@
         "ready": false,
         "issues": {
           "wrongDirection": 5,
-          "unmatched": 38
+          "unmatched": 38,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -26146,7 +26141,8 @@
         "issues": {
           "wrongDirection": 1,
           "unmatched": 6,
-          "restrictedTurn": 1
+          "restrictedTurn": 1,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -26173,7 +26169,8 @@
         "ready": false,
         "issues": {
           "wrongDirection": 2,
-          "unmatched": 2
+          "unmatched": 2,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -26199,7 +26196,8 @@
         "ready": false,
         "issues": {
           "wrongDirection": 1,
-          "unmatched": 2
+          "unmatched": 2,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -26251,7 +26249,8 @@
         "ready": false,
         "issues": {
           "wrongDirection": 2,
-          "unmatched": 2
+          "unmatched": 2,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -26322,8 +26321,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 1,
-          "unsupportedRestriction": 1
+          "wrongDirection": 1
         }
       }
     },
@@ -26471,8 +26469,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 1,
-          "unsupportedRestriction": 1
+          "wrongDirection": 1
         }
       }
     },
@@ -26741,15 +26738,13 @@
       }
     },
     "5601-ida": {
-      "geometry": "legacy-osm",
-      "migration": "blocked-validation",
+      "geometry": "canonical",
+      "migration": "accepted",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": false,
-        "issues": {
-          "unsupportedRestriction": 1
-        }
+        "ready": true,
+        "issues": {}
       }
     },
     "5601-vuelta": {
@@ -27117,15 +27112,13 @@
       }
     },
     "576-ida": {
-      "geometry": "legacy-osm",
-      "migration": "blocked-validation",
+      "geometry": "canonical",
+      "migration": "accepted",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": false,
-        "issues": {
-          "unsupportedRestriction": 1
-        }
+        "ready": true,
+        "issues": {}
       }
     },
     "576-vuelta": {
@@ -27210,8 +27203,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "restrictedTurn": 2,
-          "unsupportedRestriction": 1
+          "restrictedTurn": 2
         }
       }
     },
@@ -27521,8 +27513,7 @@
         "ready": false,
         "issues": {
           "unmatched": 9,
-          "wrongDirection": 35,
-          "unsupportedRestriction": 1
+          "wrongDirection": 35
         }
       }
     },
@@ -27573,8 +27564,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 8,
-          "unsupportedRestriction": 1
+          "wrongDirection": 8
         }
       }
     },
@@ -27674,8 +27664,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 22,
-          "unsupportedRestriction": 1
+          "wrongDirection": 22
         }
       }
     },
@@ -27895,8 +27884,7 @@
         "ready": false,
         "issues": {
           "unmatched": 6,
-          "wrongDirection": 3,
-          "unsupportedRestriction": 1
+          "wrongDirection": 3
         }
       }
     },
@@ -28016,8 +28004,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 2,
-          "unsupportedRestriction": 1
+          "wrongDirection": 2
         }
       }
     },
@@ -28601,8 +28588,7 @@
         "ready": false,
         "issues": {
           "unmatched": 11,
-          "wrongDirection": 1,
-          "unsupportedRestriction": 1
+          "wrongDirection": 1
         }
       }
     },
@@ -29055,7 +29041,8 @@
         "issues": {
           "unmatched": 3,
           "restrictedTurn": 1,
-          "wrongDirection": 1
+          "wrongDirection": 1,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -30107,7 +30094,8 @@
         "ready": false,
         "issues": {
           "wrongDirection": 13,
-          "unmatched": 29
+          "unmatched": 29,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -30403,7 +30391,8 @@
       "validation": {
         "ready": false,
         "issues": {
-          "unmatched": 6
+          "unmatched": 6,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -30698,8 +30687,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 3,
-          "unsupportedRestriction": 1
+          "wrongDirection": 3
         }
       }
     },
@@ -30959,8 +30947,7 @@
         "ready": false,
         "issues": {
           "unmatched": 6,
-          "wrongDirection": 2,
-          "unsupportedRestriction": 1
+          "wrongDirection": 2
         }
       }
     },
@@ -31019,15 +31006,13 @@
       }
     },
     "AN03-vuelta": {
-      "geometry": "legacy-osm",
-      "migration": "blocked-validation",
+      "geometry": "canonical",
+      "migration": "accepted",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": false,
-        "issues": {
-          "unsupportedRestriction": 1
-        }
+        "ready": true,
+        "issues": {}
       }
     },
     "AN04-ida": {
@@ -31408,8 +31393,7 @@
         "ready": false,
         "issues": {
           "wrongDirection": 33,
-          "unmatched": 3,
-          "unsupportedRestriction": 1
+          "unmatched": 3
         }
       }
     },
@@ -31545,7 +31529,8 @@
         "ready": false,
         "issues": {
           "unmatched": 7,
-          "restrictedTurn": 1
+          "restrictedTurn": 1,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -31654,7 +31639,7 @@
         "issues": {
           "wrongDirection": 2,
           "restrictedTurn": 1,
-          "unsupportedRestriction": 2
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -31692,8 +31677,7 @@
         "issues": {
           "wrongDirection": 78,
           "unmatched": 9,
-          "restrictedTurn": 2,
-          "unsupportedRestriction": 1
+          "restrictedTurn": 2
         }
       }
     },
@@ -31786,7 +31770,8 @@
         "issues": {
           "wrongDirection": 3,
           "unmatched": 7,
-          "restrictedTurn": 1
+          "restrictedTurn": 1,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -31798,8 +31783,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 7,
-          "unsupportedRestriction": 1
+          "wrongDirection": 7
         }
       }
     },
@@ -31811,7 +31795,8 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 27
+          "wrongDirection": 27,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -31840,8 +31825,7 @@
         "issues": {
           "unmatched": 6,
           "wrongDirection": 31,
-          "restrictedTurn": 2,
-          "unsupportedRestriction": 1
+          "restrictedTurn": 2
         }
       }
     },
@@ -31908,8 +31892,7 @@
         "ready": false,
         "issues": {
           "unmatched": 8,
-          "wrongDirection": 16,
-          "unsupportedRestriction": 1
+          "wrongDirection": 16
         }
       }
     },
@@ -31922,7 +31905,8 @@
         "ready": false,
         "issues": {
           "wrongDirection": 2,
-          "unmatched": 5
+          "unmatched": 5,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -31972,8 +31956,7 @@
         "ready": false,
         "issues": {
           "wrongDirection": 7,
-          "unmatched": 3,
-          "unsupportedRestriction": 1
+          "unmatched": 3
         }
       }
     },
@@ -31986,8 +31969,7 @@
         "ready": false,
         "issues": {
           "wrongDirection": 3,
-          "unmatched": 3,
-          "unsupportedRestriction": 1
+          "unmatched": 3
         }
       }
     },
@@ -32107,7 +32089,8 @@
         "ready": false,
         "issues": {
           "wrongDirection": 3,
-          "unmatched": 10
+          "unmatched": 10,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -32122,15 +32105,13 @@
       }
     },
     "C50m-vuelta": {
-      "geometry": "legacy-osm",
-      "migration": "blocked-validation",
+      "geometry": "canonical",
+      "migration": "accepted",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": false,
-        "issues": {
-          "unsupportedRestriction": 1
-        }
+        "ready": true,
+        "issues": {}
       }
     },
     "C62m-ida": {
@@ -32172,15 +32153,13 @@
       }
     },
     "C70m-vuelta": {
-      "geometry": "legacy-osm",
-      "migration": "blocked-validation",
+      "geometry": "canonical",
+      "migration": "accepted",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": false,
-        "issues": {
-          "unsupportedRestriction": 1
-        }
+        "ready": true,
+        "issues": {}
       }
     },
     "C71m-ida": {
@@ -32203,8 +32182,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 1,
-          "unsupportedRestriction": 1
+          "wrongDirection": 1
         }
       }
     },
@@ -32231,8 +32209,7 @@
         "ready": false,
         "issues": {
           "restrictedTurn": 2,
-          "unmatched": 3,
-          "unsupportedRestriction": 2
+          "unmatched": 3
         }
       }
     },
@@ -32295,8 +32272,7 @@
         "issues": {
           "wrongDirection": 37,
           "unmatched": 9,
-          "restrictedTurn": 2,
-          "unsupportedRestriction": 1
+          "restrictedTurn": 2
         }
       }
     },
@@ -33057,7 +33033,8 @@
         "ready": false,
         "issues": {
           "wrongDirection": 24,
-          "unmatched": 6
+          "unmatched": 6,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -33073,13 +33050,16 @@
     },
     "CR25-vuelta": {
       "geometry": "canonical",
-      "migration": "accepted",
+      "migration": "blocked-revalidation",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": true,
-        "issues": {}
-      }
+        "ready": false,
+        "issues": {
+          "unsupportedRestriction": 1
+        }
+      },
+      "validatedNetwork": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v4"
     },
     "CR27-ida": {
       "geometry": "legacy-osm",
@@ -33282,8 +33262,7 @@
         "issues": {
           "restrictedTurn": 2,
           "wrongDirection": 2,
-          "unmatched": 3,
-          "unsupportedRestriction": 1
+          "unmatched": 3
         }
       }
     },
@@ -33468,7 +33447,8 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 15
+          "wrongDirection": 15,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -33693,8 +33673,7 @@
         "ready": false,
         "issues": {
           "unmatched": 8,
-          "restrictedTurn": 1,
-          "unsupportedRestriction": 3
+          "restrictedTurn": 1
         }
       }
     },
@@ -33748,8 +33727,7 @@
         "ready": false,
         "issues": {
           "wrongDirection": 70,
-          "unmatched": 12,
-          "unsupportedRestriction": 1
+          "unmatched": 12
         }
       }
     },
@@ -33775,8 +33753,7 @@
         "ready": false,
         "issues": {
           "wrongDirection": 59,
-          "unmatched": 12,
-          "unsupportedRestriction": 1
+          "unmatched": 12
         }
       }
     },
@@ -33789,7 +33766,8 @@
         "ready": false,
         "issues": {
           "unmatched": 12,
-          "wrongDirection": 34
+          "wrongDirection": 34,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -34123,7 +34101,8 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 1
+          "wrongDirection": 1,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -34251,7 +34230,8 @@
         "ready": false,
         "issues": {
           "unmatched": 6,
-          "wrongDirection": 3
+          "wrongDirection": 3,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -34329,13 +34309,16 @@
     },
     "ECR11-ida": {
       "geometry": "canonical",
-      "migration": "accepted",
+      "migration": "blocked-revalidation",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": true,
-        "issues": {}
-      }
+        "ready": false,
+        "issues": {
+          "unsupportedRestriction": 1
+        }
+      },
+      "validatedNetwork": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v4"
     },
     "ECR11-vuelta": {
       "geometry": "legacy-osm",
@@ -34383,7 +34366,8 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 1
+          "wrongDirection": 1,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -34481,7 +34465,8 @@
         "ready": false,
         "issues": {
           "wrongDirection": 3,
-          "restrictedTurn": 1
+          "restrictedTurn": 1,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -34578,7 +34563,8 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 1
+          "wrongDirection": 1,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -34603,7 +34589,8 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 2
+          "wrongDirection": 2,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -34627,8 +34614,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 15,
-          "unsupportedRestriction": 1
+          "wrongDirection": 15
         }
       }
     },
@@ -34679,8 +34665,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "unmatched": 10,
-          "unsupportedRestriction": 1
+          "unmatched": 10
         }
       }
     },
@@ -34727,8 +34712,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "restrictedTurn": 1,
-          "unsupportedRestriction": 1
+          "restrictedTurn": 1
         }
       }
     },
@@ -34752,7 +34736,8 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 1
+          "wrongDirection": 1,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -34816,15 +34801,13 @@
       }
     },
     "ECR34-ida": {
-      "geometry": "legacy-osm",
-      "migration": "blocked-validation",
+      "geometry": "canonical",
+      "migration": "accepted",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": false,
-        "issues": {
-          "unsupportedRestriction": 1
-        }
+        "ready": true,
+        "issues": {}
       }
     },
     "ECR34-vuelta": {
@@ -34860,21 +34843,18 @@
       "validation": {
         "ready": false,
         "issues": {
-          "unmatched": 3,
-          "unsupportedRestriction": 1
+          "unmatched": 3
         }
       }
     },
     "ECR36-ida": {
-      "geometry": "legacy-osm",
-      "migration": "blocked-validation",
+      "geometry": "canonical",
+      "migration": "accepted",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": false,
-        "issues": {
-          "wrongDirection": 8
-        }
+        "ready": true,
+        "issues": {}
       }
     },
     "ECR36-vuelta": {
@@ -34908,7 +34888,8 @@
         "ready": false,
         "issues": {
           "wrongDirection": 22,
-          "unmatched": 2
+          "unmatched": 2,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -35021,7 +35002,8 @@
         "issues": {
           "wrongDirection": 25,
           "unmatched": 9,
-          "restrictedTurn": 1
+          "restrictedTurn": 1,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -35048,7 +35030,8 @@
         "issues": {
           "wrongDirection": 3,
           "unmatched": 28,
-          "restrictedTurn": 1
+          "restrictedTurn": 1,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -35208,15 +35191,13 @@
       }
     },
     "EM23-vuelta": {
-      "geometry": "legacy-osm",
-      "migration": "blocked-validation",
+      "geometry": "canonical",
+      "migration": "accepted",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": false,
-        "issues": {
-          "unsupportedRestriction": 1
-        }
+        "ready": true,
+        "issues": {}
       }
     },
     "EM26-ida": {
@@ -35389,7 +35370,7 @@
           "wrongDirection": 1,
           "unmatched": 5,
           "restrictedTurn": 1,
-          "unsupportedRestriction": 2
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -35414,7 +35395,8 @@
       "validation": {
         "ready": false,
         "issues": {
-          "unmatched": 4
+          "unmatched": 4,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -35440,7 +35422,8 @@
         "ready": false,
         "issues": {
           "wrongDirection": 2,
-          "unmatched": 4
+          "unmatched": 4,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -35496,7 +35479,8 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 1
+          "wrongDirection": 1,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -35679,8 +35663,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 2,
-          "unsupportedRestriction": 2
+          "wrongDirection": 2
         }
       }
     },
@@ -35808,8 +35791,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 2,
-          "unsupportedRestriction": 2
+          "wrongDirection": 2
         }
       }
     },
@@ -36123,8 +36105,7 @@
         "ready": false,
         "issues": {
           "wrongDirection": 10,
-          "restrictedTurn": 1,
-          "unsupportedRestriction": 1
+          "restrictedTurn": 1
         }
       }
     },
@@ -36278,20 +36259,22 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 15,
-          "unsupportedRestriction": 1
+          "wrongDirection": 15
         }
       }
     },
     "EO104-ida": {
       "geometry": "canonical",
-      "migration": "accepted",
+      "migration": "blocked-revalidation",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": true,
-        "issues": {}
-      }
+        "ready": false,
+        "issues": {
+          "unsupportedRestriction": 1
+        }
+      },
+      "validatedNetwork": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v4"
     },
     "EO104-vuelta": {
       "geometry": "legacy-osm",
@@ -36363,7 +36346,8 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 1
+          "wrongDirection": 1,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -36440,7 +36424,8 @@
         "ready": false,
         "issues": {
           "wrongDirection": 4,
-          "unmatched": 8
+          "unmatched": 8,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -36679,7 +36664,8 @@
         "issues": {
           "wrongDirection": 14,
           "unmatched": 20,
-          "restrictedTurn": 1
+          "restrictedTurn": 1,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -36745,7 +36731,7 @@
         "issues": {
           "unmatched": 3,
           "restrictedTurn": 1,
-          "unsupportedRestriction": 2
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -36771,8 +36757,7 @@
         "ready": false,
         "issues": {
           "wrongDirection": 13,
-          "unmatched": 4,
-          "unsupportedRestriction": 1
+          "unmatched": 4
         }
       }
     },
@@ -36785,7 +36770,8 @@
         "ready": false,
         "issues": {
           "wrongDirection": 7,
-          "unmatched": 35
+          "unmatched": 35,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -36812,7 +36798,8 @@
         "ready": false,
         "issues": {
           "wrongDirection": 4,
-          "unmatched": 10
+          "unmatched": 10,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -36975,7 +36962,8 @@
         "ready": false,
         "issues": {
           "wrongDirection": 9,
-          "unmatched": 35
+          "unmatched": 35,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -37053,7 +37041,8 @@
         "issues": {
           "wrongDirection": 29,
           "restrictedTurn": 1,
-          "unmatched": 9
+          "unmatched": 9,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -37136,7 +37125,8 @@
         "issues": {
           "wrongDirection": 20,
           "unmatched": 9,
-          "restrictedTurn": 2
+          "restrictedTurn": 2,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -37162,7 +37152,8 @@
         "ready": false,
         "issues": {
           "wrongDirection": 23,
-          "unmatched": 3
+          "unmatched": 3,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -37691,7 +37682,8 @@
         "ready": false,
         "issues": {
           "wrongDirection": 36,
-          "unmatched": 15
+          "unmatched": 15,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -37730,8 +37722,7 @@
         "issues": {
           "restrictedTurn": 1,
           "wrongDirection": 23,
-          "unmatched": 6,
-          "unsupportedRestriction": 1
+          "unmatched": 6
         }
       }
     },
@@ -37757,8 +37748,7 @@
         "ready": false,
         "issues": {
           "unmatched": 9,
-          "wrongDirection": 16,
-          "unsupportedRestriction": 2
+          "wrongDirection": 16
         }
       }
     },
@@ -38132,8 +38122,7 @@
         "ready": false,
         "issues": {
           "restrictedTurn": 1,
-          "wrongDirection": 5,
-          "unsupportedRestriction": 1
+          "wrongDirection": 5
         }
       }
     },
@@ -38374,8 +38363,7 @@
         "ready": false,
         "issues": {
           "wrongDirection": 8,
-          "unmatched": 9,
-          "unsupportedRestriction": 1
+          "unmatched": 9
         }
       }
     },
@@ -38429,8 +38417,7 @@
         "issues": {
           "restrictedTurn": 1,
           "wrongDirection": 4,
-          "unmatched": 3,
-          "unsupportedRestriction": 1
+          "unmatched": 3
         }
       }
     },
@@ -38470,7 +38457,8 @@
         "ready": false,
         "issues": {
           "wrongDirection": 18,
-          "unmatched": 6
+          "unmatched": 6,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -38815,15 +38803,13 @@
       }
     },
     "IM48-ida": {
-      "geometry": "legacy-osm",
-      "migration": "blocked-validation",
+      "geometry": "canonical",
+      "migration": "accepted",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": false,
-        "issues": {
-          "unsupportedRestriction": 1
-        }
+        "ready": true,
+        "issues": {}
       }
     },
     "IM48-vuelta": {
@@ -38914,7 +38900,8 @@
         "ready": false,
         "issues": {
           "wrongDirection": 5,
-          "unmatched": 37
+          "unmatched": 37,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -39023,7 +39010,8 @@
         "issues": {
           "wrongDirection": 5,
           "unmatched": 24,
-          "restrictedTurn": 1
+          "restrictedTurn": 1,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -39077,7 +39065,8 @@
         "ready": false,
         "issues": {
           "restrictedTurn": 2,
-          "wrongDirection": 2
+          "wrongDirection": 2,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -39181,7 +39170,8 @@
       "validation": {
         "ready": false,
         "issues": {
-          "unmatched": 3
+          "unmatched": 3,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -39290,8 +39280,7 @@
         "ready": false,
         "issues": {
           "unmatched": 6,
-          "wrongDirection": 17,
-          "unsupportedRestriction": 1
+          "wrongDirection": 17
         }
       }
     },
@@ -39486,8 +39475,7 @@
         "ready": false,
         "issues": {
           "unmatched": 32,
-          "wrongDirection": 1,
-          "unsupportedRestriction": 1
+          "wrongDirection": 1
         }
       }
     },
@@ -39501,8 +39489,7 @@
         "issues": {
           "restrictedTurn": 2,
           "wrongDirection": 5,
-          "unmatched": 4,
-          "unsupportedRestriction": 1
+          "unmatched": 4
         }
       }
     },
@@ -39530,8 +39517,7 @@
         "issues": {
           "unmatched": 9,
           "wrongDirection": 15,
-          "restrictedTurn": 1,
-          "unsupportedRestriction": 1
+          "restrictedTurn": 1
         }
       }
     },
@@ -39937,8 +39923,7 @@
         "ready": false,
         "issues": {
           "unmatched": 8,
-          "wrongDirection": 17,
-          "unsupportedRestriction": 1
+          "wrongDirection": 17
         }
       }
     },
@@ -39952,8 +39937,7 @@
         "issues": {
           "unmatched": 6,
           "wrongDirection": 22,
-          "restrictedTurn": 1,
-          "unsupportedRestriction": 1
+          "restrictedTurn": 1
         }
       }
     },
@@ -39995,7 +39979,7 @@
         "issues": {
           "wrongDirection": 13,
           "unmatched": 6,
-          "unsupportedRestriction": 2
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -40072,8 +40056,7 @@
         "ready": false,
         "issues": {
           "restrictedTurn": 2,
-          "wrongDirection": 16,
-          "unsupportedRestriction": 1
+          "wrongDirection": 16
         }
       }
     },
@@ -40100,8 +40083,7 @@
         "issues": {
           "restrictedTurn": 2,
           "unmatched": 6,
-          "wrongDirection": 6,
-          "unsupportedRestriction": 1
+          "wrongDirection": 6
         }
       }
     },
@@ -40340,7 +40322,8 @@
         "issues": {
           "unmatched": 16,
           "restrictedTurn": 1,
-          "wrongDirection": 23
+          "wrongDirection": 23,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -40651,7 +40634,8 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 2
+          "wrongDirection": 2,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -40692,7 +40676,8 @@
         "issues": {
           "wrongDirection": 2,
           "unmatched": 3,
-          "restrictedTurn": 1
+          "restrictedTurn": 1,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -40810,7 +40795,8 @@
         "issues": {
           "wrongDirection": 2,
           "restrictedTurn": 1,
-          "unmatched": 3
+          "unmatched": 3,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -40994,7 +40980,8 @@
         "issues": {
           "unmatched": 19,
           "wrongDirection": 91,
-          "restrictedTurn": 1
+          "restrictedTurn": 1,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -41008,8 +40995,7 @@
         "issues": {
           "unmatched": 13,
           "wrongDirection": 50,
-          "restrictedTurn": 2,
-          "unsupportedRestriction": 1
+          "restrictedTurn": 2
         }
       }
     },
@@ -41063,7 +41049,8 @@
         "issues": {
           "wrongDirection": 9,
           "unmatched": 4,
-          "restrictedTurn": 1
+          "restrictedTurn": 1,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -41699,8 +41686,7 @@
         "ready": false,
         "issues": {
           "wrongDirection": 8,
-          "unmatched": 3,
-          "unsupportedRestriction": 1
+          "unmatched": 3
         }
       }
     },
@@ -42019,8 +42005,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 22,
-          "unsupportedRestriction": 1
+          "wrongDirection": 22
         }
       }
     },
@@ -42099,8 +42084,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "restrictedTurn": 1,
-          "unsupportedRestriction": 1
+          "restrictedTurn": 1
         }
       }
     },
@@ -42171,7 +42155,8 @@
         "issues": {
           "restrictedTurn": 2,
           "unmatched": 9,
-          "wrongDirection": 3
+          "wrongDirection": 3,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -42224,7 +42209,8 @@
         "ready": false,
         "issues": {
           "unmatched": 3,
-          "wrongDirection": 5
+          "wrongDirection": 5,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -42250,7 +42236,8 @@
         "ready": false,
         "issues": {
           "unmatched": 5,
-          "wrongDirection": 3
+          "wrongDirection": 3,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -42335,8 +42322,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "unmatched": 2,
-          "unsupportedRestriction": 1
+          "unmatched": 2
         }
       }
     },
@@ -42806,8 +42792,7 @@
         "ready": false,
         "issues": {
           "unmatched": 10,
-          "wrongDirection": 4,
-          "unsupportedRestriction": 1
+          "wrongDirection": 4
         }
       }
     },
@@ -42859,7 +42844,8 @@
         "ready": false,
         "issues": {
           "wrongDirection": 21,
-          "unmatched": 7
+          "unmatched": 7,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -42909,8 +42895,7 @@
         "ready": false,
         "issues": {
           "restrictedTurn": 1,
-          "unmatched": 2,
-          "unsupportedRestriction": 1
+          "unmatched": 2
         }
       }
     },
@@ -42924,8 +42909,7 @@
         "issues": {
           "restrictedTurn": 1,
           "wrongDirection": 2,
-          "unmatched": 2,
-          "unsupportedRestriction": 1
+          "unmatched": 2
         }
       }
     },
@@ -43435,8 +43419,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "restrictedTurn": 1,
-          "unsupportedRestriction": 1
+          "restrictedTurn": 1
         }
       }
     },
@@ -43762,8 +43745,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 2,
-          "unsupportedRestriction": 1
+          "wrongDirection": 2
         }
       }
     },
@@ -43801,8 +43783,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 9,
-          "unsupportedRestriction": 1
+          "wrongDirection": 9
         }
       }
     },
@@ -43919,8 +43900,7 @@
         "ready": false,
         "issues": {
           "restrictedTurn": 1,
-          "wrongDirection": 2,
-          "unsupportedRestriction": 1
+          "wrongDirection": 2
         }
       }
     },
@@ -44638,8 +44618,7 @@
         "ready": false,
         "issues": {
           "wrongDirection": 9,
-          "unmatched": 14,
-          "unsupportedRestriction": 1
+          "unmatched": 14
         }
       }
     },
@@ -44814,7 +44793,8 @@
         "ready": false,
         "issues": {
           "wrongDirection": 2,
-          "restrictedTurn": 1
+          "restrictedTurn": 1,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -45223,7 +45203,8 @@
         "issues": {
           "unmatched": 7,
           "restrictedTurn": 1,
-          "wrongDirection": 23
+          "wrongDirection": 23,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -45312,8 +45293,7 @@
         "issues": {
           "wrongDirection": 86,
           "unmatched": 11,
-          "restrictedTurn": 1,
-          "unsupportedRestriction": 1
+          "restrictedTurn": 1
         }
       }
     },
@@ -45395,7 +45375,7 @@
         "ready": false,
         "issues": {
           "unmatched": 3,
-          "unsupportedRestriction": 3
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -45484,7 +45464,8 @@
         "issues": {
           "unmatched": 42,
           "restrictedTurn": 1,
-          "wrongDirection": 36
+          "wrongDirection": 36,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -46207,8 +46188,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 16,
-          "unsupportedRestriction": 1
+          "wrongDirection": 16
         }
       }
     },
@@ -46665,8 +46645,7 @@
         "ready": false,
         "issues": {
           "unmatched": 11,
-          "wrongDirection": 1,
-          "unsupportedRestriction": 1
+          "wrongDirection": 1
         }
       }
     },
@@ -46803,8 +46782,7 @@
         "issues": {
           "unmatched": 13,
           "wrongDirection": 5,
-          "restrictedTurn": 1,
-          "unsupportedRestriction": 1
+          "restrictedTurn": 1
         }
       }
     },
@@ -47378,8 +47356,7 @@
         "issues": {
           "restrictedTurn": 1,
           "unmatched": 6,
-          "wrongDirection": 29,
-          "unsupportedRestriction": 1
+          "wrongDirection": 29
         }
       }
     },
@@ -47615,7 +47592,8 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 7
+          "wrongDirection": 7,
+          "unsupportedRestriction": 1
         }
       }
     },
@@ -48055,15 +48033,13 @@
       }
     },
     "SO17-vuelta": {
-      "geometry": "legacy-osm",
-      "migration": "blocked-validation",
+      "geometry": "canonical",
+      "migration": "accepted",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": false,
-        "issues": {
-          "unsupportedRestriction": 1
-        }
+        "ready": true,
+        "issues": {}
       }
     },
     "SO18-ida": {
@@ -48293,15 +48269,13 @@
       }
     },
     "SO30-ida": {
-      "geometry": "legacy-osm",
-      "migration": "blocked-validation",
+      "geometry": "canonical",
+      "migration": "accepted",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": false,
-        "issues": {
-          "unsupportedRestriction": 1
-        }
+        "ready": true,
+        "issues": {}
       }
     },
     "SO30-vuelta": {
@@ -48325,8 +48299,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 2,
-          "unsupportedRestriction": 1
+          "wrongDirection": 2
         }
       }
     },
@@ -48346,15 +48319,13 @@
       }
     },
     "SO32-ida": {
-      "geometry": "legacy-osm",
-      "migration": "blocked-validation",
+      "geometry": "canonical",
+      "migration": "accepted",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": false,
-        "issues": {
-          "unsupportedRestriction": 1
-        }
+        "ready": true,
+        "issues": {}
       }
     },
     "SO32-vuelta": {
@@ -48418,8 +48389,7 @@
         "issues": {
           "restrictedTurn": 2,
           "unmatched": 8,
-          "wrongDirection": 7,
-          "unsupportedRestriction": 1
+          "wrongDirection": 7
         }
       }
     },
@@ -48451,8 +48421,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "wrongDirection": 22,
-          "unsupportedRestriction": 1
+          "wrongDirection": 22
         }
       }
     },
@@ -50654,352 +50623,820 @@
   },
   "native": {
     "met:A:ns": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/metropolitano_paths.json"
+      "migration": "pending-review",
+      "file": "data/processed/metropolitano/metropolitano_paths.json",
+      "validation": {
+        "ready": true,
+        "issues": {}
+      }
     },
     "met:A:sn": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/metropolitano_paths.json"
+      "migration": "pending-review",
+      "file": "data/processed/metropolitano/metropolitano_paths.json",
+      "validation": {
+        "ready": true,
+        "issues": {}
+      }
     },
     "met:B:ns": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/metropolitano_paths.json"
+      "migration": "pending-review",
+      "file": "data/processed/metropolitano/metropolitano_paths.json",
+      "validation": {
+        "ready": true,
+        "issues": {}
+      }
     },
     "met:B:sn": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/metropolitano_paths.json"
+      "migration": "pending-review",
+      "file": "data/processed/metropolitano/metropolitano_paths.json",
+      "validation": {
+        "ready": true,
+        "issues": {}
+      }
     },
     "met:C:ns": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/metropolitano_paths.json"
+      "migration": "pending-review",
+      "file": "data/processed/metropolitano/metropolitano_paths.json",
+      "validation": {
+        "ready": true,
+        "issues": {}
+      }
     },
     "met:C:sn": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/metropolitano_paths.json"
+      "migration": "pending-review",
+      "file": "data/processed/metropolitano/metropolitano_paths.json",
+      "validation": {
+        "ready": true,
+        "issues": {}
+      }
     },
     "met:1:ns": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/metropolitano_paths.json"
+      "migration": "pending-review",
+      "file": "data/processed/metropolitano/metropolitano_paths.json",
+      "validation": {
+        "ready": true,
+        "issues": {}
+      }
     },
     "met:1:sn": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/metropolitano_paths.json"
+      "migration": "pending-review",
+      "file": "data/processed/metropolitano/metropolitano_paths.json",
+      "validation": {
+        "ready": true,
+        "issues": {}
+      }
     },
     "met:2:ns": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/metropolitano_paths.json"
+      "migration": "pending-review",
+      "file": "data/processed/metropolitano/metropolitano_paths.json",
+      "validation": {
+        "ready": true,
+        "issues": {}
+      }
     },
     "met:2:sn": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/metropolitano_paths.json"
+      "migration": "pending-review",
+      "file": "data/processed/metropolitano/metropolitano_paths.json",
+      "validation": {
+        "ready": true,
+        "issues": {}
+      }
     },
     "met:3:sn": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/metropolitano_paths.json"
+      "migration": "pending-review",
+      "file": "data/processed/metropolitano/metropolitano_paths.json",
+      "validation": {
+        "ready": true,
+        "issues": {}
+      }
     },
     "met:5:ns": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/metropolitano_paths.json"
+      "migration": "pending-review",
+      "file": "data/processed/metropolitano/metropolitano_paths.json",
+      "validation": {
+        "ready": true,
+        "issues": {}
+      }
     },
     "met:5:sn": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/metropolitano_paths.json"
+      "migration": "pending-review",
+      "file": "data/processed/metropolitano/metropolitano_paths.json",
+      "validation": {
+        "ready": true,
+        "issues": {}
+      }
     },
     "met:6:ns": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/metropolitano_paths.json"
+      "migration": "pending-review",
+      "file": "data/processed/metropolitano/metropolitano_paths.json",
+      "validation": {
+        "ready": true,
+        "issues": {}
+      }
     },
     "met:7:ns": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/metropolitano_paths.json"
+      "migration": "pending-review",
+      "file": "data/processed/metropolitano/metropolitano_paths.json",
+      "validation": {
+        "ready": true,
+        "issues": {}
+      }
     },
     "met:8:ns": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/metropolitano_paths.json"
+      "migration": "pending-review",
+      "file": "data/processed/metropolitano/metropolitano_paths.json",
+      "validation": {
+        "ready": true,
+        "issues": {}
+      }
     },
     "met:8:sn": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/metropolitano_paths.json"
+      "migration": "pending-review",
+      "file": "data/processed/metropolitano/metropolitano_paths.json",
+      "validation": {
+        "ready": true,
+        "issues": {}
+      }
     },
     "met:9:sn": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/metropolitano_paths.json"
+      "migration": "pending-review",
+      "file": "data/processed/metropolitano/metropolitano_paths.json",
+      "validation": {
+        "ready": true,
+        "issues": {}
+      }
     },
     "met:10:ns": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/metropolitano_paths.json"
+      "migration": "pending-review",
+      "file": "data/processed/metropolitano/metropolitano_paths.json",
+      "validation": {
+        "ready": true,
+        "issues": {}
+      }
     },
     "met:11:ns": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/metropolitano_paths.json"
+      "migration": "pending-review",
+      "file": "data/processed/metropolitano/metropolitano_paths.json",
+      "validation": {
+        "ready": true,
+        "issues": {}
+      }
     },
     "met:11:sn": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/metropolitano_paths.json"
+      "migration": "pending-review",
+      "file": "data/processed/metropolitano/metropolitano_paths.json",
+      "validation": {
+        "ready": true,
+        "issues": {}
+      }
     },
     "met:12:ns": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/metropolitano_paths.json"
+      "migration": "pending-review",
+      "file": "data/processed/metropolitano/metropolitano_paths.json",
+      "validation": {
+        "ready": true,
+        "issues": {}
+      }
     },
     "met:13:ns": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/metropolitano_paths.json"
+      "migration": "pending-review",
+      "file": "data/processed/metropolitano/metropolitano_paths.json",
+      "validation": {
+        "ready": true,
+        "issues": {}
+      }
     },
     "met:13:sn": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/metropolitano_paths.json"
+      "migration": "pending-review",
+      "file": "data/processed/metropolitano/metropolitano_paths.json",
+      "validation": {
+        "ready": true,
+        "issues": {}
+      }
     },
     "met:L:ns": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/metropolitano_paths.json"
+      "migration": "pending-review",
+      "file": "data/processed/metropolitano/metropolitano_paths.json",
+      "validation": {
+        "ready": true,
+        "issues": {}
+      }
     },
     "met:L:sn": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/metropolitano_paths.json"
+      "migration": "pending-review",
+      "file": "data/processed/metropolitano/metropolitano_paths.json",
+      "validation": {
+        "ready": true,
+        "issues": {}
+      }
     },
     "met:SX:ns": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/metropolitano_paths.json"
+      "migration": "pending-review",
+      "file": "data/processed/metropolitano/metropolitano_paths.json",
+      "validation": {
+        "ready": true,
+        "issues": {}
+      }
     },
     "met:SX:sn": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/metropolitano_paths.json"
+      "migration": "pending-review",
+      "file": "data/processed/metropolitano/metropolitano_paths.json",
+      "validation": {
+        "ready": true,
+        "issues": {}
+      }
     },
     "met:SXN:ns": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/metropolitano_paths.json"
+      "migration": "pending-review",
+      "file": "data/processed/metropolitano/metropolitano_paths.json",
+      "validation": {
+        "ready": true,
+        "issues": {}
+      }
     },
     "met:SXN:sn": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/metropolitano_paths.json"
+      "migration": "pending-review",
+      "file": "data/processed/metropolitano/metropolitano_paths.json",
+      "validation": {
+        "ready": true,
+        "issues": {}
+      }
     },
     "met:SXN-22:ns": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/metropolitano_paths.json"
+      "migration": "pending-review",
+      "file": "data/processed/metropolitano/metropolitano_paths.json",
+      "validation": {
+        "ready": true,
+        "issues": {}
+      }
     },
     "alim:AN-01:ida": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 3
+        }
+      }
     },
     "alim:AN-01:vuelta": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 7
+        }
+      }
     },
     "alim:AN-02:ida": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 14,
+          "wrongDirection": 2,
+          "missingStops": 1
+        }
+      }
     },
     "alim:AN-02:vuelta": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 24,
+          "wrongDirection": 25,
+          "restrictedTurn": 1
+        }
+      }
     },
     "alim:AN-03:ida": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 8
+        }
+      }
     },
     "alim:AN-03:vuelta": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 11
+        }
+      }
     },
     "alim:AN-04:ida": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 7
+        }
+      }
     },
     "alim:AN-04:vuelta": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 12
+        }
+      }
     },
     "alim:AN-05:ida": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 4
+        }
+      }
     },
     "alim:AN-05:vuelta": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 7
+        }
+      }
     },
     "alim:AN-06:ida": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 9,
+          "wrongDirection": 11
+        }
+      }
     },
     "alim:AN-06:vuelta": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 7
+        }
+      }
     },
     "alim:AN-07:ida": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 16,
+          "wrongDirection": 12
+        }
+      }
     },
     "alim:AN-07:vuelta": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 13,
+          "wrongDirection": 22,
+          "unsupportedRestriction": 1
+        }
+      }
     },
     "alim:AN-08:ida": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 28,
+          "wrongDirection": 38
+        }
+      }
     },
     "alim:AN-08:vuelta": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 25,
+          "wrongDirection": 20
+        }
+      }
     },
     "alim:AN-09:ida": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 8
+        }
+      }
     },
     "alim:AN-09:vuelta": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 8
+        }
+      }
     },
     "alim:AN-10:ida": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 22,
+          "stopOrder": 1
+        }
+      }
     },
     "alim:AN-10:vuelta": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 4
+        }
+      }
     },
     "alim:AN-12:ida": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 13
+        }
+      }
     },
     "alim:AN-12:vuelta": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 15
+        }
+      }
     },
     "alim:AN-13:ida": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 30,
+          "wrongDirection": 44,
+          "restrictedTurn": 2
+        }
+      }
     },
     "alim:AN-13:vuelta": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 29,
+          "wrongDirection": 66
+        }
+      }
     },
     "alim:AN-14:ida": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 13
+        }
+      }
     },
     "alim:AN-14:vuelta": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 8
+        }
+      }
     },
     "alim:AN-15:ida": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 5,
+          "wrongDirection": 4
+        }
+      }
     },
     "alim:AN-15:vuelta": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 7
+        }
+      }
     },
     "alim:AN-16:ida": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 6
+        }
+      }
     },
     "alim:AN-16:vuelta": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 5
+        }
+      }
     },
     "alim:AN-17:ida": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 16
+        }
+      }
     },
     "alim:AN-17:vuelta": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 13
+        }
+      }
     },
     "alim:AS-02:ida": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 6,
+          "stopOffRoute": 1
+        }
+      }
     },
     "alim:AS-02:vuelta": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "wrongDirection": 5,
+          "unmatched": 5,
+          "stopOffRoute": 1
+        }
+      }
     },
     "alim:AS-04:ida": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 24,
+          "wrongDirection": 19,
+          "stopOffRoute": 1
+        }
+      }
     },
     "alim:AS-04:vuelta": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 19,
+          "wrongDirection": 42,
+          "stopOffRoute": 1
+        }
+      }
     },
     "alim:AS-07:ida": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 18,
+          "wrongDirection": 10,
+          "stopOffRoute": 1
+        }
+      }
     },
     "alim:AS-07:vuelta": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 16,
+          "wrongDirection": 12,
+          "stopOffRoute": 1
+        }
+      }
     },
     "alim:AS-08:ida": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 15,
+          "wrongDirection": 3,
+          "stopOffRoute": 1
+        }
+      }
     },
     "alim:AS-08:vuelta": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 11,
+          "wrongDirection": 7,
+          "stopOffRoute": 1
+        }
+      }
     },
     "alim:Metropolitano Gamarra:ida": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 5,
+          "wrongDirection": 3
+        }
+      }
     },
     "alim:Metropolitano Gamarra:vuelta": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 7,
+          "wrongDirection": 3
+        }
+      }
     },
     "alim:AN-18:ida": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 13
+        }
+      }
     },
     "alim:AN-18:vuelta": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 11
+        }
+      }
     },
     "alim:AN-19:ida": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 6
+        }
+      }
     },
     "alim:AN-19:vuelta": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 8
+        }
+      }
     },
     "alim:AN-20:ida": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 13
+        }
+      }
     },
     "alim:AN-20:vuelta": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 15
+        }
+      }
     },
     "alim:AN-21:ida": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 7
+        }
+      }
     },
     "alim:AN-21:vuelta": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 10
+        }
+      }
     },
     "alim:AN-22:ida": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 7
+        }
+      }
     },
     "alim:AN-22:vuelta": {
-      "migration": "native-adapter-required",
-      "file": "data/processed/metropolitano/alimentadores_paths.json"
+      "migration": "blocked-validation",
+      "file": "data/processed/metropolitano/alimentadores_paths.json",
+      "validation": {
+        "ready": false,
+        "issues": {
+          "unmatched": 11
+        }
+      }
     }
   },
   "excludedModes": [
     "metro:rail-not-bus-network"
   ],
   "audit": {
-    "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v4",
+    "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5",
     "directions": 4098,
-    "ready": 784,
+    "ready": 802,
     "issueOccurrences": {
-      "wrongDirection": 32906,
+      "wrongDirection": 32876,
       "restrictedTurn": 1520,
       "unmatched": 14553,
       "sourceReview": 693,
       "stopOrder": 470,
-      "unsupportedRestriction": 480,
+      "unsupportedRestriction": 418,
       "stopOffRoute": 19,
       "reservedRoad": 4
     }
