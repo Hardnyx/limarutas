@@ -25,3 +25,9 @@ class MigrationInventoryTest(unittest.TestCase):
             self.assertEqual(before, {p: p.read_bytes() for p in root.rglob('*') if p.is_file()})
             (folder / 'route_track_trip1.geojson').write_text('{}')
             self.assertEqual(inventory(root)['routes']['1-ida']['migration'], 'pending-review')
+            audited = {'network': 'fixture', 'routes': {'1-ida': {'ready': False,
+                        'issues': {'wrongDirection': 2}}}, 'summary': {'blockers': {'wrongDirection': 2}}}
+            result = inventory(root, audited)
+            self.assertEqual(result['routes']['1-ida']['migration'], 'blocked-validation')
+            self.assertEqual(result['routes']['1-ida']['validation']['issues'], {'wrongDirection': 2})
+            self.assertEqual(result['audit']['ready'], 0)

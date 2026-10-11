@@ -8,7 +8,7 @@ from collections import Counter
 from pathlib import Path
 
 
-def inventory(root):
+def inventory(root, audited=None):
     root = Path(root).resolve()
     catalog = root / 'pipeline/output/wr_map.json'
     definitions = json.loads(catalog.read_text())['routes']
@@ -30,16 +30,24 @@ def inventory(root):
         if 'editable' in files:
             from .published import verify_published
             try:
-                verify_published(*[json.loads(paths[kind].read_text())
-                                   for kind in ('editable', 'osm', 'original', 'stops')], trip, key)
+                route = json.loads(paths['editable'].read_text())
+                verify_published(route, *[json.loads(paths[kind].read_text())
+                                   for kind in ('osm', 'original', 'stops')], trip, key)
                 if definition.get('osm') is not True:
                     raise ValueError('La definición aceptada no está activa')
                 accepted = True
             except (ValueError, KeyError, FileNotFoundError) as error:
                 issues.append(f'invalidPublished:{error}')
+        review = audited['routes'][key] if audited else None
+        if accepted and audited and route['network'] != audited['network']:
+            raise ValueError(f'La auditoría corresponde a otra red: {key}')
         routes[key] = {'geometry': 'canonical' if accepted else 'legacy-osm' if definition.get('osm') else 'original',
                        'migration': 'accepted' if accepted else 'blocked-source' if issues else 'pending-review',
                        'hasReferences': 'legacyReferences' in files, 'issues': issues}
+        if review:
+            routes[key]['validation'] = {'ready': review['ready'], 'issues': review['issues']}
+            if not accepted and not issues and not review['ready']:
+                routes[key]['migration'] = 'blocked-validation'
     native = {}
     for filename, field, prefix in [
         ('metropolitano_paths.json', 'paths', 'met'),
@@ -52,21 +60,28 @@ def inventory(root):
             for direction in directions:
                 native[f'{prefix}:{key}' + (f':{direction}' if direction else '')] = {
                     'migration': 'native-adapter-required', 'file': path.relative_to(root).as_posix()}
-    return {'version': 1, 'kind': 'read-only-migration-inventory', 'publishedFilesChanged': False,
+    result = {'version': 1, 'kind': 'read-only-migration-inventory', 'publishedFilesChanged': False,
             'catalogSha256': hashlib.sha256(catalog.read_bytes()).hexdigest(),
             'summary': {'wikiroutes': len(routes), 'nativeBusDirections': len(native),
                         'geometry': dict(Counter(r['geometry'] for r in routes.values())),
                         'migration': dict(Counter(r['migration'] for r in routes.values()))},
             'routes': routes, 'native': native,
             'excludedModes': ['metro:rail-not-bus-network']}
+    if audited:
+        result['audit'] = {'network': audited['network'], 'directions': len(audited['routes']),
+                           'ready': sum(r['ready'] for r in audited['routes'].values()),
+                           'issueOccurrences': audited['summary']['blockers']}
+    return result
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--root', default=str(Path(__file__).resolve().parents[2]))
     parser.add_argument('--report', default='pipeline/temp/authoring/migration/inventory.json')
+    parser.add_argument('--audit', help='Auditoría completa con incidencias por sentido')
     args = parser.parse_args()
-    report = inventory(args.root)
+    audited = json.loads(Path(args.audit).read_text()) if args.audit else None
+    report = inventory(args.root, audited)
     path = Path(args.report)
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n')

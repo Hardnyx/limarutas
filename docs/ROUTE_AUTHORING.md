@@ -238,3 +238,45 @@ compartidos. Incluye una construcción sobre una calzada segregada real del
 Metropolitano y el rechazo del mismo tramo para un bus de tránsito mixto.
 Los avisos del piloto son trabajo de revisión de datos, no rutas aprobadas.
 Ninguno se publica automáticamente por haber importado o ajustado su fuente.
+
+### Migrar el itinerario publicado sin cambiar calles
+
+El preparador compara las referencias antiguas con el GeoJSON OSM publicado,
+incluidas sus correcciones. Exige reproducir exactamente ese itinerario y
+validar sentidos, continuidad, restricciones y todos los paraderos. La nueva
+geometría conserva los vértices OSM que antes se simplificaban; no elige un
+desvío alternativo para hacer desaparecer una incidencia.
+
+```sh
+python3 -m pipeline.authoring.migration 1087-vuelta 206-ida \
+  --directory pipeline/temp/authoring/lote-nuevo
+python3 -m pipeline.authoring.migration 1087-vuelta 206-ida \
+  --directory pipeline/temp/authoring/lote-nuevo --publish-staged
+```
+
+La primera operación prepara borradores aceptados y exportaciones fuera del
+sitio. La segunda comprueba el lote completo antes de escribir: versión de
+red, fuentes, catálogo, correcciones, geometría, revisión y paraderos.
+Actualiza únicamente `.osm.geojson` y añade `.route.json`; conserva los bytes
+originales de `.geojson`, `.vias.json` y de los paraderos. Si una escritura
+falla, revierte las que haya realizado en ese lote. No admite publicar sobre
+una definición ya aceptada: las futuras modificaciones usan el editor y su
+proceso de revisión.
+
+En esta migración, 784 de los 4098 sentidos Wikiroutes están publicados con
+definición canónica; 3314 siguen pendientes por incidencias registradas por
+sentido en `docs/osm/route_migration.json`. El piloto publica `1087-vuelta` y
+`206-ida`. `1087-ida`, ambos sentidos de `303` y `206-vuelta` necesitan revisión
+de sus fuentes. Se mantienen separados los 83 sentidos propios del
+Metropolitano y alimentadores que requieren adaptar su contrato. La aceptación
+comprueba el itinerario existente; no certifica la vigencia comercial del
+servicio. Los contratos del planificador, índices y catálogo permanecen
+sin cambios porque se conservaron todos los paraderos.
+
+### Tema de la interfaz
+
+La opción «Tema de interfaz y mapa» ofrece Claro y Oscuro. Cambia los paneles,
+formularios, controles y mapa; el editor tiene los mismos botones en su
+cabecera. La elección se guarda en el navegador, se aplica antes de cargar los
+estilos y se comparte entre pestañas del mismo sitio. Sin almacenamiento
+disponible, los botones siguen funcionando durante la visita.
