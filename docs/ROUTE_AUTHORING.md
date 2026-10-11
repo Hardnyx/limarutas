@@ -288,7 +288,8 @@ python3 -m pipeline.authoring.native
 
 El adaptador permite abrir los 83 sentidos nativos en el editor/API.
 Los 31 sentidos del Metropolitano están validados sobre macrorrutas
-compartidas; los 52 alimentadores conservan sus trazados fuente y requieren
+compartidas; AS-04 (Villa El Salvador) tiene sus dos sentidos reconstruidos
+y validados sobre conexiones dirigidas. Los otros 50 sentidos de alimentadores conservan sus trazados fuente y requieren
 revisión de geometría y restricciones. `docs/osm/native_bus_audit.json`
 registra sus incidencias. Esta validación no certifica la vigencia comercial
 de los servicios.

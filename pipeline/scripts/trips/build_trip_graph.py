@@ -268,10 +268,50 @@ def update_met_distances(graph, paths, services, stations):
     return len(updates)
 
 
+def update_feeder_routes(graph, services, refs):
+    """Refresh selected feeders without changing route or shared station identities."""
+    uses = Counter(i for seq in graph['routes'].values() for i in set(seq))
+    rows, distances = {}, {}
+    for ref in refs:
+        for direction in ('ida', 'vuelta'):
+            key = f'alim:{ref}:{direction}'
+            item = services[ref][direction]
+            seq, stops = graph['routes'].get(key, []), item['stops']
+            if len(seq) != len(stops) or len(set(seq)) != len(seq):
+                raise ValueError(f'{key}: los paraderos no corresponden al grafo')
+            meters = [s['m'] for s in stops]
+            if meters != sorted(meters):
+                raise ValueError(f'{key}: paraderos fuera de orden')
+            for index, stop in zip(seq, stops):
+                row = graph['stops'][index]
+                point = [round(stop['lat'], 6), round(stop['lon'], 6)]
+                if row[2] != fix_stop_name(stop['name']):
+                    raise ValueError(f'{key}: cambió la identidad de {stop["id"]}')
+                if row[:2] != point:
+                    if uses[index] != 1 or str(stop['id']).startswith('met:'):
+                        raise ValueError(f'{key}: no se puede mover un paradero compartido')
+                    rows[index] = point
+            distances[key] = [max(1, b-a) for a, b in zip(meters, meters[1:])]
+    # Apply only after every selected direction has passed preflight.
+    for index, point in rows.items():
+        graph['stops'][index][:2] = point
+    graph['segM'].update(distances)
+    return len(distances)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--met-only', action='store_true', help='Actualizar solo las distancias de las macrorrutas')
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument('--met-only', action='store_true', help='Actualizar solo las distancias de las macrorrutas')
+    mode.add_argument('--alim-only', nargs='+', metavar='REF', help='Sincronizar únicamente estos alimentadores')
     args = parser.parse_args()
+    if args.alim_only:
+        graph = json.loads(OUT.read_text())
+        count = update_feeder_routes(graph,
+            json.loads((MET/'alimentadores_paths.json').read_text())['services'], args.alim_only)
+        OUT.write_text(json.dumps(graph, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
+        print(f'{count} sentidos de alimentadores sincronizados; resto del grafo intacto')
+        return
     if args.met_only:
         graph = json.loads(OUT.read_text())
         count = update_met_distances(graph,

@@ -1,4 +1,10 @@
 """
+La salida final se reconstruye con la red dirigida de pipeline.authoring:
+sentidos únicos, óvalos, accesos y giros son restricciones obligatorias.
+Por defecto se escribe una salida provisional, y cualquier incidencia
+impide reemplazar el archivo del sitio. Las funciones históricas siguientes
+solo preparan las guías OSM/QR con --refresh-source.
+
 Genera data/processed/metropolitano/alimentadores_paths.json: cada
 Alimentador del Metropolitano en dos sentidos, ida (del terminal al punto de
 vuelta) y vuelta (de ahí al terminal), con su trazado y sus paraderos en
@@ -53,6 +59,7 @@ Uso:
 from __future__ import annotations
 
 import datetime as dt
+import argparse
 import json
 import math
 import re
@@ -594,7 +601,7 @@ def trazados(stations, oficiales, red):
 NAMER = None
 
 
-def main() -> None:
+def build_legacy_source(output) -> None:
     global NAMER
     NAMER = Namer()
     stations = [s for s in json.loads((MET / 'metropolitano_stops.json').read_text(encoding='utf-8'))['stations']
@@ -718,13 +725,42 @@ def main() -> None:
     for name in corrs:
         print(f'  correcciones de un alimentador que no existe: {name}')
 
-    OUT.write_text(json.dumps({'updated': dt.date.today().isoformat(), 'services': out},
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(json.dumps({'updated': dt.date.today().isoformat(), 'services': out},
                               ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
     for ref, s in out.items():
         print(f"{ref:24} {'circuito' if s['loop'] else '2 sentidos'} · terminal {s['terminal']:16} "
               f"ida {len(s['ida']['stops']):2} → {s['ida']['to'][:22]:22} · vuelta {len(s['vuelta']['stops']):2} · "
               + ' / '.join(x['name'] for x in s['ida']['stops'][1:4]))
-    print(f'Escrito: {OUT.relative_to(ROOT)} ({OUT.stat().st_size / 1024:.0f} KB)')
+    print(f'Fuente provisional: {output.relative_to(ROOT)} ({output.stat().st_size / 1024:.0f} KB)')
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description='Reconstruir alimentadores con sentidos y giros OSM obligatorios')
+    parser.add_argument('routes', nargs='*', help='Códigos a reconstruir; sin códigos se revisan todos')
+    parser.add_argument('--network', default=str(ROOT/'pipeline/temp/authoring/network.json'))
+    parser.add_argument('--pbf', default=str(ROOT/'data/raw/osm/Lima.osm.pbf'))
+    parser.add_argument('--source', default=str(OUT))
+    parser.add_argument('--output', default=str(ROOT/'pipeline/temp/authoring/alimentadores_paths.json'))
+    parser.add_argument('--refresh-source', action='store_true', help='Actualizar primero las guías OSM/QR provisionales')
+    args = parser.parse_args()
+    sys.path.insert(0, str(ROOT))
+    from pipeline.authoring.feeders import build, relation_itineraries
+    from pipeline.authoring.network import Network
+    source = Path(args.source)
+    if args.refresh_source:
+        source = ROOT/'pipeline/temp/authoring/feeder-source.json'
+        build_legacy_source(source)
+    document = json.loads(source.read_text())
+    refs = args.routes or sorted(document['services'])
+    network = Network(json.loads(Path(args.network).read_text()))
+    itineraries = relation_itineraries(args.pbf, set(refs), network)
+    result = build(document, refs, network, itineraries)
+    # Complete preflight above: a blocked direction never overwrites the site.
+    output = Path(args.output)
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(json.dumps(result, ensure_ascii=False, separators=(',', ':')))
+    print(f'{len(refs)*2} sentidos reconstruidos y validados: {output}')
 
 
 if __name__ == '__main__':

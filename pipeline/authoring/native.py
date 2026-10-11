@@ -7,7 +7,7 @@ import json
 from pathlib import Path
 
 from .importer import stop_records
-from .model import attach_stops, coordinate, new_route
+from .model import attach_stops, coordinate, digest, geometry, new_route
 from .reconcile import seal_source
 from .trace import GeometryTrace
 
@@ -86,6 +86,11 @@ def import_native(root, key, engine, trace=None):
         records = item['stops']
         profile = {'mode': 'mixed', 'system': 'Alimentadores del Metropolitano'}
         name = service.get('name', service_id)
+        if item.get('pathReferences') is not None:
+            references = item['pathReferences']
+            if (item.get('network') != engine.network.id or item.get('pathHash') != digest(references)
+                    or [list(reversed(p)) for p in geometry({'path': references}, engine.network)] != item['coords']):
+                raise ValueError('El alimentador no corresponde a sus referencias OSM verificadas')
     points = [coordinate([p[1], p[0]]) for p in item['coords']]
     if len(points) < 2:
         raise ValueError('El sentido nativo no tiene un trazado válido')

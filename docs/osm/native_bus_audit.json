@@ -15,9 +15,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "f711e51163904a68bfff6b2d6fc2b9995f2e09e3ff0f0ba06fcd1d202286d79e",
+      "sourceHash": "73672f5a3466f9a2261469d79a66b4a4471ce5ac0886f360d2c5459759aae210",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -32,9 +32,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "fd3927a09f629153d33b4c7ee5fdb152773eca0d1ba1e21062797ade92928d55",
+      "sourceHash": "9c1286a6e3e5c51446cc879a53ac72a54762b355dc8e8018b29db212264dd6ff",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -51,9 +51,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "034fe608570c3d50f6ff0087f6bf90e2faf050abc010ff5e3202122a50141679",
+      "sourceHash": "5b7d1f62f8cdea5a28fefa49d21ca20ae02a84831dc2ab482e719dadd51c6fb8",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -70,9 +70,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "0daf4f5185def82c21ff24fce2e9b61ac6769c56b4617bce587aafe8a13ff309",
+      "sourceHash": "7cb781aaa21d9e40fed8b40dd8a75668f1b27ef58c6cbd91e5f77cee8d42e383",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -87,9 +87,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "ca453e17067dd94aeb22dc984cdd509b21102636e3ab479a2af7da7dc55f7064",
+      "sourceHash": "e544af63ccb67923d2421afa8fa16b68f8049188eb29dffaac7c37c5b303dfd5",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -104,9 +104,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "7fdae006eed5a2f4f9611e629b671dc1115d4b7af6e9a2fd799064b6120f6697",
+      "sourceHash": "b06c0fbc1c50b9de666dbca1d36430600612fc0648de19cef4d32a12769bb401",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -121,9 +121,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "1ef5e2b6a33ed423b294f1572826e5b0f017cf11f26d57c50ea2110f80ac3e78",
+      "sourceHash": "d0ec0daede069653ba14b2a16111e618633d5fa1682258f5d5272539b8eefaf2",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -138,9 +138,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "dc717efe382f1bf52236023c9d965d20f6e882d781408474510e344805fa4da9",
+      "sourceHash": "b5dc78d999267784342c3f423ca895fbe21d0a2d9e5216e9aa76b07b38d805ae",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -155,9 +155,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "bdcdd80cd26f14452c31fe7f156440b033a11e140da51ab762ebaf3920fe9e5f",
+      "sourceHash": "607750e8a34c2127ed4e3c91b27b86f34f8d231e72696e443775231957178372",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -172,9 +172,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "38983dd484755dea66d114dbddaa88a0aaeb3d6dc9aea9f11d6eeec476cc419e",
+      "sourceHash": "6cb93d1fc83b8ca33761692fc09a375a57f4770f37754469e513c3c492382b0f",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -190,9 +190,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "d1ec4a633e873b49216531ef040f5828540f9b29a1b678d60f2658caa92d53c0",
+      "sourceHash": "9b6322876c168b57c3b94ffae14084b3f00d65b5d703aa8556b305c8a15992c8",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -207,9 +207,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "86285db12d790ab778faf86e5b399712418148d73d90735108d4d5415050dc49",
+      "sourceHash": "9bda63e08071ff10bbe287bea55d1ff5563d164ab21b4b99402df21a6096ce91",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -225,9 +225,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "f34a44c30702460b36a0f2dc0e2e4e9039834a597ed420a5a669435d35c6f5d5",
+      "sourceHash": "8fb3df75c383b6207ff5a7f1926e723f26a6a4afa08c8a405b5f72457f67b158",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -244,9 +244,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "4303f4d4f375c2e83f3fd4835876603d008a322ff7cb01824cbc74a86a7f1232",
+      "sourceHash": "d69593b545b8f321c5b63cbf889f4d22971ea3d4ddcfce2af83b9c89819fa17f",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -262,9 +262,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "8dc411dbc7204177b89764575cf03e88ae5bf08c6cd7354448b0141b237b3023",
+      "sourceHash": "cf693fa427b7eef09ab09b46919ddf9f6d1baba3f269f9597cd3f15798a7e258",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -280,9 +280,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "981eb697bf39ccd0981052f1c7b51ed19bc3d61165185f182201914640ee8acd",
+      "sourceHash": "660be117fe5b01de8ec3b25ff8f894964bd9b7da8b949a558e7105f15eb320d7",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -297,9 +297,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "0d4d6c059f3d39407872dacadc22891492f6d1dfedcbe645e2cf87c0d5254225",
+      "sourceHash": "8c96c3a3ddd76dadd5d90eab6078e21307fdabafee9389bd3ebc5deffb0bed20",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -314,9 +314,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "0f38d57adc2b6ffcb360ede1eb91a9e879540fc59acbe5f6add46ca0c2537509",
+      "sourceHash": "0bd58300d115309e67ac50c7cce3447e0e5b1b602c112937e136dadcb6cbd995",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -332,9 +332,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "792422910c213ae91f9a892a08a8b6bb9b26d51cd815b0d35bb85d62b49e8434",
+      "sourceHash": "c6170d659edf47f55e21d5443f5f792aeff723ea0de7ed117680ee467dbdd4e1",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -349,9 +349,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "8c845f2ed488d80b6ec766fb346af662181570c1a57ad4f91b1c696bc3558113",
+      "sourceHash": "5f4c06ee28cd339559e143af68961fe4808478907b62903a5f78dd32a531ec3a",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -366,9 +366,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "b0a601d15f3eeefd978ebf70da80080d38bcf5d67ad934633093d09fa3dda494",
+      "sourceHash": "95c76c1227ce248392afd6984ffca6befe9b5c83a6a65534057a8cf074ca1ec9",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -383,9 +383,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "d399bd1e00be4ea89cfca1468358fe685cd22629a1df050289a0ee6cbabe8817",
+      "sourceHash": "794b300af08f789cd46e6c2835283c84d8d186b5467c2bcf11b33a43e22c0c18",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -402,9 +402,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "2007480c1b01be48f652e7029aa614af5e8cb68a8c6efcbd1f1ed22db95271fe",
+      "sourceHash": "dc8ff7df39d2a303d1938a36c75c2addd7f1ee3473057256dbda4cff7b5678d4",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -420,9 +420,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "bd08595cfd63cb010e8e5eb79ce5ab053b3c06691b44fee46247c4c2703680f4",
+      "sourceHash": "768a9a443709335fbf6a5c7329386398af0920a8e7f60671c328481961799aff",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -437,9 +437,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "e4dbd18cc6774114cebd9c6f36e900c55b667b61b2429b4be8cd3252b07008f1",
+      "sourceHash": "39d28c7622ea15482f695a9b9c0fe42ee881296001dd02d3062ae6f8456454d3",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -454,9 +454,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "c3267e07897471f323c9a58c24749e3f2e582014344d52c5c22c67361935fca4",
+      "sourceHash": "3eadaf0fecdea9dd97a84e3fe8ea7040fa3c9c58ef0b0fe2748bc9a4e1523df1",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -472,9 +472,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "8fda134149623f73a4c39070e4ec94d0d38d59816cacb57b258af180b6a0114a",
+      "sourceHash": "bc696151efaa3271678a13feeea06c2405802405da02a75afe26aa49c650bb99",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -489,9 +489,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "bde55230d27c595313558c57e3d25efcf3050e1b1e36984b2f7e78d9e456d5ea",
+      "sourceHash": "72b86b90122d46b326ba3d37413ad0d2d536ce97ce4f89c9225267ac2411348c",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -506,9 +506,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "972570d81e0342f22b3052ba77b470194b6215a1effbd95708c61be686289210",
+      "sourceHash": "1ae8af3d722ef97acc4c2c8ef87c5eb58b1e184dc4af5b35e616b1c9e2deeea4",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -523,9 +523,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "f23580ab05f836d07840174b35f99dba38d2e64d4bd20de7bf5fc5858f78af56",
+      "sourceHash": "ad66d4df4c62075de07b15cf834ec22b3828ae662fe4cd311b17553e3380f178",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -540,9 +540,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "ee540ce7c96011628e94cb84d5491a2d9909a1a064fe90e9fdca6f2f1524b8fa",
+      "sourceHash": "94a977e5be336671672bae16f8f501704964470d10c663219ff7be8d7221217f",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -557,9 +557,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "09f8ad5b897e5f36452a2da07ba4a61761a76df7c9a9ee3464bbf83d1fb91fae",
+      "sourceHash": "19133c415e52ad767e4785688d9a6d34889af94d53e3ea083b3788f804dc1325",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -574,9 +574,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "8bf03a7f8fa451bbdda84064a900e2df8aaf58d634fdfc43013b6eeefd1ce1af",
+      "sourceHash": "0e9df53f4912fa9634eb15d7d8b65b1e0fa3163f72084737983caad267fe03f9",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -591,9 +591,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "3b965d84e1f737fbeeb4e9479f0e6e5dcc56a1b767f9e7ce0cbdf8e8a23463f2",
+      "sourceHash": "fb661a85cf0d0ee1be6b413fa818262c4657cdb3bd8c6dfdb21ad805cc12f731",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -608,9 +608,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "2ef0439cce3d68355ec3bd232efcff3a8ad312b5f1776c3051ab0efca8fe9e81",
+      "sourceHash": "9205aa465e47ced943692da19409125b5055cb69edd736d5a4fc33572c492e59",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -625,9 +625,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "06a038658fa7dba2af9aa68c73157cdea9082998e8ae5b12359c88a26ff6ca51",
+      "sourceHash": "886725f5a4e6aaa64689b2b5f545936c2bd60db95d0cef373bab84c7531fdd28",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -642,9 +642,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "9d1763b80323d0081ae520086b138d93bdeda1603481a50c9534e12517a09066",
+      "sourceHash": "c22021fc9a6f0813bfbc95e1f6a65582b870097afdf318abd46f37561244a377",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -659,9 +659,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "cfa6b0ebec234e099c25d3b64bca0b55e414c65159cdcbdf18f7fca8b01b18d0",
+      "sourceHash": "765e7bcf9a96fa9762ff6a21956f7a339ce820140a2c2069a169eb4b6b5823b9",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -676,9 +676,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "13e02ac69b9a23505b550da8c3a923cbf57bd42598c1da8b468d9e1628863476",
+      "sourceHash": "89f4cb1b631d3089a3a6a6d7f4457a1baa394fe0418de64fa7afe47ecf66f5a3",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -693,9 +693,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "feaa06cc2a519e31bb81b00295c788851b6cfc296aa8a4881daa1e85b9bf66fe",
+      "sourceHash": "0eebceeabe531514e5a6f7c01fee3b3974b67baa7a30436a760326e8b51e707c",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -710,9 +710,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "f49940a87909a43a270b4673f80819cf1ca8705eb0b03f7df97c284e2cf0531c",
+      "sourceHash": "f50f3eac5c9f3319ce6718cbe43339dfece4b439fd57f2503d03a31cb5695a25",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -727,9 +727,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "7436a5721baebaeec0f65ed755a61fb53ad6e5f20e3d7287137e5aacdb40dd90",
+      "sourceHash": "b4983b2c0e453b6327ba734f7003f1ec7207b048e8979ab228baf1c16ebb7445",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -745,9 +745,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "7c26af5b23c270ee6ca3436bd6bb044df3896d2a186afe331a30be58ec6a1b34",
+      "sourceHash": "c8aa42af76a0d3711f8829e767d8df2d415bf418011d3e1e25b03962996a8e0e",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -764,47 +764,39 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "a9358e585a993f7b04c2ce1ce2f6c25c82065cdd189baf9a437cfd2d6742690d",
+      "sourceHash": "727a47edb94af46d01b67fef07cd02418edb734ef8f00b68fe9e6457c97680fa",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
     "alim:AS-04:ida": {
-      "ready": false,
-      "issues": {
-        "unmatched": 24,
-        "wrongDirection": 19,
-        "stopOffRoute": 1
-      },
-      "segments": 61,
+      "ready": true,
+      "issues": {},
+      "segments": 420,
       "stops": 16,
       "profile": {
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "434941b0f6bf1cb3b9981472cd6e9ff486a494d92d37ad96e80f295801a4de0f",
+      "sourceHash": "3ae43356605ea102822703963fb2a8cedd4993ad9e0bcefb47f26068b997110f",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
     "alim:AS-04:vuelta": {
-      "ready": false,
-      "issues": {
-        "unmatched": 19,
-        "wrongDirection": 42,
-        "stopOffRoute": 1
-      },
-      "segments": 106,
+      "ready": true,
+      "issues": {},
+      "segments": 373,
       "stops": 13,
       "profile": {
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "c7cee1e697b6e2cd99c04157d8fa844373cc66a4902164314e3c299206cfefc9",
+      "sourceHash": "c3144e519337e70424b22306b999eeabbf1bef196760b72761fe5aef49367b87",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -821,9 +813,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "e09f776a933cf2366fadea8aa625eb7cf58f64521f2000bca010b49eb227a0d8",
+      "sourceHash": "cc941163f92be3bc628c2895bdb2a8d02db814587bfaf11b83a988d26aec2988",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -840,9 +832,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "7fe35cf426430c5666950544901fe7379f4e32fd15477f3b5dc76dc99f5566f1",
+      "sourceHash": "b09a6646bbaf2aa20861572a7b56c2997aed111a2cc2c7657725e2a13b5d862c",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -859,9 +851,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "402d8321ba81090cd1fe55cbbe08fe08c64a4047cf90e7b7f4aee530e355d0ed",
+      "sourceHash": "008e70ac3300632e3d0b3943f21bbeb7c4fdee18b2903111e9ec70e0881f630f",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -878,9 +870,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "ee925945608b363f6bc1a043f1e5d9e5851b618b0a8ba428332d60a3981f6553",
+      "sourceHash": "c79f1d3c55a846457caba5a55467554ef57add73f0a46fdc45d30c453a8bc2ae",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -896,9 +888,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "3b0da4b03b43ee7626c434a37a4b562695d7c190295ff03d375ba58db5c07241",
+      "sourceHash": "313871da31d87d6b32b6dde507ae8c7a77895984890fc1c5a56f7d00dce39926",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -914,9 +906,9 @@
         "mode": "mixed",
         "system": "Alimentadores del Metropolitano"
       },
-      "sourceHash": "9f7c0d33b6338cdee8fe127f1eb76af3ca088b91719eac7445868ba1ed3f7072",
+      "sourceHash": "229880548008d071ddb16051e3b535c7037604fefe31255bd7e7ab6863d2c4f9",
       "sourceFiles": {
-        "data/processed/metropolitano/alimentadores_paths.json": "03de4a72f06ef80ab9607b7311c08328a7ea2e735e0b118ae0f38dca4f6774c8"
+        "data/processed/metropolitano/alimentadores_paths.json": "e24101c492d8c72278f1ab67a556761560c60da8183aab1f50e32197c17d81ad"
       },
       "sourceStopsPreserved": true
     },
@@ -1481,15 +1473,15 @@
   },
   "summary": {
     "total": 83,
-    "ready": 31,
+    "ready": 33,
     "blockers": {
-      "unmatched": 624,
-      "wrongDirection": 348,
+      "unmatched": 581,
+      "wrongDirection": 287,
       "missingStops": 1,
       "restrictedTurn": 3,
       "unsupportedRestriction": 1,
       "stopOrder": 1,
-      "stopOffRoute": 8
+      "stopOffRoute": 6
     }
   }
 }

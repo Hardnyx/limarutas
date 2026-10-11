@@ -62,16 +62,32 @@ menos de 25 m se juntan con el siguiente.
 
 ## Alimentadores (`build_alim_paths.py`)
 
-Los que vienen de una relación de OSM se pegan a la red así (antes, un rulo
-corto se cortaba en recta y cruzaba el óvalo: ahora solo se corta un ir y
-volver por la misma calle, sin área; una vuelta a un óvalo se queda). Un
-circuito cuyos extremos no coinciden se cierra por la red, no en recta; y
-uno que va más contra el sentido de las calles de un solo sentido que a
-favor (la relación lo lista al revés: pasaba con el AN-02) se da vuelta. Al
-correr el script se avisan los sentidos con más de 1 km contra el sentido. Los
-de los mapas QR ya se trazan por la red (`config/alim_trazados.json`). Cada
-sentido guarda sus `pasos` y, si los hay, cuántos tramos quedaron
-`sin_calle`, en `alimentadores_paths.json`.
+El generador reconstruye cada sentido con conexiones dirigidas de la red
+compartida de autoría. Un sentido único o un óvalo recorrido al revés no es
+una alternativa penalizada: no está permitido. Las relaciones OSM del mismo
+extracto delimitan el itinerario; las calzadas y divisiones de vías contiguas
+del mismo nombre permiten conservar el recorrido en la red actual. Los
+paraderos se proyectan conjuntamente sobre esas calles sin introducir sus
+coordenadas en la polilínea. Se conserva el punto de vuelta original y se
+valida cada sentido por separado, con sus giros, accesos, continuidad y orden
+de paraderos. Las curvas mantienen todos los vértices OSM.
+
+La salida por defecto es provisional. Un recorrido sin relación identificable
+o con incidencias detiene la generación antes de escribir el archivo del
+sitio. `--refresh-source` actualiza las guías OSM/QR históricas, pero también
+exige la reconstrucción dirigida antes de producir una salida utilizable.
+
+```sh
+python3 pipeline/scripts/metropolitano/build_alim_paths.py AS-04
+python3 pipeline/scripts/metropolitano/build_alim_paths.py AS-04 --output data/processed/metropolitano/alimentadores_paths.json
+python3 pipeline/scripts/trips/build_trip_graph.py --alim-only AS-04
+```
+
+AS-04 (Villa El Salvador) ya tiene ambos sentidos verificados: desaparecen
+los cruces artificiales de calzada en El Sol / Los Forestales y el óvalo de
+Defensores del Morro se recorre por su lado legal. Sus referencias OSM,
+geometría y huellas se guardan juntas y el importador comprueba que coincidan.
+Los demás alimentadores conservan su estado de revisión.
 
 ## Rutas de Wikiroutes (`build_recorridos.py`)
 

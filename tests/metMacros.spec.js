@@ -1,5 +1,32 @@
 import { test, expect } from './fixtures.js';
 
+test('Villa El Salvador renders its independently verified ida and vuelta without shortcuts', async ({ app, page }) => {
+  const result = await page.evaluate(async () => {
+    const { state, setDirFor } = await import('/assets/js/config.js');
+    const { renderService } = await import('/assets/js/mapLayers.js');
+    state.dir = 'ambas';
+    setDirFor('alim', 'AS-04', 'ambas');
+    renderService('alim', 'AS-04', { silentFit: true });
+    const lines = state.systems.alim.lineLayers.get('AS-04').getLayers();
+    const service = state.systems.alim.paths['AS-04'];
+    return ['ida', 'vuelta'].map((direction, i) => {
+      const path = service[direction];
+      return { direction, exact: JSON.stringify(lines[i].getLatLngs().map(p => [p.lat, p.lng])) === JSON.stringify(path.coords),
+        smoothing: lines[i].options.smoothFactor, references: path.pathReferences.length,
+        ordered: path.stops.every((s, j) => !j || s.at >= path.stops[j-1].at),
+        startsAt: path.coords[0], endsAt: path.coords.at(-1), terminal: service.terminal };
+    });
+  });
+  for (const direction of result) {
+    expect(direction.exact).toBe(true);
+    expect(direction.smoothing).toBe(0);
+    expect(direction.references).toBeGreaterThan(300);
+    expect(direction.ordered).toBe(true);
+    expect(direction.terminal).toBe('matellini');
+  }
+  expect(result[0].endsAt).toEqual(result[1].startsAt);
+});
+
 test('every Metropolitano direction follows its continuous A/B backbone', async ({ app, page }) => {
   const result = await page.evaluate(async () => {
     const { state } = await import('/assets/js/config.js');

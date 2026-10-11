@@ -1,4 +1,5 @@
 """Compile via-way turn restrictions into directed segment sequences."""
+import math
 from collections import defaultdict
 
 KINDS = {'no_left_turn', 'no_right_turn', 'no_straight_on', 'no_u_turn',
@@ -117,8 +118,25 @@ def unresolved_applies(restriction, refs, network):
             if previous and entry in via and previous[1] == entry:
                 from_way, to_way = restriction.get('from'), restriction.get('to')
                 if (from_way is None or previous[0] == from_way) and (to_way is None or edge['way'] == to_way):
+                    # An implicit no-left/right-turn with a missing destination
+                    # cannot apply to a straight continuation of the same
+                    # named street across an OSM way split. Keep the
+                    # actual turn unresolved; never infer permission for it.
+                    tags = restriction.get('tags', {})
+                    kind = tags.get('restriction')
+                    if to_way is None and tags.get('implicit') == 'yes' and kind in ('no_left_turn', 'no_right_turn'):
+                        a, b = network.coordinates(previous[2])
+                        c, d = network.coordinates(ref)
+                        scale = math.cos(math.radians(b[1]))
+                        h1 = math.atan2(b[1]-a[1], (b[0]-a[0])*scale)
+                        h2 = math.atan2(d[1]-c[1], (d[0]-c[0])*scale)
+                        turn = math.degrees((h2-h1+math.pi) % (2*math.pi)-math.pi)
+                        before_name = network.edges[previous[2]['edge']]['name']
+                        if before_name and before_name == edge['name'] and abs(turn) < 10:
+                            previous = (edge['way'], edge['nodes'][1 if end > start else 0] if end in (0, 1) else None, ref)
+                            continue
                     return True
-            previous = (edge['way'], edge['nodes'][1 if end > start else 0] if end in (0, 1) else None)
+            previous = (edge['way'], edge['nodes'][1 if end > start else 0] if end in (0, 1) else None, ref)
         return False
     if not restriction.get('from') or not restriction.get('viaWays'):
         return bool({network.edges[r['edge']]['way'] for r in refs if r['type'] == 'street'}

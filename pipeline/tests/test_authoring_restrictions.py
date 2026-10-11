@@ -4,10 +4,25 @@ import unittest
 from pipeline.authoring.engine import Engine
 from pipeline.authoring.model import attach_stops, validate
 from pipeline.authoring.network import Network
+from pipeline.authoring.restrictions import unresolved_applies
 from test_authoring_model import fixture_route
 
 
 class ViaWayRestrictionsTest(unittest.TestCase):
+    def test_incomplete_implicit_turn_does_not_block_straight_carriageway(self):
+        edges = []
+        points = {1: [-77, -12], 2: [-76.999, -12], 3: [-76.998, -12], 4: [-76.999, -11.999]}
+        for way, a, b in [(1, 1, 2), (2, 2, 3), (3, 2, 4)]:
+            edges.append({'id': f'{way}:0', 'way': way, 'nodes': [a, b], 'coordinates': [points[a], points[b]],
+                          'name': 'Avenida', 'forward': True, 'backward': False})
+        net = Network({'version': 1, 'source': {'sha256': 'fixture'}, 'edges': edges})
+        restriction = {'relation': 80, 'from': 1, 'to': None, 'viaNodes': [2], 'viaWays': [],
+                       'ways': [1], 'tags': {'implicit': 'yes', 'restriction': 'no_left_turn'}}
+        self.assertFalse(unresolved_applies(restriction, [{'type': 'street', 'edge': '1:0'},
+                                                         {'type': 'street', 'edge': '2:0'}], net))
+        self.assertTrue(unresolved_applies(restriction, [{'type': 'street', 'edge': '1:0'},
+                                                        {'type': 'street', 'edge': '3:0'}], net))
+
     def setup_restriction(self, kind='no_left_turn'):
         original, route = fixture_route()
         data = copy.deepcopy(original.data)
