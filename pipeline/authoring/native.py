@@ -91,6 +91,17 @@ def import_native(root, key, engine, trace=None):
             if (item.get('network') != engine.network.id or item.get('pathHash') != digest(references)
                     or [list(reversed(p)) for p in geometry({'path': references}, engine.network)] != item['coords']):
                 raise ValueError('El alimentador no corresponde a sus referencias OSM verificadas')
+        elif item.get('terminalAccess'):
+            from .terminals import verified_access
+            access_refs, profile = verified_access(item, engine.network)
+            first, last = item['terminalAccess']['range']
+            access_trace = trace or GeometryTrace(engine)
+            if first == 0:
+                body = [list(reversed(p)) for p in item['coords'][last:]]
+                references = access_refs + access_trace.parts([body])
+            else:
+                body = [list(reversed(p)) for p in item['coords'][:first+1]]
+                references = access_trace.parts([body]) + access_refs
     points = [coordinate([p[1], p[0]]) for p in item['coords']]
     if len(points) < 2:
         raise ValueError('El sentido nativo no tiene un trazado válido')
@@ -107,6 +118,11 @@ def import_native(root, key, engine, trace=None):
     route = new_route(key, name, direction, engine.network, source)
     route['profile'] = profile
     route['stops'] = stop_records(stops)
+    if prefix == 'alim' and item.get('terminalAccess'):
+        access = item['terminalAccess']
+        for stop in route['stops']:
+            if stop['id'] == 'met:' + access['terminal']:
+                stop['boardingPoint'] = copy.deepcopy(access['boardingPoint'])
     route['importWarnings'] = warnings
     route['path'] = references if references is not None else (trace or GeometryTrace(engine)).parts([points])
     return seal_source(attach_stops(route, engine.network))

@@ -319,6 +319,39 @@ Las guías GeoJSON anteriores siguen siendo fuentes y no se dibujan como
 respaldo de una calzada. Los pines de estación mantienen su estilo anterior,
 rojo con centro blanco, comprobado en claro y oscuro.
 
+### Accesos de terminal de los alimentadores
+
+`pipeline.authoring.terminals` identifica el recinto y el andén de cada
+servicio por su nombre OSM, independientemente de códigos que hayan cambiado.
+Permite únicamente los segmentos de acceso utilizados: no habilita toda la
+troncal BRT para el perfil mixto. El circuito conserva los sentidos y las
+restricciones de giro. La unión al dibujo anterior exige una calzada compatible
+y evita desvíos externos causados por haber pasado la puerta de entrada.
+
+En Naranjal se corrigieron los 18 sentidos de nueve servicios con andén
+interno. Los Alisos, Los Olivos, Antúnez de Mayolo e Izaguirre tienen plataformas
+externas y conservan sus trazados. El punto compartido `met:naranjal` permanece
+como identidad de estación; `terminalAccess.boardingPoint` identifica el andén
+físico sin desplazar el marcador ni arrastrar la línea hacia él.
+
+La geometría externa conservada, los paraderos y el punto de vuelta mantienen
+su identidad. Se actualizan los índices y distancias del acceso y las
+indicaciones, dejando explícitos los tramos sin correspondencia única OSM.
+`terminalAccess` guarda referencias dirigidas, el recorte y hashes separados
+del cuerpo conservado. El importador verifica esos datos antes de reabrir el
+recorrido; este permiso no certifica el resto de la ruta. La auditoría nativa
+sigue registrando 33 sentidos completos válidos y 50 pendientes.
+
+```sh
+python3 -m pipeline.authoring.terminals naranjal
+# Revisar el contrato preparado en pipeline/temp/authoring/terminal-access.
+python3 pipeline/scripts/trips/build_trip_graph.py --alim-only AN-01 AN-05 AN-06 AN-07 AN-08 AN-12 AN-13 AN-14 AN-18 --preserve-stop-positions
+```
+
+`docs/osm/naranjal_terminal_access.json` registra la procedencia y los 18
+accesos publicados. La sincronización de distancias conserva las posiciones
+actuales de los paraderos del planificador.
+
 ### Tema de la interfaz
 
 La opción «Tema de interfaz y mapa» ofrece Claro y Oscuro. Cambia los paneles,

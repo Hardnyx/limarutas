@@ -83,3 +83,35 @@ test('Metropolitano fallback uses the directed macro and station pins remain leg
   expect(await style()).toEqual(light);
   await page.screenshot({ path: `pipeline/temp/authoring/met-stops-dark-${info.project.name}.png` });
 });
+
+test('Naranjal feeders render their verified terminal circulation without snapping to the common station', async ({ app, page }) => {
+  const result = await page.evaluate(async () => {
+    const { state, setDirFor } = await import('/assets/js/config.js');
+    const { renderService, hideService } = await import('/assets/js/mapLayers.js');
+    const checked = [], errors = [];
+    for (const [id, service] of Object.entries(state.systems.alim.paths)) {
+      if (!service.ida?.terminalAccess) continue;
+      setDirFor('alim', id, 'ambas');
+      renderService('alim', id, { silentFit: true });
+      const lines = state.systems.alim.lineLayers.get(id).getLayers();
+      ['ida', 'vuelta'].forEach((direction, i) => {
+        const path = service[direction], access = path.terminalAccess;
+        const actual = lines[i].getLatLngs().map(p => [p.lat, p.lng]);
+        if (JSON.stringify(actual) !== JSON.stringify(path.coords) || lines[i].options.smoothFactor !== 0) errors.push(`${id}:${direction}: renderer changed geometry`);
+        const terminal = path.stops.find(s => s.id === 'met:naranjal');
+        if (terminal.lat !== -11.9821275 || terminal.lon !== -77.0587452) errors.push(`${id}:${direction}: station moved`);
+        if (!path.stops.every((s, j) => !j || (s.at >= path.stops[j-1].at && s.m >= path.stops[j-1].m))) errors.push(`${id}:${direction}: stop order`);
+        if (!access.references.length) errors.push(`${id}:${direction}: missing OSM references`);
+        if (!path.pasos?.length) errors.push(`${id}:${direction}: missing instructions`);
+        const end = direction === 'ida' ? actual[0] : actual.at(-1);
+        if (JSON.stringify(end) === JSON.stringify([terminal.lat, terminal.lon])) errors.push(`${id}:${direction}: station snap`);
+        checked.push(`${id}:${direction}`);
+      });
+      hideService('alim', id);
+    }
+    return { checked, errors, external: ['AN-15', 'AN-16', 'AN-17', 'AN-19'].every(id => !state.systems.alim.paths[id].ida.terminalAccess) };
+  });
+  expect(result.checked).toHaveLength(18);
+  expect(result.errors).toEqual([]);
+  expect(result.external).toBe(true);
+});

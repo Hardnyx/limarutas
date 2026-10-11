@@ -268,7 +268,7 @@ def update_met_distances(graph, paths, services, stations):
     return len(updates)
 
 
-def update_feeder_routes(graph, services, refs):
+def update_feeder_routes(graph, services, refs, preserve_positions=False):
     """Refresh selected feeders without changing route or shared station identities."""
     uses = Counter(i for seq in graph['routes'].values() for i in set(seq))
     rows, distances = {}, {}
@@ -290,7 +290,8 @@ def update_feeder_routes(graph, services, refs):
                 if row[:2] != point:
                     if uses[index] != 1 or str(stop['id']).startswith('met:'):
                         raise ValueError(f'{key}: no se puede mover un paradero compartido')
-                    rows[index] = point
+                    if not preserve_positions:
+                        rows[index] = point
             distances[key] = [max(1, b-a) for a, b in zip(meters, meters[1:])]
     # Apply only after every selected direction has passed preflight.
     for index, point in rows.items():
@@ -304,11 +305,15 @@ def main() -> None:
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument('--met-only', action='store_true', help='Actualizar solo las distancias de las macrorrutas')
     mode.add_argument('--alim-only', nargs='+', metavar='REF', help='Sincronizar únicamente estos alimentadores')
+    parser.add_argument('--preserve-stop-positions', action='store_true', help='Conservar las posiciones actuales del grafo al sincronizar alimentadores')
     args = parser.parse_args()
+    if args.preserve_stop_positions and not args.alim_only:
+        parser.error('--preserve-stop-positions requiere --alim-only')
     if args.alim_only:
         graph = json.loads(OUT.read_text())
         count = update_feeder_routes(graph,
-            json.loads((MET/'alimentadores_paths.json').read_text())['services'], args.alim_only)
+            json.loads((MET/'alimentadores_paths.json').read_text())['services'], args.alim_only,
+            preserve_positions=args.preserve_stop_positions)
         OUT.write_text(json.dumps(graph, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
         print(f'{count} sentidos de alimentadores sincronizados; resto del grafo intacto')
         return

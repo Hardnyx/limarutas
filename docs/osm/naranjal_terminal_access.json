@@ -1,0 +1,387 @@
+{
+  "terminal": "naranjal",
+  "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5",
+  "internal": [
+    "AN-01",
+    "AN-05",
+    "AN-06",
+    "AN-07",
+    "AN-08",
+    "AN-12",
+    "AN-13",
+    "AN-14",
+    "AN-18"
+  ],
+  "external": [
+    "AN-15",
+    "AN-16",
+    "AN-17",
+    "AN-19"
+  ],
+  "kind": "verified-terminal-access-only",
+  "directions": 18,
+  "sourceStopsPreserved": true,
+  "retainedBodyPreserved": true,
+  "accesses": {
+    "AN-01:ida": {
+      "stationWay": 279142317,
+      "range": [
+        0,
+        37
+      ],
+      "hash": "f1e2d6b1c6155a6d2f7fb6527c27e7a8640073f0500dc8e1b1be8b55ee235ab5",
+      "boardingPoint": {
+        "kind": "osm-platform",
+        "id": 14132552834,
+        "coordinates": [
+          -77.0591212,
+          -11.9808701
+        ],
+        "name": "Terminal Naranjal - Tahuantinsuyo",
+        "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5"
+      },
+      "sourceGeometryHash": "dc42e435e515627edfb6c29d6000dc69e4265998c688fb0bc561761069512d7f",
+      "retainedGeometryHash": "c502c1636acd8c86c087abbffc584414736a4773357e2065d781e2ee0e2aed6c"
+    },
+    "AN-01:vuelta": {
+      "stationWay": 279142317,
+      "range": [
+        21,
+        56
+      ],
+      "hash": "0a47a7410c9adf55e8180505a998df7bad7f261f1da51d1d70a1f7f6b92dd552",
+      "boardingPoint": {
+        "kind": "osm-platform",
+        "id": 14132552834,
+        "coordinates": [
+          -77.0591212,
+          -11.9808701
+        ],
+        "name": "Terminal Naranjal - Tahuantinsuyo",
+        "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5"
+      },
+      "sourceGeometryHash": "9950b92e6de4e8cf8845be4732beb9ea538483bf59091f366649537110c84dd4",
+      "retainedGeometryHash": "9edbda03fd5de36858d2c678fc6eb9a8d433785eb24888c9cdfaf0afed80f6f4"
+    },
+    "AN-05:ida": {
+      "stationWay": 279142317,
+      "range": [
+        0,
+        62
+      ],
+      "hash": "7038afbcda84463a5fa5ed9fa5964f60ac435e0a6297ac3924d65f7cdaa9f8d2",
+      "boardingPoint": {
+        "kind": "osm-platform",
+        "id": 14132552825,
+        "coordinates": [
+          -77.0591961,
+          -11.9805447
+        ],
+        "name": "Terminal Naranjal - Payet",
+        "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5"
+      },
+      "sourceGeometryHash": "c336c2b6d205860b608497049f77df1cee545cb41b5eb7dd2f4ad8d238dfedb5",
+      "retainedGeometryHash": "e27a0f9fbe8116181a6478830554dc36a4e59bcb3ed4d58c106f49e5eaf23dcd"
+    },
+    "AN-05:vuelta": {
+      "stationWay": 279142317,
+      "range": [
+        17,
+        80
+      ],
+      "hash": "11ffbfc03776d2388e7aaab14afafc52d2b0911890dbee6bc5cad7ee91618d8f",
+      "boardingPoint": {
+        "kind": "osm-platform",
+        "id": 14132552825,
+        "coordinates": [
+          -77.0591961,
+          -11.9805447
+        ],
+        "name": "Terminal Naranjal - Payet",
+        "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5"
+      },
+      "sourceGeometryHash": "46c1d8ea611628a4b925308ac6b23e9fe19e8963cf2e017799c89458227cdb57",
+      "retainedGeometryHash": "f7e6a86a096351380128429ff1549e4a9eae85016be132f30b6d42ac57b1e765"
+    },
+    "AN-06:ida": {
+      "stationWay": 279142317,
+      "range": [
+        0,
+        66
+      ],
+      "hash": "de307d33421354bcd7e8599b5deebaec45972a976e2702256af640e0ef9f4963",
+      "boardingPoint": {
+        "kind": "osm-platform",
+        "id": 14132552838,
+        "coordinates": [
+          -77.0589212,
+          -11.9809602
+        ],
+        "name": "Terminal Naranjal - Puno",
+        "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5"
+      },
+      "sourceGeometryHash": "060c9975ec825ecd319663ce29b191821f989bef9125c42b0a5c9aa93412546c",
+      "retainedGeometryHash": "df3b63e83b26ee2ca77b1349cc6de1b9ef9b3c84c8fa9218dbab3265a2359a5f"
+    },
+    "AN-06:vuelta": {
+      "stationWay": 279142317,
+      "range": [
+        32,
+        79
+      ],
+      "hash": "aedd22ee8898a25765fc7d1db58f231329965c3c5d8d2ff5ad8bd0d2bab73471",
+      "boardingPoint": {
+        "kind": "osm-platform",
+        "id": 14132552838,
+        "coordinates": [
+          -77.0589212,
+          -11.9809602
+        ],
+        "name": "Terminal Naranjal - Puno",
+        "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5"
+      },
+      "sourceGeometryHash": "be1ce2742944b30ccce0abafbef362d5fede3f684dd36cc8874fc59e587df378",
+      "retainedGeometryHash": "767aefa25337c586274058a5c5b70babb370605cfa4e0f01e4f830b3a47176e2"
+    },
+    "AN-07:ida": {
+      "stationWay": 279142317,
+      "range": [
+        0,
+        83
+      ],
+      "hash": "6466a6aac47aba746ae6d2b87df6e0244d0a13d574a5540699a0e1779645164b",
+      "boardingPoint": {
+        "kind": "osm-platform",
+        "id": 14132552833,
+        "coordinates": [
+          -77.0589624,
+          -11.9815952
+        ],
+        "name": "Terminal Naranjal - Belaunde",
+        "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5"
+      },
+      "sourceGeometryHash": "1a952ce85dddcb88aa8370aafb16f21f97c4e22368963ab00e5d66ebca53bdb6",
+      "retainedGeometryHash": "91bf8ee82c004c78a5a0b08a526b447b4ca7c65b8b3b1759b825acb41a978535"
+    },
+    "AN-07:vuelta": {
+      "stationWay": 279142317,
+      "range": [
+        65,
+        95
+      ],
+      "hash": "0d5c665b895447382a8a2a414b2c0acbd375d09d4b28a44c772c80d0a30e2dad",
+      "boardingPoint": {
+        "kind": "osm-platform",
+        "id": 14132552833,
+        "coordinates": [
+          -77.0589624,
+          -11.9815952
+        ],
+        "name": "Terminal Naranjal - Belaunde",
+        "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5"
+      },
+      "sourceGeometryHash": "f89eee8aa18de3336e41bcab1a15802b80ab14d6862380cfa0faf1b07ab67c9c",
+      "retainedGeometryHash": "db9ed3156fea4c2937657ec63a620138d119ba429a9b3d1bfdc5981e3a2c3324"
+    },
+    "AN-08:ida": {
+      "stationWay": 279142317,
+      "range": [
+        0,
+        68
+      ],
+      "hash": "659fd28f96f571e162be379e69821c28566a85771022186c4f722b881d1620eb",
+      "boardingPoint": {
+        "kind": "osm-platform",
+        "id": 14132552839,
+        "coordinates": [
+          -77.0588269,
+          -11.9813297
+        ],
+        "name": "Terminal Naranjal - Milagros de Jesús",
+        "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5"
+      },
+      "sourceGeometryHash": "14d6f52383699649be2d5af989406a6c6b91178e706a78e1b876f9f8b4c28de6",
+      "retainedGeometryHash": "383590d17ba015b2935bb85f35067e8eea844458879e16872fea0ce7e3bdee61"
+    },
+    "AN-08:vuelta": {
+      "stationWay": 279142317,
+      "range": [
+        99,
+        145
+      ],
+      "hash": "c7b0a70e276303d3d7a054cd09e79368b1b3af0064fd19f4b7052b9bc14ae9a0",
+      "boardingPoint": {
+        "kind": "osm-platform",
+        "id": 14132552839,
+        "coordinates": [
+          -77.0588269,
+          -11.9813297
+        ],
+        "name": "Terminal Naranjal - Milagros de Jesús",
+        "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5"
+      },
+      "sourceGeometryHash": "270753f8e12cc57210e752ad616a8c6a46e5c8d9a63100d7c15f0da11a23bba8",
+      "retainedGeometryHash": "af8373f153db1ef388f26b47cfcee5bd48bfdf3be16b0095f497badb929d03fe"
+    },
+    "AN-12:ida": {
+      "stationWay": 279142317,
+      "range": [
+        0,
+        32
+      ],
+      "hash": "98e0065101b52cf1fcb10e779b22c00f794be04d8c2d28828b710dd120c74e92",
+      "boardingPoint": {
+        "kind": "osm-platform",
+        "id": 14132552835,
+        "coordinates": [
+          -77.0588466,
+          -11.9821028
+        ],
+        "name": "Terminal Naranjal - Puente Piedra",
+        "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5"
+      },
+      "sourceGeometryHash": "4331ee081ea4029b4fa25f11307795d2fe83b857ff688eac5211c51a921fa14c",
+      "retainedGeometryHash": "f7448e6c5235bd327edfe21d714da8e5962c5d82e1e571d2e073924a8f6e087b"
+    },
+    "AN-12:vuelta": {
+      "stationWay": 279142317,
+      "range": [
+        80,
+        103
+      ],
+      "hash": "4d71fe59ec955a1fafb54c39d14ea383412e8cb0663573c923cf6405e182777b",
+      "boardingPoint": {
+        "kind": "osm-platform",
+        "id": 14132552835,
+        "coordinates": [
+          -77.0588466,
+          -11.9821028
+        ],
+        "name": "Terminal Naranjal - Puente Piedra",
+        "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5"
+      },
+      "sourceGeometryHash": "c8cf9066064984409ff19a753b46d080a2cc997821e0f39f1b0c6e8ce30232e3",
+      "retainedGeometryHash": "ca208744ccecde1a25724e61227ea67bcad9cd04a0c69cdeea3652f1d81d05d9"
+    },
+    "AN-13:ida": {
+      "stationWay": 279142317,
+      "range": [
+        0,
+        44
+      ],
+      "hash": "81738f468cb5782a2bea587498603b7b990346bbb114ce56192766983743d1bf",
+      "boardingPoint": {
+        "kind": "osm-platform",
+        "id": 14132552837,
+        "coordinates": [
+          -77.0589905,
+          -11.9806517
+        ],
+        "name": "Terminal Naranjal - La Ensenada",
+        "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5"
+      },
+      "sourceGeometryHash": "d1746569fdb914ed963a1aab140c37d026493cfab7bcc4f5b2c6feb25ee9ffc8",
+      "retainedGeometryHash": "f852309d5b23cdbb2e6d1cebdde7feed8fee8429925d70f155dbaf184dcf4a63"
+    },
+    "AN-13:vuelta": {
+      "stationWay": 279142317,
+      "range": [
+        142,
+        189
+      ],
+      "hash": "0fa7adaf296cae9f5e70c8dfeed480374e7b5305ee5535f4abd30963500c74d5",
+      "boardingPoint": {
+        "kind": "osm-platform",
+        "id": 14132552837,
+        "coordinates": [
+          -77.0589905,
+          -11.9806517
+        ],
+        "name": "Terminal Naranjal - La Ensenada",
+        "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5"
+      },
+      "sourceGeometryHash": "20abd6001d701bf0a1b13f151cf67663eb390ba142f28fa4ad19bbce9c9a7229",
+      "retainedGeometryHash": "ee40100031a6b1b83703ee881111823d143e7f7cc50622a8d3c6e3322798f941"
+    },
+    "AN-14:ida": {
+      "stationWay": 279142317,
+      "range": [
+        0,
+        33
+      ],
+      "hash": "70b4f36785b22d460e1f675170c2593a5472b21a244000a682c9fce7a9681efe",
+      "boardingPoint": {
+        "kind": "osm-platform",
+        "id": 14132552836,
+        "coordinates": [
+          -77.0590501,
+          -11.9811988
+        ],
+        "name": "Terminal Naranjal - Bertello",
+        "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5"
+      },
+      "sourceGeometryHash": "a295f7aa5e0afc4597eff815e258c0d10e2530146db363d235a65544d389b517",
+      "retainedGeometryHash": "db38b21bdff1c290a65ca730eb88ba44b38fa18c4038698ab48977fb62f6e7e6"
+    },
+    "AN-14:vuelta": {
+      "stationWay": 279142317,
+      "range": [
+        47,
+        69
+      ],
+      "hash": "199b1982944f548207845c0916b6bf3212fac30554fd3230c7fed52e56de69ee",
+      "boardingPoint": {
+        "kind": "osm-platform",
+        "id": 14132552836,
+        "coordinates": [
+          -77.0590501,
+          -11.9811988
+        ],
+        "name": "Terminal Naranjal - Bertello",
+        "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5"
+      },
+      "sourceGeometryHash": "7a975b00c4abe6c706332643a3a91da5a6cb1633af42c286dcb41e90e8ef5f37",
+      "retainedGeometryHash": "0ac9954b577b5b5ee57b254a5541c8b3f5be7260ac40eb45738c55925e905b7d"
+    },
+    "AN-18:ida": {
+      "stationWay": 279142317,
+      "range": [
+        0,
+        40
+      ],
+      "hash": "9d1b92e096cce11f01370bbb316559d8ea22eb652a8fbddb96cc2a9ffddf8bc8",
+      "boardingPoint": {
+        "kind": "osm-platform",
+        "id": 14132552840,
+        "coordinates": [
+          -77.0587165,
+          -11.9817855
+        ],
+        "name": "Terminal Naranjal - Alimentador Naranjal",
+        "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5"
+      },
+      "sourceGeometryHash": "ae50e9dbd8a7ac3ce1b73692402c7053a4706183f654443194dff3b9bed816a5",
+      "retainedGeometryHash": "5e587056e522ad6c1e7d833e3d04e1bd6df2d5bf0a081cf631f69556977924e9"
+    },
+    "AN-18:vuelta": {
+      "stationWay": 279142317,
+      "range": [
+        42,
+        91
+      ],
+      "hash": "1d4599d055a5706f48e5b573374a237250489107071f0133faa49e16921b1f18",
+      "boardingPoint": {
+        "kind": "osm-platform",
+        "id": 14132552840,
+        "coordinates": [
+          -77.0587165,
+          -11.9817855
+        ],
+        "name": "Terminal Naranjal - Alimentador Naranjal",
+        "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5"
+      },
+      "sourceGeometryHash": "413ece98a50cdc9cabd3d0b84e94d942a24d423bb9f83f7536002208fa5fdfd0",
+      "retainedGeometryHash": "cfcd320f830c7d6dc10966836d2c2db1e428a79b681043b4b7728e6554b93cbe"
+    }
+  }
+}

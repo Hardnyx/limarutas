@@ -85,6 +85,13 @@ def attach_stops(route, network, radius=80):
     layers = []
     for stop in route['stops']:
         point = coordinate(stop['coordinates'])
+        boarding = stop.get('boardingPoint')
+        if boarding:
+            if (boarding.get('kind') != 'osm-platform' or boarding.get('network') != network.id
+                    or type(boarding.get('id')) is not int or not stop['id'].startswith('met:')
+                    or metres(point, coordinate(boarding['coordinates'])) > 500):
+                raise ValueError('Andén de terminal sin vínculo válido con la estación')
+            point = coordinate(boarding['coordinates'])
         choices = []
         for index, a, b, base, length in segments:
             t, distance, projected = projection(point, a, b)

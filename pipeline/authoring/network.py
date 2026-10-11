@@ -95,6 +95,8 @@ def profile_allows(edge, profile=None):
         return True
     if edge['way'] in profile.get('reservedWays', []):
         return True
+    if edge.get('id') and edge['id'] in profile.get('reservedEdges', []):
+        return True
     system = normal(profile.get('system', ''))
     return (profile.get('mode') in ('brt', 'corridor') and bool(system)
             and system in {normal(edge['name']), *[normal(v) for v in edge.get('transitSystems', [])]})

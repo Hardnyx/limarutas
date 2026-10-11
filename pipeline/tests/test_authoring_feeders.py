@@ -71,6 +71,21 @@ class DirectedFeedersTest(unittest.TestCase):
             update_feeder_routes(graph, {'AS-04': moved}, ['AS-04'])
         self.assertEqual(graph, before)
 
+    def test_distance_only_sync_preserves_existing_stop_coordinates(self):
+        _, service, _ = feeder_fixture()
+        stops, routes = [], {}
+        for d in ('ida', 'vuelta'):
+            routes[f'alim:AS-04:{d}'] = []
+            for stop in service[d]['stops']:
+                routes[f'alim:AS-04:{d}'].append(len(stops))
+                stops.append([round(stop['lat'], 6), round(stop['lon'], 6), stop['name'], 0])
+        stops[1][0] += .00001
+        graph = {'stops': stops, 'routes': routes, 'segM': {}}
+        original = copy.deepcopy(stops)
+        update_feeder_routes(graph, {'AS-04': service}, ['AS-04'], preserve_positions=True)
+        self.assertEqual(graph['stops'], original)
+        self.assertEqual(graph['segM']['alim:AS-04:ida'], [100, 100])
+
     def test_both_directions_follow_one_way_ring_and_keep_split_and_stops(self):
         net, service, evidence = feeder_fixture()
         result = rebuild(service, 'AS-04', net, evidence)
