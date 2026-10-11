@@ -118,14 +118,18 @@ test('congestión: en hora punta el tramo por Abancay y Grau dura más; de noche
   expect(r.peak).toBeGreaterThan(r.night);
 });
 
-test('Metropolitano con cambio de servicio y luego un bus (Habich → San Rodolfo: B › Expreso 1 a Matellini › 1087, con 5 min de espera y 4 de salida)', async ({ app, page }) => {
+test('Metropolitano con cambio de servicio y luego un bus conserva las esperas y la salida de estación', async ({ app, page }) => {
   const r = await plan(page, { lat: -12.0233, lon: -77.0498 }, { lat: -12.1888, lon: -77.0132 }, { at: { day: 2, min: 11 * 60 + 33 } });
   // Primero, el Metropolitano y luego un bus
   expect(r.options[0].groups[0]).toBe('metropolitano');
   expect(r.options[0].groups.at(-1)).toBe('atu');
-  // Entre las opciones, B › Expreso 1 a Matellini › 1087
-  const chain = r.options.find(o => o.codes.join('>') === 'B>1>1087');
+  // Con las distancias de las macrorrutas, B y Expreso 1 pueden figurar como
+  // alternativas del mismo tramo, en lugar de ser los servicios principales.
+  const serves = (o, leg, id) => o.services[leg] === id || o.alts[leg]?.includes(id);
+  const chain = r.options.find(o => o.services.length === 3 && serves(o, 0, 'met:B')
+    && serves(o, 1, 'met:1') && serves(o, 2, 'wr:1087'));
   expect(chain).toBeTruthy();
+  expect(chain.altsOk).toBe(true);
   expect(chain.groups).toEqual(['metropolitano', 'metropolitano', 'atu']);
   expect(chain.transfers).toBe(2);
   // Cambiar de servicio del Metropolitano: al menos 5 min de espera; salir de

@@ -32,6 +32,12 @@ class MetropolitanoMacrosTest(unittest.TestCase):
         express = {'id': '2', 'name': 'Expreso', 'north_south': ['1', '5']}
         first = service_path(Engine(net), base, regular, 'ns', stations)
         second = service_path(Engine(net), base, express, 'ns', stations)
+        # A station marker off the road must never pull the BRT geometry to it.
+        displaced = copy.deepcopy(stations)
+        displaced['3']['lat'] += .0003
+        offset_path = service_path(Engine(net), base, regular, 'ns', displaced)
+        self.assertEqual(offset_path['coords'], first['coords'])
+        self.assertNotIn([displaced['3']['lat'], displaced['3']['lon']], offset_path['coords'])
         self.assertEqual(first['coords'], second['coords'])
         self.assertEqual(second['at'], [0, 4])
         self.assertEqual(first['at'], [0, 2, 4])
