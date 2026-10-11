@@ -563,19 +563,7 @@ async function buildUI(){
 
   const btnLight = $('#btnLight');
   const btnDark  = $('#btnDark');
-  // El botón del tema activo queda marcado
-  const pickTheme = (theme) => {
-    setBase(theme);
-    // El panel acompaña al mapa (styles.css: html.theme-dark)
-    document.documentElement.classList.toggle('theme-dark', theme === 'dark');
-    [[btnLight, 'light'], [btnDark, 'dark']].forEach(([b, t]) => {
-      if (!b) return;
-      b.classList.toggle('active', t === theme);
-      b.setAttribute('aria-pressed', String(t === theme));
-    });
-  };
-  btnLight && btnLight.addEventListener('click', () => pickTheme('light'));
-  btnDark  && btnDark .addEventListener('click', () => pickTheme('dark'));
+  window.LimaRutasTheme.bind(btnLight, btnDark, setBase);
 
   const chkStops = $('#chkStops');
   if (chkStops){

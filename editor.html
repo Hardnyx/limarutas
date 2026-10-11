@@ -2,12 +2,13 @@
 <html lang="es">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <script src="assets/js/theme.js"></script>
   <title>Editor de recorridos · LimaRutas</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <link rel="stylesheet" href="assets/css/route-editor.css">
 </head>
 <body>
-  <header class="editor-header"><div><strong>LimaRutas</strong><span>Editor de recorridos</span></div><span id="connection" role="status">Conectando…</span></header>
+  <header class="editor-header"><div><strong>LimaRutas</strong><span>Editor de recorridos</span></div><div class="editor-header-actions"><nav aria-label="Tema de interfaz y mapa"><button id="editorThemeLight" aria-pressed="true">Claro</button><button id="editorThemeDark" aria-pressed="false">Oscuro</button></nav><span id="connection" role="status">Conectando…</span></div></header>
   <main class="editor-layout">
     <aside class="editor-panel" aria-label="Herramientas de edición">
       <section><details id="routeEntry" open><summary>Abrir o crear ruta</summary><h1>Una ruta, calles reales</h1><p>Revisa el trazado y sus paraderos. Los cambios se guardan como borradores.</p>

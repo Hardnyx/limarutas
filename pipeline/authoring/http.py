@@ -12,7 +12,7 @@ from .store import RevisionConflict
 
 def server(service, host='127.0.0.1', port=8081):
     assets = {'/editor.html', '/docs/ROUTE_AUTHORING.md', '/assets/css/route-editor.css',
-              *{f'/assets/js/{name}.js' for name in ('routeAuthoringClient', 'routeAuthoringEditor', 'routeAuthoringState')},
+              *{f'/assets/js/{name}.js' for name in ('routeAuthoringClient', 'routeAuthoringEditor', 'routeAuthoringState', 'theme')},
               *{f'/node_modules/leaflet/dist/{name}' for name in ('leaflet.js', 'leaflet.css',
                 'images/layers.png', 'images/layers-2x.png', 'images/marker-icon.png',
                 'images/marker-icon-2x.png', 'images/marker-shadow.png')}}

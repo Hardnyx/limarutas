@@ -852,6 +852,17 @@ html.theme-dark .leaflet-container {
   background: #262626;
 }
 
+.leaflet-control-zoom a,
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip,
+.leaflet-tooltip,
+.leaflet-control-attribution {
+  background: var(--surface);
+  color: var(--text-main);
+}
+.leaflet-control-zoom a:hover { background: var(--hover); }
+.leaflet-tooltip { border-color: var(--line); }
+
 /* ---------- Panel "Rutas en este punto" / paradero ---------- */
 
 html.beta .route-inspector {

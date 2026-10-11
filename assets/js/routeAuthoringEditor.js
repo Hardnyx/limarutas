@@ -9,9 +9,12 @@ const map = L.map('editorMap', { zoomControl: false }).setView([-12.055, -77.035
 map.createPane('streetPane').style.zIndex = 390;
 map.createPane('originalPane').style.zIndex = 395;
 L.control.zoom({ position: 'bottomright' }).addTo(map);
-L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+const base = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
   maxZoom: 19, attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> © CARTO'
 }).addTo(map);
+window.LimaRutasTheme.bind($('editorThemeLight'), $('editorThemeDark'), theme => {
+  base.setUrl(`https://{s}.basemaps.cartocdn.com/${theme === 'dark' ? 'dark_all' : 'light_all'}/{z}/{x}/{y}.png`);
+});
 const streets = L.layerGroup().addTo(map), original = L.layerGroup().addTo(map), track = L.layerGroup().addTo(map), markers = L.layerGroup().addTo(map);
 const anchorMarkers = L.layerGroup().addTo(map);
 const incomingSource = L.layerGroup().addTo(map);
