@@ -11,7 +11,7 @@ from pathlib import Path
 HIGHWAYS = {'motorway', 'trunk', 'primary', 'secondary', 'tertiary', 'unclassified',
             'residential', 'living_street', 'service', 'busway', 'bus_guideway'}
 HIGHWAYS |= {h + '_link' for h in ('motorway', 'trunk', 'primary', 'secondary', 'tertiary')}
-POLICY = 'bus-v3'
+POLICY = 'bus-v4'
 
 
 def normal(value):
@@ -117,6 +117,8 @@ class Network:
         self.turns = defaultdict(list)
         for turn in data.get('turns', []):
             self.turns[turn['via']].append(turn)
+        from .restrictions import RestrictionSequences
+        self.restrictions = RestrictionSequences(self)
 
     def coordinates(self, ref):
         edge = self.edges[ref['edge']]
@@ -146,6 +148,9 @@ class Network:
             kind = turn['kind']
             if kind.startswith('only_') and b['way'] != turn['to']:
                 return False
+            if kind.startswith('only_') and turn['from'] == turn['to']:
+                if (kind == 'only_u_turn') != (incoming == outgoing):
+                    return False
             if kind.startswith('no_') and b['way'] == turn['to']:
                 if kind == 'no_u_turn' and turn['from'] == turn['to']:
                     if incoming == outgoing:
@@ -181,7 +186,7 @@ def from_pbf(path, bbox=(-77.26, -12.42, -76.56, -11.70)):
     source = {'sha256': hashlib.sha256(path.read_bytes()).hexdigest(), 'bytes': path.stat().st_size,
               'url': 'https://download.bbbike.org/osm/bbbike/Lima/Lima.osm.pbf',
               'attribution': '© OpenStreetMap contributors', 'license': 'ODbL-1.0'}
-    edges, turns, unresolved, transit = [], [], [], defaultdict(set)
+    edges, turns, via_restrictions, unresolved, transit = [], [], [], [], defaultdict(set)
     w, s, e, n = bbox
 
     class Handler(osmium.SimpleHandler):
@@ -229,14 +234,24 @@ def from_pbf(path, bbox=(-77.26, -12.42, -76.56, -11.70)):
                 return
             kind = specific or tags.get('restriction')
             members = {role: [m for m in rel.members if m.role == role] for role in ('from', 'via', 'to')}
-            if not all(len(members[role]) == 1 for role in members):
-                unresolved.append({'relation': rel.id, 'ways': [m.ref for m in rel.members if m.type == 'w']})
+            from .restrictions import KINDS
+            detail = {'relation': rel.id, 'ways': [m.ref for m in rel.members if m.type == 'w'],
+                      'from': members['from'][0].ref if len(members['from']) == 1 else None,
+                      'viaWays': [m.ref for m in members['via'] if m.type == 'w'],
+                      'tags': tags}
+            complete = (len(members['from']) == len(members['to']) == 1
+                        and members['from'][0].type == members['to'][0].type == 'w')
+            if not complete or any(':conditional' in k for k in tags) or kind not in KINDS:
+                unresolved.append({**detail, 'reason': 'conditional-or-incomplete-relation'})
                 return
-            a, via, b = (members[role][0] for role in ('from', 'via', 'to'))
-            if via.type != 'n' or any(':conditional' in k for k in tags) or not kind:
-                unresolved.append({'relation': rel.id, 'ways': [m.ref for m in rel.members if m.type == 'w']})
+            a, b = members['from'][0], members['to'][0]
+            if len(members['via']) == 1 and members['via'][0].type == 'n':
+                turns.append({'relation': rel.id, 'from': a.ref, 'via': members['via'][0].ref, 'to': b.ref, 'kind': kind})
+            elif members['via'] and all(m.type == 'w' for m in members['via']):
+                via_restrictions.append({'relation': rel.id, 'from': a.ref,
+                                         'viaWays': detail['viaWays'], 'to': b.ref, 'kind': kind})
             else:
-                turns.append({'relation': rel.id, 'from': a.ref, 'via': via.ref, 'to': b.ref, 'kind': kind})
+                unresolved.append({**detail, 'reason': 'mixed-or-missing-via-members'})
 
     Handler().apply_file(str(path), locations=True)
     reader = osmium.io.Reader(str(path), osmium.osm.osm_entity_bits.NOTHING)
@@ -245,7 +260,7 @@ def from_pbf(path, bbox=(-77.26, -12.42, -76.56, -11.70)):
     for edge in edges:
         edge['transitSystems'] = sorted(transit.get(edge['way'], []))
     return {'version': 1, 'policy': POLICY, 'source': source, 'bbox': list(bbox), 'edges': edges,
-            'turns': turns, 'unresolvedRestrictions': unresolved}
+            'turns': turns, 'viaRestrictions': via_restrictions, 'unresolvedRestrictions': unresolved}
 
 
 def save_network(path, output):
@@ -256,6 +271,7 @@ def save_network(path, output):
     lengths = sorted(metres(*edge['coordinates']) for edge in data['edges'])
     from collections import Counter
     return {'source': data['source'], 'policy': data['policy'], 'segments': len(lengths), 'turnRestrictions': len(data['turns']),
+            'viaWayRestrictions': len(data['viaRestrictions']),
             'facilities': dict(Counter(edge['facility'] for edge in data['edges'])),
             'unresolvedRestrictions': len(data['unresolvedRestrictions']),
             'segmentLengthM': {'median': round(lengths[len(lengths)//2], 2),

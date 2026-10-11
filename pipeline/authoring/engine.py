@@ -56,22 +56,31 @@ class Engine:
             result.append((node, refs, metres(*edge['coordinates']) * abs(stop-start)))
         return result
 
-    def shortest(self, start, end, incoming=None, final=None, allowed=None, via=None, profile=None):
+    def shortest(self, start, end, incoming=None, final=None, allowed=None, via=None, profile=None, context=()):
         """Directed Dijkstra with turn state and ordered required street groups."""
         via = via or []
-        initial = (start, incoming, 0)
+        if incoming and not context:
+            edge = self.network.edges[incoming]
+            context, blocked = self.network.restrictions.advance((), (incoming, 1 if edge['nodes'][1] == start else -1))
+            if blocked:
+                return None
+        initial = (start, incoming, 0, context)
         distances, previous, heap = {initial: 0}, {}, [(0, 0, initial)]
         serial, visited = 0, 0
         while heap:
             cost, _, state = heapq.heappop(heap)
             if cost != distances.get(state):
                 continue
-            node, prev_edge, phase = state
+            node, prev_edge, phase, restriction_state = state
             visited += 1
             if visited > 400000:
                 raise ValueError('Recorrido demasiado amplio; agrega cruces o tramos obligatorios')
             at_goal = node == end and phase == len(via)
-            if at_goal and (final is None or self.network.turn_allowed(node, prev_edge, final)):
+            final_allowed = final is None or self.network.turn_allowed(node, prev_edge, final)
+            if final is not None:
+                sign = 1 if self.network.edges[final]['nodes'][0] == node else -1
+                final_allowed = final_allowed and not self.network.restrictions.advance(restriction_state, (final, sign))[1]
+            if at_goal and final_allowed:
                 refs = []
                 while state != initial:
                     parent, ref = previous[state]
@@ -86,8 +95,11 @@ class Engine:
                     continue
                 if not self.network.turn_allowed(node, prev_edge, eid):
                     continue
+                next_context, blocked = self.network.restrictions.advance(restriction_state, (eid, sign))
+                if blocked:
+                    continue
                 next_phase = phase + 1 if phase < len(via) and edge['way'] in via[phase] else phase
-                nxt = (neighbor, eid, next_phase)
+                nxt = (neighbor, eid, next_phase, next_context)
                 total = cost + metres(*edge['coordinates'])
                 if total < distances.get(nxt, math.inf):
                     ref = {'type': 'street', 'edge': eid, 'start': 0 if sign == 1 else 1, 'end': 1 if sign == 1 else 0}
@@ -96,7 +108,7 @@ class Engine:
                     heapq.heappush(heap, (total, serial, nxt))
         return None
 
-    def connect(self, a, b, incoming=None, allowed=None, via=None, profile=None):
+    def connect(self, a, b, incoming=None, allowed=None, via=None, profile=None, history=None):
         choices = []
         # A partial traversal within one physical segment must not detour via its endpoints.
         if a.get('edge') and a.get('edge') == b.get('edge') and not via:
@@ -112,10 +124,16 @@ class Engine:
                 if allowed is not None and any(self.network.edges[r['edge']]['way'] not in allowed for r in prefix + suffix):
                     continue
                 prior = prefix[-1]['edge'] if prefix else incoming
-                path = self.shortest(start, end, prior, suffix[0]['edge'] if suffix else None, allowed, via, profile)
+                context, blocked = self.network.restrictions.trace((history or []) + prefix)
+                if blocked:
+                    continue
+                path = self.shortest(start, end, prior, suffix[0]['edge'] if suffix else None,
+                                     allowed, via, profile, context)
                 if path is not None:
                     refs, cost = path
                     choices.append((c1 + cost + c2, prefix + refs + suffix))
+        choices = [choice for choice in choices
+                   if not self.network.restrictions.trace((history or []) + choice[1])[1]]
         if not choices:
             raise ValueError('No hay un recorrido conectado que respete los sentidos y restricciones indicados')
         return min(choices, key=lambda choice: choice[0])[1]
@@ -133,7 +151,7 @@ class Engine:
             raise ValueError('Divide el itinerario en etapas para combinar varios puntos y vías obligatorias')
         for a, b in zip(anchors, anchors[1:]):
             incoming = route['path'][-1]['edge'] if route['path'] else None
-            route['path'].extend(self.connect(a, b, incoming, allowed, via, route['profile']))
+            route['path'].extend(self.connect(a, b, incoming, allowed, via, route['profile'], history=route['path']))
         route['stops'] = copy.deepcopy(request.get('stops', []))
         route['anchors'] = copy.deepcopy(anchors)
         route['constraints'] = {k: copy.deepcopy(request[k]) for k in ('allowedWays', 'viaWays') if k in request}

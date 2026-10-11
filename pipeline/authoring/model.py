@@ -177,8 +177,10 @@ def validate(route, network):
             issues.append({'code': 'disconnected', 'pathIndex': i, 'message': 'El recorrido contiene una discontinuidad'})
         previous = part[-1]
         distance += sum(metres(a, b) for a, b in zip(part, part[1:]))
-    for restriction in network.data.get('unresolvedRestrictions', []):
-        if used_ways & set(restriction['ways']):
+    issues.extend(network.restrictions.trace(route['path'])[1])
+    from .restrictions import unresolved_applies
+    for restriction in [*network.data.get('unresolvedRestrictions', []), *network.restrictions.unresolved]:
+        if unresolved_applies(restriction, route['path'], network):
             issues.append({'code': 'unsupportedRestriction', 'relation': restriction['relation'],
                            'message': 'Restricción OSM pendiente de interpretación'})
     if distance < 1:

@@ -1,5 +1,5 @@
 {
-  "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v3",
+  "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v4",
   "kind": "read-only-pilot",
   "publishedFilesChanged": false,
   "routes": {
@@ -8,7 +8,7 @@
       "stops": 67,
       "issues": {
         "wrongDirection": 1,
-        "unsupportedRestriction": 16
+        "restrictedTurn": 1
       },
       "ready": false,
       "accepted": false,
@@ -17,10 +17,8 @@
     "1087-vuelta": {
       "segments": 800,
       "stops": 67,
-      "issues": {
-        "unsupportedRestriction": 18
-      },
-      "ready": false,
+      "issues": {},
+      "ready": true,
       "accepted": false,
       "sourceStopsPreserved": true
     },
@@ -29,8 +27,7 @@
       "stops": 17,
       "issues": {
         "restrictedTurn": 1,
-        "wrongDirection": 22,
-        "unsupportedRestriction": 7
+        "wrongDirection": 22
       },
       "ready": false,
       "accepted": false,
@@ -40,8 +37,7 @@
       "segments": 408,
       "stops": 16,
       "issues": {
-        "wrongDirection": 2,
-        "unsupportedRestriction": 6
+        "wrongDirection": 2
       },
       "ready": false,
       "accepted": false,
@@ -50,10 +46,8 @@
     "206-ida": {
       "segments": 882,
       "stops": 31,
-      "issues": {
-        "unsupportedRestriction": 14
-      },
-      "ready": false,
+      "issues": {},
+      "ready": true,
       "accepted": false,
       "sourceStopsPreserved": true
     },
@@ -61,7 +55,6 @@
       "segments": 812,
       "stops": 34,
       "issues": {
-        "unsupportedRestriction": 15,
         "stopOffRoute": 1
       },
       "ready": false,

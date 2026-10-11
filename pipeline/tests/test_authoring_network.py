@@ -51,6 +51,12 @@ class StreetNetworkTest(unittest.TestCase):
         net.turns[3].append({'from': 1, 'to': 2, 'kind': 'no_right_turn'})
         self.assertFalse(net.turn_allowed(3, '1:1', '2:0'))
 
+    def test_only_straight_same_way_does_not_authorize_u_turn(self):
+        net = fixture_network()
+        net.turns[2].append({'from': 1, 'to': 1, 'kind': 'only_straight_on'})
+        self.assertTrue(net.turn_allowed(2, '1:0', '1:1'))
+        self.assertFalse(net.turn_allowed(2, '1:0', '1:0'))
+
     def test_named_streets_and_viewport(self):
         net = fixture_network()
         self.assertEqual(net.streets('Av. Curva')[0]['way'], 1)

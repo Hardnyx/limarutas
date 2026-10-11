@@ -20,10 +20,13 @@ del extracto y la versión de la política de interpretación. No son identifica
 de OSM. Los tramos compartidos conservan exactamente sus coordenadas.
 
 La política del motor permite vías exclusivas de buses y excepciones de
-acceso explícitas. Respeta sentidos para buses y restricciones de giro con
-nodo intermedio. Las restricciones condicionales o con vías intermedias
-se conservan como pendientes de interpretación: un recorrido que las
-atraviese necesita revisión y no debe aprobarse automáticamente.
+acceso explícitas. Respeta sentidos para buses, restricciones de giro con
+nodo intermedio y movimientos a través de una o varias vías intermedias.
+Estas últimas se resuelven por topología y sentido: utilizar una vía que
+participa en una prohibición no significa realizar el movimiento prohibido.
+La memoria del movimiento se conserva al dividirlo con puntos del editor.
+Las restricciones condicionales, incompletas o de topología ambigua siguen
+bloqueando el recorrido afectado; no se descartan para permitir su aprobación.
 
 Las calzadas separadas (`highway=busway`) mantienen su geometría propia.
 Las vías de acceso reservado se distinguen de los carriles señalizados
@@ -210,6 +213,17 @@ una operación separada que requiere revisión; no se reinterpreta un ID viejo
 contra un extracto nuevo.
 
 ## Verificación del piloto
+
+El inventario reproducible de migración se genera sin modificar el sitio:
+
+```sh
+python3 -m pipeline.authoring.inventory --report docs/osm/route_migration.json
+```
+
+`legacy-osm` identifica un ajuste anterior y no equivale a `accepted`.
+Los trazados propios del Metropolitano y los alimentadores se registran
+aparte porque requieren adaptar su contrato de datos. El Metro se excluye
+de la red vial para buses.
 
 ```sh
 python3 -m pipeline.authoring.audit
