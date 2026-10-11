@@ -3,7 +3,7 @@ import { registerRouteControls } from './routeControls.js';
 // app.js (punto de entrada)
 import './flags.js';   // marca html.beta / html.debug antes que nada
 import { PATHS, state, COLOR_AN, COLOR_AS } from './config.js';
-import { $, $$, fetchJSON, stopsArrayToMap, asLatLng } from './utils.js';
+import { $, $$, fetchJSON, stopsArrayToMap } from './utils.js';
 import {
   filterByCatalogFor,
   buildAlimFromFC,
@@ -125,44 +125,15 @@ function pickFirst(selA, selB){
    Helpers Macrorutas Metropolitano
    =========================== */
 
-// south = norte a sur, north = sur a norte
-async function loadMetMacroSegments(macroId, suffix){
-  const path = `${PATHS.met}/trayectos-macro/${macroId}-${suffix}.geojson`;
-  try {
-    const gj = await fetchJSON(path);
-    if (!gj || gj.type !== 'FeatureCollection') {
-      console.warn('[Met macro]', macroId, suffix, 'no es FeatureCollection');
-      return null;
-    }
-    const segments = [];
-    (gj.features || []).forEach(f => {
-      const g = f.geometry;
-      if (!g || g.type !== 'LineString' || !Array.isArray(g.coordinates)) return;
-      const seg = g.coordinates.map(asLatLng);
-      if (seg.length >= 2) segments.push(seg);
-    });
-    if (!segments.length) return null;
-    return segments;
-  } catch (e) {
-    console.warn('[Met macro] No se pudo cargar', path, e.message);
-    return null;
-  }
-}
-
 async function loadMetMacros(){
+  const shared = await fetchJSON(`${PATHS.met}/metropolitano_backbones.json`);
   state.systems.met.macros = {};
-
-  const macroIds = ['A', 'B'];
-  for (const mid of macroIds) {
-    const northSouth = await loadMetMacroSegments(mid, 'south');
-    const southNorth = await loadMetMacroSegments(mid, 'north');
-    if (northSouth || southNorth) {
-      state.systems.met.macros[mid] = {};
-      if (northSouth) state.systems.met.macros[mid].north_south = northSouth;
-      if (southNorth) state.systems.met.macros[mid].south_north = southNorth;
-    }
+  for (const mid of ['A', 'B']) {
+    state.systems.met.macros[mid] = {
+      north_south: [shared.backbones[`${mid}:ns`].coords],
+      south_north: [shared.backbones[`${mid}:sn`].coords]
+    };
   }
-  console.log('[Met macro] Macros disponibles:', Object.keys(state.systems.met.macros).join(', ') || '(ninguna)');
 }
 
 /* ===========================

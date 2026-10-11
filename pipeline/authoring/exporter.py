@@ -64,7 +64,7 @@ def bundle(route, network, preview=False, trip=None):
              f'stops_trip{trip}.geojson': stops,
              f'route_track_trip{trip}.route.json': route}
     # Existing original files must retain their exact bytes. The sidecar carries a copy for review.
-    if route['source'].get('kind') != 'wikiroutes':
+    if route['source'].get('kind') not in ('wikiroutes', 'native-bus'):
         files[f'route_track_trip{trip}.geojson'] = copy.deepcopy(track)
     return {'version': 1, 'routeId': route['id'], 'revision': route['revision'], 'network': network.data['source'],
             'preview': preview, 'validation': result, 'files': files,

@@ -25,6 +25,8 @@ class Service:
         self.lock = threading.RLock()
         catalog = self.root / 'pipeline/output/wr_map.json'
         self.catalog = json.loads(catalog.read_text())['routes'] if catalog.exists() else {}
+        from .native import catalog as native_catalog
+        self.catalog = {**self.catalog, **native_catalog(self.root)}
 
     def pack(self, route):
         route = attach_stops(route, self.network)

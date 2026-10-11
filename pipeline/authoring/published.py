@@ -21,7 +21,7 @@ def verify_source(route, original, stops, trip):
     if export.get('trip') != trip or digest(stops) != export.get('stopsHash'):
         raise ValueError('Los paraderos publicados difieren de la definición aceptada; importa su actualización')
     source = route.get('source', {})
-    if source.get('kind') == 'wikiroutes' and digest(original) != digest(source.get('track')):
+    if source.get('kind') in ('wikiroutes', 'native-bus') and digest(original) != digest(source.get('track')):
         raise ValueError('El trazado fuente cambió; importa su actualización antes de regenerar')
     if source.get('snapshotHash'):
         raw = {k: v for k, v in source.items() if k not in ('snapshotHash', 'importWarnings')}

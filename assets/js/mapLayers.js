@@ -106,9 +106,12 @@ function clearServiceLayers(sys, id){
 // Macro A: los servicios que pasan por Ramón Castilla, Tacna, Jirón de la
 // Unión o Colmena (A, C, 10, Lechucero). El resto va por la macro B.
 const MACRO_A_STATIONS = /^(ramon-castilla|tacna|jiron-de-la-union|colmena)/;
-export function getMetMacroId(svc){
-  const all = [...(svc.stops || []), ...(svc.north_south || []), ...(svc.south_north || [])];
-  return all.some(id => MACRO_A_STATIONS.test(id)) ? 'A' : 'B';
+export function getMetMacroId(svc, direction){
+  if (svc.macro === 'A' || svc.macro === 'B') return svc.macro;
+  const field = direction === 'ns' ? 'north_south' : direction === 'sn' ? 'south_north' : null;
+  const ids = field ? (svc[field] || svc.stops || [])
+    : [...(svc.stops || []), ...(svc.north_south || []), ...(svc.south_north || [])];
+  return ids.some(id => MACRO_A_STATIONS.test(id)) ? 'A' : 'B';
 }
 
 // dirKey: 'sur' (norte->sur) o 'norte' (sur->norte)
@@ -183,9 +186,8 @@ function cutMacroSegmentsToStops(segments, svc, dirKey){
  */
 function drawMetMacro(svc, routeDir, gLine, color, boundsIn, paneLine){
   const macros = (state.systems.met && state.systems.met.macros) || {};
-  const macroId = getMetMacroId(svc);
-  const def = macros[macroId];
-  if (!def) return boundsIn;
+  const northSouth = macros[getMetMacroId(svc, 'ns')]?.north_south || [];
+  const southNorth = macros[getMetMacroId(svc, 'sn')]?.south_north || [];
 
   let bounds = boundsIn;
 
@@ -193,7 +195,7 @@ function drawMetMacro(svc, routeDir, gLine, color, boundsIn, paneLine){
     if (!segments) return;
     (segments || []).forEach(seg => {
       if (!Array.isArray(seg) || seg.length < 2) return;
-      const poly = L.polyline(seg, { pane: paneLine, color, weight: 4, opacity: 0.95, lineCap:'round', lineJoin:'round' }).addTo(gLine);
+      const poly = L.polyline(seg, { pane: paneLine, color, weight: 4, opacity: 0.95, smoothFactor: 0, lineCap:'round', lineJoin:'round' }).addTo(gLine);
       try { poly.setStyle({ color }); } catch {}
       forceStroke(poly, color);
       const b = poly.getBounds();
@@ -203,21 +205,21 @@ function drawMetMacro(svc, routeDir, gLine, color, boundsIn, paneLine){
 
   if (routeDir === 'ambas'){
     if (state.dir === 'ambas' || state.dir === 'ns') {
-      const baseNS = def.north_south || [];
+      const baseNS = northSouth;
       const segNS  = cutMacroSegmentsToStops(baseNS, svc, 'sur');
       drawSegmentsDir(segNS);
     }
     if (state.dir === 'ambas' || state.dir === 'sn') {
-      const baseSN = def.south_north || [];
+      const baseSN = southNorth;
       const segSN  = cutMacroSegmentsToStops(baseSN, svc, 'norte');
       drawSegmentsDir(segSN);
     }
   } else if (routeDir === 'norte') {
-    const baseSN = def.south_north || [];
+    const baseSN = southNorth;
     const segSN  = cutMacroSegmentsToStops(baseSN, svc, 'norte');
     drawSegmentsDir(segSN);
   } else if (routeDir === 'sur') {
-    const baseNS = def.north_south || [];
+    const baseNS = northSouth;
     const segNS  = cutMacroSegmentsToStops(baseNS, svc, 'sur');
     drawSegmentsDir(segNS);
   }
@@ -248,7 +250,7 @@ export function renderService(systemId, id, opts={}){
   const drawSegments = (segments, color) => {
     (segments||[]).forEach(seg => {
       if (!Array.isArray(seg) || seg.length < 2) return;
-      const poly = L.polyline(seg, { pane: paneLine, color, weight: 4, opacity: 0.95, lineCap:'round', lineJoin:'round' }).addTo(gLine);
+      const poly = L.polyline(seg, { pane: paneLine, color, weight: 4, opacity: 0.95, smoothFactor: 0, lineCap:'round', lineJoin:'round' }).addTo(gLine);
       try { poly.setStyle({ color }); } catch {}
       forceStroke(poly, color);
       const b = poly.getBounds();
@@ -287,23 +289,16 @@ export function renderService(systemId, id, opts={}){
     }
 
   } else if (systemId === 'met') {
-    const prevBounds = bounds;
     // Trazado por la vía de cada sentido (metropolitano_paths.json); si falta, la macroruta
     const paths = state.systems.met.paths || {};
     const dirs = routeDir === 'ambas'
       ? ['ns', 'sn'].filter(d => state.dir === 'ambas' || state.dir === d)
       : [routeDir === 'sur' ? 'ns' : 'sn'];
-    const own = dirs.map(d => paths[`${svc.id}:${d}`]).filter(Boolean);
-    if (own.length) own.forEach(p => drawSegments([p.coords], svc.color));
-    else bounds = drawMetMacro(svc, routeDir, gLine, svc.color, bounds, paneLine);
-    if (bounds === prevBounds) {
-      if (routeDir === 'ambas'){
-        if (state.dir === 'ambas' || state.dir === 'ns') drawByStops(getMetStopsForDir(svc, 'sur'), svc.color);
-        if (state.dir === 'ambas' || state.dir === 'sn') drawByStops(getMetStopsForDir(svc, 'norte'), svc.color);
-      } else {
-        drawByStops(getMetStopsForDir(svc, routeDir), svc.color);
-      }
-    }
+    dirs.forEach(d => {
+      const own = paths[`${svc.id}:${d}`];
+      if (own) drawSegments([own.coords], svc.color);
+      else bounds = drawMetMacro(svc, d === 'ns' ? 'sur' : 'norte', gLine, svc.color, bounds, paneLine);
+    });
 
   } else if (systemId === 'corr'){
     const c = corrColorForSvc(svc);

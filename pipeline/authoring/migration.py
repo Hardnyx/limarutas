@@ -40,7 +40,7 @@ def legacy_equivalence(route, engine):
             'reproducedGeometryHash': digest(reproduced), 'pathHash': digest(route['path'])}
 
 
-def stage(root, engine, keys, directory):
+def stage(root, engine, keys, directory, repair_roundabouts=False):
     root, directory = Path(root).resolve(), Path(directory).resolve()
     if directory.is_relative_to(root) and not directory.is_relative_to(root / 'pipeline/temp'):
         raise ValueError('Prepara el lote en pipeline/temp o en una carpeta externa')
@@ -55,17 +55,27 @@ def stage(root, engine, keys, directory):
             if Path(key).name != key or key in ('.', '..'):
                 raise ValueError('Identificador de ruta inválido para exportación')
             route = import_existing(root, key, engine)
+            repair_proof = None
+            if repair_roundabouts:
+                from .repairs import roundabouts
+                if not legacy_equivalence(route, engine)['equivalent']:
+                    raise ValueError('Las referencias no reproducen el itinerario publicado')
+                route, repair_proof = roundabouts(route, engine)
             validation = validate(route, engine.network)
             if not validation['ready']:
                 result = {'status': 'blocked', 'issues': dict(Counter(i['code'] for i in validation['issues']))}
             else:
-                proof = legacy_equivalence(route, engine)
+                proof = repair_proof or legacy_equivalence(route, engine)
                 if not proof['equivalent']:
                     result = {'status': 'review-required', 'proof': proof}
                 else:
                     route['review']['notes'] = ('Migración del itinerario publicado: referencias OSM reproducidas '
                         'sin cambios de calles; sentidos, giros, continuidad y paraderos validados. '
                         'Se restauran todos los vértices OSM. No certifica la vigencia comercial del servicio.')
+                    if repair_proof:
+                        route['review']['notes'] = ('Corrección de sentido en óvalo simple OSM: misma vía, entrada y salida; '
+                            'se recorre el anillo en su único sentido permitido. Todos los paraderos y el resto del '
+                            'itinerario se conservan. Sentidos, giros y continuidad validados.')
                     route['migration'] = proof
                     accepted = store.save(route, 0, accept=True)
                     exported = bundle(accepted, engine.network)
@@ -113,7 +123,9 @@ def publish_staged(root, engine, directory, keys):
             source = (root / relative).resolve()
             if not source.is_relative_to(root) or hashlib.sha256(source.read_bytes()).hexdigest() != expected:
                 raise ValueError(f'{key}: cambió la fuente {relative}')
-        if route.get('migration') != report['routes'][key]['proof'] or not legacy_equivalence(route, engine)['equivalent']:
+        from .repairs import publication_proof
+        proof = publication_proof(route, engine)
+        if route.get('migration') != report['routes'][key]['proof'] or route['migration'] != proof or not proof['equivalent']:
             raise ValueError(f'{key}: no reproduce el itinerario publicado')
         regenerated = bundle(route, engine.network, trip=trip)['files']
         if regenerated != files:
@@ -154,6 +166,7 @@ if __name__ == '__main__':
     parser.add_argument('--directory', required=True)
     parser.add_argument('--ready-report', help='Auditoría previa para seleccionar solo rutas listas')
     parser.add_argument('--publish-staged', action='store_true', help='Publicar un lote preparado tras verificar todas sus fuentes')
+    parser.add_argument('--repair-roundabouts', action='store_true', help='Corregir únicamente óvalos simples de sentido único, conservando entrada y salida')
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[2]
     engine = Engine(Network(json.loads(Path(args.network).read_text())))
@@ -169,5 +182,5 @@ if __name__ == '__main__':
         if audited.get('network') != engine.network.id:
             raise ValueError('La auditoría corresponde a otra versión de red')
         keys = [key for key in keys if audited['routes'][key]['ready']]
-    report = stage(root, engine, keys, args.directory)
+    report = stage(root, engine, keys, args.directory, args.repair_roundabouts)
     print(json.dumps(report['summary'], ensure_ascii=False))

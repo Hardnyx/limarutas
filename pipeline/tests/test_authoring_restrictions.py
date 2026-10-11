@@ -79,3 +79,26 @@ class ViaWayRestrictionsTest(unittest.TestCase):
         self.assertIn('unsupportedRestriction', [i['code'] for i in validate(route, net)['issues']])
         route['path'] = route['path'][:2]
         self.assertFalse(any(i['code'] == 'unsupportedRestriction' for i in validate(route, net)['issues']))
+
+    def test_mixed_via_nodes_must_belong_to_the_complete_movement(self):
+        net, route = self.setup_restriction()
+        data = copy.deepcopy(net.data)
+        data['viaRestrictions'][0]['viaNodes'] = [3, 4]
+        net = Network(data)
+        self.assertFalse(net.restrictions.unresolved)
+        self.assertTrue(net.restrictions.trace(route['path'])[1])
+        data['viaRestrictions'][0]['viaNodes'] = [999]
+        net = Network(data)
+        self.assertTrue(net.restrictions.unresolved)
+        self.assertFalse(net.restrictions.trace(route['path'])[1])
+
+    def test_incomplete_node_relation_only_blocks_a_movement_at_its_junction(self):
+        net, route = self.setup_restriction()
+        data = copy.deepcopy(net.data)
+        data['viaRestrictions'] = []
+        data['unresolvedRestrictions'] = [{'relation': 73, 'from': 1, 'to': None,
+                                          'viaWays': [], 'viaNodes': [3], 'ways': [1]}]
+        net = Network(data)
+        self.assertIn('unsupportedRestriction', [i['code'] for i in validate(route, net)['issues']])
+        route['path'] = route['path'][:2]
+        self.assertNotIn('unsupportedRestriction', [i['code'] for i in validate(route, net)['issues']])

@@ -74,6 +74,9 @@ def import_bundle(engine, route_id, name, direction, track, stops, vias=None, ma
 
 def import_existing(root, key, engine):
     root = Path(root).resolve()
+    if key.startswith(('met:', 'alim:')):
+        from .native import import_native
+        return import_native(root, key, engine)
     definitions = json.loads((root / 'pipeline/output/wr_map.json').read_text())['routes']
     if key not in definitions:
         raise ValueError('Ruta no encontrada en wr_map.json')
@@ -89,6 +92,9 @@ def import_existing(root, key, engine):
         verify_published(route, json.loads((folder / f'route_track_trip{trip}.osm.geojson').read_text()),
                          json.loads((folder / f'route_track_trip{trip}.geojson').read_text()),
                          json.loads((folder / f'stops_trip{trip}.geojson').read_text()), trip, key)
+        if route['network'] != engine.network.id:
+            from .policy import candidate
+            route = candidate(route, engine.network)
         # Reopen the accepted operational path, never infer it again from the old drawing.
         route.pop('exported', None)
         route['revision'], route['review']['accepted'] = 0, False

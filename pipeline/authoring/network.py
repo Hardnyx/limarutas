@@ -11,7 +11,7 @@ from pathlib import Path
 HIGHWAYS = {'motorway', 'trunk', 'primary', 'secondary', 'tertiary', 'unclassified',
             'residential', 'living_street', 'service', 'busway', 'bus_guideway'}
 HIGHWAYS |= {h + '_link' for h in ('motorway', 'trunk', 'primary', 'secondary', 'tertiary')}
-POLICY = 'bus-v4'
+POLICY = 'bus-v5'
 
 
 def normal(value):
@@ -37,6 +37,17 @@ def bus_access(tags):
         if value in ('yes', 'designated', 'permissive', 'destination', 'only'):
             return True
     return True
+
+
+def bus_tags(tags, brt_relations=()):
+    tags = dict(tags)
+    evidence = None
+    if (not bus_access(tags) and brt_relations
+            and tags.get('highway') in ('service', 'busway', 'bus_guideway')
+            and tags.get('bus') not in ('no', 'private') and tags.get('psv') not in ('no', 'private')):
+        tags['bus'] = 'designated'
+        evidence = {'kind': 'osm-brt-route-membership', 'relations': sorted(brt_relations)}
+    return tags, evidence
 
 
 def facility(tags):
@@ -187,11 +198,24 @@ def from_pbf(path, bbox=(-77.26, -12.42, -76.56, -11.70)):
               'url': 'https://download.bbbike.org/osm/bbbike/Lima/Lima.osm.pbf',
               'attribution': '© OpenStreetMap contributors', 'license': 'ODbL-1.0'}
     edges, turns, via_restrictions, unresolved, transit = [], [], [], [], defaultdict(set)
+    brt_members = defaultdict(list)
     w, s, e, n = bbox
+
+    class Transit(osmium.SimpleHandler):
+        def relation(self, rel):
+            tags = dict(rel.tags)
+            if tags.get('type') == 'route' and tags.get('route') == 'bus' and normal(tags.get('network', '')) == 'metropolitano':
+                for member in rel.members:
+                    if member.type == 'w' and member.role not in ('platform', 'stop'):
+                        brt_members[member.ref].append(rel.id)
+
+    Transit().apply_file(str(path))
 
     class Handler(osmium.SimpleHandler):
         def way(self, way):
-            tags = dict(way.tags)
+            tags, access_evidence = bus_tags(dict(way.tags), brt_members.get(way.id, []))
+            # OSM BRT relations identify unnamed service tunnels with generic
+            # access=no but no bus-specific tag. Keep them only for that system.
             if not bus_access(tags):
                 return
             try:
@@ -214,7 +238,8 @@ def from_pbf(path, bbox=(-77.26, -12.42, -76.56, -11.70)):
                               'backward': backward, 'conditional': conditional,
                               'facility': kind, 'laneTags': lane_tags,
                               'layer': tags.get('layer', '0'), 'bridge': tags.get('bridge', ''),
-                              'tunnel': tags.get('tunnel', '')})
+                              'tunnel': tags.get('tunnel', ''),
+                              **({'accessEvidence': access_evidence} if access_evidence else {})})
 
         def relation(self, rel):
             tags = dict(rel.tags)
@@ -237,7 +262,9 @@ def from_pbf(path, bbox=(-77.26, -12.42, -76.56, -11.70)):
             from .restrictions import KINDS
             detail = {'relation': rel.id, 'ways': [m.ref for m in rel.members if m.type == 'w'],
                       'from': members['from'][0].ref if len(members['from']) == 1 else None,
+                      'to': members['to'][0].ref if len(members['to']) == 1 else None,
                       'viaWays': [m.ref for m in members['via'] if m.type == 'w'],
+                      'viaNodes': [m.ref for m in members['via'] if m.type == 'n'],
                       'tags': tags}
             complete = (len(members['from']) == len(members['to']) == 1
                         and members['from'][0].type == members['to'][0].type == 'w')
@@ -247,9 +274,10 @@ def from_pbf(path, bbox=(-77.26, -12.42, -76.56, -11.70)):
             a, b = members['from'][0], members['to'][0]
             if len(members['via']) == 1 and members['via'][0].type == 'n':
                 turns.append({'relation': rel.id, 'from': a.ref, 'via': members['via'][0].ref, 'to': b.ref, 'kind': kind})
-            elif members['via'] and all(m.type == 'w' for m in members['via']):
+            elif detail['viaWays'] and all(m.type in ('w', 'n') for m in members['via']):
                 via_restrictions.append({'relation': rel.id, 'from': a.ref,
-                                         'viaWays': detail['viaWays'], 'to': b.ref, 'kind': kind})
+                                         'viaWays': detail['viaWays'], 'viaNodes': detail['viaNodes'],
+                                         'to': b.ref, 'kind': kind})
             else:
                 unresolved.append({**detail, 'reason': 'mixed-or-missing-via-members'})
 

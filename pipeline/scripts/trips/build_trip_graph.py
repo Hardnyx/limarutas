@@ -52,6 +52,7 @@ Uso:
 from __future__ import annotations
 
 import json
+import argparse
 import math
 import sys
 from collections import Counter
@@ -240,7 +241,46 @@ def headways(routes: dict) -> dict[str, float]:
     return out
 
 
+def update_met_distances(graph, paths, services, stations):
+    """Refresh derived distances without rebuilding unrelated stop identities."""
+    by_id = {s['id']: s for s in stations}
+    expected = {f"{svc['id']}:{d}" for svc in services for d, field in
+                [('ns', 'north_south'), ('sn', 'south_north')] if svc.get(field)}
+    if set(paths) != expected:
+        raise ValueError('Faltan sentidos del Metropolitano')
+    updates = {}
+    for svc in services:
+        for direction, field in [('ns', 'north_south'), ('sn', 'south_north')]:
+            ids = svc.get(field, [])
+            if not ids:
+                continue
+            key = f"met:{svc['id']}:{direction}"
+            seq = graph['routes'].get(key, [])
+            meters = paths[f"{svc['id']}:{direction}"]['m']
+            if len(seq) != len(ids) or len(meters) != len(ids) or meters != sorted(meters):
+                raise ValueError(f'{key}: las estaciones o distancias no corresponden al grafo')
+            for index, sid in zip(seq, ids):
+                station = by_id[sid]
+                if graph['stops'][index][:2] != [round(station['lat'], 6), round(station['lon'], 6)]:
+                    raise ValueError(f'{key}: cambió la posición de {sid}')
+            updates[key] = [b-a for a,b in zip(meters, meters[1:])]
+    graph['segM'].update(updates)
+    return len(updates)
+
+
 def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--met-only', action='store_true', help='Actualizar solo las distancias de las macrorrutas')
+    args = parser.parse_args()
+    if args.met_only:
+        graph = json.loads(OUT.read_text())
+        count = update_met_distances(graph,
+            json.loads((MET/'metropolitano_paths.json').read_text())['paths'],
+            json.loads((MET/'metropolitano_services.json').read_text())['services'],
+            json.loads((MET/'metropolitano_stops.json').read_text())['stations'])
+        OUT.write_text(json.dumps(graph, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
+        print(f'{count} sentidos del Metropolitano: distancias actualizadas; resto del grafo intacto')
+        return
     stops = Stops()
     routes: dict[str, list[int]] = {}
     n_layers, missing = wikiroutes(stops, routes)

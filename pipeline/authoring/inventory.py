@@ -8,7 +8,7 @@ from collections import Counter
 from pathlib import Path
 
 
-def inventory(root, audited=None):
+def inventory(root, audited=None, native_audited=None):
     root = Path(root).resolve()
     catalog = root / 'pipeline/output/wr_map.json'
     definitions = json.loads(catalog.read_text())['routes']
@@ -39,27 +39,26 @@ def inventory(root, audited=None):
             except (ValueError, KeyError, FileNotFoundError) as error:
                 issues.append(f'invalidPublished:{error}')
         review = audited['routes'][key] if audited else None
-        if accepted and audited and route['network'] != audited['network']:
-            raise ValueError(f'La auditoría corresponde a otra red: {key}')
         routes[key] = {'geometry': 'canonical' if accepted else 'legacy-osm' if definition.get('osm') else 'original',
                        'migration': 'accepted' if accepted else 'blocked-source' if issues else 'pending-review',
                        'hasReferences': 'legacyReferences' in files, 'issues': issues}
         if review:
             routes[key]['validation'] = {'ready': review['ready'], 'issues': review['issues']}
+            if accepted and (not review['ready'] or route['network'] != audited['network']):
+                routes[key]['migration'] = 'blocked-revalidation'
+                routes[key]['validatedNetwork'] = route['network']
             if not accepted and not issues and not review['ready']:
                 routes[key]['migration'] = 'blocked-validation'
-    native = {}
-    for filename, field, prefix in [
-        ('metropolitano_paths.json', 'paths', 'met'),
-        ('alimentadores_paths.json', 'services', 'alim')]:
-        path = root / 'data/processed/metropolitano' / filename
-        if not path.exists():
-            continue
-        for key in json.loads(path.read_text())[field]:
-            directions = ('ida', 'vuelta') if prefix == 'alim' else (None,)
-            for direction in directions:
-                native[f'{prefix}:{key}' + (f':{direction}' if direction else '')] = {
-                    'migration': 'native-adapter-required', 'file': path.relative_to(root).as_posix()}
+    from .native import catalog as native_catalog
+    native = {key: {'migration': 'pending-review', 'file': value['file']}
+              for key, value in native_catalog(root).items()}
+    if native_audited:
+        if set(native_audited['routes']) != set(native):
+            raise ValueError('La auditoría nativa no corresponde al catálogo actual')
+        for key, value in native.items():
+            review = native_audited['routes'][key]
+            value['validation'] = {'ready': review['ready'], 'issues': review['issues']}
+            value['migration'] = 'pending-review' if review['ready'] else 'blocked-validation'
     result = {'version': 1, 'kind': 'read-only-migration-inventory', 'publishedFilesChanged': False,
             'catalogSha256': hashlib.sha256(catalog.read_bytes()).hexdigest(),
             'summary': {'wikiroutes': len(routes), 'nativeBusDirections': len(native),
@@ -71,6 +70,9 @@ def inventory(root, audited=None):
         result['audit'] = {'network': audited['network'], 'directions': len(audited['routes']),
                            'ready': sum(r['ready'] for r in audited['routes'].values()),
                            'issueOccurrences': audited['summary']['blockers']}
+    if native_audited:
+        result['summary']['nativeValidation'] = dict(Counter('ready' if r['ready'] else 'blocked'
+                                                    for r in native_audited['routes'].values()))
     return result
 
 
@@ -79,9 +81,11 @@ if __name__ == '__main__':
     parser.add_argument('--root', default=str(Path(__file__).resolve().parents[2]))
     parser.add_argument('--report', default='pipeline/temp/authoring/migration/inventory.json')
     parser.add_argument('--audit', help='Auditoría completa con incidencias por sentido')
+    parser.add_argument('--native-audit', help='Auditoría de Metropolitano y alimentadores')
     args = parser.parse_args()
     audited = json.loads(Path(args.audit).read_text()) if args.audit else None
-    report = inventory(args.root, audited)
+    native_audited = json.loads(Path(args.native_audit).read_text()) if args.native_audit else None
+    report = inventory(args.root, audited, native_audited)
     path = Path(args.report)
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n')

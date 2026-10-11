@@ -42,7 +42,10 @@ def compile_via(network, restriction):
 
     for node, token in starts:
         visit(node, restriction['viaWays'], [token])
-    unique = {tuple(tokens) for tokens in solutions}
+    def contains_nodes(tokens):
+        nodes = {node for eid, _ in tokens for node in network.edges[eid]['nodes']}
+        return set(restriction.get('viaNodes', [])) <= nodes
+    unique = {tuple(tokens) for tokens in solutions if contains_nodes(tokens)}
     return list(next(iter(unique))) if len(unique) == 1 else None
 
 
@@ -99,6 +102,24 @@ class RestrictionSequences:
 
 def unresolved_applies(restriction, refs, network):
     """Incomplete relations block the approach, not unrelated use of any member."""
+    # A known via node limits incomplete/conditional restrictions to that junction.
+    # Merely driving along a member way hundreds of metres away is not a turn.
+    if restriction.get('viaNodes') and not restriction.get('viaWays'):
+        via = set(restriction['viaNodes'])
+        previous = None
+        for ref in refs:
+            if ref['type'] != 'street':
+                previous = None
+                continue
+            edge = network.edges[ref['edge']]
+            start, end = ref.get('start', 0), ref.get('end', 1)
+            entry = edge['nodes'][0 if end > start else 1] if start in (0, 1) else None
+            if previous and entry in via and previous[1] == entry:
+                from_way, to_way = restriction.get('from'), restriction.get('to')
+                if (from_way is None or previous[0] == from_way) and (to_way is None or edge['way'] == to_way):
+                    return True
+            previous = (edge['way'], edge['nodes'][1 if end > start else 0] if end in (0, 1) else None)
+        return False
     if not restriction.get('from') or not restriction.get('viaWays'):
         return bool({network.edges[r['edge']]['way'] for r in refs if r['type'] == 'street'}
                     & set(restriction['ways']))

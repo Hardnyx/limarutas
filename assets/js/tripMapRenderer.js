@@ -68,16 +68,16 @@ export function createTripMapRenderer(model, { state, pickedPoint, syncInputs, r
       return path.coords.slice(path.at[leg.from], path.at[leg.to] + 1);
     }
     const svc = m && state.systems.met.services?.find(x => String(x.id) === m[1]);
-    const def = svc && state.systems.met.macros?.[getMetMacroId(svc)];
+    const def = svc && state.systems.met.macros?.[getMetMacroId(svc, m[2])];
     const segs = def && def[m[2] === 'ns' ? 'north_south' : 'south_north'];
-    if (!segs?.length) return stops;
+    if (!segs?.length) return [];
     const line = segs.flat();
     const TOL = (300 / 111_000) ** 2;
     const [i, di] = nearestIdx(line, stops[0]);
     const [j, dj] = nearestIdx(line, stops[stops.length - 1]);
-    if (i < 0 || j < 0 || di > TOL || dj > TOL || i === j) return stops;
+    if (i < 0 || j < 0 || di > TOL || dj > TOL || i === j) return [];
     const part = i < j ? line.slice(i, j + 1) : line.slice(j, i + 1).reverse();
-    return [stops[0], ...part, stops[stops.length - 1]];
+    return part;
   }
 
   function rideCoords(r, leg, pt){
@@ -143,9 +143,9 @@ export function createTripMapRenderer(model, { state, pickedPoint, syncInputs, r
       const r = leg.route;
       const coords = rideCoords(r, leg, pt);
       const color = colorOf(r);
-      tripLayer.addLayer(L.polyline(coords, { pane: LINE_PANE, className: 'trip-route-outline', color: '#334155', weight: 12, opacity: 0.8, interactive: false }));
-      tripLayer.addLayer(L.polyline(coords, { pane: LINE_PANE, color: '#fff', weight: 10, opacity: 0.9, interactive: false }));
-      tripLayer.addLayer(L.polyline(coords, { pane: LINE_PANE, color, weight: 6, interactive: false }));
+      tripLayer.addLayer(L.polyline(coords, { pane: LINE_PANE, smoothFactor: 0, className: 'trip-route-outline', color: '#334155', weight: 12, opacity: 0.8, interactive: false }));
+      tripLayer.addLayer(L.polyline(coords, { pane: LINE_PANE, smoothFactor: 0, color: '#fff', weight: 10, opacity: 0.9, interactive: false }));
+      tripLayer.addLayer(L.polyline(coords, { pane: LINE_PANE, smoothFactor: 0, color, weight: 6, interactive: false }));
       // Cada paradero del tramo, con su nombre; los de subida y bajada más grandes
       for (let k = leg.from; k <= leg.to; k++){
         const end = k === leg.from || k === leg.to;

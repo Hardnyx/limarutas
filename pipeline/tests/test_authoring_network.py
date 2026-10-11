@@ -1,5 +1,5 @@
 import unittest
-from pipeline.authoring.network import Network, bus_access, bus_directions, facility, profile_allows
+from pipeline.authoring.network import Network, bus_access, bus_directions, bus_tags, facility, profile_allows
 
 
 def fixture_network():
@@ -28,6 +28,20 @@ class StreetNetworkTest(unittest.TestCase):
         self.assertFalse(bus_access({'highway': 'primary', 'access': 'yes', 'bus': 'no'}))
         self.assertFalse(bus_access({'highway': 'footway'}))
         self.assertTrue(bus_access({'highway': 'busway', 'access': 'no'}))
+
+    def test_brt_relation_recovers_only_system_service_links_and_never_bus_no(self):
+        original = {'highway': 'service', 'access': 'no'}
+        tags, evidence = bus_tags(original, [10])
+        self.assertTrue(bus_access(tags))
+        self.assertEqual(original, {'highway': 'service', 'access': 'no'})
+        self.assertEqual(evidence['relations'], [10])
+        edge = {'way': 20, 'facility': facility(tags)[0], 'name': '', 'transitSystems': ['Metropolitano']}
+        self.assertFalse(profile_allows(edge))
+        self.assertTrue(profile_allows(edge, {'mode': 'brt', 'system': 'Metropolitano'}))
+        for forbidden in ({**original, 'bus': 'no'}, {**original, 'psv': 'no'},
+                          {'highway': 'primary', 'motor_vehicle': 'no'}):
+            self.assertFalse(bus_access(bus_tags(forbidden, [10])[0]))
+        self.assertIsNone(bus_tags(original)[1])
 
     def test_separate_busways_and_lane_tags_are_distinct(self):
         self.assertEqual(facility({'highway': 'busway'})[0], 'separate_busway')

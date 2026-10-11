@@ -35,6 +35,26 @@ class Resolver:
                               'aliases': [str(v) for v in row[5:] if isinstance(v, str) and v],
                               'folders': [raw['routes'][i] for i in folders],
                               'evidence': {'kind': 'wr_stops_index', 'source': path.relative_to(root).as_posix()}})
+        native = Path(root) / 'data/processed/metropolitano'
+        stations = native / 'metropolitano_stops.json'
+        if stations.exists():
+            for station in json.loads(stations.read_text())['stations']:
+                if station.get('lat') is not None and station.get('lon') is not None:
+                    stops.append({'id': 'met:' + station['id'], 'name': station['name'],
+                                  'coordinates': [station['lon'], station['lat']],
+                                  'evidence': {'kind': 'native-station', 'source': stations.relative_to(root).as_posix()}})
+        feeders = native / 'alimentadores_paths.json'
+        if feeders.exists():
+            seen = {stop['id'] for stop in stops}
+            for service in json.loads(feeders.read_text())['services'].values():
+                for direction in ('ida', 'vuelta'):
+                    for stop in service.get(direction, {}).get('stops', []):
+                        if str(stop['id']) in seen:
+                            continue
+                        seen.add(str(stop['id']))
+                        stops.append({'id': str(stop['id']), 'name': stop['name'],
+                                      'coordinates': [stop['lon'], stop['lat']],
+                                      'evidence': {'kind': 'native-feeder-stop', 'source': feeders.relative_to(root).as_posix()}})
         return cls(engine, stops)
 
     def resolve(self, request):
