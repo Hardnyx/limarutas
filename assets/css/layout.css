@@ -452,3 +452,38 @@ html.sheet .map-settings-panel {
   width: min(240px, calc(100vw - 32px));
 }
 
+
+/* Planning projects stay in their own map pane and list. */
+#explorePane { padding: 12px; overflow: auto; }
+#explorePane h2 { font-size: 18px; margin: 4px 0; }
+#explorePane p { font-size: 12px; line-height: 1.5; margin: 4px 0 10px; }
+.explore-filters { display:flex; gap:8px; }
+.explore-filters select { min-width:0; flex:1; font:inherit; font-size:12px; }
+.explore-list { display:flex; flex-direction:column; gap:8px; }
+.project-row { border:1px solid var(--line); border-radius:10px; padding:10px; font-size:12px; }
+.project-row[hidden] { display:none; }
+.project-head { display:flex; align-items:start; gap:8px; margin-bottom:6px; }
+.project-name { border:0; padding:0; background:transparent; text-align:left; color:var(--text-main); font:inherit; font-size:13px; cursor:pointer; }
+.project-badge { font-size:11px; border:1px dashed var(--text-muted); border-radius:5px; padding:2px 5px; }
+.project-info { max-width:300px; font-size:12px; line-height:1.5; }
+html:not(.explore-mode) .leaflet-projectLine-pane { display:none; }
+html.explore-mode .leaflet-overlay-pane,
+html.explore-mode .leaflet-alimLine-pane,
+html.explore-mode .leaflet-corrLine-pane,
+html.explore-mode .leaflet-metroLine-pane,
+html.explore-mode .leaflet-metLine-pane,
+html.explore-mode .leaflet-metTopLine-pane,
+html.explore-mode .leaflet-stop-pane,
+html.explore-mode .leaflet-metTopStop-pane,
+html.explore-mode .leaflet-tripLine-pane,
+html.explore-mode .leaflet-tripMark-pane { display:none; }
+#explorePane input[type="search"], .explore-filters select {
+  color:var(--text-main); background:var(--surface); border:1px solid var(--line);
+  border-radius:8px; padding:9px 10px; font:inherit; font-size:12px;
+}
+#explorePane > .btn { padding:8px 12px; min-height:34px; }
+#projectDetails { padding:12px; border:1px solid var(--line); border-radius:10px; background:var(--surface); }
+@media (max-width:700px) {
+  html.beta .side-tab { font-size:12px; padding:10px 6px; white-space:nowrap; gap:6px; }
+  html.beta .side-tab .ico { width:14px; height:14px; }
+}

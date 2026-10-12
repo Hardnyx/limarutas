@@ -1,0 +1,23 @@
+{
+  "source": "pmu_sit.geojson",
+  "initialFeatures": 106,
+  "firstDownloadBytes": 780568,
+  "repeatHttpStatus": 304,
+  "repeatDownloadedBytes": 0,
+  "unchangedPublication": true,
+  "pythonTestsPassed": 99,
+  "nodeTestsPassed": 8,
+  "acceptedCurrentPolicy": 808,
+  "historicalOtherPolicy": 11,
+  "authoringValidationFailures": 0,
+  "airportSharedReferences": {
+    "ida": 120,
+    "vuelta": 122
+  },
+  "sameQuilcaMovement": [
+    "AD-C-ida",
+    "AD-S-ida"
+  ],
+  "projectedPlannerRoutes": 0,
+  "projectedStationPoints": 0
+}

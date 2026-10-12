@@ -19,37 +19,498 @@
     "AN-19"
   ],
   "kind": "verified-terminal-access-only",
-  "directions": 18,
+  "directions": 22,
   "sourceStopsPreserved": true,
   "retainedBodyPreserved": true,
   "accesses": {
     "AN-01:ida": {
+      "terminal": "naranjal",
       "stationWay": 279142317,
+      "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5",
+      "references": [
+        {
+          "type": "street",
+          "edge": "274832071:3",
+          "start": 0.260771568,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:5",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:6",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:7",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:8",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:9",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:10",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:11",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:5",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:6",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:7",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:8",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:9",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:10",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:11",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:12",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1444451162:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832060:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832060:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396066:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396066:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396066:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396066:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396066:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396066:5",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396066:6",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396066:7",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396066:8",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396066:9",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396066:10",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396066:11",
+          "start": 0,
+          "end": 1
+        }
+      ],
+      "hash": "f1e2d6b1c6155a6d2f7fb6527c27e7a8640073f0500dc8e1b1be8b55ee235ab5",
       "range": [
         0,
         37
       ],
-      "hash": "f1e2d6b1c6155a6d2f7fb6527c27e7a8640073f0500dc8e1b1be8b55ee235ab5",
       "boardingPoint": {
         "kind": "osm-platform",
         "id": 14132552834,
         "coordinates": [
-          -77.0591212,
-          -11.9808701
+          -77.05912,
+          -11.98087
         ],
-        "name": "Terminal Naranjal - Tahuantinsuyo",
-        "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5"
+        "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5",
+        "role": "boarding",
+        "number": 2,
+        "routeCode": "AN-01",
+        "name": "Naranjal · Embarque 2 · Tahuantinsuyo",
+        "codeAuthority": {
+          "code": "AN-01",
+          "status": "officially_attested",
+          "official_current_code_confirmed": null,
+          "evidence": [
+            {
+              "source": "Guía de Usuario oficial del Metropolitano",
+              "url": "https://www.metropolitano.com.pe/wp-content/themes/metro/poupfiles/guia_de_usuario.pdf",
+              "note": "La guía institucional enumera las rutas alimentadoras norte con nomenclatura AN-xx."
+            }
+          ],
+          "note": "El código está documentado por el sistema oficial del Metropolitano. Para AN-16, AN-17 y AN-18 existe además evidencia ATU posterior que los usa expresamente."
+        },
+        "source": {
+          "file": "data/raw/metropolitano/naranjal_boarding_platforms.geojson",
+          "sha256": "9aeebec77e1bf7b3a63ec96963c59a0e033d1f763e1f8b2838b353bf6daf53f1",
+          "feature": "naranjal_an01"
+        }
       },
-      "sourceGeometryHash": "dc42e435e515627edfb6c29d6000dc69e4265998c688fb0bc561761069512d7f",
-      "retainedGeometryHash": "c502c1636acd8c86c087abbffc584414736a4773357e2065d781e2ee0e2aed6c"
+      "retainedGeometryHash": "c502c1636acd8c86c087abbffc584414736a4773357e2065d781e2ee0e2aed6c",
+      "sourceGeometryHash": "dc42e435e515627edfb6c29d6000dc69e4265998c688fb0bc561761069512d7f"
     },
     "AN-01:vuelta": {
+      "terminal": "naranjal",
       "stationWay": 279142317,
+      "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5",
+      "references": [
+        {
+          "type": "street",
+          "edge": "166391977:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "166391977:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "166391977:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330383367:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330383367:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330383367:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330383367:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330383367:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330383367:5",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330383367:6",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330383367:7",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330383367:8",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330383367:9",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330383367:10",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832036:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:5",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:6",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:7",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:8",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:9",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:10",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655080032:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655080032:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655080032:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655080032:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655080032:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:3",
+          "start": 0,
+          "end": 0.260771568
+        }
+      ],
+      "hash": "0a47a7410c9adf55e8180505a998df7bad7f261f1da51d1d70a1f7f6b92dd552",
       "range": [
         21,
         56
       ],
-      "hash": "0a47a7410c9adf55e8180505a998df7bad7f261f1da51d1d70a1f7f6b92dd552",
       "boardingPoint": {
         "kind": "osm-platform",
         "id": 14132552834,
@@ -60,36 +521,815 @@
         "name": "Terminal Naranjal - Tahuantinsuyo",
         "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5"
       },
-      "sourceGeometryHash": "9950b92e6de4e8cf8845be4732beb9ea538483bf59091f366649537110c84dd4",
-      "retainedGeometryHash": "9edbda03fd5de36858d2c678fc6eb9a8d433785eb24888c9cdfaf0afed80f6f4"
+      "retainedGeometryHash": "9edbda03fd5de36858d2c678fc6eb9a8d433785eb24888c9cdfaf0afed80f6f4",
+      "sourceGeometryHash": "9950b92e6de4e8cf8845be4732beb9ea538483bf59091f366649537110c84dd4"
     },
     "AN-05:ida": {
+      "terminal": "naranjal",
       "stationWay": 279142317,
+      "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5",
+      "references": [
+        {
+          "type": "street",
+          "edge": "274832071:3",
+          "start": 0.065456047,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:5",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:6",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:7",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:8",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:9",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:10",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:11",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:5",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:6",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:7",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:8",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:9",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:10",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:11",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:12",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1444451162:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832060:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832060:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396066:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396066:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396066:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396066:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396066:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396066:5",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396066:6",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396066:7",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396066:8",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396066:9",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396066:10",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396066:11",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "166391979:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "331561458:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "331561458:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "331561458:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "331561458:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "331561458:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "331561458:5",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "331561458:6",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "331561458:7",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "331561458:8",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "331561458:9",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "331561458:10",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "331561458:11",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "331561458:12",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "331561458:13",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "331561458:14",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "331561458:15",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "331561458:16",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "331561458:17",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "331561458:18",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "331561458:19",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "331561458:20",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "321058368:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "118300488:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "118300488:1",
+          "start": 0,
+          "end": 1
+        }
+      ],
+      "hash": "7038afbcda84463a5fa5ed9fa5964f60ac435e0a6297ac3924d65f7cdaa9f8d2",
       "range": [
         0,
         62
       ],
-      "hash": "7038afbcda84463a5fa5ed9fa5964f60ac435e0a6297ac3924d65f7cdaa9f8d2",
       "boardingPoint": {
         "kind": "osm-platform",
         "id": 14132552825,
         "coordinates": [
-          -77.0591961,
-          -11.9805447
+          -77.0592,
+          -11.98055
         ],
-        "name": "Terminal Naranjal - Payet",
-        "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5"
+        "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5",
+        "role": "boarding",
+        "number": 1,
+        "routeCode": "AN-05",
+        "name": "Naranjal · Embarque 1 · Payet",
+        "codeAuthority": {
+          "code": "AN-05",
+          "status": "officially_attested",
+          "official_current_code_confirmed": null,
+          "evidence": [
+            {
+              "source": "Guía de Usuario oficial del Metropolitano",
+              "url": "https://www.metropolitano.com.pe/wp-content/themes/metro/poupfiles/guia_de_usuario.pdf",
+              "note": "La guía institucional enumera las rutas alimentadoras norte con nomenclatura AN-xx."
+            }
+          ],
+          "note": "El código está documentado por el sistema oficial del Metropolitano. Para AN-16, AN-17 y AN-18 existe además evidencia ATU posterior que los usa expresamente."
+        },
+        "source": {
+          "file": "data/raw/metropolitano/naranjal_boarding_platforms.geojson",
+          "sha256": "9aeebec77e1bf7b3a63ec96963c59a0e033d1f763e1f8b2838b353bf6daf53f1",
+          "feature": "naranjal_an05"
+        }
       },
-      "sourceGeometryHash": "c336c2b6d205860b608497049f77df1cee545cb41b5eb7dd2f4ad8d238dfedb5",
-      "retainedGeometryHash": "e27a0f9fbe8116181a6478830554dc36a4e59bcb3ed4d58c106f49e5eaf23dcd"
+      "retainedGeometryHash": "e27a0f9fbe8116181a6478830554dc36a4e59bcb3ed4d58c106f49e5eaf23dcd",
+      "sourceGeometryHash": "c336c2b6d205860b608497049f77df1cee545cb41b5eb7dd2f4ad8d238dfedb5"
     },
     "AN-05:vuelta": {
+      "terminal": "naranjal",
       "stationWay": 279142317,
+      "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5",
+      "references": [
+        {
+          "type": "street",
+          "edge": "330383563:6",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330383563:7",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1341993315:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1341993315:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1341993315:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1341993315:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1341993315:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1341993315:5",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1341993315:6",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1341993315:7",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1341993315:8",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1341993314:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "118300500:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "118300500:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "118300500:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "118300500:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "118300500:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "118300500:5",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "118300500:6",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "118300500:7",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "118300500:8",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "118300500:9",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "118300500:10",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "118300500:11",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "118300500:12",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "118300500:13",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "118300500:14",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "118300500:15",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "166391977:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "166391977:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "166391977:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330383367:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330383367:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330383367:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330383367:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330383367:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330383367:5",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330383367:6",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330383367:7",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330383367:8",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330383367:9",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330383367:10",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832036:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:5",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:6",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:7",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:8",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:9",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:10",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655080032:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655080032:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655080032:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655080032:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655080032:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:3",
+          "start": 0,
+          "end": 0.065456047
+        }
+      ],
+      "hash": "11ffbfc03776d2388e7aaab14afafc52d2b0911890dbee6bc5cad7ee91618d8f",
       "range": [
         17,
         80
       ],
-      "hash": "11ffbfc03776d2388e7aaab14afafc52d2b0911890dbee6bc5cad7ee91618d8f",
       "boardingPoint": {
         "kind": "osm-platform",
         "id": 14132552825,
@@ -100,36 +1340,743 @@
         "name": "Terminal Naranjal - Payet",
         "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5"
       },
-      "sourceGeometryHash": "46c1d8ea611628a4b925308ac6b23e9fe19e8963cf2e017799c89458227cdb57",
-      "retainedGeometryHash": "f7e6a86a096351380128429ff1549e4a9eae85016be132f30b6d42ac57b1e765"
+      "retainedGeometryHash": "f7e6a86a096351380128429ff1549e4a9eae85016be132f30b6d42ac57b1e765",
+      "sourceGeometryHash": "46c1d8ea611628a4b925308ac6b23e9fe19e8963cf2e017799c89458227cdb57"
     },
     "AN-06:ida": {
+      "terminal": "naranjal",
       "stationWay": 279142317,
+      "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5",
+      "references": [
+        {
+          "type": "street",
+          "edge": "655101805:8",
+          "start": 0.345735669,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:9",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:10",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:11",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:12",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1444451162:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101804:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101804:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "699929403:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "699929403:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274831999:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1418827761:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "325325826:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "325325826:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "325325826:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "325325826:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "325325826:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "439913587:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "439913587:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "439913587:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1418827760:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1418827760:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1418827760:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1418827760:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1418827760:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1418827760:5",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330384466:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330384466:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330384466:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330384466:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "4828731:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "4828731:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "4828731:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1418827754:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1418827754:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "4832881:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "4832881:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "4832881:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "4832881:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "4832881:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "4832881:5",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "4832881:6",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "4832881:7",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "4832881:8",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "4832881:9",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "4832881:10",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1080804073:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1080804073:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1080804073:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396113:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396113:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396113:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396113:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396113:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396137:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396137:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396137:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396137:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396137:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396137:5",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396137:6",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396137:7",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396137:8",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396137:9",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396137:10",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396137:11",
+          "start": 0,
+          "end": 1
+        }
+      ],
+      "hash": "de307d33421354bcd7e8599b5deebaec45972a976e2702256af640e0ef9f4963",
       "range": [
         0,
         66
       ],
-      "hash": "de307d33421354bcd7e8599b5deebaec45972a976e2702256af640e0ef9f4963",
       "boardingPoint": {
         "kind": "osm-platform",
         "id": 14132552838,
         "coordinates": [
-          -77.0589212,
-          -11.9809602
+          -77.05892,
+          -11.98096
         ],
-        "name": "Terminal Naranjal - Puno",
-        "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5"
+        "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5",
+        "role": "boarding",
+        "number": 11,
+        "routeCode": "AN-06",
+        "name": "Naranjal · Embarque 11 · Puno",
+        "codeAuthority": {
+          "code": "AN-06",
+          "status": "officially_attested",
+          "official_current_code_confirmed": null,
+          "evidence": [
+            {
+              "source": "Guía de Usuario oficial del Metropolitano",
+              "url": "https://www.metropolitano.com.pe/wp-content/themes/metro/poupfiles/guia_de_usuario.pdf",
+              "note": "La guía institucional enumera las rutas alimentadoras norte con nomenclatura AN-xx."
+            }
+          ],
+          "note": "El código está documentado por el sistema oficial del Metropolitano. Para AN-16, AN-17 y AN-18 existe además evidencia ATU posterior que los usa expresamente."
+        },
+        "source": {
+          "file": "data/raw/metropolitano/naranjal_boarding_platforms.geojson",
+          "sha256": "9aeebec77e1bf7b3a63ec96963c59a0e033d1f763e1f8b2838b353bf6daf53f1",
+          "feature": "naranjal_an06"
+        }
       },
-      "sourceGeometryHash": "060c9975ec825ecd319663ce29b191821f989bef9125c42b0a5c9aa93412546c",
-      "retainedGeometryHash": "df3b63e83b26ee2ca77b1349cc6de1b9ef9b3c84c8fa9218dbab3265a2359a5f"
+      "retainedGeometryHash": "df3b63e83b26ee2ca77b1349cc6de1b9ef9b3c84c8fa9218dbab3265a2359a5f",
+      "sourceGeometryHash": "060c9975ec825ecd319663ce29b191821f989bef9125c42b0a5c9aa93412546c"
     },
     "AN-06:vuelta": {
+      "terminal": "naranjal",
       "stationWay": 279142317,
+      "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5",
+      "references": [
+        {
+          "type": "street",
+          "edge": "439890383:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396061:9",
+          "start": 1,
+          "end": 0
+        },
+        {
+          "type": "street",
+          "edge": "114396080:4",
+          "start": 1,
+          "end": 0
+        },
+        {
+          "type": "street",
+          "edge": "114396080:3",
+          "start": 1,
+          "end": 0
+        },
+        {
+          "type": "street",
+          "edge": "114396080:2",
+          "start": 1,
+          "end": 0
+        },
+        {
+          "type": "street",
+          "edge": "114396080:1",
+          "start": 1,
+          "end": 0
+        },
+        {
+          "type": "street",
+          "edge": "114396080:0",
+          "start": 1,
+          "end": 0
+        },
+        {
+          "type": "street",
+          "edge": "330383367:9",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330383367:10",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832036:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:5",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:6",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:7",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:8",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:9",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:10",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655080032:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655080032:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655080032:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655080032:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655080032:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:5",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:6",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:7",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:8",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:9",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:10",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:11",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:5",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:6",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:7",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:8",
+          "start": 0,
+          "end": 0.345735669
+        }
+      ],
+      "hash": "aedd22ee8898a25765fc7d1db58f231329965c3c5d8d2ff5ad8bd0d2bab73471",
       "range": [
         32,
         79
       ],
-      "hash": "aedd22ee8898a25765fc7d1db58f231329965c3c5d8d2ff5ad8bd0d2bab73471",
       "boardingPoint": {
         "kind": "osm-platform",
         "id": 14132552838,
@@ -140,36 +2087,743 @@
         "name": "Terminal Naranjal - Puno",
         "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5"
       },
-      "sourceGeometryHash": "be1ce2742944b30ccce0abafbef362d5fede3f684dd36cc8874fc59e587df378",
-      "retainedGeometryHash": "767aefa25337c586274058a5c5b70babb370605cfa4e0f01e4f830b3a47176e2"
+      "retainedGeometryHash": "767aefa25337c586274058a5c5b70babb370605cfa4e0f01e4f830b3a47176e2",
+      "sourceGeometryHash": "be1ce2742944b30ccce0abafbef362d5fede3f684dd36cc8874fc59e587df378"
     },
     "AN-07:ida": {
+      "terminal": "naranjal",
       "stationWay": 279142317,
+      "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5",
+      "references": [
+        {
+          "type": "street",
+          "edge": "274832071:3",
+          "start": 0.694928623,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:5",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:6",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:7",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:8",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:9",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:10",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:11",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:5",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:6",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:7",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:8",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:9",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:10",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:11",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:12",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1444451162:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101804:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101804:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "699929403:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "699929403:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274831999:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1418827761:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "325325826:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "325325826:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "325325826:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "325325826:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "325325826:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "439913587:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "439913587:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "439913587:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1418827760:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1418827760:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1418827760:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1418827760:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1418827760:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1418827760:5",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330384466:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330384466:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330384466:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330384466:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "4828731:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "4828731:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "4828731:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1418827754:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1418827754:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "4832881:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "4832881:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "4832881:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "4832881:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "4832881:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "4832881:5",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "4832881:6",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "4832881:7",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "4832881:8",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "4832881:9",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "4832881:10",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1080804073:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1080804073:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1080804073:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396113:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396113:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396113:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396113:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396113:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396137:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396137:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396137:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396137:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396137:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396137:5",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396137:6",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396137:7",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396137:8",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396137:9",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396137:10",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396137:11",
+          "start": 0,
+          "end": 1
+        }
+      ],
+      "hash": "6466a6aac47aba746ae6d2b87df6e0244d0a13d574a5540699a0e1779645164b",
       "range": [
         0,
         83
       ],
-      "hash": "6466a6aac47aba746ae6d2b87df6e0244d0a13d574a5540699a0e1779645164b",
       "boardingPoint": {
         "kind": "osm-platform",
         "id": 14132552833,
         "coordinates": [
-          -77.0589624,
-          -11.9815952
+          -77.05896,
+          -11.9816
         ],
-        "name": "Terminal Naranjal - Belaunde",
-        "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5"
+        "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5",
+        "role": "boarding",
+        "number": 4,
+        "routeCode": "AN-07",
+        "name": "Naranjal · Embarque 4 · Belaúnde",
+        "codeAuthority": {
+          "code": "AN-07",
+          "status": "officially_attested",
+          "official_current_code_confirmed": null,
+          "evidence": [
+            {
+              "source": "Guía de Usuario oficial del Metropolitano",
+              "url": "https://www.metropolitano.com.pe/wp-content/themes/metro/poupfiles/guia_de_usuario.pdf",
+              "note": "La guía institucional enumera las rutas alimentadoras norte con nomenclatura AN-xx."
+            }
+          ],
+          "note": "El código está documentado por el sistema oficial del Metropolitano. Para AN-16, AN-17 y AN-18 existe además evidencia ATU posterior que los usa expresamente."
+        },
+        "source": {
+          "file": "data/raw/metropolitano/naranjal_boarding_platforms.geojson",
+          "sha256": "9aeebec77e1bf7b3a63ec96963c59a0e033d1f763e1f8b2838b353bf6daf53f1",
+          "feature": "naranjal_an07"
+        }
       },
-      "sourceGeometryHash": "1a952ce85dddcb88aa8370aafb16f21f97c4e22368963ab00e5d66ebca53bdb6",
-      "retainedGeometryHash": "91bf8ee82c004c78a5a0b08a526b447b4ca7c65b8b3b1759b825acb41a978535"
+      "retainedGeometryHash": "91bf8ee82c004c78a5a0b08a526b447b4ca7c65b8b3b1759b825acb41a978535",
+      "sourceGeometryHash": "1a952ce85dddcb88aa8370aafb16f21f97c4e22368963ab00e5d66ebca53bdb6"
     },
     "AN-07:vuelta": {
+      "terminal": "naranjal",
       "stationWay": 279142317,
+      "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5",
+      "references": [
+        {
+          "type": "street",
+          "edge": "439890383:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396061:9",
+          "start": 1,
+          "end": 0
+        },
+        {
+          "type": "street",
+          "edge": "114396080:4",
+          "start": 1,
+          "end": 0
+        },
+        {
+          "type": "street",
+          "edge": "114396080:3",
+          "start": 1,
+          "end": 0
+        },
+        {
+          "type": "street",
+          "edge": "114396080:2",
+          "start": 1,
+          "end": 0
+        },
+        {
+          "type": "street",
+          "edge": "114396080:1",
+          "start": 1,
+          "end": 0
+        },
+        {
+          "type": "street",
+          "edge": "114396080:0",
+          "start": 1,
+          "end": 0
+        },
+        {
+          "type": "street",
+          "edge": "330383367:9",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330383367:10",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832036:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:5",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:6",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:7",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:8",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:9",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:10",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655080032:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655080032:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655080032:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655080032:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655080032:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:3",
+          "start": 0,
+          "end": 0.694928623
+        }
+      ],
+      "hash": "0d5c665b895447382a8a2a414b2c0acbd375d09d4b28a44c772c80d0a30e2dad",
       "range": [
         65,
         95
       ],
-      "hash": "0d5c665b895447382a8a2a414b2c0acbd375d09d4b28a44c772c80d0a30e2dad",
       "boardingPoint": {
         "kind": "osm-platform",
         "id": 14132552833,
@@ -180,36 +2834,749 @@
         "name": "Terminal Naranjal - Belaunde",
         "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5"
       },
-      "sourceGeometryHash": "f89eee8aa18de3336e41bcab1a15802b80ab14d6862380cfa0faf1b07ab67c9c",
-      "retainedGeometryHash": "db9ed3156fea4c2937657ec63a620138d119ba429a9b3d1bfdc5981e3a2c3324"
+      "retainedGeometryHash": "db9ed3156fea4c2937657ec63a620138d119ba429a9b3d1bfdc5981e3a2c3324",
+      "sourceGeometryHash": "f89eee8aa18de3336e41bcab1a15802b80ab14d6862380cfa0faf1b07ab67c9c"
     },
     "AN-08:ida": {
+      "terminal": "naranjal",
       "stationWay": 279142317,
+      "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5",
+      "references": [
+        {
+          "type": "street",
+          "edge": "655101805:7",
+          "start": 0.89549976,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:8",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:9",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:10",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:11",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:12",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1444451162:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101804:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101804:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "699929403:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "699929403:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274831999:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1418827761:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "325325826:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "325325826:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "325325826:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "325325826:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "325325826:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "439913587:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "439913587:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "439913587:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1418827760:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1418827760:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1418827760:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1418827760:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1418827760:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1418827760:5",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330384466:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330384466:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330384466:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330384466:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "4828731:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "4828731:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "4828731:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1418827754:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1418827754:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "4832881:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "4832881:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "4832881:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "4832881:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "4832881:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "4832881:5",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "4832881:6",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "4832881:7",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "4832881:8",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "4832881:9",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "4832881:10",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1080804073:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1080804073:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1080804073:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396113:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396113:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396113:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396113:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396113:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396137:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396137:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396137:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396137:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396137:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396137:5",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396137:6",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396137:7",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396137:8",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396137:9",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396137:10",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396137:11",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "436609193:16",
+          "start": 0,
+          "end": 1
+        }
+      ],
+      "hash": "659fd28f96f571e162be379e69821c28566a85771022186c4f722b881d1620eb",
       "range": [
         0,
         68
       ],
-      "hash": "659fd28f96f571e162be379e69821c28566a85771022186c4f722b881d1620eb",
       "boardingPoint": {
         "kind": "osm-platform",
         "id": 14132552839,
         "coordinates": [
-          -77.0588269,
-          -11.9813297
+          -77.05883,
+          -11.98133
         ],
-        "name": "Terminal Naranjal - Milagros de Jesús",
-        "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5"
+        "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5",
+        "role": "boarding",
+        "number": 12,
+        "routeCode": "AN-08",
+        "name": "Naranjal · Embarque 12 · Milagros de Jesús",
+        "codeAuthority": {
+          "code": "AN-08",
+          "status": "officially_attested",
+          "official_current_code_confirmed": null,
+          "evidence": [
+            {
+              "source": "Guía de Usuario oficial del Metropolitano",
+              "url": "https://www.metropolitano.com.pe/wp-content/themes/metro/poupfiles/guia_de_usuario.pdf",
+              "note": "La guía institucional enumera las rutas alimentadoras norte con nomenclatura AN-xx."
+            }
+          ],
+          "note": "El código está documentado por el sistema oficial del Metropolitano. Para AN-16, AN-17 y AN-18 existe además evidencia ATU posterior que los usa expresamente."
+        },
+        "source": {
+          "file": "data/raw/metropolitano/naranjal_boarding_platforms.geojson",
+          "sha256": "9aeebec77e1bf7b3a63ec96963c59a0e033d1f763e1f8b2838b353bf6daf53f1",
+          "feature": "naranjal_an08"
+        }
       },
-      "sourceGeometryHash": "14d6f52383699649be2d5af989406a6c6b91178e706a78e1b876f9f8b4c28de6",
-      "retainedGeometryHash": "383590d17ba015b2935bb85f35067e8eea844458879e16872fea0ce7e3bdee61"
+      "retainedGeometryHash": "383590d17ba015b2935bb85f35067e8eea844458879e16872fea0ce7e3bdee61",
+      "sourceGeometryHash": "14d6f52383699649be2d5af989406a6c6b91178e706a78e1b876f9f8b4c28de6"
     },
     "AN-08:vuelta": {
+      "terminal": "naranjal",
       "stationWay": 279142317,
+      "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5",
+      "references": [
+        {
+          "type": "street",
+          "edge": "439890383:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396061:9",
+          "start": 1,
+          "end": 0
+        },
+        {
+          "type": "street",
+          "edge": "114396080:4",
+          "start": 1,
+          "end": 0
+        },
+        {
+          "type": "street",
+          "edge": "114396080:3",
+          "start": 1,
+          "end": 0
+        },
+        {
+          "type": "street",
+          "edge": "114396080:2",
+          "start": 1,
+          "end": 0
+        },
+        {
+          "type": "street",
+          "edge": "114396080:1",
+          "start": 1,
+          "end": 0
+        },
+        {
+          "type": "street",
+          "edge": "114396080:0",
+          "start": 1,
+          "end": 0
+        },
+        {
+          "type": "street",
+          "edge": "330383367:9",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330383367:10",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832036:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:5",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:6",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:7",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:8",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:9",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:10",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655080032:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655080032:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655080032:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655080032:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655080032:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:5",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:6",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:7",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:8",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:9",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:10",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:11",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:5",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:6",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:7",
+          "start": 0,
+          "end": 0.89549976
+        }
+      ],
+      "hash": "c7b0a70e276303d3d7a054cd09e79368b1b3af0064fd19f4b7052b9bc14ae9a0",
       "range": [
         99,
         145
       ],
-      "hash": "c7b0a70e276303d3d7a054cd09e79368b1b3af0064fd19f4b7052b9bc14ae9a0",
       "boardingPoint": {
         "kind": "osm-platform",
         "id": 14132552839,
@@ -220,36 +3587,395 @@
         "name": "Terminal Naranjal - Milagros de Jesús",
         "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5"
       },
-      "sourceGeometryHash": "270753f8e12cc57210e752ad616a8c6a46e5c8d9a63100d7c15f0da11a23bba8",
-      "retainedGeometryHash": "af8373f153db1ef388f26b47cfcee5bd48bfdf3be16b0095f497badb929d03fe"
+      "retainedGeometryHash": "af8373f153db1ef388f26b47cfcee5bd48bfdf3be16b0095f497badb929d03fe",
+      "sourceGeometryHash": "270753f8e12cc57210e752ad616a8c6a46e5c8d9a63100d7c15f0da11a23bba8"
     },
     "AN-12:ida": {
+      "terminal": "naranjal",
       "stationWay": 279142317,
+      "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5",
+      "references": [
+        {
+          "type": "street",
+          "edge": "274832071:4",
+          "start": 0.040244578,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:5",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:6",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:7",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:8",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:9",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:10",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:11",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:5",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:6",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:7",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:8",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:9",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:10",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:11",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:12",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1444451162:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101804:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101804:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "699929403:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "699929403:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274831999:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1418827761:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "325325826:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "325325826:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "325325826:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "325325826:3",
+          "start": 0,
+          "end": 1
+        }
+      ],
+      "hash": "98e0065101b52cf1fcb10e779b22c00f794be04d8c2d28828b710dd120c74e92",
       "range": [
         0,
         32
       ],
-      "hash": "98e0065101b52cf1fcb10e779b22c00f794be04d8c2d28828b710dd120c74e92",
       "boardingPoint": {
         "kind": "osm-platform",
         "id": 14132552835,
         "coordinates": [
-          -77.0588466,
-          -11.9821028
+          -77.05885,
+          -11.9821
         ],
-        "name": "Terminal Naranjal - Puente Piedra",
-        "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5"
+        "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5",
+        "role": "boarding",
+        "number": 8,
+        "routeCode": "AN-12",
+        "name": "Naranjal · Embarque 8 · Puente Piedra",
+        "codeAuthority": {
+          "code": "AN-12",
+          "status": "officially_attested",
+          "official_current_code_confirmed": null,
+          "evidence": [
+            {
+              "source": "Guía de Usuario oficial del Metropolitano",
+              "url": "https://www.metropolitano.com.pe/wp-content/themes/metro/poupfiles/guia_de_usuario.pdf",
+              "note": "La guía institucional enumera las rutas alimentadoras norte con nomenclatura AN-xx."
+            }
+          ],
+          "note": "El código está documentado por el sistema oficial del Metropolitano. Para AN-16, AN-17 y AN-18 existe además evidencia ATU posterior que los usa expresamente."
+        },
+        "source": {
+          "file": "data/raw/metropolitano/naranjal_boarding_platforms.geojson",
+          "sha256": "9aeebec77e1bf7b3a63ec96963c59a0e033d1f763e1f8b2838b353bf6daf53f1",
+          "feature": "naranjal_an12"
+        }
       },
-      "sourceGeometryHash": "4331ee081ea4029b4fa25f11307795d2fe83b857ff688eac5211c51a921fa14c",
-      "retainedGeometryHash": "f7448e6c5235bd327edfe21d714da8e5962c5d82e1e571d2e073924a8f6e087b"
+      "retainedGeometryHash": "f7448e6c5235bd327edfe21d714da8e5962c5d82e1e571d2e073924a8f6e087b",
+      "sourceGeometryHash": "4331ee081ea4029b4fa25f11307795d2fe83b857ff688eac5211c51a921fa14c"
     },
     "AN-12:vuelta": {
+      "terminal": "naranjal",
       "stationWay": 279142317,
+      "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5",
+      "references": [
+        {
+          "type": "street",
+          "edge": "114396103:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396103:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396103:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396103:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "314325755:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "314325755:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "314325755:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274831994:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274831994:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274831994:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274831994:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1456157545:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1456157545:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655080032:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655080032:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655080032:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655080032:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655080032:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:4",
+          "start": 0,
+          "end": 0.040244578
+        }
+      ],
+      "hash": "4d71fe59ec955a1fafb54c39d14ea383412e8cb0663573c923cf6405e182777b",
       "range": [
         80,
         103
       ],
-      "hash": "4d71fe59ec955a1fafb54c39d14ea383412e8cb0663573c923cf6405e182777b",
       "boardingPoint": {
         "kind": "osm-platform",
         "id": 14132552835,
@@ -260,36 +3986,611 @@
         "name": "Terminal Naranjal - Puente Piedra",
         "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5"
       },
-      "sourceGeometryHash": "c8cf9066064984409ff19a753b46d080a2cc997821e0f39f1b0c6e8ce30232e3",
-      "retainedGeometryHash": "ca208744ccecde1a25724e61227ea67bcad9cd04a0c69cdeea3652f1d81d05d9"
+      "retainedGeometryHash": "ca208744ccecde1a25724e61227ea67bcad9cd04a0c69cdeea3652f1d81d05d9",
+      "sourceGeometryHash": "c8cf9066064984409ff19a753b46d080a2cc997821e0f39f1b0c6e8ce30232e3"
     },
     "AN-13:ida": {
+      "terminal": "naranjal",
       "stationWay": 279142317,
+      "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5",
+      "references": [
+        {
+          "type": "street",
+          "edge": "655101805:8",
+          "start": 0.718481404,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:9",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:10",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:11",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:12",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1444451162:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101804:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101804:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "699929403:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "699929403:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274831999:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1418827761:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "325325826:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "325325826:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "325325826:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "325325826:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "325325826:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "439913587:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "439913587:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "439913587:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1418827760:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1418827760:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1418827760:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1418827760:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1418827760:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1418827760:5",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330384466:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330384466:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330384466:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330384466:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "4828731:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "4828731:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "4828731:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1418827755:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1418827755:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1418827755:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1418827755:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1418827755:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1160268413:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1418827757:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1418827757:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1418827753:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1227894332:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1227894332:1",
+          "start": 0,
+          "end": 1
+        }
+      ],
+      "hash": "81738f468cb5782a2bea587498603b7b990346bbb114ce56192766983743d1bf",
       "range": [
         0,
         44
       ],
-      "hash": "81738f468cb5782a2bea587498603b7b990346bbb114ce56192766983743d1bf",
       "boardingPoint": {
         "kind": "osm-platform",
         "id": 14132552837,
         "coordinates": [
-          -77.0589905,
-          -11.9806517
+          -77.05899,
+          -11.98065
         ],
-        "name": "Terminal Naranjal - La Ensenada",
-        "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5"
+        "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5",
+        "role": "boarding",
+        "number": 10,
+        "routeCode": "AN-13",
+        "name": "Naranjal · Embarque 10 · La Ensenada",
+        "codeAuthority": {
+          "code": "AN-13",
+          "status": "officially_attested",
+          "official_current_code_confirmed": null,
+          "evidence": [
+            {
+              "source": "Guía de Usuario oficial del Metropolitano",
+              "url": "https://www.metropolitano.com.pe/wp-content/themes/metro/poupfiles/guia_de_usuario.pdf",
+              "note": "La guía institucional enumera las rutas alimentadoras norte con nomenclatura AN-xx."
+            }
+          ],
+          "note": "El código está documentado por el sistema oficial del Metropolitano. Para AN-16, AN-17 y AN-18 existe además evidencia ATU posterior que los usa expresamente."
+        },
+        "source": {
+          "file": "data/raw/metropolitano/naranjal_boarding_platforms.geojson",
+          "sha256": "9aeebec77e1bf7b3a63ec96963c59a0e033d1f763e1f8b2838b353bf6daf53f1",
+          "feature": "naranjal_an13"
+        }
       },
-      "sourceGeometryHash": "d1746569fdb914ed963a1aab140c37d026493cfab7bcc4f5b2c6feb25ee9ffc8",
-      "retainedGeometryHash": "f852309d5b23cdbb2e6d1cebdde7feed8fee8429925d70f155dbaf184dcf4a63"
+      "retainedGeometryHash": "f852309d5b23cdbb2e6d1cebdde7feed8fee8429925d70f155dbaf184dcf4a63",
+      "sourceGeometryHash": "d1746569fdb914ed963a1aab140c37d026493cfab7bcc4f5b2c6feb25ee9ffc8"
     },
     "AN-13:vuelta": {
+      "terminal": "naranjal",
       "stationWay": 279142317,
+      "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5",
+      "references": [
+        {
+          "type": "street",
+          "edge": "439890383:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396061:9",
+          "start": 1,
+          "end": 0
+        },
+        {
+          "type": "street",
+          "edge": "114396080:4",
+          "start": 1,
+          "end": 0
+        },
+        {
+          "type": "street",
+          "edge": "114396080:3",
+          "start": 1,
+          "end": 0
+        },
+        {
+          "type": "street",
+          "edge": "114396080:2",
+          "start": 1,
+          "end": 0
+        },
+        {
+          "type": "street",
+          "edge": "114396080:1",
+          "start": 1,
+          "end": 0
+        },
+        {
+          "type": "street",
+          "edge": "114396080:0",
+          "start": 1,
+          "end": 0
+        },
+        {
+          "type": "street",
+          "edge": "330383367:9",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330383367:10",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832036:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:5",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:6",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:7",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:8",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:9",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832053:10",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655080032:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655080032:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655080032:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655080032:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655080032:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:5",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:6",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:7",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:8",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:9",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:10",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:11",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:5",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:6",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:7",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:8",
+          "start": 0,
+          "end": 0.718481404
+        }
+      ],
+      "hash": "0fa7adaf296cae9f5e70c8dfeed480374e7b5305ee5535f4abd30963500c74d5",
       "range": [
         142,
         189
       ],
-      "hash": "0fa7adaf296cae9f5e70c8dfeed480374e7b5305ee5535f4abd30963500c74d5",
       "boardingPoint": {
         "kind": "osm-platform",
         "id": 14132552837,
@@ -300,36 +4601,395 @@
         "name": "Terminal Naranjal - La Ensenada",
         "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5"
       },
-      "sourceGeometryHash": "20abd6001d701bf0a1b13f151cf67663eb390ba142f28fa4ad19bbce9c9a7229",
-      "retainedGeometryHash": "ee40100031a6b1b83703ee881111823d143e7f7cc50622a8d3c6e3322798f941"
+      "retainedGeometryHash": "ee40100031a6b1b83703ee881111823d143e7f7cc50622a8d3c6e3322798f941",
+      "sourceGeometryHash": "20abd6001d701bf0a1b13f151cf67663eb390ba142f28fa4ad19bbce9c9a7229"
     },
     "AN-14:ida": {
+      "terminal": "naranjal",
       "stationWay": 279142317,
+      "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5",
+      "references": [
+        {
+          "type": "street",
+          "edge": "274832071:3",
+          "start": 0.457465009,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:5",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:6",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:7",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:8",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:9",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:10",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:11",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:5",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:6",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:7",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:8",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:9",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:10",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:11",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:12",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1444451162:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101804:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101804:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "699929403:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "699929403:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274831999:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1418827761:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "325325826:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "325325826:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "325325826:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "325325826:3",
+          "start": 0,
+          "end": 1
+        }
+      ],
+      "hash": "70b4f36785b22d460e1f675170c2593a5472b21a244000a682c9fce7a9681efe",
       "range": [
         0,
         33
       ],
-      "hash": "70b4f36785b22d460e1f675170c2593a5472b21a244000a682c9fce7a9681efe",
       "boardingPoint": {
         "kind": "osm-platform",
         "id": 14132552836,
         "coordinates": [
-          -77.0590501,
-          -11.9811988
+          -77.05905,
+          -11.9812
         ],
-        "name": "Terminal Naranjal - Bertello",
-        "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5"
+        "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5",
+        "role": "boarding",
+        "number": 3,
+        "routeCode": "AN-14",
+        "name": "Naranjal · Embarque 3 · Bertello",
+        "codeAuthority": {
+          "code": "AN-14",
+          "status": "officially_attested",
+          "official_current_code_confirmed": null,
+          "evidence": [
+            {
+              "source": "Guía de Usuario oficial del Metropolitano",
+              "url": "https://www.metropolitano.com.pe/wp-content/themes/metro/poupfiles/guia_de_usuario.pdf",
+              "note": "La guía institucional enumera las rutas alimentadoras norte con nomenclatura AN-xx."
+            }
+          ],
+          "note": "El código está documentado por el sistema oficial del Metropolitano. Para AN-16, AN-17 y AN-18 existe además evidencia ATU posterior que los usa expresamente."
+        },
+        "source": {
+          "file": "data/raw/metropolitano/naranjal_boarding_platforms.geojson",
+          "sha256": "9aeebec77e1bf7b3a63ec96963c59a0e033d1f763e1f8b2838b353bf6daf53f1",
+          "feature": "naranjal_an14"
+        }
       },
-      "sourceGeometryHash": "a295f7aa5e0afc4597eff815e258c0d10e2530146db363d235a65544d389b517",
-      "retainedGeometryHash": "db38b21bdff1c290a65ca730eb88ba44b38fa18c4038698ab48977fb62f6e7e6"
+      "retainedGeometryHash": "db38b21bdff1c290a65ca730eb88ba44b38fa18c4038698ab48977fb62f6e7e6",
+      "sourceGeometryHash": "a295f7aa5e0afc4597eff815e258c0d10e2530146db363d235a65544d389b517"
     },
     "AN-14:vuelta": {
+      "terminal": "naranjal",
       "stationWay": 279142317,
+      "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5",
+      "references": [
+        {
+          "type": "street",
+          "edge": "114396103:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396103:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396103:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396103:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "314325755:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "314325755:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "314325755:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274831994:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274831994:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274831994:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274831994:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1456157545:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1456157545:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655080032:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655080032:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655080032:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655080032:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655080032:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:3",
+          "start": 0,
+          "end": 0.457465009
+        }
+      ],
+      "hash": "199b1982944f548207845c0916b6bf3212fac30554fd3230c7fed52e56de69ee",
       "range": [
         47,
         69
       ],
-      "hash": "199b1982944f548207845c0916b6bf3212fac30554fd3230c7fed52e56de69ee",
       "boardingPoint": {
         "kind": "osm-platform",
         "id": 14132552836,
@@ -340,36 +5000,607 @@
         "name": "Terminal Naranjal - Bertello",
         "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5"
       },
-      "sourceGeometryHash": "7a975b00c4abe6c706332643a3a91da5a6cb1633af42c286dcb41e90e8ef5f37",
-      "retainedGeometryHash": "0ac9954b577b5b5ee57b254a5541c8b3f5be7260ac40eb45738c55925e905b7d"
+      "retainedGeometryHash": "0ac9954b577b5b5ee57b254a5541c8b3f5be7260ac40eb45738c55925e905b7d",
+      "sourceGeometryHash": "7a975b00c4abe6c706332643a3a91da5a6cb1633af42c286dcb41e90e8ef5f37"
     },
     "AN-18:ida": {
+      "terminal": "naranjal",
       "stationWay": 279142317,
+      "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5",
+      "references": [
+        {
+          "type": "street",
+          "edge": "655101805:7",
+          "start": 0.338460221,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:8",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:9",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:10",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:11",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:12",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1444451162:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832060:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832060:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396066:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396066:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396066:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396066:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396066:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1391831698:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "118276226:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1157053357:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1157053357:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1157053357:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "118276205:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "118276205:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "118276205:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "118276366:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "118276366:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "118276346:1",
+          "start": 1,
+          "end": 0
+        },
+        {
+          "type": "street",
+          "edge": "118276346:0",
+          "start": 1,
+          "end": 0
+        },
+        {
+          "type": "street",
+          "edge": "118276304:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "118276304:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "118276304:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "118276304:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "118276304:5",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "118276304:6",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "25113618:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "25113618:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "278932000:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "278932000:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "278932000:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "278932000:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "278932000:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "699951773:0",
+          "start": 0,
+          "end": 1
+        }
+      ],
+      "hash": "9d1b92e096cce11f01370bbb316559d8ea22eb652a8fbddb96cc2a9ffddf8bc8",
       "range": [
         0,
         40
       ],
-      "hash": "9d1b92e096cce11f01370bbb316559d8ea22eb652a8fbddb96cc2a9ffddf8bc8",
       "boardingPoint": {
         "kind": "osm-platform",
         "id": 14132552840,
         "coordinates": [
-          -77.0587165,
-          -11.9817855
+          -77.05872,
+          -11.98179
         ],
-        "name": "Terminal Naranjal - Alimentador Naranjal",
-        "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5"
+        "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5",
+        "role": "boarding",
+        "number": 6,
+        "routeCode": "AN-02",
+        "name": "Naranjal · Embarque 6 · Naranjal",
+        "codeAuthority": {
+          "code": "AN-02",
+          "status": "current_operational_code_not_officially_attested",
+          "official_current_code_confirmed": false,
+          "historical_official_code_note": "AN-02 sí fue un código oficial histórico, pero correspondía a Tungasuca. Tungasuca dejó de operar con la reorganización de la ampliación norte.",
+          "current_route_official_name": "Naranjal",
+          "official_name_source": "https://www.gob.pe/institucion/atu/noticias/1023801-metropolitano-implementacion-de-dos-nuevas-rutas-alimentadoras-en-lima-norte-beneficiara-a-mas-de-15-000-usuarios-al-dia",
+          "current_code_evidence": [
+            {
+              "source": "Moovit",
+              "url": "https://moovitapp.com/index/es-419/transporte_p%C3%BAblico-line-an02-Lima-1102-1110949-247229337-0",
+              "note": "Identifica actualmente la ruta Naranjal como AN02."
+            },
+            {
+              "source": "WikiRoutes",
+              "url": "https://wikiroutes.info/es/lima?routes=44812",
+              "note": "Identifica actualmente la ruta Naranjal como AN02."
+            }
+          ],
+          "note": "ATU confirma oficialmente la existencia y nombre de la nueva ruta alimentadora Naranjal desde 2024, pero no se encontró una publicación oficial actual que le asigne explícitamente el código AN-02. Por ello AN-02 se conserva como código operacional ampliamente utilizado, no como código oficial actual confirmado."
+        },
+        "source": {
+          "file": "data/raw/metropolitano/naranjal_boarding_platforms.geojson",
+          "sha256": "9aeebec77e1bf7b3a63ec96963c59a0e033d1f763e1f8b2838b353bf6daf53f1",
+          "feature": "naranjal_an02"
+        }
       },
-      "sourceGeometryHash": "ae50e9dbd8a7ac3ce1b73692402c7053a4706183f654443194dff3b9bed816a5",
-      "retainedGeometryHash": "5e587056e522ad6c1e7d833e3d04e1bd6df2d5bf0a081cf631f69556977924e9"
+      "retainedGeometryHash": "5e587056e522ad6c1e7d833e3d04e1bd6df2d5bf0a081cf631f69556977924e9",
+      "sourceGeometryHash": "ae50e9dbd8a7ac3ce1b73692402c7053a4706183f654443194dff3b9bed816a5"
     },
     "AN-18:vuelta": {
+      "terminal": "naranjal",
       "stationWay": 279142317,
+      "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5",
+      "references": [
+        {
+          "type": "street",
+          "edge": "1157019073:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1157019073:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1157019073:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1157019073:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1157019073:5",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1157019073:6",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1157019073:7",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1157019074:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1160268414:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1160268414:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396103:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396103:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396103:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396103:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "114396103:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "314325755:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "314325755:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "314325755:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274831994:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274831994:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274831994:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274831994:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1456157545:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "1456157545:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655080032:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655080032:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655080032:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655080032:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655080032:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:5",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:6",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:7",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:8",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:9",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:10",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "274832071:11",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:5",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:6",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "655101805:7",
+          "start": 0,
+          "end": 0.338460221
+        }
+      ],
+      "hash": "1d4599d055a5706f48e5b573374a237250489107071f0133faa49e16921b1f18",
       "range": [
         42,
         91
       ],
-      "hash": "1d4599d055a5706f48e5b573374a237250489107071f0133faa49e16921b1f18",
       "boardingPoint": {
         "kind": "osm-platform",
         "id": 14132552840,
@@ -380,8 +5611,434 @@
         "name": "Terminal Naranjal - Alimentador Naranjal",
         "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5"
       },
-      "sourceGeometryHash": "413ece98a50cdc9cabd3d0b84e94d942a24d423bb9f83f7536002208fa5fdfd0",
-      "retainedGeometryHash": "cfcd320f830c7d6dc10966836d2c2db1e428a79b681043b4b7728e6554b93cbe"
+      "retainedGeometryHash": "cfcd320f830c7d6dc10966836d2c2db1e428a79b681043b4b7728e6554b93cbe",
+      "sourceGeometryHash": "413ece98a50cdc9cabd3d0b84e94d942a24d423bb9f83f7536002208fa5fdfd0"
+    },
+    "AN-15:ida": {
+      "terminal": "naranjal",
+      "stationWay": 279142317,
+      "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5",
+      "references": [
+        {
+          "type": "street",
+          "edge": "278932000:2",
+          "start": 0.939552141,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "278932000:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "278932000:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "699951773:0",
+          "start": 0,
+          "end": 1
+        }
+      ],
+      "hash": "2034b4dcb21452c224546eb29d9b1066cd36130fb43c7af2e7a5010d26400253",
+      "range": [
+        0,
+        4
+      ],
+      "boardingPoint": {
+        "kind": "osm-platform",
+        "id": 14132552842,
+        "coordinates": [
+          -77.05871,
+          -11.98302
+        ],
+        "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5",
+        "role": "boarding",
+        "number": 14,
+        "routeCode": "AN-15",
+        "name": "Naranjal · Embarque 14 · Los Alisos",
+        "codeAuthority": {
+          "code": "AN-15",
+          "status": "officially_attested",
+          "official_current_code_confirmed": null,
+          "evidence": [
+            {
+              "source": "Guía de Usuario oficial del Metropolitano",
+              "url": "https://www.metropolitano.com.pe/wp-content/themes/metro/poupfiles/guia_de_usuario.pdf",
+              "note": "La guía institucional enumera las rutas alimentadoras norte con nomenclatura AN-xx."
+            }
+          ],
+          "note": "El código está documentado por el sistema oficial del Metropolitano. Para AN-16, AN-17 y AN-18 existe además evidencia ATU posterior que los usa expresamente."
+        },
+        "source": {
+          "file": "data/raw/metropolitano/naranjal_boarding_platforms.geojson",
+          "sha256": "9aeebec77e1bf7b3a63ec96963c59a0e033d1f763e1f8b2838b353bf6daf53f1",
+          "feature": "naranjal_an15"
+        }
+      },
+      "retainedGeometryHash": "47fc61e4d20974ced76ab305e58d014795906e8112962361467ca06cadc1bf92",
+      "sourceGeometryHash": "a55330b30149929061c3152a30969f00a0488749560133197e27cad9531015e2"
+    },
+    "AN-16:ida": {
+      "terminal": "naranjal",
+      "stationWay": 279142317,
+      "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5",
+      "references": [
+        {
+          "type": "street",
+          "edge": "330462207:2",
+          "start": 0.659782564,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330462207:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330462207:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "278932015:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330462427:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "118276304:6",
+          "start": 1,
+          "end": 0
+        },
+        {
+          "type": "street",
+          "edge": "118276304:6",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "25113618:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "25113618:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "278932000:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "278932000:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "278932000:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "278932000:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "278932000:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "699951773:0",
+          "start": 0,
+          "end": 1
+        }
+      ],
+      "hash": "bfdbb249ae8a4a0d3d43cf9a2f3eb825ff083ab4dedffddf343d536c10ffb57f",
+      "range": [
+        0,
+        15
+      ],
+      "boardingPoint": {
+        "kind": "osm-platform",
+        "id": 11435095822,
+        "coordinates": [
+          -77.05835,
+          -11.98325
+        ],
+        "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5",
+        "role": "boarding",
+        "number": 15,
+        "routeCode": "AN-16",
+        "name": "Naranjal · Embarque 15 · Los Olivos",
+        "codeAuthority": {
+          "code": "AN-16",
+          "status": "officially_attested",
+          "official_current_code_confirmed": true,
+          "evidence": [
+            {
+              "source": "Guía de Usuario oficial del Metropolitano",
+              "url": "https://www.metropolitano.com.pe/wp-content/themes/metro/poupfiles/guia_de_usuario.pdf",
+              "note": "La guía institucional enumera las rutas alimentadoras norte con nomenclatura AN-xx."
+            },
+            {
+              "source": "ATU - Resolución/Informe técnico 2023",
+              "url": "https://transparencia.atu.gob.pe/transparencia_atu/NormasEmitidas/9_D-000060-2023-ATU-DO-SSTR.pdf",
+              "note": "ATU menciona expresamente AN-16 Los Olivos, AN-17 Antúnez de Mayolo y AN-18 Izaguirre como rutas alimentadoras del COSAC I."
+            }
+          ],
+          "note": "El código está documentado por el sistema oficial del Metropolitano. Para AN-16, AN-17 y AN-18 existe además evidencia ATU posterior que los usa expresamente."
+        },
+        "source": {
+          "file": "data/raw/metropolitano/naranjal_boarding_platforms.geojson",
+          "sha256": "9aeebec77e1bf7b3a63ec96963c59a0e033d1f763e1f8b2838b353bf6daf53f1",
+          "feature": "naranjal_an16"
+        }
+      },
+      "retainedGeometryHash": "a34abca305708df0784d911ffd70bc909a6029868413f13c6b02ef49852d7bb9",
+      "sourceGeometryHash": "9d334611f45865e870c893092c1080dc92f1a0ee054e12a474856af1654806ac"
+    },
+    "AN-17:ida": {
+      "terminal": "naranjal",
+      "stationWay": 279142317,
+      "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5",
+      "references": [
+        {
+          "type": "street",
+          "edge": "278932000:2",
+          "start": 0.492106973,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "278932000:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "278932000:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "699951773:0",
+          "start": 0,
+          "end": 1
+        }
+      ],
+      "hash": "7dbe10d66c7e5724d3e1e29d52d88ff078cc84e7f35fd8289360cf9943b87fa3",
+      "range": [
+        0,
+        4
+      ],
+      "boardingPoint": {
+        "kind": "osm-platform",
+        "id": 14132552843,
+        "coordinates": [
+          -77.05853,
+          -11.98299
+        ],
+        "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5",
+        "role": "boarding",
+        "number": 16,
+        "routeCode": "AN-17",
+        "name": "Naranjal · Embarque 16 · Antúnez de Mayolo",
+        "codeAuthority": {
+          "code": "AN-17",
+          "status": "officially_attested",
+          "official_current_code_confirmed": true,
+          "evidence": [
+            {
+              "source": "Guía de Usuario oficial del Metropolitano",
+              "url": "https://www.metropolitano.com.pe/wp-content/themes/metro/poupfiles/guia_de_usuario.pdf",
+              "note": "La guía institucional enumera las rutas alimentadoras norte con nomenclatura AN-xx."
+            },
+            {
+              "source": "ATU - Resolución/Informe técnico 2023",
+              "url": "https://transparencia.atu.gob.pe/transparencia_atu/NormasEmitidas/9_D-000060-2023-ATU-DO-SSTR.pdf",
+              "note": "ATU menciona expresamente AN-16 Los Olivos, AN-17 Antúnez de Mayolo y AN-18 Izaguirre como rutas alimentadoras del COSAC I."
+            }
+          ],
+          "note": "El código está documentado por el sistema oficial del Metropolitano. Para AN-16, AN-17 y AN-18 existe además evidencia ATU posterior que los usa expresamente."
+        },
+        "source": {
+          "file": "data/raw/metropolitano/naranjal_boarding_platforms.geojson",
+          "sha256": "9aeebec77e1bf7b3a63ec96963c59a0e033d1f763e1f8b2838b353bf6daf53f1",
+          "feature": "naranjal_an17"
+        }
+      },
+      "retainedGeometryHash": "f2b3697f04b8aa31af645500abcd8b4ba814930d8bb12a12d87027fe85f57803",
+      "sourceGeometryHash": "ec666b860183e46fcc1fd4be16cf1c210cbd4ae9bbaec11eb7dd43c6f5d8334c"
+    },
+    "AN-19:ida": {
+      "terminal": "naranjal",
+      "stationWay": 279142317,
+      "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5",
+      "references": [
+        {
+          "type": "street",
+          "edge": "330462207:2",
+          "start": 0.159368106,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330462207:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330462207:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "278932015:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "330462427:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "118276304:6",
+          "start": 1,
+          "end": 0
+        },
+        {
+          "type": "street",
+          "edge": "118276304:6",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "25113618:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "25113618:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "278932000:0",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "278932000:1",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "278932000:2",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "278932000:3",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "278932000:4",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "type": "street",
+          "edge": "699951773:0",
+          "start": 0,
+          "end": 1
+        }
+      ],
+      "hash": "01d50d53c388ee1ba4233d80778c692ee89546633f880202b218f7a713fe0ad2",
+      "range": [
+        0,
+        15
+      ],
+      "boardingPoint": {
+        "kind": "osm-platform",
+        "id": 14132552844,
+        "coordinates": [
+          -77.05844,
+          -11.98326
+        ],
+        "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5",
+        "role": "boarding",
+        "number": 17,
+        "routeCode": "AN-18",
+        "name": "Naranjal · Embarque 17 · Izaguirre",
+        "codeAuthority": {
+          "code": "AN-18",
+          "status": "officially_attested",
+          "official_current_code_confirmed": true,
+          "evidence": [
+            {
+              "source": "Guía de Usuario oficial del Metropolitano",
+              "url": "https://www.metropolitano.com.pe/wp-content/themes/metro/poupfiles/guia_de_usuario.pdf",
+              "note": "La guía institucional enumera las rutas alimentadoras norte con nomenclatura AN-xx."
+            },
+            {
+              "source": "ATU - Resolución/Informe técnico 2023",
+              "url": "https://transparencia.atu.gob.pe/transparencia_atu/NormasEmitidas/9_D-000060-2023-ATU-DO-SSTR.pdf",
+              "note": "ATU menciona expresamente AN-16 Los Olivos, AN-17 Antúnez de Mayolo y AN-18 Izaguirre como rutas alimentadoras del COSAC I."
+            }
+          ],
+          "note": "El código está documentado por el sistema oficial del Metropolitano. Para AN-16, AN-17 y AN-18 existe además evidencia ATU posterior que los usa expresamente."
+        },
+        "source": {
+          "file": "data/raw/metropolitano/naranjal_boarding_platforms.geojson",
+          "sha256": "9aeebec77e1bf7b3a63ec96963c59a0e033d1f763e1f8b2838b353bf6daf53f1",
+          "feature": "naranjal_an18"
+        }
+      },
+      "retainedGeometryHash": "4f90833341416e12b81479530ba623cdafece8340f24cfca660ca9f05591afbc",
+      "sourceGeometryHash": "21d704145a7a10c4e8961d39f76e55d19274ffe396cda53eb566eea66c5b2efc"
     }
-  }
+  },
+  "outboundBoardingDirections": 13,
+  "arrivalAccessDirections": 9,
+  "boardingSource": "docs/osm/naranjal_boarding.json"
 }

@@ -1,0 +1,1192 @@
+{
+  "type": "FeatureCollection",
+  "name": "Terminal Naranjal - embarques actuales de alimentadores (triple validación)",
+  "metadata": {
+    "version": "5.0-final-audited",
+    "generated_date": "2026-10-11",
+    "audit_date": "2026-10-11",
+    "scope": "Capa independiente de investigación. Solo plataformas de embarque actuales de rutas alimentadoras que parten del Terminal Naranjal. No vinculada a LimaRutas.",
+    "crs": "EPSG:4326",
+    "coordinate_order": "[longitude, latitude]",
+    "current_feature_count": 13,
+    "current_route_codes": [
+      "AN-01",
+      "AN-02",
+      "AN-05",
+      "AN-06",
+      "AN-07",
+      "AN-08",
+      "AN-12",
+      "AN-13",
+      "AN-14",
+      "AN-15",
+      "AN-16",
+      "AN-17",
+      "AN-18"
+    ],
+    "current_boarding_numbers": [
+      1,
+      2,
+      3,
+      4,
+      6,
+      8,
+      10,
+      11,
+      12,
+      14,
+      15,
+      16,
+      17
+    ],
+    "geometry_method": "Se prioriza el nodo de plataforma OpenStreetMap actual y específico de la ruta frente a coordenadas de buscadores que pueden representar cartel, cola o punto de parada.",
+    "audit_changes_from_v1": [
+      "AN-03 Trapiche / Embarque 9 eliminado de la capa actual: desde 2025-06-21 ya no llega a Naranjal y termina en Universidad.",
+      "AN-02 Naranjal incorporado como ruta actual en Embarque 6.",
+      "El antiguo punto genérico 'Alimentador Naranjal' pasa a ser plataforma real de AN-02.",
+      "Las geometrías se actualizaron a nodos OSM de plataforma actuales y, cuando existe, asociados a la relación de cada ruta.",
+      "Antúnez de Mayolo se validó contra un levantamiento GPS académico independiente; la diferencia respecto al nodo OSM es de pocos metros.",
+      "Izaguirre sube a confianza geométrica very_high al quedar asociado a la relación OSM actual de AN-18 y corroborado por la asignación Embarque 17."
+    ],
+    "retired_or_relocated_from_naranjal": [
+      {
+        "route_code": "AN-03",
+        "route_name": "Trapiche",
+        "former_boarding_number": 9,
+        "effective_change": "2025-06-21",
+        "current_terminal": "Estación Universidad",
+        "source": "ATU",
+        "source_url": "https://www.gob.pe/institucion/atu/noticias/1191882-atu-con-normalidad-se-iniciaron-las-operaciones-en-la-estacion-las-vegas-de-la-ampliacion-norte-del-metropolitano"
+      },
+      {
+        "route_code": "AN-02",
+        "route_name": "Tungasuca",
+        "former_boarding_number": 6,
+        "status": "former service; code AN-02 is now used by Alimentador Naranjal"
+      },
+      {
+        "route_code": "AN-10",
+        "route_name": "Santo Domingo",
+        "former_boarding_number": 7,
+        "status": "restructured/relocated; no longer treated as current Naranjal feeder"
+      },
+      {
+        "route_code": "AN-04",
+        "route_name": "Collique",
+        "former_boarding_number": 13,
+        "status": "relocated; no longer treated as current Naranjal feeder"
+      },
+      {
+        "route_code": "AN-09",
+        "route_name": "Carabayllo",
+        "former_boarding_number": 5,
+        "status": "relocated; no longer treated as current Naranjal feeder"
+      }
+    ],
+    "sources": [
+      {
+        "name": "OpenStreetMap",
+        "purpose": "Geometría de plataformas y relaciones de rutas",
+        "license": "ODbL",
+        "url": "https://www.openstreetmap.org/"
+      },
+      {
+        "name": "ATU",
+        "purpose": "Cambios operacionales oficiales",
+        "url": "https://www.gob.pe/atu"
+      },
+      {
+        "name": "WikiRoutes",
+        "purpose": "Contraste de código, recorrido y número de embarque",
+        "url": "https://wikiroutes.info/es/lima"
+      },
+      {
+        "name": "UNFV",
+        "purpose": "Control GPS independiente del Embarque 16",
+        "url": "https://repositorio.unfv.edu.pe/"
+      }
+    ],
+    "limitations": [
+      "No es una capa oficial publicada por ATU.",
+      "La geometría representa la plataforma/punto de embarque cartografiado, no necesariamente el punto exacto donde queda la puerta del bus en cada maniobra.",
+      "La numeración operacional puede cambiar sin que cambie la geometría física.",
+      "La capa no incluye todavía zonas de desembarque ni staging/maniobra porque esas funciones requieren una geometría separada y evidencia específica."
+    ],
+    "validation_result": "PASS_HIGH_CONFIDENCE_WITH_NONOFFICIAL_BOARDING_ASSIGNMENTS",
+    "feature_count": 13,
+    "source_hierarchy": [
+      "1. ATU/MTC para cambios operacionales y vigencia de servicios.",
+      "2. Levantamiento académico GPS para controles físicos puntuales.",
+      "3. Fuentes de rutas actualizadas para número de embarque.",
+      "4. OpenStreetMap/Mapcarta para geometría de plataformas.",
+      "5. Agregadores generales solo como corroboración, nunca como fuente única."
+    ],
+    "third_audit_findings": [
+      "Se mantienen las 13 rutas de la v2; no apareció una ruta actual adicional ni una retirada que obligue a cambiar el conjunto.",
+      "AN-13 La Ensenada queda confirmado explícitamente en Embarque 10.",
+      "AN-16 Los Olivos se mantiene en Embarque 15 y AN-17 Antúnez de Mayolo en Embarque 16.",
+      "La aparente contradicción 15/16 proviene de páginas individuales desactualizadas/inconsistentes; se documenta en cada feature.",
+      "AN-17 tiene control independiente fuerte: UNFV identifica con GPS el pavimento del Embarque 16 Antúnez de Mayolo.",
+      "Los puntos de la capa representan plataformas de embarque de pasajeros, no los nodos OSM stop_position del carril.",
+      "Las relaciones OSM de ruta incluidas en la v2 fueron retiradas de la v3 porque no se necesitaban y no se volvieron a verificar de forma independiente.",
+      "Las coordenadas se redondearon a cinco decimales para evitar falsa precisión."
+    ],
+    "platform_vs_stop_position": "En OSM coexisten nodos public_transport=platform asociados al nombre de la ruta y nodos public_transport=stop_position asociados a posiciones del vehículo. Esta capa usa deliberadamente las plataformas de pasajeros.",
+    "route_code_note": "La nueva ruta Naranjal aparece como AN-02 en fuentes actuales como WikiRoutes/Moovit y como AN-NR en otra guía 2026. Se conserva AN-02 y AN-NR como alias.",
+    "not_official_warning": "Capa de investigación reconstruida y auditada; no es una capa geoespacial oficial publicada por ATU.",
+    "fourth_audit_findings": [
+      "No se encontró ninguna ruta adicional ni retirada que obligue a cambiar las 13 features actuales.",
+      "La lista contemporánea de 13 alimentadores de Naranjal coincide con el conjunto de la capa.",
+      "ATU confirma en 2026 la operación de varios miembros del conjunto (p.ej. Bertello, Milagros de Jesús, Puente Piedra, Los Olivos, Puno y Naranjal).",
+      "AN-03 Trapiche continúa correctamente excluida de Naranjal: fue recortada a Universidad en 2025.",
+      "Las 13 geometrías siguen coincidiendo con nodos OSM nominados para cada alimentador y etiquetados como plataformas/paradas.",
+      "AN-02 requiere separar estrictamente geometría y numeración: el 'Embarque 6' troncal de Yandex no es la plataforma alimentadora.",
+      "Los Olivos=15 y Antúnez de Mayolo=16 se mantienen. Hay conflicto en páginas individuales de Wikipedia, pero varias fuentes independientes favorecen 15/16 en ese orden.",
+      "La capa no debe describirse como oficial de ATU; es una reconstrucción de alta confianza."
+    ],
+    "confidence_policy": {
+      "geometry": "Alta: nodo de plataforma OSM nominalmente asociado a cada alimentador, reconfirmado en fuentes cartográficas recientes.",
+      "boarding_number": "Alta pero no oficial-geoespacial: se cruza la ficha de ruta, cartografía reciente y evidencia académica cuando existe.",
+      "operational_status": "Alta para el conjunto actual; contrastado con fuentes de rutas contemporáneas y notas oficiales ATU sobre cambios de la ampliación norte."
+    },
+    "critical_disambiguation": {
+      "AN-02": "El número operativo 6 del alimentador se conserva, pero no se usa el punto Yandex 'Naranjal Embarque 6' como geometría, porque ese punto sirve también a servicios troncales. La geometría procede del nodo OSM Alimentador Naranjal."
+    },
+    "known_source_conflicts": [
+      {
+        "routes": [
+          "AN-16",
+          "AN-17"
+        ],
+        "issue": "Algunas páginas individuales de Wikipedia invierten Embarque 15/16.",
+        "decision": "AN-16 Los Olivos=15; AN-17 Antúnez de Mayolo=16.",
+        "basis": [
+          "WikiRoutes AN16: Embarque 15",
+          "WikiRoutes AN17 actualizado 2026-03-31: Embarque 16",
+          "Yandex reciente: Embarque 15 Los Olivos / Embarque 16 Antúnez de Mayolo",
+          "UNFV: punto GPS descrito como pavimento del Embarque 16 Antúnez de Mayolo"
+        ]
+      }
+    ],
+    "final_validation": "APPROVED",
+    "route_code_validation": {
+      "official_code_system_confirmed": true,
+      "officially_attested_current_or_legacy_codes": [
+        "AN-01",
+        "AN-05",
+        "AN-06",
+        "AN-07",
+        "AN-08",
+        "AN-12",
+        "AN-13",
+        "AN-14",
+        "AN-15",
+        "AN-16",
+        "AN-17",
+        "AN-18"
+      ],
+      "current_code_not_officially_attested": [
+        "AN-02 Naranjal"
+      ],
+      "official_name_confirmed_for_unattested_code": "Naranjal",
+      "important_note": "No presentar AN-02 Naranjal como código oficial actual confirmado. Sí puede utilizarse como identificador operacional con el estado indicado en la feature."
+    },
+    "final_ok_scope": [
+      "OK final para la geometría de las 13 plataformas de embarque representadas.",
+      "OK final para la asociación ruta ↔ número de embarque, con conflictos de fuente ya documentados.",
+      "OK final para usar AN-xx como identificador de las 12 rutas cuyo código está institucionalmente atestiguado.",
+      "AN-02 Naranjal se mantiene como identificador operacional no oficialmente atestiguado en fuentes ATU actuales.",
+      "La capa no incluye ni pretende certificar desembarque, staging o maniobra."
+    ],
+    "further_validation_needed": false,
+    "what_would_change_the_status": "Solo una fuente primaria nueva de ATU (p. ej., GTFS oficial, cuadro operativo, plano o señalética vigente) que publique el código actual de Naranjal justificaría cambiar AN-02 de operacional a oficial confirmado."
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "naranjal_an01",
+      "properties": {
+        "id": "naranjal_an01",
+        "facility": "Terminal Naranjal",
+        "system": "Metropolitano",
+        "mode": "bus",
+        "area": "alimentadores",
+        "point_type": "boarding_platform",
+        "status": "current",
+        "route_code": "AN-01",
+        "route_name": "Tahuantinsuyo",
+        "boarding_number": 2,
+        "boarding_number_confidence": "high",
+        "geometry_confidence": "high",
+        "coordinate_source": "OpenStreetMap",
+        "osm_node": 14132552834,
+        "osm_node_url": "https://www.openstreetmap.org/node/14132552834",
+        "coordinate_role": "current mapped feeder boarding platform",
+        "audit_date": "2026-10-11",
+        "boarding_number_source": "Cartografía de paraderos + asignación operacional contrastada",
+        "boarding_number_source_url": "https://yandex.com/maps/21157/lima/",
+        "geometry_source": "OpenStreetMap, corroborado vía Mapcarta",
+        "geometry_source_url": "https://mapcarta.com/es/N14132552834",
+        "geometry_precision": "5 decimal places (~1 m nominal; not survey-grade)",
+        "feature_role": "passenger_boarding_platform",
+        "osm_named_stop_verified": true,
+        "boarding_number_evidence": "WikiRoutes / tabla histórica-operativa de Terminal Naranjal",
+        "operational_status_confidence": "high",
+        "geometry_evidence": {
+          "source_type": "OpenStreetMap public_transport=platform / highway=bus_stop",
+          "source_url": "https://mapcarta.com/es/N14132552834",
+          "validation_date": "2026-10-11",
+          "confidence": "high",
+          "note": "Representa la plataforma de espera/embarque de pasajeros. No representa necesariamente el stop_position exacto del vehículo."
+        },
+        "boarding_assignment_evidence": {
+          "boarding_number": 2,
+          "sources": [
+            "https://es.wikipedia.org/wiki/Alimentador_Tahuantinsuyo_%28Metropolitano%29"
+          ],
+          "corroboration": "Yandex mantiene una parada cercana denominada 'Naranjal Embarque 2 - Tahuantinsuyo'.",
+          "confidence": "high",
+          "official_current_ATU_geospatial_source": false,
+          "known_conflict": false
+        },
+        "validation_level": "high_confidence_reconstruction",
+        "validated_fourth_pass": true,
+        "route_code_authority": {
+          "code": "AN-01",
+          "status": "officially_attested",
+          "official_current_code_confirmed": null,
+          "evidence": [
+            {
+              "source": "Guía de Usuario oficial del Metropolitano",
+              "url": "https://www.metropolitano.com.pe/wp-content/themes/metro/poupfiles/guia_de_usuario.pdf",
+              "note": "La guía institucional enumera las rutas alimentadoras norte con nomenclatura AN-xx."
+            }
+          ],
+          "note": "El código está documentado por el sistema oficial del Metropolitano. Para AN-16, AN-17 y AN-18 existe además evidencia ATU posterior que los usa expresamente."
+        }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.05912,
+          -11.98087
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "naranjal_an02",
+      "properties": {
+        "id": "naranjal_an02",
+        "facility": "Terminal Naranjal",
+        "system": "Metropolitano",
+        "mode": "bus",
+        "area": "alimentadores",
+        "point_type": "boarding_platform",
+        "status": "current",
+        "route_code": "AN-02",
+        "route_name": "Naranjal",
+        "boarding_number": 6,
+        "boarding_number_confidence": "high",
+        "geometry_confidence": "high",
+        "coordinate_source": "OpenStreetMap",
+        "osm_node": 14132552840,
+        "osm_node_url": "https://www.openstreetmap.org/node/14132552840",
+        "coordinate_role": "current mapped feeder boarding platform",
+        "audit_date": "2026-10-11",
+        "boarding_number_source": "WikiRoutes, actualizado 2026-04-12",
+        "boarding_number_source_url": "https://wikiroutes.info/es/lima?routes=44812",
+        "operational_note": "La ruta Naranjal reemplaza al antiguo uso del código AN-02 para Tungasuca. La relación OSM actual identifica AN-02 como Alimentadora Norte Naranjal.",
+        "geometry_source": "OpenStreetMap, corroborado vía Mapcarta",
+        "geometry_source_url": "https://mapcarta.com/es/N14132552840",
+        "geometry_precision": "5 decimal places (~1 m nominal; not survey-grade)",
+        "feature_role": "passenger_boarding_platform",
+        "osm_named_stop_verified": true,
+        "boarding_number_evidence": "WikiRoutes (actualizado 2026-04-12)",
+        "operational_status_confidence": "high",
+        "route_code_aliases": [
+          "AN-NR"
+        ],
+        "naming_note": "Fuentes actuales no son uniformes: WikiRoutes/Moovit usan AN-02; otra guía 2026 usa AN-NR. Se mantiene AN-02 como código principal.",
+        "geometry_evidence": {
+          "source_type": "OpenStreetMap public_transport=platform / highway=bus_stop",
+          "source_url": "https://mapcarta.com/es/N14132552840",
+          "validation_date": "2026-10-11",
+          "confidence": "high",
+          "note": "Representa la plataforma de espera/embarque de pasajeros. No representa necesariamente el stop_position exacto del vehículo."
+        },
+        "boarding_assignment_evidence": {
+          "boarding_number": 6,
+          "sources": [
+            "https://wikiroutes.info/es/lima?routes=44812"
+          ],
+          "corroboration": "WikiRoutes, editado 2026-04-12, identifica AN02 Naranjal en Embarque 6. La geometría NO se toma del punto Yandex 'Naranjal Embarque 6', porque ese registro muestra servicios troncales (p.ej. SX) y es una entidad distinta.",
+          "confidence": "high",
+          "official_current_ATU_geospatial_source": false,
+          "known_conflict": false,
+          "number_6_disambiguation": "No confundir con el punto Yandex 'Naranjal Embarque 6' de servicios troncales. El punto geométrico usado aquí es la plataforma OSM denominada 'Terminal Naranjal - Alimentador Naranjal'."
+        },
+        "validation_level": "high_confidence_reconstruction",
+        "validated_fourth_pass": true,
+        "route_code_authority": {
+          "code": "AN-02",
+          "status": "current_operational_code_not_officially_attested",
+          "official_current_code_confirmed": false,
+          "historical_official_code_note": "AN-02 sí fue un código oficial histórico, pero correspondía a Tungasuca. Tungasuca dejó de operar con la reorganización de la ampliación norte.",
+          "current_route_official_name": "Naranjal",
+          "official_name_source": "https://www.gob.pe/institucion/atu/noticias/1023801-metropolitano-implementacion-de-dos-nuevas-rutas-alimentadoras-en-lima-norte-beneficiara-a-mas-de-15-000-usuarios-al-dia",
+          "current_code_evidence": [
+            {
+              "source": "Moovit",
+              "url": "https://moovitapp.com/index/es-419/transporte_p%C3%BAblico-line-an02-Lima-1102-1110949-247229337-0",
+              "note": "Identifica actualmente la ruta Naranjal como AN02."
+            },
+            {
+              "source": "WikiRoutes",
+              "url": "https://wikiroutes.info/es/lima?routes=44812",
+              "note": "Identifica actualmente la ruta Naranjal como AN02."
+            }
+          ],
+          "note": "ATU confirma oficialmente la existencia y nombre de la nueva ruta alimentadora Naranjal desde 2024, pero no se encontró una publicación oficial actual que le asigne explícitamente el código AN-02. Por ello AN-02 se conserva como código operacional ampliamente utilizado, no como código oficial actual confirmado."
+        }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.05872,
+          -11.98179
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "naranjal_an05",
+      "properties": {
+        "id": "naranjal_an05",
+        "facility": "Terminal Naranjal",
+        "system": "Metropolitano",
+        "mode": "bus",
+        "area": "alimentadores",
+        "point_type": "boarding_platform",
+        "status": "current",
+        "route_code": "AN-05",
+        "route_name": "Payet",
+        "boarding_number": 1,
+        "boarding_number_confidence": "high",
+        "geometry_confidence": "high",
+        "coordinate_source": "OpenStreetMap",
+        "osm_node": 14132552825,
+        "osm_node_url": "https://www.openstreetmap.org/node/14132552825",
+        "coordinate_role": "current mapped feeder boarding platform",
+        "audit_date": "2026-10-11",
+        "boarding_number_source": "Cartografía de paraderos + asignación operacional contrastada",
+        "boarding_number_source_url": "https://yandex.com/maps/21157/lima/",
+        "geometry_source": "OpenStreetMap, corroborado vía Mapcarta",
+        "geometry_source_url": "https://mapcarta.com/es/N14132552825",
+        "geometry_precision": "5 decimal places (~1 m nominal; not survey-grade)",
+        "feature_role": "passenger_boarding_platform",
+        "osm_named_stop_verified": true,
+        "boarding_number_evidence": "WikiRoutes + ficha de ruta Payet",
+        "operational_status_confidence": "high",
+        "operational_status_note": "Payet aparece en una relación 2026 de 13 alimentadores operativos de Naranjal y conserva ficha específica; una página agregadora de estación no lo listaba en un barrido, por lo que no se usa esa omisión aislada como evidencia de retiro.",
+        "geometry_evidence": {
+          "source_type": "OpenStreetMap public_transport=platform / highway=bus_stop",
+          "source_url": "https://mapcarta.com/es/N14132552825",
+          "validation_date": "2026-10-11",
+          "confidence": "high",
+          "note": "Representa la plataforma de espera/embarque de pasajeros. No representa necesariamente el stop_position exacto del vehículo."
+        },
+        "boarding_assignment_evidence": {
+          "boarding_number": 1,
+          "sources": [
+            "https://es.wikipedia.org/wiki/Alimentador_Payet_%28Metropolitano%29",
+            "https://yandex.com/maps/21157/lima/stops/stop__lima198_-11_9806539_-77_0591408/"
+          ],
+          "corroboration": "Yandex mantiene 'Naranjal Embarque 1 - Payet' con la ruta Payet.",
+          "confidence": "high",
+          "official_current_ATU_geospatial_source": false,
+          "known_conflict": false
+        },
+        "validation_level": "high_confidence_reconstruction",
+        "validated_fourth_pass": true,
+        "route_code_authority": {
+          "code": "AN-05",
+          "status": "officially_attested",
+          "official_current_code_confirmed": null,
+          "evidence": [
+            {
+              "source": "Guía de Usuario oficial del Metropolitano",
+              "url": "https://www.metropolitano.com.pe/wp-content/themes/metro/poupfiles/guia_de_usuario.pdf",
+              "note": "La guía institucional enumera las rutas alimentadoras norte con nomenclatura AN-xx."
+            }
+          ],
+          "note": "El código está documentado por el sistema oficial del Metropolitano. Para AN-16, AN-17 y AN-18 existe además evidencia ATU posterior que los usa expresamente."
+        }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.0592,
+          -11.98055
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "naranjal_an06",
+      "properties": {
+        "id": "naranjal_an06",
+        "facility": "Terminal Naranjal",
+        "system": "Metropolitano",
+        "mode": "bus",
+        "area": "alimentadores",
+        "point_type": "boarding_platform",
+        "status": "current",
+        "route_code": "AN-06",
+        "route_name": "Puno",
+        "boarding_number": 11,
+        "boarding_number_confidence": "high",
+        "geometry_confidence": "high",
+        "coordinate_source": "OpenStreetMap",
+        "osm_node": 14132552838,
+        "osm_node_url": "https://www.openstreetmap.org/node/14132552838",
+        "coordinate_role": "current mapped feeder boarding platform",
+        "audit_date": "2026-10-11",
+        "boarding_number_source": "Cartografía de paraderos + asignación operacional contrastada",
+        "boarding_number_source_url": "https://yandex.com/maps/21157/lima/",
+        "geometry_source": "OpenStreetMap, corroborado vía Mapcarta",
+        "geometry_source_url": "https://mapcarta.com/es/N14132552838",
+        "geometry_precision": "5 decimal places (~1 m nominal; not survey-grade)",
+        "feature_role": "passenger_boarding_platform",
+        "osm_named_stop_verified": true,
+        "boarding_number_evidence": "WikiRoutes / tabla de Terminal Naranjal",
+        "operational_status_confidence": "high",
+        "geometry_evidence": {
+          "source_type": "OpenStreetMap public_transport=platform / highway=bus_stop",
+          "source_url": "https://mapcarta.com/es/N14132552838",
+          "validation_date": "2026-10-11",
+          "confidence": "high",
+          "note": "Representa la plataforma de espera/embarque de pasajeros. No representa necesariamente el stop_position exacto del vehículo."
+        },
+        "boarding_assignment_evidence": {
+          "boarding_number": 11,
+          "sources": [
+            "https://wikiroutes.info/es/lima?routes=45217"
+          ],
+          "corroboration": "La ficha de AN06 identifica explícitamente Embarque 11.",
+          "confidence": "high",
+          "official_current_ATU_geospatial_source": false,
+          "known_conflict": false
+        },
+        "validation_level": "high_confidence_reconstruction",
+        "validated_fourth_pass": true,
+        "route_code_authority": {
+          "code": "AN-06",
+          "status": "officially_attested",
+          "official_current_code_confirmed": null,
+          "evidence": [
+            {
+              "source": "Guía de Usuario oficial del Metropolitano",
+              "url": "https://www.metropolitano.com.pe/wp-content/themes/metro/poupfiles/guia_de_usuario.pdf",
+              "note": "La guía institucional enumera las rutas alimentadoras norte con nomenclatura AN-xx."
+            }
+          ],
+          "note": "El código está documentado por el sistema oficial del Metropolitano. Para AN-16, AN-17 y AN-18 existe además evidencia ATU posterior que los usa expresamente."
+        }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.05892,
+          -11.98096
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "naranjal_an07",
+      "properties": {
+        "id": "naranjal_an07",
+        "facility": "Terminal Naranjal",
+        "system": "Metropolitano",
+        "mode": "bus",
+        "area": "alimentadores",
+        "point_type": "boarding_platform",
+        "status": "current",
+        "route_code": "AN-07",
+        "route_name": "Belaúnde",
+        "boarding_number": 4,
+        "boarding_number_confidence": "high",
+        "geometry_confidence": "high",
+        "coordinate_source": "OpenStreetMap",
+        "osm_node": 14132552833,
+        "osm_node_url": "https://www.openstreetmap.org/node/14132552833",
+        "coordinate_role": "current mapped feeder boarding platform",
+        "audit_date": "2026-10-11",
+        "boarding_number_source": "Cartografía de paraderos + asignación operacional contrastada",
+        "boarding_number_source_url": "https://yandex.com/maps/21157/lima/",
+        "geometry_source": "OpenStreetMap, corroborado vía Mapcarta",
+        "geometry_source_url": "https://mapcarta.com/es/N14132552833",
+        "geometry_precision": "5 decimal places (~1 m nominal; not survey-grade)",
+        "feature_role": "passenger_boarding_platform",
+        "osm_named_stop_verified": true,
+        "boarding_number_evidence": "WikiRoutes / tabla de Terminal Naranjal",
+        "operational_status_confidence": "high",
+        "geometry_evidence": {
+          "source_type": "OpenStreetMap public_transport=platform / highway=bus_stop",
+          "source_url": "https://mapcarta.com/es/N14132552833",
+          "validation_date": "2026-10-11",
+          "confidence": "high",
+          "note": "Representa la plataforma de espera/embarque de pasajeros. No representa necesariamente el stop_position exacto del vehículo."
+        },
+        "boarding_assignment_evidence": {
+          "boarding_number": 4,
+          "sources": [
+            "https://wikiroutes.info/es/lima?routes=45218"
+          ],
+          "corroboration": "La ficha de AN07 identifica explícitamente Embarque 4.",
+          "confidence": "high",
+          "official_current_ATU_geospatial_source": false,
+          "known_conflict": false
+        },
+        "validation_level": "high_confidence_reconstruction",
+        "validated_fourth_pass": true,
+        "route_code_authority": {
+          "code": "AN-07",
+          "status": "officially_attested",
+          "official_current_code_confirmed": null,
+          "evidence": [
+            {
+              "source": "Guía de Usuario oficial del Metropolitano",
+              "url": "https://www.metropolitano.com.pe/wp-content/themes/metro/poupfiles/guia_de_usuario.pdf",
+              "note": "La guía institucional enumera las rutas alimentadoras norte con nomenclatura AN-xx."
+            }
+          ],
+          "note": "El código está documentado por el sistema oficial del Metropolitano. Para AN-16, AN-17 y AN-18 existe además evidencia ATU posterior que los usa expresamente."
+        }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.05896,
+          -11.9816
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "naranjal_an08",
+      "properties": {
+        "id": "naranjal_an08",
+        "facility": "Terminal Naranjal",
+        "system": "Metropolitano",
+        "mode": "bus",
+        "area": "alimentadores",
+        "point_type": "boarding_platform",
+        "status": "current",
+        "route_code": "AN-08",
+        "route_name": "Milagros de Jesús",
+        "boarding_number": 12,
+        "boarding_number_confidence": "high",
+        "geometry_confidence": "high",
+        "coordinate_source": "OpenStreetMap",
+        "osm_node": 14132552839,
+        "osm_node_url": "https://www.openstreetmap.org/node/14132552839",
+        "coordinate_role": "current mapped feeder boarding platform",
+        "audit_date": "2026-10-11",
+        "boarding_number_source": "Cartografía de paraderos + asignación operacional contrastada",
+        "boarding_number_source_url": "https://yandex.com/maps/21157/lima/",
+        "geometry_source": "OpenStreetMap, corroborado vía Mapcarta",
+        "geometry_source_url": "https://mapcarta.com/es/N14132552839",
+        "geometry_precision": "5 decimal places (~1 m nominal; not survey-grade)",
+        "feature_role": "passenger_boarding_platform",
+        "osm_named_stop_verified": true,
+        "boarding_number_evidence": "WikiRoutes / tabla de Terminal Naranjal",
+        "operational_status_confidence": "high",
+        "geometry_evidence": {
+          "source_type": "OpenStreetMap public_transport=platform / highway=bus_stop",
+          "source_url": "https://mapcarta.com/es/N14132552839",
+          "validation_date": "2026-10-11",
+          "confidence": "high",
+          "note": "Representa la plataforma de espera/embarque de pasajeros. No representa necesariamente el stop_position exacto del vehículo."
+        },
+        "boarding_assignment_evidence": {
+          "boarding_number": 12,
+          "sources": [
+            "https://wikiroutes.info/es/lima?routes=45219"
+          ],
+          "corroboration": "La ficha de AN08 identifica explícitamente Embarque 12.",
+          "confidence": "high",
+          "official_current_ATU_geospatial_source": false,
+          "known_conflict": false
+        },
+        "validation_level": "high_confidence_reconstruction",
+        "validated_fourth_pass": true,
+        "route_code_authority": {
+          "code": "AN-08",
+          "status": "officially_attested",
+          "official_current_code_confirmed": null,
+          "evidence": [
+            {
+              "source": "Guía de Usuario oficial del Metropolitano",
+              "url": "https://www.metropolitano.com.pe/wp-content/themes/metro/poupfiles/guia_de_usuario.pdf",
+              "note": "La guía institucional enumera las rutas alimentadoras norte con nomenclatura AN-xx."
+            }
+          ],
+          "note": "El código está documentado por el sistema oficial del Metropolitano. Para AN-16, AN-17 y AN-18 existe además evidencia ATU posterior que los usa expresamente."
+        }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.05883,
+          -11.98133
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "naranjal_an12",
+      "properties": {
+        "id": "naranjal_an12",
+        "facility": "Terminal Naranjal",
+        "system": "Metropolitano",
+        "mode": "bus",
+        "area": "alimentadores",
+        "point_type": "boarding_platform",
+        "status": "current",
+        "route_code": "AN-12",
+        "route_name": "Puente Piedra",
+        "boarding_number": 8,
+        "boarding_number_confidence": "high",
+        "geometry_confidence": "high",
+        "coordinate_source": "OpenStreetMap",
+        "osm_node": 14132552835,
+        "osm_node_url": "https://www.openstreetmap.org/node/14132552835",
+        "coordinate_role": "current mapped feeder boarding platform",
+        "audit_date": "2026-10-11",
+        "geometry_note": "Plataforma OSM identificada como Terminal Naranjal - Puente Piedra; en la auditoría no se observó una relación de ruta explícita enlazada al nodo.",
+        "boarding_number_source": "Cartografía de paraderos + asignación operacional contrastada",
+        "boarding_number_source_url": "https://yandex.com/maps/21157/lima/",
+        "geometry_source": "OpenStreetMap, corroborado vía Mapcarta",
+        "geometry_source_url": "https://mapcarta.com/es/N14132552835",
+        "geometry_precision": "5 decimal places (~1 m nominal; not survey-grade)",
+        "feature_role": "passenger_boarding_platform",
+        "osm_named_stop_verified": true,
+        "boarding_number_evidence": "WikiRoutes / tabla de Terminal Naranjal",
+        "operational_status_confidence": "high",
+        "geometry_evidence": {
+          "source_type": "OpenStreetMap public_transport=platform / highway=bus_stop",
+          "source_url": "https://mapcarta.com/es/N14132552835",
+          "validation_date": "2026-10-11",
+          "confidence": "high",
+          "note": "Representa la plataforma de espera/embarque de pasajeros. No representa necesariamente el stop_position exacto del vehículo."
+        },
+        "boarding_assignment_evidence": {
+          "boarding_number": 8,
+          "sources": [
+            "https://es.wikipedia.org/wiki/Alimentador_Puente_Piedra_%28Metropolitano%29"
+          ],
+          "corroboration": "La ficha de Puente Piedra identifica explícitamente Embarque 8.",
+          "confidence": "high",
+          "official_current_ATU_geospatial_source": false,
+          "known_conflict": false
+        },
+        "validation_level": "high_confidence_reconstruction",
+        "validated_fourth_pass": true,
+        "route_code_authority": {
+          "code": "AN-12",
+          "status": "officially_attested",
+          "official_current_code_confirmed": null,
+          "evidence": [
+            {
+              "source": "Guía de Usuario oficial del Metropolitano",
+              "url": "https://www.metropolitano.com.pe/wp-content/themes/metro/poupfiles/guia_de_usuario.pdf",
+              "note": "La guía institucional enumera las rutas alimentadoras norte con nomenclatura AN-xx."
+            }
+          ],
+          "note": "El código está documentado por el sistema oficial del Metropolitano. Para AN-16, AN-17 y AN-18 existe además evidencia ATU posterior que los usa expresamente."
+        }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.05885,
+          -11.9821
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "naranjal_an13",
+      "properties": {
+        "id": "naranjal_an13",
+        "facility": "Terminal Naranjal",
+        "system": "Metropolitano",
+        "mode": "bus",
+        "area": "alimentadores",
+        "point_type": "boarding_platform",
+        "status": "current",
+        "route_code": "AN-13",
+        "route_name": "La Ensenada",
+        "boarding_number": 10,
+        "boarding_number_confidence": "high",
+        "geometry_confidence": "high",
+        "coordinate_source": "OpenStreetMap",
+        "osm_node": 14132552837,
+        "osm_node_url": "https://www.openstreetmap.org/node/14132552837",
+        "coordinate_role": "current mapped feeder boarding platform",
+        "audit_date": "2026-10-11",
+        "boarding_number_source": "Cartografía de paraderos + asignación operacional contrastada",
+        "boarding_number_source_url": "https://yandex.com/maps/21157/lima/",
+        "geometry_source": "OpenStreetMap, corroborado vía Mapcarta",
+        "geometry_source_url": "https://mapcarta.com/es/N14132552837",
+        "geometry_precision": "5 decimal places (~1 m nominal; not survey-grade)",
+        "feature_role": "passenger_boarding_platform",
+        "osm_named_stop_verified": true,
+        "boarding_number_evidence": "WikiRoutes (itinerario explícito: Embarque 10)",
+        "operational_status_confidence": "high",
+        "geometry_evidence": {
+          "source_type": "OpenStreetMap public_transport=platform / highway=bus_stop",
+          "source_url": "https://mapcarta.com/es/N14132552837",
+          "validation_date": "2026-10-11",
+          "confidence": "high",
+          "note": "Representa la plataforma de espera/embarque de pasajeros. No representa necesariamente el stop_position exacto del vehículo."
+        },
+        "boarding_assignment_evidence": {
+          "boarding_number": 10,
+          "sources": [
+            "https://wikiroutes.info/es/lima?routes=43969",
+            "https://yandex.com/maps/21157/lima/routes/bus_La_Ensenada/796d617073626d313a2f2f7472616e7369742f6c696e653f69643d6c696d615f6275735f414e3133266c6c3d2d37372e3037313636302532432d31312e393338363130266e616d653d4c612b456e73656e61646126723d3630303026747970653d627573/"
+          ],
+          "corroboration": "WikiRoutes y Yandex identifican La Ensenada con Embarque 10.",
+          "confidence": "high",
+          "official_current_ATU_geospatial_source": false,
+          "known_conflict": false
+        },
+        "validation_level": "high_confidence_reconstruction",
+        "validated_fourth_pass": true,
+        "route_code_authority": {
+          "code": "AN-13",
+          "status": "officially_attested",
+          "official_current_code_confirmed": null,
+          "evidence": [
+            {
+              "source": "Guía de Usuario oficial del Metropolitano",
+              "url": "https://www.metropolitano.com.pe/wp-content/themes/metro/poupfiles/guia_de_usuario.pdf",
+              "note": "La guía institucional enumera las rutas alimentadoras norte con nomenclatura AN-xx."
+            }
+          ],
+          "note": "El código está documentado por el sistema oficial del Metropolitano. Para AN-16, AN-17 y AN-18 existe además evidencia ATU posterior que los usa expresamente."
+        }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.05899,
+          -11.98065
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "naranjal_an14",
+      "properties": {
+        "id": "naranjal_an14",
+        "facility": "Terminal Naranjal",
+        "system": "Metropolitano",
+        "mode": "bus",
+        "area": "alimentadores",
+        "point_type": "boarding_platform",
+        "status": "current",
+        "route_code": "AN-14",
+        "route_name": "Bertello",
+        "boarding_number": 3,
+        "boarding_number_confidence": "high",
+        "geometry_confidence": "high",
+        "coordinate_source": "OpenStreetMap",
+        "osm_node": 14132552836,
+        "osm_node_url": "https://www.openstreetmap.org/node/14132552836",
+        "coordinate_role": "current mapped feeder boarding platform",
+        "audit_date": "2026-10-11",
+        "boarding_number_source": "Cartografía de paraderos + asignación operacional contrastada",
+        "boarding_number_source_url": "https://yandex.com/maps/21157/lima/",
+        "geometry_source": "OpenStreetMap, corroborado vía Mapcarta",
+        "geometry_source_url": "https://mapcarta.com/es/N14132552836",
+        "geometry_precision": "5 decimal places (~1 m nominal; not survey-grade)",
+        "feature_role": "passenger_boarding_platform",
+        "osm_named_stop_verified": true,
+        "boarding_number_evidence": "WikiRoutes / tabla de Terminal Naranjal",
+        "operational_status_confidence": "high",
+        "geometry_evidence": {
+          "source_type": "OpenStreetMap public_transport=platform / highway=bus_stop",
+          "source_url": "https://mapcarta.com/es/N14132552836",
+          "validation_date": "2026-10-11",
+          "confidence": "high",
+          "note": "Representa la plataforma de espera/embarque de pasajeros. No representa necesariamente el stop_position exacto del vehículo."
+        },
+        "boarding_assignment_evidence": {
+          "boarding_number": 3,
+          "sources": [
+            "https://wikiroutes.info/es/lima?routes=45318"
+          ],
+          "corroboration": "La ficha de AN14 identifica explícitamente Embarque 3.",
+          "confidence": "high",
+          "official_current_ATU_geospatial_source": false,
+          "known_conflict": false
+        },
+        "validation_level": "high_confidence_reconstruction",
+        "validated_fourth_pass": true,
+        "route_code_authority": {
+          "code": "AN-14",
+          "status": "officially_attested",
+          "official_current_code_confirmed": null,
+          "evidence": [
+            {
+              "source": "Guía de Usuario oficial del Metropolitano",
+              "url": "https://www.metropolitano.com.pe/wp-content/themes/metro/poupfiles/guia_de_usuario.pdf",
+              "note": "La guía institucional enumera las rutas alimentadoras norte con nomenclatura AN-xx."
+            }
+          ],
+          "note": "El código está documentado por el sistema oficial del Metropolitano. Para AN-16, AN-17 y AN-18 existe además evidencia ATU posterior que los usa expresamente."
+        }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.05905,
+          -11.9812
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "naranjal_an15",
+      "properties": {
+        "id": "naranjal_an15",
+        "facility": "Terminal Naranjal",
+        "system": "Metropolitano",
+        "mode": "bus",
+        "area": "alimentadores",
+        "point_type": "boarding_platform",
+        "status": "current",
+        "route_code": "AN-15",
+        "route_name": "Los Alisos",
+        "boarding_number": 14,
+        "boarding_number_confidence": "high",
+        "geometry_confidence": "high",
+        "coordinate_source": "OpenStreetMap",
+        "osm_node": 14132552842,
+        "osm_node_url": "https://www.openstreetmap.org/node/14132552842",
+        "coordinate_role": "current mapped feeder boarding platform",
+        "audit_date": "2026-10-11",
+        "boarding_number_source": "WikiRoutes / cartografía de paraderos vigente",
+        "boarding_number_source_url": "https://wikiroutes.info/es/lima?routes=46685",
+        "geometry_source": "OpenStreetMap, corroborado vía Mapcarta",
+        "geometry_source_url": "https://mapcarta.com/es/N14132552842",
+        "geometry_precision": "5 decimal places (~1 m nominal; not survey-grade)",
+        "feature_role": "passenger_boarding_platform",
+        "osm_named_stop_verified": true,
+        "boarding_number_evidence": "WikiRoutes / tabla de Terminal Naranjal",
+        "operational_status_confidence": "high",
+        "geometry_evidence": {
+          "source_type": "OpenStreetMap public_transport=platform / highway=bus_stop",
+          "source_url": "https://mapcarta.com/es/N14132552842",
+          "validation_date": "2026-10-11",
+          "confidence": "high",
+          "note": "Representa la plataforma de espera/embarque de pasajeros. No representa necesariamente el stop_position exacto del vehículo."
+        },
+        "boarding_assignment_evidence": {
+          "boarding_number": 14,
+          "sources": [
+            "https://wikiroutes.info/es/lima?routes=46685",
+            "https://es.wikipedia.org/wiki/Alimentador_Los_Alisos_%28Metropolitano%29"
+          ],
+          "corroboration": "WikiRoutes fue actualizado 2026-03-29 y mantiene Embarque 14.",
+          "confidence": "high",
+          "official_current_ATU_geospatial_source": false,
+          "known_conflict": false
+        },
+        "validation_level": "high_confidence_reconstruction",
+        "validated_fourth_pass": true,
+        "route_code_authority": {
+          "code": "AN-15",
+          "status": "officially_attested",
+          "official_current_code_confirmed": null,
+          "evidence": [
+            {
+              "source": "Guía de Usuario oficial del Metropolitano",
+              "url": "https://www.metropolitano.com.pe/wp-content/themes/metro/poupfiles/guia_de_usuario.pdf",
+              "note": "La guía institucional enumera las rutas alimentadoras norte con nomenclatura AN-xx."
+            }
+          ],
+          "note": "El código está documentado por el sistema oficial del Metropolitano. Para AN-16, AN-17 y AN-18 existe además evidencia ATU posterior que los usa expresamente."
+        }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.05871,
+          -11.98302
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "naranjal_an16",
+      "properties": {
+        "id": "naranjal_an16",
+        "facility": "Terminal Naranjal",
+        "system": "Metropolitano",
+        "mode": "bus",
+        "area": "alimentadores",
+        "point_type": "boarding_platform",
+        "status": "current",
+        "route_code": "AN-16",
+        "route_name": "Los Olivos",
+        "boarding_number": 15,
+        "boarding_number_confidence": "high",
+        "geometry_confidence": "high",
+        "coordinate_source": "OpenStreetMap",
+        "osm_node": 11435095822,
+        "osm_node_url": "https://www.openstreetmap.org/node/11435095822",
+        "coordinate_role": "current mapped feeder boarding platform",
+        "audit_date": "2026-10-11",
+        "boarding_number_source": "WikiRoutes / cartografía de paraderos vigente",
+        "boarding_number_source_url": "https://wikiroutes.info/es/lima?routes=44811",
+        "geometry_source": "OpenStreetMap, corroborado vía Mapcarta",
+        "geometry_source_url": "https://mapcarta.com/es/N11435095822",
+        "geometry_precision": "5 decimal places (~1 m nominal; not survey-grade)",
+        "feature_role": "passenger_boarding_platform",
+        "osm_named_stop_verified": true,
+        "boarding_number_evidence": "WikiRoutes + tabla de Terminal Naranjal",
+        "operational_status_confidence": "high",
+        "boarding_conflict_note": "Se conserva Embarque 15. Algunas páginas individuales derivadas de Wikipedia lo muestran como Embarque 16, pero la tabla de Terminal Naranjal y WikiRoutes lo sitúan en 15. La evidencia independiente de UNFV coloca además a AN-17 Antúnez de Mayolo en el Embarque 16.",
+        "geometry_evidence": {
+          "source_type": "OpenStreetMap public_transport=platform / highway=bus_stop",
+          "source_url": "https://mapcarta.com/es/N11435095822",
+          "validation_date": "2026-10-11",
+          "confidence": "high",
+          "note": "Representa la plataforma de espera/embarque de pasajeros. No representa necesariamente el stop_position exacto del vehículo."
+        },
+        "boarding_assignment_evidence": {
+          "boarding_number": 15,
+          "sources": [
+            "https://wikiroutes.info/es/lima?routes=44811"
+          ],
+          "corroboration": "Yandex sigue mostrando 'Naranjal Embarque 15 - Los Olivos'. Hay páginas individuales de Wikipedia que muestran 16; se considera conflicto de fuente.",
+          "confidence": "high",
+          "official_current_ATU_geospatial_source": false,
+          "known_conflict": true,
+          "conflict_note": "Algunas páginas individuales de Wikipedia invierten 15/16. Se prefieren WikiRoutes, la tabla general histórica de Naranjal, Yandex reciente y, para AN-17, el control GPS académico UNFV."
+        },
+        "validation_level": "high_confidence_reconstruction",
+        "validated_fourth_pass": true,
+        "route_code_authority": {
+          "code": "AN-16",
+          "status": "officially_attested",
+          "official_current_code_confirmed": true,
+          "evidence": [
+            {
+              "source": "Guía de Usuario oficial del Metropolitano",
+              "url": "https://www.metropolitano.com.pe/wp-content/themes/metro/poupfiles/guia_de_usuario.pdf",
+              "note": "La guía institucional enumera las rutas alimentadoras norte con nomenclatura AN-xx."
+            },
+            {
+              "source": "ATU - Resolución/Informe técnico 2023",
+              "url": "https://transparencia.atu.gob.pe/transparencia_atu/NormasEmitidas/9_D-000060-2023-ATU-DO-SSTR.pdf",
+              "note": "ATU menciona expresamente AN-16 Los Olivos, AN-17 Antúnez de Mayolo y AN-18 Izaguirre como rutas alimentadoras del COSAC I."
+            }
+          ],
+          "note": "El código está documentado por el sistema oficial del Metropolitano. Para AN-16, AN-17 y AN-18 existe además evidencia ATU posterior que los usa expresamente."
+        }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.05835,
+          -11.98325
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "naranjal_an17",
+      "properties": {
+        "id": "naranjal_an17",
+        "facility": "Terminal Naranjal",
+        "system": "Metropolitano",
+        "mode": "bus",
+        "area": "alimentadores",
+        "point_type": "boarding_platform",
+        "status": "current",
+        "route_code": "AN-17",
+        "route_name": "Antúnez de Mayolo",
+        "boarding_number": 16,
+        "boarding_number_confidence": "very_high",
+        "geometry_confidence": "high",
+        "coordinate_source": "OpenStreetMap",
+        "osm_node": 14132552843,
+        "osm_node_url": "https://www.openstreetmap.org/node/14132552843",
+        "coordinate_role": "current mapped feeder boarding platform",
+        "audit_date": "2026-10-11",
+        "boarding_number_source": "WikiRoutes / cartografía de paraderos vigente",
+        "boarding_number_source_url": "https://wikiroutes.info/es/lima?routes=46686",
+        "academic_crosscheck": {
+          "source": "UNFV, punto P-07",
+          "description": "Pavimento del paradero del embarque 16 Antúnez de Mayolo, frente a la entrada principal de la estación Naranjal.",
+          "utm_wgs84_zone": "18S",
+          "utm_easting": 275846,
+          "utm_northing": 8674494,
+          "converted_wgs84": [
+            -77.05858386872696,
+            -11.982962665162697
+          ],
+          "distance_to_osm_platform_m": 6.34,
+          "source_url": "https://repositorio.unfv.edu.pe/server/api/core/bitstreams/684465df-0d92-4c28-b57a-8e7f195d4028/content"
+        },
+        "geometry_source": "OpenStreetMap, corroborado vía Mapcarta",
+        "geometry_source_url": "https://mapcarta.com/es/N14132552843",
+        "geometry_precision": "5 decimal places (~1 m nominal; not survey-grade)",
+        "feature_role": "passenger_boarding_platform",
+        "osm_named_stop_verified": true,
+        "boarding_number_evidence": "WikiRoutes 2026 + UNFV GPS + tabla de Terminal Naranjal",
+        "operational_status_confidence": "high",
+        "boarding_conflict_note": "Se conserva Embarque 16. Algunas páginas individuales derivadas de Wikipedia lo muestran como Embarque 15; sin embargo, WikiRoutes actualizado en 2026 y un levantamiento GPS académico de UNFV identifican explícitamente el Embarque 16 Antúnez de Mayolo.",
+        "academic_control": {
+          "institution": "Universidad Nacional Federico Villarreal (UNFV)",
+          "point": "P-07",
+          "description": "Pavimento del paradero del embarque 16 Antúnez de Mayolo",
+          "crs": "UTM WGS84 zone 18S",
+          "easting": 275846,
+          "northing": 8674494,
+          "source_url": "https://repositorio.unfv.edu.pe/server/api/core/bitstreams/684465df-0d92-4c28-b57a-8e7f195d4028/content",
+          "note": "Control independiente de la identificación y localización del embarque."
+        },
+        "geometry_evidence": {
+          "source_type": "OpenStreetMap public_transport=platform / highway=bus_stop",
+          "source_url": "https://mapcarta.com/es/N14132552843",
+          "validation_date": "2026-10-11",
+          "confidence": "high",
+          "note": "Representa la plataforma de espera/embarque de pasajeros. No representa necesariamente el stop_position exacto del vehículo."
+        },
+        "boarding_assignment_evidence": {
+          "boarding_number": 16,
+          "sources": [
+            "https://wikiroutes.info/es/lima?routes=46686",
+            "https://repositorio.unfv.edu.pe/server/api/core/bitstreams/684465df-0d92-4c28-b57a-8e7f195d4028/content"
+          ],
+          "corroboration": "WikiRoutes fue actualizado 2026-03-31 y mantiene Embarque 16. UNFV georreferenció en campo el 'embarque 16 Antunez de Mayolo'. Yandex sigue mostrando 'Naranjal Embarque 16 - Antunez de Mayolo'.",
+          "confidence": "high",
+          "official_current_ATU_geospatial_source": false,
+          "known_conflict": true,
+          "conflict_note": "Algunas páginas individuales de Wikipedia invierten 15/16. Se prefieren WikiRoutes, la tabla general histórica de Naranjal, Yandex reciente y, para AN-17, el control GPS académico UNFV."
+        },
+        "validation_level": "high_confidence_reconstruction",
+        "validated_fourth_pass": true,
+        "route_code_authority": {
+          "code": "AN-17",
+          "status": "officially_attested",
+          "official_current_code_confirmed": true,
+          "evidence": [
+            {
+              "source": "Guía de Usuario oficial del Metropolitano",
+              "url": "https://www.metropolitano.com.pe/wp-content/themes/metro/poupfiles/guia_de_usuario.pdf",
+              "note": "La guía institucional enumera las rutas alimentadoras norte con nomenclatura AN-xx."
+            },
+            {
+              "source": "ATU - Resolución/Informe técnico 2023",
+              "url": "https://transparencia.atu.gob.pe/transparencia_atu/NormasEmitidas/9_D-000060-2023-ATU-DO-SSTR.pdf",
+              "note": "ATU menciona expresamente AN-16 Los Olivos, AN-17 Antúnez de Mayolo y AN-18 Izaguirre como rutas alimentadoras del COSAC I."
+            }
+          ],
+          "note": "El código está documentado por el sistema oficial del Metropolitano. Para AN-16, AN-17 y AN-18 existe además evidencia ATU posterior que los usa expresamente."
+        }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.05853,
+          -11.98299
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "naranjal_an18",
+      "properties": {
+        "id": "naranjal_an18",
+        "facility": "Terminal Naranjal",
+        "system": "Metropolitano",
+        "mode": "bus",
+        "area": "alimentadores",
+        "point_type": "boarding_platform",
+        "status": "current",
+        "route_code": "AN-18",
+        "route_name": "Izaguirre",
+        "boarding_number": 17,
+        "boarding_number_confidence": "high",
+        "geometry_confidence": "high",
+        "coordinate_source": "OpenStreetMap",
+        "osm_node": 14132552844,
+        "osm_node_url": "https://www.openstreetmap.org/node/14132552844",
+        "coordinate_role": "current mapped feeder boarding platform",
+        "audit_date": "2026-10-11",
+        "boarding_number_source": "WikiRoutes / cartografía de paraderos vigente",
+        "boarding_number_source_url": "https://wikiroutes.info/es/lima?routes=46687",
+        "geometry_source": "OpenStreetMap, corroborado vía Mapcarta",
+        "geometry_source_url": "https://mapcarta.com/es/N14132552844",
+        "geometry_precision": "5 decimal places (~1 m nominal; not survey-grade)",
+        "feature_role": "passenger_boarding_platform",
+        "osm_named_stop_verified": true,
+        "boarding_number_evidence": "WikiRoutes / tabla de Terminal Naranjal",
+        "operational_status_confidence": "high",
+        "geometry_evidence": {
+          "source_type": "OpenStreetMap public_transport=platform / highway=bus_stop",
+          "source_url": "https://mapcarta.com/es/N14132552844",
+          "validation_date": "2026-10-11",
+          "confidence": "high",
+          "note": "Representa la plataforma de espera/embarque de pasajeros. No representa necesariamente el stop_position exacto del vehículo."
+        },
+        "boarding_assignment_evidence": {
+          "boarding_number": 17,
+          "sources": [
+            "https://wikiroutes.info/es/lima?routes=46687",
+            "https://es.wikipedia.org/wiki/Alimentador_Izaguirre_%28Metropolitano%29"
+          ],
+          "corroboration": "Yandex y las fichas de ruta mantienen Izaguirre en Embarque 17.",
+          "confidence": "high",
+          "official_current_ATU_geospatial_source": false,
+          "known_conflict": false
+        },
+        "validation_level": "high_confidence_reconstruction",
+        "validated_fourth_pass": true,
+        "route_code_authority": {
+          "code": "AN-18",
+          "status": "officially_attested",
+          "official_current_code_confirmed": true,
+          "evidence": [
+            {
+              "source": "Guía de Usuario oficial del Metropolitano",
+              "url": "https://www.metropolitano.com.pe/wp-content/themes/metro/poupfiles/guia_de_usuario.pdf",
+              "note": "La guía institucional enumera las rutas alimentadoras norte con nomenclatura AN-xx."
+            },
+            {
+              "source": "ATU - Resolución/Informe técnico 2023",
+              "url": "https://transparencia.atu.gob.pe/transparencia_atu/NormasEmitidas/9_D-000060-2023-ATU-DO-SSTR.pdf",
+              "note": "ATU menciona expresamente AN-16 Los Olivos, AN-17 Antúnez de Mayolo y AN-18 Izaguirre como rutas alimentadoras del COSAC I."
+            }
+          ],
+          "note": "El código está documentado por el sistema oficial del Metropolitano. Para AN-16, AN-17 y AN-18 existe además evidencia ATU posterior que los usa expresamente."
+        }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.05844,
+          -11.98326
+        ]
+      }
+    }
+  ]
+}

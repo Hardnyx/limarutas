@@ -90,7 +90,7 @@ test('Naranjal feeders render their verified terminal circulation without snappi
     const { renderService, hideService } = await import('/assets/js/mapLayers.js');
     const checked = [], errors = [];
     for (const [id, service] of Object.entries(state.systems.alim.paths)) {
-      if (!service.ida?.terminalAccess) continue;
+      if (service.terminal !== 'naranjal') continue;
       setDirFor('alim', id, 'ambas');
       renderService('alim', id, { silentFit: true });
       const lines = state.systems.alim.lineLayers.get(id).getLayers();
@@ -101,17 +101,24 @@ test('Naranjal feeders render their verified terminal circulation without snappi
         const terminal = path.stops.find(s => s.id === 'met:naranjal');
         if (terminal.lat !== -11.9821275 || terminal.lon !== -77.0587452) errors.push(`${id}:${direction}: station moved`);
         if (!path.stops.every((s, j) => !j || (s.at >= path.stops[j-1].at && s.m >= path.stops[j-1].m))) errors.push(`${id}:${direction}: stop order`);
-        if (!access.references.length) errors.push(`${id}:${direction}: missing OSM references`);
+        if (access && !access.references.length) errors.push(`${id}:${direction}: missing OSM references`);
         if (!path.pasos?.length) errors.push(`${id}:${direction}: missing instructions`);
         const end = direction === 'ida' ? actual[0] : actual.at(-1);
-        if (JSON.stringify(end) === JSON.stringify([terminal.lat, terminal.lon])) errors.push(`${id}:${direction}: station snap`);
+        if (access && JSON.stringify(end) === JSON.stringify([terminal.lat, terminal.lon])) errors.push(`${id}:${direction}: station snap`);
         checked.push(`${id}:${direction}`);
       });
+      const markers=state.systems.alim.stopLayers.get(id).getLayers();
+      const first=markers.find(m=>m.options.icon);
+      const boarding=service.boarding;
+      if(JSON.stringify([first.getLatLng().lng,first.getLatLng().lat])!==JSON.stringify(boarding.coordinates)) errors.push(`${id}: boarding marker moved`);
+      if(!first.getTooltip().getContent().includes(`Embarque ${boarding.number}`)) errors.push(`${id}: boarding tooltip`);
+      if(first.options.icon.options.className!=='stop-pin') errors.push(`${id}: station icon changed`);
       hideService('alim', id);
     }
-    return { checked, errors, external: ['AN-15', 'AN-16', 'AN-17', 'AN-19'].every(id => !state.systems.alim.paths[id].ida.terminalAccess) };
+    return { checked, errors, boarding: Object.values(state.systems.alim.paths).filter(s => s.terminal === 'naranjal').map(s => s.boarding) };
   });
-  expect(result.checked).toHaveLength(18);
+  expect(result.checked).toHaveLength(26);
   expect(result.errors).toEqual([]);
-  expect(result.external).toBe(true);
+  expect(result.boarding).toHaveLength(13);
+  expect(result.boarding.every(b => b.role === 'boarding' && b.number > 0)).toBe(true);
 });

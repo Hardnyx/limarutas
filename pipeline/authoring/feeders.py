@@ -63,43 +63,8 @@ def itinerary_network(network, service, evidence):
 
 
 def directed_path(engine, points, identity):
-    """Choose road projections jointly; never insert the station/stop itself."""
-    layers = []
-    for point in points:
-        candidates, seen = [], set()
-        for candidate in engine.candidates(point, 80):
-            way = engine.network.edges[candidate['edge']]['way']
-            if way not in seen:
-                seen.add(way)
-                candidates.append(candidate)
-        if not candidates:
-            raise ValueError(f'{identity}: punto sin calle del itinerario a menos de 80 m: {point}')
-        layers.append(candidates[:6])
-    states = [(c['distanceM']*3, [], {'edge': c['edge'], 'fraction': c['fraction']}) for c in layers[0]]
-    for index, layer in enumerate(layers[1:], 1):
-        following = []
-        for candidate in layer:
-            target = {'edge': candidate['edge'], 'fraction': candidate['fraction']}
-            choices = []
-            for cost, history, start in states:
-                if start == target:
-                    choices.append((cost+candidate['distanceM']*3, history, target))
-                    continue
-                try:
-                    refs = engine.connect(start, target, incoming=history[-1]['edge'] if history else None,
-                                          history=history, profile=PROFILE)
-                except ValueError:
-                    continue
-                length = sum(metres(*engine.network.coordinates(r)) for r in refs)
-                if length > metres(points[index-1], points[index])*3+200:
-                    continue
-                choices.append((cost+length+candidate['distanceM']*3, history+refs, target))
-            if choices:
-                following.append(min(choices, key=lambda item: item[0]))
-        if not following:
-            raise ValueError(f'{identity}: no hay una conexión legal continua en el paso {index}')
-        states = following
-    return min(states, key=lambda item: item[0])[1]
+    from .routing import directed_path as connect_projections
+    return connect_projections(engine, points, identity, profile=PROFILE)
 
 
 def rebuild(service, identity, network, evidence):

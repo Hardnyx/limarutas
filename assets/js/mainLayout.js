@@ -6,6 +6,7 @@
 //     Rutas: buscador · "En el mapa (N)" + Limpiar · Recientes ·
 //            secciones por sistema, con cantidad de rutas y subtítulo
 //   Mapa: control de ajustes (paraderos, auto-centrar, tema)
+import { mountExplorePane } from './explore.js';
 import { state } from './config.js';
 import { $, $$, el } from './utils.js';
 import { syncAllTri, FILTERED_SEL, ROUTES_CHANGED } from './uiSidebar.hierarchy.js';
@@ -58,7 +59,9 @@ function buildTabs(sidebar, panels){
   const tabs = el('div', { class: 'side-tabs', role: 'tablist', 'aria-label': 'Modo' });
   const tabTrip = el('button', { type: 'button', class: 'side-tab', id: 'tabTrip', role: 'tab', 'aria-controls': 'tripPane' }, icon('directions'), 'Cómo llegar');
   const tabRoutes = el('button', { type: 'button', class: 'side-tab', id: 'tabRoutes', role: 'tab', 'aria-controls': 'routesPane' }, icon('route'), 'Rutas');
-  tabs.append(tabTrip, tabRoutes);
+  const tabExplore = el('button', { type: 'button', class: 'side-tab', id: 'tabExplore', role: 'tab', 'aria-controls': 'explorePane' }, icon('layers'), 'Explorar');
+  tabs.append(tabTrip, tabRoutes, tabExplore);
+  const explorePane = mountExplorePane();
 
   // Su contenido lo arma tripUi.js cuando las listas están listas
   const tripPane = el('div', { class: 'side-pane', id: 'tripPane', role: 'tabpanel', 'aria-labelledby': 'tabTrip' });
@@ -119,17 +122,17 @@ function buildTabs(sidebar, panels){
   routesPane.append(onMap, panels);
 
   const header = sidebar.querySelector('.header');
-  (header || sidebar.firstChild).after(tabs, tripPane, routesPane);
+  (header || sidebar.firstChild).after(tabs, tripPane, routesPane, explorePane);
   $('#topbar')?.remove();
 
   const select = (tab) => {
     const isTrip = tab === 'trip';
-    tabTrip.setAttribute('aria-selected', String(isTrip));
-    tabRoutes.setAttribute('aria-selected', String(!isTrip));
-    tabTrip.tabIndex = isTrip ? 0 : -1;
-    tabRoutes.tabIndex = isTrip ? -1 : 0;
-    tripPane.hidden = !isTrip;
-    routesPane.hidden = isTrip;
+    for (const [key, button, pane] of [['trip',tabTrip,tripPane],['routes',tabRoutes,routesPane],['explore',tabExplore,explorePane]]) {
+      const active=key===tab;
+      button.setAttribute('aria-selected',String(active));button.tabIndex=active?0:-1;pane.hidden=!active;
+    }
+    document.documentElement.classList.toggle('explore-mode',tab==='explore');
+    if(tab==='explore') { closeRouteInspector(); explorePane.load(); }
     // Cada pestaña muestra lo suyo en el mapa: el viaje o las rutas marcadas
     // (siguen marcadas; al volver a Rutas reaparecen)
     document.documentElement.classList.toggle('trip-mode', isTrip);
@@ -137,9 +140,12 @@ function buildTabs(sidebar, panels){
   };
   tabTrip.addEventListener('click', () => select('trip'));
   tabRoutes.addEventListener('click', () => select('routes'));
+  tabExplore.addEventListener('click', () => select('explore'));
   tabs.addEventListener('keydown', (e) => {
     if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
-    const next = e.target === tabTrip ? tabRoutes : tabTrip;
+    const choices=[tabTrip,tabRoutes,tabExplore];
+    const next=choices[(choices.indexOf(e.target)+(e.key==='ArrowRight'?1:2))%3];
+    e.preventDefault();
     next.click();
     next.focus();
   });

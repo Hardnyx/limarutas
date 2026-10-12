@@ -331,12 +331,16 @@ export function renderService(systemId, id, opts={}){
 
   if (state.showStops && Array.isArray(stopsToUse) && stopsToUse.length){
     const used = new Set();
+    const boardingStations = new Set(stopsToUse.filter(s => typeof s === 'object' && s.boardingPoint?.role === 'boarding').map(s => s.id));
     stopsToUse.forEach(st => {
       // Paradero como objeto ({id, name, lat, lon}: alimentadores) o como id
       const key = typeof st === 'object' ? st.id : st;
+      if (boardingStations.has(key) && !st.boardingPoint) return;
       if (used.has(key)) return;
       used.add(key);
-      const ll = typeof st === 'object' ? [st.lat, st.lon] : getStopLatLng(sys, st);
+      const boarding = typeof st === 'object' && st.boardingPoint?.role === 'boarding' ? st.boardingPoint : null;
+      const ll = boarding ? [boarding.coordinates[1], boarding.coordinates[0]]
+        : typeof st === 'object' ? [st.lat, st.lon] : getStopLatLng(sys, st);
       if (!ll) return;
       // Alimentadores: puntitos como los del corredor (blanco con borde del
       // color de la ruta); solo la estación de la que parten lleva ícono
@@ -348,7 +352,7 @@ export function renderService(systemId, id, opts={}){
                                weight: 1.5, opacity: 1, fillOpacity: 1, bubblingMouseEvents: false })
         : L.marker(ll, { pane: paneStop, icon: L.divIcon({ className:'stop-pin', iconSize:[16,16] }) })
       ).addTo(gStop);
-      const nm = typeof st === 'object' ? st.name : (sys.stops.get(st)?.name || st);
+      const nm = boarding?.name || (typeof st === 'object' ? st.name : (sys.stops.get(st)?.name || st));
       marker.bindTooltip(nm, { permanent:false, direction:'top' });
       marker.on('mouseover', () => setOverStop(true));
       marker.on('mouseout', () => setOverStop(false));

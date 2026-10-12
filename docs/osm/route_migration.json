@@ -7,18 +7,18 @@
     "wikiroutes": 4098,
     "nativeBusDirections": 83,
     "geometry": {
-      "legacy-osm": 3282,
-      "canonical": 813,
+      "legacy-osm": 3276,
+      "canonical": 819,
       "original": 3
     },
     "migration": {
-      "blocked-validation": 3285,
-      "accepted": 802,
+      "blocked-validation": 3279,
+      "accepted": 808,
       "blocked-revalidation": 11
     },
     "nativeValidation": {
-      "blocked": 52,
-      "ready": 31
+      "ready": 33,
+      "blocked": 50
     }
   },
   "routes": {
@@ -30871,84 +30871,63 @@
       }
     },
     "AD-C-ida": {
-      "geometry": "legacy-osm",
-      "migration": "blocked-validation",
+      "geometry": "canonical",
+      "migration": "accepted",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": false,
-        "issues": {
-          "wrongDirection": 3,
-          "unmatched": 10,
-          "restrictedTurn": 2
-        }
+        "ready": true,
+        "issues": {}
       }
     },
     "AD-C-vuelta": {
-      "geometry": "legacy-osm",
-      "migration": "blocked-validation",
+      "geometry": "canonical",
+      "migration": "accepted",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": false,
-        "issues": {
-          "unmatched": 9,
-          "wrongDirection": 15
-        }
+        "ready": true,
+        "issues": {}
       }
     },
     "AD-N-ida": {
-      "geometry": "legacy-osm",
-      "migration": "blocked-validation",
+      "geometry": "canonical",
+      "migration": "accepted",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": false,
-        "issues": {
-          "wrongDirection": 57,
-          "restrictedTurn": 1,
-          "unmatched": 11
-        }
+        "ready": true,
+        "issues": {}
       }
     },
     "AD-N-vuelta": {
-      "geometry": "legacy-osm",
-      "migration": "blocked-validation",
+      "geometry": "canonical",
+      "migration": "accepted",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": false,
-        "issues": {
-          "unmatched": 14,
-          "wrongDirection": 42
-        }
+        "ready": true,
+        "issues": {}
       }
     },
     "AD-S-ida": {
-      "geometry": "legacy-osm",
-      "migration": "blocked-validation",
+      "geometry": "canonical",
+      "migration": "accepted",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": false,
-        "issues": {
-          "restrictedTurn": 3,
-          "unmatched": 8,
-          "wrongDirection": 4
-        }
+        "ready": true,
+        "issues": {}
       }
     },
     "AD-S-vuelta": {
-      "geometry": "legacy-osm",
-      "migration": "blocked-validation",
+      "geometry": "canonical",
+      "migration": "accepted",
       "hasReferences": true,
       "issues": [],
       "validation": {
-        "ready": false,
-        "issues": {
-          "unmatched": 6,
-          "wrongDirection": 2
-        }
+        "ready": true,
+        "issues": {}
       }
     },
     "AN01-ida": {
@@ -50886,7 +50865,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "unmatched": 7
+          "unmatched": 5
         }
       }
     },
@@ -50960,7 +50939,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "unmatched": 4
+          "unmatched": 3
         }
       }
     },
@@ -50970,7 +50949,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "unmatched": 7
+          "unmatched": 5
         }
       }
     },
@@ -50980,8 +50959,8 @@
       "validation": {
         "ready": false,
         "issues": {
-          "unmatched": 9,
-          "wrongDirection": 11
+          "wrongDirection": 2,
+          "unmatched": 6
         }
       }
     },
@@ -51001,8 +50980,8 @@
       "validation": {
         "ready": false,
         "issues": {
-          "unmatched": 16,
-          "wrongDirection": 12
+          "unmatched": 13,
+          "wrongDirection": 3
         }
       }
     },
@@ -51024,8 +51003,8 @@
       "validation": {
         "ready": false,
         "issues": {
-          "unmatched": 28,
-          "wrongDirection": 38
+          "wrongDirection": 30,
+          "unmatched": 25
         }
       }
     },
@@ -51035,8 +51014,8 @@
       "validation": {
         "ready": false,
         "issues": {
-          "unmatched": 25,
-          "wrongDirection": 20
+          "unmatched": 23,
+          "wrongDirection": 18
         }
       }
     },
@@ -51107,8 +51086,8 @@
       "validation": {
         "ready": false,
         "issues": {
-          "unmatched": 30,
-          "wrongDirection": 44,
+          "unmatched": 29,
+          "wrongDirection": 42,
           "restrictedTurn": 2
         }
       }
@@ -51150,8 +51129,8 @@
       "validation": {
         "ready": false,
         "issues": {
-          "unmatched": 5,
-          "wrongDirection": 4
+          "wrongDirection": 4,
+          "unmatched": 3
         }
       }
     },
@@ -51232,24 +51211,16 @@
       "migration": "blocked-validation",
       "file": "data/processed/metropolitano/alimentadores_paths.json",
       "validation": {
-        "ready": false,
-        "issues": {
-          "unmatched": 24,
-          "wrongDirection": 19,
-          "stopOffRoute": 1
-        }
+        "ready": true,
+        "issues": {}
       }
     },
     "alim:AS-04:vuelta": {
       "migration": "blocked-validation",
       "file": "data/processed/metropolitano/alimentadores_paths.json",
       "validation": {
-        "ready": false,
-        "issues": {
-          "unmatched": 19,
-          "wrongDirection": 42,
-          "stopOffRoute": 1
-        }
+        "ready": true,
+        "issues": {}
       }
     },
     "alim:AS-07:ida": {
@@ -51338,7 +51309,7 @@
       "validation": {
         "ready": false,
         "issues": {
-          "unmatched": 11
+          "unmatched": 9
         }
       }
     },

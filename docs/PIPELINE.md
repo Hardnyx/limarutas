@@ -74,3 +74,7 @@ Las dependencias directas están fijadas en `pipeline/requirements.txt`; el
 navegador y la validación estática no las importan. Una reconstrucción completa
 necesita recuperar las fuentes externas de la tabla. La validación no actualiza
 esas fuentes ni atribuye a los datos existentes una fecha de descarga nueva.
+
+## ATU PMU
+
+La adquisición independiente `pipeline/scripts/atu/sync_geovisor.py` mantiene candidatos condicionales y promueve solo un PMU validado. La etapa `atu-pmu` construye a partir de originales ya descargados; no depende de OSM ni de la etapa `trips`. `validate_pmu.py` verifica geometría oficial y exclusión de índices operativos. La pestaña Explorar carga únicamente los derivados publicados. El contrato, actualización semanal y comprobaciones están en `docs/ATU_PROYECTADAS.md`.

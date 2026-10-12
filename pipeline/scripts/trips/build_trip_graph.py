@@ -59,6 +59,7 @@ from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / 'pipeline' / 'scripts' / 'wikiroutes'))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from distritos import Distritos  # noqa: E402
@@ -169,7 +170,12 @@ def alimentadores(stops: Stops, routes: dict, seg_m: dict) -> int:
         for key in ('ida', 'vuelta'):
             seq, meters = [], []
             for s in svc[key]['stops']:
-                node = stops.get(s['id'], s['lat'], s['lon'], s['name'])
+                boarding = s.get('boardingPoint')
+                if boarding and boarding.get('role') == 'boarding':
+                    lon, lat = boarding['coordinates']
+                    node = stops.get(f'boarding:osm:{boarding["id"]}', lat, lon, boarding['name'])
+                else:
+                    node = stops.get(s['id'], s['lat'], s['lon'], s['name'])
                 if seq and seq[-1] == node:
                     continue
                 seq.append(node)
@@ -271,19 +277,38 @@ def update_met_distances(graph, paths, services, stations):
 def update_feeder_routes(graph, services, refs, preserve_positions=False):
     """Refresh selected feeders without changing route or shared station identities."""
     uses = Counter(i for seq in graph['routes'].values() for i in set(seq))
-    rows, distances = {}, {}
+    rows, distances, sequences, additions = {}, {}, {}, []
+    platforms = {(tuple(row[:2]), row[2]): i for i, row in enumerate(graph['stops'])}
     for ref in refs:
         for direction in ('ida', 'vuelta'):
             key = f'alim:{ref}:{direction}'
             item = services[ref][direction]
-            seq, stops = graph['routes'].get(key, []), item['stops']
+            seq, stops = list(graph['routes'].get(key, [])), item['stops']
             if len(seq) != len(stops) or len(set(seq)) != len(seq):
                 raise ValueError(f'{key}: los paraderos no corresponden al grafo')
             meters = [s['m'] for s in stops]
             if meters != sorted(meters):
                 raise ValueError(f'{key}: paraderos fuera de orden')
-            for index, stop in zip(seq, stops):
+            for slot, (index, stop) in enumerate(zip(seq, stops)):
                 row = graph['stops'][index]
+                boarding = stop.get('boardingPoint')
+                if boarding and boarding.get('role') == 'boarding':
+                    from pipeline.authoring.model import coordinate
+                    from pipeline.authoring.network import metres
+                    point = coordinate(boarding['coordinates'])
+                    if (not str(stop['id']).startswith('met:') or metres(point, [stop['lon'], stop['lat']]) > 500
+                            or type(boarding.get('id')) is not int):
+                        raise ValueError(f'{key}: plataforma sin vínculo válido con la estación')
+                    point = [round(point[1], 6), round(point[0], 6)]
+                    name = fix_stop_name(boarding['name'])
+                    if row[2] not in (fix_stop_name(stop['name']), name):
+                        raise ValueError(f'{key}: cambió la identidad del embarque')
+                    platform = (tuple(point), name)
+                    if platform not in platforms:
+                        platforms[platform] = len(graph['stops'])+len(additions)
+                        additions.append([*point, name, row[3]])
+                    seq[slot] = platforms[platform]
+                    continue
                 point = [round(stop['lat'], 6), round(stop['lon'], 6)]
                 if row[2] != fix_stop_name(stop['name']):
                     raise ValueError(f'{key}: cambió la identidad de {stop["id"]}')
@@ -293,9 +318,12 @@ def update_feeder_routes(graph, services, refs, preserve_positions=False):
                     if not preserve_positions:
                         rows[index] = point
             distances[key] = [max(1, b-a) for a, b in zip(meters, meters[1:])]
+            sequences[key] = seq
     # Apply only after every selected direction has passed preflight.
     for index, point in rows.items():
         graph['stops'][index][:2] = point
+    graph['stops'].extend(additions)
+    graph['routes'].update(sequences)
     graph['segM'].update(distances)
     return len(distances)
 

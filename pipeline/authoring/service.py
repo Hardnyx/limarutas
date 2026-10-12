@@ -101,6 +101,14 @@ class Service:
         if operation in ('match', 'validate', 'save', 'accept', 'export', 'rebuild', 'replace'):
             route = copy.deepcopy(request['route']) if 'route' in request else self.store.get(request['routeId'])
             if operation == 'match':
+                if route.get('itineraryEvidence', {}).get('kind') == 'directed-source-corridor':
+                    from .itineraries import reconstruct
+                    evidence = route['itineraryEvidence']
+                    matched = reconstruct(route, self.engine, route['source']['provenance']['definition'],
+                                          evidence['relations'], evidence['facilityPoints'], route['profile']['system'])
+                    matched['revision'] = route['revision']
+                    matched['review']['accepted'] = False
+                    return self.pack(matched)
                 parts = track_coordinates(route['source']['track'])
                 return self.pack(self.engine.match(route, [c for part in parts for c in part]))
             if operation == 'rebuild':
@@ -122,7 +130,11 @@ class Service:
                            {'edge': last['edge'], 'fraction': last.get('end', 1)}]
                 path = []
                 for a, b in zip(anchors, anchors[1:]):
-                    path.extend(self.engine.connect(a, b, profile=route.get('profile')))
+                    history = route['path'][:start]+path
+                    incoming = history[-1]['edge'] if history and history[-1]['type'] == 'street' else None
+                    ways = route.get('constraints', {}).get('allowedWays')
+                    path.extend(self.engine.connect(a, b, profile=route.get('profile'), incoming=incoming,
+                                                    history=history, allowed=set(ways) if ways else None))
                 route['path'][start:end+1] = path
                 route['review']['accepted'] = False
                 route.pop('anchors', None)
@@ -144,4 +156,8 @@ class Service:
 
 
 def load_service(network_file, root, workspace):
-    return Service(Network(json.loads(Path(network_file).read_text())), root, workspace)
+    data = json.loads(Path(network_file).read_text())
+    from .network import INVENTORY_REVISION, POLICY
+    if data.get('policy') == POLICY and (data.get('inventoryRevision') != INVENTORY_REVISION or 'serviceTypes' not in data):
+        raise ValueError('Actualiza el inventario de vías con python3 -m pipeline.authoring.network')
+    return Service(Network(data), root, workspace)

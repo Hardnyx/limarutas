@@ -1,0 +1,75 @@
+{
+  "features": 106,
+  "parts": 151,
+  "vertices": 15870,
+  "fields": [
+    "OBJECTID",
+    "dhpm_cp",
+    "dhpm_lp",
+    "dhpm_mp",
+    "estado",
+    "fid",
+    "hz_pmu",
+    "hz_pmu_txt",
+    "long_km",
+    "nombre",
+    "simbol",
+    "tec_cp",
+    "tec_lp",
+    "tec_mp",
+    "tecnologia"
+  ],
+  "logicalGroups": 106,
+  "multiFeatureGroups": 0,
+  "semanticSha256": "c4896d21b852401936b38d5104d2113b261e52bfe2c2f875aaffef956f4e8174",
+  "geometryTypes": {
+    "MultiLineString": 106
+  },
+  "values": {
+    "tecnologia": [
+      "BRT - Alta Capacidad",
+      "BRT - Mediana Capacidad",
+      "Corredores Bus",
+      "Red Ferroviaria Urbana",
+      "Sistema de Teleféricos"
+    ],
+    "estado": [
+      "En ejecución",
+      "En operación",
+      "Estudio de Perfil aprobado",
+      "Propuesta"
+    ],
+    "hz_pmu": [
+      "0.0",
+      "10.0",
+      "20.0",
+      "5.0"
+    ],
+    "tec_cp": [
+      "-",
+      "BRT (Alta Capacidad)",
+      "Corredor Bus",
+      "Ferroviaria Urbana (Metro)",
+      "Teleférico"
+    ],
+    "tec_mp": [
+      "-",
+      "BRT (Alta Capacidad)",
+      "BRT (Mediana Capacidad)",
+      "Corredor Bus",
+      "Ferroviaria Urbana (Metro)",
+      "Teleférico"
+    ],
+    "tec_lp": [
+      "-",
+      "BRT (Alta Capacidad)",
+      "BRT (Mediana Capacidad)",
+      "Corredor Bus",
+      "Ferroviaria Urbana (Metro Ligero)",
+      "Ferroviaria Urbana (Metro)",
+      "Teleférico"
+    ]
+  },
+  "stationPoints": 0,
+  "sourceSha256": "787e4e9f29ccd20760bb9579889ec51e6473d947258a8a0387aa9474cbcffd40"
+}

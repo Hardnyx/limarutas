@@ -12,6 +12,7 @@ HIGHWAYS = {'motorway', 'trunk', 'primary', 'secondary', 'tertiary', 'unclassifi
             'residential', 'living_street', 'service', 'busway', 'bus_guideway'}
 HIGHWAYS |= {h + '_link' for h in ('motorway', 'trunk', 'primary', 'secondary', 'tertiary')}
 POLICY = 'bus-v5'
+INVENTORY_REVISION = 2
 
 
 def normal(value):
@@ -200,24 +201,31 @@ def from_pbf(path, bbox=(-77.26, -12.42, -76.56, -11.70)):
               'url': 'https://download.bbbike.org/osm/bbbike/Lima/Lima.osm.pbf',
               'attribution': '© OpenStreetMap contributors', 'license': 'ODbL-1.0'}
     edges, turns, via_restrictions, unresolved, transit = [], [], [], [], defaultdict(set)
-    brt_members = defaultdict(list)
+    service_types = {}
+    brt_members, bus_members = defaultdict(list), defaultdict(list)
     w, s, e, n = bbox
 
     class Transit(osmium.SimpleHandler):
         def relation(self, rel):
             tags = dict(rel.tags)
-            if tags.get('type') == 'route' and tags.get('route') == 'bus' and normal(tags.get('network', '')) == 'metropolitano':
+            if tags.get('type') == 'route' and tags.get('route') in ('bus', 'trolleybus'):
                 for member in rel.members:
                     if member.type == 'w' and member.role not in ('platform', 'stop'):
-                        brt_members[member.ref].append(rel.id)
+                        bus_members[member.ref].append(rel.id)
+                        if normal(tags.get('network', '')) == 'metropolitano':
+                            brt_members[member.ref].append(rel.id)
 
     Transit().apply_file(str(path))
 
     class Handler(osmium.SimpleHandler):
         def way(self, way):
-            tags, access_evidence = bus_tags(dict(way.tags), brt_members.get(way.id, []))
-            # OSM BRT relations identify unnamed service tunnels with generic
-            # access=no but no bus-specific tag. Keep them only for that system.
+            brt = brt_members.get(way.id, [])
+            tags, access_evidence = bus_tags(dict(way.tags), brt or bus_members.get(way.id, []))
+            if access_evidence and not brt:
+                access_evidence['kind'] = 'osm-bus-route-membership'
+            # Private service roads with actual bus-route membership are kept
+            # as restricted links. Mixed traffic still needs explicit segment
+            # permission; bus=no and psv=no always remain excluded.
             if not bus_access(tags):
                 return
             try:
@@ -226,6 +234,8 @@ def from_pbf(path, bbox=(-77.26, -12.42, -76.56, -11.70)):
                 return
             if not any(w <= p[0] <= e and s <= p[1] <= n for _, p in pts):
                 return
+            if tags.get('service'):
+                service_types[str(way.id)] = tags['service']
             forward, backward = bus_directions(tags)
             aliases = [v.strip() for k in ('alt_name', 'official_name', 'short_name', 'name:es')
                        for v in tags.get(k, '').split(';') if v.strip()]
@@ -289,8 +299,10 @@ def from_pbf(path, bbox=(-77.26, -12.42, -76.56, -11.70)):
     reader.close()
     for edge in edges:
         edge['transitSystems'] = sorted(transit.get(edge['way'], []))
-    return {'version': 1, 'policy': POLICY, 'source': source, 'bbox': list(bbox), 'edges': edges,
-            'turns': turns, 'viaRestrictions': via_restrictions, 'unresolvedRestrictions': unresolved}
+    return {'version': 1, 'policy': POLICY, 'inventoryRevision': INVENTORY_REVISION,
+            'source': source, 'bbox': list(bbox), 'edges': edges,
+            'turns': turns, 'viaRestrictions': via_restrictions, 'unresolvedRestrictions': unresolved,
+            'serviceTypes': service_types}
 
 
 def save_network(path, output):

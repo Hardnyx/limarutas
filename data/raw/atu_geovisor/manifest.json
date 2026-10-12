@@ -1,0 +1,36 @@
+{
+  "pmu_sit": {
+    "url": "https://geovisor.atumovilidad.pe/data/pmu_sit.geojson",
+    "sha256": "787e4e9f29ccd20760bb9579889ec51e6473d947258a8a0387aa9474cbcffd40",
+    "etag": "\"a412a51e8d7dc1:0\"",
+    "lastModified": "Wed, 29 Apr 2026 14:56:10 GMT",
+    "downloadedAtUtc": "2026-10-12T12:16:52.315589+00:00",
+    "validatorVersion": 1,
+    "bytes": 780568,
+    "statistics": {
+      "features": 106,
+      "parts": 151,
+      "vertices": 15870,
+      "fields": [
+        "OBJECTID",
+        "dhpm_cp",
+        "dhpm_lp",
+        "dhpm_mp",
+        "estado",
+        "fid",
+        "hz_pmu",
+        "hz_pmu_txt",
+        "long_km",
+        "nombre",
+        "simbol",
+        "tec_cp",
+        "tec_lp",
+        "tec_mp",
+        "tecnologia"
+      ],
+      "logicalGroups": 106,
+      "multiFeatureGroups": 0,
+      "semanticSha256": "c4896d21b852401936b38d5104d2113b261e52bfe2c2f875aaffef956f4e8174"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "fuente": "ATU",
+  "source_sha256": "787e4e9f29ccd20760bb9579889ec51e6473d947258a8a0387aa9474cbcffd40",
+  "dataset": "red.geojson",
+  "count": 106,
+  "stationPoints": 0,
+  "types": {
+    "brt": 13,
+    "corredor": 73,
+    "infraestructura": 8,
+    "metro": 12
+  },
+  "horizons": {
+    "0": "Escenario base",
+    "5": "Corto plazo",
+    "10": "Mediano plazo",
+    "20": "Largo plazo"
+  }
+}

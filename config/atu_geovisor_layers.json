@@ -1,0 +1,9 @@
+{
+  "pmu_sit": {
+    "url": "https://geovisor.atumovilidad.pe/data/pmu_sit.geojson",
+    "identityFields": ["nombre", "hz_pmu"],
+    "fieldAliases": {"nombre": ["nombre"], "tecnologia": ["tecnologia"], "horizonte": ["hz_pmu"], "estado": ["estado"]},
+    "types": {"Red Ferroviaria Urbana": "metro", "BRT - Alta Capacidad": "brt", "BRT - Mediana Capacidad": "brt", "Corredores Bus": "corredor", "Sistema de Teleféricos": "infraestructura"},
+    "horizons": {"0": "Escenario base", "5": "Corto plazo", "10": "Mediano plazo", "20": "Largo plazo"}
+  }
+}

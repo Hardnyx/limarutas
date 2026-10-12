@@ -151,13 +151,14 @@ async function buildSearchIndex(){
   for (const svc of alimSvcs){
     if (!svc) continue;
     const id = String(svc.id);
+    const boardingCode = state.systems.alim.paths?.[id]?.boarding?.routeCode || id;
     const name = svc.name || '';
     const zone = svc.zone || '';
     const mainLabel = name || `Alimentador ${id}`;
     const label = zone
-      ? `Alimentador ${id} · ${mainLabel} (${zone})`
-      : `Alimentador ${id} · ${mainLabel}`;
-    const tokens = norm([id, name, zone, 'alimentador', 'metropolitano'].join(' '));
+      ? `Alimentador ${boardingCode} · ${mainLabel} (${zone})`
+      : `Alimentador ${boardingCode} · ${mainLabel}`;
+    const tokens = norm([id, boardingCode, name, zone, 'alimentador', 'metropolitano'].join(' '));
     docs.push({ key: `alim:${id}`, system: 'alim', id, label, type: 'alim', tokens });
   }
 

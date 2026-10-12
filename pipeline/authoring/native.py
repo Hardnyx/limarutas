@@ -118,6 +118,10 @@ def import_native(root, key, engine, trace=None):
     route = new_route(key, name, direction, engine.network, source)
     route['profile'] = profile
     route['stops'] = stop_records(stops)
+    if prefix == 'alim':
+        for stop in route['stops']:
+            if stop['properties'].get('boardingPoint'):
+                stop['boardingPoint'] = copy.deepcopy(stop['properties']['boardingPoint'])
     if prefix == 'alim' and item.get('terminalAccess'):
         access = item['terminalAccess']
         for stop in route['stops']:

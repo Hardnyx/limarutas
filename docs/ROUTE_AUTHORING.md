@@ -330,9 +330,9 @@ y evita desvíos externos causados por haber pasado la puerta de entrada.
 
 En Naranjal se corrigieron los 18 sentidos de nueve servicios con andén
 interno. Los Alisos, Los Olivos, Antúnez de Mayolo e Izaguirre tienen plataformas
-externas y conservan sus trazados. El punto compartido `met:naranjal` permanece
+externas: la capa de embarques posterior corrige también sus cuatro salidas públicas. Sus llegadas conservan el trazado anterior. El punto compartido `met:naranjal` permanece
 como identidad de estación; `terminalAccess.boardingPoint` identifica el andén
-físico sin desplazar el marcador ni arrastrar la línea hacia él.
+físico. El marcador de salida se ubica en el embarque y la línea conserva su calzada, sin arrastrarse hacia el punto común de estación.
 
 La geometría externa conservada, los paraderos y el punto de vuelta mantienen
 su identidad. Se actualizan los índices y distancias del acceso y las
@@ -359,3 +359,15 @@ formularios, controles y mapa; el editor tiene los mismos botones en su
 cabecera. La elección se guarda en el navegador, se aplica antes de cargar los
 estilos y se comparte entre pestañas del mismo sitio. Sin almacenamiento
 disponible, los botones siguen funcionando durante la visita.
+
+## Embarques y corredores de fuente dirigida
+
+`python3 -m pipeline.authoring.boarding naranjal` vincula la capa de embarques a los servicios por nombre normalizado y verifica el nodo OSM y sus coordenadas. Los 13 embarques publicados proceden de `data/raw/metropolitano/naranjal_boarding_platforms.geojson`. Se conserva el punto exacto del archivo, su SHA y número. Esta capa certifica salidas; no se usa para modificar las llegadas. Los IDs internos se mantienen: AN-18 se muestra como AN-02 y AN-19 como AN-18 según los códigos de la capa. La autoridad del código operativo AN-02 queda indicada en sus metadatos. El grafo agrega un punto de abordaje físico y conserva la estación lógica del troncal.
+
+`python3 -m pipeline.authoring.itineraries AD-C-ida AD-C-vuelta AD-N-ida AD-N-vuelta AD-S-ida AD-S-vuelta` reconstruye esos servicios en un corredor descubierto desde sus fuentes. Aplica proyecciones conjuntas, sentidos de calle, restricciones de giro, continuidad y límites por longitud de la guía. Descubre los segmentos de avenidas y enlaces omitidos por dibujos generalizados; excluye pasillos de estacionamiento sin evidencia de recorrido de bus. Los accesos privados requieren pertenencia a una relación de bus OSM y permisos explícitos de segmentos utilizados. No hay coordenadas de Quilca o del aeropuerto fijadas en el algoritmo, ni excepciones por código de servicio.
+
+La reconstrucción termina solo si los seis sentidos validan y los tres accesos compartidos al aeropuerto coinciden en referencias y fracciones. Centro y Sur comparten el retorno de Quilca; Norte llega desde la otra dirección y conserva su entrada distinta. `docs/osm/aerodirecto_itineraries.json` conserva la evidencia y las referencias compartidas. Los originales y paraderos Wikiroutes se mantienen exactos; se publican `.osm.geojson` y `.route.json` aceptados. Las distancias del planificador se actualizan desde las posiciones verificadas sobre ese recorrido.
+
+La operación API `match` de una ruta con evidencia `directed-source-corridor` reutiliza esta reconstrucción y devuelve un borrador que requiere aceptación. `replace` conserva los límites del corredor y el historial de giros. La revisión de inventario OSM 2 es aditiva dentro de `bus-v5`: recupera accesos de servicio acreditados por relaciones de buses sin cambiar los segmentos y restricciones previamente disponibles. Regenerar una caché anterior con `python3 -m pipeline.authoring.network` antes de iniciar el servidor. La auditoría nativa sigue indicando 33 sentidos completamente validados; corregir un acceso de Naranjal no certifica el resto de su recorrido histórico.
+
+La red ATU proyectada usa geometría oficial externa al modelo de calles de buses y al planificador. Véase `docs/ATU_PROYECTADAS.md`.

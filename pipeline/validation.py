@@ -40,6 +40,7 @@ def local_file(root, relative):
 def validate_graph(graph):
     require(graph.get('version') == 1, 'Unsupported trip graph version')
     stops, routes = graph['stops'], graph['routes']
+    require(not any(key.startswith('pmu:') for key in routes), 'Projected PMU route in operational graph')
     require(bool(stops) and bool(routes), 'Empty trip graph')
     for i, stop in enumerate(stops):
         require(len(stop) >= 4, f'Stop {i}: incomplete record')
@@ -65,6 +66,14 @@ def validate_graph(graph):
 
 def validate_site(root):
     root = Path(root)
+    pmu = root / 'data/processed/planificado/red.geojson'
+    if pmu.exists():
+        from pipeline.scripts.atu.build_pmu import validate as validate_pmu
+        raw = root / 'data/raw/atu_geovisor'
+        manifest = read_json(raw / 'manifest.json')['pmu_sit']
+        import hashlib
+        require(hashlib.sha256((raw / 'pmu_sit.geojson').read_bytes()).hexdigest() == manifest['sha256'], 'ATU PMU source hash mismatch')
+        validate_pmu(read_json(pmu), read_json(raw / 'pmu_sit.geojson'), manifest)
     graph = read_json(local_file(root, 'pipeline/output/trip_graph.json'))
     validate_graph(graph)
     wr = read_json(local_file(root, 'pipeline/output/wr_map.json'))['routes']

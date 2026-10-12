@@ -132,16 +132,19 @@ function alimAprox(svc){
 }
 
 function makeServiceItemAlim(svc){
-  const code = String(svc.id).toUpperCase();
+  const boarding = state.systems.alim.paths?.[svc.id]?.boarding;
+  const code = String(boarding?.routeCode || svc.id).toUpperCase();
   const bg = svc.color || (code.startsWith('AN') ? COLOR_AN : COLOR_AS);
   const tag = el('span',{
     class: isLightColor(bg) ? 'tag on-light' : 'tag',
+    ...(boarding?.codeAuthority?.status === 'current_operational_code_not_officially_attested' ? { title: 'Código operacional según la fuente de embarques' } : {}),
     style:`background:${bg}`
   }, code);
 
   const textBlock = el('div',{},
     el('div',{class:'name'}, svc.name || `Alimentador ${code}`),
-    el('div',{class:'sub met-trip'}, alimTripText(svc), alimHours(svc), alimAprox(svc))
+    el('div',{class:'sub met-trip'}, alimTripText(svc), alimHours(svc), alimAprox(svc),
+      boarding ? el('span', { class: 'met-hours' }, `Embarque ${boarding.number}`) : '')
   );
   const left = el('div',{class:'left'}, tag, textBlock);
 

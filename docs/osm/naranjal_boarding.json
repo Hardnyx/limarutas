@@ -1,0 +1,129 @@
+{
+  "terminal": "naranjal",
+  "network": "osm:8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300:bus-v5",
+  "scope": "outbound-boarding-only",
+  "source": {
+    "file": "data/raw/metropolitano/naranjal_boarding_platforms.geojson",
+    "sha256": "9aeebec77e1bf7b3a63ec96963c59a0e033d1f763e1f8b2838b353bf6daf53f1"
+  },
+  "routes": {
+    "AN-01": {
+      "sourceRouteCode": "AN-01",
+      "number": 2,
+      "point": [
+        -77.05912,
+        -11.98087
+      ],
+      "platform": 14132552834
+    },
+    "AN-18": {
+      "sourceRouteCode": "AN-02",
+      "number": 6,
+      "point": [
+        -77.05872,
+        -11.98179
+      ],
+      "platform": 14132552840
+    },
+    "AN-05": {
+      "sourceRouteCode": "AN-05",
+      "number": 1,
+      "point": [
+        -77.0592,
+        -11.98055
+      ],
+      "platform": 14132552825
+    },
+    "AN-06": {
+      "sourceRouteCode": "AN-06",
+      "number": 11,
+      "point": [
+        -77.05892,
+        -11.98096
+      ],
+      "platform": 14132552838
+    },
+    "AN-07": {
+      "sourceRouteCode": "AN-07",
+      "number": 4,
+      "point": [
+        -77.05896,
+        -11.9816
+      ],
+      "platform": 14132552833
+    },
+    "AN-08": {
+      "sourceRouteCode": "AN-08",
+      "number": 12,
+      "point": [
+        -77.05883,
+        -11.98133
+      ],
+      "platform": 14132552839
+    },
+    "AN-12": {
+      "sourceRouteCode": "AN-12",
+      "number": 8,
+      "point": [
+        -77.05885,
+        -11.9821
+      ],
+      "platform": 14132552835
+    },
+    "AN-13": {
+      "sourceRouteCode": "AN-13",
+      "number": 10,
+      "point": [
+        -77.05899,
+        -11.98065
+      ],
+      "platform": 14132552837
+    },
+    "AN-14": {
+      "sourceRouteCode": "AN-14",
+      "number": 3,
+      "point": [
+        -77.05905,
+        -11.9812
+      ],
+      "platform": 14132552836
+    },
+    "AN-15": {
+      "sourceRouteCode": "AN-15",
+      "number": 14,
+      "point": [
+        -77.05871,
+        -11.98302
+      ],
+      "platform": 14132552842
+    },
+    "AN-16": {
+      "sourceRouteCode": "AN-16",
+      "number": 15,
+      "point": [
+        -77.05835,
+        -11.98325
+      ],
+      "platform": 11435095822
+    },
+    "AN-17": {
+      "sourceRouteCode": "AN-17",
+      "number": 16,
+      "point": [
+        -77.05853,
+        -11.98299
+      ],
+      "platform": 14132552843
+    },
+    "AN-19": {
+      "sourceRouteCode": "AN-18",
+      "number": 17,
+      "point": [
+        -77.05844,
+        -11.98326
+      ],
+      "platform": 14132552844
+    }
+  },
+  "arrivalGeometryChanged": false
+}
