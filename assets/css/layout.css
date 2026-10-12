@@ -487,3 +487,4 @@ html.explore-mode .leaflet-tripMark-pane { display:none; }
   html.beta .side-tab { font-size:12px; padding:10px 6px; white-space:nowrap; gap:6px; }
   html.beta .side-tab .ico { width:14px; height:14px; }
 }
+html:not(.beta) .side-tab[aria-selected="true"] { color:var(--on-accent); }

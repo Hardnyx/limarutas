@@ -22,7 +22,8 @@ export function createServiceCatalog({ systems, catalog = {}, corridors = [], me
     const isWr = system.startsWith('wr');
     const meta = isWr ? metadata[wrCanonicalCode(id)] : null;
     const code = system === 'corr' ? corrServiceCodeOf(source) :
-      isWr ? String(source.display_id || id).toUpperCase() : system === 'alim' ? id.toUpperCase() : id;
+      isWr ? String(source.display_id || id).toUpperCase() : system === 'alim'
+        ? String(systems.alim.paths?.[id]?.boarding?.routeCode || id).toUpperCase() : id;
     const pair = source.pair || (source.ida && source.vuelta ? { ida: source.ida, vuelta: source.vuelta } : null);
     const ida = sideId(pair?.ida), vuelta = sideId(pair?.vuelta);
     const entry = {

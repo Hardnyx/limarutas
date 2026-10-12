@@ -334,7 +334,7 @@ test('alimentadores: recorrido del sentido elegido; con los dos, ida y vuelta po
   const item = page.locator(sel);
   await page.evaluate(sel => document.querySelector(`${sel} .route-steps-btn`).click(), sel);
   const box = item.locator('.route-steps-box');
-  await expect(box.locator('.route-step').first()).toHaveText(/^Por Avenida Túpac Amaru/);
+  await expect(box.locator('.route-step').first()).toHaveText(/^Por Avenida Los Alisos/);
   await expect(box.locator('.route-steps-title')).toHaveCount(0);
   await page.evaluate(sel => document.querySelector(`${sel} .segbtn-mini[data-dir="ambas"]`).click(), sel);
   await expect(box.locator('.route-steps-title')).toHaveText(['Ida · hacia Izaguirre', 'Vuelta · hacia Naranjal']);

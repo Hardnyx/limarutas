@@ -209,8 +209,10 @@ test('Alimentadores de los mapas QR: Trapiche sale de Universidad con sus parade
   expect(r.sharedUni).toBe(true);
   expect(r.ends).toEqual([
     ['AN-04', 'Los Incas', 'Los Incas'], ['AN-09', 'Chimpu Ocllo', 'Chimpu Ocllo'],
-    ['AN-16', 'Naranjal', 'Naranjal'], ['AN-17', 'Naranjal', 'Naranjal'],
-    ['AN-18', 'Naranjal', 'Naranjal'], ['AN-19', 'Naranjal', 'Naranjal'],
+    ['AN-16', 'Naranjal · Embarque 15 · Los Olivos', 'Naranjal'],
+    ['AN-17', 'Naranjal · Embarque 16 · Antúnez de Mayolo', 'Naranjal'],
+    ['AN-18', 'Naranjal · Embarque 6 · Naranjal', 'Naranjal'],
+    ['AN-19', 'Naranjal · Embarque 17 · Izaguirre', 'Naranjal'],
     ['AN-20', 'Chimpu Ocllo', 'Chimpu Ocllo'], ['AN-21', 'Chimpu Ocllo', 'Chimpu Ocllo'],
     ['AN-22', 'Chimpu Ocllo', 'Chimpu Ocllo']]);
 });

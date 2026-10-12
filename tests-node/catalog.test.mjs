@@ -23,3 +23,12 @@ test('exclusions and verified old aliases apply without rendered controls', () =
   assert.equal(catalog.routeFor('0123-ida').verified, true);
   assert.equal(catalog.routeFor('456_789-ida'), null);
 });
+
+test('boarding public codes change labels while feeder identities stay stable', () => {
+  const catalog=createServiceCatalog({systems:{alim:{services:[{id:'AN-18'},{id:'AN-19'}],
+    paths:{'AN-18':{boarding:{routeCode:'AN-02'}},'AN-19':{boarding:{routeCode:'AN-18'}}}}}});
+  assert.equal(catalog.routeFor('alim:AN-18:ida').code,'AN-02');
+  assert.equal(catalog.routeFor('alim:AN-19:vuelta').code,'AN-18');
+  assert.equal(catalog.routeFor('alim:AN-18:ida').serviceId,'alim:AN-18');
+  assert.equal(catalog.routeFor('alim:AN-19:vuelta').id,'AN-19');
+});
