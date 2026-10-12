@@ -1,0 +1,711 @@
+{
+  "version": 1,
+  "scope": "station-names-only",
+  "sourceReport": "Informe_Instrucciones_Metro_PMU_Limarutas.md",
+  "lines": {
+    "[\"eje ferroviario urbano línea 2 callao - ate\",\"5.0\"]": {
+      "line": "L2",
+      "stations": [
+        {
+          "name": "Puerto del Callao",
+          "sequence": 1,
+          "code": "E-01",
+          "codeIsOfficial": true,
+          "status": "en_construccion",
+          "sourceUrl": "https://www.metrolima2.com/linea-2/"
+        },
+        {
+          "name": "Buenos Aires",
+          "sequence": 2,
+          "code": "E-02",
+          "codeIsOfficial": true,
+          "status": "en_construccion",
+          "sourceUrl": "https://www.metrolima2.com/linea-2/"
+        },
+        {
+          "name": "Juan Pablo II",
+          "sequence": 3,
+          "code": "E-03",
+          "codeIsOfficial": true,
+          "status": "en_construccion",
+          "sourceUrl": "https://www.metrolima2.com/linea-2/"
+        },
+        {
+          "name": "Insurgentes",
+          "sequence": 4,
+          "code": "E-04",
+          "codeIsOfficial": true,
+          "status": "en_construccion",
+          "sourceUrl": "https://www.metrolima2.com/linea-2/"
+        },
+        {
+          "name": "Carmen de la Legua",
+          "sequence": 5,
+          "code": "E-05",
+          "codeIsOfficial": true,
+          "status": "en_construccion",
+          "sourceUrl": "https://www.metrolima2.com/linea-2/"
+        },
+        {
+          "name": "Óscar R. Benavides",
+          "sequence": 6,
+          "code": "E-06",
+          "codeIsOfficial": true,
+          "status": "en_construccion",
+          "sourceUrl": "https://www.metrolima2.com/linea-2/"
+        },
+        {
+          "name": "San Marcos",
+          "sequence": 7,
+          "code": "E-07",
+          "codeIsOfficial": true,
+          "status": "en_construccion",
+          "sourceUrl": "https://www.metrolima2.com/linea-2/"
+        },
+        {
+          "name": "Elio",
+          "sequence": 8,
+          "code": "E-08",
+          "codeIsOfficial": true,
+          "status": "en_construccion",
+          "sourceUrl": "https://www.metrolima2.com/linea-2/"
+        },
+        {
+          "name": "La Alborada",
+          "sequence": 9,
+          "code": "E-09",
+          "codeIsOfficial": true,
+          "status": "en_construccion",
+          "sourceUrl": "https://www.metrolima2.com/linea-2/"
+        },
+        {
+          "name": "Tingo María",
+          "sequence": 10,
+          "code": "E-10",
+          "codeIsOfficial": true,
+          "status": "en_construccion",
+          "sourceUrl": "https://www.metrolima2.com/linea-2/"
+        },
+        {
+          "name": "Parque Murillo",
+          "sequence": 11,
+          "code": "E-11",
+          "codeIsOfficial": true,
+          "status": "en_construccion",
+          "sourceUrl": "https://www.metrolima2.com/linea-2/"
+        },
+        {
+          "name": "Plaza Bolognesi",
+          "sequence": 12,
+          "code": "E-12",
+          "codeIsOfficial": true,
+          "status": "en_construccion",
+          "sourceUrl": "https://www.metrolima2.com/linea-2/"
+        },
+        {
+          "name": "Estación Central",
+          "sequence": 13,
+          "code": "E-13",
+          "codeIsOfficial": true,
+          "status": "en_construccion",
+          "sourceUrl": "https://www.metrolima2.com/linea-2/"
+        },
+        {
+          "name": "Manco Cápac",
+          "sequence": 14,
+          "code": "E-14",
+          "codeIsOfficial": true,
+          "status": "en_construccion",
+          "sourceUrl": "https://www.metrolima2.com/linea-2/"
+        },
+        {
+          "name": "Cangallo",
+          "sequence": 15,
+          "code": "E-15",
+          "codeIsOfficial": true,
+          "status": "en_construccion",
+          "sourceUrl": "https://www.metrolima2.com/linea-2/"
+        },
+        {
+          "name": "28 de Julio",
+          "sequence": 16,
+          "code": "E-16",
+          "codeIsOfficial": true,
+          "status": "en_construccion",
+          "sourceUrl": "https://www.metrolima2.com/linea-2/"
+        },
+        {
+          "name": "Nicolás Ayllón",
+          "sequence": 17,
+          "code": "E-17",
+          "codeIsOfficial": true,
+          "status": "en_construccion",
+          "sourceUrl": "https://www.metrolima2.com/linea-2/"
+        },
+        {
+          "name": "Circunvalación",
+          "sequence": 18,
+          "code": "E-18",
+          "codeIsOfficial": true,
+          "status": "en_construccion",
+          "sourceUrl": "https://www.metrolima2.com/linea-2/"
+        },
+        {
+          "name": "San Juan de Dios",
+          "sequence": 19,
+          "code": "E-19",
+          "codeIsOfficial": true,
+          "status": "en_construccion",
+          "sourceUrl": "https://www.metrolima2.com/linea-2/"
+        },
+        {
+          "name": "Vista Alegre",
+          "sequence": 25,
+          "code": "E-25",
+          "codeIsOfficial": true,
+          "status": "en_construccion",
+          "sourceUrl": "https://www.metrolima2.com/linea-2/"
+        },
+        {
+          "name": "Prolongación Javier Prado",
+          "sequence": 26,
+          "code": "E-26",
+          "codeIsOfficial": true,
+          "status": "en_construccion",
+          "sourceUrl": "https://www.metrolima2.com/linea-2/"
+        },
+        {
+          "name": "Municipalidad de Ate",
+          "sequence": 27,
+          "code": "E-27",
+          "codeIsOfficial": true,
+          "status": "en_construccion",
+          "sourceUrl": "https://www.metrolima2.com/linea-2/"
+        }
+      ],
+      "coordinatesPublished": false,
+      "sourceUrl": "https://www.metrolima2.com/linea-2/",
+      "consultedOn": "2026-10-11"
+    },
+    "[\"eje ferroviario urbano línea 3 comas - san juan de miraflores\",\"10.0\"]": {
+      "line": "L3",
+      "stations": [
+        {
+          "name": "El Álamo",
+          "sequence": 1,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 26
+        },
+        {
+          "name": "Huandoy",
+          "sequence": 2,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 26
+        },
+        {
+          "name": "2 de Octubre",
+          "sequence": 3,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 26
+        },
+        {
+          "name": "Villa Sol",
+          "sequence": 4,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 26
+        },
+        {
+          "name": "Naranjal",
+          "sequence": 5,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 26
+        },
+        {
+          "name": "Carlos Izaguirre",
+          "sequence": 6,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 26
+        },
+        {
+          "name": "Tomás Valle",
+          "sequence": 7,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 26
+        },
+        {
+          "name": "Bartolomé de las Casas",
+          "sequence": 8,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 26
+        },
+        {
+          "name": "José Granda",
+          "sequence": 9,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 26
+        },
+        {
+          "name": "Caquetá",
+          "sequence": 10,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 26
+        },
+        {
+          "name": "Tacna",
+          "sequence": 11,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 26
+        },
+        {
+          "name": "Garcilaso de la Vega",
+          "sequence": 12,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 26
+        },
+        {
+          "name": "Estación Central",
+          "sequence": 13,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 26
+        },
+        {
+          "name": "Parque de la Reserva",
+          "sequence": 14,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 26
+        },
+        {
+          "name": "Museo de Historia Natural",
+          "sequence": 15,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 26
+        },
+        {
+          "name": "César Canevaro",
+          "sequence": 16,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 26
+        },
+        {
+          "name": "Conde de San Isidro",
+          "sequence": 17,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 26
+        },
+        {
+          "name": "Andrés Aramburú",
+          "sequence": 18,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 26
+        },
+        {
+          "name": "Huaca Pucllana",
+          "sequence": 19,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 26
+        },
+        {
+          "name": "Parque Central de Miraflores",
+          "sequence": 20,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 26
+        },
+        {
+          "name": "Parque Reducto",
+          "sequence": 21,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 26
+        },
+        {
+          "name": "Panamá",
+          "sequence": 22,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 26
+        },
+        {
+          "name": "Juana Alarco",
+          "sequence": 23,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 26
+        },
+        {
+          "name": "Cabitos",
+          "sequence": 24,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 26
+        },
+        {
+          "name": "Alejandro Velasco",
+          "sequence": 25,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 26
+        },
+        {
+          "name": "Las Gardenias",
+          "sequence": 26,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 26
+        },
+        {
+          "name": "Los Héroes",
+          "sequence": 27,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 26
+        },
+        {
+          "name": "Pedro Miotta",
+          "sequence": 28,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 26
+        }
+      ],
+      "coordinatesPublished": false,
+      "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+      "consultedOn": "2026-10-11"
+    },
+    "[\"eje ferroviario urbano línea 4 callao - bellavista (ramal)\",\"5.0\"]": {
+      "line": "L4 ramal",
+      "stations": [
+        {
+          "name": "Gambetta",
+          "sequence": 1,
+          "code": "E-01",
+          "codeIsOfficial": true,
+          "status": "en_construccion",
+          "sourceUrl": "https://www.metrolima2.com/ramal-l4/"
+        },
+        {
+          "name": "Canta Callao",
+          "sequence": 2,
+          "code": "E-02",
+          "codeIsOfficial": true,
+          "status": "en_construccion",
+          "sourceUrl": "https://www.metrolima2.com/ramal-l4/"
+        },
+        {
+          "name": "Bocanegra",
+          "sequence": 3,
+          "code": "E-03",
+          "codeIsOfficial": true,
+          "status": "en_construccion",
+          "sourceUrl": "https://www.metrolima2.com/ramal-l4/"
+        },
+        {
+          "name": "Aeropuerto",
+          "sequence": 4,
+          "code": "E-04",
+          "codeIsOfficial": true,
+          "status": "en_construccion",
+          "sourceUrl": "https://www.metrolima2.com/ramal-l4/"
+        },
+        {
+          "name": "El Olivar",
+          "sequence": 5,
+          "code": "E-05",
+          "codeIsOfficial": true,
+          "status": "en_construccion",
+          "sourceUrl": "https://www.metrolima2.com/ramal-l4/"
+        },
+        {
+          "name": "Quilca",
+          "sequence": 6,
+          "code": "E-06",
+          "codeIsOfficial": true,
+          "status": "en_construccion",
+          "sourceUrl": "https://www.metrolima2.com/ramal-l4/"
+        },
+        {
+          "name": "Morales Duárez",
+          "sequence": 7,
+          "code": "E-07",
+          "codeIsOfficial": true,
+          "status": "en_construccion",
+          "sourceUrl": "https://www.metrolima2.com/ramal-l4/"
+        },
+        {
+          "name": "Carmen de la Legua",
+          "sequence": 8,
+          "code": "E-08",
+          "codeIsOfficial": true,
+          "status": "en_construccion",
+          "sourceUrl": "https://www.metrolima2.com/ramal-l4/"
+        }
+      ],
+      "coordinatesPublished": false,
+      "sourceUrl": "https://www.metrolima2.com/ramal-l4/",
+      "consultedOn": "2026-10-11"
+    },
+    "[\"eje ferroviario urbano línea 4 bellavista - ate\",\"10.0\"]": {
+      "line": "L4 continuación",
+      "stations": [
+        {
+          "name": "Venezuela",
+          "sequence": 1,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 27
+        },
+        {
+          "name": "Rafael Escardó",
+          "sequence": 2,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 27
+        },
+        {
+          "name": "Pando",
+          "sequence": 3,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 27
+        },
+        {
+          "name": "José de Sucre",
+          "sequence": 4,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 27
+        },
+        {
+          "name": "Brasil",
+          "sequence": 5,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 27
+        },
+        {
+          "name": "Felipe Salaverry",
+          "sequence": 6,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 27
+        },
+        {
+          "name": "Guillermo Prescott",
+          "sequence": 7,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 27
+        },
+        {
+          "name": "Las Palmeras",
+          "sequence": 8,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 27
+        },
+        {
+          "name": "Conde de San Isidro",
+          "sequence": 9,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 27
+        },
+        {
+          "name": "Rivera Navarrete",
+          "sequence": 10,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 27
+        },
+        {
+          "name": "Pablo Carriquiry",
+          "sequence": 11,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 27
+        },
+        {
+          "name": "La Cultura",
+          "sequence": 12,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 27
+        },
+        {
+          "name": "San Luis",
+          "sequence": 13,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 27
+        },
+        {
+          "name": "Monterrico",
+          "sequence": 14,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 27
+        },
+        {
+          "name": "Manuel Olguín",
+          "sequence": 15,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 27
+        },
+        {
+          "name": "Los Frutales",
+          "sequence": 16,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 27
+        },
+        {
+          "name": "La Molina",
+          "sequence": 17,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 27
+        },
+        {
+          "name": "Santa Patricia",
+          "sequence": 18,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 27
+        },
+        {
+          "name": "Mayorazgo",
+          "sequence": 19,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 27
+        },
+        {
+          "name": "Mercado Santa Anita",
+          "sequence": 20,
+          "code": null,
+          "codeIsOfficial": false,
+          "status": "estacion_de_estudio",
+          "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "sourcePdfPage": 27
+        }
+      ],
+      "coordinatesPublished": false,
+      "sourceUrl": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+      "consultedOn": "2026-10-11"
+    }
+  }
+}

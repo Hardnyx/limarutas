@@ -34,6 +34,10 @@ test('Explorar remains usable on mobile and in the dark theme',async({app,page})
   await expect(page.locator('#exploreCount')).toHaveText('106 de 106 trazados');
   await page.locator('#explorePane input[type=search]').fill('Línea 3');
   await expect(page.locator('.project-row:visible')).toHaveCount(1);
+  await page.locator('.project-row:visible .project-name').click();
+  await expect(page.locator('#projectDetails')).toContainText('Huandoy');
+  await expect(page.locator('#projectDetails')).toContainText('ubicación pendiente de verificación');
+  await expect(page.locator('#projectDetails ol li')).toHaveCount(28);
   await page.evaluate(()=>window.LimaRutasTheme.set('dark'));
   await page.screenshot({path:'pipeline/temp/authoring/explore-mobile-dark.png'});
   const width=await page.evaluate(()=>document.documentElement.scrollWidth);

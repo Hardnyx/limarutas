@@ -14,7 +14,49 @@ STATE=ROOT/'pipeline/temp/atu-sources'
 REPORT=ROOT/'pipeline/temp/atu-sync-report.json'
 
 
+def publish(files):
+    """Restore the preceding complete publication if a file replacement fails."""
+    previous = {path: path.read_bytes() if path.exists() else None for path in files}
+    written = []
+    try:
+        for path, body in files.items():
+            if previous[path] != body:
+                written.append(path)
+                atomic_bytes(path, body)
+    except BaseException as error:
+        failures = []
+        for path in reversed(written):
+            try:
+                if previous[path] is None:
+                    path.unlink(missing_ok=True)
+                else:
+                    atomic_bytes(path, previous[path])
+            except OSError as restore_error:
+                failures.append(str(restore_error))
+        if failures:
+            failure = SourceError('No se pudo restaurar la publicación local: ' + '; '.join(failures))
+            failure.publication_preserved = False
+            raise failure from error
+        raise
+
+
 def update(state_dir=STATE, fetch_urls=None, force=False):
+    from pipeline.authoring.store import writer_lock
+    state_dir = Path(state_dir)
+    state_dir.mkdir(parents=True, exist_ok=True)
+    with writer_lock(state_dir / '.publication.lock'):
+        try:
+            return _update(state_dir, fetch_urls, force)
+        except (ValueError, OSError) as error:
+            report = json.loads(REPORT.read_text()) if REPORT.exists() else {}
+            report.update(success=False, processingRequired=False,
+                          publicationPreserved=getattr(error, 'publication_preserved', True),
+                          error=str(error), checkedAtUtc=now())
+            atomic_bytes(REPORT, json_bytes(report))
+            raise
+
+
+def _update(state_dir=STATE, fetch_urls=None, force=False):
     state_dir=Path(state_dir)
     state_dir.mkdir(parents=True,exist_ok=True)
     published=None
@@ -50,8 +92,7 @@ def update(state_dir=STATE, fetch_urls=None, force=False):
             OUT/'red.geojson':json_bytes(red), OUT/'catalog.json':json_bytes(catalog),
             ROOT/'docs/atu/pmu_inventory.json':json_bytes(inventory),
             ROOT/'pipeline/output/atu_pmu_diff.json':json_bytes(change)}
-        for path,body in files.items():
-            if not path.exists() or path.read_bytes()!=body:atomic_bytes(path,body)
+        publish(files)
     atomic_bytes(REPORT,json_bytes(report))
     return report
 

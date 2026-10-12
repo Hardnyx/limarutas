@@ -43,6 +43,9 @@ def new_route(route_id, name, direction, network, source=None):
 
 
 def path_parts(route, network):
+    if route.get('source', {}).get('kind') == 'official-reference':
+        from .reference import pack
+        return [segment['coordinates'] for segment in pack(route)['segments']]
     parts = []
     for item in route['path']:
         if item['type'] == 'street':
@@ -55,6 +58,9 @@ def path_parts(route, network):
 
 
 def geometry(route, network):
+    if route.get('source', {}).get('kind') == 'official-reference':
+        from .reference import pack
+        return pack(route)['geometry']
     points = []
     for part in path_parts(route, network):
         for point in part:
@@ -75,6 +81,9 @@ def projection(point, a, b):
 
 def attach_stops(route, network, radius=80):
     """Choose an ordered sequence of projections, including repeated visits."""
+    if route.get('source', {}).get('kind') == 'official-reference':
+        from .reference import pack
+        return pack(route)['route']
     route = copy.deepcopy(route)
     segments, acc = [], 0
     for index, part in enumerate(path_parts(route, network)):
@@ -132,6 +141,9 @@ def attach_stops(route, network, radius=80):
 
 
 def validate(route, network):
+    if route.get('source', {}).get('kind') == 'official-reference':
+        from .reference import pack
+        return pack(route)['validation']
     if route.get('version') != 1:
         raise ValueError('Versión de recorrido no compatible')
     if route.get('network') != network.id:

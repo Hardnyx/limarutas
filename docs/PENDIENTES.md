@@ -1,17 +1,56 @@
 # Pendientes
 
+## Estado recuperado el 12 de octubre de 2026
+
+Esta sección distingue los pedidos de «Limarutas 1» del backlog histórico de abajo.
+La ejecución [Pages 38254350115](https://github.com/Hardnyx/limarutas/actions/runs/38254350115)
+publicó correctamente `19987a7` a las 08:36 de Lima. El workflow ATU
+[38250712928](https://github.com/Hardnyx/limarutas/actions/runs/38250712928) también terminó correctamente.
+
+| Pedido | Estado comprobado | Evidencia o siguiente paso |
+|---|---|---|
+| AeroDirecto: Quilca, aeropuerto y coincidencias de Centro/Norte/Sur | Seis sentidos corregidos y publicados | `docs/osm/aerodirecto_itineraries.json`; originales y paraderos conservados |
+| Naranjal: embarques físicos y códigos | Trece salidas corregidas y publicadas | `docs/osm/naranjal_boarding.json`; llegadas conservadas, desembarque aún sin certificar |
+| Red PMU y pestaña Explorar | 106 ejes publicados, actualización semanal probada | `docs/ATU_PROYECTADAS.md`; cero objetos PMU en el planificador |
+| Autoría ferroviaria del informe Metro/PMU | Adaptador de referencia implementado y diez paquetes comprobados por HTTP | `docs/atu/rail_authoring_checks.json`; 11 partes exactas, revisión cartográfica, sin OSM |
+| Nombres de estaciones del informe | L2 pendiente, L3 y L4 incorporadas a fichas | 22, 28 y 8+20 nombres citados; no son puntos ni confirmación de ingeniería definitiva |
+| Coordenadas de nuevas estaciones Metro | Pendiente de evidencia geográfica suficiente | No geocodificar automáticamente un nombre, centro de cámara o intersección para publicar un pin |
+| Matellini | Archivo v3 recuperado; integración de embarques pendiente | Cuatro puntos regulares aptos para orientación, de Yandex; no son plataformas OSM verificadas. El Playero es estacional e inactivo; no activarlo |
+| Desembarques Naranjal y Matellini | Pendiente de identificación física independiente | No reutilizar automáticamente la posición de embarque para las llegadas |
+
+El archivo vigente de Matellini es `matellini_embarques_alimentadores_v3.geojson`,
+versión `3.0-geolocated`, del 11 de octubre. Sus asignaciones son AS-02 Cedros
+de Villa: 1; AS-07 América: 4; AS-04 Villa El Salvador: 11; AS-08 Los Próceres: 14.
+El punto Playero (16) se conserva como evidencia estacional inactiva. La próxima
+integración debe reconocer una referencia para pasajeros y su fuente, sin
+convertirla en un nodo OSM ni certificar el circuito de llegada. El adaptador
+actual de Naranjal exige nodos OSM explícitos; pasarle el v3 sin ampliarlo
+omitiría sus features por tener otro esquema.
+
+Los Markdown consultados para esta continuación fueron
+`SKILL_ATU_RUTAS_PROYECTADAS_LIMARUTAS(2).md`,
+`Informe_Instrucciones_Metro_PMU_Limarutas.md` y los documentos del repositorio
+`PIPELINE`, `ROUTE_AUTHORING`, `ATU_PROYECTADAS` y `RECORRIDOS`.
+El SKILL más reciente mantiene PRR/SIT y la renovación de Wikiroutes fuera
+de la integración PMU; no reemplazar itinerarios operativos por esos datos.
+
+### Backlog histórico
+
+Las secciones siguientes conservan tareas abiertas previas; no son requisitos
+nuevos ni prueba de que los pedidos ya publicados sigan pendientes.
+
 ## Calles de OpenStreetMap (caminatas e intersecciones)
 
 Hoy las caminatas son en línea recta (hasta 400 m entre paraderos, con 30 %
 de rodeo) y `data/raw/osm/transporte.zip` solo trae las vías por donde pasan
-rutas (634 calles residenciales). Plan, un PR por fase:
+rutas (634 calles residenciales). Plan por fases, con push directo tras validar:
 
 1. **Descarga y pipeline** (`pipeline/scripts/osm/`): consulta a Overpass con
    el recuadro de Lima y Callao, solo vías caminables (avenidas, calles,
    jirones, pasajes, veredas, escaleras; sin vías expresas ni `foot=no`). El
    crudo (~100–200 MB) no se versiona. Se corre en local o con una GitHub
-   Action manual que abre un PR. Desde el entorno de Claude en la nube hay
-   que permitir `overpass-api.de` en *Network access*.
+   Action manual que prepare los datos para su validación y publicación.
+   La adquisición necesita acceso de red a `overpass-api.de`.
 2. **Caminatas reales entre paraderos**: cada paradero se engancha a la
    calle más cercana y se calcula la distancia por la red hasta los
    paraderos a ~600 m. Reemplaza la línea recta en `trip_graph.json`

@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT))
 from pipeline.scripts.atu.sources import SourceError, inspect, identity, json_bytes, atomic_bytes
 CONFIG = ROOT/'config/atu_geovisor_layers.json'
+STATION_NAMES = ROOT/'config/pmu_station_names.json'
 RAW = ROOT/'data/raw/atu_geovisor'
 OUT = ROOT/'data/processed/planificado'
 
@@ -34,6 +35,7 @@ def build(collection, manifest, config=None):
     _, stats = inspect('pmu', raw)
     features = []
     aliases = config['fieldAliases']
+    station_catalog = json.loads(STATION_NAMES.read_text())['lines']
     for feature in collection['features']:
         props = feature['properties']
         name = field(props, aliases['nombre'])
@@ -56,6 +58,8 @@ def build(collection, manifest, config=None):
             'source_properties': copy.deepcopy(props)}
         if manifest.get('lastModified'):
             normalized['source_last_modified'] = manifest['lastModified']
+        if normalized['source_identity'] in station_catalog:
+            normalized['station_reference'] = copy.deepcopy(station_catalog[normalized['source_identity']])
         # Separate multipart railway axes remain separate. No street matching,
         # invented stations or inferred operating status.
         features.append({'type': 'Feature', 'id': key, 'properties': normalized,

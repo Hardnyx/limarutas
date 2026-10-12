@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { createHash } from 'node:crypto';
 
 const fixture = JSON.parse(await fs.readFile('pipeline/tests/fixtures/authoring_bundle.json','utf8'));
 const runId = Date.now().toString(36);
@@ -52,6 +53,37 @@ test('editor imports, edits, undoes, saves, accepts and exports compatible geome
   expect(exported.files['stops_trip1.geojson'].features[0].properties.name).toBe('Inicio corregido');
   expect(exported.files['route_track_trip1.osm.geojson'].features[0].geometry.coordinates).toHaveLength(5);
   expect(exported.files['route_track_trip1.route.json'].source.track).toEqual(data.track);
+  expect(errors).toEqual([]);
+});
+
+test('editor reviews an official multipart railway reference without road editing or invented stations', async ({ page }, info) => {
+  const errors=[]; page.on('pageerror',e=>errors.push(e.message));
+  const raw=await fs.readFile('data/raw/atu_geovisor/pmu_sit.geojson');
+  const feature=JSON.parse(raw).features.find(f=>f.properties.OBJECTID===90);
+  const geometryHash=createHash('sha256').update(JSON.stringify({coordinates:feature.geometry.coordinates,type:feature.geometry.type})).digest('hex');
+  const data={operation:'import',bundle:{id:`metro-reference-${info.project.name}-${runId}`,name:feature.properties.nombre,direction:'referencia',
+    track:{type:'FeatureCollection',features:[feature]},stops:{type:'FeatureCollection',features:[]},
+    provenance:{publisher:'ATU',sourceKind:'official_plan',transportMode:'rail',geometryPolicy:'preserve',plannerEligible:false,
+      sourceUrl:'https://geovisor.atumovilidad.pe/data/pmu_sit.geojson',sourceFileSha256:createHash('sha256').update(raw).digest('hex'),
+      sourceObjectId:90,sourceGeometrySha256:geometryHash,sourceCrs:'OGC:CRS84'}}};
+  await page.locator('#importFile').setInputFiles({name:'01_l2_pendiente.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(data))});
+  await expect(page.locator('#routeName')).toHaveText(feature.properties.nombre);
+  await expect(page.locator('path[data-path-index]')).toHaveCount(2);
+  await expect(page.locator('#matchSource')).toBeDisabled();
+  await expect(page.locator('#serviceMode')).toBeDisabled();
+  await page.getByRole('button',{name:'Guardar borrador',exact:true}).click();
+  await expect(page.locator('#editStatus')).toHaveText('Borrador · revisión 1');
+  await page.getByRole('button',{name:'Revisión',exact:true}).click();
+  await page.getByRole('button',{name:'Aceptar recorrido validado',exact:true}).click();
+  await expect(page.locator('#editStatus')).toHaveText('Recorrido aceptado');
+  const downloaded=page.waitForEvent('download');
+  await page.getByRole('button',{name:'Exportar aprobado',exact:true}).click();
+  const artifact=await downloaded;
+  const exported=JSON.parse(await fs.readFile(await artifact.path(),'utf8'));
+  expect(Object.keys(exported.files).sort()).toEqual(['project.geojson','project.reference.json']);
+  expect(exported.files['project.geojson'].features[0].geometry).toEqual(feature.geometry);
+  expect(exported.plannerEligible).toBe(false);
+  expect(exported.files['project.reference.json'].stops).toEqual([]);
   expect(errors).toEqual([]);
 });
 

@@ -38,6 +38,7 @@ jobs:
           key: atu-pmu-v1-${{ github.run_id }}
           restore-keys: atu-pmu-v1-
       - name: Descargar, comparar y validar antes de promover
+        id: sync
         env:
           AUDIT: ${{ inputs.audit }}
         run: |
@@ -46,12 +47,20 @@ jobs:
           else
             python3 pipeline/scripts/atu/sync_geovisor.py
           fi
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          from pathlib import Path
+          report = json.loads(Path('pipeline/temp/atu-sync-report.json').read_text())
+          print('processing_required=' + str(report['processingRequired']).lower())
+          PY
       - name: Validar derivados y contratos
+        if: steps.sync.outputs.processing_required == 'true'
         run: |
           python3 pipeline/scripts/atu/validate_pmu.py
           python3 -m unittest discover -s pipeline/tests
           python3 pipeline/run.py validate
       - name: Publicar solo cambios de contenido
+        if: steps.sync.outputs.processing_required == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |

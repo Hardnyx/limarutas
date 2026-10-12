@@ -20,7 +20,13 @@ python3 pipeline/run.py build --stage atu-pmu
 
 Los originales exactos y el manifest están en `data/raw/atu_geovisor/`; los derivados independientes están en `data/processed/planificado/`. La identidad estable usa nombre y horizonte, no posición ni OBJECTID entre versiones. Cada derivado conserva OBJECTID del snapshot, propiedades, URL y SHA. El diff semántico en `pipeline/output/atu_pmu_diff.json` compara altas, bajas, geometría y propiedades, independientemente del orden JSON.
 
-Un 304 o un 200 semánticamente idéntico no regenera los derivados ni hace commit. La telemetría de consulta queda en `pipeline/temp/atu-sync-report.json`. El primer GET real y una repetición 304 se comprobaron durante la integración.
+Un 304 o un 200 semánticamente idéntico no regenera los derivados ni hace commit.
+El workflow termina sin reconstrucción ni validaciones adicionales cuando no
+hay cambios semánticos. La telemetría de consulta queda en
+`pipeline/temp/atu-sync-report.json`. Si falla una transformación, el informe
+registra `success=false`; una escritura fallida restaura el conjunto anterior
+antes de propagar el error. El primer GET real y una repetición 304 se
+comprobaron durante la integración.
 
 ## Planificador y actualizaciones
 
@@ -29,3 +35,26 @@ Todos los objetos PMU llevan `operativo=false`, `ruteable=false` y `plannerEligi
 `.github/workflows/update-atu-pmu.yml` comprueba la fuente cada lunes a las 06:17 de Lima y permite ejecución manual. Las horas de Actions pueden retrasarse. Conserva caché HTTP, hace auditoría incondicional al menos cada 30 días, valida y hace un commit convencional solo ante cambios reales. Después dispara explícitamente el workflow Pages por `workflow_dispatch`, porque un push con GITHUB_TOKEN no activa otro workflow por push. Pages conserva todas las pruebas antes de publicar.
 
 Esta integración se limita al PMU, conforme al encargo. PRR y SIT actual no reemplazan rutas operativas, geometrías aceptadas o correcciones locales. El historial Git conserva los snapshots anteriores.
+
+## Autoría ferroviaria y nombres de estaciones
+
+La API común reconoce los paquetes ATU del informe Metro/PMU mediante
+`sourceKind=official_plan`, `transportMode=rail`, `geometryPolicy=preserve` y
+`plannerEligible=false`. Importar verifica el hash del snapshot adquirido,
+el objeto oficial, sus propiedades y el hash de geometría. Las partes de un
+`MultiLineString` permanecen separadas en todos los pasos. Aceptar significa
+aceptación cartográfica del proyecto; nunca autorización operativa.
+
+`docs/atu/rail_authoring_checks.json` registra los diez paquetes del informe
+comprobados por HTTP, con 11 partes y geometrías exactas. El funcionamiento,
+revisión y exportación se describen en `docs/ROUTE_AUTHORING.md`. Las
+exportaciones quedan aisladas y no duplican servicios dentro de Explorar.
+
+`config/pmu_station_names.json` conserva nombres y fuentes del informe:
+22 estaciones pendientes de L2, 28 del estudio L3, ocho del ramal L4 y 20 de
+su continuación. Se vinculan por identidad lógica del eje y horizonte;
+renombrar un eje en una fuente futura requiere revisar esa equivalencia.
+La ficha los presenta como referencias con ubicación pendiente; no genera
+marcadores. Las cinco estaciones operativas de L2 no se vuelven a incluir
+como estaciones de su tramo pendiente. Las listas de estudio no garantizan
+que el proyecto definitivo conserve el mismo número de estaciones.

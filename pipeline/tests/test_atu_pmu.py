@@ -27,6 +27,18 @@ class PMUTest(unittest.TestCase):
         reordered=copy.deepcopy(self.collection);reordered['features'].reverse()
         self.assertEqual(build(reordered,self.entry)[0],red)
 
+    def test_station_names_are_cited_without_points_or_operating_l2_stations(self):
+        red,_,_=build(self.collection,self.entry)
+        references=[f['properties']['station_reference'] for f in red['features'] if 'station_reference' in f['properties']]
+        self.assertEqual({r['line']:len(r['stations']) for r in references},
+                         {'L2':22,'L3':28,'L4 ramal':8,'L4 continuación':20})
+        for reference in references:
+            self.assertFalse(reference['coordinatesPublished'])
+            self.assertTrue(reference['sourceUrl'].startswith('https://'))
+            for station in reference['stations']:
+                self.assertNotIn('coordinates',station)
+                self.assertNotEqual(station['status'],'operativa')
+
     def test_invalid_response_and_ambiguous_schema_fail(self):
         for raw in [b'<html>Error</html>',b'{"type":"Feature"}',b'{"type":"FeatureCollection","features":[]}']:
             with self.assertRaises(ValueError):sources.inspect('pmu',raw)
@@ -92,3 +104,21 @@ class PMUTest(unittest.TestCase):
                 with patch.object(sources,'fetch',return_value=(200,{},sources.json_bytes(bad))):
                     with self.assertRaises(ValueError):sync_geovisor.update(root/'state')
                 self.assertTrue(all((root/p).read_bytes()==body for p,body in before.items()))
+                self.assertFalse(json.loads((root/'report.json').read_text())['success'])
+
+    def test_failed_replacement_restores_every_published_file(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);paths=[root/'raw.geojson',root/'processed.geojson',root/'manifest.json']
+            for path in paths[:2]:path.write_bytes(b'previous')
+            actual=sync_geovisor.atomic_bytes
+            failed=False
+            def replace(path,body):
+                nonlocal failed
+                if path==paths[2] and not failed:
+                    failed=True
+                    raise OSError('simulated disk failure')
+                actual(path,body)
+            with patch.object(sync_geovisor,'atomic_bytes',side_effect=replace):
+                with self.assertRaises(OSError):sync_geovisor.publish({p:b'new' for p in paths})
+            self.assertEqual([p.read_bytes() for p in paths[:2]],[b'previous',b'previous'])
+            self.assertFalse(paths[2].exists())

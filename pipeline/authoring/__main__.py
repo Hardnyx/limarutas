@@ -17,6 +17,7 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--network', default=str(ROOT / 'pipeline/temp/authoring/network.json'))
     parser.add_argument('--workspace', default=str(ROOT / 'pipeline/temp/authoring/workspace'))
+    parser.add_argument('--reference-only', action='store_true', help='Official cartographic references without loading OSM')
     commands = parser.add_subparsers(dest='command', required=True)
     call = commands.add_parser('call', help='Execute a JSON operation, from a file or stdin')
     call.add_argument('--request', default='-')
@@ -31,7 +32,7 @@ def main(argv=None):
     workspace = Path(args.workspace).resolve()
     if workspace.is_relative_to(ROOT) and not workspace.is_relative_to(ROOT / 'pipeline/temp'):
         raise ValueError('Los borradores dentro del repositorio se guardan en pipeline/temp')
-    service = load_service(args.network, ROOT, workspace)
+    service = load_service(args.network, ROOT, workspace, reference_only=args.reference_only)
     if args.command == 'call':
         request = json.load(sys.stdin) if args.request == '-' else json.loads(Path(args.request).read_text())
         print(json.dumps(service.call(request), ensure_ascii=False, allow_nan=False))

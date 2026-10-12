@@ -16,6 +16,14 @@ function info(feature){
   if (p.source_last_modified) box.append(el('p', {}, 'Última modificación del archivo: '+new Date(p.source_last_modified).toLocaleDateString('es-PE',{timeZone:'UTC'})));
   box.append(el('a', { href: p.source_url, target: '_blank', rel: 'noopener noreferrer' }, 'Fuente ATU · '+p.source_dataset));
   if (p.horizonte === 0) box.append(el('p', {}, 'Escenario base del PMU; consulta la pestaña Rutas para los servicios operativos.'));
+  if (p.station_reference){
+    const reference = p.station_reference;
+    box.append(el('h3', {}, 'Estaciones de referencia'),
+      el('p', {}, 'Nombres del concesionario o del estudio citado; ubicación pendiente de verificación.'));
+    const stations = el('ol', {});
+    for (const station of reference.stations) stations.append(el('li', {}, station.name));
+    box.append(stations, el('a', {href: reference.sourceUrl, target: '_blank', rel: 'noopener noreferrer'}, 'Fuente de los nombres de estaciones'));
+  }
   return box;
 }
 

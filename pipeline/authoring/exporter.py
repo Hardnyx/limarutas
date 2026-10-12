@@ -32,6 +32,9 @@ def steps(route, network):
 
 
 def bundle(route, network, preview=False, trip=None):
+    if route.get('source', {}).get('kind') == 'official-reference':
+        from .reference import bundle as reference_bundle
+        return reference_bundle(route, preview)
     route = attach_stops(route, network)
     result = validate(route, network)
     if not preview and not result['accepted']:

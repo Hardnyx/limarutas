@@ -371,3 +371,54 @@ La reconstrucción termina solo si los seis sentidos validan y los tres accesos 
 La operación API `match` de una ruta con evidencia `directed-source-corridor` reutiliza esta reconstrucción y devuelve un borrador que requiere aceptación. `replace` conserva los límites del corredor y el historial de giros. La revisión de inventario OSM 2 es aditiva dentro de `bus-v5`: recupera accesos de servicio acreditados por relaciones de buses sin cambiar los segmentos y restricciones previamente disponibles. Regenerar una caché anterior con `python3 -m pipeline.authoring.network` antes de iniciar el servidor. La auditoría nativa sigue indicando 33 sentidos completamente validados; corregir un acceso de Naranjal no certifica el resto de su recorrido histórico.
 
 La red ATU proyectada usa geometría oficial externa al modelo de calles de buses y al planificador. Véase `docs/ATU_PROYECTADAS.md`.
+
+## Referencias ferroviarias oficiales
+
+La misma API permite importar, guardar, validar, aceptar y exportar los
+paquetes ferroviarios del informe `Informe_Instrucciones_Metro_PMU_Limarutas.md`.
+El paquete requiere `publisher=ATU`, `sourceKind=official_plan`,
+`transportMode=rail`, `geometryPolicy=preserve`, `plannerEligible=false`,
+`sourceUrl`, `sourceCrs`, `sourceFileSha256`, `sourceObjectId` y
+`sourceGeometrySha256`. La fuente completa debe existir en
+`data/raw/atu_geovisor/pmu_sit.geojson`. Si el hash ya cambió, revisar las
+solicitudes contra el snapshot vigente, sin eliminar el control.
+
+Puede usarse sin cargar una red OSM:
+
+```sh
+python3 -m pipeline.authoring --reference-only serve
+python3 -m pipeline.authoring --reference-only call --request solicitudes_api/01_l2_pendiente.json
+```
+
+`health.capabilities.officialRailReference` identifica el soporte. Con
+`--reference-only`, las operaciones viales requieren otro arranque con OSM.
+GitHub Pages sigue sin ejecutar Python ni ofrecer una API pública.
+
+El recorrido lleva `source.kind=official-reference`,
+`profile.mode=reference`, `scope=cartographic-reference` y referencias de
+parte `path.type=reference`. La fuente conserva propiedades, CRS declarado,
+estado/horizonte, hashes y geometría. `geometry()` devuelve su objeto GeoJSON
+íntegro; no convierte las partes en una cadena de puntos de bus. Las
+coordenadas del paquete están agrupadas por parte; `segments` identifica
+cada una para el editor. No se exigen paraderos ni se inventan puntos:
+la capa PMU disponible no publica estaciones.
+
+El editor dibuja cada parte por separado y deshabilita el ajuste a calles,
+los pasos viales y la edición de paraderos. Revisión, notas, guardado,
+historial y exportación conservan el contrato de revisiones existente.
+`match`, `rebuild` y `replace` no se admiten para una referencia preservada.
+
+Tras importar, comparar fuente y geometría; usar `save` con
+`expectedRevision=0`, después `accept` con la revisión devuelta y finalmente
+`export` sobre la revisión guardada. El paquete contiene `project.geojson`
+y `project.reference.json`, con checksums. No genera `.osm.geojson`,
+`osm:true`, un servicio Wikiroutes ni una entrada en el grafo operativo.
+La aceptación tiene alcance exclusivamente cartográfico.
+
+Las actualizaciones usan `propose-update` y `apply-update` con
+`proposalHash` y `expectedRevision`. Cambiar la fuente revoca la aceptación
+y conserva la anterior en el historial. Una etiqueta local que compita con
+un nuevo nombre remoto exige elegir `local` o `incoming`. El eje fuente
+permanece exacto; una corrección de ingeniería requiere una fuente revisada,
+no mover puntos de la referencia. Restaurar una exportación vuelve a exigir
+revisión, igual que en buses.

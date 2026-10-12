@@ -28,19 +28,22 @@ function controls(){
   const pack = state.pack, disabled = busy || !online || !!updateBundle;
   $('connection').textContent = busy ? 'Procesando…' : online ? 'Motor conectado' : 'Motor desconectado';
   $('routeTools').inert = busy;
-  for (const panel of document.querySelectorAll('[data-panel="path"],[data-panel="stops"]')) panel.inert = !!updateBundle;
+  const reference = pack?.route.scope === 'cartographic-reference';
+  for (const panel of document.querySelectorAll('[data-panel="path"],[data-panel="stops"]')) panel.inert = !!updateBundle || reference;
   $('reviewNotes').disabled = disabled;
   $('routeTools').hidden = !pack; $('offlineHelp').hidden = online;
   for (const id of ['newRoute','importFile','routeQuery']) $(id).disabled = disabled;
   for (const id of ['saveDraft','exportPreview','addWaypoint','addStop','selectRange','serviceMode','serviceSystem']) $(id).disabled = disabled || !pack;
+  if (reference) for (const id of ['addWaypoint','addStop','selectRange','serviceMode','serviceSystem','applyPath']) $(id).disabled = true;
   $('undo').disabled = disabled || !state.past.length; $('redo').disabled = disabled || !state.future.length;
   $('cancelChanges').disabled = disabled || (!state.dirty && !pendingPath);
   $('saveDraft').disabled = disabled || !pack || pendingPath;
-  $('matchSource').disabled = disabled || !pack?.route.source.track;
+  $('matchSource').disabled = disabled || reference || !pack?.route.source.track;
   $('acceptRoute').disabled = disabled || pendingPath || !pack?.validation.ready;
   $('exportRoute').disabled = disabled || pendingPath || state.dirty || !pack?.route.review.accepted;
   $('applyPath').disabled = disabled || (!range && waypoints.length < 2) || (range && range.end == null);
-  $('sourceUpdateFile').disabled = disabled || state.dirty || pendingPath || !state.persistedRevision || pack?.route.source.kind !== 'wikiroutes';
+  if (reference) $('applyPath').disabled = true;
+  $('sourceUpdateFile').disabled = disabled || state.dirty || pendingPath || !state.persistedRevision || !['wikiroutes','official-reference'].includes(pack?.route.source.kind);
   $('applySourceUpdate').disabled = busy || !online || !updateProposal?.canApply;
   $('cancelSourceUpdate').disabled = busy || !updateBundle;
   $('editStatus').textContent = !pack ? 'Sin ruta abierta' : pendingPath ? 'Recorrido pendiente de aplicar' : state.dirty ? 'Cambios sin guardar' : pack.route.review.accepted ? 'Recorrido aceptado' : `Borrador · revisión ${state.persistedRevision}`;
@@ -143,7 +146,7 @@ function render(fit = false){
     layer.addTo(track); layer.getElement()?.setAttribute('data-path-index', segment.index);
   }
   route.stops.forEach((stop, index) => {
-    const marker = L.marker(latlng(stop.coordinates), { draggable: !updateBundle, icon: L.divIcon({ className: 'stop-marker', iconSize: [14,14], iconAnchor: [7,7] }) });
+    const marker = L.marker(latlng(stop.coordinates), { draggable: !updateBundle && route.scope !== 'cartographic-reference', icon: L.divIcon({ className: 'stop-marker', iconSize: [14,14], iconAnchor: [7,7] }) });
     marker.bindTooltip(node('span', `${index+1}. ${stop.name}`));
     marker.on('dragend', () => run(async () => { const edited = state.requestRoute(); edited.stops[index].coordinates = point(marker.getLatLng()); change(await api.call('validate', { route: edited })); }));
     marker.addTo(markers); marker.getElement()?.setAttribute('data-stop-id', stop.id);
@@ -156,7 +159,9 @@ function render(fit = false){
     return li;
   }));
   $('mapHint').textContent = mode === 'waypoint' ? 'Haz clic en la calzada concreta por donde debe circular la ruta.' : mode === 'stop' ? 'Haz clic en una calle para ubicar el paradero.' : mode.startsWith('range') ? 'Haz clic sobre el recorrido azul para seleccionar el tramo.' : 'Gris: fuente original. Azul: recorrido actual. Morado: calzadas reservadas.';
-  if (fit && pack.coordinates.length) map.fitBounds(L.latLngBounds(pack.coordinates.map(latlng)).pad(.2), { maxZoom: 18 });
+  if (route.scope === 'cartographic-reference') $('mapHint').textContent = 'Proyecto ferroviario con geometría oficial. La aceptación es cartográfica y no lo incorpora a Cómo llegar.';
+  const boundsPoints = route.scope === 'cartographic-reference' ? pack.segments.flatMap(s => s.coordinates) : pack.coordinates;
+  if (fit && boundsPoints.length) map.fitBounds(L.latLngBounds(boundsPoints.map(latlng)).pad(.2), { maxZoom: 18 });
 }
 
 function renderStops(){
@@ -196,7 +201,7 @@ $('importFile').addEventListener('change', event => run(async () => {
   if (!canSwitch()) return; const file = event.target.files[0]; if (!file) return;
   const data = JSON.parse(await file.text());
   const draft = data.files ? Object.values(data.files).find(v => v.version === 1 && v.path && v.stops) : data.route || (data.version === 1 && data.path ? data : null);
-  const pack = draft ? await api.call('restore', {route:draft}) : await api.call('import', { bundle: data });
+  const pack = draft ? await api.call('restore', {route:draft}) : await api.call('import', { bundle: data.bundle || data });
   open(pack); message('Archivo importado. La fuente original se conserva.'); event.target.value = '';
 }));
 $('matchSource').addEventListener('click', () => run(async () => { change(await api.call('match', { route: state.requestRoute() })); message('Ajuste preparado. Revisa los avisos y compáralo con la fuente.'); }));
@@ -248,7 +253,8 @@ async function compareSourceUpdate(){
 }
 $('sourceUpdateFile').addEventListener('change',event => run(async () => {
   const file = event.target.files[0]; if(!file) return;
-  const data = JSON.parse(await file.text());
+  const parsed = JSON.parse(await file.text());
+  const data = parsed.bundle || parsed;
   if(!data.track || !data.stops) throw new Error('El archivo debe incluir el trazado y los paraderos de la fuente nueva.');
   updateBundle = data; updateChoices = {}; updateProposal = null;
   try { await compareSourceUpdate();message('Propuesta preparada. Tus cambios guardados siguen intactos.'); }

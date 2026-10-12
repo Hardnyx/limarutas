@@ -14,13 +14,14 @@ from .reconcile import propose
 from .network import Network
 from .resolver import Resolver
 from .store import Store
+from . import reference
 
 
 class Service:
     def __init__(self, network, root, workspace):
         self.network, self.root = network, Path(root).resolve()
-        self.engine = Engine(network)
-        self.resolver = Resolver.from_repository(self.engine, self.root)
+        self.engine = Engine(network) if network is not None else None
+        self.resolver = Resolver.from_repository(self.engine, self.root) if self.engine else None
         self.store = Store(Path(workspace) / 'routes')
         self.lock = threading.RLock()
         catalog = self.root / 'pipeline/output/wr_map.json'
@@ -29,6 +30,15 @@ class Service:
         self.catalog = {**self.catalog, **native_catalog(self.root)}
 
     def pack(self, route):
+        if reference.is_reference(route):
+            saved = self.store.get(route['id']) if self.store.path(route['id']).exists() else None
+            if saved is None or saved['source'] != route['source']:
+                reference.import_reference({**{k: route[k] for k in ('id', 'name', 'direction')},
+                    'track': route['source']['track'], 'stops': route['source']['stops'],
+                    'provenance': route['source']['provenance']}, self.root)
+            return reference.pack(route)
+        if self.network is None:
+            raise ValueError('Inicia el servicio con una red OSM para editar recorridos de buses')
         route = attach_stops(route, self.network)
         segments = []
         for index, (ref, points) in enumerate(zip(route['path'], path_parts(route, self.network))):
@@ -47,21 +57,31 @@ class Service:
     def _call(self, request):
         operation = request.get('operation')
         if operation == 'health':
-            return {'network': self.network.id, 'source': self.network.data['source'],
-                    'segments': len(self.network.edges), 'workspace': 'isolated-drafts'}
+            return {'network': self.network.id if self.network else None,
+                    'source': self.network.data['source'] if self.network else None,
+                    'segments': len(self.network.edges) if self.network else 0, 'workspace': 'isolated-drafts',
+                    'capabilities': {'officialRailReference': True, 'roadAuthoring': self.network is not None}}
         if operation == 'catalog':
             query = request.get('query', '').casefold()
             return {'published': [{'id': key, 'name': v.get('name', key)} for key, v in self.catalog.items()
                                   if query in (key + ' ' + v.get('name', '')).casefold()][:100], 'drafts': self.store.list()}
         if operation == 'streets':
+            if self.network is None:
+                return {'edges': [], 'truncated': False}
             edges, truncated = self.network.viewport(request['bbox'])
             return {'edges': edges, 'truncated': truncated}
+        if self.network is None and operation in ('resolve', 'import-existing', 'new', 'build'):
+            raise ValueError('Esta operación vial requiere iniciar el servicio con una red OSM')
         if operation == 'resolve':
             return {'candidates': self.resolver.resolve(request['query'])}
         if operation == 'import-existing':
             return self.pack(import_existing(self.root, request['routeId'], self.engine))
         if operation == 'import':
             data = request['bundle']
+            if reference.requested(data):
+                return self.pack(reference.import_reference(data, self.root))
+            if self.network is None:
+                raise ValueError('La importación vial requiere una red OSM')
             return self.pack(import_bundle(self.engine, data['id'], data['name'], data['direction'],
                                           data['track'], data['stops'], data.get('vias'), data.get('matched'),
                                           data.get('corrections'), data.get('provenance')))
@@ -84,10 +104,14 @@ class Service:
             # Always read the saved revision; callers cannot forge a proposal or its new source.
             current = self.store.get(request['routeId'])
             data = request['bundle']
-            incoming = import_bundle(self.engine, data['id'], data['name'], data['direction'],
+            if reference.is_reference(current):
+                incoming = reference.import_reference(data, self.root)
+                proposal = reference.propose(current, incoming, request.get('choices'))
+            else:
+                incoming = import_bundle(self.engine, data['id'], data['name'], data['direction'],
                                      data['track'], data['stops'], data.get('vias'), data.get('matched'),
                                      data.get('corrections'), data.get('provenance'))
-            proposal = propose(current, incoming, request.get('choices'))
+                proposal = propose(current, incoming, request.get('choices'))
             if operation == 'propose-update':
                 return {**proposal, 'proposalHash': digest(proposal), 'preview': self.pack(proposal['route'])}
             if not proposal['canApply']:
@@ -100,6 +124,8 @@ class Service:
             return self.pack(saved)
         if operation in ('match', 'validate', 'save', 'accept', 'export', 'rebuild', 'replace'):
             route = copy.deepcopy(request['route']) if 'route' in request else self.store.get(request['routeId'])
+            if reference.is_reference(route) and operation in ('match', 'rebuild', 'replace'):
+                raise ValueError('La geometría oficial ferroviaria se conserva; no se ajusta a calles de buses')
             if operation == 'match':
                 if route.get('itineraryEvidence', {}).get('kind') == 'directed-source-corridor':
                     from .itineraries import reconstruct
@@ -146,6 +172,8 @@ class Service:
                     saved = self.store.get(route['id'])
                     if digest(saved) != digest(route) or not saved.get('review', {}).get('accepted'):
                         raise ValueError('Guarda y acepta esta revisión antes de exportarla para publicación')
+                if reference.is_reference(route):
+                    return reference.bundle(route, request.get('preview', False))
                 return bundle(route, self.network, request.get('preview', False), request.get('trip'))
             packed = self.pack(route)
             if operation == 'accept' and not packed['validation']['ready']:
@@ -155,7 +183,9 @@ class Service:
         raise ValueError('Operación no compatible')
 
 
-def load_service(network_file, root, workspace):
+def load_service(network_file, root, workspace, reference_only=False):
+    if reference_only:
+        return Service(None, root, workspace)
     data = json.loads(Path(network_file).read_text())
     from .network import INVENTORY_REVISION, POLICY
     if data.get('policy') == POLICY and (data.get('inventoryRevision') != INVENTORY_REVISION or 'serviceTypes' not in data):
