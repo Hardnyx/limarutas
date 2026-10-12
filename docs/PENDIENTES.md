@@ -12,6 +12,7 @@ publicó correctamente `19987a7` a las 08:36 de Lima. El workflow ATU
 | AeroDirecto: Quilca, aeropuerto y coincidencias de Centro/Norte/Sur | Seis sentidos corregidos y publicados | `docs/osm/aerodirecto_itineraries.json`; originales y paraderos conservados |
 | Naranjal: embarques físicos y códigos | Trece salidas corregidas y publicadas | `docs/osm/naranjal_boarding.json`; llegadas conservadas, desembarque aún sin certificar |
 | Red PMU y pestaña Explorar | 106 ejes publicados, actualización semanal probada | `docs/ATU_PROYECTADAS.md`; cero objetos PMU en el planificador |
+| Colores y estructura visual de Explorar | Simbología del geovisor recuperada; componentes de Rutas reutilizados | 14 símbolos por `simbol`, casillas de grupo con selección parcial y fichas por proyecto; comprobar despliegue del commit de corrección |
 | Autoría ferroviaria del informe Metro/PMU | Adaptador de referencia implementado y diez paquetes comprobados por HTTP | `docs/atu/rail_authoring_checks.json`; 11 partes exactas, revisión cartográfica, sin OSM |
 | Nombres de estaciones del informe | L2 pendiente, L3 y L4 incorporadas a fichas | 22, 28 y 8+20 nombres citados; no son puntos ni confirmación de ingeniería definitiva |
 | Coordenadas de nuevas estaciones Metro | Pendiente de evidencia geográfica suficiente | No geocodificar automáticamente un nombre, centro de cámara o intersección para publicar un pin |

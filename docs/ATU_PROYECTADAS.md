@@ -2,7 +2,36 @@
 
 La pestaña **Explorar** muestra la capa PMU del geovisor ATU. La consulta inicial del 12 de octubre de 2026 contiene 106 ejes: 12 ferroviarios, BRT, corredores y teleféricos. El inventario reproducible está en `docs/atu/pmu_inventory.json`. Son ejes de planificación, no una lista de servicios comerciales futuros confirmados.
 
-Las líneas conservan todos los vértices y partes oficiales. No se unen las partes de una `MultiLineString`, no se ajusta Metro a calles ni se inventan estaciones. Esta fuente no publica puntos de estaciones. Los colores neutros del mapa son derivados, no colores oficiales. La ficha distingue estado declarado por ATU, horizonte PMU y Last-Modified del archivo; ninguno confirma fecha de apertura. El escenario base se puede consultar sin cambiar la red operativa local.
+Las líneas conservan todos los vértices y partes oficiales. No se unen las
+partes de una `MultiLineString`, no se ajusta Metro a calles ni se inventan
+estaciones. Esta fuente no publica puntos de estaciones. Los colores se
+recuperan del renderer activo del geovisor, asociado a `simbol` en su
+`index.js?v=2`; no son una paleta propia ni una declaración de colores
+comerciales definitivos. La ficha distingue estado declarado por ATU,
+horizonte PMU y Last-Modified del archivo; ninguno confirma fecha de apertura.
+El escenario base se puede consultar sin cambiar la red operativa local.
+
+La simbología extraída está en `data/raw/atu_geovisor/pmu_renderer.json`, con
+URL y SHA del JavaScript. Se recuperan color, ancho, estilo y etiqueta
+original, sin ejecutar código remoto. Son 14 símbolos en la consulta inicial.
+El parser rechaza expresiones ejecutables, cambios de campo o símbolos nuevos
+sin correspondencia. No se usa el antiguo renderer por tecnología comentado
+en el código. La etiqueta de origen de L5 menciona un ramal L4, mientras el
+GeoJSON identifica la L5 Surquillo–Villa El Salvador: se conserva como
+evidencia, pero el nombre del proyecto sale del GeoJSON, no de esa etiqueta.
+
+`sync_geovisor.py` comprueba también el JavaScript con GET condicional y
+valida la caché contra sus bytes y hash. Un cambio de simbología reconstruye
+los derivados aunque el GeoJSON devuelva 304; un cambio en código ajeno al
+renderer no activa reconstrucción. Los colores del geovisor se mantienen en
+mapa y etiquetas, con trazo discontinuo para distinguir la consulta PMU.
+
+Explorar reutiliza los componentes `.panel`, `.panel-head`, `.item-head` y
+`.tag` de Rutas, sus desplegables y el cálculo de selección parcial. Metro,
+BRT, corredores e infraestructura tienen grupos con selección de conjunto;
+las búsquedas y el horizonte limitan las hojas que afecta esa selección.
+No se crean grupos vacíos si el dataset no contiene esa tecnología. Estas
+casillas quedan fuera de `#panels`, de los sistemas operativos y del grafo.
 
 ## Adquisición y construcción
 

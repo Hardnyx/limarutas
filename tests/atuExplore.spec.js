@@ -5,6 +5,8 @@ test('Explorar preserves official multipart projects and never registers them as
   await expect(page.locator('#exploreCount')).toHaveText('106 de 106 trazados');
   await expect(page.locator('#explorePane')).toBeVisible();
   await expect(page.locator('#panels')).not.toBeVisible();
+  await expect(page.locator('#explorePanels > section.panel')).toHaveCount(4);
+  await page.locator('#explorePanels > section[data-mode="metro"] > .panel-head').click();
   const result=await page.evaluate(async()=>{
     const {state}=await import('/assets/js/config.js');
     const red=await (await fetch('/data/processed/planificado/red.geojson')).json();
@@ -14,11 +16,11 @@ test('Explorar preserves official multipart projects and never registers them as
     const line=lines.at(-1);
     const actual=line.getLatLngs().map(part=>part.map(p=>[p.lng,p.lat]));
     const ids=Object.values(state.systems).flatMap(s=>(s.services||[]).map(r=>r.id));
-    return {parts:actual.length,exact:JSON.stringify(actual)===JSON.stringify(split.geometry.coordinates.map(part=>part.map(p=>p.slice(0,2)))),dash:line.options.dashArray,smooth:line.options.smoothFactor,contaminated:ids.some(id=>id.startsWith('pmu:'))};
+    return {parts:actual.length,exact:JSON.stringify(actual)===JSON.stringify(split.geometry.coordinates.map(part=>part.map(p=>p.slice(0,2)))),dash:line.options.dashArray,smooth:line.options.smoothFactor,color:line.options.color,contaminated:ids.some(id=>id.startsWith('pmu:'))};
   });
   expect(result.parts).toBeGreaterThan(1);expect(result.exact).toBe(true);
   expect(result.dash).toBe('8 6');expect(result.smooth).toBe(0);expect(result.contaminated).toBe(false);
-  await page.selectOption('#explorePane select[aria-label="Tecnología del proyecto"]','metro');
+  expect(result.color).toBe('#f8ed29');
   await expect(page.locator('.project-row:visible')).toHaveCount(12);
   await page.locator('.project-row:visible .project-name').first().click();
   await expect(page.locator('.project-info')).toContainText('Fuente ATU');
@@ -26,6 +28,31 @@ test('Explorar preserves official multipart projects and never registers them as
   await page.getByRole('tab',{name:'Rutas',exact:true}).click();
   await expect(page.locator('#explorePane')).not.toBeVisible();
   await expect(page.locator('#panels')).toBeVisible();
+});
+
+test('Explorar shares route panels, colored rows and filtered group selection',async({app,page})=>{
+  await page.click('#tabExplore');
+  await expect(page.locator('#exploreCount')).toHaveText('106 de 106 trazados');
+  const metro=page.locator('#explorePanels > section[data-mode="metro"]');
+  await metro.locator('.panel-head').click();
+  await expect(metro.locator('.item-head')).toHaveCount(12);
+  const all=metro.locator('.panel-head > input');
+  await all.check();
+  await expect(metro.locator('.item-head input:checked')).toHaveCount(12);
+  const first=metro.locator('.item-head input').first();
+  await first.uncheck();
+  expect(await all.evaluate(c=>c.indeterminate)).toBe(true);
+  const swatches=await metro.locator('.item-head .tag').evaluateAll(nodes=>nodes.map(n=>getComputedStyle(n).backgroundColor));
+  expect(new Set(swatches).size).toBeGreaterThan(6);
+  await page.locator('#explorePane input[type=search]').fill('Línea 3');
+  await expect(page.locator('.project-row:visible')).toHaveCount(1);
+  await all.uncheck();
+  await expect(page.locator('.project-row:visible .item-head input')).not.toBeChecked();
+  await page.locator('#explorePane input[type=search]').fill('');
+  await expect(metro.locator('.item-head input:checked')).toHaveCount(10);
+  await page.getByRole('button',{name:'Quitar proyectos del mapa',exact:true}).click();
+  await expect(metro.locator('.item-head input:checked')).toHaveCount(0);
+  expect(await all.evaluate(c=>c.indeterminate)).toBe(false);
 });
 
 test('Explorar remains usable on mobile and in the dark theme',async({app,page})=>{

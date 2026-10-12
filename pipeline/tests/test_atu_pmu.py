@@ -14,6 +14,10 @@ class PMUTest(unittest.TestCase):
         self.collection=json.loads((ROOT/'data/raw/atu_geovisor/pmu_sit.geojson').read_text())
         self.raw=sources.json_bytes(self.collection)
         self.entry={'sha256':sources.sha(self.raw),'url':sources.URLS['pmu']}
+        renderer=json.loads((ROOT/'data/raw/atu_geovisor/pmu_renderer.json').read_text())
+        style_patch=patch.object(sync_geovisor.styles,'synchronize',return_value=(renderer,
+            {'httpStatus':304,'downloadedBytes':0,'dataChanged':False}))
+        style_patch.start();self.addCleanup(style_patch.stop)
 
     def test_official_parts_and_base_state_are_preserved_without_stations(self):
         red,catalog,inventory=build(self.collection,self.entry)
@@ -38,6 +42,17 @@ class PMUTest(unittest.TestCase):
             for station in reference['stations']:
                 self.assertNotIn('coordinates',station)
                 self.assertNotEqual(station['status'],'operativa')
+
+    def test_renderer_colors_and_source_keys_are_preserved(self):
+        red,_,_=build(self.collection,self.entry)
+        expected=json.loads((ROOT/'data/raw/atu_geovisor/pmu_renderer.json').read_text())
+        for feature in red['features']:
+            props=feature['properties'];symbol=expected['symbols'][props['source_properties']['simbol']]
+            self.assertEqual(props['color'],symbol['color'])
+            self.assertEqual(props['source_line_width'],symbol['width'])
+            self.assertEqual(props['color_source'],'atu-geovisor-renderer')
+        red['features'][0]['properties']['color']='#546e7a'
+        with self.assertRaisesRegex(ValueError,'Color'):validate(red,self.collection,self.entry)
 
     def test_invalid_response_and_ambiguous_schema_fail(self):
         for raw in [b'<html>Error</html>',b'{"type":"Feature"}',b'{"type":"FeatureCollection","features":[]}']:
@@ -66,6 +81,7 @@ class PMUTest(unittest.TestCase):
     def test_conditional_sync_and_failure_preserve_last_good(self):
         with tempfile.TemporaryDirectory() as tmp:
             state=Path(tmp)
+            (state/'.sync.lock').write_bytes(b'')
             with patch.object(sources,'fetch',return_value=(200,{'etag':'v1'},self.raw)):
                 first=sources.sync(state,names=('pmu',))
             self.assertTrue(first['success'])
@@ -122,3 +138,20 @@ class PMUTest(unittest.TestCase):
                 with self.assertRaises(OSError):sync_geovisor.publish({p:b'new' for p in paths})
             self.assertEqual([p.read_bytes() for p in paths[:2]],[b'previous',b'previous'])
             self.assertFalse(paths[2].exists())
+
+    def test_renderer_change_rebuilds_colors_even_when_geojson_is_not_modified(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);raw=root/'raw';out=root/'out'
+            renderer=json.loads((ROOT/'data/raw/atu_geovisor/pmu_renderer.json').read_text())
+            with patch.object(sync_geovisor,'ROOT',root),patch.object(sync_geovisor,'RAW',raw),patch.object(sync_geovisor,'OUT',out),patch.object(sync_geovisor,'REPORT',root/'report.json'):
+                with patch.object(sources,'fetch',return_value=(200,{},self.raw)):
+                    sync_geovisor.update(root/'state')
+                original_raw=(raw/'pmu_sit.geojson').read_bytes()
+                renderer['symbols']['Eje Ferroviario Urbano Línea 3']['color']='#123456'
+                with patch.object(sources,'fetch',return_value=(304,{},b'')),patch.object(sync_geovisor.styles,'synchronize',return_value=(renderer,{'httpStatus':200,'downloadedBytes':20,'dataChanged':True})):
+                    report=sync_geovisor.update(root/'state')
+                self.assertTrue(report['processingRequired'])
+                self.assertEqual((raw/'pmu_sit.geojson').read_bytes(),original_raw)
+                red=json.loads((out/'red.geojson').read_text())
+                l3=next(f for f in red['features'] if f['properties']['source_symbol']=='Eje Ferroviario Urbano Línea 3')
+                self.assertEqual(l3['properties']['color'],'#123456')

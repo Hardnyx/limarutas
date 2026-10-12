@@ -260,12 +260,12 @@ def prepare_one(name,url,old,root,timeout,attempts,force):
 
 
 def sync(state_dir,names=('pmu','prr','sit'),urls=None,timeout=35,attempts=3,workers=3,force=False):
+    if not __package__:
+        sys.path.insert(0,str(Path(__file__).resolve().parents[3]))
+    from pipeline.authoring.store import writer_lock
     root=Path(state_dir).resolve();root.mkdir(parents=True,exist_ok=True)
-    lock=root/'.sync.lock'
-    try:fd=os.open(lock,os.O_CREAT|os.O_EXCL|os.O_WRONLY)
-    except FileExistsError:raise SourceError('Hay otra actualización o un bloqueo pendiente de revisar')
-    os.close(fd)
-    try:
+    # Kernel-backed locks release on interruption; a cached lock file is not an active writer.
+    with writer_lock(root/'.sync.lock'):
         pointer=root/'current.json';old_raw=pointer.read_bytes() if pointer.exists() else None
         old=json.loads(old_raw) if old_raw else {'version':VERSION,'sources':{}}
         if old.get('version')!=VERSION:raise SourceError('Versión de estado no compatible')
@@ -299,8 +299,6 @@ def sync(state_dir,names=('pmu','prr','sit'),urls=None,timeout=35,attempts=3,wor
         report['downloadedBytes']=sum(s.get('downloadedBytes',0) for s in report['sources'])
         report['processingRequired']=report['dataChanged']
         return report
-    finally:
-        lock.unlink(missing_ok=True)
 
 
 def main():

@@ -72,7 +72,7 @@ export function setGroupChecked(groupChk, checked){
     setLeafChecked(leaf.dataset.system, leaf, checked, { silentFit: true }));
 }
 
-function syncGroup(groupChk){
+export function syncGroupCheckbox(groupChk){
   const leaves = leavesOfGroup(groupChk);
   const total = leaves.length;
   const checked = leaves.filter(c => c.checked).length;
@@ -81,7 +81,7 @@ function syncGroup(groupChk){
 }
 
 export function syncAllTri(){
-  $$(GROUP_SEL).forEach(syncGroup);
+  $$(GROUP_SEL).forEach(syncGroupCheckbox);
 }
 
 // Compatibilidad: los grupos se calculan desde el DOM, así que basta con

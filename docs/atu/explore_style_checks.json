@@ -1,0 +1,27 @@
+{
+  "sourceUrl": "https://geovisor.atumovilidad.pe/index.js?v=2",
+  "sourceJavaScriptSha256": "5e5f8b071fc7d74b9a34ca97decbe30ad00ced6ebcedb2c981b6ad3a89160b6f",
+  "rendererField": "simbol",
+  "symbols": 14,
+  "featuresWithSourceColor": 106,
+  "geometryChanged": 0,
+  "operationalRoutesAdded": 0,
+  "pmuHttpRepeat": 304,
+  "rendererHttpRepeat": 304,
+  "repeatDownloadedBytes": 0,
+  "browserChecksPassed": 48,
+  "pythonChecksPassed": 112,
+  "domainChecksPassed": 9,
+  "sharedComponents": [
+    "panel",
+    "panel-head",
+    "item",
+    "item-head",
+    "tag"
+  ],
+  "sharedBehavior": [
+    "setPanelOpen",
+    "syncGroupCheckbox",
+    "leavesOfGroup"
+  ]
+}

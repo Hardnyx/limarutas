@@ -11,6 +11,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT))
 from pipeline.scripts.atu.sources import SourceError, inspect, identity, json_bytes, atomic_bytes
+from pipeline.scripts.atu.styles import validate as validate_styles
 CONFIG = ROOT/'config/atu_geovisor_layers.json'
 STATION_NAMES = ROOT/'config/pmu_station_names.json'
 RAW = ROOT/'data/raw/atu_geovisor'
@@ -29,8 +30,10 @@ def field(props, aliases):
     return found[0]
 
 
-def build(collection, manifest, config=None):
+def build(collection, manifest, config=None, renderer=None):
     config = config or json.loads(CONFIG.read_text())['pmu_sit']
+    renderer = renderer or json.loads((RAW/'pmu_renderer.json').read_text())
+    validate_styles(renderer)
     raw = json_bytes(collection)
     _, stats = inspect('pmu', raw)
     features = []
@@ -42,6 +45,10 @@ def build(collection, manifest, config=None):
         technology = field(props, aliases['tecnologia'])
         horizon = int(field(props, aliases['horizonte']))
         source_state = field(props, aliases['estado'])
+        source_symbol = props.get(renderer['field'])
+        if source_symbol not in renderer['symbols']:
+            raise SourceError('Símbolo ATU sin color verificado: '+str(source_symbol))
+        symbol = renderer['symbols'][source_symbol]
         if technology not in config['types'] or str(horizon) not in config['horizons']:
             raise SourceError('Tecnología u horizonte ATU nuevo; revisar contrato')
         mode = config['types'][technology]
@@ -54,7 +61,10 @@ def build(collection, manifest, config=None):
             'geometry_source': 'oficial', 'geometry_modified': False, 'osmApplied': False,
             'source_type': technology, 'source_state': source_state,
             'horizonte': horizon, 'horizonte_nombre': config['horizons'][str(horizon)],
-            'long_km': props['long_km'], 'color': '#546e7a', 'color_source': 'derived',
+            'long_km': props['long_km'], 'color': symbol['color'], 'color_source': 'atu-geovisor-renderer',
+            'color_source_url': renderer['sourceUrl'], 'color_source_sha256': renderer['sourceSha256'],
+            'source_symbol': source_symbol, 'source_symbol_label': symbol['label'],
+            'source_line_width': symbol['width'], 'source_line_style': symbol['style'],
             'source_properties': copy.deepcopy(props)}
         if manifest.get('lastModified'):
             normalized['source_last_modified'] = manifest['lastModified']
@@ -66,7 +76,7 @@ def build(collection, manifest, config=None):
             'geometry': copy.deepcopy(feature['geometry'])})
     features.sort(key=lambda f: f['id'])
     result = {'type': 'FeatureCollection', 'features': features}
-    validate(result, collection, manifest)
+    validate(result, collection, manifest, renderer)
     inventory = {**stats, 'geometryTypes': dict(Counter(f['geometry']['type'] for f in collection['features'])),
         'values': {k: sorted({str(f['properties'].get(k)) for f in collection['features']})
                    for k in ('tecnologia', 'estado', 'hz_pmu', 'tec_cp', 'tec_mp', 'tec_lp')},
@@ -78,7 +88,9 @@ def build(collection, manifest, config=None):
     return result, catalog, inventory
 
 
-def validate(result, source, manifest):
+def validate(result, source, manifest, renderer=None):
+    renderer = renderer or json.loads((RAW/'pmu_renderer.json').read_text())
+    validate_styles(renderer)
     original = {identity('pmu', f['properties']): f for f in source['features']}
     ids = set()
     if len(result['features']) != len(original):
@@ -95,6 +107,15 @@ def validate(result, source, manifest):
         old = original.get(props['source_identity'])
         if old is None or feature['geometry'] != old['geometry'] or props['source_properties'] != old['properties']:
             raise SourceError('Se modificó la geometría o evidencia oficial')
+        symbol = renderer['symbols'].get(old['properties'].get('simbol'))
+        if not symbol or (props.get('color') != symbol['color']
+                or props.get('color_source') != 'atu-geovisor-renderer'
+                or props.get('color_source_url') != renderer['sourceUrl']
+                or props.get('color_source_sha256') != renderer['sourceSha256']
+                or props.get('source_symbol') != old['properties']['simbol']
+                or props.get('source_line_width') != symbol['width']
+                or props.get('source_line_style') != symbol['style']):
+            raise SourceError('Color o procedencia distintos de la simbología ATU')
     inspect('pmu', json_bytes(source))
 
 

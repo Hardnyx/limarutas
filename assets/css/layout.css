@@ -459,11 +459,15 @@ html.sheet .map-settings-panel {
 #explorePane p { font-size: 12px; line-height: 1.5; margin: 4px 0 10px; }
 .explore-filters { display:flex; gap:8px; }
 .explore-filters select { min-width:0; flex:1; font:inherit; font-size:12px; }
-.explore-list { display:flex; flex-direction:column; gap:8px; }
-.project-row { border:1px solid var(--line); border-radius:10px; padding:10px; font-size:12px; }
+.explore-list { margin-top:8px; }
+.explore-list > .panel[hidden] { display:none; }
 .project-row[hidden] { display:none; }
-.project-head { display:flex; align-items:start; gap:8px; margin-bottom:6px; }
-.project-name { border:0; padding:0; background:transparent; text-align:left; color:var(--text-main); font:inherit; font-size:13px; cursor:pointer; }
+.project-row .left, .project-text { min-width:0; }
+.project-row .tag { min-width:32px; height:28px; flex:none; padding:0 5px; border-radius:7px; color:white; font-size:12px; font-weight:700; }
+.project-row .tag.on-light { color:#172b3a; }
+.project-name { border:0; padding:0; background:transparent; text-align:left; color:var(--text-main); font:inherit; cursor:pointer; }
+.project-text .sub { text-align:left; overflow-wrap:anywhere; margin-top:3px; }
+.project-name:focus-visible { outline:2px solid var(--accent); outline-offset:3px; border-radius:3px; }
 .project-badge { font-size:11px; border:1px dashed var(--text-muted); border-radius:5px; padding:2px 5px; }
 .project-info { max-width:300px; font-size:12px; line-height:1.5; }
 html:not(.explore-mode) .leaflet-projectLine-pane { display:none; }

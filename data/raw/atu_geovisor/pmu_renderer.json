@@ -1,0 +1,91 @@
+{
+  "field": "simbol",
+  "symbols": {
+    "Eje Ferroviario Urbano Línea 1 - Extensión": {
+      "color": "#1ba636",
+      "width": 4,
+      "style": "dash",
+      "label": "Red Ferroviaria Urbana - Extensión Línea 1"
+    },
+    "Eje Ferroviario Urbano Línea 1": {
+      "color": "#1ba636",
+      "width": 4,
+      "style": "solid",
+      "label": "Red Ferroviaria Urbana - Línea 1"
+    },
+    "Eje Ferroviario Urbano Línea 2": {
+      "color": "#f8ed29",
+      "width": 4,
+      "style": "solid",
+      "label": "Red Ferroviaria Urbana - Línea 2"
+    },
+    "Eje Ferroviario Urbano Línea 3": {
+      "color": "#259bd0",
+      "width": 4,
+      "style": "solid",
+      "label": "Red Ferroviaria Urbana - Línea 3"
+    },
+    "Eje Ferroviario Urbano Línea 4": {
+      "color": "#ef1e1e",
+      "width": 4,
+      "style": "solid",
+      "label": "Red Ferroviaria Urbana - Línea 4"
+    },
+    "Eje Ferroviario Urbano Línea 5": {
+      "color": "#ef1e1e",
+      "width": 4,
+      "style": "solid",
+      "label": "Red Ferroviaria Urbana - Línea 4 (Ramal)"
+    },
+    "Eje Ferroviario Urbano Línea 6": {
+      "color": "#7616cf",
+      "width": 4,
+      "style": "solid",
+      "label": "Red Ferroviaria Urbana - Línea 6"
+    },
+    "Eje Ferroviario Urbano Línea 7": {
+      "color": "#3b00f2",
+      "width": 4,
+      "style": "solid",
+      "label": "Red Ferroviaria Urbana - Línea 7"
+    },
+    "Eje Ferroviario Urbano Línea 8": {
+      "color": "#c1a4ff",
+      "width": 4,
+      "style": "solid",
+      "label": "Red Ferroviaria Urbana - Línea 8"
+    },
+    "Eje Ferroviario Urbano Línea 9": {
+      "color": "#a0c71e",
+      "width": 4,
+      "style": "solid",
+      "label": "Red Ferroviaria Urbana - Línea 9"
+    },
+    "BRT - Alta Capacidad": {
+      "color": "#2269e4",
+      "width": 3,
+      "style": "solid",
+      "label": "BRT - Alta Capacidad"
+    },
+    "BRT - Mediana Capacidad": {
+      "color": "#59d3cb",
+      "width": 3,
+      "style": "solid",
+      "label": "BRT - Mediana Capacidad"
+    },
+    "Sistema de Teleféricos": {
+      "color": "#00794f",
+      "width": 2,
+      "style": "solid",
+      "label": "Sistema de Teleféricos"
+    },
+    "Corredores Bus": {
+      "color": "#dc6100",
+      "width": 1.5,
+      "style": "solid",
+      "label": "Corredores Bus"
+    }
+  },
+  "sourceUrl": "https://geovisor.atumovilidad.pe/index.js?v=2",
+  "sourceSha256": "5e5f8b071fc7d74b9a34ca97decbe30ad00ced6ebcedb2c981b6ad3a89160b6f"
+}
