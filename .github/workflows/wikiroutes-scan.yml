@@ -12,6 +12,7 @@ on:
     paths:
       - 'pipeline/scripts/wikiroutes/wr_live_browser.mjs'
       - 'pipeline/scripts/wikiroutes/wr_live_stops.mjs'
+      - 'pipeline/scripts/wikiroutes/wr_rendered_markers.mjs'
       - 'pipeline/scripts/wikiroutes/wr_sync_live.py'
       - 'config/wikiroutes_sync.json'
       - '.github/workflows/wikiroutes-scan.yml'
@@ -24,6 +25,9 @@ jobs:
   scan:
     runs-on: ubuntu-latest
     timeout-minutes: 180
+    env:
+      SCAN_SCOPE: ${{ inputs.scope || 'smoke' }}
+      SNAPSHOT_PATH: ${{ inputs.scope == 'full' && 'pipeline/temp/wikiroutes_live' || 'pipeline/temp/wikiroutes_smoke' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -38,27 +42,27 @@ jobs:
           python3 -m unittest discover -s pipeline/tests
           python3 pipeline/run.py validate
       - name: Restore resumable observation cache
+        if: inputs.scope == 'full'
         uses: actions/cache@v4
         with:
           path: pipeline/temp/wikiroutes_live
           key: wr-live-${{ github.run_id }}
           restore-keys: wr-live-
       - name: Live smoke then read-only scan
-        env:
-          SCAN_SCOPE: ${{ inputs.scope || 'full' }}
         run: |
           if [ "$SCAN_SCOPE" = "smoke" ]; then
-            python3 pipeline/scripts/wikiroutes/wr_sync_live.py --scan --smoke
+            python3 pipeline/scripts/wikiroutes/wr_sync_live.py --scan --smoke --snapshot "$SNAPSHOT_PATH"
           else
-            python3 pipeline/scripts/wikiroutes/wr_sync_live.py --scan --resume
+            python3 pipeline/scripts/wikiroutes/wr_sync_live.py --scan --resume --snapshot "$SNAPSHOT_PATH"
           fi
       - name: Show measured results
         if: always()
         run: |
           python3 - <<'PY' >> "$GITHUB_STEP_SUMMARY"
           import json
+          import os
           from pathlib import Path
-          path=Path('pipeline/temp/wikiroutes_live/changes.json')
+          path=Path(os.environ['SNAPSHOT_PATH'])/'changes.json'
           if path.exists():
               report=json.loads(path.read_text())
               print('```json\n'+json.dumps(report['summary'],indent=2)+'\n```')
@@ -69,6 +73,6 @@ jobs:
         if: always()
         with:
           name: wikiroutes-live-observations
-          path: pipeline/temp/wikiroutes_live/
+          path: ${{ env.SNAPSHOT_PATH }}/
           retention-days: 30
           if-no-files-found: warn

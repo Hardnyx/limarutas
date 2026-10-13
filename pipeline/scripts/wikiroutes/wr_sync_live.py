@@ -92,21 +92,25 @@ def compare_route(root,item,snapshot,wr,policy):
         if target:
             classification,metrics,segments=compare(old[trip],target['geometry'],policy)
             changes=stop_changes(local_stops(directory,trip),target['stops'],policy)
-            if changes:classification='MAJOR_CHANGE'
             if classification=='UNCHANGED' and digest(parts(old[trip]))!=digest(parts(target['geometry'])):classification='REDRAW_ONLY'
             if any(s['features'] for s in segments.values()):changed_segments[str(trip)]=segments
         if structure_changed:classification='MAJOR_CHANGE'
+        geometry_classification=classification
+        stop_incomplete=any(c['type'] in ('STOPS_UNAVAILABLE','STOP_COORDINATES_UNAVAILABLE','STOP_ID_AMBIGUOUS') for c in changes)
+        actual_changes=[c for c in changes if c['type'] not in ('STOPS_UNAVAILABLE','STOP_COORDINATES_UNAVAILABLE','STOP_ID_AMBIGUOUS')]
         review=protected and (not target or structure_changed or bool(changes) or digest(parts(old[trip]))!=digest(parts(target['geometry'])))
         if review:classification='NEEDS_REVIEW'
         new_color=color_update(entry.get('color'),snapshot['color_live'])
         entries.append({'route_id':rid,'layer_key':key,'local_trip':trip,'live_trip':target['trip'] if target else None,
             'old_color':entry.get('color'),'live_color':snapshot['color_live'],'safe_color':new_color,
-            'geometry_metrics':metrics,'stop_changes':changes,'classification':classification,
+            'geometry_metrics':metrics,'geometry_classification':geometry_classification,
+            'stop_changes':changes,'stops_comparison_complete':bool(target) and not stop_incomplete,
+            'stops_changed':bool(actual_changes),'classification':classification,
             'source_hash':hashlib.sha256(source.read_bytes()).hexdigest() if source.exists() else None,
             'stops_hash':hashlib.sha256(stops.read_bytes()).hexdigest() if stops.exists() else None,
             'entry_hash':digest(entry),'authoring_protected':protected,
             'safe_to_apply':{'color':new_color!=entry.get('color'),'metadata':True,'geometry':False,'stops':False},
-            'applied':False,'review_required':review or classification in ('MAJOR_CHANGE','MINOR_CHANGE'),
+            'applied':False,'review_required':review or stop_incomplete or bool(actual_changes) or classification in ('MAJOR_CHANGE','MINOR_CHANGE'),
             'reason':'Accepted authoring preserved' if review else 'Observation only; geometric changes need calibration and a validated transaction'})
     status='EXISTING' if existing else 'NEW'
     official=read(root/'pipeline/output/prr_fichas.json',{'rutas':{}})
@@ -125,8 +129,31 @@ def summarize(catalog,known,records,complete):
         'checked':len(records),'successful':len(successful),'errors':sum(bool(r.get('error')) for r in records.values()),
         'placeholder_to_live_layers':sum(l['safe_to_apply']['color'] for l in layers),
         'changed_real_colors':sum(bool(l['live_color']) and not is_default(l['old_color']) and str(l['old_color']).upper()!=l['live_color'] for l in layers),
-        'geometry':dict(Counter(l['classification'] for l in layers)),
-        'stops_changed_layers':sum(bool(l['stop_changes']) for l in layers),'scan_complete':complete}
+        'geometry':dict(Counter(l.get('geometry_classification',l['classification']) for l in layers)),
+        'authoring_review_layers':sum(l.get('authoring_protected',False) and l['review_required'] for l in layers),
+        'stops_changed_layers':sum(l.get('stops_changed',bool(l['stop_changes'])) for l in layers),
+        'stops_incomplete_layers':sum(not l.get('stops_comparison_complete',True) for l in layers),'scan_complete':complete}
+
+
+def compare_cache(args):
+    """Reclassify captured observations locally without acquiring the site again."""
+    root=args.root.resolve();cache=args.snapshot.resolve()
+    if any(cache.is_relative_to(root/p) for p in ['data','pipeline/output','config','assets']):raise ValueError('Scan snapshots must stay outside published data')
+    previous=read(cache/'changes.json')
+    if not previous:raise ValueError('No captured report to compare')
+    wr=read(root/'pipeline/output/wr_map.json');policy=read(root/'config/wikiroutes_sync.json')
+    catalog=read(cache/'catalog.json')['routes'];by_id={r['route_id']:r for r in catalog};records={}
+    for rid,record in previous['routes'].items():
+        if rid not in by_id:continue
+        if record.get('error'):records[rid]=record;continue
+        snapshot=read(cache/f'route_{rid}'/'snapshot.json')
+        if digest(snapshot)!=record['snapshot_hash']:raise ValueError('Snapshot changed after comparison')
+        records[rid],_=compare_route(root,by_id[rid],snapshot,wr,policy)
+    known={p.name.split('_',1)[1] for p in (root/'data/processed/transporte').glob('route_*') if p.is_dir()}
+    complete=previous['summary']['scan_complete'] and all(rid in records for rid in by_id)
+    report={**previous,'compared_at':now(),'local_catalog_hash':digest(wr),'routes':records,
+        'summary':summarize(catalog,known,records,complete)}
+    write(cache/'changes.json',report);print(json.dumps(report['summary'],indent=2));return report
 
 
 def scan(args):
@@ -154,7 +181,7 @@ def scan(args):
         rid=item['route_id'];path=cache/f'route_{rid}'/'snapshot.json'
         if args.resume and path.exists() and rid in records and not records[rid].get('error'):
             snapshot=read(path)
-            if records[rid].get('snapshot_hash')==digest(snapshot) and (datetime.now(timezone.utc)-datetime.fromisoformat(snapshot['checked_at'])).total_seconds()<86400:
+            if snapshot.get('acquisition_version',1)>=2 and records[rid].get('snapshot_hash')==digest(snapshot) and (datetime.now(timezone.utc)-datetime.fromisoformat(snapshot['checked_at'])).total_seconds()<86400:
                 records[rid],_=compare_route(root,item,snapshot,wr,policy)
                 return
         if not robots.can_fetch('LimaRutasSourceAudit',item['url']):raise ValueError('Route forbidden by robots.txt')
@@ -239,7 +266,7 @@ def apply_safe(args):
     known={p.name.split('_',1)[1] for p in (root/'data/processed/transporte').glob('route_*') if p.is_dir()}
     changes['summary']=summarize(catalog,known,changes['routes'],True)
     manifest['checked_at']=now();changes['applied_at']=now()
-    history={'checked_at':manifest['checked_at'],'summary':report['summary'],'routes':manifest['routes']}
+    history={'checked_at':manifest['checked_at'],'summary':changes['summary'],'routes':manifest['routes']}
     files={wr_path:json_bytes(wr),overrides_path:json_bytes(overrides),manifest_path:json_bytes(manifest),
         root/'pipeline/output/wikiroutes_changes.json':json_bytes(changes),
         root/f'data/history/wikiroutes/{manifest["checked_at"][:10]}.json':json_bytes(history)}
@@ -258,11 +285,13 @@ def apply_safe(args):
 def main():
     p=argparse.ArgumentParser(description=__doc__);mode=p.add_mutually_exclusive_group(required=True)
     mode.add_argument('--scan',action='store_true');mode.add_argument('--apply-safe',action='store_true')
+    mode.add_argument('--compare-cache',action='store_true')
     p.add_argument('--root',type=Path,default=ROOT);p.add_argument('--snapshot',type=Path,default=ROOT/'pipeline/temp/wikiroutes_live')
     p.add_argument('--route',action='append');p.add_argument('--only-new',action='store_true');p.add_argument('--only-default-colors',action='store_true')
     p.add_argument('--resume',action='store_true');p.add_argument('--smoke',action='store_true');p.add_argument('--limit',type=int);p.add_argument('--delay',type=float,default=.25)
     args=p.parse_args()
     if args.scan:scan(args)
+    elif args.compare_cache:compare_cache(args)
     else:apply_safe(args)
 
 if __name__=='__main__':

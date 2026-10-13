@@ -73,6 +73,21 @@ class LiveSyncTest(unittest.TestCase):
             self.assertFalse(report['layers'][0]['safe_to_apply']['geometry'])
             self.assertEqual(before,{p:p.read_bytes() for p in directory.iterdir()})
 
+    def test_unknown_stop_coordinates_do_not_turn_identical_geometry_into_a_major_change(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root=Path(temporary);directory=folder(root,'1');directory.mkdir(parents=True)
+            (directory/'route_track_trip1.geojson').write_text(json.dumps(A))
+            (directory/'stops_trip1.geojson').write_text(json.dumps({'features':[]}))
+            wr={'routes':{'x':{'folder':directory.relative_to(root).as_posix(),'trip':1,'color':'#888888'}}}
+            snapshot={'trips':[{'trip':1,'geometry':A,'stops':[{'id':'1','name':'A','coordinates':None}]}],'color_live':'#FF0000'}
+            report,_=compare_route(root,{'route_id':'1','active':True},snapshot,wr,POLICY)
+            layer=report['layers'][0]
+            self.assertEqual(layer['geometry_classification'],'UNCHANGED')
+            self.assertEqual(layer['classification'],'UNCHANGED')
+            self.assertFalse(layer['stops_comparison_complete']);self.assertTrue(layer['review_required'])
+            summary=summarize([{'route_id':'1'}],{'1'},{'1':report},True)
+            self.assertEqual(summary['geometry'],{'UNCHANGED':1});self.assertEqual(summary['stops_incomplete_layers'],1)
+
     def test_summary_does_not_report_default_or_missing_colors_as_real_changes(self):
         def layer(old,live,safe=False):return {'old_color':old,'live_color':live,'safe_to_apply':{'color':safe},'classification':'UNCHANGED','stop_changes':[]}
         records={'1':{'layers':[layer('#888888','#00008C'),layer('#123456',None),layer('#123456','#FEDCBA'),layer('#888888','#FEDCBA',True)]}}

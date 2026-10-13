@@ -2,17 +2,19 @@
 import {chromium} from '@playwright/test';
 import readline from 'node:readline';
 import {resolveStops} from './wr_live_stops.mjs';
+import {observeRenderedMarkers} from './wr_rendered_markers.mjs';
 const args=['--no-sandbox','--disable-dev-shm-usage','--use-angle=swiftshader','--enable-unsafe-swiftshader'];
 const browser=await chromium.launch({headless:process.env.WR_VISIBLE!=='1',args,
   ...(process.env.WR_BROWSER_EXECUTABLE?{executablePath:process.env.WR_BROWSER_EXECUTABLE}:{})});
 const context=await browser.newContext({viewport:{width:1440,height:1000}});
+await context.addInitScript(observeRenderedMarkers);
 const page=await context.newPage();page.setDefaultTimeout(20000);
 const read=async()=>page.evaluate(()=>{
   const map=window.__wrRouteMap;
   if(map){
     const source=map.getSource('wr-route');const feature=source?.serialize()?.data;
     if(feature?.geometry?.coordinates?.length>1){
-      const markers=(map._markers||[]).filter(m=>m._wrStop);
+      const markers=(window.__limaRenderedMarkers?.(map)||map._markers||[]).filter(m=>m._wrStop);
       const stops=markers.map((m,i)=>{const p=m.getLngLat(),s=m._wrStop;return {id:String(s.id??s.stopId??''),name:s.name,sequence:i+1,coordinates:[p.lng,p.lat]};});
       const swatch=document.querySelector('.legend-color');
       const color=swatch && getComputedStyle(swatch).display!=='none'?swatch.style.backgroundColor:null;
@@ -45,6 +47,11 @@ const collect=async url=>{
     if(/WebGL|aceleración por hardware/i.test(body))throw Error('WEBGL_UNAVAILABLE');
     throw Error('MAP_UNAVAILABLE');
   });
+  await page.waitForFunction(()=>{
+    if(!window.__wrRouteMap)return window.L && document.querySelector('.leaflet-pane');
+    const feature=window.__wrRouteMap?.getSource('wr-route')?.serialize()?.data;
+    return feature?.geometry?.coordinates?.length>1 && document.querySelector('#mapLegend .legend-name')?.textContent;
+  });
   const headings=await page.locator('.route-direction').evaluateAll(nodes=>nodes.map(n=>({name:n.querySelector('h2')?.textContent?.trim(),stops:[...n.querySelectorAll('a[href*="/stops/"]')].map(a=>({id:a.getAttribute('href').match(/stops\/(\d+)/)?.[1],name:a.textContent.trim()}))})));
   let toggles=await page.locator('#routeDropDown .scroll-content [trip-seq]').evaluateAll(nodes=>nodes.map(n=>Number(n.getAttribute('trip-seq'))));
   if(!toggles.length)toggles=await page.locator('[data-tab-toggle^="trip"]').evaluateAll(nodes=>nodes.map((n,i)=>Number(n.getAttribute('trip-seq'))||i+1));
@@ -58,13 +65,20 @@ const collect=async url=>{
       if(await option.count())await option.click();
       else await page.locator(`[data-tab-toggle="trip${trip}"]`).click();
     }
-    await page.waitForFunction(()=>{const s=window.__wrRouteMap?.getSource('wr-route');return !s || s.serialize()?.data?.geometry?.coordinates?.length>1;});
+    await page.waitForFunction(trip=>{
+      const s=window.__wrRouteMap?.getSource('wr-route');
+      const options=document.querySelectorAll('#routeDropDown [trip-seq]');
+      const selected=document.querySelector('#routeDropDown .item-active');
+      return (!s || s.serialize()?.data?.geometry?.coordinates?.length>1) &&
+        (!options.length || Number(selected?.getAttribute('trip-seq'))===trip);
+    },trip);
     const data=await read();if(!data)throw Error('EMPTY_GEOMETRY');
     const names=headings[trip-1]?.stops||[];
     const resolved=resolveStops(names,data.stops);
+    if(data.engine==='maplibre' && names.length && !resolved.observation?.located_stops)throw Error('STOP_MARKERS_UNAVAILABLE');
     trips.push({trip,name:headings[trip-1]?.name,...data,stops:resolved.stops,stops_status:resolved.status,stop_observation:resolved.observation});
   }
-  return {title,url:page.url(),trips};
+  return {title,url:page.url(),trips,acquisition_version:2};
 };
 const input=readline.createInterface({input:process.stdin,crlfDelay:Infinity});
 for await(const line of input){

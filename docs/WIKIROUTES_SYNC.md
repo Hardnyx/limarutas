@@ -7,6 +7,7 @@ npm ci
 npx playwright install chromium
 python3 pipeline/scripts/wikiroutes/wr_sync_live.py --scan --smoke
 python3 pipeline/scripts/wikiroutes/wr_sync_live.py --scan --resume
+python3 pipeline/scripts/wikiroutes/wr_sync_live.py --compare-cache
 python3 pipeline/scripts/wikiroutes/wr_sync_live.py --apply-safe
 ```
 
@@ -18,7 +19,9 @@ WikiRoutes sustituyó el mapa Leaflet por MapLibre y un botón “Mostrar mapa�
 
 Los snapshots y el informe de scan viven en `pipeline/temp/wikiroutes_live`. Solo una aplicación segura escribe manifest, informe e histórico en `pipeline/output` y `data/history/wikiroutes`. La aplicación exige que el catálogo y los archivos fuente no hayan cambiado desde el scan; valida antes y después y revierte sus propios archivos si falla. Nunca toca los GeoJSON, vías, sidecars, stops o grafos al aplicar solo colores y metadata.
 
-El workflow **Audit WikiRoutes live changes** hace el smoke y luego el scan en el entorno habitual de GitHub Actions, guardando snapshots y cifras como artefacto. Un push que cambia el extractor dispara una auditoría de lectura; también se puede lanzar manualmente con alcance `smoke` o `full`. El workflow no publica datos de rutas. Su tiempo corresponde a adquisición en vivo, independiente de la suite de tests y del despliegue del sitio.
+El workflow **Audit WikiRoutes live changes** verifica tres rutas con cada cambio del extractor. El barrido completo se solicita manualmente con alcance `full`; no se repiten miles de consultas por cada push. Los snapshots de smoke se guardan separados para conservar el barrido completo. El workflow no publica datos de rutas. Su tiempo corresponde a adquisición en vivo, independiente de la suite de tests y del despliegue del sitio.
+
+`--compare-cache` vuelve a comparar los snapshots íntegros con los datos locales sin abrir el navegador ni consultar el catálogo otra vez. La clasificación de geometría permanece separada de la comparación de paraderos: coordenadas ausentes no representan un cambio mayor de trazado. El informe muestra tanto cambios reales de paraderos como capas con comparación incompleta. MapLibre 6 conserva sus marcadores en campos privados; el extractor observa los métodos públicos `Marker.addTo` y `Marker.remove` durante el render normal, conservando la identidad de cada punto y retirando los del sentido anterior. Una página con paraderos pero sin ningún punto recuperado falla la adquisición. `--resume` exige versión 2 de adquisición para no reutilizar snapshots anteriores sin coordenadas.
 
 Los builders históricos `wr_build_catalog.py` y `wr_sync_indexes.py` quedan fuera de este flujo: saltan carpetas existentes o reconstruyen capas a partir de CSV y pueden perder colores y campos modernos. `wr_scrape.py` admite un driver compartido para usos heredados. No usar el builder histórico para refrescar toda la red.
 

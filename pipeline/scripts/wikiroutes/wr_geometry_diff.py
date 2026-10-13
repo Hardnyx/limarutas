@@ -56,9 +56,14 @@ def distribution(values):
             'coverage':{str(m):sum(v<=m for v in values)/len(values) for m in (15,30,50,100)}}
 
 def compare(old,new,policy):
-    a,b=parts(old),parts(new);sa,la=sample(a,policy['sample_m']);sb,lb=sample(b,policy['sample_m'])
-    ta,tb=Tree([point(p) for p in sa]),Tree([point(p) for p in sb])
-    distances_new=[ta.nearest(point(p)) for p in sb];distances_old=[tb.nearest(point(p)) for p in sa]
+    a,b=parts(old),parts(new);sa,la=sample(a,policy['sample_m'])
+    if a==b:
+        # Exact source equality needs no second sampling or spatial searches.
+        sb,lb=sa,la;distances_new=distances_old=[0.0]*len(sa)
+    else:
+        sb,lb=sample(b,policy['sample_m'])
+        ta,tb=Tree([point(p) for p in sa]),Tree([point(p) for p in sb])
+        distances_new=[ta.nearest(point(p)) for p in sb];distances_old=[tb.nearest(point(p)) for p in sa]
     start,end=metres(a[0][0],b[0][0]),metres(a[-1][-1],b[-1][-1])
     reverse_start,reverse_end=metres(a[0][0],b[-1][-1]),metres(a[-1][-1],b[0][0])
     reverse=reverse_start+reverse_end<start+end
