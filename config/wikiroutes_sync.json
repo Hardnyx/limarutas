@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "sample_m": 20,
+  "stop_move_m": 30,
+  "unchanged": {"p95_m": 20, "coverage_m": 30, "coverage": 0.98, "length_ratio": 0.02, "endpoint_m": 50},
+  "redraw": {"p95_m": 40, "coverage_m": 50, "coverage": 0.97, "length_ratio": 0.05, "endpoint_m": 100},
+  "minor": {"coverage_m": 50, "coverage": 0.90, "length_ratio": 0.10, "endpoint_m": 500},
+  "geometry_calibration": null,
+  "smoke_routes": ["155254", "41991", "155245"]
+}

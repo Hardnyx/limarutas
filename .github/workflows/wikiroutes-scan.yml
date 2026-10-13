@@ -1,0 +1,72 @@
+name: Audit WikiRoutes live changes
+on:
+  workflow_dispatch:
+    inputs:
+      scope:
+        description: 'smoke or full (read-only; never publishes route geometry)'
+        type: choice
+        options: [smoke, full]
+        default: smoke
+  push:
+    branches: [main]
+    paths:
+      - 'pipeline/scripts/wikiroutes/wr_live_browser.mjs'
+      - 'pipeline/scripts/wikiroutes/wr_sync_live.py'
+      - 'config/wikiroutes_sync.json'
+      - '.github/workflows/wikiroutes-scan.yml'
+permissions:
+  contents: read
+concurrency:
+  group: wikiroutes-live-audit
+  cancel-in-progress: false
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Unit and data contracts
+        run: |
+          python3 -m unittest discover -s pipeline/tests
+          python3 pipeline/run.py validate
+      - name: Restore resumable observation cache
+        uses: actions/cache@v4
+        with:
+          path: pipeline/temp/wikiroutes_live
+          key: wr-live-${{ github.run_id }}
+          restore-keys: wr-live-
+      - name: Live smoke then read-only scan
+        env:
+          SCAN_SCOPE: ${{ inputs.scope || 'full' }}
+        run: |
+          if [ "$SCAN_SCOPE" = "smoke" ]; then
+            python3 pipeline/scripts/wikiroutes/wr_sync_live.py --scan --smoke
+          else
+            python3 pipeline/scripts/wikiroutes/wr_sync_live.py --scan --resume
+          fi
+      - name: Show measured results
+        if: always()
+        run: |
+          python3 - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          from pathlib import Path
+          path=Path('pipeline/temp/wikiroutes_live/changes.json')
+          if path.exists():
+              report=json.loads(path.read_text())
+              print('```json\n'+json.dumps(report['summary'],indent=2)+'\n```')
+              if report.get('blocker'):print('Blocker: '+report['blocker'])
+          else:print('No live report was generated; inspect the acquisition log.')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: wikiroutes-live-observations
+          path: pipeline/temp/wikiroutes_live/
+          retention-days: 30
+          if-no-files-found: warn

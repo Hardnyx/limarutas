@@ -261,12 +261,13 @@ def click_element_js(driver, el):
     time.sleep(0.2)
     driver.execute_script("arguments[0].click();", el)
 
-def scrape_route(url: str, out_root: Path, headless=True) -> Path:
+def scrape_route(url: str, out_root: Path, headless=True, driver=None) -> Path:
     base = f"{urlparse(url).scheme}://{urlparse(url).netloc}"
     if not robots_allows(base, urlparse(url).path):
         raise RuntimeError("Robots.txt no permite scrapear esta ruta")
 
-    d = make_driver(headless=headless)
+    owns_driver = driver is None
+    d = driver or make_driver(headless=headless)
     try:
         d.get(url)
         wait_map_ready(d)
@@ -339,7 +340,8 @@ def scrape_route(url: str, out_root: Path, headless=True) -> Path:
         print(json.dumps(summary, ensure_ascii=False, indent=2))
         return out_dir
     finally:
-        d.quit()
+        if owns_driver:
+            d.quit()
 
 # CLI
 def main(argv=None):
