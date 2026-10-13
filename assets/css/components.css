@@ -503,7 +503,7 @@ html.beta #sidebar .loupe {
   color: var(--text-muted);
 }
 
-html.beta #searchInput {
+html.beta #sidebar .route-search-input {
   width: 100%;
   height: 46px;
   padding: 0 44px 0 46px;
@@ -516,7 +516,7 @@ html.beta #searchInput {
   font-size: 15px;
 }
 
-html.beta #searchInput:focus {
+html.beta #sidebar .route-search-input:focus {
   background: var(--surface);
   box-shadow: inset 0 0 0 2px var(--accent);
   outline: none;
@@ -550,7 +550,7 @@ html.beta .suggest {
 }
 
 /* Secciones: filas separadas por líneas, sin cajas */
-html.beta #panels {
+html.beta #panels, html.beta #explorePanels {
   margin: 0 -16px;
   padding: 0;
 }
@@ -678,7 +678,8 @@ html.beta .panel {
   overflow: clip;
 }
 
-html.beta #panels section.panel.open > .panel-head {
+html.beta #panels section.panel.open > .panel-head,
+html.beta #explorePanels section.panel.open > .panel-head {
   position: sticky;
   top: 0;
   z-index: 4;

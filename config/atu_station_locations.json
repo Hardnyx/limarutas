@@ -2346,7 +2346,9 @@
     "planificado:centro_transferencia:panamericana-sur": [
       "pmu:metro:eje-ferroviario-urbano-linea-5-surquillo-villa-el-salvador:h20"
     ],
-    "planificado:centro_transferencia:carretera-central": [],
+    "planificado:centro_transferencia:carretera-central": [
+      "pmu:brt:eje-brt-ate-carretera-central-jose-carlos-mariategui:h20"
+    ],
     "planificado:nodo_dot:universitario-cientifico": [],
     "planificado:nodo_dot:ciudad-bicentenario": [
       "pmu:metro:eje-ferroviario-urbano-linea-7-callao-ancon:h10"
@@ -2500,5 +2502,53 @@
     "id": "user-transfer-axis-review-20261013",
     "max_displacement_m": 1500,
     "reason": "A petición del usuario, colocar visualmente los transbordos documentados en el cruce de sus ejes, manteniendo coordenadas originales."
+  },
+  "station_display_review": {
+    "id": "user-station-axis-review-20261013",
+    "max_displacement_m": 1500,
+    "shared_stations": [
+      {
+        "id": "carmen-de-la-legua",
+        "record_ids": [
+          "planificado:metro:l2:carmen-de-la-legua",
+          "planificado:metro:l4-ramal:carmen-de-la-legua"
+        ]
+      },
+      {
+        "id": "conde-de-san-isidro",
+        "record_ids": [
+          "planificado:metro:l3:conde-de-san-isidro",
+          "planificado:metro:l4:conde-de-san-isidro"
+        ]
+      },
+      {
+        "id": "estacion-central",
+        "record_ids": [
+          "planificado:metro:l2:estacion-central",
+          "planificado:metro:l3:estacion-central"
+        ]
+      },
+      {
+        "id": "28-de-julio",
+        "record_ids": [
+          "planificado:metro:l2:28-de-julio",
+          "contexto:metro:L1:5310335156"
+        ]
+      },
+      {
+        "id": "cabitos",
+        "record_ids": [
+          "planificado:metro:l3:cabitos",
+          "contexto:metro:L1:5310309902"
+        ]
+      },
+      {
+        "id": "la-cultura",
+        "record_ids": [
+          "planificado:metro:l4:la-cultura",
+          "contexto:metro:L1:5310309858"
+        ]
+      }
+    ]
   }
 }

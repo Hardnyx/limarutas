@@ -106,3 +106,21 @@ nombres de estaciones. Los puntos pendientes siguen sin pin.
 El mapa y la interfaz tienen preferencias independientes: `limarutas.mapTheme`
 y `limarutas.theme`. Las cuatro combinaciones funcionan y se conservan al
 recargar, también en el editor y entre pestañas del mismo origen.
+
+### Vista integrada y alineación cartográfica (13/10/2026)
+
+Explorar reutiliza los estilos del buscador y de los paneles de Rutas, sin título visible adicional ni etiquetas de estado sobre cada estación. Los trazados, las miniaturas y los diagramas de estaciones se muestran continuos. La aclaración del escenario PMU figura al pie de la lista y los métodos/fuentes se consultan en el detalle.
+
+La vista incluye las 26 estaciones existentes de L1, las cinco de L2 y las 59 referencias de parada del catálogo del Metropolitano, incluidas las posiciones por sentido que ya conserva Rutas. No incorpora estos registros de contexto al planificador ni cambia las fuentes operativas. L2 completa muestra sus 27 estaciones: 22 futuras y cinco existentes.
+
+`station_display.py` proyecta los puntos con coordenadas sobre sus ejes vinculados. Se conservan `geometry` y `source_geometry`; `display_geometry` contiene la posición visible. La revisión en `atu_station_locations.json` establece seis enlaces de estación para Carmen de la Legua, Conde de San Isidro, Central, 28 de Julio/Gamarra, Cabitos y La Cultura. Cada pareja tiene una posición común en la intersección de los trazados, sin fusionar identidades documentales ni afirmar accesos peatonales. Los tres registros antes sin posición de Central L3, Cabitos L3 y La Cultura L4 adquieren únicamente una referencia visual de ese enlace, conservando nula su ubicación documental. Las ubicaciones desconocidas restantes no se rellenan por interpolación equidistante.
+
+Carretera Central se vincula al BRT Ate por la conexión explícita “Terminal Este, BRT Ate” del catálogo documental. Su símbolo se alinea a ese eje, a 36,82 m del punto original. Se valida que todo punto visible quede a menos de 5 cm de su eje o de ambos ejes si es una estación compartida. La repetición de una misma estación compartida al seleccionar ambas líneas no duplica su marcador.
+
+### Continuidad de colores de corredores
+
+`config/atu_project_styles.json` conserva identidades cartográficas revisadas. Además de las correspondencias Rojo, Azul, Amarillo y Brasil/Morado, se reconocen Canto Grande–Las Flores/Morado y Carretera Central y Venezuela/Verde. El reporte de la Defensoría del Pueblo 001-2024, pp. 7-8, documenta esos ejes históricos. El Verde y el Amarillo siguen excluidos del catálogo operativo cuando corresponda; su color en el escenario no declara reapertura ni nueva concesión.
+
+`corridor_display.py` genera `colores_corredores.json` con las correspondencias y segmentos del PMU que coinciden con trazados de corredores ya almacenados. Muestrea cada tramo a un máximo de 50 m, compara orientación (25°) y distancia (80 m), elimina coincidencias continuas menores a 600 m y descarta colores competidores cuya diferencia de distancia sea menor a 25 m. Para heredar la identidad del eje completo exige cubrir al menos 65 % del eje, 80 % de una ruta existente y superar al segundo color en 20 puntos porcentuales. Las coincidencias parciales pintan solamente sus tramos. Los cortes se almacenan como posiciones fraccionarias dentro de los segmentos originales: no unen componentes ni desplazan la geometría del PMU.
+
+Las asignaciones calculadas se identifican como correspondencias visuales, con sus porcentajes y hashes de entrada. No significan que servicios históricos hayan sido suprimidos o que ATU haya asignado un color nuevo. Los ejes sin evidencia suficiente conservan el símbolo de origen. Los derivados se recalculan en la etapa `atu-stations`, también utilizada por la actualización automática del PMU, y la validación exige reproducibilidad exacta.

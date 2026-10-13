@@ -14,6 +14,11 @@ let stationCatalog;
 const visiblePoint = record => record.display_geometry || record.geometry;
 const projectColor = feature => feature.properties.display_color || feature.properties.color;
 
+function trackPart(part,start,end){
+  const at=t=>{const i=Math.floor(t),f=t-i;return f?part[i].map((v,k)=>v+f*(part[i+1][k]-v)):part[i];};
+  return [at(start),...part.slice(Math.floor(start)+1,Math.ceil(end)),at(end)];
+}
+
 function preview(feature){
   const parts=feature.geometry.coordinates;
   const points=parts.flat();const xs=points.map(p=>p[0]),ys=points.map(p=>p[1]);
@@ -24,11 +29,13 @@ function preview(feature){
   const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
   svg.setAttribute('viewBox','0 0 300 150');svg.setAttribute('class','project-track-preview');
   svg.setAttribute('role','img');svg.setAttribute('aria-label','Trazado de '+feature.properties.nombre);
-  for(const part of parts){
+  const runs=feature.properties.display_segments || parts.map((part,i)=>({part:i,start:0,end:part.length-1,color:projectColor(feature)}));
+  for(const run of runs){
+    const part=trackPart(parts[run.part],run.start,run.end);
     const path=document.createElementNS(svg.namespaceURI,'path');
     path.setAttribute('d',part.map((p,i)=>(i?'L':'M')+x(p).toFixed(2)+','+y(p).toFixed(2)).join(' '));
-    path.setAttribute('fill','none');path.setAttribute('stroke',projectColor(feature));
-    path.setAttribute('stroke-width','3');path.setAttribute('stroke-dasharray','6 4');svg.append(path);
+    path.setAttribute('fill','none');path.setAttribute('stroke',run.color);
+    path.setAttribute('stroke-width','3');svg.append(path);
   }
   return svg;
 }
@@ -38,7 +45,7 @@ const methodLabels={unlocated:'Ubicación pendiente de verificación',official_c
 function pointInfo(record){
   const box=el('div',{class:'project-info'},el('strong',{},record.nombre),
     el('p',{},pointTypes[record.tipo]+' · '+record.estado),
-    el('p',{},methodLabels[record.location_method]),el('p',{},record.uncertainty_note));
+    el('p',{},methodLabels[record.location_method] || 'Catálogo operativo de Rutas'),el('p',{},record.uncertainty_note));
   if(record.notes) box.append(el('p',{},record.notes));
   if(record.connections) box.append(el('p',{},'Conexiones propuestas: '+record.connections));
   if(record.display_adjustment) box.append(el('p',{},record.display_adjustment.note));
@@ -51,18 +58,19 @@ function pointInfo(record){
   }
   if(chips.childNodes.length) box.append(chips);
   for(const ref of record.source_refs) box.append(el('p',{},el('a',{href:ref.url,target:'_blank',rel:'noopener noreferrer'},
-    stationCatalog.sources[ref.source_id].name+' · '+ref.edition+(ref.pdf_page?' · PDF '+ref.pdf_page:''))));
+    (stationCatalog.sources[ref.source_id]?.name || 'Catálogo operativo de Rutas')+' · '+ref.edition+(ref.pdf_page?' · PDF '+ref.pdf_page:''))));
   return box;
 }
 
 function info(feature){
   const p = feature.properties;
   const box = el('div', { class: 'project-info' }, el('strong', {}, p.nombre),preview(feature),
-    el('p', {}, 'Proyectado · '+labels[p.modo]),
+    el('p', {}, labels[p.modo]),
     el('p', {}, p.horizonte_nombre+' · '+p.plan),
     el('p', {}, 'Estado en la fuente: '+p.source_state),
     el('p', {}, 'Tecnología ATU: '+p.source_type));
-  if(p.display_corridor) box.append(el('p',{},CORR_KEY_LABEL[p.display_corridor.corridor]+' · identidad del eje'),
+  if(p.display_corridor?.note) box.append(el('p',{},p.display_corridor.note));
+  if(p.display_corridor) box.append(el('p',{},(CORR_KEY_LABEL[p.display_corridor.corridor] || 'Tramos de corredores existentes')+' · referencia visual'),
     el('a',{href:p.display_corridor.source_url,target:'_blank',rel:'noopener noreferrer'},'Fuente del color y eje de corredor'));
   if (p.source_last_modified) box.append(el('p', {}, 'Última modificación del archivo: '+new Date(p.source_last_modified).toLocaleDateString('es-PE',{timeZone:'UTC'})));
   box.append(el('a', { href: p.source_url, target: '_blank', rel: 'noopener noreferrer' }, 'Fuente ATU · '+p.source_dataset));
@@ -71,7 +79,7 @@ function info(feature){
   for(const [kind,label] of Object.entries(pointTypes)){
     const matches=records.filter(r=>r.tipo===kind).sort((a,b)=>(a.sequence||0)-(b.sequence||0));
     if(!matches.length) continue;
-    box.append(el('h3',{},label+' de referencia'),el('p',{},'Posiciones cartográficas y referencias aproximadas; no representan accesos ni servicios operativos.'));
+    box.append(el('h3',{},label));
     const list=el('ol',{'data-point-type':kind,class:kind==='estacion'?'project-station-diagram':'','style':'--project-color:'+projectColor(feature)});
     for(const record of matches){
       const point=visiblePoint(record);
@@ -80,28 +88,26 @@ function info(feature){
         state.map.setView([point.coordinates[1],point.coordinates[0]],16);
         L.popup({pane:'projectPoints'}).setLatLng([point.coordinates[1],point.coordinates[0]]).setContent(pointInfo(record)).openOn(state.map);
       });
-      const ref=record.source_refs[0];
       list.append(el('li',{'data-point-id':record.id},name,
-        el('div',{class:'sub'},methodLabels[record.location_method]),
-        el('a',{class:'sub',href:ref.url,target:'_blank',rel:'noopener noreferrer'},stationCatalog.sources[ref.source_id].name+(ref.pdf_page?' · PDF '+ref.pdf_page:''))));
+        el('div',{class:'sub'},point?record.estado==='en_operacion'?'En operación':'':methodLabels[record.location_method])));
     }
     box.append(list);
   }
   if(!records.some(r=>r.tipo==='estacion')) box.append(el('p',{class:'muted'},'No hay una lista de estaciones verificada para este eje.'));
-  if(/Línea 2/.test(p.nombre)) box.append(el('p',{class:'muted'},'Las cinco estaciones ya operativas de L2 se consultan en Rutas y no se duplican como futuras.'));
+
   return box;
 }
 
 export function mountExplorePane(){
   const pane = el('div', { class: 'side-pane', id: 'explorePane', role: 'tabpanel', 'aria-labelledby': 'tabExplore', hidden: '' });
-  const title = el('h2', {}, 'Red proyectada ATU');
+  const title = el('h2', {class:'sr-only'}, 'Red proyectada ATU');
   const note = el('p', { class: 'muted' }, 'Trazados del PMU 2025-2045 y estaciones documentadas. No participan en Cómo llegar. Los puntos aproximados indican su método y fuente.');
-  const search = el('input', { type: 'search', placeholder: 'Buscar un proyecto o avenida', 'aria-label': 'Buscar proyectos ATU' });
+  const search = el('input', { type: 'search', class:'route-search-input', placeholder: 'Busca una línea, corredor o estación', 'aria-label': 'Buscar proyectos ATU' });
   const clearSearch=el('button',{type:'button',class:'search-clear','aria-label':'Limpiar búsqueda de proyectos'},icon('close'));
   const searchBox=el('div',{class:'search'},el('span',{class:'loupe'},icon('search')),search,clearSearch);
   clearSearch.addEventListener('click',()=>{search.value='';filter();search.focus();});
   const horizon = el('select', { 'aria-label': 'Horizonte del proyecto' }, el('option', { value: '' }, 'Todos los horizontes'));
-  const count = el('p', { class: 'muted', role: 'status', id: 'exploreCount' }, 'Abre Explorar para cargar los proyectos.');
+  const count = el('p', { class: 'sr-only', role: 'status', id: 'exploreCount' }, 'Abre Explorar para cargar los proyectos.');
   const clear = el('button', { type: 'button', class: 'btn small',id:'exploreClear','aria-label':'Quitar proyectos del mapa' }, 'Quitar todas');
   const all=el('button',{type:'button',class:'btn small',id:'exploreToggleAll','aria-pressed':'false'},'Marcar todo');
   const onMapCount=el('span',{class:'on-map-count',id:'exploreOnMapCount'},'0');
@@ -109,7 +115,7 @@ export function mountExplorePane(){
   const onMapToggle=el('button',{type:'button',class:'on-map-toggle','aria-expanded':'true'},
     el('span',{class:'on-map-chev'},icon('chevron')),el('span',{class:'on-map-label'},'En el mapa'),onMapCount);
   onMapToggle.addEventListener('click',()=>{onMapList.hidden=!onMapList.hidden;onMapToggle.setAttribute('aria-expanded',String(!onMapList.hidden));});
-  const onMap=el('div',{class:'on-map',id:'exploreOnMap',hidden:''},el('div',{class:'on-map-bar'},onMapToggle),onMapList);
+  const onMap=el('div',{class:'on-map',id:'exploreOnMap',hidden:''},el('div',{class:'on-map-bar'},onMapToggle,clear),onMapList);
   const list = el('div', { class: 'explore-list', id: 'explorePanels' });
   const details = el('div', { id:'projectDetails', hidden:'' });
   const pointControls=el('fieldset',{class:'project-point-controls'},el('legend',{},'Mostrar paradas y nodos'));
@@ -123,7 +129,9 @@ export function mountExplorePane(){
   const nodeList=el('details',{id:'exploreNodeList',hidden:''});
   const options=el('details',{class:'project-options'},el('summary',{},'Opciones de la red proyectada'),note,
     el('div',{class:'explore-filters'},horizon),pointControls,pointCount,nodeList);
-  pane.append(title,searchBox,el('div',{class:'project-actions'},all,clear),onMap,options,count,list);
+  const scopeNote=el('p',{class:'muted project-scope'},'Escenario PMU 2025-2045 con estaciones existentes. Las propuestas no participan en Cómo llegar.');
+  pane.append(title,searchBox,el('div',{class:'project-actions'},all),onMap,count,list);
+  list.append(scopeNote,options);
   const selected = new Map();
   let pointGroup;
   const drawPoints=()=>{
@@ -138,21 +146,24 @@ export function mountExplorePane(){
       for(const record of records){
         const ref=record.source_refs[0];
         names.append(el('li',{},record.nombre,el('div',{class:'sub'},methodLabels[record.location_method]),
-          el('a',{class:'sub',href:ref.url,target:'_blank',rel:'noopener noreferrer'},stationCatalog.sources[ref.source_id].name+(ref.pdf_page?' · PDF '+ref.pdf_page:''))));
+          el('a',{class:'sub',href:ref.url,target:'_blank',rel:'noopener noreferrer'},(stationCatalog.sources[ref.source_id]?.name || 'Catálogo operativo de Rutas')+(ref.pdf_page?' · PDF '+ref.pdf_page:''))));
       }
       nodeList.append(names);
     }
-    for(const record of records.filter(r=>r.geometry && state.showStops)){
+    const drawn=new Set();
+    for(const record of records.filter(r=>visiblePoint(r) && state.showStops)){
       const feature=stationCatalog.axes.get(record.project_ids.find(id=>selected.has(id))) || stationCatalog.axes.get(record.project_ids[0]);
       const color=record.tipo==='estacion'?(feature?projectColor(feature):'#657786'):'#7654b3';
       const point=visiblePoint(record),ll=[point.coordinates[1],point.coordinates[0]];
+      const markerKey=record.display_adjustment?.shared_station_id || record.id;
+      if(drawn.has(markerKey))continue;drawn.add(markerKey);
       const shape=record.tipo==='centro_transferencia'?'<path d="M9 1 L17 9 L9 17 L1 9 Z"/>':record.tipo==='nodo_dot'?'<rect x="2" y="2" width="14" height="14"/>':'<path d="M9 1 L17 16 L1 16 Z"/>';
       const marker=record.tipo==='estacion'?L.circleMarker(ll,{pane:'projectPoints',radius:5,weight:1.5,color:'#fff',fillColor:color,fillOpacity:1}):
         L.marker(ll,{pane:'projectPoints',icon:L.divIcon({className:'project-point-icon',html:`<svg viewBox="0 0 18 18" width="18" height="18" fill="${color}" stroke="white" stroke-width="1.5">${shape}</svg>`,iconSize:[18,18],iconAnchor:[9,9]}),title:record.nombre});
-      marker.bindTooltip(record.nombre+' · Proyectado',{pane:'projectPoints'});
+      marker.bindTooltip(record.nombre,{pane:'projectPoints'});
       marker.bindPopup(()=>pointInfo(record),{pane:'projectPoints'});pointGroup.addLayer(marker);
     }
-    pointCount.textContent=(state.showStops?records.filter(r=>r.geometry).length:0)+' puntos visibles · '+records.filter(r=>!r.geometry).length+' ubicaciones pendientes';
+    pointCount.textContent=drawn.size+' puntos visibles · '+records.filter(r=>!visiblePoint(r)).length+' ubicaciones pendientes';
   };
   document.getElementById('chkStops')?.addEventListener('change',()=>queueMicrotask(drawPoints));
   const rows = [], groups = new Map();
@@ -231,16 +242,16 @@ export function mountExplorePane(){
     if(loaded) return loaded;
     count.textContent='Cargando proyectos ATU…';
     loaded=(async()=>{
-      const [data,catalog,points,styles]=await Promise.all([fetchJSON('data/processed/planificado/red.geojson'),fetchJSON('data/processed/planificado/catalog.json'),fetchJSON('data/processed/planificado/estaciones_catalogo.json'),fetchJSON('config/atu_project_styles.json')]);
+      const [data,catalog,points,styles]=await Promise.all([fetchJSON('data/processed/planificado/red.geojson'),fetchJSON('data/processed/planificado/catalog.json'),fetchJSON('data/processed/planificado/estaciones_catalogo.json'),fetchJSON('data/processed/planificado/colores_corredores.json')]);
       // Validate before mounting so a failed load cannot leave partial groups on retry.
       if(data.features.some(f=>f.properties.operativo!==false || f.properties.ruteable!==false || f.properties.plannerEligible!==false)) throw new Error('Estado de proyecto inválido');
       if(points.records.some(r=>r.operativo!==false || r.ruteable!==false || r.plannerEligible!==false || (r.geometry && r.geometry.type!=='Point'))) throw new Error('Estado de estación proyectada inválido');
       const corridorPolicy=createCorridorPolicy(state.catalog);
       const features=data.features.map(f=>{
         const style=styles.projects[f.id];
-        return {...f,properties:{...f.properties,...(style?{display_corridor:style,display_color:corridorPolicy.color(style.code+'00')}: {})}};
+        return {...f,properties:{...f.properties,...(style?{display_corridor:style,display_color:style.code?corridorPolicy.color(style.code+'00'):f.properties.color,display_segments:style.segments?.map(run=>({...run,color:run.corridor?corridorPolicy.color(Object.entries({amarillo:'1',rojo:'2',azul:'3',morado:'4',verde:'5'}).find(([g])=>g===run.corridor)[1]+'00'):f.properties.color}))}: {})}};
       });
-      stationCatalog={...points,axes:new Map(features.map(f=>[f.id,f]))};
+      stationCatalog={...points,records:[...points.records,...(points.operating_stations||[])],axes:new Map(features.map(f=>[f.id,f]))};
       rows.length=0; groups.clear(); list.replaceChildren();
       horizon.replaceChildren(el('option',{value:''},'Todos los horizontes'));
       for(const [key,label] of Object.entries(catalog.horizons)) horizon.append(el('option',{value:key},label));
@@ -272,17 +283,17 @@ export function mountExplorePane(){
       }
       const corridorParent=groups.get('corredor');
       if(corridorParent){
-        for(const key of [...CORR_GROUP_ORDER.filter(k=>k!=='otros'),'unassigned']){
+        for(const key of [...CORR_GROUP_ORDER.filter(k=>k!=='otros'),'mixto','unassigned']){
           const matches=features.filter(f=>f.properties.modo==='corredor' && (f.properties.display_corridor?.corridor || 'unassigned')===key);
           if(!matches.length)continue;
-          const label=key==='unassigned'?styles.unassigned_label:CORR_KEY_LABEL[key];
+          const label=key==='unassigned'?styles.unassigned_label:key==='mixto'?'Ejes con tramos compartidos':CORR_KEY_LABEL[key];
           const id='explore-corredor-'+key,body=el('div',{id,class:'panel-body list',style:'display:none'});
           const check=el('input',{type:'checkbox',class:'right','aria-label':'Mostrar todos los proyectos de '+label});
           const total=el('span',{class:'panel-count'},String(matches.length));
           const head=el('button',{type:'button',class:'panel-head','data-target':id,'aria-expanded':'false'},el('span',{class:'chev'},'▸'),el('span',{class:'title'},label),total,check);
-          const color=matches[0].properties.display_corridor?corridorPolicy.color(matches[0].properties.display_corridor.code+'00'):matches[0].properties.color;
+          const color=matches[0].properties.display_corridor?.code?corridorPolicy.color(matches[0].properties.display_corridor.code+'00'):matches[0].properties.color;
           head.querySelector('.title').prepend(el('span',{class:'project-corridor-dot',style:'background:'+color}));
-          const panel=el('section',{class:'panel','data-corridor':key},head,body);
+          const panel=el('section',{class:'panel nested','data-corridor':key},head,body);
           check.addEventListener('change',()=>batch(()=>{for(const leaf of leavesOfGroup(check)){if(leaf.checked===check.checked)continue;leaf.checked=check.checked;leaf.dispatchEvent(new Event('change'));}}));
           groups.set('corredor-'+key,{panel,head,body,check,count:total});corridorParent.body.append(panel);
         }
@@ -296,15 +307,16 @@ export function mountExplorePane(){
         const show=el('button',{type:'button',class:'project-name name'},short);
         const color=projectColor(feature);
         const badge=el('span',{class:isLightColor(color)?'tag on-light':'tag',style:'background:'+color,
-          title:p.display_corridor?CORR_KEY_LABEL[p.display_corridor.corridor]:'Simbología del geovisor ATU'},icon(line?'subway':'bus'),line?'L'+line:p.modo==='brt'?'BRT':p.modo==='corredor'?'BUS':'TC');
+          title:p.display_corridor?(CORR_KEY_LABEL[p.display_corridor.corridor] || 'Tramos compartidos con corredores existentes'):'Simbología del geovisor ATU'},icon(line?'subway':'bus'),line?'L'+line:p.modo==='brt'?'BRT':p.modo==='corredor'?'BUS':'TC');
         const text=el('div',{class:'project-text'},show,
           ...(line?[el('div',{class:'sub'},p.nombre)]:[]),
-          el('div',{class:'sub'},el('span',{class:'project-badge'},p.horizonte===0?'Escenario base':'Proyectado'),' · '+p.horizonte_nombre));
+          el('div',{class:'sub'},p.horizonte_nombre));
         const row=el('div',{class:'item project-row','data-id':p.id,'data-mode':p.modo,'data-horizon':String(p.horizonte),
-          'data-search':norm(p.nombre+' '+p.source_type+' '+(CORR_KEY_LABEL[p.display_corridor?.corridor]||''))},el('div',{class:'item-head'},el('div',{class:'left'},badge,text),check));
+          'data-search':norm(p.nombre+' '+p.source_type+' '+(CORR_KEY_LABEL[p.display_corridor?.corridor]||'')+' '+stationCatalog.records.filter(r=>r.project_ids.includes(p.id)).map(r=>r.nombre).join(' '))},el('div',{class:'item-head'},el('div',{class:'left'},badge,text),check));
         const draw=()=>{
           if(!selected.has(p.id)){
-            const layer=L.geoJSON(feature,{pane:'projectLine',style:{color,weight:p.source_line_width,opacity:.85,dashArray:'8 6',smoothFactor:0}});
+            const rendered=p.display_segments?{type:'FeatureCollection',features:p.display_segments.map(run=>({...feature,geometry:{type:'LineString',coordinates:trackPart(feature.geometry.coordinates[run.part],run.start,run.end)},properties:{...p,segment_color:run.color}}))}:feature;
+            const layer=L.geoJSON(rendered,{pane:'projectLine',style:f=>({color:f.properties.segment_color || color,weight:p.source_line_width,opacity:.85,smoothFactor:0})});
             layer.bindPopup(()=>info(feature),{pane:'projectPoints'}); group.addLayer(layer); selected.set(p.id,layer);
             layer.on('mouseover',()=>layer.setStyle({weight:p.source_line_width+2,opacity:1}));
             layer.on('mouseout',()=>layer.setStyle({weight:p.source_line_width,opacity:.85}));
@@ -324,6 +336,7 @@ export function mountExplorePane(){
         });
         rows.push(row);groups.get(p.modo==='corredor'?'corredor-'+(p.display_corridor?.corridor || 'unassigned'):p.modo).body.append(row);
       }
+      list.append(scopeNote,options);
       filter();
       drawPoints();
     })().catch(error=>{loaded=null;count.textContent='No se pudieron cargar los proyectos. Vuelve a abrir Explorar.';console.warn('ATU',error.message);});

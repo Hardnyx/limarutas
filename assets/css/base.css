@@ -54,7 +54,7 @@ html , body {
   opacity: 0.85;
 }
 
-#searchInput {
+#searchInput, .route-search-input {
   width: 320px;
   border: none;
   outline: none;
@@ -66,7 +66,7 @@ html , body {
   box-shadow: inset 0 0 0 1px var(--line);
 }
 
-#searchInput::placeholder {
+#searchInput::placeholder, .route-search-input::placeholder {
   color: var(--text-muted);
 }
 
@@ -210,7 +210,7 @@ html , body {
 
 /* Paneles y listas */
 
-#panels {
+#panels, #explorePanels {
   flex: 1;
   overflow-y: auto;
   padding-right: 4px;

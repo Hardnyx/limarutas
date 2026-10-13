@@ -1102,7 +1102,13 @@
       "plannerEligible": false,
       "geometry": null,
       "source_geometry": null,
-      "display_geometry": null,
+      "display_geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.00032737938798,
+          -12.127000015684185
+        ]
+      },
       "location_method": "unlocated",
       "location_status": "pending",
       "coordinate_role": "station_reference",
@@ -1110,7 +1116,24 @@
       "uncertainty_note": "Ubicación pendiente de verificación",
       "interchange_group": null,
       "notes": "",
-      "axis_distance_m": {}
+      "axis_distance_m": {},
+      "display_adjustment": {
+        "method": "linked_axis_intersection",
+        "displacement_m": null,
+        "axis_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10",
+          "pmu:metro:eje-ferroviario-urbano-linea-1-villa-el-salvador-san-juan-de-lurigancho:h0"
+        ],
+        "source_sha256": "787e4e9f29ccd20760bb9579889ec51e6473d947258a8a0387aa9474cbcffd40",
+        "review_id": "user-station-axis-review-20261013",
+        "coordinate_role": "shared_station_reference",
+        "note": "Punto de transbordo proyectado alineado al cruce de los ejes. La ubicación documental original se conserva; no representa un acceso peatonal operativo.",
+        "shared_station_id": "cabitos"
+      },
+      "display_project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10",
+        "pmu:metro:eje-ferroviario-urbano-linea-1-villa-el-salvador-san-juan-de-lurigancho:h0"
+      ]
     },
     {
       "id": "planificado:metro:l3:caqueta",
@@ -1307,7 +1330,13 @@
       "plannerEligible": false,
       "geometry": null,
       "source_geometry": null,
-      "display_geometry": null,
+      "display_geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03792349504543,
+          -12.05992418786643
+        ]
+      },
       "location_method": "unlocated",
       "location_status": "pending",
       "coordinate_role": "station_reference",
@@ -1315,7 +1344,24 @@
       "uncertainty_note": "Ubicación pendiente de verificación",
       "interchange_group": null,
       "notes": "",
-      "axis_distance_m": {}
+      "axis_distance_m": {},
+      "display_adjustment": {
+        "method": "linked_axis_intersection",
+        "displacement_m": null,
+        "axis_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5",
+          "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10"
+        ],
+        "source_sha256": "787e4e9f29ccd20760bb9579889ec51e6473d947258a8a0387aa9474cbcffd40",
+        "review_id": "user-station-axis-review-20261013",
+        "coordinate_role": "shared_station_reference",
+        "note": "Punto de transbordo proyectado alineado al cruce de los ejes. La ubicación documental original se conserva; no representa un acceso peatonal operativo.",
+        "shared_station_id": "estacion-central"
+      },
+      "display_project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5",
+        "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10"
+      ]
     },
     {
       "id": "planificado:metro:l3:garcilaso-de-la-vega",
@@ -2213,7 +2259,13 @@
       "plannerEligible": false,
       "geometry": null,
       "source_geometry": null,
-      "display_geometry": null,
+      "display_geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.00357997662358,
+          -12.08805075235209
+        ]
+      },
       "location_method": "unlocated",
       "location_status": "pending",
       "coordinate_role": "station_reference",
@@ -2221,7 +2273,24 @@
       "uncertainty_note": "Ubicación pendiente de verificación",
       "interchange_group": null,
       "notes": "",
-      "axis_distance_m": {}
+      "axis_distance_m": {},
+      "display_adjustment": {
+        "method": "linked_axis_intersection",
+        "displacement_m": null,
+        "axis_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10",
+          "pmu:metro:eje-ferroviario-urbano-linea-1-villa-el-salvador-san-juan-de-lurigancho:h0"
+        ],
+        "source_sha256": "787e4e9f29ccd20760bb9579889ec51e6473d947258a8a0387aa9474cbcffd40",
+        "review_id": "user-station-axis-review-20261013",
+        "coordinate_role": "shared_station_reference",
+        "note": "Punto de transbordo proyectado alineado al cruce de los ejes. La ubicación documental original se conserva; no representa un acceso peatonal operativo.",
+        "shared_station_id": "la-cultura"
+      },
+      "display_project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10",
+        "pmu:metro:eje-ferroviario-urbano-linea-1-villa-el-salvador-san-juan-de-lurigancho:h0"
+      ]
     },
     {
       "id": "planificado:metro:l4:la-molina",

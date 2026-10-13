@@ -19,7 +19,7 @@ test('Explorar preserves official multipart projects and never registers them as
     return {parts:actual.length,exact:JSON.stringify(actual)===JSON.stringify(split.geometry.coordinates.map(part=>part.map(p=>p.slice(0,2)))),dash:line.options.dashArray,smooth:line.options.smoothFactor,color:line.options.color,contaminated:ids.some(id=>id.startsWith('pmu:'))};
   });
   expect(result.parts).toBeGreaterThan(1);expect(result.exact).toBe(true);
-  expect(result.dash).toBe('8 6');expect(result.smooth).toBe(0);expect(result.contaminated).toBe(false);
+  expect(result.dash).toBeNull();expect(result.smooth).toBe(0);expect(result.contaminated).toBe(false);
   expect(result.color).toBe('#f8ed29');
   await expect(page.locator('.project-row:visible')).toHaveCount(12);
   await page.locator('.project-row:visible .project-name').first().click();
@@ -76,19 +76,19 @@ test('Planned points use evidence links, independent toggles and their own pane'
   await expect(page.locator('#exploreCount')).toHaveText('106 de 106 trazados');
   await page.locator('#explorePane input[type=search]').fill('Línea 3');
   await page.locator('.project-row:visible .project-name').click();
-  await expect(page.locator('#explorePointCount')).toHaveText('2 puntos visibles · 26 ubicaciones pendientes');
+  await expect(page.locator('#explorePointCount')).toHaveText('4 puntos visibles · 24 ubicaciones pendientes');
   const stationList=page.locator('#projectDetails ol[data-point-type="estacion"]');
-  await expect(stationList.getByRole('button')).toHaveCount(2);
+  await expect(stationList.getByRole('button')).toHaveCount(4);
   await page.locator('.project-options > summary').click();
   await page.locator('.project-point-controls input[data-point-type="centro_transferencia"]').check();
-  await expect(page.locator('#explorePointCount')).toHaveText('5 puntos visibles · 27 ubicaciones pendientes');
+  await expect(page.locator('#explorePointCount')).toHaveText('7 puntos visibles · 25 ubicaciones pendientes');
   const result=await page.evaluate(async()=>{
     const {state}=await import('/assets/js/config.js');
     const markers=[];state.map.eachLayer(l=>{if(l.options?.pane==='projectPoints' && l.getLatLng) markers.push(l);});
     const graph=await(await fetch('/pipeline/output/trip_graph.json')).json();
     return {markers:markers.length,contaminated:Object.keys(graph.routes).some(k=>k.startsWith('planificado:'))};
   });
-  expect(result.markers).toBe(5);expect(result.contaminated).toBe(false);
+  expect(result.markers).toBe(7);expect(result.contaminated).toBe(false);
   await stationList.getByRole('button',{name:'Conde de San Isidro'}).click();
   await expect(page.locator('.leaflet-projectPoints-pane .leaflet-popup')).toContainText('2022-07');
   await page.getByRole('tab',{name:'Rutas',exact:true}).click();
@@ -130,4 +130,52 @@ test('CETRAM display uses the linked physical intersection and keeps source evid
     return {actual,display:r.display_geometry.coordinates,source:r.source_geometry.coordinates,displacement:r.display_adjustment.displacement_m};
   });
   expect(result.actual).toEqual(result.display);expect(result.source).not.toEqual(result.display);expect(result.displacement).toBeGreaterThan(50);
+});
+
+test('Explorar and Rutas use the same search and section styles',async({app,page})=>{
+  test.skip(!await page.locator('html.beta').count(),'The legacy layout keeps its search in the top bar.');
+  await page.setViewportSize({width:390,height:844});
+  await page.evaluate(()=>window.LimaRutasTheme.set('dark'));
+  const styles=async selector=>page.locator(selector).first().evaluate(node=>{
+    const s=getComputedStyle(node);return Object.fromEntries(['height','fontSize','borderRadius','backgroundColor','color','padding','border'].map(k=>[k,s[k]]));
+  });
+  const search=await styles('#searchInput'),head=await styles('#panels > .panel > .panel-head');
+  await page.screenshot({path:'pipeline/temp/authoring/routes-identity.png'});
+  await page.click('#tabExplore');await expect(page.locator('#exploreCount')).toHaveText('106 de 106 trazados');
+  expect(await styles('#explorePane .route-search-input')).toEqual(search);
+  expect(await styles('#explorePanels > .panel > .panel-head')).toEqual(head);
+  await expect(page.locator('#explorePane > h2')).toHaveCSS('clip','rect(0px, 0px, 0px, 0px)');
+  await page.screenshot({path:'pipeline/temp/authoring/explore-identity.png'});
+});
+
+test('L1 and operating L2 stations remain in the planning view with solid traces',async({app,page})=>{
+  await page.click('#tabExplore');await expect(page.locator('#exploreCount')).toHaveText('106 de 106 trazados');
+  await page.locator('#explorePane input[type=search]').fill('Línea 1 Villa');
+  await page.locator('.project-row:visible .project-name').click();
+  await expect(page.locator('#projectDetails ol[data-point-type=estacion] li')).toHaveCount(26);
+  await expect(page.locator('#projectDetails')).toContainText('Bayóvar');
+  const result=await page.evaluate(async()=>{
+    const {state}=await import('/assets/js/config.js');const points=[],lines=[];
+    state.map.eachLayer(l=>{if(l.options?.pane==='projectPoints' && l.getLatLng)points.push(l.getTooltip()?.getContent());if(l.options?.pane==='projectLine' && l.getLatLngs)lines.push(l.options.dashArray);});
+    return {points,lines};
+  });
+  expect(result.points).toHaveLength(26);expect(result.points.every(t=>!t.includes('Proyectado'))).toBe(true);
+  expect(result.lines.every(d=>!d)).toBe(true);
+  await page.locator('#explorePane input[type=search]').fill('Línea 2');
+  await page.locator('.project-row:visible[data-horizon="5"] .project-name').click();
+  await expect(page.locator('#projectDetails ol[data-point-type=estacion] li')).toHaveCount(27);
+  await expect(page.locator('#projectDetails')).toContainText('Hermilio Valdizán');
+});
+
+test('corridor colors segment shared stretches without changing the ATU source',async({app,page})=>{
+  await page.click('#tabExplore');await expect(page.locator('#exploreCount')).toHaveText('106 de 106 trazados');
+  await page.locator('#explorePane input[type=search]').fill('Alameda Del Corregidor');
+  await page.locator('.project-row:visible .project-name').click();
+  const result=await page.evaluate(async()=>{
+    const {state}=await import('/assets/js/config.js');const colors=[];
+    state.map.eachLayer(l=>{if(l.options?.pane==='projectLine' && l.getLatLngs)colors.push(l.options.color);});
+    const source=await(await fetch('/data/processed/planificado/red.geojson')).json();
+    return {colors,original:source.features.find(f=>f.properties.nombre.includes('Alameda Del Corregidor')).properties.color};
+  });
+  expect(result.colors).toContain('#e4002b');expect(result.colors).toContain('#dc6100');expect(result.original).toBe('#dc6100');
 });

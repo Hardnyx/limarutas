@@ -16,7 +16,9 @@ def check(root=ROOT):
             raise ValueError('Extracto documental alterado')
     catalog, files=build(config,
                          json.loads((root/LOCATIONS.relative_to(ROOT)).read_text()),
-                         json.loads((root/OUT.relative_to(ROOT)/'red.geojson').read_text()))
+                         json.loads((root/OUT.relative_to(ROOT)/'red.geojson').read_text()),
+                         json.loads((root/'data/processed/metro/metro.json').read_text()),
+                         json.loads((root/'data/processed/metropolitano/metropolitano_stops.json').read_text()))
     for path, body in files.items():
         if (root/path.relative_to(ROOT)).read_bytes()!=body: raise ValueError('Derivado de estaciones desactualizado: '+str(path))
     graph=json.loads((root/'pipeline/output/trip_graph.json').read_text())

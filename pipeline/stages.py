@@ -12,7 +12,7 @@ class Stage:
 PBF = 'data/raw/osm/Lima.osm.pbf'
 STAGES = {
     'atu-pmu': Stage('atu/build_pmu.py', inputs=('data/raw/atu_geovisor/pmu_sit.geojson', 'data/raw/atu_geovisor/manifest.json', 'data/raw/atu_geovisor/pmu_renderer.json', 'config/atu_geovisor_layers.json', 'config/pmu_station_names.json')),
-    'atu-stations': Stage('atu/build_planned_stations.py', ('atu-pmu',), ('config/atu_station_sources.json', 'config/atu_station_locations.json', 'data/processed/planificado/red.geojson')),
+    'atu-stations': Stage('atu/build_planned_stations.py', ('atu-pmu',), ('config/atu_station_sources.json', 'config/atu_station_locations.json', 'data/processed/planificado/red.geojson', 'data/processed/metro/metro.json', 'data/processed/metropolitano/metropolitano_stops.json', 'data/processed/corredores/corredores.json', 'config/atu_project_styles.json')),
     'stops': Stage('wikiroutes/wr_build_stops_index.py', inputs=('pipeline/output/wr_map.json',)),
     'crossings': Stage('wikiroutes/wr_stops_cruces.py', ('stops',), ('pipeline/output/wr_stops_index.json', PBF)),
     'met-paths': Stage('metropolitano/build_met_paths.py', inputs=(

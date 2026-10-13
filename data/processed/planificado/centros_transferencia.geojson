@@ -7,8 +7,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -77.12408489,
-          -11.99595674
+          -77.12468340065844,
+          -11.997344257134378
         ]
       },
       "properties": {
@@ -74,6 +74,16 @@
           "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10": 7206.1,
           "pmu:metro:eje-ferroviario-urbano-linea-4-callao-bellavista-ramal:h5": 167.5,
           "pmu:metro:eje-ferroviario-urbano-linea-9-san-miguel-rimac:h20": 3292.0
+        },
+        "display_adjustment": {
+          "method": "linked_axis_projection",
+          "axis_ids": [
+            "pmu:metro:eje-ferroviario-urbano-linea-4-callao-bellavista-ramal:h5"
+          ],
+          "displacement_m": 167.46,
+          "review_id": "user-station-axis-review-20261013",
+          "coordinate_role": "planning_axis_reference",
+          "note": "Referencia visual alineada a su trazado; se conserva la coordenada original y su fuente."
         }
       }
     },
@@ -83,8 +93,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.98740644,
-          -11.96089275
+          -76.9880026031091,
+          -11.960497999033782
         ]
       },
       "properties": {
@@ -146,6 +156,16 @@
         },
         "axis_distance_m": {
           "pmu:metro:eje-ferroviario-urbano-linea-1-villa-el-salvador-san-juan-de-lurigancho:h0": 78.3
+        },
+        "display_adjustment": {
+          "method": "linked_axis_projection",
+          "axis_ids": [
+            "pmu:metro:eje-ferroviario-urbano-linea-1-villa-el-salvador-san-juan-de-lurigancho:h0"
+          ],
+          "displacement_m": 78.31,
+          "review_id": "user-station-axis-review-20261013",
+          "coordinate_role": "planning_axis_reference",
+          "note": "Referencia visual alineada a su trazado; se conserva la coordenada original y su fuente."
         }
       }
     },
@@ -155,8 +175,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -77.08619997,
-          -11.97304885
+          -77.08727172079197,
+          -11.974173216081885
         ]
       },
       "properties": {
@@ -218,6 +238,16 @@
         },
         "axis_distance_m": {
           "pmu:metro:eje-ferroviario-urbano-linea-6-san-martin-de-porres-el-agustino:h20": 170.9
+        },
+        "display_adjustment": {
+          "method": "linked_axis_projection",
+          "axis_ids": [
+            "pmu:metro:eje-ferroviario-urbano-linea-6-san-martin-de-porres-el-agustino:h20"
+          ],
+          "displacement_m": 170.94,
+          "review_id": "user-station-axis-review-20261013",
+          "coordinate_role": "planning_axis_reference",
+          "note": "Referencia visual alineada a su trazado; se conserva la coordenada original y su fuente."
         }
       }
     },
@@ -315,8 +345,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.87196591,
-          -12.01001718
+          -76.87190176910913,
+          -12.010342278832182
         ]
       },
       "properties": {
@@ -325,7 +355,9 @@
         "tipo": "centro_transferencia",
         "modo": "intermodal",
         "lineas": [],
-        "project_ids": [],
+        "project_ids": [
+          "pmu:brt:eje-brt-ate-carretera-central-jose-carlos-mariategui:h20"
+        ],
         "estado": "proyectado",
         "existence_evidence": "explicit_pmu_node",
         "source_refs": [
@@ -374,7 +406,19 @@
           "anchor": "center_of_explicit_red_symbol",
           "review": "pmu-cetram-map"
         },
-        "axis_distance_m": {}
+        "axis_distance_m": {
+          "pmu:brt:eje-brt-ate-carretera-central-jose-carlos-mariategui:h20": 36.8
+        },
+        "display_adjustment": {
+          "method": "linked_axis_projection",
+          "axis_ids": [
+            "pmu:brt:eje-brt-ate-carretera-central-jose-carlos-mariategui:h20"
+          ],
+          "displacement_m": 36.82,
+          "review_id": "user-station-axis-review-20261013",
+          "coordinate_role": "planning_axis_reference",
+          "note": "Referencia visual alineada a su trazado; se conserva la coordenada original y su fuente."
+        }
       }
     },
     {
@@ -473,8 +517,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -77.03696804,
-          -11.89584591
+          -77.03705769022433,
+          -11.895799760614214
         ]
       },
       "properties": {
@@ -536,6 +580,16 @@
         },
         "axis_distance_m": {
           "pmu:brt:eje-brt-metropolitano-ampliacion-norte-carabayllo-independencia-universitaria-metropolitana:h0": 11.0
+        },
+        "display_adjustment": {
+          "method": "linked_axis_projection",
+          "axis_ids": [
+            "pmu:brt:eje-brt-metropolitano-ampliacion-norte-carabayllo-independencia-universitaria-metropolitana:h0"
+          ],
+          "displacement_m": 11.02,
+          "review_id": "user-station-axis-review-20261013",
+          "coordinate_role": "planning_axis_reference",
+          "note": "Referencia visual alineada a su trazado; se conserva la coordenada original y su fuente."
         }
       }
     },
@@ -631,8 +685,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -77.10372086,
-          -12.02045161
+          -77.10621970279982,
+          -12.021857131346046
         ]
       },
       "properties": {
@@ -698,6 +752,16 @@
           "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10": 3946.8,
           "pmu:metro:eje-ferroviario-urbano-linea-4-callao-bellavista-ramal:h5": 313.5,
           "pmu:metro:eje-ferroviario-urbano-linea-7-callao-ancon:h10": 3543.8
+        },
+        "display_adjustment": {
+          "method": "linked_axis_projection",
+          "axis_ids": [
+            "pmu:metro:eje-ferroviario-urbano-linea-4-callao-bellavista-ramal:h5"
+          ],
+          "displacement_m": 313.5,
+          "review_id": "user-station-axis-review-20261013",
+          "coordinate_role": "planning_axis_reference",
+          "note": "Referencia visual alineada a su trazado; se conserva la coordenada original y su fuente."
         }
       }
     },
@@ -965,8 +1029,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -77.00981836,
-          -12.17887971
+          -77.00991163415225,
+          -12.178957909661372
         ]
       },
       "properties": {
@@ -1028,6 +1092,16 @@
         },
         "axis_distance_m": {
           "pmu:brt:eje-brt-metropolitano-chorrillos-independencia-paseo-de-la-republica:h0": 13.4
+        },
+        "display_adjustment": {
+          "method": "linked_axis_projection",
+          "axis_ids": [
+            "pmu:brt:eje-brt-metropolitano-chorrillos-independencia-paseo-de-la-republica:h0"
+          ],
+          "displacement_m": 13.36,
+          "review_id": "user-station-axis-review-20261013",
+          "coordinate_role": "planning_axis_reference",
+          "note": "Referencia visual alineada a su trazado; se conserva la coordenada original y su fuente."
         }
       }
     },
@@ -1037,8 +1111,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.93983078,
-          -12.04626817
+          -76.93752422554533,
+          -12.045533755160953
         ]
       },
       "properties": {
@@ -1104,6 +1178,16 @@
           "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5": 703.7,
           "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10": 263.8,
           "pmu:metro:eje-ferroviario-urbano-linea-4-callao-bellavista-ramal:h5": 17219.9
+        },
+        "display_adjustment": {
+          "method": "linked_axis_projection",
+          "axis_ids": [
+            "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10"
+          ],
+          "displacement_m": 263.79,
+          "review_id": "user-station-axis-review-20261013",
+          "coordinate_role": "planning_axis_reference",
+          "note": "Referencia visual alineada a su trazado; se conserva la coordenada original y su fuente."
         }
       }
     },
@@ -1113,8 +1197,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.97433731,
-          -12.20213935
+          -76.97421402506073,
+          -12.201786605344038
         ]
       },
       "properties": {
@@ -1176,6 +1260,16 @@
         },
         "axis_distance_m": {
           "pmu:metro:eje-ferroviario-urbano-linea-5-surquillo-villa-el-salvador:h20": 41.4
+        },
+        "display_adjustment": {
+          "method": "linked_axis_projection",
+          "axis_ids": [
+            "pmu:metro:eje-ferroviario-urbano-linea-5-surquillo-villa-el-salvador:h20"
+          ],
+          "displacement_m": 41.45,
+          "review_id": "user-station-axis-review-20261013",
+          "coordinate_role": "planning_axis_reference",
+          "note": "Referencia visual alineada a su trazado; se conserva la coordenada original y su fuente."
         }
       }
     },
@@ -1273,8 +1367,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.95342715,
-          -12.20728498
+          -76.95321474639677,
+          -12.205811370028243
         ]
       },
       "properties": {
@@ -1336,6 +1430,16 @@
         },
         "axis_distance_m": {
           "pmu:metro:eje-ferroviario-urbano-linea-5-surquillo-villa-el-salvador:h20": 165.5
+        },
+        "display_adjustment": {
+          "method": "linked_axis_projection",
+          "axis_ids": [
+            "pmu:metro:eje-ferroviario-urbano-linea-5-surquillo-villa-el-salvador:h20"
+          ],
+          "displacement_m": 165.48,
+          "review_id": "user-station-axis-review-20261013",
+          "coordinate_role": "planning_axis_reference",
+          "note": "Referencia visual alineada a su trazado; se conserva la coordenada original y su fuente."
         }
       }
     },
@@ -1345,8 +1449,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -77.01241238,
-          -12.04177466
+          -77.01196211023321,
+          -12.0414022934132
         ]
       },
       "properties": {
@@ -1408,6 +1512,16 @@
         },
         "axis_distance_m": {
           "pmu:metro:eje-ferroviario-urbano-linea-1-villa-el-salvador-san-juan-de-lurigancho:h0": 64.1
+        },
+        "display_adjustment": {
+          "method": "linked_axis_projection",
+          "axis_ids": [
+            "pmu:metro:eje-ferroviario-urbano-linea-1-villa-el-salvador-san-juan-de-lurigancho:h0"
+          ],
+          "displacement_m": 64.13,
+          "review_id": "user-station-axis-review-20261013",
+          "coordinate_role": "planning_axis_reference",
+          "note": "Referencia visual alineada a su trazado; se conserva la coordenada original y su fuente."
         }
       }
     },
@@ -1417,8 +1531,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -77.07144864,
-          -11.93112778
+          -77.07118699896337,
+          -11.931351952929964
         ]
       },
       "properties": {
@@ -1480,6 +1594,16 @@
         },
         "axis_distance_m": {
           "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10": 37.8
+        },
+        "display_adjustment": {
+          "method": "linked_axis_projection",
+          "axis_ids": [
+            "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10"
+          ],
+          "displacement_m": 37.84,
+          "review_id": "user-station-axis-review-20261013",
+          "coordinate_role": "planning_axis_reference",
+          "note": "Referencia visual alineada a su trazado; se conserva la coordenada original y su fuente."
         }
       }
     },
@@ -1489,8 +1613,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -77.1383316,
-          -12.04921644
+          -77.13992903225183,
+          -12.051736236413895
         ]
       },
       "properties": {
@@ -1552,6 +1676,16 @@
         },
         "axis_distance_m": {
           "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5": 329.7
+        },
+        "display_adjustment": {
+          "method": "linked_axis_projection",
+          "axis_ids": [
+            "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5"
+          ],
+          "displacement_m": 329.67,
+          "review_id": "user-station-axis-review-20261013",
+          "coordinate_role": "planning_axis_reference",
+          "note": "Referencia visual alineada a su trazado; se conserva la coordenada original y su fuente."
         }
       }
     },
@@ -1647,8 +1781,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -77.10805018,
-          -11.83631163
+          -77.10988155150935,
+          -11.836003011178052
         ]
       },
       "properties": {
@@ -1710,6 +1844,16 @@
         },
         "axis_distance_m": {
           "pmu:metro:eje-ferroviario-urbano-linea-7-callao-ancon:h10": 202.2
+        },
+        "display_adjustment": {
+          "method": "linked_axis_projection",
+          "axis_ids": [
+            "pmu:metro:eje-ferroviario-urbano-linea-7-callao-ancon:h10"
+          ],
+          "displacement_m": 202.24,
+          "review_id": "user-station-axis-review-20261013",
+          "coordinate_role": "planning_axis_reference",
+          "note": "Referencia visual alineada a su trazado; se conserva la coordenada original y su fuente."
         }
       }
     }

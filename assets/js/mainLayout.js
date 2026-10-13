@@ -81,7 +81,7 @@ function buildTabs(sidebar, panels){
     }
     search.querySelector('.loupe')?.replaceChildren(icon('search'));
     const input = $('#searchInput');
-    if (input) input.placeholder = 'Busca una ruta, empresa o paradero';
+    if (input) { input.placeholder = 'Busca una ruta, empresa o paradero'; input.classList.add('route-search-input'); }
     routesPane.appendChild(search);
   }
 

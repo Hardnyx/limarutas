@@ -12,6 +12,7 @@ sys.path.insert(0, str(ROOT))
 from pipeline.scripts.atu.sources import SourceError, json_bytes, sha
 from pipeline.scripts.atu.sync_geovisor import publish
 from pipeline.scripts.atu.transfer_display import locate
+from pipeline.scripts.atu.station_display import apply as apply_display
 
 CONFIG = ROOT/'config/atu_station_sources.json'
 LOCATIONS = ROOT/'config/atu_station_locations.json'
@@ -35,7 +36,7 @@ def distance(point, parts):
     return round(best, 1)
 
 
-def build(config, locations, red):
+def build(config, locations, red, metro=None, met=None):
     sources = config['sources']
     axes = {f['id']: f for f in red['features']}
     points = locations['locations']
@@ -80,6 +81,8 @@ def build(config, locations, red):
                'sources': sources, 'geolocation_reviews': locations.get('reviews', {}),
                'counts': dict(Counter(r['tipo'] for r in records)),
                'located_counts': dict(Counter(r['tipo'] for r in records if r['geometry']))}
+    apply_display(catalog, red, locations, metro or json.loads((ROOT/'data/processed/metro/metro.json').read_text()),
+                  met or json.loads((ROOT/'data/processed/metropolitano/metropolitano_stops.json').read_text()))
     validate(catalog, red)
     files = {OUT/'estaciones_catalogo.json': json_bytes(catalog),
              OUT/'geoubicacion_pendientes.json': json_bytes({'records': [r for r in records if not r['geometry']],
@@ -87,7 +90,7 @@ def build(config, locations, red):
     for kind, name in FILES.items():
         features = [{'type': 'Feature', 'id': r['id'], 'geometry': r['display_geometry'] or r['geometry'],
                      'properties': {k: v for k, v in r.items() if k not in ('geometry', 'source_geometry', 'display_geometry')}}
-                    for r in records if r['tipo']==kind and r['geometry']]
+                    for r in records if r['tipo']==kind and (r['geometry'] or r['display_geometry'])]
         files[OUT/name] = json_bytes({'type': 'FeatureCollection', 'features': features})
     return catalog, files
 
@@ -113,19 +116,29 @@ def validate(catalog, red):
                     or not -77.5 < xy[0] < -76.4 or not -12.7 < xy[1] < -11.4): raise SourceError('Punto fuera de Lima/Callao o eje invertido')
             if r['location_method']=='unlocated' or r['source_geometry']!=g:
                 raise SourceError('La geometría documental fue alterada')
-            if r['display_geometry']:
-                display=r['display_geometry'];adjustment=r.get('display_adjustment',{})
-                if (r['tipo'] not in ('centro_transferencia','nodo_intermodal') or display['type']!='Point'
-                        or adjustment.get('method')!='linked_axis_intersection'
-                        or not set(adjustment.get('axis_ids',[])).issubset(r['project_ids'])):
-                    raise SourceError('Ajuste de transbordo sin relación documental')
-                for axis_id in adjustment['axis_ids']:
-                    axis=next(f for f in red['features'] if f['id']==axis_id)
-                    if distance(display['coordinates'],axis['geometry']['coordinates'])>.05:
-                        raise SourceError('El punto de transbordo no coincide con el cruce')
             if not r.get('location_evidence') or not r.get('source_sha256'): raise SourceError('Punto sin evidencia de localización')
             if r['location_method']=='documented_intersection' and r['coordinate_role']!='intersection_reference':
                 raise SourceError('Cruce presentado como centro de andén')
+    for r in catalog['records']+catalog.get('operating_stations',[]):
+        if not r.get('display_geometry'):continue
+        adjustment=r['display_adjustment']
+        display=r['display_geometry'];xy=display.get('coordinates',[])
+        if display.get('type')!='Point' or len(xy)!=2 or not all(type(v) in (int,float) and math.isfinite(v) for v in xy):
+            raise SourceError('Punto visual inválido')
+        if not adjustment.get('axis_ids') or (adjustment.get('displacement_m') or 0)>1500:
+            raise SourceError('Punto visual sin eje o demasiado desplazado')
+        if r['source_geometry']!=r['geometry']:
+            raise SourceError('La geometría original fue alterada')
+        if adjustment['method'] not in ('linked_axis_projection','linked_axis_intersection'):
+            raise SourceError('Método visual inválido')
+        if not set(adjustment['axis_ids']).issubset(r.get('display_project_ids',r['project_ids'])):
+            raise SourceError('Punto visual sin relación con eje')
+        for id in adjustment['axis_ids']:
+            axis=next(f for f in red['features'] if f['id']==id)
+            if distance(r['display_geometry']['coordinates'],axis['geometry']['coordinates'])>.05:
+                raise SourceError('Punto visual fuera del trazado')
+        if any(r[k] is not False for k in ('operativo','ruteable','plannerEligible')):
+            raise SourceError('Contexto visual registrado como servicio')
     expected = {'L2':22, 'L3':28, 'L4-ramal':8, 'L4':20, 'Grau':4, 'Sur':5, 'Universitaria':3}
     for line, count in expected.items():
         if sum(r['tipo']=='estacion' and r['lineas']==[line] for r in catalog['records'])!=count: raise SourceError('Conteo documental incorrecto: '+line)
@@ -141,8 +154,10 @@ def main():
         extract=json.loads(raw)
         if extract['source_sha256']!=source['sha256']: raise SourceError('Extracto y fuente no coinciden')
     catalog, files=build(config, json.loads(LOCATIONS.read_text()), json.loads((OUT/'red.geojson').read_text()))
+    from pipeline.scripts.atu.corridor_display import build as build_colors
+    files[OUT/'colores_corredores.json']=json_bytes(build_colors(ROOT))
     publish(files)
-    print(json.dumps({'catalogued': len(catalog['records']), 'located': catalog['located_counts'], 'operating': 0},ensure_ascii=False))
+    print(json.dumps({'catalogued': len(catalog['records']), 'located': catalog['located_counts'], 'operating_station_references': len(catalog['operating_stations'])},ensure_ascii=False))
 
 
 if __name__=='__main__': main()

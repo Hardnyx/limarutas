@@ -15,4 +15,10 @@ def validate(root):
         source=json.loads((root/'data/raw/atu_corredores'/f'{review["corridor"]}.json').read_text())
         if source['sha256']!=review['source_sha256'] or source['url']!=review['source_url'] or not source.get('evidence'):
             raise ValueError('Color de corredor sin fuente revisada')
+        if review.get('additional_source_sha256'):
+            extra=json.loads((root/'data/raw/atu_corredores/verde.json').read_text())
+            if extra['sha256']!=review['additional_source_sha256'] or extra['url']!=review['additional_source_url']:
+                raise ValueError('Identidad de corredor sin evidencia adicional revisada')
+    from pipeline.scripts.atu.corridor_display import check
+    check(root)
     return config
