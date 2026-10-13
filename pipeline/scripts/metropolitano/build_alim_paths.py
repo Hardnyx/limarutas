@@ -755,7 +755,13 @@ def main() -> None:
     refs = args.routes or sorted(document['services'])
     network = Network(json.loads(Path(args.network).read_text()))
     itineraries = relation_itineraries(args.pbf, set(refs), network)
-    result = build(document, refs, network, itineraries)
+    review_path=ROOT/'config/feeder_source_reviews.json'
+    reviews=json.loads(review_path.read_text())['services'] if review_path.exists() else {}
+    import hashlib
+    for ref in refs:
+        if ref in reviews and hashlib.sha256((ROOT/reviews[ref]['source_path']).read_bytes()).hexdigest()!=reviews[ref]['source_sha256']:
+            raise ValueError('La imagen fuente revisada no corresponde a su hash')
+    result = build(document, refs, network, itineraries, reviews)
     # Complete preflight above: a blocked direction never overwrites the site.
     output = Path(args.output)
     output.parent.mkdir(parents=True, exist_ok=True)

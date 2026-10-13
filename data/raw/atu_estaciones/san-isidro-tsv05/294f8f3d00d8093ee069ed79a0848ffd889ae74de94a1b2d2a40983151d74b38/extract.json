@@ -1,0 +1,73 @@
+{
+  "source_id": "san-isidro-tsv05",
+  "source_sha256": "294f8f3d00d8093ee069ed79a0848ffd889ae74de94a1b2d2a40983151d74b38",
+  "pages": [
+    {
+      "pdf_page": 1,
+      "text": "\"ý\n\"ý\n\"ý\n\"ý\n\"ý\nMIRAFLORES\nSURQUILLO\nSAN BORJA\nLA VICTORIA\nLINCE\nJESUS MARÍA\nMAGDALENA \nDEL MAR\nAU\nT\nO\nPIST\nA\nC\nOSTAVE\nRD\nE\nAV. F. SANCHEZ CARRION\nAV. CA\nMINOR\nEAL\nAV. AREQUIPA\nAV. JAVIER PRADO OESTE\nAV. GRAL. SALAVERRY\nAV. SANTA CRUZ\nAV. V. A. BELAUNDE\nAV. BELEN\nAV. BASADRE GROHMANN\nA\nV. GENERAL\nJUANANTONIOPEZET\nAV. CO\nRON\nEL\nPED\nROP\nO\nRTILLO\nAV. JAVIER\nPRA\nDOOESTE\nAV. AURELIO\nMI\nR\nOQUESADA\nA\nV\n.\nF\nE\nL\nIP\nEP\nA\nRDO\nY\nA\nLI\nA\nGA\nAV. PAZSO\nL\nD\nAN\nCA. LAS FLORES\nAV. JUAN DE ALIAGA\nAV.\nANGAMO\nS\nAV. GUILLERMO PRESCOTT\nAV. C. MOREYRA\nAV. ANDRÉS ARAMBURU\nAV. R. DE PANAMA\nVIA EXPRESA BEDOYA REYES\nCA. CRNL. A. REYES\nAV. JUAN DE ARONA\nAV. R. NAVARRETE\nAV. GUARDIA CIVIL\nAV. JAVIER PRADO ESTE\nAV\n. DELPA\nR\nQ\nU\nE\nS\nU\nR\nAV. P. CARRIQUIRY M.\nAV. J. GALVEZ BARRENECHEA\nAV. DEL PARQUE NORTE\nAV. A. PEREZ ARANIBAR\nAv. Republica De Panama\nAv. Arenales\nAv. Arequipa\nAv. Perez Aranibar (Ex Ejercito)\nAv. Gener\na\nl Salaver\nry\nAv. D\nel P\na\nrqu\ne Sur\nAv. San Bo\nrja S\nur\nAv. Petti Thouars\nAv. Gregorio Escobedo\nAv. P. De La Republica\nAv. Tom\nas Marsan\no\nAv. Angamos Este\nOCÉANO\nPACÍFICO\nParque José\nde Acosta\nParque José\nLuis Bustamante\ny Rivero\nBosque El\nOlivar\nParque de\nla Dignidad\nParque\nBenemérita\nGuardia Civil\nParque Coronel\nEduardo Dogny\nParque\nAlfonso\nUgarte\nParque Ernesto\nAlayza Grundy\nParque Teniente\nEnrique Palacios\nLima Golf\nClub\n275,000\n277,500\n280,000\n8,660,000\n8,662,500\n®\nOcéano \nPacífico\nCallao\nLima\nSan Isidro\nMAPA DE LOCALIZACIÓN\n®\nSignos Convencionales\nLímite Distrital\nParques y Áreas Verdes\nDistrito de San Isidro\n0\n0.25\n0.5\n0.75\n1\nkm\nEscala \n1:20,000\nLeyenda\nLínea 3 - Metro de Lima (Proyectada)\nLínea 4 - Metro de Lima (Proyectada)\nLínea 6 - Metro de Lima (Proyectada)\nMetropolitano - COSAC I\n\"b Estaciones Proyectadas del Metro de Lima\n! Estaciones Metropolitano\nArticulacion Peatonal de Estaciones del Metro\nEstaciones del Metropolitano Integradas\n\"ý\nConexion Peatonal a desnivel\nMUNICIPALIDAD \nDE \nSAN ISIDRO\nGerencia de Desarrollo Urbano y Económico\nSubgerencia de Planeamiento Urbano y Catastro \nPLAN URBANO DISTRITAL DE SAN ISIDRO \n2023 - 2033\nMAPA:\nELABORACIÓN:\nPROYECCIÓN:\nFUENTE:\nDATUM:\nFECHA:\nESCALA:\nMAPA:\nINTEGRACIÓN DE LAS ESTACIONES \nDE LA RED DEL SISTEMA DE TRANSPORTE MASIVO\nEQUIPO TECNICO \nSPUC\nUTM - ZONA 18 SUR\nWGS84\nSISTEMA DE INFORMACIÓN CATASTRAL - MSI\nJUL - 2022\nTSV-05\n1:20,000\n"
+    }
+  ],
+  "geopdf": {
+    "page_height": 841.49291,
+    "viewports": [
+      {
+        "bbox": [
+          84.9567,
+          816.19124,
+          1162.03479,
+          25.46247
+        ],
+        "lpts": [
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          1.0,
+          1.0
+        ],
+        "gpts": [
+          -12.12566,
+          -77.07095,
+          -12.07523,
+          -77.07056,
+          -12.07574,
+          -77.00077,
+          -12.12617,
+          -77.00114
+        ],
+        "gcs_wkt": "PROJCS[\"WGS_1984_UTM_Zone_18S\",GEOGCS[\"GCS_WGS_1984\",DATUM[\"D_WGS_1984\",SPHEROID[\"WGS_1984\",6378137.0,298.257223563]],PRIMEM[\"Greenwich\",0.0],UNIT[\"Degree\",0.0174532925199433]],PROJECTION[\"Transverse_Mercator\"],PARAMETER[\"False_Easting\",500000.0],PARAMETER[\"False_Northing\",10000000.0],PARAMETER[\"Central_Meridian\",-75.0],PARAMETER[\"Scale_Factor\",0.9996],PARAMETER[\"Latitude_Of_Origin\",0.0],UNIT[\"Meter\",1.0]]"
+      },
+      {
+        "bbox": [
+          1012.07491,
+          811.04862,
+          1155.04078,
+          676.72347
+        ],
+        "lpts": [
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          1.0,
+          1.0
+        ],
+        "gpts": [
+          -12.35341,
+          -77.35945,
+          -11.7291,
+          -77.354,
+          -11.73386,
+          -76.67956,
+          -12.35843,
+          -76.68344
+        ],
+        "gcs_wkt": "PROJCS[\"WGS_1984_UTM_Zone_18S\",GEOGCS[\"GCS_WGS_1984\",DATUM[\"D_WGS_1984\",SPHEROID[\"WGS_1984\",6378137.0,298.257223563]],PRIMEM[\"Greenwich\",0.0],UNIT[\"Degree\",0.0174532925199433]],PROJECTION[\"Transverse_Mercator\"],PARAMETER[\"False_Easting\",500000.0],PARAMETER[\"False_Northing\",10000000.0],PARAMETER[\"Central_Meridian\",-75.0],PARAMETER[\"Scale_Factor\",0.9996],PARAMETER[\"Latitude_Of_Origin\",0.0],UNIT[\"Meter\",1.0]]"
+      }
+    ]
+  }
+}

@@ -1,0 +1,1621 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "planificado:centro_transferencia:aeropuerto",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.12408489,
+          -11.99595674
+        ]
+      },
+      "properties": {
+        "id": "planificado:centro_transferencia:aeropuerto",
+        "nombre": "Aeropuerto",
+        "tipo": "centro_transferencia",
+        "modo": "intermodal",
+        "lineas": [],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10",
+          "pmu:metro:eje-ferroviario-urbano-linea-4-callao-bellavista-ramal:h5",
+          "pmu:metro:eje-ferroviario-urbano-linea-9-san-miguel-rimac:h20"
+        ],
+        "estado": "proyectado",
+        "existence_evidence": "explicit_pmu_node",
+        "source_refs": [
+          {
+            "source_id": "pmu-vol2",
+            "pdf_page": 224,
+            "printed_page": 208,
+            "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+            "edition": "2025-12"
+          },
+          {
+            "source_id": "pmu-vol2",
+            "pdf_page": 226,
+            "printed_page": 210,
+            "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+            "edition": "2025-12"
+          }
+        ],
+        "aliases": [],
+        "connections": "L4, L9",
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "georeferenced_map_digitized",
+        "location_status": "located",
+        "coordinate_role": "planning_area_reference",
+        "uncertainty_m": null,
+        "uncertainty_note": "Referencia de área en Figura 75 PMU; precisión cartográfica, no accesos. RMSE de controles independientes: 260 m.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "pmu-vol2",
+        "source_sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+        "pdf_page": 226,
+        "printed_page": 210,
+        "location_evidence": {
+          "pixel_anchor": [
+            588,
+            805
+          ],
+          "native_image_size": [
+            1672,
+            1122
+          ],
+          "anchor": "center_of_explicit_red_symbol",
+          "review": "pmu-cetram-map"
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10": 7206.1,
+          "pmu:metro:eje-ferroviario-urbano-linea-4-callao-bellavista-ramal:h5": 167.5,
+          "pmu:metro:eje-ferroviario-urbano-linea-9-san-miguel-rimac:h20": 3292.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:centro_transferencia:bayovar",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.98740644,
+          -11.96089275
+        ]
+      },
+      "properties": {
+        "id": "planificado:centro_transferencia:bayovar",
+        "nombre": "Bayóvar",
+        "tipo": "centro_transferencia",
+        "modo": "intermodal",
+        "lineas": [],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-1-villa-el-salvador-san-juan-de-lurigancho:h0"
+        ],
+        "estado": "proyectado",
+        "existence_evidence": "explicit_pmu_node",
+        "source_refs": [
+          {
+            "source_id": "pmu-vol2",
+            "pdf_page": 224,
+            "printed_page": 208,
+            "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+            "edition": "2025-12"
+          },
+          {
+            "source_id": "pmu-vol2",
+            "pdf_page": 226,
+            "printed_page": 210,
+            "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+            "edition": "2025-12"
+          }
+        ],
+        "aliases": [],
+        "connections": "L1, tren Lima-Barranca",
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "georeferenced_map_digitized",
+        "location_status": "located",
+        "coordinate_role": "planning_area_reference",
+        "uncertainty_m": null,
+        "uncertainty_note": "Referencia de área en Figura 75 PMU; precisión cartográfica, no accesos. RMSE de controles independientes: 260 m.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "pmu-vol2",
+        "source_sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+        "pdf_page": 226,
+        "printed_page": 210,
+        "location_evidence": {
+          "pixel_anchor": [
+            664,
+            583
+          ],
+          "native_image_size": [
+            1672,
+            1122
+          ],
+          "anchor": "center_of_explicit_red_symbol",
+          "review": "pmu-cetram-map"
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-1-villa-el-salvador-san-juan-de-lurigancho:h0": 78.3
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:centro_transferencia:canta-callao",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.08619997,
+          -11.97304885
+        ]
+      },
+      "properties": {
+        "id": "planificado:centro_transferencia:canta-callao",
+        "nombre": "Canta Callao",
+        "tipo": "centro_transferencia",
+        "modo": "intermodal",
+        "lineas": [],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-6-san-martin-de-porres-el-agustino:h20"
+        ],
+        "estado": "proyectado",
+        "existence_evidence": "explicit_pmu_node",
+        "source_refs": [
+          {
+            "source_id": "pmu-vol2",
+            "pdf_page": 224,
+            "printed_page": 208,
+            "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+            "edition": "2025-12"
+          },
+          {
+            "source_id": "pmu-vol2",
+            "pdf_page": 226,
+            "printed_page": 210,
+            "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+            "edition": "2025-12"
+          }
+        ],
+        "aliases": [],
+        "connections": "L6, tren Lima-Barranca",
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "georeferenced_map_digitized",
+        "location_status": "located",
+        "coordinate_role": "planning_area_reference",
+        "uncertainty_m": null,
+        "uncertainty_note": "Referencia de área en Figura 75 PMU; precisión cartográfica, no accesos. RMSE de controles independientes: 260 m.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "pmu-vol2",
+        "source_sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+        "pdf_page": 226,
+        "printed_page": 210,
+        "location_evidence": {
+          "pixel_anchor": [
+            591,
+            731
+          ],
+          "native_image_size": [
+            1672,
+            1122
+          ],
+          "anchor": "center_of_explicit_red_symbol",
+          "review": "pmu-cetram-map"
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-6-san-martin-de-porres-el-agustino:h20": 170.9
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:centro_transferencia:carmen-de-la-legua",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.09649443,
+          -12.05218898
+        ]
+      },
+      "properties": {
+        "id": "planificado:centro_transferencia:carmen-de-la-legua",
+        "nombre": "Carmen de la Legua",
+        "tipo": "centro_transferencia",
+        "modo": "intermodal",
+        "lineas": [],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5",
+          "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10",
+          "pmu:metro:eje-ferroviario-urbano-linea-4-callao-bellavista-ramal:h5"
+        ],
+        "estado": "proyectado",
+        "existence_evidence": "explicit_pmu_node",
+        "source_refs": [
+          {
+            "source_id": "pmu-vol2",
+            "pdf_page": 224,
+            "printed_page": 208,
+            "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+            "edition": "2025-12"
+          },
+          {
+            "source_id": "pmu-vol2",
+            "pdf_page": 226,
+            "printed_page": 210,
+            "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+            "edition": "2025-12"
+          }
+        ],
+        "aliases": [],
+        "connections": "L2, L4",
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "georeferenced_map_digitized",
+        "location_status": "located",
+        "coordinate_role": "planning_area_reference",
+        "uncertainty_m": null,
+        "uncertainty_note": "Referencia de área en Figura 75 PMU; precisión cartográfica, no accesos. RMSE de controles independientes: 260 m.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "pmu-vol2",
+        "source_sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+        "pdf_page": 226,
+        "printed_page": 210,
+        "location_evidence": {
+          "pixel_anchor": [
+            690,
+            820
+          ],
+          "native_image_size": [
+            1672,
+            1122
+          ],
+          "anchor": "center_of_explicit_red_symbol",
+          "review": "pmu-cetram-map"
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5": 114.1,
+          "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10": 397.2,
+          "pmu:metro:eje-ferroviario-urbano-linea-4-callao-bellavista-ramal:h5": 183.9
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:centro_transferencia:carretera-central",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.87196591,
+          -12.01001718
+        ]
+      },
+      "properties": {
+        "id": "planificado:centro_transferencia:carretera-central",
+        "nombre": "Carretera Central",
+        "tipo": "centro_transferencia",
+        "modo": "intermodal",
+        "lineas": [],
+        "project_ids": [],
+        "estado": "proyectado",
+        "existence_evidence": "explicit_pmu_node",
+        "source_refs": [
+          {
+            "source_id": "pmu-vol2",
+            "pdf_page": 225,
+            "printed_page": 209,
+            "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+            "edition": "2025-12"
+          },
+          {
+            "source_id": "pmu-vol2",
+            "pdf_page": 226,
+            "printed_page": 210,
+            "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+            "edition": "2025-12"
+          }
+        ],
+        "aliases": [],
+        "connections": "Terminal Este, BRT Ate",
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "georeferenced_map_digitized",
+        "location_status": "located",
+        "coordinate_role": "planning_area_reference",
+        "uncertainty_m": null,
+        "uncertainty_note": "Referencia de área en Figura 75 PMU; precisión cartográfica, no accesos. RMSE de controles independientes: 260 m.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "pmu-vol2",
+        "source_sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+        "pdf_page": 226,
+        "printed_page": 210,
+        "location_evidence": {
+          "pixel_anchor": [
+            836,
+            470
+          ],
+          "native_image_size": [
+            1672,
+            1122
+          ],
+          "anchor": "center_of_explicit_red_symbol",
+          "review": "pmu-cetram-map"
+        },
+        "axis_distance_m": {}
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:centro_transferencia:central",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.0362848,
+          -12.05978713
+        ]
+      },
+      "properties": {
+        "id": "planificado:centro_transferencia:central",
+        "nombre": "Central",
+        "tipo": "centro_transferencia",
+        "modo": "intermodal",
+        "lineas": [],
+        "project_ids": [
+          "pmu:brt:eje-brt-metropolitano-chorrillos-independencia-paseo-de-la-republica:h0",
+          "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5",
+          "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10",
+          "pmu:metro:eje-ferroviario-urbano-linea-8-el-agustino-lima:h20"
+        ],
+        "estado": "proyectado",
+        "existence_evidence": "explicit_pmu_node",
+        "source_refs": [
+          {
+            "source_id": "pmu-vol2",
+            "pdf_page": 224,
+            "printed_page": 208,
+            "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+            "edition": "2025-12"
+          },
+          {
+            "source_id": "pmu-vol2",
+            "pdf_page": 226,
+            "printed_page": 210,
+            "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+            "edition": "2025-12"
+          }
+        ],
+        "aliases": [],
+        "connections": "L2, L3, L8, Metropolitano",
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "georeferenced_map_digitized",
+        "location_status": "located",
+        "coordinate_role": "planning_area_reference",
+        "uncertainty_m": null,
+        "uncertainty_note": "Referencia de área en Figura 75 PMU; precisión cartográfica, no accesos. RMSE de controles independientes: 260 m.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "pmu-vol2",
+        "source_sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+        "pdf_page": 226,
+        "printed_page": 210,
+        "location_evidence": {
+          "pixel_anchor": [
+            755,
+            744
+          ],
+          "native_image_size": [
+            1672,
+            1122
+          ],
+          "anchor": "center_of_explicit_red_symbol",
+          "review": "pmu-cetram-map"
+        },
+        "axis_distance_m": {
+          "pmu:brt:eje-brt-metropolitano-chorrillos-independencia-paseo-de-la-republica:h0": 54.0,
+          "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5": 15.8,
+          "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10": 178.8,
+          "pmu:metro:eje-ferroviario-urbano-linea-8-el-agustino-lima:h20": 1.1
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:centro_transferencia:chimpu-ocllo",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03696804,
+          -11.89584591
+        ]
+      },
+      "properties": {
+        "id": "planificado:centro_transferencia:chimpu-ocllo",
+        "nombre": "Chimpu Ocllo",
+        "tipo": "centro_transferencia",
+        "modo": "intermodal",
+        "lineas": [],
+        "project_ids": [
+          "pmu:brt:eje-brt-metropolitano-ampliacion-norte-carabayllo-independencia-universitaria-metropolitana:h0"
+        ],
+        "estado": "proyectado",
+        "existence_evidence": "explicit_pmu_node",
+        "source_refs": [
+          {
+            "source_id": "pmu-vol2",
+            "pdf_page": 224,
+            "printed_page": 208,
+            "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+            "edition": "2025-12"
+          },
+          {
+            "source_id": "pmu-vol2",
+            "pdf_page": 226,
+            "printed_page": 210,
+            "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+            "edition": "2025-12"
+          }
+        ],
+        "aliases": [],
+        "connections": "Metropolitano, tren Lima-Barranca",
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "georeferenced_map_digitized",
+        "location_status": "located",
+        "coordinate_role": "planning_area_reference",
+        "uncertainty_m": null,
+        "uncertainty_note": "Referencia de área en Figura 75 PMU; precisión cartográfica, no accesos. RMSE de controles independientes: 260 m.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "pmu-vol2",
+        "source_sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+        "pdf_page": 226,
+        "printed_page": 210,
+        "location_evidence": {
+          "pixel_anchor": [
+            530,
+            590
+          ],
+          "native_image_size": [
+            1672,
+            1122
+          ],
+          "anchor": "center_of_explicit_red_symbol",
+          "review": "pmu-cetram-map"
+        },
+        "axis_distance_m": {
+          "pmu:brt:eje-brt-metropolitano-ampliacion-norte-carabayllo-independencia-universitaria-metropolitana:h0": 11.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:centro_transferencia:gamarra",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.01308661,
+          -12.06194955
+        ]
+      },
+      "properties": {
+        "id": "planificado:centro_transferencia:gamarra",
+        "nombre": "Gamarra",
+        "tipo": "centro_transferencia",
+        "modo": "intermodal",
+        "lineas": [],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-1-villa-el-salvador-san-juan-de-lurigancho:h0",
+          "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5"
+        ],
+        "estado": "proyectado",
+        "existence_evidence": "explicit_pmu_node",
+        "source_refs": [
+          {
+            "source_id": "pmu-vol2",
+            "pdf_page": 224,
+            "printed_page": 208,
+            "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+            "edition": "2025-12"
+          },
+          {
+            "source_id": "pmu-vol2",
+            "pdf_page": 226,
+            "printed_page": 210,
+            "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+            "edition": "2025-12"
+          }
+        ],
+        "aliases": [],
+        "connections": "L1, L2",
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "georeferenced_map_digitized",
+        "location_status": "located",
+        "coordinate_role": "planning_area_reference",
+        "uncertainty_m": null,
+        "uncertainty_note": "Referencia de área en Figura 75 PMU; precisión cartográfica, no accesos. RMSE de controles independientes: 260 m.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "pmu-vol2",
+        "source_sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+        "pdf_page": 226,
+        "printed_page": 210,
+        "location_evidence": {
+          "pixel_anchor": [
+            779,
+            714
+          ],
+          "native_image_size": [
+            1672,
+            1122
+          ],
+          "anchor": "center_of_explicit_red_symbol",
+          "review": "pmu-cetram-map"
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-1-villa-el-salvador-san-juan-de-lurigancho:h0": 31.8,
+          "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5": 107.3
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:centro_transferencia:gambetta",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.10372086,
+          -12.02045161
+        ]
+      },
+      "properties": {
+        "id": "planificado:centro_transferencia:gambetta",
+        "nombre": "Gambetta",
+        "tipo": "centro_transferencia",
+        "modo": "intermodal",
+        "lineas": [],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10",
+          "pmu:metro:eje-ferroviario-urbano-linea-4-callao-bellavista-ramal:h5",
+          "pmu:metro:eje-ferroviario-urbano-linea-7-callao-ancon:h10"
+        ],
+        "estado": "proyectado",
+        "existence_evidence": "explicit_pmu_node",
+        "source_refs": [
+          {
+            "source_id": "pmu-vol2",
+            "pdf_page": 224,
+            "printed_page": 208,
+            "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+            "edition": "2025-12"
+          },
+          {
+            "source_id": "pmu-vol2",
+            "pdf_page": 226,
+            "printed_page": 210,
+            "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+            "edition": "2025-12"
+          }
+        ],
+        "aliases": [],
+        "connections": "L4, L7, tren Lima-Barranca",
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "georeferenced_map_digitized",
+        "location_status": "located",
+        "coordinate_role": "planning_area_reference",
+        "uncertainty_m": null,
+        "uncertainty_note": "Referencia de área en Figura 75 PMU; precisión cartográfica, no accesos. RMSE de controles independientes: 260 m.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "pmu-vol2",
+        "source_sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+        "pdf_page": 226,
+        "printed_page": 210,
+        "location_evidence": {
+          "pixel_anchor": [
+            640,
+            800
+          ],
+          "native_image_size": [
+            1672,
+            1122
+          ],
+          "anchor": "center_of_explicit_red_symbol",
+          "review": "pmu-cetram-map"
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10": 3946.8,
+          "pmu:metro:eje-ferroviario-urbano-linea-4-callao-bellavista-ramal:h5": 313.5,
+          "pmu:metro:eje-ferroviario-urbano-linea-7-callao-ancon:h10": 3543.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:centro_transferencia:juan-pablo-ii",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.11322837,
+          -12.0552365
+        ]
+      },
+      "properties": {
+        "id": "planificado:centro_transferencia:juan-pablo-ii",
+        "nombre": "Juan Pablo II",
+        "tipo": "centro_transferencia",
+        "modo": "intermodal",
+        "lineas": [],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5",
+          "pmu:metro:eje-ferroviario-urbano-linea-9-san-miguel-rimac:h20"
+        ],
+        "estado": "proyectado",
+        "existence_evidence": "explicit_pmu_node",
+        "source_refs": [
+          {
+            "source_id": "pmu-vol2",
+            "pdf_page": 224,
+            "printed_page": 208,
+            "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+            "edition": "2025-12"
+          },
+          {
+            "source_id": "pmu-vol2",
+            "pdf_page": 226,
+            "printed_page": 210,
+            "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+            "edition": "2025-12"
+          }
+        ],
+        "aliases": [],
+        "connections": "L2, L9",
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "georeferenced_map_digitized",
+        "location_status": "located",
+        "coordinate_role": "planning_area_reference",
+        "uncertainty_m": null,
+        "uncertainty_note": "Referencia de área en Figura 75 PMU; precisión cartográfica, no accesos. RMSE de controles independientes: 260 m.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "pmu-vol2",
+        "source_sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+        "pdf_page": 226,
+        "printed_page": 210,
+        "location_evidence": {
+          "pixel_anchor": [
+            679,
+            846
+          ],
+          "native_image_size": [
+            1672,
+            1122
+          ],
+          "anchor": "center_of_explicit_red_symbol",
+          "review": "pmu-cetram-map"
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5": 152.1,
+          "pmu:metro:eje-ferroviario-urbano-linea-9-san-miguel-rimac:h20": 181.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:centro_transferencia:la-atarjea",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.96470413,
+          -12.03426083
+        ]
+      },
+      "properties": {
+        "id": "planificado:centro_transferencia:la-atarjea",
+        "nombre": "La Atarjea",
+        "tipo": "centro_transferencia",
+        "modo": "intermodal",
+        "lineas": [],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-6-san-martin-de-porres-el-agustino:h20",
+          "pmu:metro:eje-ferroviario-urbano-linea-8-el-agustino-lima:h20"
+        ],
+        "estado": "proyectado",
+        "existence_evidence": "explicit_pmu_node",
+        "source_refs": [
+          {
+            "source_id": "pmu-vol2",
+            "pdf_page": 224,
+            "printed_page": 208,
+            "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+            "edition": "2025-12"
+          },
+          {
+            "source_id": "pmu-vol2",
+            "pdf_page": 226,
+            "printed_page": 210,
+            "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+            "edition": "2025-12"
+          }
+        ],
+        "aliases": [],
+        "connections": "L6, L8, Ferrocarril Central",
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "georeferenced_map_digitized",
+        "location_status": "located",
+        "coordinate_role": "planning_area_reference",
+        "uncertainty_m": null,
+        "uncertainty_note": "Referencia de área en Figura 75 PMU; precisión cartográfica, no accesos. RMSE de controles independientes: 260 m.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "pmu-vol2",
+        "source_sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+        "pdf_page": 226,
+        "printed_page": 210,
+        "location_evidence": {
+          "pixel_anchor": [
+            785,
+            621
+          ],
+          "native_image_size": [
+            1672,
+            1122
+          ],
+          "anchor": "center_of_explicit_red_symbol",
+          "review": "pmu-cetram-map"
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-6-san-martin-de-porres-el-agustino:h20": 58.6,
+          "pmu:metro:eje-ferroviario-urbano-linea-8-el-agustino-lima:h20": 626.2
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:centro_transferencia:los-heroes",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.98259113,
+          -12.1498823
+        ]
+      },
+      "properties": {
+        "id": "planificado:centro_transferencia:los-heroes",
+        "nombre": "Los Héroes",
+        "tipo": "centro_transferencia",
+        "modo": "intermodal",
+        "lineas": [],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-1-villa-el-salvador-san-juan-de-lurigancho:h0",
+          "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10"
+        ],
+        "estado": "proyectado",
+        "existence_evidence": "explicit_pmu_node",
+        "source_refs": [
+          {
+            "source_id": "pmu-vol2",
+            "pdf_page": 224,
+            "printed_page": 208,
+            "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+            "edition": "2025-12"
+          },
+          {
+            "source_id": "pmu-vol2",
+            "pdf_page": 226,
+            "printed_page": 210,
+            "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+            "edition": "2025-12"
+          }
+        ],
+        "aliases": [],
+        "connections": "L1, L3",
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "georeferenced_map_digitized",
+        "location_status": "located",
+        "coordinate_role": "planning_area_reference",
+        "uncertainty_m": null,
+        "uncertainty_note": "Referencia de área en Figura 75 PMU; precisión cartográfica, no accesos. RMSE de controles independientes: 260 m.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "pmu-vol2",
+        "source_sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+        "pdf_page": 226,
+        "printed_page": 210,
+        "location_evidence": {
+          "pixel_anchor": [
+            927,
+            755
+          ],
+          "native_image_size": [
+            1672,
+            1122
+          ],
+          "anchor": "center_of_explicit_red_symbol",
+          "review": "pmu-cetram-map"
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-1-villa-el-salvador-san-juan-de-lurigancho:h0": 39.5,
+          "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10": 62.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:centro_transferencia:matellini",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.00981836,
+          -12.17887971
+        ]
+      },
+      "properties": {
+        "id": "planificado:centro_transferencia:matellini",
+        "nombre": "Matellini",
+        "tipo": "centro_transferencia",
+        "modo": "intermodal",
+        "lineas": [],
+        "project_ids": [
+          "pmu:brt:eje-brt-metropolitano-chorrillos-independencia-paseo-de-la-republica:h0"
+        ],
+        "estado": "proyectado",
+        "existence_evidence": "explicit_pmu_node",
+        "source_refs": [
+          {
+            "source_id": "pmu-vol2",
+            "pdf_page": 224,
+            "printed_page": 208,
+            "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+            "edition": "2025-12"
+          },
+          {
+            "source_id": "pmu-vol2",
+            "pdf_page": 226,
+            "printed_page": 210,
+            "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+            "edition": "2025-12"
+          }
+        ],
+        "aliases": [],
+        "connections": "Terminal Metropolitano",
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "georeferenced_map_digitized",
+        "location_status": "located",
+        "coordinate_role": "planning_area_reference",
+        "uncertainty_m": null,
+        "uncertainty_note": "Referencia de área en Figura 75 PMU; precisión cartográfica, no accesos. RMSE de controles independientes: 260 m.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "pmu-vol2",
+        "source_sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+        "pdf_page": 226,
+        "printed_page": 210,
+        "location_evidence": {
+          "pixel_anchor": [
+            942,
+            820
+          ],
+          "native_image_size": [
+            1672,
+            1122
+          ],
+          "anchor": "center_of_explicit_red_symbol",
+          "review": "pmu-cetram-map"
+        },
+        "axis_distance_m": {
+          "pmu:brt:eje-brt-metropolitano-chorrillos-independencia-paseo-de-la-republica:h0": 13.4
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:centro_transferencia:mercado-santa-anita",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.93983078,
+          -12.04626817
+        ]
+      },
+      "properties": {
+        "id": "planificado:centro_transferencia:mercado-santa-anita",
+        "nombre": "Mercado Santa Anita",
+        "tipo": "centro_transferencia",
+        "modo": "intermodal",
+        "lineas": [],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5",
+          "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10",
+          "pmu:metro:eje-ferroviario-urbano-linea-4-callao-bellavista-ramal:h5"
+        ],
+        "estado": "proyectado",
+        "existence_evidence": "explicit_pmu_node",
+        "source_refs": [
+          {
+            "source_id": "pmu-vol2",
+            "pdf_page": 224,
+            "printed_page": 208,
+            "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+            "edition": "2025-12"
+          },
+          {
+            "source_id": "pmu-vol2",
+            "pdf_page": 226,
+            "printed_page": 210,
+            "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+            "edition": "2025-12"
+          }
+        ],
+        "aliases": [],
+        "connections": "L2, L4",
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "georeferenced_map_digitized",
+        "location_status": "located",
+        "coordinate_role": "planning_area_reference",
+        "uncertainty_m": null,
+        "uncertainty_note": "Referencia de área en Figura 75 PMU; precisión cartográfica, no accesos. RMSE de controles independientes: 260 m.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "pmu-vol2",
+        "source_sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+        "pdf_page": 226,
+        "printed_page": 210,
+        "location_evidence": {
+          "pixel_anchor": [
+            824,
+            598
+          ],
+          "native_image_size": [
+            1672,
+            1122
+          ],
+          "anchor": "center_of_explicit_red_symbol",
+          "review": "pmu-cetram-map"
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5": 703.7,
+          "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10": 263.8,
+          "pmu:metro:eje-ferroviario-urbano-linea-4-callao-bellavista-ramal:h5": 17219.9
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:centro_transferencia:panamericana-sur",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.97433731,
+          -12.20213935
+        ]
+      },
+      "properties": {
+        "id": "planificado:centro_transferencia:panamericana-sur",
+        "nombre": "Panamericana Sur",
+        "tipo": "centro_transferencia",
+        "modo": "intermodal",
+        "lineas": [],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-5-surquillo-villa-el-salvador:h20"
+        ],
+        "estado": "proyectado",
+        "existence_evidence": "explicit_pmu_node",
+        "source_refs": [
+          {
+            "source_id": "pmu-vol2",
+            "pdf_page": 225,
+            "printed_page": 209,
+            "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+            "edition": "2025-12"
+          },
+          {
+            "source_id": "pmu-vol2",
+            "pdf_page": 226,
+            "printed_page": 210,
+            "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+            "edition": "2025-12"
+          }
+        ],
+        "aliases": [],
+        "connections": "Terminal Sur, L5",
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "georeferenced_map_digitized",
+        "location_status": "located",
+        "coordinate_role": "planning_area_reference",
+        "uncertainty_m": null,
+        "uncertainty_note": "Referencia de área en Figura 75 PMU; precisión cartográfica, no accesos. RMSE de controles independientes: 260 m.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "pmu-vol2",
+        "source_sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+        "pdf_page": 226,
+        "printed_page": 210,
+        "location_evidence": {
+          "pixel_anchor": [
+            1006,
+            793
+          ],
+          "native_image_size": [
+            1672,
+            1122
+          ],
+          "anchor": "center_of_explicit_red_symbol",
+          "review": "pmu-cetram-map"
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-5-surquillo-villa-el-salvador:h20": 41.4
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:centro_transferencia:pando",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.07980106,
+          -12.07765718
+        ]
+      },
+      "properties": {
+        "id": "planificado:centro_transferencia:pando",
+        "nombre": "Pando",
+        "tipo": "centro_transferencia",
+        "modo": "intermodal",
+        "lineas": [],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10",
+          "pmu:metro:eje-ferroviario-urbano-linea-4-callao-bellavista-ramal:h5",
+          "pmu:metro:eje-ferroviario-urbano-linea-6-san-martin-de-porres-el-agustino:h20"
+        ],
+        "estado": "proyectado",
+        "existence_evidence": "explicit_pmu_node",
+        "source_refs": [
+          {
+            "source_id": "pmu-vol2",
+            "pdf_page": 224,
+            "printed_page": 208,
+            "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+            "edition": "2025-12"
+          },
+          {
+            "source_id": "pmu-vol2",
+            "pdf_page": 226,
+            "printed_page": 210,
+            "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+            "edition": "2025-12"
+          }
+        ],
+        "aliases": [],
+        "connections": "L4, L6",
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "georeferenced_map_digitized",
+        "location_status": "located",
+        "coordinate_role": "planning_area_reference",
+        "uncertainty_m": null,
+        "uncertainty_note": "Referencia de área en Figura 75 PMU; precisión cartográfica, no accesos. RMSE de controles independientes: 260 m.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "pmu-vol2",
+        "source_sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+        "pdf_page": 226,
+        "printed_page": 210,
+        "location_evidence": {
+          "pixel_anchor": [
+            740,
+            821
+          ],
+          "native_image_size": [
+            1672,
+            1122
+          ],
+          "anchor": "center_of_explicit_red_symbol",
+          "review": "pmu-cetram-map"
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10": 97.8,
+          "pmu:metro:eje-ferroviario-urbano-linea-4-callao-bellavista-ramal:h5": 3154.4,
+          "pmu:metro:eje-ferroviario-urbano-linea-6-san-martin-de-porres-el-agustino:h20": 137.9
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:centro_transferencia:pastor-sevilla",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.95342715,
+          -12.20728498
+        ]
+      },
+      "properties": {
+        "id": "planificado:centro_transferencia:pastor-sevilla",
+        "nombre": "Pastor Sevilla",
+        "tipo": "centro_transferencia",
+        "modo": "intermodal",
+        "lineas": [],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-5-surquillo-villa-el-salvador:h20"
+        ],
+        "estado": "proyectado",
+        "existence_evidence": "explicit_pmu_node",
+        "source_refs": [
+          {
+            "source_id": "pmu-vol2",
+            "pdf_page": 225,
+            "printed_page": 209,
+            "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+            "edition": "2025-12"
+          },
+          {
+            "source_id": "pmu-vol2",
+            "pdf_page": 226,
+            "printed_page": 210,
+            "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+            "edition": "2025-12"
+          }
+        ],
+        "aliases": [],
+        "connections": "L5",
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "georeferenced_map_digitized",
+        "location_status": "located",
+        "coordinate_role": "planning_area_reference",
+        "uncertainty_m": null,
+        "uncertainty_note": "Referencia de área en Figura 75 PMU; precisión cartográfica, no accesos. RMSE de controles independientes: 260 m.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "pmu-vol2",
+        "source_sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+        "pdf_page": 226,
+        "printed_page": 210,
+        "location_evidence": {
+          "pixel_anchor": [
+            1032,
+            769
+          ],
+          "native_image_size": [
+            1672,
+            1122
+          ],
+          "anchor": "center_of_explicit_red_symbol",
+          "review": "pmu-cetram-map"
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-5-surquillo-villa-el-salvador:h20": 165.5
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:centro_transferencia:presbitero",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.01241238,
+          -12.04177466
+        ]
+      },
+      "properties": {
+        "id": "planificado:centro_transferencia:presbitero",
+        "nombre": "Presbítero",
+        "tipo": "centro_transferencia",
+        "modo": "intermodal",
+        "lineas": [],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-1-villa-el-salvador-san-juan-de-lurigancho:h0"
+        ],
+        "estado": "proyectado",
+        "existence_evidence": "explicit_pmu_node",
+        "source_refs": [
+          {
+            "source_id": "pmu-vol2",
+            "pdf_page": 224,
+            "printed_page": 208,
+            "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+            "edition": "2025-12"
+          },
+          {
+            "source_id": "pmu-vol2",
+            "pdf_page": 226,
+            "printed_page": 210,
+            "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+            "edition": "2025-12"
+          }
+        ],
+        "aliases": [],
+        "connections": "L1, Ferrocarril Central",
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "georeferenced_map_digitized",
+        "location_status": "located",
+        "coordinate_role": "planning_area_reference",
+        "uncertainty_m": null,
+        "uncertainty_note": "Referencia de área en Figura 75 PMU; precisión cartográfica, no accesos. RMSE de controles independientes: 260 m.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "pmu-vol2",
+        "source_sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+        "pdf_page": 226,
+        "printed_page": 210,
+        "location_evidence": {
+          "pixel_anchor": [
+            752,
+            694
+          ],
+          "native_image_size": [
+            1672,
+            1122
+          ],
+          "anchor": "center_of_explicit_red_symbol",
+          "review": "pmu-cetram-map"
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-1-villa-el-salvador-san-juan-de-lurigancho:h0": 64.1
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:centro_transferencia:pro",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.07144864,
+          -11.93112778
+        ]
+      },
+      "properties": {
+        "id": "planificado:centro_transferencia:pro",
+        "nombre": "Pro",
+        "tipo": "centro_transferencia",
+        "modo": "intermodal",
+        "lineas": [],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10"
+        ],
+        "estado": "proyectado",
+        "existence_evidence": "explicit_pmu_node",
+        "source_refs": [
+          {
+            "source_id": "pmu-vol2",
+            "pdf_page": 224,
+            "printed_page": 208,
+            "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+            "edition": "2025-12"
+          },
+          {
+            "source_id": "pmu-vol2",
+            "pdf_page": 226,
+            "printed_page": 210,
+            "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+            "edition": "2025-12"
+          }
+        ],
+        "aliases": [],
+        "connections": "L3, tren Lima-Barranca",
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "georeferenced_map_digitized",
+        "location_status": "located",
+        "coordinate_role": "planning_area_reference",
+        "uncertainty_m": null,
+        "uncertainty_note": "Referencia de área en Figura 75 PMU; precisión cartográfica, no accesos. RMSE de controles independientes: 260 m.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "pmu-vol2",
+        "source_sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+        "pdf_page": 226,
+        "printed_page": 210,
+        "location_evidence": {
+          "pixel_anchor": [
+            547,
+            671
+          ],
+          "native_image_size": [
+            1672,
+            1122
+          ],
+          "anchor": "center_of_explicit_red_symbol",
+          "review": "pmu-cetram-map"
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10": 37.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:centro_transferencia:puerto-callao",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.1383316,
+          -12.04921644
+        ]
+      },
+      "properties": {
+        "id": "planificado:centro_transferencia:puerto-callao",
+        "nombre": "Puerto Callao",
+        "tipo": "centro_transferencia",
+        "modo": "intermodal",
+        "lineas": [],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5"
+        ],
+        "estado": "proyectado",
+        "existence_evidence": "explicit_pmu_node",
+        "source_refs": [
+          {
+            "source_id": "pmu-vol2",
+            "pdf_page": 224,
+            "printed_page": 208,
+            "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+            "edition": "2025-12"
+          },
+          {
+            "source_id": "pmu-vol2",
+            "pdf_page": 226,
+            "printed_page": 210,
+            "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+            "edition": "2025-12"
+          }
+        ],
+        "aliases": [],
+        "connections": "L2, Ferrocarril Central",
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "georeferenced_map_digitized",
+        "location_status": "located",
+        "coordinate_role": "planning_area_reference",
+        "uncertainty_m": null,
+        "uncertainty_note": "Referencia de área en Figura 75 PMU; precisión cartográfica, no accesos. RMSE de controles independientes: 260 m.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "pmu-vol2",
+        "source_sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+        "pdf_page": 226,
+        "printed_page": 210,
+        "location_evidence": {
+          "pixel_anchor": [
+            648,
+            875
+          ],
+          "native_image_size": [
+            1672,
+            1122
+          ],
+          "anchor": "center_of_explicit_red_symbol",
+          "review": "pmu-cetram-map"
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5": 329.7
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:centro_transferencia:tacna",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.02733161,
+          -12.03266575
+        ]
+      },
+      "properties": {
+        "id": "planificado:centro_transferencia:tacna",
+        "nombre": "Tacna",
+        "tipo": "centro_transferencia",
+        "modo": "intermodal",
+        "lineas": [],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-8-el-agustino-lima:h20",
+          "pmu:metro:eje-ferroviario-urbano-linea-9-san-miguel-rimac:h20"
+        ],
+        "estado": "proyectado",
+        "existence_evidence": "explicit_pmu_node",
+        "source_refs": [
+          {
+            "source_id": "pmu-vol2",
+            "pdf_page": 224,
+            "printed_page": 208,
+            "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+            "edition": "2025-12"
+          },
+          {
+            "source_id": "pmu-vol2",
+            "pdf_page": 226,
+            "printed_page": 210,
+            "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+            "edition": "2025-12"
+          }
+        ],
+        "aliases": [],
+        "connections": "L8, L9",
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "georeferenced_map_digitized",
+        "location_status": "located",
+        "coordinate_role": "planning_area_reference",
+        "uncertainty_m": null,
+        "uncertainty_note": "Referencia de área en Figura 75 PMU; precisión cartográfica, no accesos. RMSE de controles independientes: 260 m.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "pmu-vol2",
+        "source_sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+        "pdf_page": 226,
+        "printed_page": 210,
+        "location_evidence": {
+          "pixel_anchor": [
+            726,
+            706
+          ],
+          "native_image_size": [
+            1672,
+            1122
+          ],
+          "anchor": "center_of_explicit_red_symbol",
+          "review": "pmu-cetram-map"
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-8-el-agustino-lima:h20": 88.9,
+          "pmu:metro:eje-ferroviario-urbano-linea-9-san-miguel-rimac:h20": 92.1
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:centro_transferencia:zapallal",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.10805018,
+          -11.83631163
+        ]
+      },
+      "properties": {
+        "id": "planificado:centro_transferencia:zapallal",
+        "nombre": "Zapallal",
+        "tipo": "centro_transferencia",
+        "modo": "intermodal",
+        "lineas": [],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-7-callao-ancon:h10"
+        ],
+        "estado": "proyectado",
+        "existence_evidence": "explicit_pmu_node",
+        "source_refs": [
+          {
+            "source_id": "pmu-vol2",
+            "pdf_page": 224,
+            "printed_page": 208,
+            "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+            "edition": "2025-12"
+          },
+          {
+            "source_id": "pmu-vol2",
+            "pdf_page": 226,
+            "printed_page": 210,
+            "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+            "edition": "2025-12"
+          }
+        ],
+        "aliases": [],
+        "connections": "L7, tren Lima-Barranca",
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "georeferenced_map_digitized",
+        "location_status": "located",
+        "coordinate_role": "planning_area_reference",
+        "uncertainty_m": null,
+        "uncertainty_note": "Referencia de área en Figura 75 PMU; precisión cartográfica, no accesos. RMSE de controles independientes: 260 m.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "pmu-vol2",
+        "source_sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+        "pdf_page": 226,
+        "printed_page": 210,
+        "location_evidence": {
+          "pixel_anchor": [
+            384,
+            632
+          ],
+          "native_image_size": [
+            1672,
+            1122
+          ],
+          "anchor": "center_of_explicit_red_symbol",
+          "review": "pmu-cetram-map"
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-7-callao-ancon:h10": 202.2
+        }
+      }
+    }
+  ]
+}

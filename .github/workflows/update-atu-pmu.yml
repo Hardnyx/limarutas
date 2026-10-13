@@ -5,6 +5,8 @@ on:
     paths:
       - .github/workflows/update-atu-pmu.yml
       - config/atu_geovisor_layers.json
+      - config/atu_station_sources.json
+      - config/atu_station_locations.json
       - pipeline/scripts/atu/**
   workflow_dispatch:
     inputs:
@@ -37,6 +39,13 @@ jobs:
           path: pipeline/temp/atu-sources
           key: atu-pmu-v1-${{ github.run_id }}
           restore-keys: atu-pmu-v1-
+      - uses: actions/cache@v4
+        with:
+          path: pipeline/temp/atu-station-sources
+          key: atu-station-sources-v1-${{ github.run_id }}
+          restore-keys: atu-station-sources-v1-
+      - name: Revisar documentos de estaciones sin geocodificación automática
+        run: python3 pipeline/scripts/atu/sync_station_sources.py
       - name: Descargar, comparar y validar antes de promover
         id: sync
         env:
@@ -57,6 +66,8 @@ jobs:
         if: steps.sync.outputs.processing_required == 'true'
         run: |
           python3 pipeline/scripts/atu/validate_pmu.py
+          python3 pipeline/scripts/atu/build_planned_stations.py
+          python3 pipeline/scripts/atu/validate_planned_stations.py
           python3 -m unittest discover -s pipeline/tests
           python3 pipeline/run.py validate
       - name: Publicar solo cambios de contenido
@@ -76,3 +87,8 @@ jobs:
         with:
           name: atu-pmu-sync-report
           path: pipeline/temp/atu-sync-report.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: atu-station-document-review
+          path: pipeline/temp/atu-station-source-report.json

@@ -63,10 +63,33 @@ test('Explorar remains usable on mobile and in the dark theme',async({app,page})
   await expect(page.locator('.project-row:visible')).toHaveCount(1);
   await page.locator('.project-row:visible .project-name').click();
   await expect(page.locator('#projectDetails')).toContainText('Huandoy');
-  await expect(page.locator('#projectDetails')).toContainText('ubicación pendiente de verificación');
-  await expect(page.locator('#projectDetails ol li')).toHaveCount(28);
+  await expect(page.locator('#projectDetails')).toContainText('Ubicación pendiente de verificación');
+  await expect(page.locator('#projectDetails ol[data-point-type="estacion"] li')).toHaveCount(28);
   await page.evaluate(()=>window.LimaRutasTheme.set('dark'));
   await page.screenshot({path:'pipeline/temp/authoring/explore-mobile-dark.png'});
   const width=await page.evaluate(()=>document.documentElement.scrollWidth);
   expect(width).toBeLessThanOrEqual(390);
+});
+
+test('Planned points use evidence links, independent toggles and their own pane',async({app,page})=>{
+  await page.click('#tabExplore');
+  await expect(page.locator('#exploreCount')).toHaveText('106 de 106 trazados');
+  await page.locator('#explorePane input[type=search]').fill('Línea 3');
+  await page.locator('.project-row:visible .project-name').click();
+  await expect(page.locator('#explorePointCount')).toHaveText('2 puntos visibles · 26 ubicaciones pendientes');
+  const stationList=page.locator('#projectDetails ol[data-point-type="estacion"]');
+  await expect(stationList.getByRole('button')).toHaveCount(2);
+  await page.locator('.project-point-controls input[data-point-type="centro_transferencia"]').check();
+  await expect(page.locator('#explorePointCount')).toHaveText('5 puntos visibles · 27 ubicaciones pendientes');
+  const result=await page.evaluate(async()=>{
+    const {state}=await import('/assets/js/config.js');
+    const markers=[];state.map.eachLayer(l=>{if(l.options?.pane==='projectPoints' && l.getLatLng) markers.push(l);});
+    const graph=await(await fetch('/pipeline/output/trip_graph.json')).json();
+    return {markers:markers.length,contaminated:Object.keys(graph.routes).some(k=>k.startsWith('planificado:'))};
+  });
+  expect(result.markers).toBe(5);expect(result.contaminated).toBe(false);
+  await stationList.getByRole('button',{name:'Conde de San Isidro'}).click();
+  await expect(page.locator('.leaflet-projectPoints-pane .leaflet-popup')).toContainText('2022-07');
+  await page.getByRole('tab',{name:'Rutas',exact:true}).click();
+  await expect(page.locator('.leaflet-projectPoints-pane')).not.toBeVisible();
 });

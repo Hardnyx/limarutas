@@ -83,11 +83,27 @@ python3 pipeline/scripts/metropolitano/build_alim_paths.py AS-04 --output data/p
 python3 pipeline/scripts/trips/build_trip_graph.py --alim-only AS-04
 ```
 
-AS-04 (Villa El Salvador) ya tiene ambos sentidos verificados: desaparecen
-los cruces artificiales de calzada en El Sol / Los Forestales y el óvalo de
-Defensores del Morro se recorre por su lado legal. Sus referencias OSM,
-geometría y huellas se guardan juntas y el importador comprueba que coincidan.
-Los demás alimentadores conservan su estado de revisión.
+AS-04 (Villa El Salvador) tiene ambos sentidos verificados. La revisión del
+plano ATU aportado el 13/10/2026 reemplaza el tramo antiguo por Avenida
+Revolución con Avenida Micaela Bastidas, hasta el cruce con 200 Millas junto
+a Huáscar. El retorno usa las calzadas y conexiones legales de esa intersección.
+Se conservan la ruta hasta El Sol, horarios, nombres y orden de los 27
+paraderos oficiales y el enlace compartido con Matellini. Se actualizan las
+distancias del grafo solamente para AS-04.
+
+La imagen original y su hash viven en `data/raw/atu_ves/`; la revisión
+reproducible está en `config/feeder_source_reviews.json`. El pipeline comprueba
+el hash de la imagen, snapshot OSM y geometría anterior, aplica la guía revisada
+antes de rutear y exige continuidad, sentidos, giros y orden de paraderos.
+La revisión excluye explícitamente Avenida Revolución. No modifica las reglas
+del motor ni permite invertir vías.
+
+Diez referencias de paradero del tramo final se recolocan sobre el corredor
+cartográfico y conservan `aprox=true` y su procedencia: la imagen no permite
+certificar un poste/andén exacto. Álamos requiere comprobación del punto de
+embarque; su identidad y orden se preservan. Los demás alimentadores conservan
+su estado de revisión. Las referencias OSM, geometría y huellas se guardan juntas;
+el importador comprueba que coincidan.
 
 ## Rutas de Wikiroutes (`build_recorridos.py`)
 

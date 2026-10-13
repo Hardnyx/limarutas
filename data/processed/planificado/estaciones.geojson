@@ -1,0 +1,2743 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "planificado:brt:universitaria:naranjal",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.0776783,
+          -11.9778197
+        ]
+      },
+      "properties": {
+        "id": "planificado:brt:universitaria:naranjal",
+        "nombre": "Naranjal",
+        "tipo": "estacion",
+        "modo": "brt",
+        "lineas": [
+          "Universitaria"
+        ],
+        "project_ids": [
+          "pmu:brt:eje-brt-comas-san-martin-de-porres-universitaria:h5"
+        ],
+        "estado": "proyectado",
+        "existence_evidence": "explicit_official_project",
+        "source_refs": [
+          {
+            "source_id": "universitaria-2025",
+            "pdf_page": null,
+            "printed_page": null,
+            "sha256": "5838acfe438d86de479614676d7f2d8835114fff4d2ce93dbc1292b2dda0bfef",
+            "url": "https://www.gob.pe/institucion/emape/noticias/1104364-nuevo-corredor-vial-en-la-avenida-universitaria-de-comas-a-san-martin-de-porres-en-30-minutos",
+            "edition": "2025-01-27"
+          }
+        ],
+        "aliases": [],
+        "sequence": 3,
+        "code": null,
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "documented_intersection",
+        "location_status": "located",
+        "coordinate_role": "intersection_reference",
+        "uncertainty_m": null,
+        "uncertainty_note": "Cruce vial documentado; referencia aproximada, no centro de andén ni acceso peatonal.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "universitaria-2025",
+        "source_sha256": "5838acfe438d86de479614676d7f2d8835114fff4d2ce93dbc1292b2dda0bfef",
+        "pdf_page": null,
+        "printed_page": null,
+        "location_evidence": {
+          "intersection": [
+            "Avenida Universitaria",
+            "Avenida Naranjal"
+          ],
+          "osm_ways": [
+            1013544311,
+            324590403
+          ],
+          "osm_edge_coordinates": [
+            [
+              [
+                -77.0776783,
+                -11.9778197
+              ],
+              [
+                -77.0777069,
+                -11.9779298
+              ]
+            ],
+            [
+              [
+                -77.0776783,
+                -11.9778197
+              ],
+              [
+                -77.0778351,
+                -11.9777849
+              ]
+            ]
+          ],
+          "osm_source_sha256": "8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300",
+          "osm_source_timestamp": "2026-10-02T23:00:00Z",
+          "selection": "documented street pair, closest candidate in source corridor; no axis snapping",
+          "axis_distance_m": 44.6
+        },
+        "axis_distance_m": {
+          "pmu:brt:eje-brt-comas-san-martin-de-porres-universitaria:h5": 44.6
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:brt:universitaria:tomas-valle",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.0799947,
+          -12.0128881
+        ]
+      },
+      "properties": {
+        "id": "planificado:brt:universitaria:tomas-valle",
+        "nombre": "Tomás Valle",
+        "tipo": "estacion",
+        "modo": "brt",
+        "lineas": [
+          "Universitaria"
+        ],
+        "project_ids": [
+          "pmu:brt:eje-brt-comas-san-martin-de-porres-universitaria:h5"
+        ],
+        "estado": "proyectado",
+        "existence_evidence": "explicit_official_project",
+        "source_refs": [
+          {
+            "source_id": "universitaria-2025",
+            "pdf_page": null,
+            "printed_page": null,
+            "sha256": "5838acfe438d86de479614676d7f2d8835114fff4d2ce93dbc1292b2dda0bfef",
+            "url": "https://www.gob.pe/institucion/emape/noticias/1104364-nuevo-corredor-vial-en-la-avenida-universitaria-de-comas-a-san-martin-de-porres-en-30-minutos",
+            "edition": "2025-01-27"
+          }
+        ],
+        "aliases": [],
+        "sequence": 1,
+        "code": null,
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "documented_intersection",
+        "location_status": "located",
+        "coordinate_role": "intersection_reference",
+        "uncertainty_m": null,
+        "uncertainty_note": "Cruce vial documentado; referencia aproximada, no centro de andén ni acceso peatonal.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "universitaria-2025",
+        "source_sha256": "5838acfe438d86de479614676d7f2d8835114fff4d2ce93dbc1292b2dda0bfef",
+        "pdf_page": null,
+        "printed_page": null,
+        "location_evidence": {
+          "intersection": [
+            "Avenida Universitaria",
+            "Avenida Tomás Valle"
+          ],
+          "osm_ways": [
+            4832991,
+            330078570
+          ],
+          "osm_edge_coordinates": [
+            [
+              [
+                -77.0799947,
+                -12.0128881
+              ],
+              [
+                -77.0798602,
+                -12.0130078
+              ]
+            ],
+            [
+              [
+                -77.0799947,
+                -12.0128881
+              ],
+              [
+                -77.0799212,
+                -12.0128825
+              ]
+            ]
+          ],
+          "osm_source_sha256": "8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300",
+          "osm_source_timestamp": "2026-10-02T23:00:00Z",
+          "selection": "documented street pair, closest candidate in source corridor; no axis snapping",
+          "axis_distance_m": 25.6
+        },
+        "axis_distance_m": {
+          "pmu:brt:eje-brt-comas-san-martin-de-porres-universitaria:h5": 25.6
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:metro:l2:28-de-julio",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.0128224,
+          -12.0609564
+        ]
+      },
+      "properties": {
+        "id": "planificado:metro:l2:28-de-julio",
+        "nombre": "28 de Julio",
+        "tipo": "estacion",
+        "modo": "metro",
+        "lineas": [
+          "L2"
+        ],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5"
+        ],
+        "estado": "en_construccion",
+        "existence_evidence": "explicit_official_project",
+        "source_refs": [
+          {
+            "source_id": "ositran-2024",
+            "pdf_page": 7,
+            "printed_page": null,
+            "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+            "edition": "2024-09"
+          },
+          {
+            "source_id": "ositran-2024",
+            "pdf_page": 7,
+            "printed_page": "12-13",
+            "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+            "edition": "2024-09"
+          }
+        ],
+        "aliases": [],
+        "sequence": 16,
+        "code": "E-16",
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "documented_intersection",
+        "location_status": "located",
+        "coordinate_role": "intersection_reference",
+        "uncertainty_m": null,
+        "uncertainty_note": "Cruce vial documentado; referencia aproximada, no centro de andén ni acceso peatonal.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "ositran-2024",
+        "source_sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+        "pdf_page": 7,
+        "printed_page": "12-13",
+        "location_evidence": {
+          "intersection": [
+            "Avenida 28 de Julio",
+            "Avenida Aviación"
+          ],
+          "osm_ways": [
+            552660446,
+            285034101
+          ],
+          "osm_edge_coordinates": [
+            [
+              [
+                -77.0128224,
+                -12.0609564
+              ],
+              [
+                -77.0130232,
+                -12.0609864
+              ]
+            ],
+            [
+              [
+                -77.0128224,
+                -12.0609564
+              ],
+              [
+                -77.0130487,
+                -12.0604037
+              ]
+            ]
+          ],
+          "osm_source_sha256": "8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300",
+          "osm_source_timestamp": "2026-10-02T23:00:00Z",
+          "selection": "documented street pair, closest candidate in source corridor; no axis snapping",
+          "axis_distance_m": 1.6
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5": 1.6
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:metro:l2:cangallo",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.0212446,
+          -12.0620764
+        ]
+      },
+      "properties": {
+        "id": "planificado:metro:l2:cangallo",
+        "nombre": "Cangallo",
+        "tipo": "estacion",
+        "modo": "metro",
+        "lineas": [
+          "L2"
+        ],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5"
+        ],
+        "estado": "en_construccion",
+        "existence_evidence": "explicit_official_project",
+        "source_refs": [
+          {
+            "source_id": "ositran-2024",
+            "pdf_page": 7,
+            "printed_page": null,
+            "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+            "edition": "2024-09"
+          },
+          {
+            "source_id": "ositran-2024",
+            "pdf_page": 7,
+            "printed_page": "12-13",
+            "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+            "edition": "2024-09"
+          }
+        ],
+        "aliases": [],
+        "sequence": 15,
+        "code": "E-15",
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "documented_intersection",
+        "location_status": "located",
+        "coordinate_role": "intersection_reference",
+        "uncertainty_m": null,
+        "uncertainty_note": "Cruce vial documentado; referencia aproximada, no centro de andén ni acceso peatonal.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "ositran-2024",
+        "source_sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+        "pdf_page": 7,
+        "printed_page": "12-13",
+        "location_evidence": {
+          "intersection": [
+            "Avenida 28 de Julio",
+            "Jirón Prolongación Cangallo"
+          ],
+          "osm_ways": [
+            1532102629,
+            1532102628
+          ],
+          "osm_edge_coordinates": [
+            [
+              [
+                -77.0212446,
+                -12.0620764
+              ],
+              [
+                -77.0213409,
+                -12.062092
+              ]
+            ],
+            [
+              [
+                -77.0212446,
+                -12.0620764
+              ],
+              [
+                -77.0213082,
+                -12.0616628
+              ]
+            ]
+          ],
+          "osm_source_sha256": "8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300",
+          "osm_source_timestamp": "2026-10-02T23:00:00Z",
+          "selection": "documented street pair, closest candidate in source corridor; no axis snapping",
+          "axis_distance_m": 1.8
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5": 1.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:metro:l2:carmen-de-la-legua",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.09795851,
+          -12.05348798
+        ]
+      },
+      "properties": {
+        "id": "planificado:metro:l2:carmen-de-la-legua",
+        "nombre": "Carmen de la Legua",
+        "tipo": "estacion",
+        "modo": "metro",
+        "lineas": [
+          "L2"
+        ],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5"
+        ],
+        "estado": "en_construccion",
+        "existence_evidence": "explicit_official_project",
+        "source_refs": [
+          {
+            "source_id": "ositran-2024",
+            "pdf_page": 7,
+            "printed_page": null,
+            "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+            "edition": "2024-09"
+          },
+          {
+            "source_id": "ositran-2024",
+            "pdf_page": 7,
+            "printed_page": "12-13",
+            "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+            "edition": "2024-09"
+          }
+        ],
+        "aliases": [],
+        "sequence": 5,
+        "code": "E-05",
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "documented_intersection",
+        "location_status": "located",
+        "coordinate_role": "intersection_reference",
+        "uncertainty_m": null,
+        "uncertainty_note": "Cruce vial documentado; referencia aproximada, no centro de andén ni acceso peatonal.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "ositran-2024",
+        "source_sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+        "pdf_page": 7,
+        "printed_page": "12-13",
+        "location_evidence": {
+          "intersection": [
+            "Avenida Óscar Raimundo Benavides",
+            "Avenida Elmer Faucett"
+          ],
+          "osm_ways": [
+            436604274,
+            1149231638
+          ],
+          "osm_edge_coordinates": [
+            [
+              [
+                -77.0975378,
+                -12.0534326
+              ],
+              [
+                -77.0986645,
+                -12.0535809
+              ]
+            ],
+            [
+              [
+                -77.0979286,
+                -12.0536764
+              ],
+              [
+                -77.0979756,
+                -12.0533803
+              ]
+            ]
+          ],
+          "osm_source_sha256": "8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300",
+          "osm_source_timestamp": "2026-10-02T23:00:00Z",
+          "selection": "documented street pair, closest candidate in source corridor; no axis snapping",
+          "axis_distance_m": 1.2
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5": 1.2
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:metro:l2:circunvalacion",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.0003315,
+          -12.0634564
+        ]
+      },
+      "properties": {
+        "id": "planificado:metro:l2:circunvalacion",
+        "nombre": "Circunvalación",
+        "tipo": "estacion",
+        "modo": "metro",
+        "lineas": [
+          "L2"
+        ],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5"
+        ],
+        "estado": "en_construccion",
+        "existence_evidence": "explicit_official_project",
+        "source_refs": [
+          {
+            "source_id": "ositran-2024",
+            "pdf_page": 7,
+            "printed_page": null,
+            "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+            "edition": "2024-09"
+          },
+          {
+            "source_id": "ositran-2024",
+            "pdf_page": 7,
+            "printed_page": "12-13",
+            "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+            "edition": "2024-09"
+          }
+        ],
+        "aliases": [],
+        "sequence": 18,
+        "code": "E-18",
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "documented_intersection",
+        "location_status": "located",
+        "coordinate_role": "intersection_reference",
+        "uncertainty_m": null,
+        "uncertainty_note": "Cruce vial documentado; referencia aproximada, no centro de andén ni acceso peatonal.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "ositran-2024",
+        "source_sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+        "pdf_page": 7,
+        "printed_page": "12-13",
+        "location_evidence": {
+          "intersection": [
+            "Avenida Nicolás Ayllón",
+            "Auxiliar Avenida Circunvalación"
+          ],
+          "osm_ways": [
+            320464643,
+            345262041
+          ],
+          "osm_edge_coordinates": [
+            [
+              [
+                -77.0003315,
+                -12.0634564
+              ],
+              [
+                -77.0000074,
+                -12.0635191
+              ]
+            ],
+            [
+              [
+                -77.0003315,
+                -12.0634564
+              ],
+              [
+                -77.0001769,
+                -12.0635898
+              ]
+            ]
+          ],
+          "osm_source_sha256": "8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300",
+          "osm_source_timestamp": "2026-10-02T23:00:00Z",
+          "selection": "documented street pair, closest candidate in source corridor; no axis snapping",
+          "axis_distance_m": 1.7
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5": 1.7
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:metro:l2:estacion-central",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.0378263,
+          -12.060028
+        ]
+      },
+      "properties": {
+        "id": "planificado:metro:l2:estacion-central",
+        "nombre": "Estación Central",
+        "tipo": "estacion",
+        "modo": "metro",
+        "lineas": [
+          "L2"
+        ],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5"
+        ],
+        "estado": "en_construccion",
+        "existence_evidence": "explicit_official_project",
+        "source_refs": [
+          {
+            "source_id": "ositran-2024",
+            "pdf_page": 7,
+            "printed_page": null,
+            "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+            "edition": "2024-09"
+          },
+          {
+            "source_id": "ositran-2024",
+            "pdf_page": 7,
+            "printed_page": "12-13",
+            "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+            "edition": "2024-09"
+          }
+        ],
+        "aliases": [],
+        "sequence": 13,
+        "code": "E-13",
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "documented_intersection",
+        "location_status": "located",
+        "coordinate_role": "intersection_reference",
+        "uncertainty_m": null,
+        "uncertainty_note": "Cruce vial documentado; referencia aproximada, no centro de andén ni acceso peatonal.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "ositran-2024",
+        "source_sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+        "pdf_page": 7,
+        "printed_page": "12-13",
+        "location_evidence": {
+          "intersection": [
+            "Avenida 9 de Diciembre",
+            "Avenida Garcilaso de la Vega"
+          ],
+          "osm_ways": [
+            761576530,
+            892082571
+          ],
+          "osm_edge_coordinates": [
+            [
+              [
+                -77.0378263,
+                -12.060028
+              ],
+              [
+                -77.0377582,
+                -12.0600191
+              ]
+            ],
+            [
+              [
+                -77.0378224,
+                -12.0601122
+              ],
+              [
+                -77.0378263,
+                -12.060028
+              ]
+            ]
+          ],
+          "osm_source_sha256": "8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300",
+          "osm_source_timestamp": "2026-10-02T23:00:00Z",
+          "selection": "documented street pair, closest candidate in source corridor; no axis snapping",
+          "axis_distance_m": 12.5
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5": 12.5
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:metro:l2:insurgentes",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.1057674,
+          -12.055002
+        ]
+      },
+      "properties": {
+        "id": "planificado:metro:l2:insurgentes",
+        "nombre": "Insurgentes",
+        "tipo": "estacion",
+        "modo": "metro",
+        "lineas": [
+          "L2"
+        ],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5"
+        ],
+        "estado": "en_construccion",
+        "existence_evidence": "explicit_official_project",
+        "source_refs": [
+          {
+            "source_id": "ositran-2024",
+            "pdf_page": 7,
+            "printed_page": null,
+            "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+            "edition": "2024-09"
+          },
+          {
+            "source_id": "ositran-2024",
+            "pdf_page": 7,
+            "printed_page": "12-13",
+            "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+            "edition": "2024-09"
+          }
+        ],
+        "aliases": [],
+        "sequence": 4,
+        "code": "E-04",
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "documented_intersection",
+        "location_status": "located",
+        "coordinate_role": "intersection_reference",
+        "uncertainty_m": null,
+        "uncertainty_note": "Cruce vial documentado; referencia aproximada, no centro de andén ni acceso peatonal.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "ositran-2024",
+        "source_sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+        "pdf_page": 7,
+        "printed_page": "12-13",
+        "location_evidence": {
+          "intersection": [
+            "Avenida Óscar Raimundo Benavides",
+            "Avenida de los Insurgentes"
+          ],
+          "osm_ways": [
+            279649445,
+            327298920
+          ],
+          "osm_edge_coordinates": [
+            [
+              [
+                -77.1057674,
+                -12.055002
+              ],
+              [
+                -77.1059501,
+                -12.0550408
+              ]
+            ],
+            [
+              [
+                -77.1057545,
+                -12.0550935
+              ],
+              [
+                -77.1057674,
+                -12.055002
+              ]
+            ]
+          ],
+          "osm_source_sha256": "8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300",
+          "osm_source_timestamp": "2026-10-02T23:00:00Z",
+          "selection": "documented street pair, closest candidate in source corridor; no axis snapping",
+          "axis_distance_m": 2.3
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5": 2.3
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:metro:l2:juan-pablo-ii",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.114707,
+          -12.0570121
+        ]
+      },
+      "properties": {
+        "id": "planificado:metro:l2:juan-pablo-ii",
+        "nombre": "Juan Pablo II",
+        "tipo": "estacion",
+        "modo": "metro",
+        "lineas": [
+          "L2"
+        ],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5"
+        ],
+        "estado": "en_construccion",
+        "existence_evidence": "explicit_official_project",
+        "source_refs": [
+          {
+            "source_id": "ositran-2024",
+            "pdf_page": 7,
+            "printed_page": null,
+            "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+            "edition": "2024-09"
+          },
+          {
+            "source_id": "ositran-2024",
+            "pdf_page": 7,
+            "printed_page": "12-13",
+            "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+            "edition": "2024-09"
+          }
+        ],
+        "aliases": [],
+        "sequence": 3,
+        "code": "E-03",
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "documented_intersection",
+        "location_status": "located",
+        "coordinate_role": "intersection_reference",
+        "uncertainty_m": null,
+        "uncertainty_note": "Cruce vial documentado; referencia aproximada, no centro de andén ni acceso peatonal.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "ositran-2024",
+        "source_sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+        "pdf_page": 7,
+        "printed_page": "12-13",
+        "location_evidence": {
+          "intersection": [
+            "Avenida Óscar Raimundo Benavides",
+            "Avenida Juan Pablo II"
+          ],
+          "osm_ways": [
+            279649452,
+            1080861492
+          ],
+          "osm_edge_coordinates": [
+            [
+              [
+                -77.114707,
+                -12.0570121
+              ],
+              [
+                -77.1146186,
+                -12.056996
+              ]
+            ],
+            [
+              [
+                -77.114707,
+                -12.0570121
+              ],
+              [
+                -77.114724,
+                -12.0568616
+              ]
+            ]
+          ],
+          "osm_source_sha256": "8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300",
+          "osm_source_timestamp": "2026-10-02T23:00:00Z",
+          "selection": "documented street pair, closest candidate in source corridor; no axis snapping",
+          "axis_distance_m": 5.9
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5": 5.9
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:metro:l2:la-alborada",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.0674126,
+          -12.0576996
+        ]
+      },
+      "properties": {
+        "id": "planificado:metro:l2:la-alborada",
+        "nombre": "La Alborada",
+        "tipo": "estacion",
+        "modo": "metro",
+        "lineas": [
+          "L2"
+        ],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5"
+        ],
+        "estado": "en_construccion",
+        "existence_evidence": "explicit_official_project",
+        "source_refs": [
+          {
+            "source_id": "ositran-2024",
+            "pdf_page": 7,
+            "printed_page": null,
+            "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+            "edition": "2024-09"
+          },
+          {
+            "source_id": "ositran-2024",
+            "pdf_page": 7,
+            "printed_page": "12-13",
+            "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+            "edition": "2024-09"
+          }
+        ],
+        "aliases": [],
+        "sequence": 9,
+        "code": "E-09",
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "documented_intersection",
+        "location_status": "located",
+        "coordinate_role": "intersection_reference",
+        "uncertainty_m": null,
+        "uncertainty_note": "Cruce vial documentado; referencia aproximada, no centro de andén ni acceso peatonal.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "ositran-2024",
+        "source_sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+        "pdf_page": 7,
+        "printed_page": "12-13",
+        "location_evidence": {
+          "intersection": [
+            "Avenida República de Venezuela",
+            "Avenida La Alborada"
+          ],
+          "osm_ways": [
+            1263943912,
+            1263943911
+          ],
+          "osm_edge_coordinates": [
+            [
+              [
+                -77.0674126,
+                -12.0576996
+              ],
+              [
+                -77.0672031,
+                -12.0576761
+              ]
+            ],
+            [
+              [
+                -77.0674126,
+                -12.0576996
+              ],
+              [
+                -77.0673626,
+                -12.0577176
+              ]
+            ]
+          ],
+          "osm_source_sha256": "8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300",
+          "osm_source_timestamp": "2026-10-02T23:00:00Z",
+          "selection": "documented street pair, closest candidate in source corridor; no axis snapping",
+          "axis_distance_m": 9.1
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5": 9.1
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:metro:l2:manco-capac",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.0292401,
+          -12.0631169
+        ]
+      },
+      "properties": {
+        "id": "planificado:metro:l2:manco-capac",
+        "nombre": "Manco Cápac",
+        "tipo": "estacion",
+        "modo": "metro",
+        "lineas": [
+          "L2"
+        ],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5"
+        ],
+        "estado": "en_construccion",
+        "existence_evidence": "explicit_official_project",
+        "source_refs": [
+          {
+            "source_id": "ositran-2024",
+            "pdf_page": 7,
+            "printed_page": null,
+            "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+            "edition": "2024-09"
+          },
+          {
+            "source_id": "ositran-2024",
+            "pdf_page": 7,
+            "printed_page": "12-13",
+            "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+            "edition": "2024-09"
+          }
+        ],
+        "aliases": [],
+        "sequence": 14,
+        "code": "E-14",
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "documented_intersection",
+        "location_status": "located",
+        "coordinate_role": "intersection_reference",
+        "uncertainty_m": null,
+        "uncertainty_note": "Cruce vial documentado; referencia aproximada, no centro de andén ni acceso peatonal.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "ositran-2024",
+        "source_sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+        "pdf_page": 7,
+        "printed_page": "12-13",
+        "location_evidence": {
+          "intersection": [
+            "Avenida 28 de Julio",
+            "Avenida Manco Cápac"
+          ],
+          "osm_ways": [
+            1549569456,
+            1549569458
+          ],
+          "osm_edge_coordinates": [
+            [
+              [
+                -77.0291416,
+                -12.0631055
+              ],
+              [
+                -77.0292401,
+                -12.0631169
+              ]
+            ],
+            [
+              [
+                -77.0292401,
+                -12.0631169
+              ],
+              [
+                -77.02925,
+                -12.0630431
+              ]
+            ]
+          ],
+          "osm_source_sha256": "8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300",
+          "osm_source_timestamp": "2026-10-02T23:00:00Z",
+          "selection": "documented street pair, closest candidate in source corridor; no axis snapping",
+          "axis_distance_m": 2.4
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5": 2.4
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:metro:l2:oscar-r-benavides",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.0879502,
+          -12.0519274
+        ]
+      },
+      "properties": {
+        "id": "planificado:metro:l2:oscar-r-benavides",
+        "nombre": "Óscar R. Benavides",
+        "tipo": "estacion",
+        "modo": "metro",
+        "lineas": [
+          "L2"
+        ],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5"
+        ],
+        "estado": "en_construccion",
+        "existence_evidence": "explicit_official_project",
+        "source_refs": [
+          {
+            "source_id": "ositran-2024",
+            "pdf_page": 7,
+            "printed_page": null,
+            "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+            "edition": "2024-09"
+          },
+          {
+            "source_id": "ositran-2024",
+            "pdf_page": 7,
+            "printed_page": "12-13",
+            "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+            "edition": "2024-09"
+          }
+        ],
+        "aliases": [],
+        "sequence": 6,
+        "code": "E-06",
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "documented_intersection",
+        "location_status": "located",
+        "coordinate_role": "intersection_reference",
+        "uncertainty_m": null,
+        "uncertainty_note": "Cruce vial documentado; referencia aproximada, no centro de andén ni acceso peatonal.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "ositran-2024",
+        "source_sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+        "pdf_page": 7,
+        "printed_page": "12-13",
+        "location_evidence": {
+          "intersection": [
+            "Avenida Óscar Raimundo Benavides",
+            "Avenida José Santos Chocano"
+          ],
+          "osm_ways": [
+            953531311,
+            131948283
+          ],
+          "osm_edge_coordinates": [
+            [
+              [
+                -77.0879502,
+                -12.0519274
+              ],
+              [
+                -77.087927,
+                -12.0518201
+              ]
+            ],
+            [
+              [
+                -77.0879553,
+                -12.0519719
+              ],
+              [
+                -77.0879502,
+                -12.0519274
+              ]
+            ]
+          ],
+          "osm_source_sha256": "8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300",
+          "osm_source_timestamp": "2026-10-02T23:00:00Z",
+          "selection": "documented street pair, closest candidate in source corridor; no axis snapping",
+          "axis_distance_m": 15.5
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5": 15.5
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:metro:l2:plaza-bolognesi",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.04355,
+          -12.0595922
+        ]
+      },
+      "properties": {
+        "id": "planificado:metro:l2:plaza-bolognesi",
+        "nombre": "Plaza Bolognesi",
+        "tipo": "estacion",
+        "modo": "metro",
+        "lineas": [
+          "L2"
+        ],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5"
+        ],
+        "estado": "en_construccion",
+        "existence_evidence": "explicit_official_project",
+        "source_refs": [
+          {
+            "source_id": "ositran-2024",
+            "pdf_page": 7,
+            "printed_page": null,
+            "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+            "edition": "2024-09"
+          },
+          {
+            "source_id": "ositran-2024",
+            "pdf_page": 7,
+            "printed_page": "12-13",
+            "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+            "edition": "2024-09"
+          }
+        ],
+        "aliases": [],
+        "sequence": 12,
+        "code": "E-12",
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "documented_intersection",
+        "location_status": "located",
+        "coordinate_role": "intersection_reference",
+        "uncertainty_m": null,
+        "uncertainty_note": "Cruce vial documentado; referencia aproximada, no centro de andén ni acceso peatonal.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "ositran-2024",
+        "source_sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+        "pdf_page": 7,
+        "printed_page": "12-13",
+        "location_evidence": {
+          "intersection": [
+            "Avenida Arica",
+            "Jirón Iquique"
+          ],
+          "osm_ways": [
+            28816099,
+            428010125
+          ],
+          "osm_edge_coordinates": [
+            [
+              [
+                -77.04355,
+                -12.0595922
+              ],
+              [
+                -77.0439372,
+                -12.0594697
+              ]
+            ],
+            [
+              [
+                -77.0435183,
+                -12.0595008
+              ],
+              [
+                -77.04355,
+                -12.0595922
+              ]
+            ]
+          ],
+          "osm_source_sha256": "8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300",
+          "osm_source_timestamp": "2026-10-02T23:00:00Z",
+          "selection": "documented street pair, closest candidate in source corridor; no axis snapping",
+          "axis_distance_m": 4.7
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5": 4.7
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:metro:l2:puerto-del-callao",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.1373604,
+          -12.0532195
+        ]
+      },
+      "properties": {
+        "id": "planificado:metro:l2:puerto-del-callao",
+        "nombre": "Puerto del Callao",
+        "tipo": "estacion",
+        "modo": "metro",
+        "lineas": [
+          "L2"
+        ],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5"
+        ],
+        "estado": "en_construccion",
+        "existence_evidence": "explicit_official_project",
+        "source_refs": [
+          {
+            "source_id": "ositran-2024",
+            "pdf_page": 7,
+            "printed_page": null,
+            "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+            "edition": "2024-09"
+          },
+          {
+            "source_id": "ositran-2024",
+            "pdf_page": 7,
+            "printed_page": "12-13",
+            "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+            "edition": "2024-09"
+          }
+        ],
+        "aliases": [],
+        "sequence": 1,
+        "code": "E-01",
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "documented_intersection",
+        "location_status": "located",
+        "coordinate_role": "intersection_reference",
+        "uncertainty_m": null,
+        "uncertainty_note": "Cruce vial documentado; referencia aproximada, no centro de andén ni acceso peatonal.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "ositran-2024",
+        "source_sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+        "pdf_page": 7,
+        "printed_page": "12-13",
+        "location_evidence": {
+          "intersection": [
+            "Avenida Guardia Chalaca",
+            "Jirón Zepita"
+          ],
+          "osm_ways": [
+            1080860328,
+            1080860327
+          ],
+          "osm_edge_coordinates": [
+            [
+              [
+                -77.1366242,
+                -12.0536643
+              ],
+              [
+                -77.1373604,
+                -12.0532195
+              ]
+            ],
+            [
+              [
+                -77.1374461,
+                -12.0533209
+              ],
+              [
+                -77.1373604,
+                -12.0532195
+              ]
+            ]
+          ],
+          "osm_source_sha256": "8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300",
+          "osm_source_timestamp": "2026-10-02T23:00:00Z",
+          "selection": "documented street pair, closest candidate in source corridor; no axis snapping",
+          "axis_distance_m": 7.0
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5": 7.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:metro:l2:san-juan-de-dios",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.9875861,
+          -12.064017
+        ]
+      },
+      "properties": {
+        "id": "planificado:metro:l2:san-juan-de-dios",
+        "nombre": "San Juan de Dios",
+        "tipo": "estacion",
+        "modo": "metro",
+        "lineas": [
+          "L2"
+        ],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5"
+        ],
+        "estado": "en_construccion",
+        "existence_evidence": "explicit_official_project",
+        "source_refs": [
+          {
+            "source_id": "ositran-2024",
+            "pdf_page": 7,
+            "printed_page": null,
+            "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+            "edition": "2024-09"
+          },
+          {
+            "source_id": "ositran-2024",
+            "pdf_page": 7,
+            "printed_page": "12-13",
+            "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+            "edition": "2024-09"
+          }
+        ],
+        "aliases": [],
+        "sequence": 19,
+        "code": "E-19",
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "documented_intersection",
+        "location_status": "located",
+        "coordinate_role": "intersection_reference",
+        "uncertainty_m": null,
+        "uncertainty_note": "Cruce vial documentado; referencia aproximada, no centro de andén ni acceso peatonal.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "ositran-2024",
+        "source_sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+        "pdf_page": 7,
+        "printed_page": "12-13",
+        "location_evidence": {
+          "intersection": [
+            "Avenida Nicolás Ayllón",
+            "Avenida Nicolás Arriola"
+          ],
+          "osm_ways": [
+            1532883567,
+            1550031813
+          ],
+          "osm_edge_coordinates": [
+            [
+              [
+                -76.9873968,
+                -12.0639835
+              ],
+              [
+                -76.9875861,
+                -12.064017
+              ]
+            ],
+            [
+              [
+                -76.9875861,
+                -12.064017
+              ],
+              [
+                -76.9877095,
+                -12.0640916
+              ]
+            ]
+          ],
+          "osm_source_sha256": "8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300",
+          "osm_source_timestamp": "2026-10-02T23:00:00Z",
+          "selection": "documented street pair, closest candidate in source corridor; no axis snapping",
+          "axis_distance_m": 18.0
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5": 18.0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:metro:l2:tingo-maria",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.0575284,
+          -12.0557764
+        ]
+      },
+      "properties": {
+        "id": "planificado:metro:l2:tingo-maria",
+        "nombre": "Tingo María",
+        "tipo": "estacion",
+        "modo": "metro",
+        "lineas": [
+          "L2"
+        ],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5"
+        ],
+        "estado": "en_construccion",
+        "existence_evidence": "explicit_official_project",
+        "source_refs": [
+          {
+            "source_id": "ositran-2024",
+            "pdf_page": 7,
+            "printed_page": null,
+            "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+            "edition": "2024-09"
+          },
+          {
+            "source_id": "ositran-2024",
+            "pdf_page": 7,
+            "printed_page": "12-13",
+            "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+            "edition": "2024-09"
+          }
+        ],
+        "aliases": [],
+        "sequence": 10,
+        "code": "E-10",
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "documented_intersection",
+        "location_status": "located",
+        "coordinate_role": "intersection_reference",
+        "uncertainty_m": null,
+        "uncertainty_note": "Cruce vial documentado; referencia aproximada, no centro de andén ni acceso peatonal.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "ositran-2024",
+        "source_sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+        "pdf_page": 7,
+        "printed_page": "12-13",
+        "location_evidence": {
+          "intersection": [
+            "Avenida República de Venezuela",
+            "Avenida Tingo María"
+          ],
+          "osm_ways": [
+            326609461,
+            282144312
+          ],
+          "osm_edge_coordinates": [
+            [
+              [
+                -77.0576081,
+                -12.0557841
+              ],
+              [
+                -77.0575284,
+                -12.0557764
+              ]
+            ],
+            [
+              [
+                -77.0575284,
+                -12.0557764
+              ],
+              [
+                -77.0575035,
+                -12.0557066
+              ]
+            ]
+          ],
+          "osm_source_sha256": "8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300",
+          "osm_source_timestamp": "2026-10-02T23:00:00Z",
+          "selection": "documented street pair, closest candidate in source corridor; no axis snapping",
+          "axis_distance_m": 3.6
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5": 3.6
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:metro:l3:andres-aramburu",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03137126,
+          -12.10343501
+        ]
+      },
+      "properties": {
+        "id": "planificado:metro:l3:andres-aramburu",
+        "nombre": "Andrés Aramburú",
+        "tipo": "estacion",
+        "modo": "metro",
+        "lineas": [
+          "L3"
+        ],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10"
+        ],
+        "estado": "estacion_de_estudio",
+        "existence_evidence": "explicit_official_project",
+        "source_refs": [
+          {
+            "source_id": "atu-congreso",
+            "pdf_page": 26,
+            "printed_page": null,
+            "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+            "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+            "edition": "2025-11"
+          },
+          {
+            "source_id": "san-isidro-tsv05",
+            "pdf_page": 1,
+            "printed_page": null,
+            "sha256": "294f8f3d00d8093ee069ed79a0848ffd889ae74de94a1b2d2a40983151d74b38",
+            "url": "https://msi.gob.pe/portal/wp-content/uploads/2022/07/7_TSV_05_INTEGRACION_DE_ESTACIONES_RED_DEL_SISTEMA_DE_TRANSPORTE_MASIVO.pdf",
+            "edition": "2022-07"
+          }
+        ],
+        "aliases": [],
+        "sequence": 18,
+        "code": null,
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "geopdf_digitized",
+        "location_status": "located",
+        "coordinate_role": "cartographic_symbol",
+        "uncertainty_m": null,
+        "uncertainty_note": "Símbolo a escala 1:20 000; plano municipal de julio de 2022, pendiente cotejo de ingeniería actual.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "san-isidro-tsv05",
+        "source_sha256": "294f8f3d00d8093ee069ed79a0848ffd889ae74de94a1b2d2a40983151d74b38",
+        "pdf_page": 1,
+        "location_evidence": {
+          "pixel_anchor": [
+            693,
+            463
+          ],
+          "render_scale": 1,
+          "anchor": "center_of_station_symbol",
+          "review": "san-isidro-tsv05",
+          "edition_comparison": "Mismo nombre, orden y corredor en ATU 2025; no prueba posición de ingeniería actual."
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10": 22.4
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:metro:l3:conde-de-san-isidro",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03298999,
+          -12.09462153
+        ]
+      },
+      "properties": {
+        "id": "planificado:metro:l3:conde-de-san-isidro",
+        "nombre": "Conde de San Isidro",
+        "tipo": "estacion",
+        "modo": "metro",
+        "lineas": [
+          "L3"
+        ],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10"
+        ],
+        "estado": "estacion_de_estudio",
+        "existence_evidence": "explicit_official_project",
+        "source_refs": [
+          {
+            "source_id": "atu-congreso",
+            "pdf_page": 26,
+            "printed_page": null,
+            "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+            "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+            "edition": "2025-11"
+          },
+          {
+            "source_id": "san-isidro-tsv05",
+            "pdf_page": 1,
+            "printed_page": null,
+            "sha256": "294f8f3d00d8093ee069ed79a0848ffd889ae74de94a1b2d2a40983151d74b38",
+            "url": "https://msi.gob.pe/portal/wp-content/uploads/2022/07/7_TSV_05_INTEGRACION_DE_ESTACIONES_RED_DEL_SISTEMA_DE_TRANSPORTE_MASIVO.pdf",
+            "edition": "2022-07"
+          }
+        ],
+        "aliases": [],
+        "sequence": 17,
+        "code": null,
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "geopdf_digitized",
+        "location_status": "located",
+        "coordinate_role": "cartographic_symbol",
+        "uncertainty_m": null,
+        "uncertainty_note": "Símbolo a escala 1:20 000; plano municipal de julio de 2022, pendiente cotejo de ingeniería actual.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "san-isidro-tsv05",
+        "source_sha256": "294f8f3d00d8093ee069ed79a0848ffd889ae74de94a1b2d2a40983151d74b38",
+        "pdf_page": 1,
+        "location_evidence": {
+          "pixel_anchor": [
+            667,
+            325
+          ],
+          "render_scale": 1,
+          "anchor": "center_of_station_symbol",
+          "review": "san-isidro-tsv05",
+          "edition_comparison": "Mismo nombre, orden y corredor en ATU 2025; no prueba posición de ingeniería actual."
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10": 2.3
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:metro:l4-ramal:aeropuerto",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.1057213,
+          -12.0221946
+        ]
+      },
+      "properties": {
+        "id": "planificado:metro:l4-ramal:aeropuerto",
+        "nombre": "Aeropuerto",
+        "tipo": "estacion",
+        "modo": "metro",
+        "lineas": [
+          "L4-ramal"
+        ],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-4-callao-bellavista-ramal:h5"
+        ],
+        "estado": "en_construccion",
+        "existence_evidence": "explicit_official_project",
+        "source_refs": [
+          {
+            "source_id": "ositran-2024",
+            "pdf_page": 7,
+            "printed_page": null,
+            "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+            "edition": "2024-09"
+          },
+          {
+            "source_id": "ositran-2024",
+            "pdf_page": 7,
+            "printed_page": "12-13",
+            "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+            "edition": "2024-09"
+          }
+        ],
+        "aliases": [],
+        "sequence": 4,
+        "code": "E-04",
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "documented_intersection",
+        "location_status": "located",
+        "coordinate_role": "intersection_reference",
+        "uncertainty_m": null,
+        "uncertainty_note": "Cruce vial documentado; referencia aproximada, no centro de andén ni acceso peatonal.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "ositran-2024",
+        "source_sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+        "pdf_page": 7,
+        "printed_page": "12-13",
+        "location_evidence": {
+          "intersection": [
+            "Óvalo Elmer Faucett",
+            "Avenida Tomás Valle"
+          ],
+          "osm_ways": [
+            1419428001,
+            809223214
+          ],
+          "osm_edge_coordinates": [
+            [
+              [
+                -77.1057045,
+                -12.0222686
+              ],
+              [
+                -77.1057213,
+                -12.0221946
+              ]
+            ],
+            [
+              [
+                -77.1057213,
+                -12.0221946
+              ],
+              [
+                -77.1057305,
+                -12.022009
+              ]
+            ]
+          ],
+          "osm_source_sha256": "8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300",
+          "osm_source_timestamp": "2026-10-02T23:00:00Z",
+          "selection": "documented street pair, closest candidate in source corridor; no axis snapping",
+          "axis_distance_m": 31.8
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-4-callao-bellavista-ramal:h5": 31.8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:metro:l4-ramal:bocanegra",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.1124419,
+          -12.0089771
+        ]
+      },
+      "properties": {
+        "id": "planificado:metro:l4-ramal:bocanegra",
+        "nombre": "Bocanegra",
+        "tipo": "estacion",
+        "modo": "metro",
+        "lineas": [
+          "L4-ramal"
+        ],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-4-callao-bellavista-ramal:h5"
+        ],
+        "estado": "en_construccion",
+        "existence_evidence": "explicit_official_project",
+        "source_refs": [
+          {
+            "source_id": "ositran-2024",
+            "pdf_page": 7,
+            "printed_page": null,
+            "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+            "edition": "2024-09"
+          },
+          {
+            "source_id": "ositran-2024",
+            "pdf_page": 7,
+            "printed_page": "12-13",
+            "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+            "edition": "2024-09"
+          }
+        ],
+        "aliases": [],
+        "sequence": 3,
+        "code": "E-03",
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "documented_intersection",
+        "location_status": "located",
+        "coordinate_role": "intersection_reference",
+        "uncertainty_m": null,
+        "uncertainty_note": "Cruce vial documentado; referencia aproximada, no centro de andén ni acceso peatonal.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "ositran-2024",
+        "source_sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+        "pdf_page": 7,
+        "printed_page": "12-13",
+        "location_evidence": {
+          "intersection": [
+            "Avenida Elmer Faucett",
+            "Avenida Bocanegra"
+          ],
+          "osm_ways": [
+            1186137495,
+            1173234932
+          ],
+          "osm_edge_coordinates": [
+            [
+              [
+                -77.1124419,
+                -12.0089771
+              ],
+              [
+                -77.1125479,
+                -12.008769
+              ]
+            ],
+            [
+              [
+                -77.1124419,
+                -12.0089771
+              ],
+              [
+                -77.1125856,
+                -12.0090034
+              ]
+            ]
+          ],
+          "osm_source_sha256": "8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300",
+          "osm_source_timestamp": "2026-10-02T23:00:00Z",
+          "selection": "documented street pair, closest candidate in source corridor; no axis snapping",
+          "axis_distance_m": 5.7
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-4-callao-bellavista-ramal:h5": 5.7
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:metro:l4-ramal:canta-callao",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.1168062,
+          -12.0008799
+        ]
+      },
+      "properties": {
+        "id": "planificado:metro:l4-ramal:canta-callao",
+        "nombre": "Canta Callao",
+        "tipo": "estacion",
+        "modo": "metro",
+        "lineas": [
+          "L4-ramal"
+        ],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-4-callao-bellavista-ramal:h5"
+        ],
+        "estado": "en_construccion",
+        "existence_evidence": "explicit_official_project",
+        "source_refs": [
+          {
+            "source_id": "ositran-2024",
+            "pdf_page": 7,
+            "printed_page": null,
+            "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+            "edition": "2024-09"
+          },
+          {
+            "source_id": "ositran-2024",
+            "pdf_page": 7,
+            "printed_page": "12-13",
+            "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+            "edition": "2024-09"
+          }
+        ],
+        "aliases": [],
+        "sequence": 2,
+        "code": "E-02",
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "documented_intersection",
+        "location_status": "located",
+        "coordinate_role": "intersection_reference",
+        "uncertainty_m": null,
+        "uncertainty_note": "Cruce vial documentado; referencia aproximada, no centro de andén ni acceso peatonal.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "ositran-2024",
+        "source_sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+        "pdf_page": 7,
+        "printed_page": "12-13",
+        "location_evidence": {
+          "intersection": [
+            "Avenida Elmer Faucett",
+            "Avenida Canta Callao"
+          ],
+          "osm_ways": [
+            336945373,
+            336945374
+          ],
+          "osm_edge_coordinates": [
+            [
+              [
+                -77.1168062,
+                -12.0008799
+              ],
+              [
+                -77.1168739,
+                -12.000829
+              ]
+            ],
+            [
+              [
+                -77.1168062,
+                -12.0008799
+              ],
+              [
+                -77.1169228,
+                -12.0010093
+              ]
+            ]
+          ],
+          "osm_source_sha256": "8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300",
+          "osm_source_timestamp": "2026-10-02T23:00:00Z",
+          "selection": "documented street pair, closest candidate in source corridor; no axis snapping",
+          "axis_distance_m": 4.2
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-4-callao-bellavista-ramal:h5": 4.2
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:metro:l4-ramal:carmen-de-la-legua",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.09807813,
+          -12.05350372
+        ]
+      },
+      "properties": {
+        "id": "planificado:metro:l4-ramal:carmen-de-la-legua",
+        "nombre": "Carmen de la Legua",
+        "tipo": "estacion",
+        "modo": "metro",
+        "lineas": [
+          "L4-ramal"
+        ],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-4-callao-bellavista-ramal:h5"
+        ],
+        "estado": "en_construccion",
+        "existence_evidence": "explicit_official_project",
+        "source_refs": [
+          {
+            "source_id": "ositran-2024",
+            "pdf_page": 7,
+            "printed_page": null,
+            "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+            "edition": "2024-09"
+          },
+          {
+            "source_id": "ositran-2024",
+            "pdf_page": 6,
+            "printed_page": "12-13",
+            "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+            "edition": "2024-09"
+          }
+        ],
+        "aliases": [],
+        "sequence": 8,
+        "code": "E-08",
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "documented_intersection",
+        "location_status": "located",
+        "coordinate_role": "intersection_reference",
+        "uncertainty_m": null,
+        "uncertainty_note": "Cruce vial documentado; referencia aproximada, no centro de andén ni acceso peatonal.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "ositran-2024",
+        "source_sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+        "pdf_page": 6,
+        "printed_page": "12-13",
+        "location_evidence": {
+          "intersection": [
+            "Avenida Elmer Faucett",
+            "Avenida Óscar Raimundo Benavides"
+          ],
+          "osm_ways": [
+            14174735,
+            436604274
+          ],
+          "osm_edge_coordinates": [
+            [
+              [
+                -77.0980933,
+                -12.053402
+              ],
+              [
+                -77.0980487,
+                -12.053701
+              ]
+            ],
+            [
+              [
+                -77.0975378,
+                -12.0534326
+              ],
+              [
+                -77.0986645,
+                -12.0535809
+              ]
+            ]
+          ],
+          "osm_source_sha256": "8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300",
+          "osm_source_timestamp": "2026-10-02T23:00:00Z",
+          "selection": "documented street pair, closest candidate in source corridor; no axis snapping",
+          "axis_distance_m": 0.6
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-4-callao-bellavista-ramal:h5": 0.6
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:metro:l4-ramal:gambetta",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.125475,
+          -11.9964402
+        ]
+      },
+      "properties": {
+        "id": "planificado:metro:l4-ramal:gambetta",
+        "nombre": "Gambetta",
+        "tipo": "estacion",
+        "modo": "metro",
+        "lineas": [
+          "L4-ramal"
+        ],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-4-callao-bellavista-ramal:h5"
+        ],
+        "estado": "en_construccion",
+        "existence_evidence": "explicit_official_project",
+        "source_refs": [
+          {
+            "source_id": "ositran-2024",
+            "pdf_page": 7,
+            "printed_page": null,
+            "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+            "edition": "2024-09"
+          },
+          {
+            "source_id": "ositran-2024",
+            "pdf_page": 7,
+            "printed_page": "12-13",
+            "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+            "edition": "2024-09"
+          }
+        ],
+        "aliases": [],
+        "sequence": 1,
+        "code": "E-01",
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "documented_intersection",
+        "location_status": "located",
+        "coordinate_role": "intersection_reference",
+        "uncertainty_m": null,
+        "uncertainty_note": "Cruce vial documentado; referencia aproximada, no centro de andén ni acceso peatonal.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "ositran-2024",
+        "source_sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+        "pdf_page": 7,
+        "printed_page": "12-13",
+        "location_evidence": {
+          "intersection": [
+            "Avenida Elmer Faucett",
+            "Avenida Coronel Nestor Gambetta"
+          ],
+          "osm_ways": [
+            409362521,
+            1225792958
+          ],
+          "osm_edge_coordinates": [
+            [
+              [
+                -77.1253232,
+                -11.9965988
+              ],
+              [
+                -77.125475,
+                -11.9964402
+              ]
+            ],
+            [
+              [
+                -77.125475,
+                -11.9964402
+              ],
+              [
+                -77.1255315,
+                -11.9963768
+              ]
+            ]
+          ],
+          "osm_source_sha256": "8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300",
+          "osm_source_timestamp": "2026-10-02T23:00:00Z",
+          "selection": "documented street pair, closest candidate in source corridor; no axis snapping",
+          "axis_distance_m": 59.1
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-4-callao-bellavista-ramal:h5": 59.1
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:metro:l4-ramal:quilca",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.09947865,
+          -12.03585297
+        ]
+      },
+      "properties": {
+        "id": "planificado:metro:l4-ramal:quilca",
+        "nombre": "Quilca",
+        "tipo": "estacion",
+        "modo": "metro",
+        "lineas": [
+          "L4-ramal"
+        ],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-4-callao-bellavista-ramal:h5"
+        ],
+        "estado": "en_construccion",
+        "existence_evidence": "explicit_official_project",
+        "source_refs": [
+          {
+            "source_id": "ositran-2024",
+            "pdf_page": 7,
+            "printed_page": null,
+            "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+            "edition": "2024-09"
+          },
+          {
+            "source_id": "ositran-2024",
+            "pdf_page": 7,
+            "printed_page": "12-13",
+            "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+            "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+            "edition": "2024-09"
+          }
+        ],
+        "aliases": [],
+        "sequence": 6,
+        "code": "E-06",
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "documented_intersection",
+        "location_status": "located",
+        "coordinate_role": "intersection_reference",
+        "uncertainty_m": null,
+        "uncertainty_note": "Cruce vial documentado; referencia aproximada, no centro de andén ni acceso peatonal.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "ositran-2024",
+        "source_sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+        "pdf_page": 7,
+        "printed_page": "12-13",
+        "location_evidence": {
+          "intersection": [
+            "Vía Expresa Elmer Faucett",
+            "Avenida Paseo Quilca"
+          ],
+          "osm_ways": [
+            1560420421,
+            323907455
+          ],
+          "osm_edge_coordinates": [
+            [
+              [
+                -77.09948,
+                -12.0358285
+              ],
+              [
+                -77.0994735,
+                -12.0359464
+              ]
+            ],
+            [
+              [
+                -77.0993737,
+                -12.0358252
+              ],
+              [
+                -77.099523,
+                -12.0358647
+              ]
+            ]
+          ],
+          "osm_source_sha256": "8cf95447ad5b7f3e4ab2f71aa338653c07db26b5ef8ccffe388e2ab071f5d300",
+          "osm_source_timestamp": "2026-10-02T23:00:00Z",
+          "selection": "documented street pair, closest candidate in source corridor; no axis snapping",
+          "axis_distance_m": 4.2
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-4-callao-bellavista-ramal:h5": 4.2
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:metro:l4:conde-de-san-isidro",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03277688,
+          -12.09213565
+        ]
+      },
+      "properties": {
+        "id": "planificado:metro:l4:conde-de-san-isidro",
+        "nombre": "Conde de San Isidro",
+        "tipo": "estacion",
+        "modo": "metro",
+        "lineas": [
+          "L4"
+        ],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10"
+        ],
+        "estado": "estacion_de_estudio",
+        "existence_evidence": "explicit_official_project",
+        "source_refs": [
+          {
+            "source_id": "atu-congreso",
+            "pdf_page": 27,
+            "printed_page": null,
+            "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+            "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+            "edition": "2025-11"
+          },
+          {
+            "source_id": "san-isidro-tsv05",
+            "pdf_page": 1,
+            "printed_page": null,
+            "sha256": "294f8f3d00d8093ee069ed79a0848ffd889ae74de94a1b2d2a40983151d74b38",
+            "url": "https://msi.gob.pe/portal/wp-content/uploads/2022/07/7_TSV_05_INTEGRACION_DE_ESTACIONES_RED_DEL_SISTEMA_DE_TRANSPORTE_MASIVO.pdf",
+            "edition": "2022-07"
+          }
+        ],
+        "aliases": [],
+        "sequence": 9,
+        "code": null,
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "geopdf_digitized",
+        "location_status": "located",
+        "coordinate_role": "cartographic_symbol",
+        "uncertainty_m": null,
+        "uncertainty_note": "Símbolo a escala 1:20 000; plano municipal de julio de 2022, pendiente cotejo de ingeniería actual.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "san-isidro-tsv05",
+        "source_sha256": "294f8f3d00d8093ee069ed79a0848ffd889ae74de94a1b2d2a40983151d74b38",
+        "pdf_page": 1,
+        "location_evidence": {
+          "pixel_anchor": [
+            670,
+            286
+          ],
+          "render_scale": 1,
+          "anchor": "center_of_station_symbol",
+          "review": "san-isidro-tsv05",
+          "edition_comparison": "Mismo nombre, orden y corredor en ATU 2025; no prueba posición de ingeniería actual."
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10": 5.9
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:metro:l4:felipe-salaverry",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.05319744,
+          -12.0930065
+        ]
+      },
+      "properties": {
+        "id": "planificado:metro:l4:felipe-salaverry",
+        "nombre": "Felipe Salaverry",
+        "tipo": "estacion",
+        "modo": "metro",
+        "lineas": [
+          "L4"
+        ],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10"
+        ],
+        "estado": "estacion_de_estudio",
+        "existence_evidence": "explicit_official_project",
+        "source_refs": [
+          {
+            "source_id": "atu-congreso",
+            "pdf_page": 27,
+            "printed_page": null,
+            "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+            "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+            "edition": "2025-11"
+          },
+          {
+            "source_id": "san-isidro-tsv05",
+            "pdf_page": 1,
+            "printed_page": null,
+            "sha256": "294f8f3d00d8093ee069ed79a0848ffd889ae74de94a1b2d2a40983151d74b38",
+            "url": "https://msi.gob.pe/portal/wp-content/uploads/2022/07/7_TSV_05_INTEGRACION_DE_ESTACIONES_RED_DEL_SISTEMA_DE_TRANSPORTE_MASIVO.pdf",
+            "edition": "2022-07"
+          }
+        ],
+        "aliases": [],
+        "sequence": 6,
+        "code": null,
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "geopdf_digitized",
+        "location_status": "located",
+        "coordinate_role": "cartographic_symbol",
+        "uncertainty_m": null,
+        "uncertainty_note": "Símbolo a escala 1:20 000; plano municipal de julio de 2022, pendiente cotejo de ingeniería actual.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "san-isidro-tsv05",
+        "source_sha256": "294f8f3d00d8093ee069ed79a0848ffd889ae74de94a1b2d2a40983151d74b38",
+        "pdf_page": 1,
+        "location_evidence": {
+          "pixel_anchor": [
+            355,
+            302
+          ],
+          "render_scale": 1,
+          "anchor": "center_of_station_symbol",
+          "review": "san-isidro-tsv05",
+          "edition_comparison": "Mismo nombre, orden y corredor en ATU 2025; no prueba posición de ingeniería actual."
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10": 6.2
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:metro:l4:guillermo-prescott",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.04730911,
+          -12.09419784
+        ]
+      },
+      "properties": {
+        "id": "planificado:metro:l4:guillermo-prescott",
+        "nombre": "Guillermo Prescott",
+        "tipo": "estacion",
+        "modo": "metro",
+        "lineas": [
+          "L4"
+        ],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10"
+        ],
+        "estado": "estacion_de_estudio",
+        "existence_evidence": "explicit_official_project",
+        "source_refs": [
+          {
+            "source_id": "atu-congreso",
+            "pdf_page": 27,
+            "printed_page": null,
+            "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+            "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+            "edition": "2025-11"
+          },
+          {
+            "source_id": "san-isidro-tsv05",
+            "pdf_page": 1,
+            "printed_page": null,
+            "sha256": "294f8f3d00d8093ee069ed79a0848ffd889ae74de94a1b2d2a40983151d74b38",
+            "url": "https://msi.gob.pe/portal/wp-content/uploads/2022/07/7_TSV_05_INTEGRACION_DE_ESTACIONES_RED_DEL_SISTEMA_DE_TRANSPORTE_MASIVO.pdf",
+            "edition": "2022-07"
+          }
+        ],
+        "aliases": [],
+        "sequence": 7,
+        "code": null,
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "geopdf_digitized",
+        "location_status": "located",
+        "coordinate_role": "cartographic_symbol",
+        "uncertainty_m": null,
+        "uncertainty_note": "Símbolo a escala 1:20 000; plano municipal de julio de 2022, pendiente cotejo de ingeniería actual.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "san-isidro-tsv05",
+        "source_sha256": "294f8f3d00d8093ee069ed79a0848ffd889ae74de94a1b2d2a40983151d74b38",
+        "pdf_page": 1,
+        "location_evidence": {
+          "pixel_anchor": [
+            446,
+            320
+          ],
+          "render_scale": 1,
+          "anchor": "center_of_station_symbol",
+          "review": "san-isidro-tsv05",
+          "edition_comparison": "Mismo nombre, orden y corredor en ATU 2025; no prueba posición de ingeniería actual."
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10": 11.9
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:metro:l4:las-palmeras",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.03861587,
+          -12.09298594
+        ]
+      },
+      "properties": {
+        "id": "planificado:metro:l4:las-palmeras",
+        "nombre": "Las Palmeras",
+        "tipo": "estacion",
+        "modo": "metro",
+        "lineas": [
+          "L4"
+        ],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10"
+        ],
+        "estado": "estacion_de_estudio",
+        "existence_evidence": "explicit_official_project",
+        "source_refs": [
+          {
+            "source_id": "atu-congreso",
+            "pdf_page": 27,
+            "printed_page": null,
+            "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+            "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+            "edition": "2025-11"
+          },
+          {
+            "source_id": "san-isidro-tsv05",
+            "pdf_page": 1,
+            "printed_page": null,
+            "sha256": "294f8f3d00d8093ee069ed79a0848ffd889ae74de94a1b2d2a40983151d74b38",
+            "url": "https://msi.gob.pe/portal/wp-content/uploads/2022/07/7_TSV_05_INTEGRACION_DE_ESTACIONES_RED_DEL_SISTEMA_DE_TRANSPORTE_MASIVO.pdf",
+            "edition": "2022-07"
+          }
+        ],
+        "aliases": [],
+        "sequence": 8,
+        "code": null,
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "geopdf_digitized",
+        "location_status": "located",
+        "coordinate_role": "cartographic_symbol",
+        "uncertainty_m": null,
+        "uncertainty_note": "Símbolo a escala 1:20 000; plano municipal de julio de 2022, pendiente cotejo de ingeniería actual.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "san-isidro-tsv05",
+        "source_sha256": "294f8f3d00d8093ee069ed79a0848ffd889ae74de94a1b2d2a40983151d74b38",
+        "pdf_page": 1,
+        "location_evidence": {
+          "pixel_anchor": [
+            580,
+            300
+          ],
+          "render_scale": 1,
+          "anchor": "center_of_station_symbol",
+          "review": "san-isidro-tsv05",
+          "edition_comparison": "Mismo nombre, orden y corredor en ATU 2025; no prueba posición de ingeniería actual."
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10": 6.1
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:metro:l4:pablo-carriquiry",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.0192187,
+          -12.09032075
+        ]
+      },
+      "properties": {
+        "id": "planificado:metro:l4:pablo-carriquiry",
+        "nombre": "Pablo Carriquiry",
+        "tipo": "estacion",
+        "modo": "metro",
+        "lineas": [
+          "L4"
+        ],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10"
+        ],
+        "estado": "estacion_de_estudio",
+        "existence_evidence": "explicit_official_project",
+        "source_refs": [
+          {
+            "source_id": "atu-congreso",
+            "pdf_page": 27,
+            "printed_page": null,
+            "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+            "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+            "edition": "2025-11"
+          },
+          {
+            "source_id": "san-isidro-tsv05",
+            "pdf_page": 1,
+            "printed_page": null,
+            "sha256": "294f8f3d00d8093ee069ed79a0848ffd889ae74de94a1b2d2a40983151d74b38",
+            "url": "https://msi.gob.pe/portal/wp-content/uploads/2022/07/7_TSV_05_INTEGRACION_DE_ESTACIONES_RED_DEL_SISTEMA_DE_TRANSPORTE_MASIVO.pdf",
+            "edition": "2022-07"
+          }
+        ],
+        "aliases": [],
+        "sequence": 11,
+        "code": null,
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "geopdf_digitized",
+        "location_status": "located",
+        "coordinate_role": "cartographic_symbol",
+        "uncertainty_m": null,
+        "uncertainty_note": "Símbolo a escala 1:20 000; plano municipal de julio de 2022, pendiente cotejo de ingeniería actual.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "san-isidro-tsv05",
+        "source_sha256": "294f8f3d00d8093ee069ed79a0848ffd889ae74de94a1b2d2a40983151d74b38",
+        "pdf_page": 1,
+        "location_evidence": {
+          "pixel_anchor": [
+            879,
+            256
+          ],
+          "render_scale": 1,
+          "anchor": "center_of_station_symbol",
+          "review": "san-isidro-tsv05",
+          "edition_comparison": "Mismo nombre, orden y corredor en ATU 2025; no prueba posición de ingeniería actual."
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10": 6.5
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "planificado:metro:l4:rivera-navarrete",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.02719711,
+          -12.09128335
+        ]
+      },
+      "properties": {
+        "id": "planificado:metro:l4:rivera-navarrete",
+        "nombre": "Rivera Navarrete",
+        "tipo": "estacion",
+        "modo": "metro",
+        "lineas": [
+          "L4"
+        ],
+        "project_ids": [
+          "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10"
+        ],
+        "estado": "estacion_de_estudio",
+        "existence_evidence": "explicit_official_project",
+        "source_refs": [
+          {
+            "source_id": "atu-congreso",
+            "pdf_page": 27,
+            "printed_page": null,
+            "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+            "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+            "edition": "2025-11"
+          },
+          {
+            "source_id": "san-isidro-tsv05",
+            "pdf_page": 1,
+            "printed_page": null,
+            "sha256": "294f8f3d00d8093ee069ed79a0848ffd889ae74de94a1b2d2a40983151d74b38",
+            "url": "https://msi.gob.pe/portal/wp-content/uploads/2022/07/7_TSV_05_INTEGRACION_DE_ESTACIONES_RED_DEL_SISTEMA_DE_TRANSPORTE_MASIVO.pdf",
+            "edition": "2022-07"
+          }
+        ],
+        "aliases": [],
+        "sequence": 10,
+        "code": null,
+        "operativo": false,
+        "ruteable": false,
+        "plannerEligible": false,
+        "location_method": "geopdf_digitized",
+        "location_status": "located",
+        "coordinate_role": "cartographic_symbol",
+        "uncertainty_m": null,
+        "uncertainty_note": "Símbolo a escala 1:20 000; plano municipal de julio de 2022, pendiente cotejo de ingeniería actual.",
+        "interchange_group": null,
+        "notes": "",
+        "source_id": "san-isidro-tsv05",
+        "source_sha256": "294f8f3d00d8093ee069ed79a0848ffd889ae74de94a1b2d2a40983151d74b38",
+        "pdf_page": 1,
+        "location_evidence": {
+          "pixel_anchor": [
+            756,
+            272
+          ],
+          "render_scale": 1,
+          "anchor": "center_of_station_symbol",
+          "review": "san-isidro-tsv05",
+          "edition_comparison": "Mismo nombre, orden y corredor en ATU 2025; no prueba posición de ingeniería actual."
+        },
+        "axis_distance_m": {
+          "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10": 11.6
+        }
+      }
+    }
+  ]
+}

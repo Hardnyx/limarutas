@@ -471,6 +471,13 @@ html.sheet .map-settings-panel {
 .project-badge { font-size:11px; border:1px dashed var(--text-muted); border-radius:5px; padding:2px 5px; }
 .project-info { max-width:300px; font-size:12px; line-height:1.5; }
 html:not(.explore-mode) .leaflet-projectLine-pane { display:none; }
+html:not(.explore-mode) .leaflet-projectPoints-pane { display:none; }
+.project-point-controls { margin:8px 0; padding:8px; border:1px solid var(--line); display:flex; flex-wrap:wrap; gap:8px 12px; font-size:12px; }
+.project-point-controls label { display:flex; align-items:center; gap:4px; }
+.project-point-icon { background:transparent; text-align:center; font-size:22px; line-height:22px; }
+.project-point-icon span { text-shadow:0 0 2px white,0 0 2px white; }
+.project-point-name { color:var(--accent); background:none; border:0; padding:0; font:inherit; text-align:left; text-decoration:underline; cursor:pointer; }
+.project-info li { margin-bottom:8px; }
 html.explore-mode .leaflet-overlay-pane,
 html.explore-mode .leaflet-alimLine-pane,
 html.explore-mode .leaflet-corrLine-pane,

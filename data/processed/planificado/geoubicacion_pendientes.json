@@ -1,0 +1,4927 @@
+{
+  "records": [
+    {
+      "id": "planificado:brt:grau:abancay",
+      "nombre": "Abancay",
+      "tipo": "estacion",
+      "modo": "brt",
+      "lineas": [
+        "Grau"
+      ],
+      "project_ids": [
+        "pmu:brt:eje-brt-lima-grau:h5"
+      ],
+      "estado": "pruebas",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "grau",
+          "pdf_page": null,
+          "printed_page": null,
+          "sha256": "dc232752516fed002d18e1c28582e7ddbb992682d2eec0143a55f2ca7c292792",
+          "url": "https://www.gob.pe/institucion/munilima/noticias/1202386-nuevo-corredor-en-la-via-expresa-grau-iniciamos-la-construccion-que-unira-el-metropolitano-y-la-linea-1",
+          "edition": "2025-07-02"
+        },
+        {
+          "source_id": "grau-pruebas",
+          "pdf_page": null,
+          "printed_page": null,
+          "sha256": "71beafac94e9d81984cf8bc3d2063f07b33a8be8eaac7e7260c2b6f7e3d97fac",
+          "url": "https://www.gob.pe/institucion/atu/noticias/1451572-mtc-atu-inicia-pruebas-de-calibracion-de-equipos-con-pasajeros-en-la-conexion-del-metropolitano-por-la-via-expresa-grau",
+          "edition": "2026-10-01"
+        }
+      ],
+      "aliases": [],
+      "sequence": 1,
+      "code": null,
+      "test_period": {
+        "from": "2026-10-01",
+        "to": "2026-10-06",
+        "original_state": "pruebas de calibración de equipos con pasajeros"
+      },
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:brt:grau:andahuaylas",
+      "nombre": "Andahuaylas",
+      "tipo": "estacion",
+      "modo": "brt",
+      "lineas": [
+        "Grau"
+      ],
+      "project_ids": [
+        "pmu:brt:eje-brt-lima-grau:h5"
+      ],
+      "estado": "pruebas",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "grau",
+          "pdf_page": null,
+          "printed_page": null,
+          "sha256": "dc232752516fed002d18e1c28582e7ddbb992682d2eec0143a55f2ca7c292792",
+          "url": "https://www.gob.pe/institucion/munilima/noticias/1202386-nuevo-corredor-en-la-via-expresa-grau-iniciamos-la-construccion-que-unira-el-metropolitano-y-la-linea-1",
+          "edition": "2025-07-02"
+        },
+        {
+          "source_id": "grau-pruebas",
+          "pdf_page": null,
+          "printed_page": null,
+          "sha256": "71beafac94e9d81984cf8bc3d2063f07b33a8be8eaac7e7260c2b6f7e3d97fac",
+          "url": "https://www.gob.pe/institucion/atu/noticias/1451572-mtc-atu-inicia-pruebas-de-calibracion-de-equipos-con-pasajeros-en-la-conexion-del-metropolitano-por-la-via-expresa-grau",
+          "edition": "2026-10-01"
+        }
+      ],
+      "aliases": [],
+      "sequence": 2,
+      "code": null,
+      "test_period": {
+        "from": "2026-10-01",
+        "to": "2026-10-06",
+        "original_state": "pruebas de calibración de equipos con pasajeros"
+      },
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:brt:grau:parinacochas",
+      "nombre": "Parinacochas",
+      "tipo": "estacion",
+      "modo": "brt",
+      "lineas": [
+        "Grau"
+      ],
+      "project_ids": [
+        "pmu:brt:eje-brt-lima-grau:h5"
+      ],
+      "estado": "pruebas",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "grau",
+          "pdf_page": null,
+          "printed_page": null,
+          "sha256": "dc232752516fed002d18e1c28582e7ddbb992682d2eec0143a55f2ca7c292792",
+          "url": "https://www.gob.pe/institucion/munilima/noticias/1202386-nuevo-corredor-en-la-via-expresa-grau-iniciamos-la-construccion-que-unira-el-metropolitano-y-la-linea-1",
+          "edition": "2025-07-02"
+        },
+        {
+          "source_id": "grau-pruebas",
+          "pdf_page": null,
+          "printed_page": null,
+          "sha256": "71beafac94e9d81984cf8bc3d2063f07b33a8be8eaac7e7260c2b6f7e3d97fac",
+          "url": "https://www.gob.pe/institucion/atu/noticias/1451572-mtc-atu-inicia-pruebas-de-calibracion-de-equipos-con-pasajeros-en-la-conexion-del-metropolitano-por-la-via-expresa-grau",
+          "edition": "2026-10-01"
+        }
+      ],
+      "aliases": [],
+      "sequence": 3,
+      "code": null,
+      "test_period": {
+        "from": "2026-10-01",
+        "to": "2026-10-06",
+        "original_state": "pruebas de calibración de equipos con pasajeros"
+      },
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:brt:grau:transferencia-miguel-grau",
+      "nombre": "Transferencia Miguel Grau",
+      "tipo": "estacion",
+      "modo": "brt",
+      "lineas": [
+        "Grau"
+      ],
+      "project_ids": [
+        "pmu:brt:eje-brt-lima-grau:h5"
+      ],
+      "estado": "pruebas",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "grau",
+          "pdf_page": null,
+          "printed_page": null,
+          "sha256": "dc232752516fed002d18e1c28582e7ddbb992682d2eec0143a55f2ca7c292792",
+          "url": "https://www.gob.pe/institucion/munilima/noticias/1202386-nuevo-corredor-en-la-via-expresa-grau-iniciamos-la-construccion-que-unira-el-metropolitano-y-la-linea-1",
+          "edition": "2025-07-02"
+        },
+        {
+          "source_id": "grau-pruebas",
+          "pdf_page": null,
+          "printed_page": null,
+          "sha256": "71beafac94e9d81984cf8bc3d2063f07b33a8be8eaac7e7260c2b6f7e3d97fac",
+          "url": "https://www.gob.pe/institucion/atu/noticias/1451572-mtc-atu-inicia-pruebas-de-calibracion-de-equipos-con-pasajeros-en-la-conexion-del-metropolitano-por-la-via-expresa-grau",
+          "edition": "2026-10-01"
+        }
+      ],
+      "aliases": [],
+      "sequence": 4,
+      "code": null,
+      "test_period": {
+        "from": "2026-10-01",
+        "to": "2026-10-06",
+        "original_state": "pruebas de calibración de equipos con pasajeros"
+      },
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:brt:sur:ayacucho",
+      "nombre": "Ayacucho",
+      "tipo": "estacion",
+      "modo": "brt",
+      "lineas": [
+        "Sur"
+      ],
+      "project_ids": [
+        "pmu:brt:eje-brt-san-juan-de-miraflores-barranco-paseo-de-la-republica-panamericana-sur:h5"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "investigacion-aportada",
+          "pdf_page": null,
+          "printed_page": null,
+          "sha256": "e5df66ac7908cc95e63f692a7745abb56ed630794548fb070c10972ca76d3436",
+          "url": "https://www.emape.gob.pe/noticia/431",
+          "edition": "2026-10-13"
+        },
+        {
+          "source_id": "sur-2026",
+          "pdf_page": null,
+          "printed_page": null,
+          "sha256": "568c4b1b918ef3546a79c21f244f0dad7a01ecb5dab930b8430f8b735199ad9c",
+          "url": "https://www.gob.pe/institucion/emape/noticias/1350450-2-pasos-a-desnivel-agilizaran-el-transito-en-la-via-expresa-sur",
+          "edition": "2026-02"
+        }
+      ],
+      "aliases": [],
+      "sequence": 2,
+      "code": null,
+      "notes": "Cinco nombres transcritos de la investigación aportada; fuente EMAPE/431 no disponible (HTTP 502). EMAPE febrero 2026 confirma cantidad, no nombres.",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:brt:sur:castellana",
+      "nombre": "Castellana",
+      "tipo": "estacion",
+      "modo": "brt",
+      "lineas": [
+        "Sur"
+      ],
+      "project_ids": [
+        "pmu:brt:eje-brt-san-juan-de-miraflores-barranco-paseo-de-la-republica-panamericana-sur:h5"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "investigacion-aportada",
+          "pdf_page": null,
+          "printed_page": null,
+          "sha256": "e5df66ac7908cc95e63f692a7745abb56ed630794548fb070c10972ca76d3436",
+          "url": "https://www.emape.gob.pe/noticia/431",
+          "edition": "2026-10-13"
+        },
+        {
+          "source_id": "sur-2026",
+          "pdf_page": null,
+          "printed_page": null,
+          "sha256": "568c4b1b918ef3546a79c21f244f0dad7a01ecb5dab930b8430f8b735199ad9c",
+          "url": "https://www.gob.pe/institucion/emape/noticias/1350450-2-pasos-a-desnivel-agilizaran-el-transito-en-la-via-expresa-sur",
+          "edition": "2026-02"
+        }
+      ],
+      "aliases": [],
+      "sequence": 1,
+      "code": null,
+      "notes": "Cinco nombres transcritos de la investigación aportada; fuente EMAPE/431 no disponible (HTTP 502). EMAPE febrero 2026 confirma cantidad, no nombres.",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:brt:sur:panamericana-sur",
+      "nombre": "Panamericana Sur",
+      "tipo": "estacion",
+      "modo": "brt",
+      "lineas": [
+        "Sur"
+      ],
+      "project_ids": [
+        "pmu:brt:eje-brt-san-juan-de-miraflores-barranco-paseo-de-la-republica-panamericana-sur:h5"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "investigacion-aportada",
+          "pdf_page": null,
+          "printed_page": null,
+          "sha256": "e5df66ac7908cc95e63f692a7745abb56ed630794548fb070c10972ca76d3436",
+          "url": "https://www.emape.gob.pe/noticia/431",
+          "edition": "2026-10-13"
+        },
+        {
+          "source_id": "sur-2026",
+          "pdf_page": null,
+          "printed_page": null,
+          "sha256": "568c4b1b918ef3546a79c21f244f0dad7a01ecb5dab930b8430f8b735199ad9c",
+          "url": "https://www.gob.pe/institucion/emape/noticias/1350450-2-pasos-a-desnivel-agilizaran-el-transito-en-la-via-expresa-sur",
+          "edition": "2026-02"
+        }
+      ],
+      "aliases": [],
+      "sequence": 5,
+      "code": null,
+      "notes": "Cinco nombres transcritos de la investigación aportada; fuente EMAPE/431 no disponible (HTTP 502). EMAPE febrero 2026 confirma cantidad, no nombres.",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:brt:sur:proceres",
+      "nombre": "Próceres",
+      "tipo": "estacion",
+      "modo": "brt",
+      "lineas": [
+        "Sur"
+      ],
+      "project_ids": [
+        "pmu:brt:eje-brt-san-juan-de-miraflores-barranco-paseo-de-la-republica-panamericana-sur:h5"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "investigacion-aportada",
+          "pdf_page": null,
+          "printed_page": null,
+          "sha256": "e5df66ac7908cc95e63f692a7745abb56ed630794548fb070c10972ca76d3436",
+          "url": "https://www.emape.gob.pe/noticia/431",
+          "edition": "2026-10-13"
+        },
+        {
+          "source_id": "sur-2026",
+          "pdf_page": null,
+          "printed_page": null,
+          "sha256": "568c4b1b918ef3546a79c21f244f0dad7a01ecb5dab930b8430f8b735199ad9c",
+          "url": "https://www.gob.pe/institucion/emape/noticias/1350450-2-pasos-a-desnivel-agilizaran-el-transito-en-la-via-expresa-sur",
+          "edition": "2026-02"
+        }
+      ],
+      "aliases": [],
+      "sequence": 4,
+      "code": null,
+      "notes": "Cinco nombres transcritos de la investigación aportada; fuente EMAPE/431 no disponible (HTTP 502). EMAPE febrero 2026 confirma cantidad, no nombres.",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:brt:sur:surco",
+      "nombre": "Surco",
+      "tipo": "estacion",
+      "modo": "brt",
+      "lineas": [
+        "Sur"
+      ],
+      "project_ids": [
+        "pmu:brt:eje-brt-san-juan-de-miraflores-barranco-paseo-de-la-republica-panamericana-sur:h5"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "investigacion-aportada",
+          "pdf_page": null,
+          "printed_page": null,
+          "sha256": "e5df66ac7908cc95e63f692a7745abb56ed630794548fb070c10972ca76d3436",
+          "url": "https://www.emape.gob.pe/noticia/431",
+          "edition": "2026-10-13"
+        },
+        {
+          "source_id": "sur-2026",
+          "pdf_page": null,
+          "printed_page": null,
+          "sha256": "568c4b1b918ef3546a79c21f244f0dad7a01ecb5dab930b8430f8b735199ad9c",
+          "url": "https://www.gob.pe/institucion/emape/noticias/1350450-2-pasos-a-desnivel-agilizaran-el-transito-en-la-via-expresa-sur",
+          "edition": "2026-02"
+        }
+      ],
+      "aliases": [],
+      "sequence": 3,
+      "code": null,
+      "notes": "Cinco nombres transcritos de la investigación aportada; fuente EMAPE/431 no disponible (HTTP 502). EMAPE febrero 2026 confirma cantidad, no nombres.",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:brt:universitaria:carlos-izaguirre",
+      "nombre": "Carlos Izaguirre",
+      "tipo": "estacion",
+      "modo": "brt",
+      "lineas": [
+        "Universitaria"
+      ],
+      "project_ids": [
+        "pmu:brt:eje-brt-comas-san-martin-de-porres-universitaria:h5"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "universitaria-2025",
+          "pdf_page": null,
+          "printed_page": null,
+          "sha256": "5838acfe438d86de479614676d7f2d8835114fff4d2ce93dbc1292b2dda0bfef",
+          "url": "https://www.gob.pe/institucion/emape/noticias/1104364-nuevo-corredor-vial-en-la-avenida-universitaria-de-comas-a-san-martin-de-porres-en-30-minutos",
+          "edition": "2025-01-27"
+        }
+      ],
+      "aliases": [],
+      "sequence": 2,
+      "code": null,
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:centro_transferencia:naranjal",
+      "nombre": "Naranjal",
+      "tipo": "centro_transferencia",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [
+        "pmu:brt:eje-brt-metropolitano-chorrillos-independencia-paseo-de-la-republica:h0"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 224,
+          "printed_page": 208,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "connections": "Terminal Metropolitano",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:centro_transferencia:tomas-valle",
+      "nombre": "Tomás Valle",
+      "tipo": "centro_transferencia",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [
+        "pmu:brt:eje-brt-metropolitano-chorrillos-independencia-paseo-de-la-republica:h0",
+        "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10",
+        "pmu:metro:eje-ferroviario-urbano-linea-9-san-miguel-rimac:h20"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 224,
+          "printed_page": 208,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "connections": "L3, L9, Metropolitano",
+      "notes": "Figura 75: rótulo contiguo a dos símbolos; no se atribuye una posición sin aclaración.",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:centro_transferencia:villa-el-salvador",
+      "nombre": "Villa el Salvador",
+      "tipo": "centro_transferencia",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-1-villa-el-salvador-san-juan-de-lurigancho:h0"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 224,
+          "printed_page": 208,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "connections": "L1, tren Lima-Ica",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l2:buenos-aires",
+      "nombre": "Buenos Aires",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L2"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5"
+      ],
+      "estado": "en_construccion",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "ositran-2024",
+          "pdf_page": 7,
+          "printed_page": null,
+          "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+          "edition": "2024-09"
+        }
+      ],
+      "aliases": [],
+      "sequence": 2,
+      "code": "E-02",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l2:elio",
+      "nombre": "Elio",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L2"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5"
+      ],
+      "estado": "en_construccion",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "ositran-2024",
+          "pdf_page": 7,
+          "printed_page": null,
+          "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+          "edition": "2024-09"
+        }
+      ],
+      "aliases": [],
+      "sequence": 8,
+      "code": "E-08",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l2:municipalidad-de-ate",
+      "nombre": "Municipalidad de Ate",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L2"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5"
+      ],
+      "estado": "en_construccion",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "ositran-2024",
+          "pdf_page": 7,
+          "printed_page": null,
+          "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+          "edition": "2024-09"
+        }
+      ],
+      "aliases": [],
+      "sequence": 27,
+      "code": "E-27",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l2:nicolas-ayllon",
+      "nombre": "Nicolás Ayllón",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L2"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5"
+      ],
+      "estado": "en_construccion",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "ositran-2024",
+          "pdf_page": 7,
+          "printed_page": null,
+          "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+          "edition": "2024-09"
+        }
+      ],
+      "aliases": [],
+      "sequence": 17,
+      "code": "E-17",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l2:parque-murillo",
+      "nombre": "Parque Murillo",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L2"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5"
+      ],
+      "estado": "en_construccion",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "ositran-2024",
+          "pdf_page": 7,
+          "printed_page": null,
+          "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+          "edition": "2024-09"
+        }
+      ],
+      "aliases": [],
+      "sequence": 11,
+      "code": "E-11",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l2:prolongacion-javier-prado",
+      "nombre": "Prolongación Javier Prado",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L2"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5"
+      ],
+      "estado": "en_construccion",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "ositran-2024",
+          "pdf_page": 7,
+          "printed_page": null,
+          "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+          "edition": "2024-09"
+        }
+      ],
+      "aliases": [],
+      "sequence": 26,
+      "code": "E-26",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l2:san-marcos",
+      "nombre": "San Marcos",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L2"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5"
+      ],
+      "estado": "en_construccion",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "ositran-2024",
+          "pdf_page": 7,
+          "printed_page": null,
+          "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+          "edition": "2024-09"
+        }
+      ],
+      "aliases": [],
+      "sequence": 7,
+      "code": "E-07",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l2:vista-alegre",
+      "nombre": "Vista Alegre",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L2"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5"
+      ],
+      "estado": "en_construccion",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "ositran-2024",
+          "pdf_page": 7,
+          "printed_page": null,
+          "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+          "edition": "2024-09"
+        }
+      ],
+      "aliases": [],
+      "sequence": 25,
+      "code": "E-25",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l3:2-de-octubre",
+      "nombre": "2 de Octubre",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L3"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10"
+      ],
+      "estado": "estacion_de_estudio",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "atu-congreso",
+          "pdf_page": 26,
+          "printed_page": null,
+          "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+          "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "edition": "2025-11"
+        }
+      ],
+      "aliases": [],
+      "sequence": 3,
+      "code": null,
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l3:alejandro-velasco",
+      "nombre": "Alejandro Velasco",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L3"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10"
+      ],
+      "estado": "estacion_de_estudio",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "atu-congreso",
+          "pdf_page": 26,
+          "printed_page": null,
+          "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+          "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "edition": "2025-11"
+        }
+      ],
+      "aliases": [
+        "Alejandro Velasco"
+      ],
+      "sequence": 25,
+      "code": null,
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l3:bartolome-de-las-casas",
+      "nombre": "Bartolomé de las Casas",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L3"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10"
+      ],
+      "estado": "estacion_de_estudio",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "atu-congreso",
+          "pdf_page": 26,
+          "printed_page": null,
+          "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+          "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "edition": "2025-11"
+        }
+      ],
+      "aliases": [],
+      "sequence": 8,
+      "code": null,
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l3:cabitos",
+      "nombre": "Cabitos",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L3"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10"
+      ],
+      "estado": "estacion_de_estudio",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "atu-congreso",
+          "pdf_page": 26,
+          "printed_page": null,
+          "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+          "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "edition": "2025-11"
+        }
+      ],
+      "aliases": [],
+      "sequence": 24,
+      "code": null,
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l3:caqueta",
+      "nombre": "Caquetá",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L3"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10"
+      ],
+      "estado": "estacion_de_estudio",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "atu-congreso",
+          "pdf_page": 26,
+          "printed_page": null,
+          "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+          "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "edition": "2025-11"
+        }
+      ],
+      "aliases": [],
+      "sequence": 10,
+      "code": null,
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l3:carlos-izaguirre",
+      "nombre": "Carlos Izaguirre",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L3"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10"
+      ],
+      "estado": "estacion_de_estudio",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "atu-congreso",
+          "pdf_page": 26,
+          "printed_page": null,
+          "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+          "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "edition": "2025-11"
+        }
+      ],
+      "aliases": [],
+      "sequence": 6,
+      "code": null,
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l3:cesar-canevaro",
+      "nombre": "César Canevaro",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L3"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10"
+      ],
+      "estado": "estacion_de_estudio",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "atu-congreso",
+          "pdf_page": 26,
+          "printed_page": null,
+          "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+          "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "edition": "2025-11"
+        }
+      ],
+      "aliases": [],
+      "sequence": 16,
+      "code": null,
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l3:el-alamo",
+      "nombre": "El Álamo",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L3"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10"
+      ],
+      "estado": "estacion_de_estudio",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "atu-congreso",
+          "pdf_page": 26,
+          "printed_page": null,
+          "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+          "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "edition": "2025-11"
+        }
+      ],
+      "aliases": [],
+      "sequence": 1,
+      "code": null,
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l3:estacion-central",
+      "nombre": "Estación Central",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L3"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10"
+      ],
+      "estado": "estacion_de_estudio",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "atu-congreso",
+          "pdf_page": 26,
+          "printed_page": null,
+          "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+          "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "edition": "2025-11"
+        }
+      ],
+      "aliases": [],
+      "sequence": 13,
+      "code": null,
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l3:garcilaso-de-la-vega",
+      "nombre": "Garcilaso de la Vega",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L3"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10"
+      ],
+      "estado": "estacion_de_estudio",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "atu-congreso",
+          "pdf_page": 26,
+          "printed_page": null,
+          "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+          "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "edition": "2025-11"
+        }
+      ],
+      "aliases": [],
+      "sequence": 12,
+      "code": null,
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l3:huaca-pucllana",
+      "nombre": "Huaca Pucllana",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L3"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10"
+      ],
+      "estado": "estacion_de_estudio",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "atu-congreso",
+          "pdf_page": 26,
+          "printed_page": null,
+          "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+          "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "edition": "2025-11"
+        }
+      ],
+      "aliases": [],
+      "sequence": 19,
+      "code": null,
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l3:huandoy",
+      "nombre": "Huandoy",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L3"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10"
+      ],
+      "estado": "estacion_de_estudio",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "atu-congreso",
+          "pdf_page": 26,
+          "printed_page": null,
+          "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+          "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "edition": "2025-11"
+        }
+      ],
+      "aliases": [],
+      "sequence": 2,
+      "code": null,
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l3:jose-granda",
+      "nombre": "José Granda",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L3"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10"
+      ],
+      "estado": "estacion_de_estudio",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "atu-congreso",
+          "pdf_page": 26,
+          "printed_page": null,
+          "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+          "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "edition": "2025-11"
+        }
+      ],
+      "aliases": [],
+      "sequence": 9,
+      "code": null,
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l3:juana-alarco",
+      "nombre": "Juana Alarco",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L3"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10"
+      ],
+      "estado": "estacion_de_estudio",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "atu-congreso",
+          "pdf_page": 26,
+          "printed_page": null,
+          "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+          "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "edition": "2025-11"
+        }
+      ],
+      "aliases": [],
+      "sequence": 23,
+      "code": null,
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l3:la-reserva",
+      "nombre": "Parque de la Reserva",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L3"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10"
+      ],
+      "estado": "estacion_de_estudio",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "atu-congreso",
+          "pdf_page": 26,
+          "printed_page": null,
+          "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+          "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "edition": "2025-11"
+        }
+      ],
+      "aliases": [
+        "La Reserva"
+      ],
+      "sequence": 14,
+      "code": null,
+      "notes": "El plano ATU descargado rotula Parque de la Reserva; la investigación aportada propone la variante La Reserva.",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l3:las-gardenias",
+      "nombre": "Las Gardenias",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L3"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10"
+      ],
+      "estado": "estacion_de_estudio",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "atu-congreso",
+          "pdf_page": 26,
+          "printed_page": null,
+          "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+          "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "edition": "2025-11"
+        }
+      ],
+      "aliases": [],
+      "sequence": 26,
+      "code": null,
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l3:los-heroes",
+      "nombre": "Los Héroes",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L3"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10"
+      ],
+      "estado": "estacion_de_estudio",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "atu-congreso",
+          "pdf_page": 26,
+          "printed_page": null,
+          "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+          "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "edition": "2025-11"
+        }
+      ],
+      "aliases": [],
+      "sequence": 27,
+      "code": null,
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l3:naranjal",
+      "nombre": "Naranjal",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L3"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10"
+      ],
+      "estado": "estacion_de_estudio",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "atu-congreso",
+          "pdf_page": 26,
+          "printed_page": null,
+          "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+          "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "edition": "2025-11"
+        }
+      ],
+      "aliases": [],
+      "sequence": 5,
+      "code": null,
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l3:panama",
+      "nombre": "Panamá",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L3"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10"
+      ],
+      "estado": "estacion_de_estudio",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "atu-congreso",
+          "pdf_page": 26,
+          "printed_page": null,
+          "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+          "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "edition": "2025-11"
+        }
+      ],
+      "aliases": [],
+      "sequence": 22,
+      "code": null,
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l3:parque-central-de-miraflores",
+      "nombre": "Parque Central de Miraflores",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L3"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10"
+      ],
+      "estado": "estacion_de_estudio",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "atu-congreso",
+          "pdf_page": 26,
+          "printed_page": null,
+          "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+          "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "edition": "2025-11"
+        }
+      ],
+      "aliases": [],
+      "sequence": 20,
+      "code": null,
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l3:parque-de-la-historia-natural",
+      "nombre": "Museo de Historia Natural",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L3"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10"
+      ],
+      "estado": "estacion_de_estudio",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "atu-congreso",
+          "pdf_page": 26,
+          "printed_page": null,
+          "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+          "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "edition": "2025-11"
+        }
+      ],
+      "aliases": [
+        "Parque de la Historia Natural"
+      ],
+      "sequence": 15,
+      "code": null,
+      "notes": "El plano ATU descargado rotula Museo de Historia Natural; la investigación aportada propone la variante Parque de la Historia Natural.",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l3:parque-reducto",
+      "nombre": "Parque Reducto",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L3"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10"
+      ],
+      "estado": "estacion_de_estudio",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "atu-congreso",
+          "pdf_page": 26,
+          "printed_page": null,
+          "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+          "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "edition": "2025-11"
+        }
+      ],
+      "aliases": [],
+      "sequence": 21,
+      "code": null,
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l3:pedro-miotta",
+      "nombre": "Pedro Miotta",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L3"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10"
+      ],
+      "estado": "estacion_de_estudio",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "atu-congreso",
+          "pdf_page": 26,
+          "printed_page": null,
+          "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+          "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "edition": "2025-11"
+        }
+      ],
+      "aliases": [],
+      "sequence": 28,
+      "code": null,
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l3:tacna",
+      "nombre": "Tacna",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L3"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10"
+      ],
+      "estado": "estacion_de_estudio",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "atu-congreso",
+          "pdf_page": 26,
+          "printed_page": null,
+          "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+          "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "edition": "2025-11"
+        }
+      ],
+      "aliases": [],
+      "sequence": 11,
+      "code": null,
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l3:tomas-valle",
+      "nombre": "Tomás Valle",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L3"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10"
+      ],
+      "estado": "estacion_de_estudio",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "atu-congreso",
+          "pdf_page": 26,
+          "printed_page": null,
+          "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+          "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "edition": "2025-11"
+        }
+      ],
+      "aliases": [],
+      "sequence": 7,
+      "code": null,
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l3:villa-sol",
+      "nombre": "Villa Sol",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L3"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10"
+      ],
+      "estado": "estacion_de_estudio",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "atu-congreso",
+          "pdf_page": 26,
+          "printed_page": null,
+          "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+          "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "edition": "2025-11"
+        }
+      ],
+      "aliases": [],
+      "sequence": 4,
+      "code": null,
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l4-ramal:el-olivar",
+      "nombre": "El Olivar",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L4-ramal"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-4-callao-bellavista-ramal:h5"
+      ],
+      "estado": "en_construccion",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "ositran-2024",
+          "pdf_page": 7,
+          "printed_page": null,
+          "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+          "edition": "2024-09"
+        }
+      ],
+      "aliases": [],
+      "sequence": 5,
+      "code": "E-05",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l4-ramal:morales-duarez",
+      "nombre": "Morales Duárez",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L4-ramal"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-4-callao-bellavista-ramal:h5"
+      ],
+      "estado": "en_construccion",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "ositran-2024",
+          "pdf_page": 7,
+          "printed_page": null,
+          "sha256": "016c6021de0f060528ced9133806363f6b5eca524550d1b59a63c0f7ecde2e62",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/7039215/6058708-boletin-informativo-ositran-comunica-septiembre-2024.pdf?v=1727991989",
+          "edition": "2024-09"
+        }
+      ],
+      "aliases": [],
+      "sequence": 7,
+      "code": "E-07",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l4:brasil",
+      "nombre": "Brasil",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L4"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10"
+      ],
+      "estado": "estacion_de_estudio",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "atu-congreso",
+          "pdf_page": 27,
+          "printed_page": null,
+          "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+          "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "edition": "2025-11"
+        }
+      ],
+      "aliases": [],
+      "sequence": 5,
+      "code": null,
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l4:jose-de-sucre",
+      "nombre": "José de Sucre",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L4"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10"
+      ],
+      "estado": "estacion_de_estudio",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "atu-congreso",
+          "pdf_page": 27,
+          "printed_page": null,
+          "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+          "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "edition": "2025-11"
+        }
+      ],
+      "aliases": [],
+      "sequence": 4,
+      "code": null,
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l4:la-cultura",
+      "nombre": "La Cultura",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L4"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10"
+      ],
+      "estado": "estacion_de_estudio",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "atu-congreso",
+          "pdf_page": 27,
+          "printed_page": null,
+          "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+          "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "edition": "2025-11"
+        }
+      ],
+      "aliases": [],
+      "sequence": 12,
+      "code": null,
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l4:la-molina",
+      "nombre": "La Molina",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L4"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10"
+      ],
+      "estado": "estacion_de_estudio",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "atu-congreso",
+          "pdf_page": 27,
+          "printed_page": null,
+          "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+          "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "edition": "2025-11"
+        }
+      ],
+      "aliases": [],
+      "sequence": 17,
+      "code": null,
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l4:los-frutales",
+      "nombre": "Los Frutales",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L4"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10"
+      ],
+      "estado": "estacion_de_estudio",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "atu-congreso",
+          "pdf_page": 27,
+          "printed_page": null,
+          "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+          "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "edition": "2025-11"
+        }
+      ],
+      "aliases": [],
+      "sequence": 16,
+      "code": null,
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l4:manuel-olguin",
+      "nombre": "Manuel Olguín",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L4"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10"
+      ],
+      "estado": "estacion_de_estudio",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "atu-congreso",
+          "pdf_page": 27,
+          "printed_page": null,
+          "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+          "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "edition": "2025-11"
+        }
+      ],
+      "aliases": [],
+      "sequence": 15,
+      "code": null,
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l4:mayorazgo",
+      "nombre": "Mayorazgo",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L4"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10"
+      ],
+      "estado": "estacion_de_estudio",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "atu-congreso",
+          "pdf_page": 27,
+          "printed_page": null,
+          "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+          "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "edition": "2025-11"
+        }
+      ],
+      "aliases": [],
+      "sequence": 19,
+      "code": null,
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l4:mercado-santa-anita",
+      "nombre": "Mercado Santa Anita",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L4"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10"
+      ],
+      "estado": "estacion_de_estudio",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "atu-congreso",
+          "pdf_page": 27,
+          "printed_page": null,
+          "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+          "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "edition": "2025-11"
+        }
+      ],
+      "aliases": [],
+      "sequence": 20,
+      "code": null,
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l4:monterrico",
+      "nombre": "Monterrico",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L4"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10"
+      ],
+      "estado": "estacion_de_estudio",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "atu-congreso",
+          "pdf_page": 27,
+          "printed_page": null,
+          "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+          "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "edition": "2025-11"
+        }
+      ],
+      "aliases": [],
+      "sequence": 14,
+      "code": null,
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l4:pando",
+      "nombre": "Pando",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L4"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10"
+      ],
+      "estado": "estacion_de_estudio",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "atu-congreso",
+          "pdf_page": 27,
+          "printed_page": null,
+          "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+          "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "edition": "2025-11"
+        }
+      ],
+      "aliases": [],
+      "sequence": 3,
+      "code": null,
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l4:rafael-escardo",
+      "nombre": "Rafael Escardó",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L4"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10"
+      ],
+      "estado": "estacion_de_estudio",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "atu-congreso",
+          "pdf_page": 27,
+          "printed_page": null,
+          "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+          "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "edition": "2025-11"
+        }
+      ],
+      "aliases": [],
+      "sequence": 2,
+      "code": null,
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l4:san-luis",
+      "nombre": "San Luis",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L4"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10"
+      ],
+      "estado": "estacion_de_estudio",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "atu-congreso",
+          "pdf_page": 27,
+          "printed_page": null,
+          "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+          "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "edition": "2025-11"
+        }
+      ],
+      "aliases": [],
+      "sequence": 13,
+      "code": null,
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l4:santa-patricia",
+      "nombre": "Santa Patricia",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L4"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10"
+      ],
+      "estado": "estacion_de_estudio",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "atu-congreso",
+          "pdf_page": 27,
+          "printed_page": null,
+          "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+          "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "edition": "2025-11"
+        }
+      ],
+      "aliases": [],
+      "sequence": 18,
+      "code": null,
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:metro:l4:venezuela",
+      "nombre": "Venezuela",
+      "tipo": "estacion",
+      "modo": "metro",
+      "lineas": [
+        "L4"
+      ],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10"
+      ],
+      "estado": "estacion_de_estudio",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "atu-congreso",
+          "pdf_page": 27,
+          "printed_page": null,
+          "sha256": "c9961946a36fcdcdb9a1fc17573358607db639dfcb10c8b7997b92c580d28483",
+          "url": "https://www3.congreso.gob.pe/Docs/comisiones2025/consumidor/files/so-10-exposicion-atu-02-12-2025.pdf",
+          "edition": "2025-11"
+        }
+      ],
+      "aliases": [],
+      "sequence": 1,
+      "code": null,
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "station_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:nodo_dot:alcazar",
+      "nombre": "Alcazar",
+      "tipo": "nodo_dot",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-8-el-agustino-lima:h20",
+        "pmu:metro:eje-ferroviario-urbano-linea-9-san-miguel-rimac:h20"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 290,
+          "printed_page": 274,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "source_row": 43,
+      "source_row_text": "Lima Centro \nLINEA 8 / LINEA 9 \n  \n PMU",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:nodo_dot:antares",
+      "nombre": "Antares",
+      "tipo": "nodo_dot",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-6-san-martin-de-porres-el-agustino:h20",
+        "pmu:metro:eje-ferroviario-urbano-linea-9-san-miguel-rimac:h20"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 289,
+          "printed_page": 273,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "source_row": 38,
+      "source_row_text": "Lima Norte \nLINEA 6 / LINEA 9 / BRT COMAS SMP \n  \n PMU \n\n \nPlan de Movilidad Urbana para Lima y Callao \n \n                         274 \n2025-2045 \nNo.  \nNodo  \nUbicación  \nServicio propuesto \nEstudio \nPrevio \nReferencia",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:nodo_dot:aviacion",
+      "nombre": "Aviación",
+      "tipo": "nodo_dot",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-1-villa-el-salvador-san-juan-de-lurigancho:h0",
+        "pmu:metro:eje-ferroviario-urbano-linea-6-san-martin-de-porres-el-agustino:h20"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 289,
+          "printed_page": 273,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "source_row": 7,
+      "source_row_text": "Lima Centro \nLINEA 1 / LINEA 6 \n  \n PMU",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:nodo_dot:bayovar",
+      "nombre": "Bayovar",
+      "tipo": "nodo_dot",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-1-villa-el-salvador-san-juan-de-lurigancho:h0"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 290,
+          "printed_page": 274,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "source_row": 39,
+      "source_row_text": "Lima Este \nLINEA 1 / RAMAL BRYSON HILL / TELEF COMAS SJL \n  \n PMU",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:nodo_dot:brasil",
+      "nombre": "Brasil",
+      "tipo": "nodo_dot",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10",
+        "pmu:metro:eje-ferroviario-urbano-linea-4-callao-bellavista-ramal:h5"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 289,
+          "printed_page": 273,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "source_row": 34,
+      "source_row_text": "Lima Centro \nLINEA 4 / BRT LIMA MAGDALENA \n  \n PMU",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:nodo_dot:cabitos",
+      "nombre": "Cabitos",
+      "tipo": "nodo_dot",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-1-villa-el-salvador-san-juan-de-lurigancho:h0",
+        "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 289,
+          "printed_page": 273,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "source_row": 16,
+      "source_row_text": "Lima Centro \nLINEA 1 / LINEA 3 \nX \nJICA",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:nodo_dot:caja-de-agua",
+      "nombre": "Caja De Agua",
+      "tipo": "nodo_dot",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-8-el-agustino-lima:h20",
+        "pmu:metro:eje-ferroviario-urbano-linea-9-san-miguel-rimac:h20"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 289,
+          "printed_page": 273,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "source_row": 8,
+      "source_row_text": "Lima Este \nLINEA 8 / LINEA 9 \n  \n PMU",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:nodo_dot:canta-callao",
+      "nombre": "Canta Callao",
+      "tipo": "nodo_dot",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-6-san-martin-de-porres-el-agustino:h20"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 290,
+          "printed_page": 274,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "source_row": 40,
+      "source_row_text": "Lima Norte \nLINEA 6 / TREN LIMA BARRANC / COR. LOS OLIVOS \nVENT \n  \n PMU",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:nodo_dot:carmen-de-la-legua",
+      "nombre": "Carmen De La Legua",
+      "tipo": "nodo_dot",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5",
+        "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10",
+        "pmu:metro:eje-ferroviario-urbano-linea-4-callao-bellavista-ramal:h5"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 289,
+          "printed_page": 273,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "source_row": 21,
+      "source_row_text": "Callao \nLINEA 2 / LINEA 4 \nX \nMINAM",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:nodo_dot:chimpu-ocllo",
+      "nombre": "Chimpu Ocllo",
+      "tipo": "nodo_dot",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [
+        "pmu:brt:eje-brt-metropolitano-ampliacion-norte-carabayllo-independencia-universitaria-metropolitana:h0"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 289,
+          "printed_page": 273,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "source_row": 33,
+      "source_row_text": "Lima Norte \nMETROPOLITANO / RAMAL BRYSON HILL \nX \nJICA",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:nodo_dot:chuquitanta",
+      "nombre": "Chuquitanta",
+      "tipo": "nodo_dot",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-7-callao-ancon:h10"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 289,
+          "printed_page": 273,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "source_row": 37,
+      "source_row_text": "Callao \nLINEA 7 / COR. LOS OLIVOS CALLAO \n  \n PMU",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:nodo_dot:ciudad-bicentenario",
+      "nombre": "Ciudad Bicentenario",
+      "tipo": "nodo_dot",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-7-callao-ancon:h10"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 289,
+          "printed_page": 273,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "source_row": 2,
+      "source_row_text": "Lima Norte \nLINEA 7/ TREN LIMA BARRANC \nX \n PM CB",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:nodo_dot:el-alamo",
+      "nombre": "El Alamo",
+      "tipo": "nodo_dot",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 289,
+          "printed_page": 273,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "source_row": 27,
+      "source_row_text": "Lima Norte \nLINEA 3 / COR. CARABAY CALLAO \n  \n PDU LNPDU \nLN",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:nodo_dot:estacion-central",
+      "nombre": "Estación Central",
+      "tipo": "nodo_dot",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [
+        "pmu:brt:eje-brt-metropolitano-chorrillos-independencia-paseo-de-la-republica:h0",
+        "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5",
+        "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10",
+        "pmu:metro:eje-ferroviario-urbano-linea-8-el-agustino-lima:h20"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 289,
+          "printed_page": 273,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "source_row": 31,
+      "source_row_text": "Lima Centro \nLINEA 2 / LINEA 3 / LINEA 8 / METROPOLIT \nX \nBanco \nMundial",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:nodo_dot:evitamiento",
+      "nombre": "Evitamiento",
+      "tipo": "nodo_dot",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 289,
+          "printed_page": 273,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "source_row": 9,
+      "source_row_text": "Lima Este \nLINEA 2 BRT SMP - SJM \n  \n PMU",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:nodo_dot:gamarra",
+      "nombre": "Gamarra",
+      "tipo": "nodo_dot",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-1-villa-el-salvador-san-juan-de-lurigancho:h0"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 289,
+          "printed_page": 273,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "source_row": 17,
+      "source_row_text": "Lima Centro \nLINEA 1 \nX \nMINAM",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:nodo_dot:gambetta",
+      "nombre": "Gambetta",
+      "tipo": "nodo_dot",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10",
+        "pmu:metro:eje-ferroviario-urbano-linea-4-callao-bellavista-ramal:h5",
+        "pmu:metro:eje-ferroviario-urbano-linea-7-callao-ancon:h10"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 289,
+          "printed_page": 273,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "source_row": 13,
+      "source_row_text": "Callao \nLINEA 4 / LINEA 7 / TREN LIMA BAR / BRT CALLAO-\nIND \n  \n PMU",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:nodo_dot:huaca-pucllana",
+      "nombre": "Huaca Pucllana",
+      "tipo": "nodo_dot",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10",
+        "pmu:metro:eje-ferroviario-urbano-linea-6-san-martin-de-porres-el-agustino:h20"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 289,
+          "printed_page": 273,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "source_row": 28,
+      "source_row_text": "Lima Centro \nLINEA 3 / LINEA 6 \n  \n PMUPMU",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:nodo_dot:huamantanga",
+      "nombre": "Huamantanga",
+      "tipo": "nodo_dot",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 289,
+          "printed_page": 273,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "source_row": 3,
+      "source_row_text": "Lima Norte \nTREN LIMA BARRANCA / COR. PTE PIEDRA - RIMAC \n  \n PDU LN",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:nodo_dot:huandoy",
+      "nombre": "Huandoy",
+      "tipo": "nodo_dot",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 289,
+          "printed_page": 273,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "source_row": 11,
+      "source_row_text": "Lima Norte \nLINEA 3 / TREN LIMA BARRANCA \n  \n PMU",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:nodo_dot:jorge-chavez",
+      "nombre": "Jorge Chávez",
+      "tipo": "nodo_dot",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-5-surquillo-villa-el-salvador:h20"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 290,
+          "printed_page": 274,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "source_row": 42,
+      "source_row_text": "Lima Centro \nLINEA 5 (LAS PALMAS) \n  \n PMU",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:nodo_dot:juan-pablo-ii",
+      "nombre": "Juan Pablo Ii",
+      "tipo": "nodo_dot",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5",
+        "pmu:metro:eje-ferroviario-urbano-linea-9-san-miguel-rimac:h20"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 289,
+          "printed_page": 273,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "source_row": 22,
+      "source_row_text": "Callao \nLINEA 2 / LINEA 9 \nX \nJICA",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:nodo_dot:la-cultura",
+      "nombre": "La Cultura",
+      "tipo": "nodo_dot",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-1-villa-el-salvador-san-juan-de-lurigancho:h0",
+        "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10",
+        "pmu:metro:eje-ferroviario-urbano-linea-4-callao-bellavista-ramal:h5"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 289,
+          "printed_page": 273,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "source_row": 30,
+      "source_row_text": "Lima Centro \nLINEA 1 / LINEA 4 \nX \nJICA",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:nodo_dot:los-heroes",
+      "nombre": "Los Héroes",
+      "tipo": "nodo_dot",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-1-villa-el-salvador-san-juan-de-lurigancho:h0",
+        "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 289,
+          "printed_page": 273,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "source_row": 12,
+      "source_row_text": "Lima Sur \nLINEA 1 / LINEA 3 / BRT SJM-BARRANCO / BRT \nSJM-SMP \n  \n PMU",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:nodo_dot:lurin",
+      "nombre": "Lurín",
+      "tipo": "nodo_dot",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 289,
+          "printed_page": 273,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "source_row": 6,
+      "source_row_text": "Lima Sur \nTREN LIMA ICA \n  \n PMU",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:nodo_dot:matellini",
+      "nombre": "Matellini",
+      "tipo": "nodo_dot",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [
+        "pmu:brt:eje-brt-metropolitano-chorrillos-independencia-paseo-de-la-republica:h0"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 290,
+          "printed_page": 274,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "source_row": 41,
+      "source_row_text": "Lima Sur \nMETROPOL / COR. CHOR HUAYLAS / COR. CHOR PTA HERM \n PMU",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:nodo_dot:mercado-santa-anita",
+      "nombre": "Mercado Santa Anita",
+      "tipo": "nodo_dot",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5",
+        "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10",
+        "pmu:metro:eje-ferroviario-urbano-linea-4-callao-bellavista-ramal:h5"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 289,
+          "printed_page": 273,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "source_row": 24,
+      "source_row_text": "Lima Este \nLINEA 2 / LINEA 4 / COR. PERIFERICO VIAL \n  \n PMU",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:nodo_dot:miguel-grau",
+      "nombre": "Miguel Grau",
+      "tipo": "nodo_dot",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-1-villa-el-salvador-san-juan-de-lurigancho:h0"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 289,
+          "printed_page": 273,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "source_row": 18,
+      "source_row_text": "Lima Centro \nLINEA 1 / BRT GRAU \nX \nJICA/IMP",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:nodo_dot:municipalidad-de-ate",
+      "nombre": "Municipalidad De Ate",
+      "tipo": "nodo_dot",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 289,
+          "printed_page": 273,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "source_row": 25,
+      "source_row_text": "Lima Este \nLINEA 2 / TREN CHOSICA / COR. ATE LURIG \n  \n PMU",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:nodo_dot:naranjal",
+      "nombre": "Naranjal",
+      "tipo": "nodo_dot",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [
+        "pmu:brt:eje-brt-metropolitano-chorrillos-independencia-paseo-de-la-republica:h0"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 289,
+          "printed_page": 273,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "source_row": 32,
+      "source_row_text": "Lima Norte \nMETROPOLITANO \nX \nMINAM",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:nodo_dot:panama",
+      "nombre": "Panama",
+      "tipo": "nodo_dot",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10",
+        "pmu:metro:eje-ferroviario-urbano-linea-5-surquillo-villa-el-salvador:h20"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 290,
+          "printed_page": 274,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "source_row": 44,
+      "source_row_text": "Lima Centro \nLINEA 3 / LINEA 5 \n  \nPMU",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:nodo_dot:pando",
+      "nombre": "Pando",
+      "tipo": "nodo_dot",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10",
+        "pmu:metro:eje-ferroviario-urbano-linea-4-callao-bellavista-ramal:h5",
+        "pmu:metro:eje-ferroviario-urbano-linea-6-san-martin-de-porres-el-agustino:h20"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 289,
+          "printed_page": 273,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "source_row": 14,
+      "source_row_text": "Lima Centro \nLINEA 4 / LINEA 6 \n  \n PMU",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:nodo_dot:pucusana",
+      "nombre": "Pucusana",
+      "tipo": "nodo_dot",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 289,
+          "printed_page": 273,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "source_row": 4,
+      "source_row_text": "Lima Balnearios  \nTREN LIMA ICA \n  \n PDU LBS",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:nodo_dot:puerto-callao",
+      "nombre": "Puerto Callao",
+      "tipo": "nodo_dot",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 289,
+          "printed_page": 273,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "source_row": 20,
+      "source_row_text": "Callao \nLINEA 2 \n  \n PMU",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:nodo_dot:punta-negra",
+      "nombre": "Punta Negra",
+      "tipo": "nodo_dot",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 289,
+          "printed_page": 273,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "source_row": 5,
+      "source_row_text": "Lima Balnearios  \nTREN LIMA ICA \n  \n PDU LBS",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:nodo_dot:rivera-navarrete",
+      "nombre": "Rivera Navarrete",
+      "tipo": "nodo_dot",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [
+        "pmu:brt:eje-brt-metropolitano-chorrillos-independencia-paseo-de-la-republica:h0",
+        "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10",
+        "pmu:metro:eje-ferroviario-urbano-linea-4-callao-bellavista-ramal:h5"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 289,
+          "printed_page": 273,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "source_row": 29,
+      "source_row_text": "Lima Centro \nLINEA 4 / METROPOLITANO \nX \nMINAM",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:nodo_dot:san-carlos",
+      "nombre": "San Carlos",
+      "tipo": "nodo_dot",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-1-villa-el-salvador-san-juan-de-lurigancho:h0"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 289,
+          "printed_page": 273,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "source_row": 19,
+      "source_row_text": "Lima Este \nLINEA 1 / CORREDOR BUS PERIFERICO VIAL \n  \n PMU",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:nodo_dot:tingo-maria",
+      "nombre": "Tingo Maria",
+      "tipo": "nodo_dot",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 289,
+          "printed_page": 273,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "source_row": 23,
+      "source_row_text": "Lima Centro \nLINEA 2 / COR. BREÑA CALLAO / COR. SAN \nMIGUEL LIM \nX \nBanco \nMundial",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:nodo_dot:tomas-valle",
+      "nombre": "Tomas Valle",
+      "tipo": "nodo_dot",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10",
+        "pmu:metro:eje-ferroviario-urbano-linea-9-san-miguel-rimac:h20"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 289,
+          "printed_page": 273,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "source_row": 10,
+      "source_row_text": "Lima Norte \nLINEA 3 / LINEA 9 / Teleférico SMP - SJL \n  \n PMU",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:nodo_dot:universitario-cientifico",
+      "nombre": "Universitario Científico",
+      "tipo": "nodo_dot",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 289,
+          "printed_page": 273,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "source_row": 1,
+      "source_row_text": "Lima Balnearios  \nCORREDOR VES - SAN BARTOLO \n  \n PDU LBS",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:nodo_dot:ventanilla",
+      "nombre": "Ventanilla",
+      "tipo": "nodo_dot",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-7-callao-ancon:h10"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 289,
+          "printed_page": 273,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "source_row": 35,
+      "source_row_text": "Callao \nLINEA 7 \n  \n PMU",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:nodo_dot:villa-el-salvador",
+      "nombre": "Villa El Salvador",
+      "tipo": "nodo_dot",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-1-villa-el-salvador-san-juan-de-lurigancho:h0"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 289,
+          "printed_page": 273,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "source_row": 15,
+      "source_row_text": "Lima Sur \nLINEA 1 / TREN LIMA ICA \n  \n PMU",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:nodo_dot:villa-sol",
+      "nombre": "Villa Sol",
+      "tipo": "nodo_dot",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 289,
+          "printed_page": 273,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "source_row": 26,
+      "source_row_text": "Lima Norte \nLINEA 3 / BRT COMAS SMP \n  \n PDU LNPDU \nLN",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:nodo_dot:zapallal",
+      "nombre": "Zapallal",
+      "tipo": "nodo_dot",
+      "modo": "intermodal",
+      "lineas": [],
+      "project_ids": [
+        "pmu:metro:eje-ferroviario-urbano-linea-7-callao-ancon:h10"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 289,
+          "printed_page": 273,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "source_row": 36,
+      "source_row_text": "Lima Norte \nLINEA 7 / TREN LIMA BARRANC / COR. CARAB PTE \nPIE \n  \n PDU LN",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "notes": "",
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:nodo_intermodal:teleferico-ventanilla-l7",
+      "nombre": "Interconexión teleférico Ventanilla–Puente Piedra / L7",
+      "tipo": "nodo_intermodal",
+      "modo": "infraestructura",
+      "lineas": [
+        "L7",
+        "Teleférico Ventanilla–Puente Piedra"
+      ],
+      "project_ids": [
+        "pmu:infraestructura:eje-teleferico-ventanilla-puente-piedra:h20",
+        "pmu:metro:eje-ferroviario-urbano-linea-7-callao-ancon:h10"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_pmu_node",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 169,
+          "printed_page": 153,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "notes": "Símbolo intermodal explícito en Figura 50; no se usa el cruce geométrico como estación.",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:terminal:teleferico:cajamarquilla",
+      "nombre": "Cajamarquilla",
+      "tipo": "terminal",
+      "modo": "infraestructura",
+      "lineas": [
+        "san-antonio-cajamarquilla"
+      ],
+      "project_ids": [
+        "pmu:infraestructura:eje-teleferico-lurigancho:h20"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 169,
+          "printed_page": 153,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "notes": "Terminal/interconexión dibujado en Figuras 49-52. Símbolo sin coordenada de ingeniería; mapa pendiente de controles independientes.",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:terminal:teleferico:comas-belaunde",
+      "nombre": "Comas · Belaunde",
+      "tipo": "terminal",
+      "modo": "infraestructura",
+      "lineas": [
+        "comas"
+      ],
+      "project_ids": [
+        "pmu:infraestructura:eje-teleferico-comas-san-juan-de-lurigancho:h20"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 170,
+          "printed_page": 154,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "notes": "Terminal/interconexión dibujado en Figuras 49-52. Símbolo sin coordenada de ingeniería; mapa pendiente de controles independientes.",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:terminal:teleferico:el-paraiso",
+      "nombre": "El Paraíso",
+      "tipo": "terminal",
+      "modo": "infraestructura",
+      "lineas": [
+        "vmt",
+        "manchay"
+      ],
+      "project_ids": [
+        "pmu:infraestructura:eje-teleferico-villa-maria-del-triunfo:h10",
+        "pmu:infraestructura:eje-teleferico-villa-maria-del-triunfo-pachacamac:h20"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 170,
+          "printed_page": 154,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "notes": "Terminal/interconexión dibujado en Figuras 49-52. Símbolo sin coordenada de ingeniería; mapa pendiente de controles independientes.",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:terminal:teleferico:manchay",
+      "nombre": "Manchay",
+      "tipo": "terminal",
+      "modo": "infraestructura",
+      "lineas": [
+        "manchay"
+      ],
+      "project_ids": [
+        "pmu:infraestructura:eje-teleferico-villa-maria-del-triunfo-pachacamac:h20"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 170,
+          "printed_page": 154,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "notes": "Terminal/interconexión dibujado en Figuras 49-52. Símbolo sin coordenada de ingeniería; mapa pendiente de controles independientes.",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:terminal:teleferico:puente-piedra",
+      "nombre": "Puente Piedra",
+      "tipo": "terminal",
+      "modo": "infraestructura",
+      "lineas": [
+        "ventanilla"
+      ],
+      "project_ids": [
+        "pmu:infraestructura:eje-teleferico-ventanilla-puente-piedra:h20"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 169,
+          "printed_page": 153,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "notes": "Terminal/interconexión dibujado en Figuras 49-52. Símbolo sin coordenada de ingeniería; mapa pendiente de controles independientes.",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:terminal:teleferico:san-antonio",
+      "nombre": "San Antonio",
+      "tipo": "terminal",
+      "modo": "infraestructura",
+      "lineas": [
+        "sjl-san-antonio",
+        "san-antonio-cajamarquilla"
+      ],
+      "project_ids": [
+        "pmu:infraestructura:eje-teleferico-lurigancho-san-juan-de-lurigancho:h10",
+        "pmu:infraestructura:eje-teleferico-lurigancho:h20"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 169,
+          "printed_page": 153,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "notes": "Terminal/interconexión dibujado en Figuras 49-52. Símbolo sin coordenada de ingeniería; mapa pendiente de controles independientes.",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:terminal:teleferico:sjl-bayovar",
+      "nombre": "SJL · Bayóvar",
+      "tipo": "terminal",
+      "modo": "infraestructura",
+      "lineas": [
+        "comas"
+      ],
+      "project_ids": [
+        "pmu:infraestructura:eje-teleferico-comas-san-juan-de-lurigancho:h20"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 170,
+          "printed_page": 154,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "notes": "Terminal/interconexión dibujado en Figuras 49-52. Símbolo sin coordenada de ingeniería; mapa pendiente de controles independientes.",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:terminal:teleferico:sjl-interconexion-l1",
+      "nombre": "SJL · Interconexión L1",
+      "tipo": "terminal",
+      "modo": "infraestructura",
+      "lineas": [
+        "smp",
+        "sjl-san-antonio"
+      ],
+      "project_ids": [
+        "pmu:infraestructura:eje-teleferico-san-martin-de-porres-san-juan-de-lurigancho:h5",
+        "pmu:infraestructura:eje-teleferico-lurigancho-san-juan-de-lurigancho:h10"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 169,
+          "printed_page": 153,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "notes": "Terminal/interconexión dibujado en Figuras 49-52. Símbolo sin coordenada de ingeniería; mapa pendiente de controles independientes.",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:terminal:teleferico:smp-terminal-plaza-norte",
+      "nombre": "SMP · Terminal Plaza Norte",
+      "tipo": "terminal",
+      "modo": "infraestructura",
+      "lineas": [
+        "smp"
+      ],
+      "project_ids": [
+        "pmu:infraestructura:eje-teleferico-san-martin-de-porres-san-juan-de-lurigancho:h5"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 169,
+          "printed_page": 153,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "notes": "Terminal/interconexión dibujado en Figuras 49-52. Símbolo sin coordenada de ingeniería; mapa pendiente de controles independientes.",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:terminal:teleferico:ventanilla",
+      "nombre": "Ventanilla",
+      "tipo": "terminal",
+      "modo": "infraestructura",
+      "lineas": [
+        "ventanilla"
+      ],
+      "project_ids": [
+        "pmu:infraestructura:eje-teleferico-ventanilla-puente-piedra:h20"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 169,
+          "printed_page": 153,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "notes": "Terminal/interconexión dibujado en Figuras 49-52. Símbolo sin coordenada de ingeniería; mapa pendiente de controles independientes.",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "axis_distance_m": {}
+    },
+    {
+      "id": "planificado:terminal:teleferico:vmt-interconexion-l1",
+      "nombre": "VMT · Interconexión L1",
+      "tipo": "terminal",
+      "modo": "infraestructura",
+      "lineas": [
+        "vmt"
+      ],
+      "project_ids": [
+        "pmu:infraestructura:eje-teleferico-villa-maria-del-triunfo:h10"
+      ],
+      "estado": "proyectado",
+      "existence_evidence": "explicit_official_project",
+      "source_refs": [
+        {
+          "source_id": "pmu-vol2",
+          "pdf_page": 170,
+          "printed_page": 154,
+          "sha256": "9025e4670dd6d918b582cb908321ffd26b0f5a79a14e79e991a25c4ff1da28d5",
+          "url": "https://cdn.www.gob.pe/uploads/document/file/9173500/7530942-volumen-ii-escenarios-y-planes-futuros%282%29.pdf?v=1766164056",
+          "edition": "2025-12"
+        }
+      ],
+      "aliases": [],
+      "notes": "Terminal/interconexión dibujado en Figuras 49-52. Símbolo sin coordenada de ingeniería; mapa pendiente de controles independientes.",
+      "operativo": false,
+      "ruteable": false,
+      "plannerEligible": false,
+      "geometry": null,
+      "source_geometry": null,
+      "display_geometry": null,
+      "location_method": "unlocated",
+      "location_status": "pending",
+      "coordinate_role": "planning_area_reference",
+      "uncertainty_m": null,
+      "uncertainty_note": "Ubicación pendiente de verificación",
+      "interchange_group": null,
+      "axis_distance_m": {}
+    }
+  ],
+  "missing_names": {
+    "Universitaria": 12
+  },
+  "research_gaps": [
+    {
+      "project": "L3 / L4 continuación",
+      "searched": "ATU Congreso 2025 pp. 26-27 y TSV-05 2022",
+      "result": "Plano ATU esquemático, sin georreferenciación; se conservan solo los 8 símbolos GeoPDF comprobados.",
+      "needed": "Planos de ingeniería o cartografía de estaciones actualizada."
+    },
+    {
+      "project": "Universitaria",
+      "searched": "EMAPE CUI 2619225; presentación técnica 2025 URL citada",
+      "result": "15 anunciadas, 3 referencias identificadas; presentación responde HTTP 502.",
+      "needed": "Estudio de demanda / expediente técnico con las 12 estaciones a nivel."
+    },
+    {
+      "project": "Teleféricos",
+      "searched": "PMU Vol II figuras 49-52 pp. PDF 169-170; anuncio ATU septiembre 2026",
+      "result": "Diagramas sin georreferenciación; no se equiparan versiones antiguas a ejes 2045.",
+      "needed": "Planos o controles independientes suficientes para digitalizar símbolos."
+    },
+    {
+      "project": "L1 extensión / L5-L9 / otros BRT y corredores",
+      "searched": "PMU ejes, CETRAM y DOT",
+      "result": "Nodos documentados; no listas completas de estaciones.",
+      "needed": "Estudios de estaciones específicos de cada proyecto."
+    },
+    {
+      "project": "APM / trenes de cercanía",
+      "searched": "PMU PDF 125 y 159",
+      "result": "Enlaces conceptuales, sin puntos de estación ni accesos del nuevo aeropuerto.",
+      "needed": "Expedientes MTC / ProInversión y planos de terminales."
+    },
+    {
+      "project": "DOT",
+      "searched": "Tabla 59 PDF 289-290 y Figura 108 PDF 291",
+      "result": "44 nombres; los símbolos de Figura 108 no están rotulados ni tienen IDs que permitan atribuirlos sin inferencia.",
+      "needed": "Capa GIS original o plano con identificadores de nodos."
+    }
+  ]
+}

@@ -74,6 +74,10 @@ def validate_site(root):
         import hashlib
         require(hashlib.sha256((raw / 'pmu_sit.geojson').read_bytes()).hexdigest() == manifest['sha256'], 'ATU PMU source hash mismatch')
         validate_pmu(read_json(pmu), read_json(raw / 'pmu_sit.geojson'), manifest)
+        stations = root / 'data/processed/planificado/estaciones_catalogo.json'
+        if stations.exists():
+            from pipeline.scripts.atu.validate_planned_stations import check
+            check(root)
     graph = read_json(local_file(root, 'pipeline/output/trip_graph.json'))
     validate_graph(graph)
     wr = read_json(local_file(root, 'pipeline/output/wr_map.json'))['routes']

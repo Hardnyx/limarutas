@@ -1,0 +1,5 @@
+# Optional document acquisition and georeferencing; offline validation uses stdlib.
+PyMuPDF==1.26.6
+pypdf==6.10.0
+numpy==2.3.5
+pyproj==3.8.0

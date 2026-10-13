@@ -8,6 +8,20 @@ import { leavesOfGroup, syncGroupCheckbox } from './uiSidebar.hierarchy.js';
 const labels = { metro: 'Metro', brt: 'BRT', corredor: 'Corredores', bus: 'Buses', infraestructura: 'Teleféricos e infraestructura' };
 const norm = value => String(value).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
 let loaded, group;
+let stationCatalog;
+const pointTypes={estacion:'Estaciones',centro_transferencia:'Centros de transferencia',nodo_intermodal:'Nodos intermodales',nodo_dot:'Nodos DOT',terminal:'Terminales'};
+const methodLabels={unlocated:'Ubicación pendiente de verificación',official_coordinate:'Coordenada oficial',geopdf_digitized:'Símbolo de GeoPDF',georeferenced_map_digitized:'Símbolo de mapa georreferenciado',documented_intersection:'Referencia de cruce vial'};
+
+function pointInfo(record){
+  const box=el('div',{class:'project-info'},el('strong',{},record.nombre),
+    el('p',{},pointTypes[record.tipo]+' · '+record.estado),
+    el('p',{},methodLabels[record.location_method]),el('p',{},record.uncertainty_note));
+  if(record.notes) box.append(el('p',{},record.notes));
+  if(record.connections) box.append(el('p',{},'Conexiones propuestas: '+record.connections));
+  for(const ref of record.source_refs) box.append(el('p',{},el('a',{href:ref.url,target:'_blank',rel:'noopener noreferrer'},
+    stationCatalog.sources[ref.source_id].name+' · '+ref.edition+(ref.pdf_page?' · PDF '+ref.pdf_page:''))));
+  return box;
+}
 
 function info(feature){
   const p = feature.properties;
@@ -19,29 +33,79 @@ function info(feature){
   if (p.source_last_modified) box.append(el('p', {}, 'Última modificación del archivo: '+new Date(p.source_last_modified).toLocaleDateString('es-PE',{timeZone:'UTC'})));
   box.append(el('a', { href: p.source_url, target: '_blank', rel: 'noopener noreferrer' }, 'Fuente ATU · '+p.source_dataset));
   if (p.horizonte === 0) box.append(el('p', {}, 'Escenario base del PMU; consulta la pestaña Rutas para los servicios operativos.'));
-  if (p.station_reference){
-    const reference = p.station_reference;
-    box.append(el('h3', {}, 'Estaciones de referencia'),
-      el('p', {}, 'Nombres del concesionario o del estudio citado; ubicación pendiente de verificación.'));
-    const stations = el('ol', {});
-    for (const station of reference.stations) stations.append(el('li', {}, station.name));
-    box.append(stations, el('a', {href: reference.sourceUrl, target: '_blank', rel: 'noopener noreferrer'}, 'Fuente de los nombres de estaciones'));
+  const records=stationCatalog?.records.filter(r=>r.project_ids.includes(p.id)) || [];
+  for(const [kind,label] of Object.entries(pointTypes)){
+    const matches=records.filter(r=>r.tipo===kind).sort((a,b)=>(a.sequence||0)-(b.sequence||0));
+    if(!matches.length) continue;
+    box.append(el('h3',{},label+' de referencia'),el('p',{},'Posiciones cartográficas y referencias aproximadas; no representan accesos ni servicios operativos.'));
+    const list=el('ol',{'data-point-type':kind});
+    for(const record of matches){
+      const name=record.geometry?el('button',{type:'button',class:'project-point-name'},record.nombre):el('span',{},record.nombre);
+      if(record.geometry) name.addEventListener('click',()=>{
+        state.map.setView([record.geometry.coordinates[1],record.geometry.coordinates[0]],16);
+        L.popup({pane:'projectPoints'}).setLatLng([record.geometry.coordinates[1],record.geometry.coordinates[0]]).setContent(pointInfo(record)).openOn(state.map);
+      });
+      const ref=record.source_refs[0];
+      list.append(el('li',{'data-point-id':record.id},name,
+        el('div',{class:'sub'},methodLabels[record.location_method]),
+        el('a',{class:'sub',href:ref.url,target:'_blank',rel:'noopener noreferrer'},stationCatalog.sources[ref.source_id].name+(ref.pdf_page?' · PDF '+ref.pdf_page:''))));
+    }
+    box.append(list);
   }
+  if(!records.some(r=>r.tipo==='estacion')) box.append(el('p',{class:'muted'},'No hay una lista de estaciones verificada para este eje.'));
+  if(/Línea 2/.test(p.nombre)) box.append(el('p',{class:'muted'},'Las cinco estaciones ya operativas de L2 se consultan en Rutas y no se duplican como futuras.'));
   return box;
 }
 
 export function mountExplorePane(){
   const pane = el('div', { class: 'side-pane', id: 'explorePane', role: 'tabpanel', 'aria-labelledby': 'tabExplore', hidden: '' });
   const title = el('h2', {}, 'Red proyectada ATU');
-  const note = el('p', { class: 'muted' }, 'Trazados del PMU 2025-2045. No participan en Cómo llegar. La fuente no incluye puntos de estaciones.');
+  const note = el('p', { class: 'muted' }, 'Trazados del PMU 2025-2045 y estaciones documentadas. No participan en Cómo llegar. Los puntos aproximados indican su método y fuente.');
   const search = el('input', { type: 'search', placeholder: 'Buscar un proyecto o avenida', 'aria-label': 'Buscar proyectos ATU' });
   const horizon = el('select', { 'aria-label': 'Horizonte del proyecto' }, el('option', { value: '' }, 'Todos los horizontes'));
   const count = el('p', { class: 'muted', role: 'status', id: 'exploreCount' }, 'Abre Explorar para cargar los proyectos.');
   const clear = el('button', { type: 'button', class: 'btn small' }, 'Quitar proyectos del mapa');
   const list = el('div', { class: 'explore-list', id: 'explorePanels' });
   const details = el('div', { id:'projectDetails', hidden:'' });
-  pane.append(title,note,search,el('div',{class:'explore-filters'},horizon),clear,count,list);
+  const pointControls=el('fieldset',{class:'project-point-controls'},el('legend',{},'Estaciones y nodos proyectados'));
+  const pointChecks=new Map();
+  for(const [kind,label] of Object.entries(pointTypes)){
+    const input=el('input',{type:'checkbox','data-point-type':kind});input.checked=kind==='estacion';
+    pointChecks.set(kind,input);pointControls.append(el('label',{},input,' '+label));
+    input.addEventListener('change',()=>drawPoints());
+  }
+  const pointCount=el('p',{class:'muted',id:'explorePointCount',role:'status'});
+  const nodeList=el('details',{id:'exploreNodeList',hidden:''});
+  pane.append(title,note,search,el('div',{class:'explore-filters'},horizon),pointControls,pointCount,nodeList,clear,count,list);
   const selected = new Map();
+  let pointGroup;
+  const drawPoints=()=>{
+    if(!pointGroup || !stationCatalog) return;
+    pointGroup.clearLayers();
+    const records=stationCatalog.records.filter(r=>pointChecks.get(r.tipo)?.checked &&
+      (selected.size?r.project_ids.some(id=>selected.has(id)):r.tipo!=='estacion'));
+    nodeList.hidden=!!selected.size || !records.length;
+    nodeList.replaceChildren(el('summary',{},'Nodos documentados · '+records.length));
+    if(!nodeList.hidden){
+      const names=el('ul',{});
+      for(const record of records){
+        const ref=record.source_refs[0];
+        names.append(el('li',{},record.nombre,el('div',{class:'sub'},methodLabels[record.location_method]),
+          el('a',{class:'sub',href:ref.url,target:'_blank',rel:'noopener noreferrer'},stationCatalog.sources[ref.source_id].name+(ref.pdf_page?' · PDF '+ref.pdf_page:''))));
+      }
+      nodeList.append(names);
+    }
+    for(const record of records.filter(r=>r.geometry)){
+      const feature=stationCatalog.axes.get(record.project_ids.find(id=>selected.has(id))) || stationCatalog.axes.get(record.project_ids[0]);
+      const color=record.tipo==='estacion'?(feature?.properties.color || '#657786'):'#7654b3';
+      const symbol=record.tipo==='estacion'?'○':record.tipo==='centro_transferencia'?'◆':record.tipo==='nodo_dot'?'■':'△';
+      const marker=L.marker([record.geometry.coordinates[1],record.geometry.coordinates[0]],{pane:'projectPoints',
+        icon:L.divIcon({className:'project-point-icon',html:`<span style="color:${color}">${symbol}</span>`,iconSize:[22,22],iconAnchor:[11,11]}),
+        title:record.nombre+' · '+methodLabels[record.location_method]});
+      marker.bindPopup(()=>pointInfo(record),{pane:'projectPoints'});pointGroup.addLayer(marker);
+    }
+    pointCount.textContent=records.filter(r=>r.geometry).length+' puntos visibles · '+records.filter(r=>!r.geometry).length+' ubicaciones pendientes';
+  };
   const rows = [], groups = new Map();
   let beforeFilter;
   const syncGroups = () => {
@@ -55,6 +119,8 @@ export function mountExplorePane(){
   clear.addEventListener('click', () => {
     group?.clearLayers(); selected.clear(); details.hidden=true; details.replaceChildren();
     rows.forEach(row => { row.querySelector('input').checked=false; });
+    for(const [kind,input] of pointChecks) input.checked=kind==='estacion';
+    drawPoints();state.map.closePopup();
     syncGroups();
   });
   const filter = () => {
@@ -89,9 +155,11 @@ export function mountExplorePane(){
     if(loaded) return loaded;
     count.textContent='Cargando proyectos ATU…';
     loaded=(async()=>{
-      const [data,catalog]=await Promise.all([fetchJSON('data/processed/planificado/red.geojson'),fetchJSON('data/processed/planificado/catalog.json')]);
+      const [data,catalog,points]=await Promise.all([fetchJSON('data/processed/planificado/red.geojson'),fetchJSON('data/processed/planificado/catalog.json'),fetchJSON('data/processed/planificado/estaciones_catalogo.json')]);
       // Validate before mounting so a failed load cannot leave partial groups on retry.
       if(data.features.some(f=>f.properties.operativo!==false || f.properties.ruteable!==false || f.properties.plannerEligible!==false)) throw new Error('Estado de proyecto inválido');
+      if(points.records.some(r=>r.operativo!==false || r.ruteable!==false || r.plannerEligible!==false || (r.geometry && r.geometry.type!=='Point'))) throw new Error('Estado de estación proyectada inválido');
+      stationCatalog={...points,axes:new Map(data.features.map(f=>[f.id,f]))};
       rows.length=0; groups.clear(); list.replaceChildren();
       horizon.replaceChildren(el('option',{value:''},'Todos los horizontes'));
       for(const [key,label] of Object.entries(catalog.horizons)) horizon.append(el('option',{value:key},label));
@@ -99,6 +167,10 @@ export function mountExplorePane(){
       state.map.getPane('projectLine').style.zIndex='410';
       if(group) state.map.removeLayer(group);
       group=L.layerGroup().addTo(state.map);
+      if(!state.map.getPane('projectPoints')) state.map.createPane('projectPoints');
+      state.map.getPane('projectPoints').style.zIndex='620';
+      if(pointGroup) state.map.removeLayer(pointGroup);
+      pointGroup=L.layerGroup().addTo(state.map);
       selected.clear();
       for(const key of Object.keys(labels).filter(k=>catalog.types[k])){
         const body=el('div',{id:'explore-'+key,class:'panel-body list',style:'display:none','aria-label':labels[key]});
@@ -115,6 +187,7 @@ export function mountExplorePane(){
             leaf.checked=checked;leaf.dispatchEvent(new Event('change'));
           }
           syncGroups();
+          drawPoints();
         });
         groups.set(key,{panel,head,body,check,count:total});list.append(panel);
       }
@@ -144,14 +217,16 @@ export function mountExplorePane(){
             const layer=selected.get(p.id);if(layer) group.removeLayer(layer);selected.delete(p.id);
           }
           syncGroups();
+          drawPoints();
         });
         show.addEventListener('click',()=>{
           check.checked=true; const layer=draw(); state.map.fitBounds(layer.getBounds(),{padding:[30,30],maxZoom:15});
-          details.replaceChildren(info(feature)); row.append(details); details.hidden=false;syncGroups();
+          details.replaceChildren(info(feature)); row.append(details); details.hidden=false;syncGroups();drawPoints();
         });
         rows.push(row);groups.get(p.modo).body.append(row);
       }
       filter();
+      drawPoints();
     })().catch(error=>{loaded=null;count.textContent='No se pudieron cargar los proyectos. Vuelve a abrir Explorar.';console.warn('ATU',error.message);});
     return loaded;
   };

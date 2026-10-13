@@ -1,0 +1,22 @@
+{
+  "catalogued": 171,
+  "located": 52,
+  "pending": 119,
+  "documentedCounts": {
+    "estacion": 90,
+    "centro_transferencia": 25,
+    "nodo_dot": 44,
+    "nodo_intermodal": 1,
+    "terminal": 11
+  },
+  "locatedCounts": {
+    "estacion": 30,
+    "centro_transferencia": 22
+  },
+  "operatingL2Linked": 5,
+  "axesPreserved": 106,
+  "geopdfGridMaxResidualM": 0.589,
+  "cetramIndependentValidationRMSEM": 259.58758004515386,
+  "byteIdenticalRepeatBuild": true,
+  "plannerEligible": 0
+}

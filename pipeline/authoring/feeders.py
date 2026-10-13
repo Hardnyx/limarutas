@@ -32,6 +32,11 @@ def relation_itineraries(pbf, refs, network):
 
 def itinerary_network(network, service, evidence):
     ways = {w for relation in evidence for w in relation['ways']}
+    review = service.get('sourceReview')
+    forbidden = set(review.get('forbidden_names', [])) if review else set()
+    if review:
+        ways.update(review['additional_ways'])
+        ways.difference_update(e['way'] for e in network.edges.values() if e['name'] in forbidden)
     names = {e['name'] for e in network.edges.values() if e['way'] in ways and e['name']}
     # The common station marker is inside the terminal. Its public access
     # carriageway can have been split off from the older feeder relation.
@@ -54,7 +59,7 @@ def itinerary_network(network, service, evidence):
     # Retain whole ways so restrictions keep their original topology. Same-name
     # adjacent ways cover updated OSM splits and the opposite carriageway.
     included = {e['way'] for e in network.edges.values()
-                if (e['way'] in ways or e['name'] in names) and profile_allows(e, PROFILE)
+                if (e['way'] in ways or e['name'] in names) and e['name'] not in forbidden and profile_allows(e, PROFILE)
                 and any(west <= p[0] <= east and south <= p[1] <= north for p in e['coordinates'])}
     edges = [e for e in network.edges.values() if e['way'] in included and profile_allows(e, PROFILE)]
     if not edges:
@@ -62,9 +67,9 @@ def itinerary_network(network, service, evidence):
     return Network({**network.data, 'edges': edges})
 
 
-def directed_path(engine, points, identity):
+def directed_path(engine, points, identity, anchor_ways=None):
     from .routing import directed_path as connect_projections
-    return connect_projections(engine, points, identity, profile=PROFILE)
+    return connect_projections(engine, points, identity, profile=PROFILE, anchor_ways=anchor_ways)
 
 
 def rebuild(service, identity, network, evidence):
@@ -86,7 +91,10 @@ def rebuild(service, identity, network, evidence):
             points.insert(0, turnaround)
         route = new_route(f'alim:{identity}:{direction}', service['name'], direction, network)
         route['profile'] = copy.deepcopy(PROFILE)
-        route['path'] = directed_path(engine, points, route['id'])
+        review=service.get('sourceReview')
+        anchor_ways = ({len(points)-1 if direction=='ida' else 0: [review['turnaround_way']]}
+                       if review and review.get('turnaround_way') else None)
+        route['path'] = directed_path(engine, points, route['id'], anchor_ways=anchor_ways)
         route['stops'] = [{'id': s['id'], 'name': s['name'], 'coordinates': [s['lon'], s['lat']]}
                           for s in item['stops']]
         route = attach_stops(route, network)
@@ -125,6 +133,9 @@ def rebuild(service, identity, network, evidence):
                                  'sourceGeometryHash': digest(item['coords']),
                                  'sourceStopsHash': digest([{k: v for k, v in s.items() if k not in ('at', 'm')}
                                                            for s in item['stops']])}}
+        if review:
+            rebuilt['itinerary'].update(kind='reviewed-atu-diagram', sourceReviewId=review['id'],
+                                         sourceSha256=review['source_sha256'], reviewHash=review['reviewHash'])
         rebuilt.pop('sin_calle', None)
         result[direction] = rebuilt
     if result['ida']['coords'][-1] != result['vuelta']['coords'][0]:
@@ -132,11 +143,43 @@ def rebuild(service, identity, network, evidence):
     return result
 
 
-def build(document, refs, network, itineraries):
+def apply_source_review(service, review, network):
+    """Replace a superseded source guide before routing; retain the prior hashes."""
+    if review['network_source_sha256']!=network.data['source']['sha256']:
+        raise ValueError('La revisión de fuente requiere cotejo con el nuevo snapshot OSM')
+    previous=service.get('sourceReview')
+    if not previous and any(digest(service[d]['coords'])!=review['original_geometry_hashes'][d] for d in ('ida','vuelta')):
+        raise ValueError('La revisión de fuente pertenece a otro recorrido')
+    if previous and previous.get('reviewHash')!=digest(review):
+        raise ValueError('La revisión publicada y la revisión solicitada difieren')
+    result=copy.deepcopy(service)
+    result['sourceReview']={k:copy.deepcopy(v) for k,v in review.items() if k not in ('source_guides','stop_references')}
+    result['sourceReview']['reviewHash']=digest(review)
+    for direction in ('ida','vuelta'):
+        item=result[direction]
+        item['coords']=copy.deepcopy(review['source_guides'][direction])
+        references=review['stop_references'][direction]
+        if set(references)-{s['id'] for s in item['stops']}:raise ValueError('Referencia de paradero inexistente')
+        for stop in item['stops']:
+            if stop['id'] not in references:continue
+            reference=references[stop['id']]
+            if stop['name']!=reference['name']:raise ValueError('Cambió la identidad del paradero revisado')
+            stop['lon'],stop['lat']=reference['coordinates']
+            stop['aprox']=True
+            stop['locationReference']={**copy.deepcopy(reference),'source_sha256':review['source_sha256']}
+    if result['ida']['coords'][-1]!=list(reversed(review['turnaround'])) or result['vuelta']['coords'][0]!=result['ida']['coords'][-1]:
+        raise ValueError('La guía revisada no comparte un punto de vuelta')
+    return result
+
+
+def build(document, refs, network, itineraries, reviews=None):
     result = copy.deepcopy(document)
     for ref in refs:
         if ref not in document['services'] or not itineraries.get(ref):
             raise ValueError(f'{ref}: falta el servicio o su relación OSM; requiere revisar la fuente')
-        result['services'][ref] = rebuild(document['services'][ref], ref, network, itineraries[ref])
+        service=document['services'][ref]
+        if reviews and ref in reviews:
+            service=apply_source_review(service,reviews[ref],network)
+        result['services'][ref] = rebuild(service, ref, network, itineraries[ref])
     result['updated'] = network.data['source']['timestamp'][:10]
     return result

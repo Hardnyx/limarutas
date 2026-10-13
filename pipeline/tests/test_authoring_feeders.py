@@ -5,7 +5,8 @@ import unittest
 from pathlib import Path
 
 from pipeline.authoring.engine import Engine
-from pipeline.authoring.feeders import build, directed_path, rebuild
+from pipeline.authoring.feeders import build, directed_path, rebuild, apply_source_review
+from pipeline.authoring.model import digest
 from pipeline.authoring.model import geometry, validate
 from pipeline.authoring.native import import_native
 from pipeline.authoring.network import Network
@@ -40,6 +41,19 @@ def feeder_fixture():
 
 
 class DirectedFeedersTest(unittest.TestCase):
+    def test_source_review_is_pinned_and_does_not_change_unreviewed_stops(self):
+        net,service,_=feeder_fixture()
+        review={'id':'test-review','network_source_sha256':net.data['source']['sha256'],
+                'original_geometry_hashes':{d:digest(service[d]['coords']) for d in ('ida','vuelta')},
+                'source_guides':{d:service[d]['coords'] for d in ('ida','vuelta')},
+                'turnaround':list(reversed(service['ida']['coords'][-1])),
+                'stop_references':{'ida':{},'vuelta':{}},'additional_ways':[],'source_sha256':'image'}
+        changed=apply_source_review(service,review,net)
+        for d in ('ida','vuelta'):self.assertEqual(service[d]['stops'],changed[d]['stops'])
+        self.assertEqual(apply_source_review(changed,review,net),changed)
+        review['network_source_sha256']='another-osm'
+        with self.assertRaises(ValueError):apply_source_review(service,review,net)
+
     def test_graph_refresh_preserves_shared_station_and_other_routes(self):
         _, service, _ = feeder_fixture()
         rows, positions = [], {}
