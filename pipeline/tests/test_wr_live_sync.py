@@ -7,7 +7,7 @@ from unittest.mock import patch
 from pipeline.scripts.wikiroutes.wr_catalog_live import parse
 from pipeline.scripts.wikiroutes.wr_compare import detect_trips,color_update,stop_changes,match_trips,merge_metadata
 from pipeline.scripts.wikiroutes.wr_geometry_diff import compare
-from pipeline.scripts.wikiroutes.wr_sync_live import ROOT,compare_route,folder
+from pipeline.scripts.wikiroutes.wr_sync_live import ROOT,compare_route,folder,summarize
 
 POLICY=json.loads((ROOT/'config/wikiroutes_sync.json').read_text())
 
@@ -50,9 +50,11 @@ class LiveSyncTest(unittest.TestCase):
         self.assertEqual({c['type'] for c in stop_changes(old,new,POLICY)}, {'STOP_ADDED','STOP_REMOVED','STOP_RENAMED','STOP_REORDERED','STOP_MOVED'})
 
     def test_metadata_merge_preserves_authoring_flags_and_custom_fields(self):
-        entry={'folder':'data/processed/transporte/route_1','trip':4,'osm':True,'color':'#123456','name':'Manual','custom':{'keep':True}}
+        entry={'folder':'data/processed/transporte/route_1','trip':4,'osm':True,'color':'#123456','name':'Manual','custom':{'keep':True},'wikiroutes':{'review_note':'keep'}}
         result=merge_metadata(entry,'1',{'url':'https://wikiroutes.info/es/lima?routes=1','title':'Live','color_live':'#FF0000','checked_at':'now'},2)
-        for k,v in entry.items():self.assertEqual(result[k],v)
+        for k,v in entry.items():
+            if k!='wikiroutes':self.assertEqual(result[k],v)
+        self.assertEqual(result['wikiroutes']['review_note'],'keep')
         self.assertEqual(result['wikiroutes']['live_trip'],2)
 
     def test_accepted_source_is_not_written_and_geometry_needs_review(self):
@@ -68,6 +70,13 @@ class LiveSyncTest(unittest.TestCase):
             self.assertEqual(report['layers'][0]['classification'],'NEEDS_REVIEW')
             self.assertFalse(report['layers'][0]['safe_to_apply']['geometry'])
             self.assertEqual(before,{p:p.read_bytes() for p in directory.iterdir()})
+
+    def test_summary_does_not_report_default_or_missing_colors_as_real_changes(self):
+        def layer(old,live,safe=False):return {'old_color':old,'live_color':live,'safe_to_apply':{'color':safe},'classification':'UNCHANGED','stop_changes':[]}
+        records={'1':{'layers':[layer('#888888','#00008C'),layer('#123456',None),layer('#123456','#FEDCBA'),layer('#888888','#FEDCBA',True)]}}
+        summary=summarize([{'route_id':'1'}],{'1'},records,True)
+        self.assertEqual(summary['changed_real_colors'],1)
+        self.assertEqual(summary['placeholder_to_live_layers'],1)
 
     def test_folder_traversal_rejected(self):
         with self.assertRaises(ValueError):folder(ROOT,'../../outside')

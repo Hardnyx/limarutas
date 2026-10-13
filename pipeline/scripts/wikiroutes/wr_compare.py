@@ -53,7 +53,7 @@ def match_trips(local,live):
 def merge_metadata(entry,route_id,snapshot,trip):
     out=copy.deepcopy(entry)
     # WR observations are namespaced; official and manual labels stay untouched.
-    out['wikiroutes']={'route_id':route_id,'url':snapshot['url'],'title':snapshot['title'],'live_trip':trip,
+    out['wikiroutes']={**out.get('wikiroutes',{}),'route_id':route_id,'url':snapshot['url'],'title':snapshot['title'],'live_trip':trip,
         'checked_at':snapshot['checked_at'],'source_role':'secondary_observation'}
     out['color']=color_update(entry.get('color'),snapshot['color_live'])
     return out

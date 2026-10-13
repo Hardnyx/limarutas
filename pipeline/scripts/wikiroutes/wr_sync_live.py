@@ -25,7 +25,7 @@ ROOT=Path(__file__).resolve().parents[3]
 sys.path.insert(0,str(ROOT))
 from pipeline.scripts.wikiroutes.wr_catalog_live import CATALOG_URL,parse
 from pipeline.scripts.wikiroutes.wr_geometry_diff import compare,digest,parts
-from pipeline.scripts.wikiroutes.wr_compare import detect_trips,color,color_update,stop_changes,match_trips,merge_metadata
+from pipeline.scripts.wikiroutes.wr_compare import detect_trips,color,color_update,stop_changes,match_trips,merge_metadata,is_default
 from pipeline.scripts.atu.sync_geovisor import publish
 from pipeline.scripts.atu.sources import json_bytes
 
@@ -124,7 +124,7 @@ def summarize(catalog,known,records,complete):
         'new':len({r['route_id'] for r in catalog}-known),'missing':len(known-{r['route_id'] for r in catalog}),
         'checked':len(records),'successful':len(successful),'errors':sum(bool(r.get('error')) for r in records.values()),
         'placeholder_to_live_layers':sum(l['safe_to_apply']['color'] for l in layers),
-        'changed_real_colors':sum(l['old_color']!=l['live_color'] and not l['safe_to_apply']['color'] for l in layers),
+        'changed_real_colors':sum(bool(l['live_color']) and not is_default(l['old_color']) and str(l['old_color']).upper()!=l['live_color'] for l in layers),
         'geometry':dict(Counter(l['classification'] for l in layers)),
         'stops_changed_layers':sum(bool(l['stop_changes']) for l in layers),'scan_complete':complete}
 
