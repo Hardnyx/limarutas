@@ -211,6 +211,8 @@ def apply_safe(args):
             manifest['routes'].setdefault(rid,{})['last_error']={'checked_at':r['checked_at'],'error':r['error']};continue
         snapshot=read(cache/f'route_{rid}'/'snapshot.json')
         if digest(snapshot)!=r['snapshot_hash']:raise ValueError('Snapshot changed after comparison')
+        raw_colors={color(t.get('color')) for t in snapshot['trips']} - {None}
+        snapshot={**snapshot,'color_live':next(iter(raw_colors)) if len(raw_colors)==1 else None}
         for layer in r['layers']:
             key=layer['layer_key'];entry=wr['routes'][key];directory=folder(root,rid);trip=entry['trip']
             if digest(entry)!=layer['entry_hash']:raise ValueError('Layer changed after comparison')
@@ -218,6 +220,9 @@ def apply_safe(args):
                 p=directory/name
                 if not p.exists() or hashlib.sha256(p.read_bytes()).hexdigest()!=expected:raise ValueError('Local source changed after scan')
             wr['routes'][key]=merge_metadata(entry,rid,snapshot,layer['live_trip'])
+            layer['live_color']=snapshot['color_live']
+            layer['safe_color']=wr['routes'][key]['color']
+            layer['safe_to_apply']['color']=wr['routes'][key]['color']!=entry.get('color')
             if layer['safe_to_apply']['color']:
                 for override_key in [rid,'route_'+rid]:
                     if override_key in overrides:overrides[override_key]['color']=color_update(overrides[override_key].get('color'),snapshot['color_live'])
@@ -230,6 +235,9 @@ def apply_safe(args):
             'classification':{str(l['local_trip']):l['classification'] for l in r['layers']},
             'new_route_review_required':r['new_route_review_required']}
     if set(wr['routes'])!=set(before['routes']):raise ValueError('Unexpected layer addition or removal')
+    catalog=read(cache/'catalog.json',{'routes':[{'route_id':rid} for rid in changes['routes']]})['routes']
+    known={p.name.split('_',1)[1] for p in (root/'data/processed/transporte').glob('route_*') if p.is_dir()}
+    changes['summary']=summarize(catalog,known,changes['routes'],True)
     manifest['checked_at']=now();changes['applied_at']=now()
     history={'checked_at':manifest['checked_at'],'summary':report['summary'],'routes':manifest['routes']}
     files={wr_path:json_bytes(wr),overrides_path:json_bytes(overrides),manifest_path:json_bytes(manifest),

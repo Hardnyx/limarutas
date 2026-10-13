@@ -1,4 +1,5 @@
 import copy
+from types import SimpleNamespace
 import json
 import tempfile
 import unittest
@@ -6,8 +7,8 @@ from pathlib import Path
 from unittest.mock import patch
 from pipeline.scripts.wikiroutes.wr_catalog_live import parse
 from pipeline.scripts.wikiroutes.wr_compare import detect_trips,color_update,stop_changes,match_trips,merge_metadata
-from pipeline.scripts.wikiroutes.wr_geometry_diff import compare
-from pipeline.scripts.wikiroutes.wr_sync_live import ROOT,compare_route,folder,summarize
+from pipeline.scripts.wikiroutes.wr_geometry_diff import compare,digest
+from pipeline.scripts.wikiroutes.wr_sync_live import ROOT,compare_route,folder,summarize,apply_safe
 
 POLICY=json.loads((ROOT/'config/wikiroutes_sync.json').read_text())
 
@@ -30,6 +31,7 @@ class LiveSyncTest(unittest.TestCase):
         self.assertEqual(color_update('#123456','#FF0000'),'#123456')
         self.assertEqual(color_update('#123456','#888888'),'#123456')
         self.assertEqual(color_update('#888888','bad'),'#888888')
+        self.assertEqual(color_update('#888888','rgba(0, 0, 0, 0)'),'#888888')
 
     def test_redraw_density_and_reverse_direction_keep_same_path(self):
         kind,metrics,_=compare(A,track([[-76.98,-12],[-76.985,-12],[-76.99,-12],[-76.995,-12],[-77,-12]]),POLICY)
@@ -77,6 +79,43 @@ class LiveSyncTest(unittest.TestCase):
         summary=summarize([{'route_id':'1'}],{'1'},records,True)
         self.assertEqual(summary['changed_real_colors'],1)
         self.assertEqual(summary['placeholder_to_live_layers'],1)
+
+    def application_fixture(self,root):
+        directory=folder(root,'1');directory.mkdir(parents=True)
+        (directory/'route_track_trip1.geojson').write_text(json.dumps(A))
+        (directory/'stops_trip1.geojson').write_text(json.dumps({'features':[]}))
+        (directory/'route_track_trip1.route.json').write_text('{"review":{"accepted":true}}')
+        wr={'routes':{'x':{'folder':directory.relative_to(root).as_posix(),'trip':1,'color':'#888888','osm':True,'custom':'keep'}}}
+        (root/'pipeline/output').mkdir(parents=True)
+        (root/'pipeline/output/wr_map.json').write_text(json.dumps(wr))
+        (root/'pipeline/output/trip_graph.json').write_text('graph sentinel')
+        (root/'config').mkdir();(root/'config/wr_overrides.json').write_text('{"1":{"color":"#888888","manual":"keep"}}')
+        snapshot={'url':'https://wikiroutes.info/es/lima?routes=1','title':'Live','checked_at':'2026-10-13T15:00:00+00:00',
+                  'trips':[{'trip':1,'geometry':A,'stops':[],'color':'rgb(255, 0, 0)'}],'color_live':'#FF0000'}
+        report,_=compare_route(root,{'route_id':'1','active':True},snapshot,wr,POLICY)
+        cache=root/'pipeline/temp/scan';(cache/'route_1').mkdir(parents=True)
+        (cache/'route_1/snapshot.json').write_text(json.dumps(snapshot))
+        (cache/'changes.json').write_text(json.dumps({'summary':{'scan_complete':True},'local_catalog_hash':digest(wr),'routes':{'1':report}}))
+        return SimpleNamespace(root=root,snapshot=cache),directory
+
+    def test_safe_application_preserves_tracks_sidecar_stops_graph_and_custom_fields(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root=Path(temporary);args,directory=self.application_fixture(root)
+            before={p:p.read_bytes() for p in directory.iterdir()}
+            with patch('pipeline.validation.validate_site'):apply_safe(args)
+            self.assertEqual(before,{p:p.read_bytes() for p in directory.iterdir()})
+            self.assertEqual((root/'pipeline/output/trip_graph.json').read_text(),'graph sentinel')
+            entry=json.loads((root/'pipeline/output/wr_map.json').read_text())['routes']['x']
+            self.assertEqual(entry['color'],'#FF0000');self.assertEqual(entry['custom'],'keep');self.assertTrue(entry['osm'])
+            self.assertEqual(json.loads((root/'config/wr_overrides.json').read_text())['1']['manual'],'keep')
+
+    def test_failed_application_rolls_back_its_catalog_and_new_outputs(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root=Path(temporary);args,_=self.application_fixture(root);path=root/'pipeline/output/wr_map.json';before=path.read_bytes()
+            with patch('pipeline.validation.validate_site',side_effect=[None,ValueError('failed final check')]):
+                with self.assertRaises(ValueError):apply_safe(args)
+            self.assertEqual(path.read_bytes(),before)
+            self.assertFalse((root/'pipeline/output/wikiroutes_manifest.json').exists())
 
     def test_folder_traversal_rejected(self):
         with self.assertRaises(ValueError):folder(ROOT,'../../outside')

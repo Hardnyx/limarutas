@@ -9,6 +9,7 @@ HEX=re.compile(r'^#[0-9a-fA-F]{6}$')
 def color(value):
     value=str(value or '').strip()
     if re.fullmatch('[0-9A-Fa-f]{6}',value):value='#'+value
+    if re.fullmatch(r'rgba\([^,]+,[^,]+,[^,]+,\s*0(?:\.0+)?\)',value):return None
     m=re.fullmatch(r'rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*[^)]+)?\)',value)
     if m:value='#'+''.join(f'{int(x):02X}' for x in m.groups())
     return value.upper() if HEX.fullmatch(value) else None

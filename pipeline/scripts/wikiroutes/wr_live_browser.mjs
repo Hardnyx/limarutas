@@ -14,7 +14,8 @@ const read=async()=>page.evaluate(()=>{
     if(feature?.geometry?.coordinates?.length>1){
       const markers=(map._markers||[]).filter(m=>m._wrStop);
       const stops=markers.map((m,i)=>{const p=m.getLngLat(),s=m._wrStop;return {id:String(s.id??s.stopId??''),name:s.name,sequence:i+1,coordinates:[p.lng,p.lat]};});
-      const color=getComputedStyle(document.querySelector('.legend-color')).backgroundColor;
+      const swatch=document.querySelector('.legend-color');
+      const color=swatch && getComputedStyle(swatch).display!=='none'?swatch.style.backgroundColor:null;
       return {engine:'maplibre',geometry:{type:'FeatureCollection',features:[feature]},color,stops};
     }
   }
