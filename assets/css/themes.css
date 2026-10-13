@@ -45,6 +45,8 @@
 }
 
 /* Tema oscuro: compartido por todos los paneles y controles */
+html[data-map-theme="light"] #map.leaflet-container { background:#f8f9fa; }
+html[data-map-theme="dark"] #map.leaflet-container { background:#262626; }
 html.theme-dark {
   --bg: #0f1114;
   --surface: #1f2226;

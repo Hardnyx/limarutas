@@ -52,12 +52,14 @@ export function initMap(){
   const light = L.tileLayer(
     `https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png${CARTO_KEY_QS}`,
     { attribution: ATTRIBUTION, maxZoom: MAX_ZOOM }
-  ).addTo(map);
+  );
 
   const dark = L.tileLayer(
     `https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png${CARTO_KEY_QS}`,
     { attribution: ATTRIBUTION, maxZoom: MAX_ZOOM }
   );
+  const initialBase=window.LimaRutasMapTheme?.get() || 'light';
+  map.addLayer(initialBase==='dark'?dark:light);
 
   map.fitBounds(LIMA_BOUNDS);
   map.setMaxBounds(MAX_BOUNDS);
@@ -74,6 +76,7 @@ export function initMap(){
   L.control.zoom({ position:'bottomright' }).addTo(map);
 
   state.map = map;
+  state.currentBase = initialBase;
   state.baseLayers.light = light;
   state.baseLayers.dark  = dark;
 

@@ -2495,5 +2495,10 @@
       "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10",
       "pmu:metro:eje-ferroviario-urbano-linea-5-surquillo-villa-el-salvador:h20"
     ]
+  },
+  "transfer_display_review": {
+    "id": "user-transfer-axis-review-20261013",
+    "max_displacement_m": 1500,
+    "reason": "A petición del usuario, colocar visualmente los transbordos documentados en el cruce de sus ejes, manteniendo coordenadas originales."
   }
 }

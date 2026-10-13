@@ -534,7 +534,8 @@ async function buildUI(){
 
   const btnLight = $('#btnLight');
   const btnDark  = $('#btnDark');
-  window.LimaRutasTheme.bind(btnLight, btnDark, setBase);
+  window.LimaRutasMapTheme.bind(btnLight, btnDark, setBase);
+  window.LimaRutasTheme.bind($('#btnUiLight'), $('#btnUiDark'));
 
   const chkStops = $('#chkStops');
   if (chkStops){

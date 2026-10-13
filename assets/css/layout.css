@@ -463,7 +463,8 @@ html.sheet .map-settings-panel {
 .explore-list > .panel[hidden] { display:none; }
 .project-row[hidden] { display:none; }
 .project-row .left, .project-text { min-width:0; }
-.project-row .tag { min-width:32px; height:28px; flex:none; padding:0 5px; border-radius:7px; color:white; font-size:12px; font-weight:700; }
+.project-row .tag { min-width:32px; height:28px; flex:none; padding:0 5px; border-radius:7px; color:white; font-size:12px; font-weight:700; display:inline-flex; align-items:center; justify-content:center; gap:3px; }
+.project-row .tag .ico { width:14px; height:14px; }
 .project-row .tag.on-light { color:#172b3a; }
 .project-name { border:0; padding:0; background:transparent; text-align:left; color:var(--text-main); font:inherit; cursor:pointer; }
 .project-text .sub { text-align:left; overflow-wrap:anywhere; margin-top:3px; }
@@ -478,6 +479,20 @@ html:not(.explore-mode) .leaflet-projectPoints-pane { display:none; }
 .project-point-icon span { text-shadow:0 0 2px white,0 0 2px white; }
 .project-point-name { color:var(--accent); background:none; border:0; padding:0; font:inherit; text-align:left; text-decoration:underline; cursor:pointer; }
 .project-info li { margin-bottom:8px; }
+.project-actions { display:flex; gap:8px; margin:8px 0; }
+.project-actions .btn { flex:1; }
+.project-options { border:1px solid var(--line); border-radius:8px; padding:8px; margin:8px 0; }
+.project-options > summary { cursor:pointer; font-size:12px; font-weight:600; }
+#explorePane .search { margin:8px 0; min-width:0; }
+#explorePane .search input { min-width:0; flex:1; padding-left:36px; padding-right:32px; width:100%; box-sizing:border-box; }
+#exploreOnMap .recent-row { display:flex; justify-content:space-between; gap:8px; }
+#exploreOnMap .recent-row .project-name { min-width:0; flex:1; }
+.project-corridor-dot { display:inline-block; width:10px; height:10px; border-radius:50%; margin-right:6px; }
+.project-track-preview { width:100%; height:150px; background:var(--surface-2); border:1px solid var(--line); border-radius:8px; margin:8px 0; }
+.project-station-diagram { list-style:none; padding:0 0 0 18px; margin-left:8px; border-left:3px dashed var(--project-color); }
+.project-station-diagram li { position:relative; margin:0 0 14px; }
+.project-station-diagram li::before { content:''; position:absolute; width:10px; height:10px; border:2px solid var(--surface); border-radius:50%; background:var(--project-color); left:-26px; top:4px; }
+.project-point-icon svg { filter:drop-shadow(0 1px 1px rgba(0,0,0,.3)); }
 html.explore-mode .leaflet-overlay-pane,
 html.explore-mode .leaflet-alimLine-pane,
 html.explore-mode .leaflet-corrLine-pane,

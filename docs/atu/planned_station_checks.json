@@ -18,5 +18,47 @@
   "geopdfGridMaxResidualM": 0.589,
   "cetramIndependentValidationRMSEM": 259.58758004515386,
   "byteIdenticalRepeatBuild": true,
-  "plannerEligible": 0
+  "plannerEligible": 0,
+  "transfer_display_adjustments": [
+    {
+      "id": "planificado:centro_transferencia:carmen-de-la-legua",
+      "displacement_m": 227.31
+    },
+    {
+      "id": "planificado:centro_transferencia:central",
+      "displacement_m": 53.99
+    },
+    {
+      "id": "planificado:centro_transferencia:gamarra",
+      "displacement_m": 110.21
+    },
+    {
+      "id": "planificado:centro_transferencia:juan-pablo-ii",
+      "displacement_m": 258.15
+    },
+    {
+      "id": "planificado:centro_transferencia:la-atarjea",
+      "displacement_m": 626.2
+    },
+    {
+      "id": "planificado:centro_transferencia:los-heroes",
+      "displacement_m": 78.28
+    },
+    {
+      "id": "planificado:centro_transferencia:pando",
+      "displacement_m": 183.89
+    },
+    {
+      "id": "planificado:centro_transferencia:tacna",
+      "displacement_m": 98.44
+    }
+  ],
+  "documentary_coordinates_preserved": true,
+  "visual_checks": {
+    "explore_and_theme_cases": 20,
+    "shared_ui_regression_cases": 17,
+    "all_theme_combinations": 4,
+    "corridor_axes_with_documented_identity": 5,
+    "source_axis_colors_preserved": true
+  }
 }

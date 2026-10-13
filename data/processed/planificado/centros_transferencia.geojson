@@ -227,8 +227,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -77.09649443,
-          -12.05218898
+          -77.09808247586356,
+          -12.053518242753599
         ]
       },
       "properties": {
@@ -289,6 +289,18 @@
           ],
           "anchor": "center_of_explicit_red_symbol",
           "review": "pmu-cetram-map"
+        },
+        "display_adjustment": {
+          "method": "linked_axis_intersection",
+          "displacement_m": 227.31,
+          "axis_ids": [
+            "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5",
+            "pmu:metro:eje-ferroviario-urbano-linea-4-callao-bellavista-ramal:h5"
+          ],
+          "source_sha256": "787e4e9f29ccd20760bb9579889ec51e6473d947258a8a0387aa9474cbcffd40",
+          "review_id": "user-transfer-axis-review-20261013",
+          "coordinate_role": "proposed_transfer_reference",
+          "note": "Punto de transbordo proyectado alineado al cruce de los ejes. La ubicación documental original se conserva; no representa un acceso peatonal operativo."
         },
         "axis_distance_m": {
           "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5": 114.1,
@@ -371,8 +383,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -77.0362848,
-          -12.05978713
+          -77.03578929526988,
+          -12.05975627202644
         ]
       },
       "properties": {
@@ -434,6 +446,18 @@
           ],
           "anchor": "center_of_explicit_red_symbol",
           "review": "pmu-cetram-map"
+        },
+        "display_adjustment": {
+          "method": "linked_axis_intersection",
+          "displacement_m": 53.99,
+          "axis_ids": [
+            "pmu:brt:eje-brt-metropolitano-chorrillos-independencia-paseo-de-la-republica:h0",
+            "pmu:metro:eje-ferroviario-urbano-linea-8-el-agustino-lima:h20"
+          ],
+          "source_sha256": "787e4e9f29ccd20760bb9579889ec51e6473d947258a8a0387aa9474cbcffd40",
+          "review_id": "user-transfer-axis-review-20261013",
+          "coordinate_role": "proposed_transfer_reference",
+          "note": "Punto de transbordo proyectado alineado al cruce de los ejes. La ubicación documental original se conserva; no representa un acceso peatonal operativo."
         },
         "axis_distance_m": {
           "pmu:brt:eje-brt-metropolitano-chorrillos-independencia-paseo-de-la-republica:h0": 54.0,
@@ -521,8 +545,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -77.01308661,
-          -12.06194955
+          -77.01298638770848,
+          -12.060963225446166
         ]
       },
       "properties": {
@@ -582,6 +606,18 @@
           ],
           "anchor": "center_of_explicit_red_symbol",
           "review": "pmu-cetram-map"
+        },
+        "display_adjustment": {
+          "method": "linked_axis_intersection",
+          "displacement_m": 110.21,
+          "axis_ids": [
+            "pmu:metro:eje-ferroviario-urbano-linea-1-villa-el-salvador-san-juan-de-lurigancho:h0",
+            "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5"
+          ],
+          "source_sha256": "787e4e9f29ccd20760bb9579889ec51e6473d947258a8a0387aa9474cbcffd40",
+          "review_id": "user-transfer-axis-review-20261013",
+          "coordinate_role": "proposed_transfer_reference",
+          "note": "Punto de transbordo proyectado alineado al cruce de los ejes. La ubicación documental original se conserva; no representa un acceso peatonal operativo."
         },
         "axis_distance_m": {
           "pmu:metro:eje-ferroviario-urbano-linea-1-villa-el-salvador-san-juan-de-lurigancho:h0": 31.8,
@@ -671,8 +707,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -77.11322837,
-          -12.0552365
+          -77.11479881495639,
+          -12.056977465528792
         ]
       },
       "properties": {
@@ -733,6 +769,18 @@
           "anchor": "center_of_explicit_red_symbol",
           "review": "pmu-cetram-map"
         },
+        "display_adjustment": {
+          "method": "linked_axis_intersection",
+          "displacement_m": 258.15,
+          "axis_ids": [
+            "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5",
+            "pmu:metro:eje-ferroviario-urbano-linea-9-san-miguel-rimac:h20"
+          ],
+          "source_sha256": "787e4e9f29ccd20760bb9579889ec51e6473d947258a8a0387aa9474cbcffd40",
+          "review_id": "user-transfer-axis-review-20261013",
+          "coordinate_role": "proposed_transfer_reference",
+          "note": "Punto de transbordo proyectado alineado al cruce de los ejes. La ubicación documental original se conserva; no representa un acceso peatonal operativo."
+        },
         "axis_distance_m": {
           "pmu:metro:eje-ferroviario-urbano-linea-2-callao-ate:h5": 152.1,
           "pmu:metro:eje-ferroviario-urbano-linea-9-san-miguel-rimac:h20": 181.8
@@ -745,8 +793,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.96470413,
-          -12.03426083
+          -76.96599302365954,
+          -12.02877213848444
         ]
       },
       "properties": {
@@ -807,6 +855,18 @@
           "anchor": "center_of_explicit_red_symbol",
           "review": "pmu-cetram-map"
         },
+        "display_adjustment": {
+          "method": "linked_axis_intersection",
+          "displacement_m": 626.2,
+          "axis_ids": [
+            "pmu:metro:eje-ferroviario-urbano-linea-6-san-martin-de-porres-el-agustino:h20",
+            "pmu:metro:eje-ferroviario-urbano-linea-8-el-agustino-lima:h20"
+          ],
+          "source_sha256": "787e4e9f29ccd20760bb9579889ec51e6473d947258a8a0387aa9474cbcffd40",
+          "review_id": "user-transfer-axis-review-20261013",
+          "coordinate_role": "proposed_transfer_reference",
+          "note": "Punto de transbordo proyectado alineado al cruce de los ejes. La ubicación documental original se conserva; no representa un acceso peatonal operativo."
+        },
         "axis_distance_m": {
           "pmu:metro:eje-ferroviario-urbano-linea-6-san-martin-de-porres-el-agustino:h20": 58.6,
           "pmu:metro:eje-ferroviario-urbano-linea-8-el-agustino-lima:h20": 626.2
@@ -819,8 +879,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -76.98259113,
-          -12.1498823
+          -76.98300724823471,
+          -12.149307775939024
         ]
       },
       "properties": {
@@ -880,6 +940,18 @@
           ],
           "anchor": "center_of_explicit_red_symbol",
           "review": "pmu-cetram-map"
+        },
+        "display_adjustment": {
+          "method": "linked_axis_intersection",
+          "displacement_m": 78.28,
+          "axis_ids": [
+            "pmu:metro:eje-ferroviario-urbano-linea-1-villa-el-salvador-san-juan-de-lurigancho:h0",
+            "pmu:metro:eje-ferroviario-urbano-linea-3-comas-san-juan-de-miraflores:h10"
+          ],
+          "source_sha256": "787e4e9f29ccd20760bb9579889ec51e6473d947258a8a0387aa9474cbcffd40",
+          "review_id": "user-transfer-axis-review-20261013",
+          "coordinate_role": "proposed_transfer_reference",
+          "note": "Punto de transbordo proyectado alineado al cruce de los ejes. La ubicación documental original se conserva; no representa un acceso peatonal operativo."
         },
         "axis_distance_m": {
           "pmu:metro:eje-ferroviario-urbano-linea-1-villa-el-salvador-san-juan-de-lurigancho:h0": 39.5,
@@ -1113,8 +1185,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -77.07980106,
-          -12.07765718
+          -77.08137559596626,
+          -12.078260773911744
         ]
       },
       "properties": {
@@ -1175,6 +1247,18 @@
           ],
           "anchor": "center_of_explicit_red_symbol",
           "review": "pmu-cetram-map"
+        },
+        "display_adjustment": {
+          "method": "linked_axis_intersection",
+          "displacement_m": 183.89,
+          "axis_ids": [
+            "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10",
+            "pmu:metro:eje-ferroviario-urbano-linea-6-san-martin-de-porres-el-agustino:h20"
+          ],
+          "source_sha256": "787e4e9f29ccd20760bb9579889ec51e6473d947258a8a0387aa9474cbcffd40",
+          "review_id": "user-transfer-axis-review-20261013",
+          "coordinate_role": "proposed_transfer_reference",
+          "note": "Punto de transbordo proyectado alineado al cruce de los ejes. La ubicación documental original se conserva; no representa un acceso peatonal operativo."
         },
         "axis_distance_m": {
           "pmu:metro:eje-ferroviario-urbano-linea-4-bellavista-ate:h10": 97.8,
@@ -1477,8 +1561,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -77.02733161,
-          -12.03266575
+          -77.02777605956675,
+          -12.031894545237964
         ]
       },
       "properties": {
@@ -1538,6 +1622,18 @@
           ],
           "anchor": "center_of_explicit_red_symbol",
           "review": "pmu-cetram-map"
+        },
+        "display_adjustment": {
+          "method": "linked_axis_intersection",
+          "displacement_m": 98.44,
+          "axis_ids": [
+            "pmu:metro:eje-ferroviario-urbano-linea-8-el-agustino-lima:h20",
+            "pmu:metro:eje-ferroviario-urbano-linea-9-san-miguel-rimac:h20"
+          ],
+          "source_sha256": "787e4e9f29ccd20760bb9579889ec51e6473d947258a8a0387aa9474cbcffd40",
+          "review_id": "user-transfer-axis-review-20261013",
+          "coordinate_role": "proposed_transfer_reference",
+          "note": "Punto de transbordo proyectado alineado al cruce de los ejes. La ubicación documental original se conserva; no representa un acceso peatonal operativo."
         },
         "axis_distance_m": {
           "pmu:metro:eje-ferroviario-urbano-linea-8-el-agustino-lima:h20": 88.9,

@@ -20,7 +20,7 @@ Explorar conserva los 106 ejes originales, su multipartición y colores del geov
 
 ## Evidencia y precisión
 
-La existencia documental y la ubicación son campos independientes. `geometry=null` conserva nombres pendientes; los GeoJSON visibles incluyen únicamente puntos localizados. Se guardan `source_geometry`, `display_geometry=null`, hash de fuente, página PDF/impresa, edición, método, función de coordenada y nota de incertidumbre. Nunca se sustituyen por extremos del eje, centros de distrito, puntos uniformes, cruces inferidos ni `[0,0]`.
+La existencia documental y la ubicación son campos independientes. `geometry=null` conserva nombres pendientes; los GeoJSON visibles incluyen únicamente puntos localizados. Se guardan `source_geometry`, `display_geometry` independiente, hash de fuente, página PDF/impresa, edición, método, función de coordenada y nota de incertidumbre. Las coordenadas documentales nunca se sustituyen por extremos del eje, centros de distrito, puntos uniformes ni `[0,0]`.
 
 - **TSV-05 San Isidro, julio 2022:** 8 símbolos de L3/L4, escala 1:20 000. Se elige el mayor viewport `/VP` y se leen `/Measure`, `/GCS`, `/GPTS`, `/LPTS` y `/BBox`, sin números de objeto fijos. La transformación respeta el origen vertical y usa `always_xy=True`. Cinco controles de cuadrícula independientes dan residuales menores de 3 m. Esa cifra valida la transformación, no la precisión de los símbolos ni su vigencia como ingeniería. La antigua L6 del plano se excluye.
 - **Figura 75 PMU:** imagen nativa 1672×1122, símbolos rojos explícitos. Transformación afín con cinco controles distribuidos de cartografía operativa y dos controles independientes. Residuales de ajuste y validación se conservan en `config/atu_station_locations.json`; RMSE independiente aproximado 260 m. Son referencias de área de CETRAM, sin accesos ni andenes. `uncertainty_m=null` porque los residuales no miden por sí solos el error de cada punto.
@@ -71,3 +71,38 @@ Se comprueban conteos, identidad, hashes, latitud/longitud, geometría nula, ais
 - **L1 extensión / L5-L9 / otros BRT y corredores:** búsqueda: PMU ejes, CETRAM y DOT. Resultado: Nodos documentados; no listas completas de estaciones. Siguiente: Estudios de estaciones específicos de cada proyecto.
 - **APM / trenes de cercanía:** búsqueda: PMU PDF 125 y 159. Resultado: Enlaces conceptuales, sin puntos de estación ni accesos del nuevo aeropuerto. Siguiente: Expedientes MTC / ProInversión y planos de terminales.
 - **DOT:** búsqueda: Tabla 59 PDF 289-290 y Figura 108 PDF 291. Resultado: 44 nombres; los símbolos de Figura 108 no están rotulados ni tienen IDs que permitan atribuirlos sin inferencia. Siguiente: Capa GIS original o plano con identificadores de nodos.
+
+## Revisión visual de transbordos y corredores
+
+A petición del usuario, los CETRAM que ya tienen una relación de transferencia
+expresa en el PMU y ejes que se intersectan dentro de 1500 m de su símbolo se
+muestran en el cruce geométrico de esos ejes. Son ocho ajustes: Carmen de la
+Legua, Central, Gamarra, Juan Pablo II, La Atarjea, Los Héroes, Pando y Tacna.
+La relación documental precede al cálculo; un cruce entre líneas por sí solo
+no crea una estación ni un transbordo. Las partes ferroviarias se conservan.
+
+`geometry` y `source_geometry` mantienen el punto documental. `display_geometry`
+y `display_adjustment` registran la intersección, ejes, desplazamiento, hash
+PMU, revisión del usuario y función de coordenada. Los GeoJSON visibles y el
+mapa usan la geometría de visualización. Esto no establece accesos peatonales
+ni habilita estas conexiones en Cómo llegar. El máximo de 1500 m limita la
+corrección de símbolos cartográficos; no es un radio para inferir estaciones.
+
+`config/atu_project_styles.json` relaciona cinco ejes PMU con las identidades
+Amarillo, Rojo, Azul y Morado documentadas por ATU/MTC. Explorar usa la misma
+paleta de `corridorPolicy.js` que Rutas y anida los ejes por corredor. La
+simbología original naranja del geovisor permanece en los datos originales y
+en sus propiedades de procedencia. Los demás ejes conservan ese color bajo
+«Ejes sin color de corredor asignado». No se encontró asignación de nuevas
+marcas o colores en las fuentes revisadas; no se extrapola el color a un eje
+por cercanía ni se presupone su operador o concesión futura.
+
+Explorar comparte botones, etiquetas, iconos, selección en lote y grupos de
+Rutas. Incluye Marcar/Desmarcar todo para los resultados filtrados, Quitar
+todas, En el mapa con retirada individual, autoencuadre, resaltado de líneas,
+control de paradas, vistas del trazado original multipartito y diagrama de
+nombres de estaciones. Los puntos pendientes siguen sin pin.
+
+El mapa y la interfaz tienen preferencias independientes: `limarutas.mapTheme`
+y `limarutas.theme`. Las cuatro combinaciones funcionan y se conservan al
+recargar, también en el editor y entre pestañas del mismo origen.

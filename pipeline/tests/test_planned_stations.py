@@ -7,6 +7,7 @@ from unittest.mock import patch
 from pipeline.scripts.atu.build_planned_stations import CONFIG, LOCATIONS, OUT, build, validate, ROOT
 from pipeline.scripts.atu.sources import SourceError
 from pipeline.scripts.atu.sync_station_sources import synchronize
+from pipeline.scripts.atu.transfer_display import locate
 
 
 class PlannedStationsTest(unittest.TestCase):
@@ -42,12 +43,30 @@ class PlannedStationsTest(unittest.TestCase):
             if r['geometry']:
                 self.assertEqual(r['geometry'],self.locations['locations'][r['id']]['geometry'])
                 self.assertEqual(r['geometry'],r['source_geometry'])
-                self.assertIsNone(r['display_geometry'])
+                if r['display_geometry']:
+                    self.assertIn(r['tipo'],['centro_transferencia','nodo_intermodal'])
+                    self.assertEqual(r['display_adjustment']['method'],'linked_axis_intersection')
                 if r['location_method']=='documented_intersection':self.assertEqual(r['coordinate_role'],'intersection_reference')
 
     def test_new_source_revision_cannot_reuse_old_digitization(self):
         self.config['sources']['san-isidro-tsv05']['sha256']='new-source'
         with self.assertRaises(SourceError):build(self.config,self.locations,self.red)
+
+    def test_transfer_display_preserves_documentary_point_and_matches_both_axes(self):
+        catalog,files=build(self.config,self.locations,self.red)
+        record=next(r for r in catalog['records'] if r['id']=='planificado:centro_transferencia:gamarra')
+        self.assertNotEqual(record['geometry'],record['display_geometry'])
+        self.assertEqual(record['geometry'],record['source_geometry'])
+        point=next(f for f in json.loads(files[OUT/'centros_transferencia.geojson'])['features'] if f['id']==record['id'])
+        self.assertEqual(point['geometry'],record['display_geometry'])
+        self.assertEqual(len(record['display_adjustment']['axis_ids']),2)
+
+    def test_crossing_does_not_create_a_transfer_without_documentary_link(self):
+        axes={f['id']:f for f in self.red['features']}
+        record={'tipo':'estacion','project_ids':list(axes),'geometry':{'type':'Point','coordinates':[-77.01299,-12.06096]}}
+        self.assertIsNone(locate(record,axes,{'id':'test','max_displacement_m':1500}))
+        record['tipo']='centro_transferencia';record['project_ids']=record['project_ids'][:1]
+        self.assertIsNone(locate(record,axes,{'id':'test','max_displacement_m':1500}))
 
     def test_operating_flags_swapped_axes_and_pending_dummy_points_rejected(self):
         catalog,_=build(self.config,self.locations,self.red)

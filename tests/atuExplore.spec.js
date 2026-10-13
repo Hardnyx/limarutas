@@ -79,6 +79,7 @@ test('Planned points use evidence links, independent toggles and their own pane'
   await expect(page.locator('#explorePointCount')).toHaveText('2 puntos visibles · 26 ubicaciones pendientes');
   const stationList=page.locator('#projectDetails ol[data-point-type="estacion"]');
   await expect(stationList.getByRole('button')).toHaveCount(2);
+  await page.locator('.project-options > summary').click();
   await page.locator('.project-point-controls input[data-point-type="centro_transferencia"]').check();
   await expect(page.locator('#explorePointCount')).toHaveText('5 puntos visibles · 27 ubicaciones pendientes');
   const result=await page.evaluate(async()=>{
@@ -92,4 +93,41 @@ test('Planned points use evidence links, independent toggles and their own pane'
   await expect(page.locator('.leaflet-projectPoints-pane .leaflet-popup')).toContainText('2022-07');
   await page.getByRole('tab',{name:'Rutas',exact:true}).click();
   await expect(page.locator('.leaflet-projectPoints-pane')).not.toBeVisible();
+});
+
+
+test('project selection matches route controls and corridor hierarchy',async({app,page})=>{
+  await page.click('#tabExplore');await expect(page.locator('#exploreCount')).toHaveText('106 de 106 trazados');
+  const all=page.locator('#exploreToggleAll');
+  await page.locator('#explorePane input[type=search]').fill('Línea 3');
+  await all.click();await expect(all).toHaveText('Desmarcar todo');
+  await expect(page.locator('#exploreOnMapCount')).toHaveText('1');
+  await page.locator('.project-row:visible .project-name').click();
+  await expect(page.locator('#projectDetails .project-track-preview')).toBeVisible();
+  await expect(page.locator('#projectDetails .project-station-diagram li')).toHaveCount(28);
+  await page.locator('#explorePane input[type=search]').fill('');
+  const corridor=page.locator('#explorePanels > [data-mode=corredor]');
+  await corridor.locator(':scope > .panel-head').click();
+  const red=corridor.locator('[data-corridor=rojo]');
+  await red.locator(':scope > .panel-head').click();
+  await expect(red.locator('.project-row')).toBeVisible();
+  await red.locator(':scope > .panel-head > input').check();
+  await expect(page.locator('#exploreOnMapCount')).toHaveText('2');
+  const color=await page.evaluate(async()=>{const {state}=await import('/assets/js/config.js');let color;state.map.eachLayer(l=>{if(l.options?.pane==='projectLine' && l.feature?.properties.display_corridor?.corridor==='rojo') color=l.options.color;});return color;});
+  expect(color).toBe('#e4002b');
+  await page.locator('#exploreClear').click();await expect(page.locator('#exploreOnMap')).toBeHidden();
+  await expect(red.locator('.item-head input')).not.toBeChecked();
+});
+
+test('CETRAM display uses the linked physical intersection and keeps source evidence',async({app,page})=>{
+  await page.click('#tabExplore');await expect(page.locator('#exploreCount')).toHaveText('106 de 106 trazados');
+  await page.locator('.project-options > summary').click();
+  await page.locator('.project-point-controls input[data-point-type=centro_transferencia]').check();
+  const result=await page.evaluate(async()=>{
+    const {state}=await import('/assets/js/config.js');const catalog=await(await fetch('/data/processed/planificado/estaciones_catalogo.json')).json();
+    const r=catalog.records.find(r=>r.id==='planificado:centro_transferencia:gamarra');let actual;
+    state.map.eachLayer(l=>{if(l.options?.title==='Gamarra'){const p=l.getLatLng();actual=[p.lng,p.lat];}});
+    return {actual,display:r.display_geometry.coordinates,source:r.source_geometry.coordinates,displacement:r.display_adjustment.displacement_m};
+  });
+  expect(result.actual).toEqual(result.display);expect(result.source).not.toEqual(result.display);expect(result.displacement).toBeGreaterThan(50);
 });

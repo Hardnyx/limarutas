@@ -78,6 +78,10 @@ def validate_site(root):
         if stations.exists():
             from pipeline.scripts.atu.validate_planned_stations import check
             check(root)
+        styles = root / 'config/atu_project_styles.json'
+        if styles.exists():
+            from pipeline.scripts.atu.project_styles import validate as validate_project_styles
+            validate_project_styles(root)
     graph = read_json(local_file(root, 'pipeline/output/trip_graph.json'))
     validate_graph(graph)
     wr = read_json(local_file(root, 'pipeline/output/wr_map.json'))['routes']

@@ -101,7 +101,9 @@
         "config/atu_station*.json",
         "config/atu_geovisor_layers.json",
         "config/pmu_station_names.json",
-        "pipeline/scripts/atu/**"
+        "pipeline/scripts/atu/**",
+        "config/atu_project_styles.json",
+        "data/raw/atu_corredores/**"
       ],
       "groups": [
         "explore"

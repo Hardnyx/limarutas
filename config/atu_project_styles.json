@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "projects": {
+    "pmu:corredor:eje-corredor-bus-ate-callao-la-marina-sanchez-carrion-javier-prado:h5": {
+      "corridor": "rojo",
+      "code": "2",
+      "relation": "existing_axis_correspondence",
+      "scope": "cartographic_identity_only",
+      "source_url": "https://www.gob.pe/institucion/atu/noticias/688265-atu-los-buses-del-corredor-rojo-llegaran-hasta-el-callao-desde-este-sabado-14-de-enero",
+      "source_sha256": "5840674687d544f5c66413bc98eaec2ce7c0fcb88daeaa71f41fcb61ff493dc2",
+      "note": "Color del eje de corredor documentado; no identifica operador ni concesión del proyecto futuro."
+    },
+    "pmu:corredor:eje-corredor-bus-lima-magdalena-del-mar-brasil:h0": {
+      "corridor": "morado",
+      "code": "4",
+      "relation": "existing_axis_correspondence",
+      "scope": "cartographic_identity_only",
+      "source_url": "https://www.gob.pe/institucion/mtc/noticias/807871-mtc-mas-de-mil-vehiculos-informales-fueron-enviados-al-deposito-por-invadir-rutas-de-los-corredores",
+      "source_sha256": "559bb4dd9d9f09f3fc8a426fa8aaa48313a3789f080128280948b86bbaa9a0cd",
+      "note": "Color del eje de corredor documentado; no identifica operador ni concesión del proyecto futuro."
+    },
+    "pmu:corredor:eje-corredor-bus-puente-piedra-rimac-panamericana-norte:h5": {
+      "corridor": "amarillo",
+      "code": "1",
+      "relation": "existing_axis_correspondence",
+      "scope": "cartographic_identity_only",
+      "source_url": "https://www.gob.pe/institucion/atu/normas-legales/4382063-146-2023-atu-pe",
+      "source_sha256": "11deda8ea278a59e3bbb583ef3e24f6a32afd4a287a0b68833897f04c9ac46e1",
+      "note": "Color del eje de corredor documentado; no identifica operador ni concesión del proyecto futuro."
+    },
+    "pmu:corredor:eje-corredor-bus-rimac-miraflores-arequipa-garcilazo-de-la-vega:h5": {
+      "corridor": "azul",
+      "code": "3",
+      "relation": "existing_axis_correspondence",
+      "scope": "cartographic_identity_only",
+      "source_url": "https://www.gob.pe/institucion/atu/noticias/869591-atu-usuarios-de-los-corredores-complementarios-reducen-tiempo-de-viaje-gracias-a-nuevos-carriles-segregados",
+      "source_sha256": "7dd8dc8d93716b9019ed2e3a5f8c0346fbdebf45f7f94c1e246cfb31fc575b44",
+      "note": "Color del eje de corredor documentado; no identifica operador ni concesión del proyecto futuro."
+    },
+    "pmu:corredor:eje-corredor-bus-rimac-san-juan-de-miraflores-panamericana-sur-via-evitamiento:h5": {
+      "corridor": "amarillo",
+      "code": "1",
+      "relation": "existing_axis_correspondence",
+      "scope": "cartographic_identity_only",
+      "source_url": "https://www.gob.pe/institucion/atu/normas-legales/4382063-146-2023-atu-pe",
+      "source_sha256": "11deda8ea278a59e3bbb583ef3e24f6a32afd4a287a0b68833897f04c9ac46e1",
+      "note": "Color del eje de corredor documentado; no identifica operador ni concesión del proyecto futuro."
+    }
+  },
+  "unassigned_label": "Ejes sin color de corredor asignado",
+  "unassigned_color_policy": "preserve_atu_geovisor_renderer",
+  "new_color_assignments_found": false,
+  "research_scope": [
+    "Geovisor PMU: todos los Corredores Bus comparten el símbolo naranja",
+    "PMU Volumen II aprobado: no se encontró tabla de nuevos colores de corredores",
+    "Publicaciones ATU/MTC de identidades Rojo, Azul, Morado y Amarillo"
+  ],
+  "reviewed_on": "2026-10-13"
+}

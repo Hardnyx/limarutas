@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT))
 from pipeline.scripts.atu.sources import SourceError, json_bytes, sha
 from pipeline.scripts.atu.sync_geovisor import publish
+from pipeline.scripts.atu.transfer_display import locate
 
 CONFIG = ROOT/'config/atu_station_sources.json'
 LOCATIONS = ROOT/'config/atu_station_locations.json'
@@ -63,6 +64,10 @@ def build(config, locations, red):
         if not item['project_ids']:
             # Relationships are reviewed explicitly; never use proximity or a shared name.
             item['project_ids'] = locations.get('node_project_links', {}).get(item['id'], [])
+        display_review=locations.get('transfer_display_review')
+        if display_review and (display:=locate(item,axes,display_review)):
+            item['display_geometry']=display.pop('geometry')
+            item['display_adjustment']=display
         item['axis_distance_m'] = {}
         if item['geometry']:
             for pid in item['project_ids']:
@@ -80,7 +85,7 @@ def build(config, locations, red):
              OUT/'geoubicacion_pendientes.json': json_bytes({'records': [r for r in records if not r['geometry']],
                  'missing_names': {'Universitaria': 12}, 'research_gaps': config.get('research_gaps', [])})}
     for kind, name in FILES.items():
-        features = [{'type': 'Feature', 'id': r['id'], 'geometry': r['geometry'],
+        features = [{'type': 'Feature', 'id': r['id'], 'geometry': r['display_geometry'] or r['geometry'],
                      'properties': {k: v for k, v in r.items() if k not in ('geometry', 'source_geometry', 'display_geometry')}}
                     for r in records if r['tipo']==kind and r['geometry']]
         files[OUT/name] = json_bytes({'type': 'FeatureCollection', 'features': features})
@@ -106,8 +111,18 @@ def validate(catalog, red):
             g = r['geometry'];xy = g.get('coordinates', [])
             if (g.get('type')!='Point' or len(xy)!=2 or not all(type(v) in (int,float) and math.isfinite(v) for v in xy)
                     or not -77.5 < xy[0] < -76.4 or not -12.7 < xy[1] < -11.4): raise SourceError('Punto fuera de Lima/Callao o eje invertido')
-            if r['location_method']=='unlocated' or r['source_geometry']!=g or r['display_geometry'] is not None:
+            if r['location_method']=='unlocated' or r['source_geometry']!=g:
                 raise SourceError('La geometría documental fue alterada')
+            if r['display_geometry']:
+                display=r['display_geometry'];adjustment=r.get('display_adjustment',{})
+                if (r['tipo'] not in ('centro_transferencia','nodo_intermodal') or display['type']!='Point'
+                        or adjustment.get('method')!='linked_axis_intersection'
+                        or not set(adjustment.get('axis_ids',[])).issubset(r['project_ids'])):
+                    raise SourceError('Ajuste de transbordo sin relación documental')
+                for axis_id in adjustment['axis_ids']:
+                    axis=next(f for f in red['features'] if f['id']==axis_id)
+                    if distance(display['coordinates'],axis['geometry']['coordinates'])>.05:
+                        raise SourceError('El punto de transbordo no coincide con el cruce')
             if not r.get('location_evidence') or not r.get('source_sha256'): raise SourceError('Punto sin evidencia de localización')
             if r['location_method']=='documented_intersection' and r['coordinate_role']!='intersection_reference':
                 raise SourceError('Cruce presentado como centro de andén')
