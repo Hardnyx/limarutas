@@ -4,9 +4,15 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      full:
+        description: Forzar suite completa antes de publicar
+        type: boolean
+        default: false
 
 permissions:
   contents: read
+  actions: read
   pages: write
   id-token: write
 
@@ -18,6 +24,8 @@ jobs:
   # Solo se publica si las pruebas pasan
   test:
     uses: ./.github/workflows/tests.yml
+    with:
+      full: ${{ inputs.full || false }}
 
   deploy:
     needs: test

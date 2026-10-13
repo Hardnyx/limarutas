@@ -1,60 +1,113 @@
 name: Pruebas (dominio, datos y Playwright)
 
-# En main las corre el workflow de Pages antes de publicar (workflow_call)
 on:
   push:
     branches-ignore: [main]
   pull_request:
   workflow_call:
+    inputs:
+      full:
+        description: Forzar suite completa
+        type: boolean
+        default: false
   workflow_dispatch:
+    inputs:
+      full:
+        description: Forzar suite completa
+        type: boolean
+        default: false
 
 permissions:
   contents: read
+  actions: read
 
 jobs:
-  playwright:
+  contracts:
+    name: Contratos y selección de cobertura
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 10
+    outputs:
+      run_browser: ${{ steps.plan.outputs.run_browser }}
+      matrix: ${{ steps.plan.outputs.matrix }}
+      files: ${{ steps.plan.outputs.files }}
     steps:
       - uses: actions/checkout@v4
-
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
-
-      - name: Instalar dependencias
-        run: npm ci
-
-      - name: Instalar Chromium
-        run: npx playwright install --with-deps chromium
-
-      - name: Validar fotos de rutas (autor y licencia libre)
-        run: python3 pipeline/scripts/photos/commons_photos.py --check
-
-      - name: Validar contratos de datos
+      - run: npm ci
+      - name: Validar contratos, datos y fotos
         run: |
           python3 -m unittest discover -s pipeline/tests
           python3 pipeline/run.py validate --manifest pipeline-inventory.json
+          python3 pipeline/scripts/photos/commons_photos.py --check
+          npm run test:unit
+      - name: Seleccionar pruebas desde el último despliegue exitoso
+        id: plan
+        env:
+          GH_TOKEN: ${{ github.token }}
+          FORCE_FULL: ${{ inputs.full }}
+        run: python3 pipeline/ci/test_plan.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ci-test-plan
+          path: |
+            pipeline/temp/ci-test-plan.json
+            pipeline-inventory.json
 
-      - name: Correr pruebas
-        run: npm test
+  browser:
+    name: Navegador (${{ matrix.project }}, ${{ matrix.shard }})
+    needs: contracts
+    if: needs.contracts.outputs.run_browser == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.contracts.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Instalar Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Ejecutar cobertura seleccionada
         env:
           CI: true
-
-      - name: Guardar reporte
+          TEST_FILES: ${{ needs.contracts.outputs.files }}
+          PW_PROJECT: ${{ matrix.project }}
+          PW_SHARD: ${{ matrix.shard }}
+        run: python3 pipeline/ci/run_browser.py
+      - uses: actions/upload-artifact@v4
         if: failure()
-        uses: actions/upload-artifact@v4
         with:
-          name: playwright-report
+          name: playwright-${{ matrix.project }}-${{ strategy.job-index }}
           path: |
             playwright-report/
             test-results/
           retention-days: 7
 
-      - name: Guardar inventario de datos validados
-        uses: actions/upload-artifact@v4
-        with:
-          name: pipeline-inventory
-          path: pipeline-inventory.json
-          retention-days: 7
+  gate:
+    name: Cobertura requerida aprobada
+    needs: [contracts, browser]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Comprobar contratos y todas las particiones requeridas
+        env:
+          CONTRACTS_RESULT: ${{ needs.contracts.result }}
+          BROWSER_RESULT: ${{ needs.browser.result }}
+          RUN_BROWSER: ${{ needs.contracts.outputs.run_browser }}
+        run: |
+          test "$CONTRACTS_RESULT" = success
+          if [ "$RUN_BROWSER" = true ]; then
+            test "$BROWSER_RESULT" = success
+          else
+            test "$RUN_BROWSER" = false
+            test "$BROWSER_RESULT" = skipped
+          fi

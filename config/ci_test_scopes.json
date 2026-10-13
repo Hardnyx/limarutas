@@ -1,0 +1,233 @@
+{
+  "version": 1,
+  "smoke": [
+    "tests/architecture.spec.js"
+  ],
+  "groups": {
+    "explore": [
+      "tests/atuExplore.spec.js",
+      "tests/beta.spec.js",
+      "tests/mobile.spec.js"
+    ],
+    "routes": [
+      "tests/sidebar.spec.js",
+      "tests/canonicalGeometry.spec.js",
+      "tests/trips.spec.js",
+      "tests/tripPlanner.spec.js"
+    ],
+    "planner": [
+      "tests/trips.spec.js",
+      "tests/tripPlanner.spec.js"
+    ],
+    "sidebar": [
+      "tests/sidebar.spec.js",
+      "tests/search.spec.js",
+      "tests/recents.spec.js",
+      "tests/beta.spec.js",
+      "tests/mobile.spec.js"
+    ],
+    "style": [
+      "tests/style-contract.spec.js",
+      "tests/theme.spec.js",
+      "tests/mobile.spec.js",
+      "tests/beta.spec.js",
+      "tests/atuExplore.spec.js"
+    ],
+    "editor": [
+      "tests/routeEditor.spec.js",
+      "tests/theme.spec.js"
+    ],
+    "aero": [
+      "tests/aerodirecto.spec.js",
+      "tests/sidebar.spec.js",
+      "tests/tripPlanner.spec.js"
+    ],
+    "map": [
+      "tests/map.spec.js",
+      "tests/canonicalGeometry.spec.js",
+      "tests/sidebar.spec.js",
+      "tests/atuExplore.spec.js"
+    ]
+  },
+  "rules": [
+    {
+      "paths": [
+        ".github/**",
+        "pipeline/ci/**",
+        "config/ci_test_scopes.json",
+        "playwright.config.js",
+        "package*.json",
+        "tests/fixtures.js",
+        "tests/*-snapshots/**",
+        "assets/js/config.js",
+        "assets/js/app.js",
+        "assets/js/utils.js",
+        "assets/js/catalogRepository.js",
+        "assets/js/serviceCatalog.js",
+        "assets/js/selectionState.js",
+        "assets/js/tripGraph.js",
+        "assets/js/tripPlanner.js",
+        "assets/js/tripRecommendation.js",
+        "pipeline/authoring/network.py",
+        "pipeline/authoring/engine.py",
+        "pipeline/authoring/model.py",
+        "pipeline/authoring/routing.py",
+        "pipeline/authoring/restrictions.py",
+        "pipeline/tests/fixtures/**",
+        "pipeline/tests/serve_authoring_fixture.py"
+      ],
+      "groups": [
+        "full"
+      ]
+    },
+    {
+      "paths": [
+        "docs/**",
+        "README*",
+        "LICENSE*",
+        "tests/README.md",
+        "data/raw/atu_estaciones/**",
+        "pipeline/requirements-atu-stations.txt",
+        "pipeline/tests/**",
+        "tests-node/**"
+      ],
+      "groups": []
+    },
+    {
+      "paths": [
+        "assets/js/explore.js",
+        "data/processed/planificado/**",
+        "data/raw/atu_geovisor/**",
+        "config/atu_station*.json",
+        "config/atu_geovisor_layers.json",
+        "config/pmu_station_names.json",
+        "pipeline/scripts/atu/**"
+      ],
+      "groups": [
+        "explore"
+      ]
+    },
+    {
+      "paths": [
+        "assets/css/**",
+        "assets/icons/**",
+        "assets/js/theme.js",
+        "assets/js/icons.js",
+        "assets/js/mapColors.js"
+      ],
+      "groups": [
+        "style"
+      ]
+    },
+    {
+      "paths": [
+        "assets/js/mainLayout.js",
+        "assets/js/legacyLayout.js",
+        "assets/js/betaLayout.js",
+        "assets/js/layout.js",
+        "assets/js/mobileSheet.js",
+        "assets/js/panels.js",
+        "assets/js/uiSidebar*.js",
+        "assets/js/recents.js",
+        "assets/js/search.js",
+        "assets/js/leafToggle.js",
+        "assets/js/routeControls.js",
+        "assets/js/routeInspector.js",
+        "assets/js/routeSteps.js",
+        "index.html"
+      ],
+      "groups": [
+        "sidebar",
+        "explore"
+      ]
+    },
+    {
+      "paths": [
+        "assets/js/map*.js",
+        "assets/js/parsers.js",
+        "assets/js/stop*.js",
+        "assets/js/geo.js"
+      ],
+      "groups": [
+        "map",
+        "planner"
+      ]
+    },
+    {
+      "paths": [
+        "assets/js/trip*.js",
+        "assets/js/walkRoute.js",
+        "pipeline/output/trip_graph.json",
+        "data/processed/caminata/**"
+      ],
+      "groups": [
+        "planner"
+      ]
+    },
+    {
+      "paths": [
+        "data/processed/metropolitano/**",
+        "data/processed/metro/**",
+        "data/processed/corredores/**",
+        "data/processed/transporte/**",
+        "pipeline/output/**",
+        "pipeline/scripts/metropolitano/**",
+        "pipeline/scripts/trips/**",
+        "pipeline/scripts/osm/**",
+        "pipeline/scripts/wikiroutes/**",
+        "pipeline/authoring/feeders.py",
+        "pipeline/authoring/terminals.py",
+        "pipeline/authoring/boarding.py",
+        "pipeline/authoring/itineraries.py",
+        "pipeline/authoring/macros.py",
+        "pipeline/authoring/native.py",
+        "config/alim_*.json",
+        "config/feeder_source_reviews.json",
+        "config/lista_corredores.json",
+        "config/recorridos_correcciones.json",
+        "data/raw/atu_ves/**",
+        "config/atu_portal_qr.json"
+      ],
+      "groups": [
+        "routes"
+      ]
+    },
+    {
+      "paths": [
+        "assets/js/routeAuthoring*.js",
+        "editor.html",
+        "pipeline/authoring/**"
+      ],
+      "groups": [
+        "editor"
+      ]
+    },
+    {
+      "paths": [
+        "assets/js/corridorPolicy.js",
+        "assets/js/routePolicy.js",
+        "assets/js/routeEntries.js",
+        "assets/js/wrData.js",
+        "assets/js/wrTexts.js",
+        "config/*.json"
+      ],
+      "groups": [
+        "routes",
+        "sidebar"
+      ]
+    },
+    {
+      "paths": [
+        "pipeline/run.py",
+        "pipeline/stages.py",
+        "pipeline/validation.py",
+        "pipeline/requirements.txt",
+        "pipeline/scripts/photos/**"
+      ],
+      "groups": [
+        "routes",
+        "explore"
+      ]
+    }
+  ]
+}

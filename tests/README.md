@@ -52,3 +52,29 @@ despliegue a Pages (`pages.yml`) solo publica si pasan.
   reconstruye el grafo sin sidebar y comprueba selección y «Quitar todas».
 - `style-contract.spec.js`: referencias de estilos computados en dos anchos y
   ambos temas. Actualizar snapshots únicamente ante cambios visuales previstos.
+
+## Selección de cobertura en el despliegue
+
+Los contratos Python, validación de datos, fotos y pruebas unitarias JavaScript
+se ejecutan siempre. `pipeline/ci/test_plan.py` compara el commit actual con el
+último workflow de Pages exitoso que sea ancestro. Los pushes fallidos o
+cancelados permanecen dentro del delta de la siguiente publicación. En PR se
+usa la base común con la rama destino. Una base ausente o un archivo sin regla
+obliga a ejecutar todas las pruebas.
+
+`config/ci_test_scopes.json` define reglas ordenadas (la primera coincidencia
+por archivo) y grupos de pruebas; un cambio combinado suma sus grupos. Explorar
+selecciona sus casos, navegación y móvil; datos operativos seleccionan geometría,
+sidebar y Cómo llegar; estilos incluyen temas y contratos visuales; cambios del
+motor y de la propia política de CI ejecutan toda la suite.
+
+El informe `ci-test-plan` y el resumen de Actions indican base, archivos,
+razones, grupos y pruebas seleccionadas. La opción manual **Forzar suite
+completa** está disponible tanto en Pages como en el workflow de pruebas.
+
+Ambas interfaces continúan cubiertas. Con cinco o más archivos de prueba se
+usan cuatro runners: dos interfaces × dos particiones. Cada runner tiene sus
+propios servidores y almacenamiento del editor; conserva un solo worker y
+particiones por archivo. La publicación espera contratos y todas las
+particiones seleccionadas. No se admite una selección vacía de navegador como
+éxito de una cobertura que sí requería navegador.
