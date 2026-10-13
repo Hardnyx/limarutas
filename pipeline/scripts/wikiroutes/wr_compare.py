@@ -25,6 +25,7 @@ def stop_changes(old,new,policy):
     before={str(p['id']):p for p in old};after={str(p['id']):p for p in new}
     if len(before)!=len(old) or len(after)!=len(new):return [{'type':'STOP_ID_AMBIGUOUS'}]
     changes=[]
+    if any(not p.get('coordinates') for p in new):changes.append({'type':'STOP_COORDINATES_UNAVAILABLE'})
     for id in before.keys()-after.keys():changes.append({'type':'STOP_REMOVED','id':id})
     for id in after.keys()-before.keys():changes.append({'type':'STOP_ADDED','id':id})
     for id in before.keys()&after.keys():

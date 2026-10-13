@@ -109,7 +109,10 @@ def compare_route(root,item,snapshot,wr,policy):
             'applied':False,'review_required':review or classification in ('MAJOR_CHANGE','MINOR_CHANGE'),
             'reason':'Accepted authoring preserved' if review else 'Observation only; geometric changes need calibration and a validated transaction'})
     status='EXISTING' if existing else 'NEW'
-    return {'route_id':rid,'catalog_status':status,'active_wr':item['active'],'layers':entries,
+    official=read(root/'pipeline/output/prr_fichas.json',{'rutas':{}})
+    code=item.get('title','').strip()
+    candidate={'code':code,'source':official.get('fuente'),'match':'exact_catalog_code','official_status_changed':False} if code in official['rutas'] else None
+    return {'route_id':rid,'official_candidate':candidate,'source_role':'secondary_observation' if candidate else 'wikiroutes_only_observation','catalog_status':status,'active_wr':item['active'],'layers':entries,
         'live_trips':len(live),'structure_changed':structure_changed,'snapshot_hash':digest(snapshot),
         'new_route_review_required':not existing,'applied':False},changed_segments
 
@@ -127,7 +130,9 @@ def summarize(catalog,known,records,complete):
 
 
 def scan(args):
-    root=args.root.resolve();cache=args.snapshot.resolve();policy=read(root/'config/wikiroutes_sync.json')
+    root=args.root.resolve();cache=args.snapshot.resolve()
+    if any(cache.is_relative_to(root/p) for p in ['data','pipeline/output','config','assets']):raise ValueError('Scan snapshots must stay outside published data')
+    policy=read(root/'config/wikiroutes_sync.json')
     wr=read(root/'pipeline/output/wr_map.json');catalog,robots=fetch_catalog()
     known={p.name.split('_',1)[1] for p in (root/'data/processed/transporte').glob('route_*') if p.is_dir()}
     local_hash=digest(wr);write(cache/'catalog.json',{'checked_at':now(),'routes':catalog})

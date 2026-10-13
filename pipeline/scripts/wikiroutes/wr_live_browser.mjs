@@ -1,6 +1,7 @@
 // Inspect the normally rendered map. No replay of route tokens or decoding of protected responses.
 import {chromium} from '@playwright/test';
 import readline from 'node:readline';
+import {resolveStops} from './wr_live_stops.mjs';
 const args=['--no-sandbox','--disable-dev-shm-usage','--use-angle=swiftshader','--enable-unsafe-swiftshader'];
 const browser=await chromium.launch({headless:process.env.WR_VISIBLE!=='1',args,
   ...(process.env.WR_BROWSER_EXECUTABLE?{executablePath:process.env.WR_BROWSER_EXECUTABLE}:{})});
@@ -59,9 +60,8 @@ const collect=async url=>{
     await page.waitForFunction(()=>{const s=window.__wrRouteMap?.getSource('wr-route');return !s || s.serialize()?.data?.geometry?.coordinates?.length>1;});
     const data=await read();if(!data)throw Error('EMPTY_GEOMETRY');
     const names=headings[trip-1]?.stops||[];
-    if(data.stops && names.length!==data.stops.length)throw Error('STOP_COUNT_MISMATCH');
-    if(data.stops)for(let i=0;i<names.length;i++){data.stops[i].id=names[i].id;data.stops[i].name=names[i].name;}
-    trips.push({trip,name:headings[trip-1]?.name,...data,stops_status:data.stops?'located':'unavailable'});
+    const resolved=resolveStops(names,data.stops);
+    trips.push({trip,name:headings[trip-1]?.name,...data,stops:resolved.stops,stops_status:resolved.status,stop_observation:resolved.observation});
   }
   return {title,url:page.url(),trips};
 };

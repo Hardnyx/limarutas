@@ -11,6 +11,7 @@ on:
     branches: [main]
     paths:
       - 'pipeline/scripts/wikiroutes/wr_live_browser.mjs'
+      - 'pipeline/scripts/wikiroutes/wr_live_stops.mjs'
       - 'pipeline/scripts/wikiroutes/wr_sync_live.py'
       - 'config/wikiroutes_sync.json'
       - '.github/workflows/wikiroutes-scan.yml'
@@ -33,6 +34,7 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - name: Unit and data contracts
         run: |
+          node --test tests-node/wrLiveStops.test.mjs
           python3 -m unittest discover -s pipeline/tests
           python3 pipeline/run.py validate
       - name: Restore resumable observation cache
