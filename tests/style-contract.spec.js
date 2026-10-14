@@ -6,8 +6,16 @@ test('shared components retain their styles across themes and screen sizes', asy
     await page.click('#tabTrip');
     await page.evaluate(async () => {
       const { setTripEnds } = await import('/assets/js/tripUi.js');
-      await setTripEnds({ lat: -11.981, lon: -77.058, label: 'Naranjal' },
-        { lat: -12.172, lon: -77.011, label: 'Matellini' });
+      const { loadTripGraph } = await import('/assets/js/tripData.js');
+      const graph = await loadTripGraph();
+      // CSS snapshots need a stable chip color, independent of planner ranking.
+      const active = graph.activeRoutes.bind(graph);
+      graph.activeRoutes = opts => active(opts).filter(route => route.serviceId === 'met:B');
+      const route = graph.routes.find(r => r.key === 'met:B:ns');
+      const from = [...route.stops].find(i => graph.stops.name[i] === 'Naranjal');
+      const to = route.stops.at(-1);
+      const point = i => ({ lat: graph.stops.lat[i], lon: graph.stops.lon[i], label: graph.stops.name[i] });
+      await setTripEnds(point(from), point(to));
     });
   }
   const snapshots = [];
