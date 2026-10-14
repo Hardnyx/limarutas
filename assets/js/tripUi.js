@@ -15,21 +15,25 @@ const model = { ends, graph: null, result: null, selected: 0, filter: 'all', det
 let picking = null;
 let calculation = 0;
 let graphPromise = null;
-const mapRenderer = createTripMapRenderer(model, { state, pickedPoint, syncInputs: () => form.syncInputs(), replan });
+const mapRenderer = createTripMapRenderer(model, { state, pickedPoint, syncInputs: () => form.syncInputs(), replan,
+  onSelect: k => selectOption(k, false) });
 const form = createTripForm(model, { ensureGraph, setEnd, removePin: mapRenderer.removePin, addPin: mapRenderer.addPin,
   clearResults, syncUrl, startPicking, replan });
 const { buildForm, setCompact, syncInputs, departure, setStatus } = form;
 const { draw, addPin, removePin } = mapRenderer;
-const results = createTripResults(model, { setCompact, departure, setDeparture: form.setDeparture, replan, shareTrip,
+const results = createTripResults(model, { setCompact, departure: () => model.departure || departure(), setDeparture: form.setDeparture, replan, shareTrip,
   plannerOptions,
   onFilter(mode){ model.filter = mode; void replan(); },
   onFit(){ draw(); },
   onStep(point){ centerOn(point, Math.max(state.map.getZoom(), 16)); },
-  onSelect(k){
-    const changed = model.selected !== k;
-    model.detailsOpen = changed || !model.detailsOpen;
-    model.selected = k; void results.render(); if (changed) draw();
-  } });
+  onSelect: k => selectOption(k, true) });
+function selectOption(k, toggle){
+  if (!model.result?.options[k]) return;
+  const changed = model.selected !== k;
+  model.detailsOpen = changed || !toggle || !model.detailsOpen;
+  model.selected = k; void results.render();
+  if (changed) draw();
+}
 function clearResults(){
   calculation++;
   model.result = null;
@@ -118,7 +122,7 @@ function wireMapPicking(){
   box.addEventListener('pointerdown', (e) => { if (picking) down = { x: e.clientX, y: e.clientY }; }, true);
   box.addEventListener('click', async (e) => {
     if (!picking) return;
-    if (e.target.closest('.leaflet-control')) return;
+    if (e.target.closest('.leaflet-control, .trip-choice')) return;
     if (down && Math.hypot(e.clientX - down.x, e.clientY - down.y) > 6) return;   // fue un arrastre
     e.stopPropagation();
     const end = picking;
@@ -156,12 +160,13 @@ async function replan(){
   // Deja pintar el estado antes del cálculo
   await new Promise(res => setTimeout(res, 0));
   if (revision !== calculation) return;
+  model.departure = departure();
   model.result = planTrip(model.graph, ends.from, ends.to, plannerOptions());
   setStatus('');
   syncUrl();
   await results.render();
   if (revision !== calculation || !model.result) return;
-  draw();
+  draw({ fitAll: true });
   if (model.result.options.length || model.result.walkOnly) setSheet('half');
 }
 

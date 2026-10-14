@@ -6,6 +6,7 @@ import { paintTag } from './routeInspector.js';
 import { leafForService, setControlSelected } from './routeControls.js';
 import { icon } from './icons.js';
 import { colorOf, routeName, cardName, fmtM, walkMinOf } from './tripPresentation.js';
+import { buildTimeline, durationText } from './tripTimeline.js';
 
 export function createTripResults(model, { setCompact, departure, setDeparture, replan, shareTrip, onSelect, onFilter, onFit, onStep, plannerOptions }){
   const { ends } = model;
@@ -60,60 +61,73 @@ export function createTripResults(model, { setCompact, departure, setDeparture, 
   }
 
   function stepsOf(opt){
-    const steps = [];
-    opt.legs.forEach((leg, k) => {
-      if (leg.type === 'walk'){
-        if (leg.m < 15) return;
-        const where = k === 0 ? `hasta ${stopName(leg.to)}`
-          : k === opt.legs.length - 1 ? 'hasta tu destino'
-            : `hasta ${stopName(leg.to)} para el transbordo`;
-        const start = leg.from != null ? [model.graph.stops.lat[leg.from], model.graph.stops.lon[leg.from]] : [ends.from.lat, ends.from.lon];
-        const why = k < opt.legs.length - 1 && skippedNearer(start, opt.legs[k + 1]);
-        // Tras el Metropolitano, primero se sale de la estación
-        const exit = opt.legs[k + 1]?.exitMin || 0;
-        steps.push(el('li', { class: 'trip-step trip-step-walk' },
-          el('span', { class: 'trip-step-ico' }, icon('walk')),
-          el('span', {}, `${exit ? 'Sal de la estación y camina' : 'Camina'} ${fmtM(leg.m)} ${where}`,
-            el('span', { class: 'trip-sub' }, ` · ${walkMinOf(leg.m) + exit} min`),
-            why ? el('div', { class: 'trip-sub trip-why' }, why) : '')));
-      } else {
-        // Sin caminata entre medio (el bus para en la puerta de la estación)
-        const prevLeg = opt.legs[k - 1];
-        if (leg.exitMin && !(prevLeg?.type === 'walk' && prevLeg.m >= 15)){
-          steps.push(el('li', { class: 'trip-step trip-step-walk' },
-            el('span', { class: 'trip-step-ico' }, icon('walk')),
-            el('span', {}, 'Sal de la estación', el('span', { class: 'trip-sub' }, ` · ${leg.exitMin} min`))));
-        }
-        const r = leg.route;
-        const n = leg.to - leg.from;
-        const alts = leg.alts || [];
-        // "Sube a la La 36" no: con alias, "Sube a [La 36]" y el código aparte
-        const text = el('span', {},
-          r.alias ? 'Sube a ' : 'Sube a la ', chip(r), ' en ', stepPlace(r.stops[leg.from]),
-          ' y baja en ', stepPlace(r.stops[leg.to]),
-          el('span', { class: 'trip-sub' }, `${r.alias ? ` · ruta ${r.code}` : ''} · ${n} paradero${n === 1 ? '' : 's'} · dirección ${headsign(r)}`));
-        if (r.schedule){
-          text.append(el('div', { class: 'trip-hours' }, `Horario: ${scheduleText(r.schedule)}`));
-        }
-        // Intervalo de la ficha técnica del PRR (sin horario: todo el día)
-        if (r.headway){
-          const wait = Math.max(1, Math.round(leg.wait || r.headway / 2));
-          text.append(el('div', { class: 'trip-hours' },
-            `Pasa cada ~${r.headway} min según la ATU · espera ~${wait} min${alts.length ? ' con cualquiera' : ''}`));
-        }
-        if (alts.length){
-          const also = el('div', { class: 'trip-also' }, 'O la que pase primero: ');
-          alts.forEach((a, i) => { if (i) also.append(' '); also.append(chip(a.route)); });
-          text.append(also);
-        }
-        if (r.group === 'antigua'){
-          text.append(' ', el('span', { class: 'trip-warn' }, r.verified ? 'Sin autorización ATU' : 'Ruta antigua · podría no circular'));
-        }
-        steps.push(el('li', { class: 'trip-step trip-step-ride', style: `--c:${colorOf(r)}` },
-          el('span', { class: 'trip-step-ico' }, icon(r.group === 'metro' ? 'subway' : 'bus')), text));
+    const timeline = buildTimeline(opt, departure().min);
+    return timeline.rows.map((row, index) => {
+      const r = row.leg?.route;
+      const color = r ? colorOf(r) : 'var(--accent)';
+      if (row.type === 'point'){
+        const endpoint = row.kind === 'origin' || row.kind === 'destination';
+        const point = endpoint ? ends[row.kind === 'origin' ? 'from' : 'to'] : null;
+        const name = endpoint ? point.label : stopName(row.stop);
+        const button = el('button', { type: 'button', class: 'trip-step-place', title: 'Ver este punto en el mapa' }, name);
+        button.addEventListener('click', e => {
+          e.stopPropagation();
+          onStep(endpoint ? [point.lat, point.lon] : [model.graph.stops.lat[row.stop], model.graph.stops.lon[row.stop]]);
+        });
+        const next = timeline.rows[index + 1];
+        const line = next?.type === 'ride' ? 'ride' : 'walk';
+        return el('li', { class: `trip-timeline-point trip-point-${line}`, 'data-kind': row.kind, 'data-offset': String(row.offset), style: `--c:${color}` },
+          el('time', { class: 'trip-point-time', title: 'Hora estimada' }, `~${row.clock}`),
+          el('span', { class: `trip-node${endpoint ? ` trip-node-${row.kind}` : ''}`, 'aria-hidden': 'true' }, endpoint ? (row.kind === 'origin' ? 'A' : 'B') : ''),
+          el('div', { class: 'trip-point-name' }, button,
+            endpoint ? '' : el('span', { class: 'trip-point-action' }, row.kind === 'board' ? 'Sube aquí' : 'Baja aquí')));
       }
+      if (row.type === 'walk'){
+        const leg = row.leg;
+        const nextRide = opt.legs[row.index + 1];
+        const start = leg.from != null ? [model.graph.stops.lat[leg.from], model.graph.stops.lon[leg.from]] : [ends.from.lat, ends.from.lon];
+        const why = nextRide?.type === 'ride' && skippedNearer(start, nextRide);
+        const where = row.index === 0 ? `hasta ${stopName(leg.to)}` : row.index === opt.legs.length - 1 ? 'hasta tu destino' : `hasta ${stopName(leg.to)} para el transbordo`;
+        return el('li', { class: 'trip-step trip-step-walk' },
+          el('span', { class: 'trip-step-ico' }, icon('walk')),
+          el('div', { class: 'trip-step-body' }, `${row.exit ? 'Sal de la estación y camina' : 'Camina'} ${fmtM(leg.m)} ${where}`,
+            el('div', { class: 'trip-sub' }, durationText(row.minutes)),
+            why ? el('div', { class: 'trip-sub trip-why' }, why) : ''));
+      }
+      if (row.type === 'wait'){
+        return el('li', { class: 'trip-step trip-step-wait', style: `--c:${color}` },
+          el('span', { class: 'trip-step-ico' }, icon('clock')),
+          el('div', { class: 'trip-step-body' }, row.exit ? 'Salida de estación y espera' : row.transfer ? 'Transbordo y espera' : 'Espera estimada',
+            el('div', { class: 'trip-sub' }, durationText(row.minutes))));
+      }
+      const leg = row.leg, n = leg.to - leg.from, alts = leg.alts || [];
+      const text = el('div', { class: 'trip-step-body' },
+        el('div', { class: 'trip-ride-title' }, r.group === 'metro' ? 'Metro ' : 'Autobús ', chip(r), ` con destino a ${headsign(r)}`),
+        el('div', { class: 'trip-sub trip-boarding-summary' },
+          r.alias ? 'Sube a ' : 'Sube a la ', chip(r), ' en ', stepPlace(r.stops[leg.from]), ' y baja en ', stepPlace(r.stops[leg.to])),
+        el('div', { class: 'trip-sub' }, `${r.alias ? `ruta ${r.code} · ` : ''}${n} paradero${n === 1 ? '' : 's'} · ${durationText(row.minutes)}`));
+      const detail = el('details', { class: 'trip-intermediate' },
+        el('summary', {}, `${row.intermediate.length} parada${row.intermediate.length === 1 ? '' : 's'} intermedia${row.intermediate.length === 1 ? '' : 's'} (${durationText(row.minutes)})`));
+      detail.addEventListener('click', e => e.stopPropagation());
+      const list = el('ol', { class: 'trip-intermediate-list' });
+      for (const stop of row.intermediate){
+        list.append(el('li', {}, el('time', { title: 'Hora estimada' }, `~${stop.clock}`), stepPlace(stop.stop)));
+      }
+      if (!row.intermediate.length) list.append(el('li', {}, 'Sin paradas intermedias.'));
+      detail.append(list); text.append(detail);
+      if (r.schedule) text.append(el('div', { class: 'trip-hours' }, `Horario: ${scheduleText(r.schedule)}`));
+      if (r.headway){
+        const wait = Math.max(1, Math.round(leg.wait || r.headway / 2));
+        text.append(el('div', { class: 'trip-hours' }, `Pasa cada ~${r.headway} min según la ATU · espera ~${wait} min${alts.length ? ' con cualquiera' : ''}`));
+      }
+      if (alts.length){
+        const also = el('div', { class: 'trip-also' }, 'O la que pase primero: ');
+        alts.forEach((a, i) => { if (i) also.append(' '); also.append(chip(a.route)); }); text.append(also);
+      }
+      if (r.group === 'antigua') text.append(el('div', { class: 'trip-warn' }, r.verified ? 'Sin autorización ATU' : 'Ruta antigua · podría no circular'));
+      return el('li', { class: 'trip-step trip-step-ride', style: `--c:${color}` },
+        el('span', { class: 'trip-step-ico' }, icon(r.group === 'metro' ? 'subway' : 'bus')), text);
     });
-    return steps;
   }
 
   // Por qué va cada opción donde va: la primera es la recomendada; se marcan

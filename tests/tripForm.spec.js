@@ -75,7 +75,7 @@ test('shared WikiRoutes coordinates produce usable options and preserve preferen
   await page.locator('.trip-card.selected .trip-step-place').first().click();
   await expect(page.locator('.trip-card.selected')).toHaveAttribute('aria-expanded', 'true');
   await page.locator('.trip-card.selected .trip-fit').click();
-  await page.locator('.trip-card.selected').click();
+  await page.locator('.trip-card.selected .trip-card-head').click();
   await expect(page.locator('.trip-card.selected')).toHaveAttribute('aria-expanded', 'false');
 });
 
@@ -85,4 +85,57 @@ test('sidebar can be hidden and restored without discarding A/B', async ({ page 
   await expect(page.locator('#sidebarToggle')).toHaveAttribute('aria-expanded', 'false');
   await page.locator('#sidebarToggle').click();
   await expect(page.locator('#tripFrom')).toBeVisible();
+});
+
+test('vertical itinerary has timed nodes, expandable stops and selectable map alternatives', async ({ app, page }) => {
+  await page.goto('/index.html?desde=-12.023427,-77.050329&hasta=-12.217521,-76.926885');
+  const selected = page.locator('.trip-card.selected');
+  await expect(selected.locator('.trip-timeline-point[data-kind="origin"]')).toBeVisible();
+  await expect(selected.locator('.trip-timeline-point[data-kind="destination"]')).toHaveCount(1);
+  await expect(selected.locator('.trip-point-time').first()).toHaveText('~10:30');
+  const points = await selected.locator('.trip-timeline-point').evaluateAll(nodes => nodes.map(n => Number(n.dataset.offset)));
+  expect(points[0]).toBe(0);
+  expect(points.every((point, i) => !i || point >= points[i - 1])).toBe(true);
+  const clock = await selected.locator('.trip-point-time').first().boundingBox();
+  const dot = await selected.locator('.trip-node').first().boundingBox();
+  const place = await selected.locator('.trip-point-name').first().boundingBox();
+  expect(clock.x).toBeLessThan(dot.x);
+  expect(dot.x).toBeLessThan(place.x);
+
+  const detail = selected.locator('.trip-intermediate').first();
+  await expect(detail.locator('.trip-intermediate-list')).toBeHidden();
+  await detail.locator('summary').click();
+  await expect(detail.locator('.trip-intermediate-list')).toBeVisible();
+  expect(await detail.locator('.trip-intermediate-list .trip-step-place').count()).toBeGreaterThan(0);
+  await expect(selected).toHaveAttribute('aria-expanded', 'true');
+  await detail.locator('.trip-step-place').first().click();
+  await expect(selected).toHaveAttribute('aria-expanded', 'true');
+  await selected.locator('.trip-fit').click();
+
+  const count = await page.locator('.trip-card').count();
+  await expect(page.locator('.trip-choice')).toHaveCount(count);
+  const alternatives = await app.state(state => {
+    let count = 0;
+    state.map.eachLayer(layer => {
+      if (layer instanceof L.Polyline && layer.options.className === 'trip-alternative-route') count++;
+    });
+    return count;
+  });
+  expect(alternatives).toBeGreaterThan(0);
+  await page.locator('.trip-choice[data-option="1"]').click();
+  await expect(page.locator('.trip-card').nth(1)).toHaveClass(/selected/);
+  await expect(page.locator('.trip-choice[data-option="1"]')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('.trip-choice')).toHaveCount(count);
+  await page.click('#tabRoutes');
+  await expect(page.locator('.trip-choice').first()).toBeHidden();
+  await page.click('#tabTrip');
+  await expect(page.locator('.trip-choice').first()).toBeVisible();
+  await page.screenshot({ path: test.info().outputPath('timeline-desktop.png') });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.focus('#sheetHandle');
+  await page.keyboard.press('ArrowUp');
+  await expect(page.locator('html')).toHaveAttribute('data-sheet', 'full');
+  const overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
+  expect(overflow).toBe(false);
+  await page.screenshot({ path: test.info().outputPath('timeline-mobile.png') });
 });

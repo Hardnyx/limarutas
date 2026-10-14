@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { buildTripGraph } from '../assets/js/tripGraph.js';
 import { createServiceCatalog } from '../assets/js/serviceCatalog.js';
 import { planTrip } from '../assets/js/tripPlanner.js';
+import { buildTimeline } from '../assets/js/tripTimeline.js';
 
 function fixture(){
   const catalog = createServiceCatalog({ systems: { metro: { services: [{ id: 'L1', color: '#008000' }] } } });
@@ -68,4 +69,18 @@ test('fewer transfers changes the recommendation instead of relabelling the same
   assert.match(fewer.options[0].recommendationReason, /menos transbordos/);
   const preferred = planTrip(g, from, to, { preferredModes: ['bus'] });
   assert.ok(preferred.options[0].legs.some(l => l.type === 'ride' && l.route.group !== 'metro'));
+});
+
+test('timeline totals reconcile with every computed itinerary without changing ranking or duration', () => {
+  const g = mixedFixture();
+  const result = planTrip(g, { lat: -12, lon: -77 }, { lat: -12.06, lon: -77 });
+  for (const option of result.options){
+    const timeline = buildTimeline(option, 630);
+    assert.ok(Math.abs(timeline.calculatedMinutes - option.minutes) <= .5);
+    assert.equal(timeline.rows.at(-1).offset, option.minutes);
+    for (const leg of option.legs.filter(leg => leg.type === 'ride')){
+      assert.equal(leg.segmentMinutes.length, leg.to - leg.from);
+      assert.ok(leg.travelMinutes > 0);
+    }
+  }
 });

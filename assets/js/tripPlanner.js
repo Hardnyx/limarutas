@@ -422,6 +422,17 @@ export function planTrip(g, from, to, { includeOld = false, at = null, modes = n
     picked.splice(1, rest.length, ...rest);
   }
   for (const c of picked){
+    let rideIndex = 0;
+    for (const leg of c.legs){
+      if (leg.type === 'walk'){
+        leg.travelMinutes = walkMin(leg.m);
+        continue;
+      }
+      leg.segmentMinutes = Array.from({ length: leg.to - leg.from }, (_, i) => legMin(g, leg.route, leg.from + i));
+      leg.travelMinutes = leg.segmentMinutes.reduce((sum, min) => sum + min, 0);
+      leg.transferMinutes = rideIndex ? (c.chain && rideIndex === 1 ? MET_SWITCH_MIN : TRANSFER_MIN) : 0;
+      rideIndex++;
+    }
     out.options.push({
       legs: c.legs,
       transfers: c.transfers,

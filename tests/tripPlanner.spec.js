@@ -335,7 +335,7 @@ test.describe('pestaña Cómo llegar', () => {
     await expect(card.locator('.trip-name').first()).toContainText('ruta 1191');
     await card.click();
     const step = card.locator('.trip-step-ride').first();
-    await expect(step).toContainText(/^Sube a La 35A en /);
+    await expect(step.locator('.trip-ride-title')).toContainText(/Autobús La 35A con destino a /);
     await expect(step).toContainText('ruta 1191');
   });
 
@@ -382,7 +382,7 @@ test.describe('pestaña Cómo llegar', () => {
     // Por las calles: el tramo tiene esquinas
     await expect.poll(() => app.state(state => {
       const walks = [];
-      state.map.eachLayer(l => { if (l instanceof L.Polyline && l.options.dashArray === '2 8') walks.push(l.getLatLngs().length); });
+      state.map.eachLayer(l => { if (l instanceof L.Polyline && l.options.pane === 'tripLinePane' && l.options.dashArray === '2 8') walks.push(l.getLatLngs().length); });
       return walks.length > 0 && walks.every(n => n >= 4);
     })).toBe(true);
     expect(tiles.length).toBeGreaterThan(0);
