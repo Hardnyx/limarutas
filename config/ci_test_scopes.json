@@ -17,6 +17,7 @@
     ],
     "planner": [
       "tests/trips.spec.js",
+      "tests/tripForm.spec.js",
       "tests/tripPlanner.spec.js"
     ],
     "sidebar": [

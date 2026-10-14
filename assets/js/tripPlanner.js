@@ -164,14 +164,18 @@ const sameService = (a, b) => a.serviceId === b.serviceId;
  * @returns { walkOnly, meters, options: [{ legs, minutes, transfers, walkM, cost, old }] }
  *          cada tramo 'ride' trae alts: [{ route, from, to }]
  */
-export function planTrip(g, from, to, { includeOld = false, at = null } = {}){
+export function planTrip(g, from, to, { includeOld = false, at = null, modes = null, preferredModes = [], sort = 'best' } = {}){
   const direct = distM(from.lat, from.lon, to.lat, to.lon);
   const out = { walkOnly: direct <= WALK_ONLY_M, meters: direct, options: [] };
   if (out.walkOnly) return out;
 
   congestionW = congestionWeight(at);
   busPeak = busPeakFactor(at);
-  const active = new Set(g.activeRoutes({ includeOld, at }));
+  const modeOf = r => r.group === 'metro' ? 'metro' : 'bus';
+  const preferred = c => preferredModes.length === 1 && c.legs.some(l => l.type === 'ride' && preferredModes.includes(modeOf(l.route)));
+  const preferenceOrder = (a, b) => (sort === 'transfers' ? a.transfers - b.transfers : 0)
+    || Number(preferred(b)) - Number(preferred(a));
+  const active = new Set(g.activeRoutes({ includeOld, at }).filter(r => !modes?.length || modes.includes(modeOf(r))));
   const isActive = i => active.has(g.routes[i]);
 
   const origins = g.nearestStops(from.lat, from.lon, DIRECT_ACCESS_MAX_M);
@@ -294,7 +298,7 @@ export function planTrip(g, from, to, { includeOld = false, at = null } = {}){
         + (c.chain ? MET_SWITCH_PENALTY + TRANSFER_PENALTY
           : c.transfers * (integrated ? INTEGRATED_TRANSFER_PENALTY : TRANSFER_PENALTY)) };
   });
-  cands.sort((a, b) => a.base - b.base);
+  cands.sort((a, b) => preferenceOrder(a, b) || a.base - b.base);
 
   // Un transbordo no tiene sentido si una de sus rutas ya te lleva directo
   // (salvo que ahorre bastante): mejor quedarse en el mismo bus
@@ -360,7 +364,8 @@ export function planTrip(g, from, to, { includeOld = false, at = null } = {}){
   const tier0 = c => c.transfers ? c.minutes <= bestDirectMin - mustSave || integratedWins(c) : c.walkM <= EASY_DIRECT_WALK_M;
   const fastest0 = Math.min(...top.filter(tier0).map(c => c.minutes));
   const tier = c => integratedWins(c) && c.minutes <= fastest0 + INTEGRATED_SLACK_MIN ? -1 : tier0(c) ? 0 : 1;
-  top.sort((a, b) => tier(a) - tier(b) || a.cost - b.cost);
+  const order = (a, b) => preferenceOrder(a, b) || tier(a) - tier(b) || a.cost - b.cost;
+  top.sort(order);
 
   // Una opción ya cubierta por otra (sus rutas son alternativas de aquella) no se repite
   const rideLegs = o => o.legs.filter(l => l.type === 'ride');
@@ -394,7 +399,7 @@ export function planTrip(g, from, to, { includeOld = false, at = null } = {}){
       if (picked.length >= MAX_OPTIONS){ if (!drop) break; picked.splice(drop[1], 1); }
       picked.push(d);
     }
-    picked.sort((a, b) => tier(a) - tier(b) || a.cost - b.cost);
+    picked.sort(order);
   }
   // Si se puede ir en Metro, Metropolitano o corredor, siempre aparece una opción así
   if (picked.length && !picked.some(c => c.mass)){
@@ -406,13 +411,13 @@ export function planTrip(g, from, to, { includeOld = false, at = null } = {}){
     if (m && (picked.length < MAX_OPTIONS || drop)){
       if (picked.length >= MAX_OPTIONS) picked.splice(drop[1], 1);
       picked.push(m);
-      picked.sort((a, b) => tier(a) - tier(b) || a.cost - b.cost);
+      picked.sort(order);
     }
   }
   // Primero la recomendada (la más cómoda según lo de arriba); el resto, de la
   // que llega antes a la que llega después: quien mira las otras opciones
   // las compara por tiempo
-  if (picked.length > 2){
+  if (picked.length > 2 && sort === 'best' && preferredModes.length !== 1){
     const rest = picked.slice(1).sort((a, b) => a.minutes - b.minutes || a.walkM - b.walkM);
     picked.splice(1, rest.length, ...rest);
   }
@@ -423,9 +428,10 @@ export function planTrip(g, from, to, { includeOld = false, at = null } = {}){
       minutes: Math.round(c.minutes),
       walkM: Math.round(c.walkM),
       cost: Math.round(c.cost),
-      recommendationReason: c === picked[0] ? explainRecommendation(c, {
+      recommendationReason: c === picked[0] ? (sort === 'transfers' ? 'Prioriza menos transbordos entre las opciones disponibles.'
+        : preferred(c) ? `Prioriza ${preferredModes[0] === 'metro' ? 'el Metro' : 'el autobús'} según tu preferencia.` : explainRecommendation(c, {
         directReference: refDirect, savingThreshold: mustSave, winningIntegrated: integratedWins(c)
-      }) : '',
+      })) : '',
       mass: c.mass,
       old: rideLegs(c).some(l => l.route.group === 'antigua')
     });
@@ -465,16 +471,16 @@ function alternativesFor(g, leg, isActive){
 }
 
 // ¿Aparecerían más opciones con las rutas antiguas? (para ofrecerlas)
-export function oldWouldHelp(g, from, to, { at = null } = {}){
-  const withOld = planTrip(g, from, to, { includeOld: true, at });
+export function oldWouldHelp(g, from, to, opts = {}){
+  const withOld = planTrip(g, from, to, { ...opts, includeOld: true });
   return withOld.options.some(o => o.old);
 }
 
 // Servicios con horario que servirían para este viaje pero no circulan a esa
 // hora (p. ej. un expreso de hora punta): [route, ...], uno por servicio
-export function offHoursHelp(g, from, to, { includeOld = false, at = null } = {}){
+export function offHoursHelp(g, from, to, { includeOld = false, at = null, ...opts } = {}){
   if (!at) return [];
-  const anyTime = planTrip(g, from, to, { includeOld });
+  const anyTime = planTrip(g, from, to, { ...opts, includeOld });
   const found = new Map();
   anyTime.options.forEach(o => o.legs.forEach(l => {
     const r = l.route;

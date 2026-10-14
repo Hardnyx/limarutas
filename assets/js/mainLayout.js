@@ -48,11 +48,30 @@ export function mountMainLayout(){
   sidebar.dataset.layoutMounted = 'main';
 
   buildTabs(sidebar, panels);
+  buildSidebarToggle(sidebar);
   reorderSections(panels);
   keepClosedHeadInView(panels);
   buildMapSettings(panels);
   wireMobileSheet();
   return { ready: finishMainLayout };
+}
+
+function buildSidebarToggle(sidebar){
+  const toggle = el('button', { type: 'button', id: 'sidebarToggle', class: 'sidebar-toggle',
+    'aria-controls': 'sidebar', 'aria-expanded': 'true', 'aria-label': 'Ocultar barra lateral' }, icon('chevron'));
+  sidebar.after(toggle);
+  toggle.addEventListener('click', () => {
+    const collapsed = document.documentElement.classList.toggle('sidebar-collapsed');
+    sidebar.inert = collapsed;
+    toggle.setAttribute('aria-expanded', String(!collapsed));
+    toggle.setAttribute('aria-label', collapsed ? 'Mostrar barra lateral' : 'Ocultar barra lateral');
+    state.map?.invalidateSize();
+  });
+  window.matchMedia('(max-width: 700px)').addEventListener('change', e => {
+    if (!e.matches) return;
+    document.documentElement.classList.remove('sidebar-collapsed'); sidebar.inert = false;
+    toggle.setAttribute('aria-expanded', 'true'); toggle.setAttribute('aria-label', 'Ocultar barra lateral');
+  });
 }
 
 function buildTabs(sidebar, panels){

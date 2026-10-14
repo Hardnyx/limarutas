@@ -190,148 +190,109 @@ html.beta #tripPane {
   padding: 4px 16px 0;
 }
 
-html.beta .trip-form {
-  gap: 8px;
+/* A/B planner: stacked fields, adjacent swap, departure and options. */
+html.beta .trip-form { gap: 12px; margin: 0; }
+.trip-mode-label {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 600; color: var(--accent);
 }
-
+.trip-mode-label > .ico { width: 20px; height: 20px; }
+.trip-mode-label > span { margin-left: auto; color: var(--text-muted); font-size: 11px; font-weight: 400; }
+.trip-endpoints { display: flex; align-items: center; gap: 8px; }
+.trip-endpoint-fields { flex: 1; min-width: 0; display: grid; gap: 10px; }
 html.beta .trip-field {
-  gap: 10px;
+  gap: 0; border: 1px solid var(--line-strong); border-radius: 10px;
+  background: var(--surface); min-width: 0;
 }
-
-/* Puntos A y B unidos por una línea punteada */
-html.beta .trip-field[data-end="from"]::after {
-  content: "";
-  position: absolute;
-  left: 11px;
-  top: 36px;
-  height: 22px;
-  border-left: 2px dotted var(--line-strong);
-}
-
+html.beta .trip-field:focus-within { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+html.beta .trip-field[data-end="from"]::after { content: none; }
 html.beta .trip-dot {
-  width: 24px;
-  height: 24px;
-  font-size: 11px;
-  box-shadow: 0 0 0 3px var(--surface);
+  position: absolute; left: 10px; width: 20px; height: 20px;
+  font-size: 11px; box-shadow: none; pointer-events: none;
 }
-
 html.beta .trip-input {
-  height: 44px;
-  padding: 0 40px 0 14px;
-  border-radius: 12px;
-  background: var(--surface-2);
-  box-shadow: none;
-  font: inherit;
-  font-size: 15px;
+  height: 44px; padding: 0 68px 0 38px; box-sizing: border-box;
+  border-radius: 10px; background: transparent; box-shadow: none;
+  font: inherit; font-size: 14px;
 }
-
-html.beta .trip-input::placeholder {
-  color: var(--text-muted);
-}
-
-html.beta .trip-input:focus {
-  background: var(--surface);
-  box-shadow: inset 0 0 0 2px var(--accent);
-}
-
+html.beta .trip-input::placeholder { color: var(--text-muted); }
+html.beta .trip-input:focus { background: transparent; box-shadow: none; }
 html.beta .trip-clear {
-  right: 56px;
-  top: 50%;
-  width: 28px;
-  height: 28px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  right: 34px; top: 50%; width: 28px; height: 32px;
+  display: inline-flex; align-items: center; justify-content: center;
   transform: translateY(-50%);
 }
-
-html.beta .trip-clear:hover {
-  background: var(--fill);
-  color: var(--text-main);
-}
-
-html.beta .trip-clear .ico {
-  width: 18px;
-  height: 18px;
-}
-
+html.beta .trip-clear[hidden] { display: none; }
+html.beta .trip-clear:hover { background: var(--fill); color: var(--text-main); }
+html.beta .trip-clear .ico { width: 16px; height: 16px; }
 html.beta .trip-pick {
-  width: 44px;
-  height: 44px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  border-radius: 12px;
-  background: transparent;
-  color: var(--accent);
+  position: absolute; right: 3px; width: 32px; height: 36px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border: none; border-radius: 8px; background: transparent; color: var(--text-muted);
 }
-
-html.beta .trip-pick:hover {
-  background: var(--accent-soft);
+html.beta .trip-pick .ico { width: 18px; height: 18px; }
+html.beta .trip-pick:hover { background: var(--accent-soft); color: var(--accent); }
+html.beta .trip-pick[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); }
+.trip-swap {
+  flex: none; display: inline-flex; align-items: center; justify-content: center;
+  width: 32px; height: 44px; border: none; border-radius: 8px;
+  background: transparent; color: var(--text-main); cursor: pointer;
 }
-
-html.beta.trip-picking .trip-pick {
-  background: var(--accent);
-  color: var(--on-accent);
-}
-
+.trip-swap:hover { background: var(--hover); }
+.trip-swap .ico { width: 22px; height: 22px; }
 html.beta .suggest.trip-suggest {
-  left: 34px;
-  right: 54px;
-  margin-top: 4px;
-  border: none;
-  border-radius: 12px;
-  background: var(--surface);
-  box-shadow: var(--shadow-soft);
-  overflow: hidden;
+  left: -1px; right: -1px; margin-top: 6px; max-height: min(320px, 40vh);
+  border: 1px solid var(--line); border-radius: 10px;
+  background: var(--surface); box-shadow: var(--shadow-soft); overflow-y: auto;
 }
-
-/* Chips de opciones: salida, invertir, rutas antiguas */
 html.beta .trip-opts {
-  gap: 8px;
-  padding: 4px 0 0 34px;
+  align-items: center; justify-content: space-between; gap: 8px;
+  padding: 10px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
 }
-
 html.beta .trip-opt {
-  height: 34px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 0 12px;
-  border: 1px solid var(--line-strong);
-  border-radius: 999px;
-  background: var(--surface);
-  color: var(--text-main);
-  font: inherit;
-  font-size: 13px;
-  font-weight: 500;
-  box-sizing: border-box;
+  min-height: 34px; display: inline-flex; align-items: center; gap: 6px;
+  padding: 0 8px; border: none; border-radius: 8px;
+  background: transparent; color: var(--text-main); box-shadow: none;
+  font: inherit; font-size: 13px; font-weight: 500; box-sizing: border-box;
 }
-
-html.beta .trip-opt:hover {
-  background: var(--hover);
+html.beta .trip-opt:hover { background: var(--hover); }
+html.beta .trip-opt .ico { width: 18px; height: 18px; color: var(--text-muted); }
+html.beta .trip-when { flex-wrap: wrap; max-width: 100%; }
+html.beta .trip-when select, html.beta .trip-when input[type="time"] {
+  min-height: 32px; max-width: 100%; border: none; background: transparent;
+  color: inherit; font: inherit; font-weight: 500;
 }
-
-html.beta .trip-opt-icon {
-  width: 34px;
-  padding: 0;
-  justify-content: center;
+.trip-options-toggle {
+  display: inline-flex; align-items: center; gap: 4px; min-height: 34px;
+  padding: 0 8px; border: none; border-radius: 8px; background: transparent;
+  font: inherit; font-size: 13px; font-weight: 600; color: var(--accent); cursor: pointer;
 }
-
-html.beta .trip-opt .ico {
-  width: 18px;
-  height: 18px;
-  color: var(--text-muted);
+.trip-options-toggle .ico { width: 18px; height: 18px; transform: rotate(90deg); }
+.trip-options-toggle[aria-expanded="true"] .ico { transform: rotate(-90deg); }
+.trip-options-toggle:hover { background: var(--accent-soft); }
+.trip-options { padding: 10px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface-2); }
+.trip-options[hidden] { display: none; }
+.trip-options-note { margin: 8px 0 0; color: var(--text-muted); font-size: 12px; line-height: 1.5; }
+html.beta .trip-search {
+  display: inline-flex; justify-content: center; align-items: center; gap: 8px;
+  min-height: 42px; border: none; border-radius: 10px; background: var(--accent);
+  color: var(--on-accent); font: inherit; font-size: 14px; font-weight: 600;
 }
-
-html.beta .trip-when select , html.beta .trip-when input[type="time"] {
-  border: none;
-  background: transparent;
-  color: inherit;
-  font: inherit;
-  font-weight: 600;
+html.beta .trip-search .ico { width: 18px; height: 18px; }
+html.beta .trip-search:disabled { background: var(--fill); color: var(--text-muted); cursor: default; opacity: 1; }
+html.beta .trip-search:not(:disabled):hover { filter: brightness(.95); }
+.trip-search:focus-visible, .trip-swap:focus-visible, .trip-options-toggle:focus-visible,
+.trip-pick:focus-visible, .trip-clear:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+html.beta .trip-status { padding: 8px 2px; font-size: 13px; }
+.trip-help-title { display: block; margin-bottom: 8px; color: var(--text-main); font-size: 16px; }
+.trip-results-heading {
+  margin: 0; padding: 12px 16px; display: flex; align-items: center;
+  justify-content: space-between; gap: 8px; border-bottom: 1px solid var(--line);
+  font-size: 13px; font-weight: 600; color: var(--text-main);
 }
+.trip-results-heading span { color: var(--text-muted); font-size: 12px; font-weight: 400; }
+html.beta .trip-results:empty { display: none; }
+html.sheet.beta .trip-input { font-size: 16px; }
 
 /* ---------- Cómo llegar: resultados en filas ---------- */
 
@@ -1088,3 +1049,24 @@ html.beta .ri-actions .btn {
   font-style: italic;
   color: var(--text-muted);
 }
+
+/* Shared planner options and interactions. */
+.trip-option-title { font-size: 12px; font-weight: 600; margin: 8px 0; }
+.trip-preferences { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+.trip-rank { display: grid; gap: 10px; margin-bottom: 12px; }
+.trip-preference { display: inline-flex; align-items: center; gap: 6px; color: var(--text-main); font-size: 13px; cursor: pointer; }
+.trip-preference .ico { width: 18px; height: 18px; color: var(--text-muted); }
+.trip-preference input { margin: 0; accent-color: var(--accent); }
+.trip-accessibility { color: var(--text-muted); cursor: default; }
+.trip-options > .trip-opt { margin-top: 12px; }
+.trip-filters { display: flex; gap: 8px; padding: 12px 16px; border-bottom: 1px solid var(--line); }
+.trip-filters button { flex: 1; min-height: 34px; background: var(--surface); color: var(--text-main); border: 1px solid var(--line); border-radius: 8px; font: inherit; font-size: 12px; cursor: pointer; }
+.trip-filters button[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); color: var(--accent-text); font-weight: 600; }
+.trip-step-place { padding: 0; background: transparent; border: none; text-align: left; color: var(--accent-text); font: inherit; font-weight: 600; text-decoration: underline; text-underline-offset: 2px; cursor: pointer; }
+.trip-step-place:focus-visible, .trip-filters button:focus-visible, .sidebar-toggle:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.sidebar-toggle { position: absolute; z-index: 1100; top: 24px; left: 460px; display: inline-flex; justify-content: center; align-items: center; width: 32px; height: 40px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--text-main); box-shadow: var(--shadow-1); cursor: pointer; }
+.sidebar-toggle .ico { width: 20px; height: 20px; transform: rotate(180deg); }
+html.beta:not(.sheet).sidebar-collapsed #sidebar { visibility: hidden; pointer-events: none; }
+html.sidebar-collapsed .sidebar-toggle { left: 12px; }
+html.sidebar-collapsed .sidebar-toggle .ico { transform: none; }
+html.sheet .sidebar-toggle { display: none; }

@@ -7,7 +7,7 @@ import { leafForService, setControlSelected } from './routeControls.js';
 import { icon } from './icons.js';
 import { colorOf, routeName, cardName, fmtM, walkMinOf } from './tripPresentation.js';
 
-export function createTripResults(model, { setCompact, departure, setDeparture, replan, shareTrip, onSelect }){
+export function createTripResults(model, { setCompact, departure, setDeparture, replan, shareTrip, onSelect, onFilter, onFit, onStep, plannerOptions }){
   const { ends } = model;
   // Chip de la ruta: su alias ("La 36") si tiene; si no, el código
   function chip(route){
@@ -23,6 +23,11 @@ export function createTripResults(model, { setCompact, departure, setDeparture, 
   const stopName = i => model.graph.stops.name[i] || 'paradero';
   // Hacia dónde va: el último paradero; en un alimentador, el barrio o la estación
   const headsign = r => r.headsign || stopName(r.stops[r.stops.length - 1]);
+  function stepPlace(i){
+    const button = el('button', { type: 'button', class: 'trip-step-place', title: 'Ver este paradero en el mapa' }, stopName(i));
+    button.addEventListener('click', e => { e.stopPropagation(); onStep([model.graph.stops.lat[i], model.graph.stops.lon[i]]); });
+    return button;
+  }
 
   // Estaciones del Metropolitano (nodos del grafo), para explicar por qué se
   // camina a una más lejana
@@ -84,8 +89,8 @@ export function createTripResults(model, { setCompact, departure, setDeparture, 
         const alts = leg.alts || [];
         // "Sube a la La 36" no: con alias, "Sube a [La 36]" y el código aparte
         const text = el('span', {},
-          r.alias ? 'Sube a ' : 'Sube a la ', chip(r), ' en ', el('b', {}, stopName(r.stops[leg.from])),
-          ' y baja en ', el('b', {}, stopName(r.stops[leg.to])),
+          r.alias ? 'Sube a ' : 'Sube a la ', chip(r), ' en ', stepPlace(r.stops[leg.from]),
+          ' y baja en ', stepPlace(r.stops[leg.to]),
           el('span', { class: 'trip-sub' }, `${r.alias ? ` · ruta ${r.code}` : ''} · ${n} paradero${n === 1 ? '' : 's'} · dirección ${headsign(r)}`));
         if (r.schedule){
           text.append(el('div', { class: 'trip-hours' }, `Horario: ${scheduleText(r.schedule)}`));
@@ -169,7 +174,7 @@ export function createTripResults(model, { setCompact, departure, setDeparture, 
 
   function card(opt, k){
     const rides = opt.legs.filter(l => l.type === 'ride');
-    const isOpen = k === model.selected;
+    const isOpen = k === model.selected && model.detailsOpen;
     const where = !opt.transfers ? 'Sin transbordo'
       : `${opt.transfers} transbordo${opt.transfers > 1 ? 's' : ''} en ${rides.slice(1).map(l => stopName(l.route.stops[l.from])).join(' y ')}`;
     const names = rides.map(l => cardName(l.route)).filter(Boolean).join(', luego ');
@@ -184,8 +189,8 @@ export function createTripResults(model, { setCompact, departure, setDeparture, 
         el('span', { class: opt.walkM > 1000 ? 'trip-walk-long' : '' }, opt.walkM < 15 ? 'sin caminar' : `${fmtM(opt.walkM)} a pie`)));
     if (opt.recommendationReason) body.append(el('div', { class: 'trip-reason' }, opt.recommendationReason));
     if (opt.old) body.append(el('div', { class: 'trip-warn' }, 'Usa una ruta antigua: podría no circular'));
+    if (k === model.selected) body.classList.add('selected');
     if (isOpen){
-      body.classList.add('selected');
       const ol = el('ol', { class: 'trip-steps' }, ...stepsOf(opt));
       const show = el('button', { type: 'button', class: 'btn small btn-ghost trip-show' }, 'Ver rutas completas');
       show.title = 'Marca estas rutas y abre la pestaña Rutas';
@@ -197,7 +202,9 @@ export function createTripResults(model, { setCompact, departure, setDeparture, 
       const share = el('button', { type: 'button', class: 'btn small btn-ghost trip-share' }, 'Compartir');
       share.title = 'Copiar el enlace de este viaje';
       share.addEventListener('click', (e) => { e.stopPropagation(); void shareTrip(share); });
-      body.append(ol, el('div', { class: 'trip-actions' }, show, share));
+      const fit = el('button', { type: 'button', class: 'btn small btn-ghost trip-fit' }, 'Ver viaje en el mapa');
+      fit.addEventListener('click', e => { e.stopPropagation(); onFit(); });
+      body.append(ol, el('div', { class: 'trip-actions' }, fit, show, share));
     }
     const pickCard = () => onSelect(k);
     body.addEventListener('click', pickCard);
@@ -214,10 +221,17 @@ export function createTripResults(model, { setCompact, departure, setDeparture, 
         `Está a ${fmtM(model.result.meters)}: te conviene caminar (unos ${walkMinOf(model.result.meters)} min).`));
       return;
     }
+    const filter = el('div', { class: 'trip-filters', role: 'group', 'aria-label': 'Transporte del viaje' });
+    for (const [mode, label] of [['all', 'Todos'], ['bus', 'Autobús'], ['metro', 'Metro']]){
+      const button = el('button', { type: 'button', 'data-mode': mode, 'aria-pressed': String(model.filter === mode) }, label);
+      button.addEventListener('click', () => onFilter(mode));
+      filter.append(button);
+    }
+    box.append(filter);
     if (!model.result.options.length){
       const msg = el('div', { class: 'trip-empty' }, 'No encontramos un viaje directo ni con un transbordo entre estos puntos.');
       box.append(msg);
-      if (!$('#tripOld').checked && oldWouldHelp(model.graph, ends.from, ends.to, { at: departure() })){
+      if (!$('#tripOld').checked && oldWouldHelp(model.graph, ends.from, ends.to, plannerOptions())){
         const b = el('button', { type: 'button', class: 'btn small' }, 'Buscar también con rutas antiguas');
         b.addEventListener('click', () => { $('#tripOld').checked = true; void replan(); });
         msg.append(el('div', { class: 'trip-empty-hint' }, 'Hay opciones con rutas antiguas, que podrían ya no circular. ', b));
@@ -227,6 +241,8 @@ export function createTripResults(model, { setCompact, departure, setDeparture, 
     }
     badges = badgesOf(model.result.options);
     setCompact(true);
+    box.append(el('h2', { class: 'trip-results-heading' }, 'Opciones de viaje',
+      el('span', {}, `${model.result.options.length} alternativas`)));
     model.result.options.forEach((opt, k) => box.append(card(opt, k)));
     offHoursNote(box);
     box.append(el('div', { class: 'muted trip-note' }, 'Tiempos estimados por distancia; incluyen una espera según cada cuánto pasa el bus.'));
@@ -236,7 +252,7 @@ export function createTripResults(model, { setCompact, departure, setDeparture, 
   // cambia la Salida a su próximo horario y recalcula
   function offHoursNote(box){
     const at = departure();
-    const off = offHoursHelp(model.graph, ends.from, ends.to, { includeOld: $('#tripOld').checked, at });
+    const off = offHoursHelp(model.graph, ends.from, ends.to, { ...plannerOptions(), at });
     if (!off.length) return;
     const note = el('div', { class: 'trip-offhours' }, 'En otro horario también te sirve:');
     off.forEach(r => {

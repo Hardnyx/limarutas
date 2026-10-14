@@ -27,7 +27,7 @@ function fitPadding(){
   if (state.mapInsets){
     return { paddingTopLeft: [20, 70], paddingBottomRight: [20, coveredBottom() + 20] };
   }
-  const leftPad = document.getElementById('sidebar')?.offsetWidth ?? 380;
+  const leftPad = document.documentElement.classList.contains('sidebar-collapsed') ? 0 : document.getElementById('sidebar')?.offsetWidth ?? 380;
   return { paddingTopLeft: [leftPad + 20, 40], paddingBottomRight: [30, 40] };
 }
 

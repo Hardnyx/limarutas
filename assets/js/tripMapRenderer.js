@@ -116,6 +116,17 @@ export function createTripMapRenderer(model, { state, pickedPoint, syncInputs, r
     if (!tripLayer) tripLayer = L.layerGroup().addTo(state.map);
     tripLayer.clearLayers();
     const opt = model.result?.options?.[model.selected];
+    if (model.result?.walkOnly){
+      const result = model.result;
+      const a = [ends.from.lat, ends.from.lon], b = [ends.to.lat, ends.to.lon];
+      const path = walkCached(a, b);
+      tripLayer.addLayer(L.polyline(path?.coords || [a, b], { pane: LINE_PANE, className: 'trip-walk-only', color: '#64748b', weight: 4, dashArray: '2 8', interactive: false }));
+      if (fit) fitTo(L.latLngBounds([a, b]));
+      if (path === undefined) void walkRoute(a, b).then(route => {
+        if (route && model.result === result) draw({ fit: false });
+      });
+      return;
+    }
     if (!opt) return;
     const { lat, lon } = model.graph.stops;
     const pt = i => [lat[i], lon[i]];

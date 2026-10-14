@@ -1,6 +1,7 @@
 import { $, el } from './utils.js';
 import { limaTime, DAY_NAMES } from './metSchedule.js';
 import { icon } from './icons.js';
+import { setSheet } from './mobileSheet.js';
 const MAX_SUGGEST = 8;
 const norm = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 
@@ -75,21 +76,46 @@ export function createTripForm(model, { ensureGraph, setEnd, removePin, addPin, 
     if (s) s.textContent = text;
   }
 
+  function syncSearchButton(){
+    const button = $('#tripSearch');
+    if (button) button.disabled = !(ends.from && ends.to);
+    ['from', 'to'].forEach(end => {
+      const input = $(end === 'from' ? '#tripFrom' : '#tripTo');
+      const clear = $(`.trip-clear[data-end="${end}"]`);
+      if (clear) clear.hidden = !input?.value;
+    });
+  }
+
+  function syncOptionsLabel(){
+    const button = $('#tripOptionsToggle');
+    if (!button) return;
+    const prefs = preferences();
+    const count = prefs.preferredModes.length + Number(prefs.includeOld) + Number(prefs.sort === 'transfers');
+    button.replaceChildren(count ? `Opciones · ${count}` : 'Opciones', icon('chevron'));
+  }
+
   function field(end, letter, placeholder){
     const input = el('input', {
       type: 'text', id: end === 'from' ? 'tripFrom' : 'tripTo', class: 'trip-input',
-      placeholder, autocomplete: 'off', 'aria-label': placeholder
+      placeholder, autocomplete: 'off', 'aria-label': placeholder,
+      role: 'combobox', 'aria-autocomplete': 'list', 'aria-expanded': 'false', 'aria-controls': `tripSuggest-${end}`
     });
     const pick = el('button', { type: 'button', class: 'trip-pick', 'data-end': end,
       title: 'Elegir en el mapa', 'aria-label': `Elegir ${end === 'from' ? 'origen' : 'destino'} en el mapa` }, icon('pin'));
-    const clear = el('button', { type: 'button', class: 'trip-clear', 'data-end': end, 'aria-label': 'Borrar' }, icon('close'));
-    const list = el('div', { class: 'suggest trip-suggest', role: 'listbox' });
+    const clear = el('button', { type: 'button', class: 'trip-clear', 'data-end': end, hidden: '', 'aria-label': `Borrar ${end === 'from' ? 'origen' : 'destino'}` }, icon('close'));
+    const list = el('div', { class: 'suggest trip-suggest', id: `tripSuggest-${end}`, role: 'listbox', 'aria-label': `Sugerencias de ${end === 'from' ? 'origen' : 'destino'}` });
     const wrap = el('div', { class: 'trip-field', 'data-end': end },
       el('span', { class: `trip-dot trip-dot-${end}` }, letter), input, clear, pick, list);
 
     let items = [];
     let active = -1;
-    const close = () => { list.classList.remove('open'); list.innerHTML = ''; items = []; active = -1; };
+    let revision = 0;
+    const close = () => {
+      revision++;
+      list.classList.remove('open'); list.innerHTML = ''; items = []; active = -1;
+      input.setAttribute('aria-expanded', 'false');
+      input.removeAttribute('aria-activedescendant');
+    };
     const choose = (c) => {
       close();
       setEnd(end, { lat: c.lat, lon: c.lon, label: `${c.name} · ${c.district}` });
@@ -100,28 +126,36 @@ export function createTripForm(model, { ensureGraph, setEnd, removePin, addPin, 
         list.appendChild(el('div', { class: 'suggest-empty' },
           'Ningún paradero con ese nombre. Prueba con otra palabra o elige el punto en el mapa con el botón del pin.'));
         list.classList.add('open');
+        input.setAttribute('aria-expanded', 'true');
+        input.removeAttribute('aria-activedescendant');
         return;
       }
       items.forEach((c, k) => {
-        const row = el('div', { class: `suggest-item${k === active ? ' selected' : ''}`, role: 'option' },
+        const row = el('div', { class: `suggest-item${k === active ? ' selected' : ''}`, id: `tripSuggest-${end}-${k}`, role: 'option', 'aria-selected': String(k === active) },
           el('span', { class: 's-ico s-ico-stop' }, '●'),
           el('div', {}, el('div', { class: 's-label' }, c.name), el('div', { class: 's-sub' }, [c.via, c.district, `${c.n} rutas`].filter(Boolean).join(' · '))));
         row.addEventListener('mousedown', (e) => { e.preventDefault(); choose(c); });
         list.appendChild(row);
       });
       list.classList.toggle('open', items.length > 0);
+      input.setAttribute('aria-expanded', String(items.length > 0));
+      if (active >= 0) input.setAttribute('aria-activedescendant', `tripSuggest-${end}-${active}`);
+      else input.removeAttribute('aria-activedescendant');
       // El elegido con las flechas, a la vista
       list.querySelector('.suggest-item.selected')?.scrollIntoView({ block: 'nearest' });
     };
 
-    input.addEventListener('focus', () => { void ensureGraph(); });
+    input.addEventListener('focus', () => { setSheet('full'); void ensureGraph(); });
     input.addEventListener('input', async () => {
+      const current = ++revision;
       ends[end] = null;
+      syncSearchButton();
       removePin(end);
       clearResults();
       syncUrl();
       if (!input.value.trim()){ close(); return; }
       await ensureGraph();
+      if (current !== revision || document.activeElement !== input) return;
       items = suggestStops(input.value);
       active = items.length ? 0 : -1;
       render();
@@ -133,7 +167,7 @@ export function createTripForm(model, { ensureGraph, setEnd, removePin, addPin, 
       else if (e.key === 'Escape' && list.classList.contains('open')){ e.stopPropagation(); close(); }
     });
     input.addEventListener('blur', () => setTimeout(close, 150));
-    clear.addEventListener('click', () => { input.value = ''; ends[end] = null; removePin(end); clearResults(); syncUrl(); close(); input.focus(); });
+    clear.addEventListener('click', () => { input.value = ''; ends[end] = null; removePin(end); clearResults(); syncUrl(); close(); syncSearchButton(); input.focus(); });
     pick.addEventListener('click', () => startPicking(end));
     return wrap;
   }
@@ -178,24 +212,57 @@ export function createTripForm(model, { ensureGraph, setEnd, removePin, addPin, 
     const summary = el('button', { type: 'button', class: 'trip-summary', 'aria-label': 'Editar origen, destino y salida' },
       el('span', { class: 'trip-summary-text' }), el('span', { class: 'trip-summary-edit' }, 'Editar'));
     summary.addEventListener('click', () => setCompact(false));
+    const optionsButton = el('button', { type: 'button', id: 'tripOptionsToggle', class: 'trip-options-toggle',
+      'aria-expanded': 'false', 'aria-controls': 'tripOptions' }, 'Opciones', icon('chevron'));
+    const preference = (id, label, name) => el('label', { class: 'trip-preference' },
+      el('input', { type: 'checkbox', id }), icon(name), label);
+    const rank = (value, label, checked = false) => {
+      const input = el('input', { type: 'radio', name: 'tripRank', value, ...(checked ? { checked: '' } : {}) });
+      return el('label', { class: 'trip-preference' }, input, label);
+    };
+    const options = el('div', { id: 'tripOptions', class: 'trip-options', hidden: '' },
+      el('div', { class: 'trip-option-title' }, 'Preferir'),
+      el('div', { class: 'trip-preferences' }, preference('tripPreferBus', 'Autobús', 'bus'), preference('tripPreferMetro', 'Metro', 'subway')),
+      el('div', { class: 'trip-option-title' }, 'Rutas'),
+      el('div', { class: 'trip-rank' }, rank('best', 'Mejor ruta', true), rank('transfers', 'Menos traslados')),
+      el('label', { class: 'trip-preference trip-accessibility' },
+        el('input', { type: 'radio', name: 'tripRank', value: 'accessible', disabled: '' }), 'Accesible en silla de ruedas'),
+      el('p', { class: 'trip-options-note' }, 'No hay datos suficientes para comprobar la accesibilidad del viaje completo.'),
+      el('label', { class: 'trip-opt trip-old', title: 'Incluir rutas sin autorización de la ATU; podrían ya no circular' }, oldChk, 'Incluir rutas antiguas'),
+      el('p', { class: 'trip-options-note' }, 'Las rutas antiguas podrían no circular. La hora de salida considera los horarios disponibles del Metropolitano.'));
+    const toggleOptions = open => {
+      options.hidden = !open;
+      optionsButton.setAttribute('aria-expanded', String(open));
+    };
+    optionsButton.addEventListener('click', () => toggleOptions(options.hidden));
+    options.addEventListener('keydown', e => {
+      if (e.key === 'Escape') { e.stopPropagation(); toggleOptions(false); optionsButton.focus(); }
+    });
+    options.addEventListener('change', () => {
+      syncOptionsLabel();
+      void replan();
+    });
+    const search = el('button', { type: 'submit', id: 'tripSearch', class: 'btn trip-search', disabled: '' }, icon('search'), 'Buscar viaje');
+    const tripForm = el('form', { class: 'trip-form', 'aria-label': 'Buscar viaje entre origen y destino' },
+      el('div', { class: 'trip-mode-label' }, icon('bus'), 'Transporte público', el('span', {}, 'Lima y Callao')),
+      el('div', { class: 'trip-endpoints' },
+        el('div', { class: 'trip-endpoint-fields' },
+          field('from', 'A', 'Elige un punto de inicio'),
+          field('to', 'B', 'Elige un destino')),
+        el('button', { type: 'button', id: 'tripSwap', class: 'trip-swap', title: 'Invertir origen y destino', 'aria-label': 'Invertir origen y destino' }, icon('swap'))),
+      el('div', { class: 'trip-opts' }, whenRow(), optionsButton), options, search);
+    tripForm.addEventListener('submit', e => { e.preventDefault(); if (ends.from && ends.to) void replan(); });
     pane.append(summary,
-      el('div', { class: 'trip-form' },
-        field('from', 'A', 'Paradero o cruce de origen'),
-        field('to', 'B', 'Paradero o cruce de destino'),
-        // Opciones en una fila de chips: salida, invertir, rutas antiguas
-        el('div', { class: 'trip-opts' },
-          whenRow(),
-          el('button', { type: 'button', id: 'tripSwap', class: 'trip-opt trip-opt-icon', title: 'Invertir origen y destino', 'aria-label': 'Invertir origen y destino' }, icon('swap')),
-          el('label', { class: 'trip-opt trip-old', title: 'Incluir rutas sin autorización de la ATU; podrían ya no circular' }, oldChk, 'Rutas antiguas'))),
+      tripForm,
       el('div', { id: 'tripStatus', class: 'muted trip-status', role: 'status' }),
       el('div', { id: 'tripResults', class: 'trip-results' }),
       // Se ve mientras no hay resultados (CSS: #tripResults:empty + .trip-help)
       el('div', { class: 'trip-help' },
-        el('p', {}, 'Escribe el nombre de un paradero en A y B, o toca ', icon('pin', 'ico-inline'), ' y elige el punto en el mapa.'),
+        el('strong', { class: 'trip-help-title' }, '¿A dónde vamos?'),
+        el('p', {}, 'Escribe un paradero o cruce en A y B, o toca ', icon('pin', 'ico-inline'), ' para elegir en el mapa.'),
         el('p', {}, 'También puedes abrir un paradero en el mapa y usar "Salir de aquí" o "Llegar aquí".'),
         el('p', {}, 'Con "Salida" eliges el día y la hora: los expresos del Metropolitano solo circulan en ciertos horarios.')));
 
-    oldChk.addEventListener('change', () => { void replan(); });
     $('#tripSwap').addEventListener('click', () => {
       [ends.from, ends.to] = [ends.to, ends.from];
       ['from', 'to'].forEach(k => { removePin(k); if (ends[k]) addPin(k); });
@@ -219,6 +286,7 @@ export function createTripForm(model, { ensureGraph, setEnd, removePin, addPin, 
   function syncInputs(){
     $('#tripFrom').value = ends.from?.label || '';
     $('#tripTo').value = ends.to?.label || '';
+    syncSearchButton();
   }
 
   function setDeparture({ day, min }){
@@ -229,5 +297,27 @@ export function createTripForm(model, { ensureGraph, setEnd, removePin, addPin, 
     void replan();
   }
 
-  return { buildForm, setCompact, syncInputs, departure, setDeparture, setStatus };
+  function preferences(){
+    return {
+      includeOld: !!$('#tripOld')?.checked,
+      preferredModes: ['bus', 'metro'].filter(mode => $(mode === 'bus' ? '#tripPreferBus' : '#tripPreferMetro')?.checked),
+      sort: $('input[name="tripRank"]:checked')?.value === 'transfers' ? 'transfers' : 'best'
+    };
+  }
+
+  function restoreSettings(params){
+    $('#tripOld').checked = params.get('antiguas') === '1';
+    const preferred = (params.get('preferir') || '').split(',');
+    $('#tripPreferBus').checked = preferred.includes('bus');
+    $('#tripPreferMetro').checked = preferred.includes('metro');
+    const sort = params.get('orden') === 'transfers' ? 'transfers' : 'best';
+    $(`input[name="tripRank"][value="${sort}"]`).checked = true;
+    const day = params.get('dia'), time = params.get('hora');
+    if (/^[0-6]$/.test(day) && /^([01]\d|2[0-3]):[0-5]\d$/.test(time)){
+      $('#tripDay').value = day; $('#tripTime').value = time; $('#tripTime').hidden = false;
+    }
+    syncOptionsLabel();
+  }
+
+  return { buildForm, setCompact, syncInputs, departure, setDeparture, setStatus, preferences, restoreSettings };
 }

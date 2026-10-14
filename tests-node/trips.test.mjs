@@ -36,3 +36,36 @@ test('planning works without a document and preserves forward travel in both dir
   }
   assert.equal(planTrip(g, { lat: -12, lon: -77 }, { lat: -12.0001, lon: -77 }).walkOnly, true);
 });
+
+function mixedFixture(){
+  const catalog = createServiceCatalog({
+    systems: { metro: { services: [{ id: 'L1' }, { id: 'L2' }] }, wr: { routes: [{ id: '1000' }] } },
+    catalog: { transporte: { only: ['1000'] }, semiformal: { only: [] }, aerodirecto: { only: [] }, otros: { expreso_san_isidro: { only: [] } } }
+  });
+  return buildTripGraph({ districts: ['Lima'], stops: Array.from({ length: 7 }, (_, i) => [-12 - .01 * i, -77, `Paradero ${i}`, 0]),
+    routes: { 'metro:L1:0': [0, 1, 2, 3], 'metro:L2:0': [3, 4, 5, 6], '1000-ida': [0, 1, 2, 3, 4, 5, 6] },
+    segM: { '1000-ida': [6000, 6000, 6000, 6000, 6000, 6000] } }, catalog);
+}
+
+test('transport filters exclude other modes from rides and equivalent alternatives', () => {
+  const g = mixedFixture();
+  for (const mode of ['bus', 'metro']){
+    const result = planTrip(g, { lat: -12, lon: -77 }, { lat: -12.06, lon: -77 }, { modes: [mode] });
+    assert.ok(result.options.length);
+    for (const option of result.options){
+      for (const leg of option.legs.filter(l => l.type === 'ride')){
+        for (const route of [leg.route, ...leg.alts.map(a => a.route)]) assert.equal(route.group === 'metro', mode === 'metro');
+      }
+    }
+  }
+});
+
+test('fewer transfers changes the recommendation instead of relabelling the same ranking', () => {
+  const g = mixedFixture(), from = { lat: -12, lon: -77 }, to = { lat: -12.06, lon: -77 };
+  const normal = planTrip(g, from, to), fewer = planTrip(g, from, to, { sort: 'transfers' });
+  assert.ok(normal.options[0].transfers > 0);
+  assert.equal(fewer.options[0].transfers, 0);
+  assert.match(fewer.options[0].recommendationReason, /menos transbordos/);
+  const preferred = planTrip(g, from, to, { preferredModes: ['bus'] });
+  assert.ok(preferred.options[0].legs.some(l => l.type === 'ride' && l.route.group !== 'metro'));
+});

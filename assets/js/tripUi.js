@@ -8,18 +8,30 @@ import { setSheet } from './mobileSheet.js';
 import { createTripForm } from './tripForm.js';
 import { createTripResults } from './tripResults.js';
 import { createTripMapRenderer } from './tripMapRenderer.js';
+import { centerOn } from './mapFit.js';
 
 const ends = { from: null, to: null };
-const model = { ends, graph: null, result: null, selected: 0 };
+const model = { ends, graph: null, result: null, selected: 0, filter: 'all', detailsOpen: true };
 let picking = null;
+let calculation = 0;
+let graphPromise = null;
 const mapRenderer = createTripMapRenderer(model, { state, pickedPoint, syncInputs: () => form.syncInputs(), replan });
 const form = createTripForm(model, { ensureGraph, setEnd, removePin: mapRenderer.removePin, addPin: mapRenderer.addPin,
   clearResults, syncUrl, startPicking, replan });
 const { buildForm, setCompact, syncInputs, departure, setStatus } = form;
 const { draw, addPin, removePin } = mapRenderer;
 const results = createTripResults(model, { setCompact, departure, setDeparture: form.setDeparture, replan, shareTrip,
-  onSelect(k){ if (model.selected !== k){ model.selected = k; void results.render(); draw(); } } });
+  plannerOptions,
+  onFilter(mode){ model.filter = mode; void replan(); },
+  onFit(){ draw(); },
+  onStep(point){ centerOn(point, Math.max(state.map.getZoom(), 16)); },
+  onSelect(k){
+    const changed = model.selected !== k;
+    model.detailsOpen = changed || !model.detailsOpen;
+    model.selected = k; void results.render(); if (changed) draw();
+  } });
 function clearResults(){
+  calculation++;
   model.result = null;
   const box = $('#tripResults');
   if (box) box.innerHTML = '';
@@ -32,10 +44,12 @@ function clearResults(){
 
 async function ensureGraph(){
   if (model.graph) return model.graph;
-  setStatus('Cargando paraderos…');
-  model.graph = await loadTripGraph();
-  setStatus('');
-  return model.graph;
+  if (!graphPromise){
+    setStatus('Cargando paraderos…');
+    graphPromise = loadTripGraph().then(graph => { model.graph = graph; setStatus(''); return graph; })
+      .catch(error => { graphPromise = null; setStatus('No se pudieron cargar los paraderos. Inténtalo de nuevo.'); throw error; });
+  }
+  return graphPromise;
 }
 
 function setEnd(end, point){
@@ -60,6 +74,7 @@ function startPicking(end){
   picking = end;
   state.tripPicking = end;
   document.documentElement.classList.add('trip-picking');
+  document.querySelectorAll('.trip-pick').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.end === end)));
   setStatus(`Toca el mapa para elegir el ${end === 'from' ? 'origen' : 'destino'} (Esc cancela)`);
   setSheet('peek');
 }
@@ -68,6 +83,7 @@ function stopPicking(){
   picking = null;
   state.tripPicking = null;
   document.documentElement.classList.remove('trip-picking');
+  document.querySelectorAll('.trip-pick').forEach(button => button.setAttribute('aria-pressed', 'false'));
 }
 
 async function pointLabel(lat, lon){
@@ -124,18 +140,27 @@ function wireMapPicking(){
    Calcular
    ========================= */
 
+function plannerOptions(){
+  return { ...form.preferences(), at: departure(), modes: model.filter === 'all' ? null : [model.filter] };
+}
+
 async function replan(){
   clearResults();
+  const revision = calculation;
   model.selected = 0;
+  model.detailsOpen = true;
   if (!ends.from || !ends.to){ syncUrl(); return; }
   await ensureGraph();
+  if (revision !== calculation) return;
   setStatus('Buscando opciones…');
   // Deja pintar el estado antes del cálculo
   await new Promise(res => setTimeout(res, 0));
-  model.result = planTrip(model.graph, ends.from, ends.to, { includeOld: $('#tripOld').checked, at: departure() });
+  if (revision !== calculation) return;
+  model.result = planTrip(model.graph, ends.from, ends.to, plannerOptions());
   setStatus('');
   syncUrl();
   await results.render();
+  if (revision !== calculation || !model.result) return;
   draw();
   if (model.result.options.length || model.result.walkOnly) setSheet('half');
 }
@@ -157,6 +182,14 @@ function syncUrl(){
     const p = ends[i ? 'to' : 'from'];
     if (p) url.searchParams.set(k, fmtPt(p)); else url.searchParams.delete(k);
   });
+  const prefs = form.preferences();
+  const fields = { preferir: prefs.preferredModes.join(','), orden: prefs.sort === 'best' ? '' : prefs.sort,
+    transporte: model.filter === 'all' ? '' : model.filter, antiguas: prefs.includeOld ? '1' : '',
+    dia: $('#tripDay')?.value === 'now' ? '' : $('#tripDay')?.value,
+    hora: $('#tripDay')?.value === 'now' ? '' : $('#tripTime')?.value };
+  for (const [key, value] of Object.entries(fields)){
+    if (value) url.searchParams.set(key, value); else url.searchParams.delete(key);
+  }
   window.history.replaceState(null, '', url);
 }
 
@@ -182,6 +215,8 @@ async function shareTrip(btn){
 
 async function loadFromUrl(){
   const params = new URLSearchParams(window.location.search);
+  form.restoreSettings(params);
+  model.filter = ['bus', 'metro'].includes(params.get('transporte')) ? params.get('transporte') : 'all';
   const a = parsePt(params.get('desde'));
   const b = parsePt(params.get('hasta'));
   if (!a && !b) return;
