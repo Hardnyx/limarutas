@@ -19,9 +19,13 @@ export const DIRECT_ACCESS_MAX_M = 1300;
 export const WALK_ONLY_M = 600;
 
 const WALK_M_PER_MIN = 75;      // caminando, con cruces
-const BUS_M_PER_MIN = 250;      // ~15 km/h con paradas y tráfico
+const BUS_M_PER_MIN = 1000 / 3; // ~20 km/h while moving; stops are added separately
 const FAST_M_PER_MIN = 500;     // Metro (vía exclusiva)
-const BRT_M_PER_MIN = 425;      // Metropolitano: 25,5 km/h de velocidad operacional (Global BRTData)
+const BRT_M_PER_MIN = 500;      // ~30 km/h while moving on the exclusive corridor
+// Estimated stop delay (doors, passengers and slowing down), not a measured
+// timetable. ITDP uses 30 s in its stop-elimination planning example:
+// https://brtguide.itdp.org/branch/master/guide/service-planning/deciding-on-stop-elimination-and-express-services
+const BUS_STOP_MIN = 0.5;
 const DETOUR = 1.3;             // la caminata real es más larga que la recta
 const TRANSFER_MIN = 3;         // bajar y cruzar hasta el otro paradero
 const MET_SWITCH_MIN = 2;       // cambiar de servicio del Metropolitano en la misma estación…
@@ -113,7 +117,10 @@ function legMin(g, r, k){
       // Por la vía si se conoce (Metropolitano); si no, en línea recta
       const m = r.segM?.[i] ?? distM(lat[a], lon[a], lat[b], lon[b]);
       const road = r.group !== 'metro' && r.group !== 'metropolitano';
-      legs[i] = (m / speed) * (road ? busPeak : 1) * (1 + congestionW * (r.slow?.[i] || 0) / 100);
+      const moving = (m / speed) * (road ? busPeak : 1) * (1 + congestionW * (r.slow?.[i] || 0) / 100);
+      // Only listed, served stops incur delay. Express services do not pay
+      // for stations they pass without stopping. The arrival stop is included.
+      legs[i] = moving + (r.group === 'metro' ? 0 : BUS_STOP_MIN);
     }
     legCache.set(r, { w: congestionW, peak: busPeak, legs });
   }
@@ -430,6 +437,7 @@ export function planTrip(g, from, to, { includeOld = false, at = null, modes = n
       }
       leg.segmentMinutes = Array.from({ length: leg.to - leg.from }, (_, i) => legMin(g, leg.route, leg.from + i));
       leg.travelMinutes = leg.segmentMinutes.reduce((sum, min) => sum + min, 0);
+      leg.stopMinutes = leg.route.group === 'metro' ? 0 : (leg.to - leg.from) * BUS_STOP_MIN;
       leg.transferMinutes = rideIndex ? (c.chain && rideIndex === 1 ? MET_SWITCH_MIN : TRANSFER_MIN) : 0;
       rideIndex++;
     }

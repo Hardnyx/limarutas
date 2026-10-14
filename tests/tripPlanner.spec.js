@@ -42,11 +42,14 @@ function plan(page, from, to, opts = {}){
           transfers: opt.transfers,
           minutes: opt.minutes,
           cost: opt.cost,
+          walkM: opt.walkM,
           altsOk,
           alts: rides.map(l => (l.alts || []).map(x => x.route.serviceId)),
           old: opt.old,
           codes: rides.map(l => l.route.code),
           waits: rides.map(l => l.wait),
+          rideMinutes: rides.map(l => l.travelMinutes),
+          stopMinutes: rides.map(l => l.stopMinutes),
           exits: rides.map(l => l.exitMin || 0),
           services: rides.map(l => l.route.serviceId),
           forward: rides.every(l => l.to > l.from),
@@ -86,8 +89,13 @@ test('viaje directo: opciones hacia adelante, cerca de A y B y con rutas alterna
   // algún tramo varias rutas sirven
   expect(r.options.some(o => o.transfers === 0)).toBe(true);
   expect(r.options.some(o => o.alts.some(a => a.length > 0))).toBe(true);
-  // Primero una ruta única (hay una con poca caminata) y sin repetir la misma ruta como principal
-  expect(r.options[0].transfers).toBe(0);
+  // A transfer with little walking can win when every direct needs a long walk.
+  if (r.options[0].transfers){
+    const direct = r.options.filter(o => !o.transfers).reduce((a, b) => a.minutes < b.minutes ? a : b);
+    expect(direct.walkM).toBeGreaterThan(800);
+    expect(r.options[0].walkM).toBeLessThan(direct.walkM);
+    expect(r.options[0].minutes).toBeLessThan(direct.minutes);
+  }
   expect(new Set(r.options.map(o => o.services.join('>'))).size).toBe(r.options.length);
 });
 
@@ -148,10 +156,15 @@ test('hora punta de la tarde: el bus por la pista tarda bastante más; el Metrop
   // Saga Falabella Las Begonias → Amazonas en la 1056
   const ride = async min => {
     const res = await plan(page, { lat: -12.0944, lon: -77.0252 }, { lat: -12.0451, lon: -77.0252 }, { at: { day: 2, min } });
-    return res.options.find(o => o.codes.join() === '1056')?.minutes;
+    const option = res.options.find(o => o.codes.join() === '1056');
+    return { total: option.minutes, moving: option.rideMinutes[0] - option.stopMinutes[0], stops: option.stopMinutes[0] };
   };
   const midday = await ride(11 * 60 + 33), peak = await ride(17 * 60 + 15);
-  expect(peak).toBeGreaterThan(midday * 1.6);
+  // Traffic multiplies time in motion; doors and passenger stops are separate.
+  expect(peak.total).toBeGreaterThan(midday.total);
+  expect(peak.moving).toBeGreaterThan(midday.moving * 1.6);
+  expect(peak.stops).toBeGreaterThan(0);
+  expect(midday.stops).toBeGreaterThan(0);
 });
 
 test('lejos: los transbordos no repiten rutas que ya van directo', async ({ app, page }) => {

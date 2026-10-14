@@ -93,6 +93,7 @@ test('vertical itinerary has timed nodes, expandable stops and selectable map al
   await expect(selected.locator('.trip-timeline-point[data-kind="origin"]')).toBeVisible();
   await expect(selected.locator('.trip-timeline-point[data-kind="destination"]')).toHaveCount(1);
   await expect(selected.locator('.trip-point-time').first()).toHaveText('~10:30');
+  await expect(selected.locator('.trip-stop-time').first()).toContainText('detenciones en las paradas');
   const points = await selected.locator('.trip-timeline-point').evaluateAll(nodes => nodes.map(n => Number(n.dataset.offset)));
   expect(points[0]).toBe(0);
   expect(points.every((point, i) => !i || point >= points[i - 1])).toBe(true);

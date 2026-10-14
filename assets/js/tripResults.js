@@ -115,6 +115,7 @@ export function createTripResults(model, { setCompact, departure, setDeparture, 
       }
       if (!row.intermediate.length) list.append(el('li', {}, 'Sin paradas intermedias.'));
       detail.append(list); text.append(detail);
+      if (leg.stopMinutes) text.append(el('div', { class: 'trip-sub trip-stop-time' }, `Incluye ~${durationText(leg.stopMinutes)} de detenciones en las paradas`));
       if (r.schedule) text.append(el('div', { class: 'trip-hours' }, `Horario: ${scheduleText(r.schedule)}`));
       if (r.headway){
         const wait = Math.max(1, Math.round(leg.wait || r.headway / 2));
@@ -259,7 +260,7 @@ export function createTripResults(model, { setCompact, departure, setDeparture, 
       el('span', {}, `${model.result.options.length} alternativas`)));
     model.result.options.forEach((opt, k) => box.append(card(opt, k)));
     offHoursNote(box);
-    box.append(el('div', { class: 'muted trip-note' }, 'Tiempos estimados por distancia; incluyen una espera según cada cuánto pasa el bus.'));
+    box.append(el('div', { class: 'muted trip-note' }, 'Tiempos estimados de recorrido, paradas, caminata y espera según cada cuánto pasa el bus.'));
   }
 
   // Servicios que servirían pero no circulan a la hora de salida: tocarlos

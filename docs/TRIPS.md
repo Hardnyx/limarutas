@@ -164,16 +164,18 @@ lo comparten muchas rutas y lo invaden autos y taxis.
 
 El planificador lo aplica completo en hora punta de lunes a viernes
 (6:00–9:30 y 17:00–21:00), la mitad el resto del día, 0,4 los sábados, 0,2
-los domingos y nada de noche. El Metropolitano (425 m/min, 25,5 km/h según
-Global BRTData) y el Metro (500 m/min) van por vía exclusiva y tienen su
-propia velocidad.
+los domingos y nada de noche. El Metropolitano y el Metro van por vía
+exclusiva y tienen su propia velocidad. El multiplicador de tráfico se
+aplica al tiempo en movimiento, separado de las detenciones.
 
 **Hora punta.** Además, todo bus que va por la pista (no el Metropolitano ni
 el Metro) tarda más según la hora (`busPeakFactor`): ×1,8 de lunes a viernes
 de 17:00 a 20:30, ×1,5 de 6:30 a 9:30, ×1,1 al mediodía (12:30–14:30) y los
-sábados de día; ×1 el resto. Calibrado con un viaje real: la 1056 de Las
-Begonias (San Isidro) a Amazonas (Cercado) un martes a las 17:15 tomó ~65
-min a bordo, frente a ~27 a media mañana.
+sábados de día; ×1 el resto. Estos factores se introdujeron a partir de
+un viaje de la 1056 de Las Begonias (San Isidro) a Amazonas (Cercado),
+~65 min por la tarde frente a ~27 a media mañana. Con el nuevo desglose
+de movimiento y paradas, las velocidades y demoras siguen siendo supuestos
+que necesitan mediciones adicionales por servicio para calibrarse.
 
 **Metropolitano con cambio de servicio.** El primer tramo en el
 Metropolitano puede seguir en otro servicio en la misma estación (B › Expreso
@@ -194,9 +196,25 @@ que llega antes a la que llega después (empate: menos caminata).
 Metropolitano y hay otra más cerca donde ese servicio no para, el paso lo
 dice («El Expreso 2 no para en Canaval y Moreyra, que está más cerca»).
 
-Minutos estimados: caminata 75 m/min con 30 % de rodeo, bus 250 m/min (más la congestión)
-(~15 km/h), Metro 500 m/min, Metropolitano 425 m/min, 3 min por transbordo (bajar
-y cruzar). El tramo se dibuja por el trazo de Wikiroutes; el Metropolitano, por su
+Minutos estimados: caminata 75 m/min con 30 % de rodeo, bus 333,3 m/min
+(20 km/h en movimiento, más congestión), Metro 500 m/min, Metropolitano
+500 m/min (30 km/h en movimiento), 3 min por transbordo (bajar y cruzar).
+Todos los buses, incluidos corredores y alimentadores, suman 30 segundos
+por parada atendida desde la subida hasta la bajada (incluye la de bajada).
+El Metro conserva su estimación por velocidad operacional. Los expresos
+solo suman las estaciones de su servicio, sin cobrar las que omiten.
+Estos son supuestos de planificación, no mediciones ni horarios garantizados:
+los 30 segundos toman como referencia el ejemplo de eliminación de paradas
+de la [guía BRT del ITDP](https://brtguide.itdp.org/branch/master/guide/service-planning/deciding-on-stop-elimination-and-express-services).
+La carga de pasajeros y las colas pueden variar esa demora. El cambio
+desde velocidades comerciales promedio evita sumar las detenciones dos veces.
+La UI muestra los minutos incluidos por detenciones, y la línea de tiempo
+y la selección del transbordo usan el mismo cálculo.
+
+Las regresiones verifican que 5 → C cambie en Plaza de Flores y que el
+Expreso 13 Chimpu Ocllo → Central (3 paradas) tenga menos tiempo a bordo
+que la B en ese tramo (20 paradas), respetando sus distintos horarios.
+El tramo se dibuja por el trazo de Wikiroutes; el Metropolitano, por su
 macroruta (A o B, en el sentido del viaje), como en la pestaña Rutas; el Metro,
 entre estaciones. Se marca cada paradero del tramo, con su nombre.
 
@@ -211,8 +229,9 @@ Metropolitano y corredores, 8. Los minutos del viaje incluyen esa espera, y
 el paso lo dice: "Pasa cada ~5 min según la ATU · espera ~3 min".
 
 La flota y el intervalo de la ficha dan una velocidad comercial (km de ida y
-vuelta ÷ flota × intervalo) de mediana 14,6 km/h, lo que confirma los ~15 km/h
-del bus; por ruta es muy dispersa (4 a 45 km/h) y no se usa.
+vuelta ÷ flota × intervalo) de mediana 14,6 km/h. Es una velocidad que ya
+incluye detenciones; por ruta es muy dispersa (4 a 45 km/h) y no se usa
+como velocidad de movimiento ni se le suman nuevamente paradas.
 
 **Horarios del Metropolitano.** `metropolitano_services.json` trae el horario
 de cada sentido (`schedule.ns`, `schedule.sn`: días `LMXJVSD` y horas; si
