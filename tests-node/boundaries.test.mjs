@@ -5,7 +5,7 @@ import { resolve, dirname, basename } from 'node:path';
 
 test('domain imports stay independent of application, DOM and map adapters', () => {
   const allowed = new Set(['serviceCatalog.js', 'routePolicy.js', 'corridorPolicy.js', 'wrTexts.js',
-    'tripGraph.js', 'tripPlanner.js', 'geo.js', 'metSchedule.js', 'selectionState.js', 'tripRecommendation.js']);
+    'tripGraph.js', 'tripPlanner.js', 'tripTiming.js', 'geo.js', 'metSchedule.js', 'selectionState.js', 'tripRecommendation.js']);
   const visited = new Set();
   function inspect(path){
     if (visited.has(path)) return;

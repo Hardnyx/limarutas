@@ -206,21 +206,21 @@ export function createTripMapRenderer(model, { state, pickedPoint, syncInputs, r
           const line = path?.coords || [start, next];
           tripLayer.addLayer(L.polyline(line, { pane: active ? LINE_PANE : ALT_PANE,
             className: active ? 'trip-walk-selected' : 'trip-alternative-walk', color: active ? '#64748b' : '#739bd4',
-            weight: active ? 4 : 3, opacity: active ? 1 : .45, dashArray: '2 8', lineCap: 'round', interactive: false }));
+            weight: active ? 3.5 : 3, opacity: active ? 1 : .45, dashArray: '2 8', lineCap: 'round', interactive: false }));
           points.push(...line); prev = next; return;
         }
         const route = leg.route, coords = rideCoords(route, leg, pt), color = colorOf(route);
         if (!active){
           const line = L.polyline(coords, { pane: ALT_PANE, className: 'trip-alternative-route',
-            color: '#739bd4', weight: 7, opacity: .5, smoothFactor: 0, bubblingMouseEvents: false });
+            color: '#739bd4', weight: 5, opacity: .5, smoothFactor: 0, bubblingMouseEvents: false });
           line.on('click', () => onSelect(index)); tripLayer.addLayer(line);
         } else {
-          tripLayer.addLayer(L.polyline(coords, { pane: LINE_PANE, smoothFactor: 0, className: 'trip-route-outline', color: '#334155', weight: 12, opacity: .8, interactive: false }));
-          tripLayer.addLayer(L.polyline(coords, { pane: LINE_PANE, smoothFactor: 0, color: '#fff', weight: 10, opacity: .9, interactive: false }));
-          tripLayer.addLayer(L.polyline(coords, { pane: LINE_PANE, smoothFactor: 0, color, weight: 6, interactive: false }));
+          tripLayer.addLayer(L.polyline(coords, { pane: LINE_PANE, smoothFactor: 0, className: 'trip-route-outline', color: '#334155', weight: 8, opacity: .8, interactive: false }));
+          tripLayer.addLayer(L.polyline(coords, { pane: LINE_PANE, smoothFactor: 0, color: '#fff', weight: 6.5, opacity: .9, interactive: false }));
+          tripLayer.addLayer(L.polyline(coords, { pane: LINE_PANE, smoothFactor: 0, color, weight: 4.5, interactive: false }));
           for (let position = leg.from; position <= leg.to; position++){
             const end = position === leg.from || position === leg.to, stop = route.stops[position];
-            tripLayer.addLayer(L.circleMarker(pt(stop), { pane: MARK_PANE, radius: end ? 6.5 : 2.5,
+            tripLayer.addLayer(L.circleMarker(pt(stop), { pane: MARK_PANE, radius: end ? 5.5 : 2,
               color: end ? color : '#fff', weight: end ? 3.5 : 1, fillColor: end ? '#fff' : color,
               fillOpacity: 1, bubblingMouseEvents: false
             }).bindTooltip(end ? `${position === leg.from ? 'Sube' : 'Baja'} en ${stopName(stop)}` : stopName(stop),

@@ -73,14 +73,16 @@ test('fewer transfers changes the recommendation instead of relabelling the same
 
 test('timeline totals reconcile with every computed itinerary without changing ranking or duration', () => {
   const g = mixedFixture();
-  const result = planTrip(g, { lat: -12, lon: -77 }, { lat: -12.06, lon: -77 });
-  for (const option of result.options){
-    const timeline = buildTimeline(option, 630);
-    assert.ok(Math.abs(timeline.calculatedMinutes - option.minutes) <= .5);
-    assert.equal(timeline.rows.at(-1).offset, option.minutes);
-    for (const leg of option.legs.filter(leg => leg.type === 'ride')){
-      assert.equal(leg.segmentMinutes.length, leg.to - leg.from);
-      assert.ok(leg.travelMinutes > 0);
+  for (const at of [null, { day: 3, min: 1175 }, { day: 3, min: 1435 }]){
+    const result = planTrip(g, { lat: -12, lon: -77 }, { lat: -12.06, lon: -77 }, { at });
+    for (const option of result.options){
+      const timeline = buildTimeline(option, at?.min ?? 630);
+      assert.ok(Math.abs(timeline.calculatedMinutes - option.minutes) <= .5);
+      assert.equal(timeline.rows.at(-1).offset, option.minutes);
+      for (const leg of option.legs.filter(leg => leg.type === 'ride')){
+        assert.equal(leg.segmentMinutes.length, leg.to - leg.from);
+        assert.ok(leg.travelMinutes > 0);
+      }
     }
   }
 });

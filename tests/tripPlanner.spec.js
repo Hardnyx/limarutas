@@ -162,9 +162,28 @@ test('hora punta de la tarde: el bus por la pista tarda bastante más; el Metrop
   const midday = await ride(11 * 60 + 33), peak = await ride(17 * 60 + 15);
   // Traffic multiplies time in motion; doors and passenger stops are separate.
   expect(peak.total).toBeGreaterThan(midday.total);
-  expect(peak.moving).toBeGreaterThan(midday.moving * 1.6);
+  expect(peak.moving).toBeGreaterThan(midday.moving);
   expect(peak.stops).toBeGreaterThan(0);
   expect(midday.stops).toBeGreaterThan(0);
+});
+
+test('Los Chinos at 19:35 forecasts the end of rush hour and keeps the arrival clock consistent', async ({ app, page }) => {
+  const result = await page.evaluate(async () => {
+    const { loadTripGraph } = await import('/assets/js/tripData.js');
+    const { planTrip } = await import('/assets/js/tripPlanner.js');
+    const { buildTimeline } = await import('/assets/js/tripTimeline.js');
+    const graph = await loadTripGraph();
+    const start = performance.now();
+    const options = planTrip(graph, { lat: -12.023427, lon: -77.050329 }, { lat: -12.217521, lon: -76.926885 }, { at: { day: 3, min: 1175 } }).options;
+    const option = options.find(o => !o.transfers && o.legs.some(l => l.route?.code === '1185'));
+    return option ? { minutes: option.minutes, timeline: buildTimeline(option, 1175), ms: performance.now() - start } : null;
+  });
+  expect(result).not.toBeNull();
+  expect(result.minutes).toBeLessThan(200);
+  expect(result.minutes).toBeGreaterThan(140);
+  expect(Math.abs(result.timeline.calculatedMinutes - result.minutes)).toBeLessThanOrEqual(.5);
+  expect(result.timeline.rows.at(-1).offset).toBe(result.minutes);
+  expect(result.ms).toBeLessThan(3000);
 });
 
 test('lejos: los transbordos no repiten rutas que ya van directo', async ({ app, page }) => {

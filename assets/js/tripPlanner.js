@@ -9,6 +9,8 @@
 import { runsAt } from './metSchedule.js';
 import { distM } from './geo.js';
 import { explainRecommendation } from './tripRecommendation.js';
+import { estimateSegment, estimateRide, stopDelayOf } from './tripTiming.js';
+export { congestionWeight, busPeakFactor } from './tripTiming.js';
 
 // Hasta cuánto se camina al inicio y al final del viaje
 export const ACCESS_MAX_M = 800;
@@ -19,13 +21,6 @@ export const DIRECT_ACCESS_MAX_M = 1300;
 export const WALK_ONLY_M = 600;
 
 const WALK_M_PER_MIN = 75;      // caminando, con cruces
-const BUS_M_PER_MIN = 1000 / 3; // ~20 km/h while moving; stops are added separately
-const FAST_M_PER_MIN = 500;     // Metro (vía exclusiva)
-const BRT_M_PER_MIN = 500;      // ~30 km/h while moving on the exclusive corridor
-// Estimated stop delay (doors, passengers and slowing down), not a measured
-// timetable. ITDP uses 30 s in its stop-elimination planning example:
-// https://brtguide.itdp.org/branch/master/guide/service-planning/deciding-on-stop-elimination-and-express-services
-const BUS_STOP_MIN = 0.5;
 const DETOUR = 1.3;             // la caminata real es más larga que la recta
 const TRANSFER_MIN = 3;         // bajar y cruzar hasta el otro paradero
 const MET_SWITCH_MIN = 2;       // cambiar de servicio del Metropolitano en la misma estación…
@@ -69,63 +64,9 @@ const DOMINATED_SAVING_MIN = 10; // un transbordo con una ruta que ya va directo
 
 const walkMin = m => (m * DETOUR) / WALK_M_PER_MIN;
 
-// Congestión: cuánto pesa el % extra de las avenidas congestionadas
-// (route.slow) según la hora de salida. Hora punta de lunes a viernes
-// (6:00–9:30 y 17:00–21:00): todo; el resto del día, la mitad; sábado, 0,4;
-// domingo, 0,2; de noche, nada. Sin hora: la mitad.
-export function congestionWeight(at){
-  if (!at) return 0.5;
-  const { day, min } = at;
-  if (min < 5 * 60 + 30 || min >= 22 * 60) return 0;
-  if (day === 0) return 0.2;
-  if (day === 6) return 0.4;
-  const peak = (min >= 6 * 60 && min < 9 * 60 + 30) || (min >= 17 * 60 && min < 21 * 60);
-  return peak ? 1 : 0.5;
-}
-let congestionW = 0.5;
-
-// Hora punta para todos los buses que van por la pista (no el Metropolitano
-// ni el Metro): cuántas veces más dura el viaje que a media mañana. De un
-// viaje real: la 1056 de Las Begonias (San Isidro) a Amazonas (Cercado), un
-// martes a las 17:15, ~65 min a bordo frente a los ~27 a las 11:30 (×2,4,
-// con su parte por avenidas congestionadas en route.slow); TomTom 2025 da la
-// tarde como la franja más lenta de Lima
-export function busPeakFactor(at){
-  if (!at) return 1.15;
-  const { day, min } = at;
-  if (day === 0) return 1;
-  if (day === 6) return min >= 11 * 60 && min < 20 * 60 ? 1.1 : 1;
-  if (min >= 17 * 60 && min < 20 * 60 + 30) return 1.8;
-  if (min >= 6 * 60 + 30 && min < 9 * 60 + 30) return 1.5;
-  if (min >= 12 * 60 + 30 && min < 14 * 60 + 30) return 1.1;
-  return 1;
-}
-let busPeak = 1.15;
-
-// Minutos del tramo k → k+1 de una ruta (se calculan una vez por ruta y
-// peso de congestión)
-const legCache = new WeakMap();
-function legMin(g, r, k){
-  let entry = legCache.get(r);
-  let legs = entry && entry.w === congestionW && entry.peak === busPeak ? entry.legs : null;
-  if (!legs){
-    const { lat, lon } = g.stops;
-    const speed = r.group === 'metro' ? FAST_M_PER_MIN : r.group === 'metropolitano' ? BRT_M_PER_MIN : BUS_M_PER_MIN;
-    legs = new Float32Array(Math.max(0, r.stops.length - 1));
-    for (let i = 0; i < legs.length; i++){
-      const a = r.stops[i], b = r.stops[i + 1];
-      // Por la vía si se conoce (Metropolitano); si no, en línea recta
-      const m = r.segM?.[i] ?? distM(lat[a], lon[a], lat[b], lon[b]);
-      const road = r.group !== 'metro' && r.group !== 'metropolitano';
-      const moving = (m / speed) * (road ? busPeak : 1) * (1 + congestionW * (r.slow?.[i] || 0) / 100);
-      // Only listed, served stops incur delay. Express services do not pay
-      // for stations they pass without stopping. The arrival stop is included.
-      legs[i] = moving + (r.group === 'metro' ? 0 : BUS_STOP_MIN);
-    }
-    legCache.set(r, { w: congestionW, peak: busPeak, legs });
-  }
-  return legs[k];
-}
+// The query clock is synchronous and shared by all candidate evaluations.
+let planningAt = null;
+const legMin = (g, route, k, offset = 0) => estimateSegment(g, route, k, planningAt, offset);
 
 // Tramos de una opción: caminar, subir, (caminar,) subir, caminar
 function legsOf(g, c){
@@ -145,6 +86,29 @@ function legsOf(g, c){
     legs.push({ type: 'walk', m: c.walkB, from: r1.stops[c.k] });
   }
   return legs;
+}
+
+function refreshTiming(g, candidate, detailed = false){
+  let elapsed = 0, rideIndex = 0;
+  for (const leg of candidate.legs){
+    if (leg.type === 'walk'){
+      leg.travelMinutes = walkMin(leg.m); elapsed += leg.travelMinutes; continue;
+    }
+    leg.transferMinutes = rideIndex ? (candidate.chain && rideIndex === 1 ? MET_SWITCH_MIN : TRANSFER_MIN) : 0;
+    elapsed += leg.transferMinutes + (leg.wait || 0) + (leg.exitMin || 0);
+    leg.startMinutes = elapsed;
+    if (detailed){
+      let ride = 0;
+      leg.segmentMinutes = Array.from({ length: leg.to - leg.from }, (_, i) => {
+        const min = legMin(g, leg.route, leg.from + i, elapsed + ride);
+        ride += min; return min;
+      });
+      leg.travelMinutes = ride;
+    } else leg.travelMinutes = estimateRide(g, leg.route, leg.from, leg.to, planningAt, elapsed);
+    leg.stopMinutes = (leg.to - leg.from) * stopDelayOf(leg.route);
+    elapsed += leg.travelMinutes; rideIndex++;
+  }
+  candidate.minutes = elapsed;
 }
 
 const isMass = r => MASS_GROUPS.has(r.group);
@@ -176,8 +140,7 @@ export function planTrip(g, from, to, { includeOld = false, at = null, modes = n
   const out = { walkOnly: direct <= WALK_ONLY_M, meters: direct, options: [] };
   if (out.walkOnly) return out;
 
-  congestionW = congestionWeight(at);
-  busPeak = busPeakFactor(at);
+  planningAt = at;
   const modeOf = r => r.group === 'metro' ? 'metro' : 'bus';
   const preferred = c => preferredModes.length === 1 && c.legs.some(l => l.type === 'ride' && preferredModes.includes(modeOf(l.route)));
   const preferenceOrder = (a, b) => (sort === 'transfers' ? a.transfers - b.transfers : 0)
@@ -198,9 +161,8 @@ export function planTrip(g, from, to, { includeOld = false, at = null, modes = n
     for (const [rIdx, q] of g.atStop[d]){
       if (!isActive(rIdx)) continue;
       const r = g.routes[rIdx];
-      let min = walkMin(walkB);
       for (let k = q - 1; k >= 0; k--){
-        min += legMin(g, r, k);
+        const min = estimateRide(g, r, k, q, planningAt) + walkMin(walkB);
         const y = r.stops[k];
         let byRoute = toDest.get(y);
         if (!byRoute){ byRoute = new Map(); toDest.set(y, byRoute); }
@@ -229,7 +191,7 @@ export function planTrip(g, from, to, { includeOld = false, at = null, modes = n
         const r2 = g.routes[r2Idx];
         if (!accept(r2) || rides.some(r => sameService(r2, r))) continue;
         keep(`${keyHead}>${r2Idx}`, {
-          ...fields, transfers, minutes: base + e.min, walkM: fields.walkA + walkT + e.walkB,
+          ...fields, transfers, minutes: base + estimateRide(g, r2, e.from, e.to, planningAt, base) + walkMin(e.walkB), walkM: fields.walkA + walkT + e.walkB,
           x, y, walkT, r2: r2Idx, e
         });
       }
@@ -244,7 +206,7 @@ export function planTrip(g, from, to, { includeOld = false, at = null, modes = n
       let ride1 = 0;
 
       for (let k = p + 1; k < r1.stops.length; k++){
-        ride1 += legMin(g, r1, k - 1);
+        ride1 += legMin(g, r1, k - 1, head + ride1);
         const x = r1.stops[k];
 
         // Directo: bajar cerca del destino
@@ -286,12 +248,13 @@ export function planTrip(g, from, to, { includeOld = false, at = null, modes = n
   // que depende de una sola ruta, no gana siempre a un transbordo cómodo.
   const cands = Array.from(best.values(), c => {
     const legs = legsOf(g, c);
+    c = { ...c, legs };
+    refreshTiming(g, c);
     // Descuento por los tramos en Metro, Metropolitano o corredor
     let massSaving = 0, massMin = 0, rideMin = 0;
     for (const l of legs){
       if (l.type !== 'ride') continue;
-      let m = 0;
-      for (let k = l.from; k < l.to; k++) m += legMin(g, l.route, k);
+      const m = l.travelMinutes;
       rideMin += m;
       if (!isMass(l.route)) continue;
       massMin += m;
@@ -330,7 +293,6 @@ export function planTrip(g, from, to, { includeOld = false, at = null, modes = n
   top.push(...useful.slice(TOP_FOR_ALTS).filter(c => !c.transfers).slice(0, 5));
   top.push(...useful.slice(TOP_FOR_ALTS).filter(c => c.mass && c.transfers).slice(0, 5));
   for (const c of top){
-    let wait = 0;
     let prev = null;
     const mains = c.legs.filter(l => l.type === 'ride').map(l => l.route.serviceId);
     for (const leg of c.legs){
@@ -345,12 +307,17 @@ export function planTrip(g, from, to, { includeOld = false, at = null, modes = n
       if (fromMet && leg.route.group === 'metropolitano') leg.wait = Math.max(leg.wait, MET_TRANSFER_WAIT_MIN);
       // Del Metropolitano a otra ruta: primero hay que salir de la estación
       leg.exitMin = fromMet && leg.route.group !== 'metropolitano' ? STATION_EXIT_MIN : 0;
-      wait += leg.wait + leg.exitMin;
       prev = leg.route;
     }
-    // El tiempo estimado incluye la espera
-    c.minutes += wait;
-    c.cost = c.base + wait;
+    // Waiting can move a ride into another traffic period. Recompute the
+    // complete journey before ranking, keeping its clocks and total aligned.
+    const oldMinutes = c.minutes;
+    const oldMassSaving = c.legs.filter(l => l.type === 'ride' && isMass(l.route))
+      .reduce((sum, l) => sum + l.travelMinutes * (1 - MASS_RIDE_FACTOR), 0);
+    refreshTiming(g, c, true);
+    const massSaving = c.legs.filter(l => l.type === 'ride' && isMass(l.route))
+      .reduce((sum, l) => sum + l.travelMinutes * (1 - MASS_RIDE_FACTOR), 0);
+    c.cost = c.base + (c.minutes - oldMinutes) + oldMassSaving - massSaving;
   }
   // Un directo va antes que cualquier transbordo, salvo que el transbordo
   // ahorre bastante: 20 min o el 20 % del viaje (en 2 h y media, 20 min no
@@ -429,18 +396,6 @@ export function planTrip(g, from, to, { includeOld = false, at = null, modes = n
     picked.splice(1, rest.length, ...rest);
   }
   for (const c of picked){
-    let rideIndex = 0;
-    for (const leg of c.legs){
-      if (leg.type === 'walk'){
-        leg.travelMinutes = walkMin(leg.m);
-        continue;
-      }
-      leg.segmentMinutes = Array.from({ length: leg.to - leg.from }, (_, i) => legMin(g, leg.route, leg.from + i));
-      leg.travelMinutes = leg.segmentMinutes.reduce((sum, min) => sum + min, 0);
-      leg.stopMinutes = leg.route.group === 'metro' ? 0 : (leg.to - leg.from) * BUS_STOP_MIN;
-      leg.transferMinutes = rideIndex ? (c.chain && rideIndex === 1 ? MET_SWITCH_MIN : TRANSFER_MIN) : 0;
-      rideIndex++;
-    }
     out.options.push({
       legs: c.legs,
       transfers: c.transfers,
@@ -467,8 +422,7 @@ function alternativesFor(g, leg, isActive){
   const t = r.stops[leg.to];
   const boards = [[s, 0], ...g.walkFrom(s).filter(([, d]) => d <= ALT_M)];
   const alights = new Set([t, ...g.walkFrom(t).filter(([, d]) => d <= ALT_M).map(([j]) => j)]);
-  let mainMin = 0;
-  for (let k = leg.from; k < leg.to; k++) mainMin += legMin(g, r, k);
+  const mainMin = estimateRide(g, r, leg.from, leg.to, planningAt, leg.startMinutes);
   const limit = mainMin * 1.4 + 5;
 
   const found = new Map();   // casilla → alternativa (una por servicio)
@@ -479,7 +433,7 @@ function alternativesFor(g, leg, isActive){
       if (sameService(ar, r) || found.has(ar.serviceId)) continue;
       let m = 0;
       for (let k = pos + 1; k < ar.stops.length; k++){
-        m += legMin(g, ar, k - 1);
+        m += legMin(g, ar, k - 1, leg.startMinutes + m);
         if (m > limit) break;
         if (alights.has(ar.stops[k])){ found.set(ar.serviceId, { route: ar, from: pos, to: k, min: m }); break; }
       }

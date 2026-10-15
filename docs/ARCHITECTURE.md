@@ -28,7 +28,7 @@ opciones de viaje.
 | Responsabilidad | Módulos | Dependencias permitidas |
 |---|---|---|
 | Catálogo e identidad | `serviceCatalog`, `routePolicy`, `corridorPolicy`, `wrTexts` | Objetos de datos y funciones puras |
-| Grafo y cálculo | `tripGraph`, `geo`, `metSchedule`, `tripPlanner`, `tripRecommendation` | Catálogo explícito, ids de servicio; sin casillas |
+| Grafo y cálculo | `tripGraph`, `geo`, `metSchedule`, `tripTiming`, `tripPlanner`, `tripRecommendation` | Catálogo explícito, ids de servicio; sin casillas |
 | Estado de rutas | `selectionState` | Sin navegador; suscripción a cambios |
 | Carga | `catalogRepository`, `stopRepository`, `tripData` | Fetch, fuentes preparadas y estado de aplicación |
 | Adaptación de selección | `routeControls`, `leafToggle` | Proyecta estado en controles y mapa; conserva eventos de recientes y grupos |

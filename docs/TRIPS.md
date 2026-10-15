@@ -168,14 +168,28 @@ los domingos y nada de noche. El Metropolitano y el Metro van por vía
 exclusiva y tienen su propia velocidad. El multiplicador de tráfico se
 aplica al tiempo en movimiento, separado de las detenciones.
 
-**Hora punta.** Además, todo bus que va por la pista (no el Metropolitano ni
-el Metro) tarda más según la hora (`busPeakFactor`): ×1,8 de lunes a viernes
+**Hora punta.** Todo bus que va por la pista (no el Metropolitano ni
+el Metro) tiene un factor general según la hora (`busPeakFactor`): ×1,8 de lunes a viernes
 de 17:00 a 20:30, ×1,5 de 6:30 a 9:30, ×1,1 al mediodía (12:30–14:30) y los
 sábados de día; ×1 el resto. Estos factores se introdujeron a partir de
 un viaje de la 1056 de Las Begonias (San Isidro) a Amazonas (Cercado),
 ~65 min por la tarde frente a ~27 a media mañana. Con el nuevo desglose
 de movimiento y paradas, las velocidades y demoras siguen siendo supuestos
 que necesitan mediciones adicionales por servicio para calibrarse.
+
+`tripTiming` toma el mayor entre ese factor general y el factor positivo
+de cada avenida, porque ambos describen tráfico respecto de la misma base;
+no los multiplica. Los carriles exclusivos mantienen su ventaja local
+sin añadirles el factor general de la ciudad.
+
+La hora avanza con la caminata, la espera, los transbordos y cada tramo
+recorrido. Si un bus sigue viajando después de las 20:30, la distancia
+restante usa el nuevo perfil de tráfico. Un segmento que cruza el cambio
+se divide por distancia recorrida antes y después; las detenciones se suman
+aparte. Así se evita proyectar la hora punta de las 19:35 hasta medianoche.
+Los candidatos se ordenan con esos tiempos y la línea de tiempo conserva
+el mismo desglose. Las velocidades y los perfiles siguen siendo estimaciones,
+sin tráfico en vivo ni una medición específica de cada servicio.
 
 **Metropolitano con cambio de servicio.** El primer tramo en el
 Metropolitano puede seguir en otro servicio en la misma estación (B › Expreso
